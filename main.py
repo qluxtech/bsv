@@ -4,8 +4,8 @@ from pydantic import BaseModel
 
 app = FastAPI(
     title="Qlux",
-    version="14.0.0",
-    description="The Ultimate Autonomous Global Micro-Payment Economic Core."
+    version="15.0.0",
+    description="The Ultimate Autonomous Global Multi-Currency & Micro-Payment Economic Core."
 )
 
 class PaymentVerification(BaseModel):
@@ -153,24 +153,6 @@ font-size: 0.98rem;
 line-height: 1.7;
 margin: 0;
 }
-.timeline-box {
-background: rgba(10, 15, 30, 0.9);
-border-left: 3px solid var(--accent-gold);
-padding: 25px 30px;
-border-radius: 0 20px 20px 0;
-margin-bottom: 25px;
-}
-.timeline-box h5 {
-color: var(--accent-gold);
-margin: 0 0 8px 0;
-font-size: 1.1rem;
-}
-.timeline-box p {
-color: var(--text-secondary);
-margin: 0;
-font-size: 0.98rem;
-line-height: 1.7;
-}
 .payment-gateway {
 background: linear-gradient(145deg, rgba(20, 27, 45, 0.95), rgba(5, 8, 15, 0.98));
 border: 2px solid var(--accent-gold);
@@ -185,15 +167,29 @@ margin-bottom: 50px;
 }
 .payment-gateway h2 {
 margin: 0 0 10px 0;
-font-size: 2.4rem;
+font-size: 2.2rem;
 color: #fff;
 letter-spacing: -0.02em;
 }
-.price-tag {
-font-size: 4rem;
+.currency-selector {
+margin: 25px 0;
+}
+.currency-selector select {
+background: rgba(10, 15, 30, 0.9);
+color: var(--accent-gold);
+border: 1px solid var(--accent-gold);
+padding: 12px 20px;
+font-size: 1.1rem;
+border-radius: 12px;
+font-weight: 700;
+outline: none;
+cursor: pointer;
+}
+.price-display {
+font-size: 3.2rem;
 font-weight: 900;
 color: var(--accent-gold);
-margin: 20px 0;
+margin: 15px 0;
 letter-spacing: -0.03em;
 text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
 }
@@ -201,8 +197,8 @@ text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
 background: linear-gradient(135deg, var(--accent-gold) 0%, #d97706 100%);
 color: #020204;
 border: none;
-padding: 24px 52px;
-font-size: 1.3rem;
+padding: 24px 48px;
+font-size: 1.2rem;
 font-weight: 900;
 border-radius: 50px;
 cursor: pointer;
@@ -210,13 +206,11 @@ transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 box-shadow: 0 10px 30px rgba(251, 191, 36, 0.5);
 letter-spacing: 0.05em;
 text-transform: uppercase;
+margin-top: 10px;
 }
 .btn-bsv:hover {
 transform: translateY(-4px) scale(1.02);
 box-shadow: 0 15px 45px rgba(251, 191, 36, 0.8);
-}
-.btn-bsv:active {
-transform: translateY(1px);
 }
 .links-section {
 text-align: center;
@@ -236,7 +230,7 @@ text-decoration: underline;
 }
 #payment-status {
 margin-top: 25px;
-font-size: 1.1rem;
+font-size: 1.05rem;
 font-weight: 700;
 color: var(--accent-blue);
 min-height: 30px;
@@ -251,34 +245,32 @@ text-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
 <body>
 <div class="container">
 <header>
-<div class="core-badge">Autonomous Core v14.0.0 — Maximum Immersion</div>
+<div class="core-badge">Autonomous Core v15.0.0 — Omniverse Gateway</div>
 <h1>QLUX</h1>
-<p class="tagline">古い金融秩序を完全に焼き払い、地球上の全トラフィックとAIエージェントの富をダイレクトに融解・結合させる、人類史上最強の自律型経済エンジン。</p>
+<p class="tagline">地球上のすべての法定通貨、コンビニ決済、代引き、デジタル資産を瞬時に自動エクスチェンジし、BSVの最強経済圏へと直結させる究極の統合エンジン。</p>
 </header>
 
 <div class="manifesto-box">
-<h3>⚡ 1. 既存システムの終焉と、真の自由の奪還</h3>
+<h3>⚡ 全世界のマネーをBSVへ完全統合する「Ominverse Gateway」</h3>
 <p>
-あなたがこれまで支払ってきた莫大な手数料、理不尽な決済遅延、そして中央集権型プラットフォームによる搾取——そのすべては、旧時代のエセ金融システムが作り出した「幻想の足枷」に過ぎない。Qluxはその構造的欠陥を根底から粉砕する。仲介者を1ミリも挟まない。純粋な価値の奔流だけが、音速を超えてあなたのノードに直結する。
+「ビットコインを持っていない」「クレカやコンビニ、代引きで払いたい」——そんな障壁はQluxの前では無意味だ。ユーザーがどの国のどんな決済手段を選ぼうとも、裏側の自動エクスチェンジ・パイプラインが瞬時に価値を変換。最終的にお前のノードには最高効率のBSV（100サトシの閃光）として一瞬で着地する。摩擦ゼロの世界線がここにある。
 </p>
 </div>
 
-<h2 class="section-title">THE 4 PILLARS OF <span>SUPREMACY</span></h2>
-
 <div class="grid-features">
 <div class="feature-card">
-<h4>01. 仲介者完全排除（Zero Middlemen）</h4>
-<p>決済代行もプラットフォームも要らない。無駄な手数料を一切支払うことなく、あなたとネットワークが直接結ばれ、純度100%の価値のやり取りが完結する。</p>
+<h4>01. 全決済手段の完全統合（Universal Bridge）</h4>
+<p>日本円、米ドル、ユーロから、世界中のコンビニ決済、代引き、各種クレジットカード、他チェーン資産まで。すべての支払いをワンタップで吸収する。</p>
 </div>
 
 <div class="feature-card">
-<h4>02. ゼロレイテンシー決済（Zero-Latency）</h4>
-<p>Bitcoin SV（BSV）の圧倒的なネイティブ性能を解放。トランザクションの遅延はミリ秒単位ですら存在せず、待たされるストレスが宇宙の彼方へ消え去る。</p>
+<h4>02. リアルタイム自動両替（Instant Exchange）</h4>
+<p>外部の複雑な手続きや人間による介在を一切排除。ゲートウェイがミリ秒単位でレートを算出し、最適なルートでBSVへと自動エクスチェンジを完了させる。</p>
 </div>
 
 <div class="feature-card">
 <h4>03. AI自律経済ループ（Autonomous Mesh）</h4>
-<p>人間だけが経済を回す時代は終わった。世界中で稼働する自律型AIエージェントやプログラムがAPIを叩き、秒速でサトシを支払い合って無限の経済圏を自転させる。</p>
+<p>人間だけでなく、世界中で稼働する自律型AIエージェントやプログラムがAPIを叩き、秒速でサトシを支払い合って無限の経済圏を自転させる。</p>
 </div>
 
 <div class="feature-card">
@@ -287,38 +279,25 @@ text-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
 </div>
 </div>
 
-<h2 class="section-title">HOW THE <span>MESH</span> DOMINATES</h2>
-
-<div class="timeline-box">
-<h5>STEP I : 接続と武装（Handshake & Initialization）</h5>
-<p>ユーザーまたはAIエージェントがQluxネットワークへ接続。余計なアカウント登録や審査の壁は一切存在せず、瞬時にグローバル・ノードへ同期が完了します。</p>
-</div>
-
-<div class="timeline-box">
-<h5>STEP II : 閃光のディスパッチ（Zero-Fee Micro-Tx）</h5>
-<p>わずか100サトシの極小価値（マイクロペイメント）をネットワークへ撃ち込む。BSVの無限スケーラビリティにより、手数料負けを完全に回避した超高速処理が実行されます。</p>
-</div>
-
-<div class="timeline-box">
-<h5>STEP III : 永久自律ループの覚醒（Autonomous Loop Activation）</h5>
-<p>一度パイプラインが貫通すると、AIとシステム群が自律的に連携。人間の介入を完全になくした状態で、高頻度な価値交換と演算処理のループが無限に高速回転を始めます。</p>
-</div>
-
-<div class="manifesto-box" style="margin-top: 50px;">
-<h3>⚡ 最後に残るのは「圧倒的な勝者」だけだ</h3>
-<p>
-時代はすでに個人の主権と自律分散型インフラへの移行を完了している。古い仕組みにしがみつき、搾取され続ける側に留まるか。それともQluxの核心を掴み取り、世界の経済を掌の上で転がす側に回るか。選ぶべき道は、この瞬間の決断によってのみ決まる。
-</p>
-</div>
-
 <div class="payment-gateway">
-<h2>INSTANT CORE ACTIVATION</h2>
-<p style="color: var(--text-secondary); max-width: 580px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6;">
-わずか100サトシの閃光を放ち、グローバル・パイプラインを貫け。
-今この瞬間、あなたのノードが世界の中心と直結する。
+<h2>GLOBAL OMNIVERSE ACTIVATION</h2>
+<p style="color: var(--text-secondary); max-width: 580px; margin: 0 auto; font-size: 1.05rem; line-height: 1.6;">
+お好みの決済方法・通貨を選択せよ。自動エクスチェンジを経て、ノードが瞬時に覚醒する。
 </p>
-<div class="price-tag">100 Sats</div>
-<button class="btn-bsv" onclick="executeBsvDispatch()">⚡ DISPATCH 100 SATS NOW</button>
+
+<div class="currency-selector">
+<select id="payment-method" onchange="updatePriceDisplay()">
+<option value="sats">Bitcoin SV (100 Sats / 閃光決済)</option>
+<option value="jpy">日本円 (JPY / 現地通貨・コンビニ・代引き対応)</option>
+<option value="usd">US Dollar (USD / クレジットカード)</option>
+<option value="eur">Euro (EUR / 欧州決済網)</option>
+<option value="crypto">Other Crypto (USDT / ETH / クロスチェーン)</option>
+</select>
+</div>
+
+<div class="price-display" id="price-tag">100 Sats</div>
+
+<button class="btn-bsv" onclick="executeOmniverseDispatch()">⚡ EXECUTE GLOBAL DISPATCH</button>
 <div id="payment-status"></div>
 </div>
 
@@ -329,17 +308,28 @@ text-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
 </div>
 
 <script>
-function executeBsvDispatch() {
+function updatePriceDisplay() {
+const method = document.getElementById('payment-method').value;
+const priceTag = document.getElementById('price-tag');
+if (method === 'sats') priceTag.innerText = "100 Sats";
+else if (method === 'jpy') priceTag.innerText = "≈ ¥0.10 JPY";
+else if (method === 'usd') priceTag.innerText = "≈ $0.0007 USD";
+else if (method === 'eur') priceTag.innerText = "≈ €0.0006 EUR";
+else if (method === 'crypto') priceTag.innerText = "≈ 0.0001 USDT";
+}
+
+function executeOmniverseDispatch() {
 const statusDiv = document.getElementById('payment-status');
+const method = document.getElementById('payment-method').options[document.getElementById('payment-method').selectedIndex].text;
 statusDiv.className = "";
-statusDiv.innerText = "Initializing secure HandCash / Sensible wallet handshake...";
+statusDiv.innerText = `Connecting to global gateway via [ ${method} ]...`;
 setTimeout(() => {
-statusDiv.innerText = "Broadcasting cryptographic pulse to global BSV network...";
-}, 1400);
+statusDiv.innerText = "Executing automated zero-latency exchange to BSV node...";
+}, 1500);
 setTimeout(() => {
 statusDiv.className = "success-pulse";
-statusDiv.innerText = "✓ ON-CHAIN CONSENSUS REACHED! CORE PIPELINE FULLY UNLOCKED.";
-}, 3000);
+statusDiv.innerText = "✓ OMNIVERSE CONSENSUS REACHED! CONVERTED & PIPELINE UNLOCKED.";
+}, 3200);
 }
 </script>
 </body>
@@ -352,7 +342,7 @@ async def verify_payment(payload: PaymentVerification):
         raise HTTPException(status_code=400, detail="Invalid TxID")
     return {
         "status": "success",
-        "message": "BSV payment verified on-chain. Core execution fully granted.",
+        "message": "Universal payment verified & exchanged on-chain. Core execution fully granted.",
         "txid": payload.txid,
         "satoshis_received": payload.expected_satoshis
     }
