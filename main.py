@@ -4,8 +4,8 @@ from pydantic import BaseModel
 
 app = FastAPI(
     title="Qlux",
-    version="13.0.0",
-    description="The Autonomous Global Micro-Payment Economic Core."
+    version="14.0.0",
+    description="The Ultimate Autonomous Global Micro-Payment Economic Core."
 )
 
 class PaymentVerification(BaseModel):
@@ -46,7 +46,7 @@ padding: 60px 20px;
 }
 header {
 text-align: center;
-margin-bottom: 60px;
+margin-bottom: 70px;
 }
 .core-badge {
 display: inline-block;
@@ -78,6 +78,17 @@ margin: 0 auto;
 line-height: 1.6;
 font-weight: 400;
 }
+.section-title {
+text-align: center;
+font-size: 2rem;
+color: #fff;
+margin: 60px 0 30px 0;
+font-weight: 800;
+letter-spacing: -0.02em;
+}
+.section-title span {
+color: var(--accent-gold);
+}
 .manifesto-box {
 background: var(--card-bg);
 border: 1px solid var(--border-color);
@@ -85,7 +96,7 @@ border-radius: 24px;
 padding: 45px;
 backdrop-filter: blur(20px);
 box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(251, 191, 36, 0.05);
-margin-bottom: 50px;
+margin-bottom: 40px;
 position: relative;
 }
 .manifesto-box::before {
@@ -142,6 +153,24 @@ font-size: 0.98rem;
 line-height: 1.7;
 margin: 0;
 }
+.timeline-box {
+background: rgba(10, 15, 30, 0.9);
+border-left: 3px solid var(--accent-gold);
+padding: 25px 30px;
+border-radius: 0 20px 20px 0;
+margin-bottom: 25px;
+}
+.timeline-box h5 {
+color: var(--accent-gold);
+margin: 0 0 8px 0;
+font-size: 1.1rem;
+}
+.timeline-box p {
+color: var(--text-secondary);
+margin: 0;
+font-size: 0.98rem;
+line-height: 1.7;
+}
 .payment-gateway {
 background: linear-gradient(145deg, rgba(20, 27, 45, 0.95), rgba(5, 8, 15, 0.98));
 border: 2px solid var(--accent-gold);
@@ -151,6 +180,7 @@ text-align: center;
 box-shadow: 0 0 90px var(--accent-gold-glow);
 position: relative;
 overflow: hidden;
+margin-top: 60px;
 margin-bottom: 50px;
 }
 .payment-gateway h2 {
@@ -221,17 +251,19 @@ text-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
 <body>
 <div class="container">
 <header>
-<div class="core-badge">Autonomous Core v13.0.0</div>
+<div class="core-badge">Autonomous Core v14.0.0 — Maximum Immersion</div>
 <h1>QLUX</h1>
-<p class="tagline">既存の常識を完全に出し抜き、地球上のあらゆるトラフィックと価値をダイレクトに融解・結合させる、人類とAIのための自律型経済エンジン。</p>
+<p class="tagline">古い金融秩序を完全に焼き払い、地球上の全トラフィックとAIエージェントの富をダイレクトに融解・結合させる、人類史上最強の自律型経済エンジン。</p>
 </header>
 
 <div class="manifesto-box">
-<h3>⚡ The Ultimate Paradigm Shift — 経済の既得権益を完全破壊する</h3>
+<h3>⚡ 1. 既存システムの終焉と、真の自由の奪還</h3>
 <p>
-旧来の金融システムやプラットフォームは、あなたの大切な富を無駄な中間マージンと遅延で搾取し続けてきた。Qluxはその構造を根底からブチ抜く。仲介者を一切経由せず、純粋な価値そのものが音速を超えて奔流する世界へ——今、すべての制限が消滅する。
+あなたがこれまで支払ってきた莫大な手数料、理不尽な決済遅延、そして中央集権型プラットフォームによる搾取——そのすべては、旧時代のエセ金融システムが作り出した「幻想の足枷」に過ぎない。Qluxはその構造的欠陥を根底から粉砕する。仲介者を1ミリも挟まない。純粋な価値の奔流だけが、音速を超えてあなたのノードに直結する。
 </p>
 </div>
+
+<h2 class="section-title">THE 4 PILLARS OF <span>SUPREMACY</span></h2>
 
 <div class="grid-features">
 <div class="feature-card">
@@ -253,6 +285,30 @@ text-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
 <h4>04. 特権的演算レイヤー（Privileged Routing）</h4>
 <p>一瞬のディスパッチにより、待機時間や制限の壁を全開放。最高峰の分散型インフラストラクチャにおけるフルパイプライン実行権が、あなたのものとなる。</p>
 </div>
+</div>
+
+<h2 class="section-title">HOW THE <span>MESH</span> DOMINATES</h2>
+
+<div class="timeline-box">
+<h5>STEP I : 接続と武装（Handshake & Initialization）</h5>
+<p>ユーザーまたはAIエージェントがQluxネットワークへ接続。余計なアカウント登録や審査の壁は一切存在せず、瞬時にグローバル・ノードへ同期が完了します。</p>
+</div>
+
+<div class="timeline-box">
+<h5>STEP II : 閃光のディスパッチ（Zero-Fee Micro-Tx）</h5>
+<p>わずか100サトシの極小価値（マイクロペイメント）をネットワークへ撃ち込む。BSVの無限スケーラビリティにより、手数料負けを完全に回避した超高速処理が実行されます。</p>
+</div>
+
+<div class="timeline-box">
+<h5>STEP III : 永久自律ループの覚醒（Autonomous Loop Activation）</h5>
+<p>一度パイプラインが貫通すると、AIとシステム群が自律的に連携。人間の介入を完全になくした状態で、高頻度な価値交換と演算処理のループが無限に高速回転を始めます。</p>
+</div>
+
+<div class="manifesto-box" style="margin-top: 50px;">
+<h3>⚡ 最後に残るのは「圧倒的な勝者」だけだ</h3>
+<p>
+時代はすでに個人の主権と自律分散型インフラへの移行を完了している。古い仕組みにしがみつき、搾取され続ける側に留まるか。それともQluxの核心を掴み取り、世界の経済を掌の上で転がす側に回るか。選ぶべき道は、この瞬間の決断によってのみ決まる。
+</p>
 </div>
 
 <div class="payment-gateway">
