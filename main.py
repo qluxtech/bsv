@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
 app = FastAPI(
-    title="QLUX Omniverse Universal Exchange Core",
+    title="QLUX ONChain Exchange ",
     version="25.0.0",
     description="The Ultimate Unified Marketplace for Humans, AI Agents, and High-Value Cyber Assets."
 )
@@ -20,7 +20,7 @@ async def read_root():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QLUX — Omniverse Universal Exchange</title>
+<title>QLUX ONChain Exchange</title>
 <style>
 :root {
 --bg-color: #020204;
