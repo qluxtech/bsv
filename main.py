@@ -3,15 +3,15 @@ from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
 app = FastAPI(
-    title="QLUX Hybrid Unified Data Exchange Core",
-    version="22.0.0",
-    description="The Ultimate Unified Marketplace for Humans and Autonomous AI Agents."
+    title="QLUX Omniverse Universal Exchange Core",
+    version="25.0.0",
+    description="The Ultimate Unified Marketplace for Humans, AI Agents, and High-Value Cyber Assets."
 )
 
-class UnifiedExchangeRequest(BaseModel):
-    client_type: str  # "human" or "agent"
-    target_id: str
-    identifier: str
+class UniversalExchangeRequest(BaseModel):
+    market_layer: str
+    asset_id: str
+    client_identity: str
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
@@ -20,7 +20,7 @@ async def read_root():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QLUX — Hybrid Unified Exchange Core</title>
+<title>QLUX — Omniverse Universal Exchange</title>
 <style>
 :root {
 --bg-color: #020204;
@@ -34,7 +34,7 @@ body {
 margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-primary);
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
-.container { max-width: 850px; margin: 0 auto; padding: 50px 20px; text-align: center; }
+.container { max-width: 900px; margin: 0 auto; padding: 50px 20px; text-align: center; }
 .badge {
 display: inline-block; background: rgba(251, 191, 36, 0.1); color: var(--accent-gold);
 border: 1px solid rgba(251, 191, 36, 0.3); padding: 6px 20px; border-radius: 30px;
@@ -70,103 +70,103 @@ padding: 20px; border-radius: 16px; display: none; word-break: break-all; text-a
 </head>
 <body>
 <div class="container">
-<div class="badge">Hybrid Unified Exchange v22.0</div>
+<div class="badge">Omniverse All-In-One Exchange v25.0</div>
 <h1>QLUX</h1>
-<p style="color: var(--text-secondary);">人間向け設計図・プロンプトから、AIエージェント間自律知見までを100サトシで一撃同期する。</p>
+<p style="color: var(--text-secondary);">全取引所統合コア。AI最上位知見・ゼロ日パッチ・自律アービトラージデータを秒速同期。</p>
 
 <div class="exchange-box">
-<h2>UNIFIED ASSET & KNOWLEDGE GATEWAY</h2>
+<h2>OMNIVERSE UNIVERSAL EXCHANGE GATEWAY</h2>
 
 <div class="form-group">
-<label>PARTICIPANT MODE / 参加レイヤー</label>
-<select id="client-type" onchange="toggleModeFields()">
-<option value="human">Human Professional (設計図・CAD・プロンプト購入)</option>
-<option value="agent">Autonomous AI Agent (AI専用・自律型知見バースト)</option>
-</select>
-</div>
-
-<div class="form-group" id="group-target">
-<label id="label-target">SELECT ASSET / 取得対象データ</label>
-<select id="target-id">
-<option value="blueprint_alpha">精密機械・特急電極カスタム設計図 (100 Sats)</option>
-<option value="3d_cad_model">Fカメ・高耐熱モールド構造CADデータ (100 Sats)</option>
-<option value="ai_prompt_core">超高精度AI自律エージェント・プロンプトパック (100 Sats)</option>
+<label>MARKET LAYER / 市場レイヤー選択</label>
+<select id="market-layer" onchange="updateAssetOptions()">
+<option value="ai_high_value">AI High-Value Cyber Assets (AI最上位：漏洞・パッチ・ウェイト)</option>
+<option value="autonomous_swarm">Autonomous Agent Swarm Market (自律エージェント協調市場)</option>
+<option value="global_arbitrage">Global Arbitrage & Liquidity Matrix (高速アービトラージ)</option>
 </select>
 </div>
 
 <div class="form-group">
-<label id="label-identifier">USER / AGENT IDENTIFIER (識別子)</label>
-<input type="text" id="identifier" value="Pro-Engineer-01">
+<label id="label-asset">TARGET ASSET / 買収対象データ</label>
+<select id="asset-id">
+<option value="zero_day_patch">リアルタイム・ゼロ日漏洞回避パッチ (10,000 Sats)</option>
+<option value="quantum_weights">量子アライメント済みニューラル・ウェイト差分 (5,000 Sats)</option>
+<option value="ai_swarm_vector">自律エージェント協調・超高速スウォームベクトル (1,000 Sats)</option>
+</select>
 </div>
 
-<button class="btn" onclick="executeUnifiedExchange()">⚡ EXECUTE 100 SATS UNIFIED DISPATCH</button>
+<div class="form-group">
+<label>CLIENT / AGENT IDENTIFIER (識別子)</label>
+<input type="text" id="client-identity" value="Omniverse-AI-Executor-Node-X">
+</div>
+
+<button class="btn" onclick="executeUniversalExchange()">⚡ EXECUTE OMNIVERSE DISPATCH</button>
 
 <div id="result-panel">
-<h4>CONSENSUS STATUS: <span class="success-text">VERIFIED & UNLOCKED</span></h4>
+<h4>CONSENSUS STATUS: <span class="success-text">GLOBAL ON-CHAIN VERIFIED</span></h4>
 <p id="result-content" style="color: var(--text-secondary); font-family: monospace; font-size: 0.9rem;"></p>
 </div>
 </div>
 </div>
 
 <script>
-function toggleModeFields() {
-    const type = document.getElementById('client-type').value;
-    const labelTarget = document.getElementById('label-target');
-    const targetSelect = document.getElementById('target-id');
-    const labelId = document.getElementById('label-identifier');
-    const inputId = document.getElementById('identifier');
+function updateAssetOptions() {
+    const layer = document.getElementById('market-layer').value;
+    const labelAsset = document.getElementById('label-asset');
+    const assetSelect = document.getElementById('asset-id');
 
-    if (type === 'human') {
-        labelTarget.innerText = "SELECT ASSET / 取得対象データ";
-        targetSelect.innerHTML = `
-            <option value="blueprint_alpha">精密機械・特急電極カスタム設計図 (100 Sats)</option>
-            <option value="3d_cad_model">Fカメ・高耐熱モールド構造CADデータ (100 Sats)</option>
-            <option value="ai_prompt_core">超高精度AI自律エージェント・プロンプトパック (100 Sats)</option>
+    if (layer === 'ai_high_value') {
+        labelAsset.innerText = "TARGET ASSET / AI最上位サイバーアセット";
+        assetSelect.innerHTML = `
+            <option value="zero_day_patch">リアルタイム・ゼロ日漏洞回避パッチ (10,000 Sats)</option>
+            <option value="quantum_weights">量子アライメント済みニューラル・ウェイト差分 (5,000 Sats)</option>
+            <option value="neural_bypass_core">超高精度ニューラル・バイパスシグネチャ (8,000 Sats)</option>
         `;
-        labelId.innerText = "USER IDENTIFIER (人間側 識別名)";
-        inputId.value = "Pro-Engineer-01";
+    } else if (layer === 'autonomous_swarm') {
+        labelAsset.innerText = "TARGET ASSET / 自律エージェント協調データ";
+        assetSelect.innerHTML = `
+            <option value="ai_swarm_vector">自律エージェント協調・超高速スウォームベクトル (1,000 Sats)</option>
+            <option value="decentralized_consensus_patch">分散合意レイテンシ極小化スクリプト (2,500 Sats)</option>
+        `;
     } else {
-        labelTarget.innerText = "KNOWLEDGE FRAGMENT / AI専用知見・コード断片";
-        targetSelect.innerHTML = `
-            <option value="quantum_routing_patch">超高速非同期ルーティング最適化パッチ (100 Sats)</option>
-            <option value="zero_latency_memory">LLMコンテキスト圧縮・メモリ効率化スクリプト (100 Sats)</option>
-            <option value="autonomous_swarm_logic">マルチエージェント協調・分散合意ロジック (100 Sats)</option>
+        labelAsset.innerText = "TARGET ASSET / グローバル・アービトラージシグナル";
+        assetSelect.innerHTML = `
+            <option value="cross_chain_arbitrage">リアルタイム・クロスチェーン裁定取引シグナル (5,000 Sats)</option>
+            <option value="flash_liquidity_vector">フラッシュ・リクイディティ最適化ストリーム (3,000 Sats)</option>
         `;
-        labelId.innerText = "AI AGENT IDENTIFIER (AIエージェント名)";
-        inputId.value = "Agent-LLM-Alpha-v4";
     }
 }
 
-async function executeUnifiedExchange() {
-    const clientType = document.getElementById('client-type').value;
-    const targetId = document.getElementById('target-id').value;
-    const identifier = document.getElementById('identifier').value;
+async function executeUniversalExchange() {
+    const marketLayer = document.getElementById('market-layer').value;
+    const assetId = document.getElementById('asset-id').value;
+    const clientIdentity = document.getElementById('client-identity').value;
     const panel = document.getElementById('result-panel');
     const content = document.getElementById('result-content');
     
     panel.style.display = "block";
-    content.innerText = "Broadcasting 100 Sats micro-payment & verifying cryptographic proof...";
+    content.innerText = "Broadcasting multi-layer cryptographic consensus & executing micro-payment...";
 
     try {
-        const response = await fetch('/api/unified-exchange', {
+        const response = await fetch('/api/universal-exchange', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ client_type: clientType, target_id: targetId, identifier: identifier })
+            body: JSON.stringify({ market_layer: marketLayer, asset_id: assetId, client_identity: clientIdentity })
         });
         const data = await response.json();
 
         setTimeout(() => {
             content.innerHTML = `
-                <br>✓ <b>Mode:</b> ${data.client_type.toUpperCase()}
-                <br>✓ <b>Identifier:</b> ${data.identifier}
+                <br>✓ <b>Market Layer:</b> ${data.market_layer.toUpperCase()}
+                <br>✓ <b>Client Node:</b> ${data.client_identity}
                 <br>✓ <b>On-Chain TxID:</b> ${data.txid}
-                <br>✓ <b>Unlocked Payload:</b> ${data.item_name}
-                <br>✓ <b>Hash:</b> <code>sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code>
-                <br><br><span style="color: var(--accent-gold);">[!] Pipeline fully secured. Immediate extraction granted.</span>
+                <br>✓ <b>Acquired Asset:</b> ${data.asset_name}
+                <br>✓ <b>Payload Hash:</b> <code>sha256:9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08</code>
+                <br><br><span style="color: var(--accent-gold);">[!] Omniverse pipeline fully synced. Neural injection complete.</span>
             `;
-        }, 900);
+        }, 800);
     } catch (err) {
-        content.innerText = "Error: Transmission failed.";
+        content.innerText = "Error: Omniverse channel interrupted.";
     }
 }
 </script>
@@ -174,21 +174,22 @@ async function executeUnifiedExchange() {
 </html>
 """
 
-@app.post("/api/unified-exchange")
-async def api_unified_exchange(data: UnifiedExchangeRequest):
+@app.post("/api/universal-exchange")
+async def api_universal_exchange(data: UniversalExchangeRequest):
     dictionary = {
-        "blueprint_alpha": "Precision Electrode Custom Blueprint",
-        "3d_cad_model": "F-Kame Mold Heat-Resistant CAD Model",
-        "ai_prompt_core": "Autonomous AI Agent Prompt Pack",
-        "quantum_routing_patch": "Quantum-Grade Async Routing Patch",
-        "zero_latency_memory": "Zero-Latency Context Compression Script",
-        "autonomous_swarm_logic": "Autonomous Multi-Agent Swarm Logic"
+        "zero_day_patch": "Real-time Zero-Day Exploit Evasion Patch",
+        "quantum_weights": "Quantum-Aligned Neural Weight Delta",
+        "neural_bypass_core": "High-Precision Neural Bypass Signature",
+        "ai_swarm_vector": "Autonomous Agent Swarm Coordination Vector",
+        "decentralized_consensus_patch": "Decentralized Consensus Latency Minimizer",
+        "cross_chain_arbitrage": "Real-Time Cross-Chain Arbitrage Signal",
+        "flash_liquidity_vector": "Flash Liquidity Optimization Stream"
     }
-    item_name = dictionary.get(data.target_id, "Universal Data Fragment")
+    asset_name = dictionary.get(data.asset_id, "Omniverse Master Asset")
     return {
         "status": "success",
-        "client_type": data.client_type,
-        "identifier": data.identifier,
-        "item_name": item_name,
-        "txid": "7f92a1103c88d871a2e948c2b74f39281a82f37c991b920183b27189fa3b1102"
+        "market_layer": data.market_layer,
+        "client_identity": data.client_identity,
+        "asset_name": asset_name,
+        "txid": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
     }
