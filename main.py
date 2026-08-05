@@ -4,8 +4,8 @@ from pydantic import BaseModel
 
 app = FastAPI(
     title="Qlux Instant Core",
-    version="18.0.0",
-    description="The Ultimate Zero-Friction Instant Simulation Core."
+    version="19.0.0",
+    description="The Ultimate Zero-Friction Fully-Connected Interactive Core."
 )
 
 class DispatchVerify(BaseModel):
@@ -62,7 +62,7 @@ box-shadow: 0 10px 30px rgba(251, 191, 36, 0.5); text-transform: uppercase; disp
 </head>
 <body>
 <div class="container">
-<div class="badge">Zero-Friction Engine v18.0</div>
+<div class="badge">Zero-Friction Engine v19.0</div>
 <h1>QLUX</h1>
 <p style="color: var(--text-secondary);">面倒な手続きは一切不要。ワンタップで全ルートを即時貫通させる。</p>
 
@@ -80,14 +80,32 @@ box-shadow: 0 10px 30px rgba(251, 191, 36, 0.5); text-transform: uppercase; disp
 </div>
 
 <script>
-function executeFast() {
-const status = document.getElementById('status');
-status.className = "";
-status.innerText = "Bypassing external friction & routing through core...";
-setTimeout(() => {
-status.className = "success";
-status.innerText = "✓ INSTANT CONSENSUS REACHED! CORE PIPELINE FULLY UNLOCKED.";
-}, 900);
+async function executeFast() {
+    const modeVal = document.getElementById('mode').value;
+    const status = document.getElementById('status');
+    status.className = "";
+    status.innerText = "Connecting to backend autonomous core...";
+
+    try {
+        const response = await fetch('/api/dispatch', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mode: modeVal })
+        });
+        
+        const result = await response.json();
+
+        if (response.ok) {
+            setTimeout(() => {
+                status.className = "success";
+                status.innerText = `✓ ${result.message}`;
+            }, 500);
+        } else {
+            status.innerText = "Error: Core rejection.";
+        }
+    } catch (err) {
+        status.innerText = "Network transmission failed.";
+    }
 }
 </script>
 </body>
@@ -96,4 +114,7 @@ status.innerText = "✓ INSTANT CONSENSUS REACHED! CORE PIPELINE FULLY UNLOCKED.
 
 @app.post("/api/dispatch")
 async def api_dispatch(data: DispatchVerify):
-    return {"status": "success", "message": "Instant core execution granted."}
+    return {
+        "status": "success", 
+        "message": f"INSTANT CONSENSUS REACHED! ROUTE [{data.mode.upper()}] FULLY UNLOCKED."
+    }
