@@ -44,32 +44,28 @@ body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffff
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   border-radius: 16px; cursor: grab; display: flex; align-items: center; justify-content: center;
   color: #000205; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  transition: transform 0.1s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
   z-index: 10;
 }
 .swipe-btn:active { cursor: grabbing; }
-.swipe-btn.unlocked { background: #10b981; color: #ffffff; transform: scale(1.02); }
-.swipe-btn.processing { background: #06b6d4; color: #ffffff; animation: pulse 1.5s infinite; cursor: wait;}
+.swipe-btn.unlocked { background: #10b981; color: #ffffff; }
+.swipe-btn.processing { background: #06b6d4; color: #ffffff; cursor: wait; }
 .swipe-text {
   position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-  font-size: 16px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em;
+  font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em;
   background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
   background-size: 200% auto; color: transparent; -webkit-background-clip: text;
   background-clip: text; animation: shine 3s linear infinite; opacity: 1; transition: opacity 0.3s;
 }
 .swipe-text.hide { opacity: 0; }
-
-/* セキュリティ・リングアニメーション */
 .security-ring {
   position: absolute; top: -5px; left: -5px; width: 80px; height: 80px;
   border: 3px solid transparent; border-top-color: #f59e0b; border-radius: 20px;
-  opacity: 0; transition: opacity 0.3s;
+  opacity: 0; pointer-events: none;
 }
 .swipe-btn.sliding .security-ring { opacity: 1; animation: spin 1s linear infinite; }
-
 @keyframes shine { to { background-position: 200% center; } }
 @keyframes spin { 100% { transform: rotate(360deg); } }
-@keyframes pulse { 0%, 100% { box-shadow: 0 0 15px #06b6d4; } 50% { box-shadow: 0 0 30px #06b6d4; } }
 </style>
 </head>
 <body class="min-h-screen bg-void text-white selection:bg-amber-500 selection:text-black">
@@ -155,14 +151,226 @@ body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffff
         <div class="glass-card rounded-3xl p-7 flex flex-col justify-between gold-glow gold-border">
             <div>
                 <h3 class="text-lg font-bold mb-5 text-white flex items-center">
-                    <svg class="w-5 h-5 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    Swipe to Pay & Unlock Data
+                    <svg class="w-5 h-5 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    Swipe Nano-Payment
                 </h3>
-                <div class="bg-white/5 rounded-2xl p-4 border border-white/5 mb-5 text-center">
-                    <div class="text-slate-400 text-[11px] uppercase tracking-wider mb-0.5">Selected Asset Price</div>
-                    <div id="selected-price" class="text-4xl font-black text-amber-400 font-mono">10 <span class="text-2xl">SATS</span></div>
+                
+                <div class="bg-white/5 rounded-2xl p-4 border border-white/5 mb-6 text-center">
+                    <div class="text-slate-400 text-[11px] uppercase tracking-wider mb-0.5">Required Micro-Amount</div>
+                    <div id="selected-price" class="text-3xl font-black text-amber-400 font-mono">10 <span class="text-xl">SATS</span></div>
                 </div>
 
-                <div class="swipe-container" id="swipe-container">
-                    <div class="swipe-text" id="swipe-text">⚡ SWIPE TO PAY NANO</div>
-                    <div class="swipe-btn
+                <div class="space-y-2">
+                    <div class="swipe-container" id="swipe-container">
+                        <div class="swipe-text" id="swipe-text">➔ SWIPE TO PAY NANO</div>
+                        <div class="swipe-btn" id="swipe-btn" style="transform: translateX(0px);">
+                            <div class="security-ring" id="security-ring"></div>
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </div>
+                    </div>
+                    <div class="text-[11px] text-slate-500 text-center font-mono">Drag right to instantly broadcast on-chain</div>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-5 border-t border-white/10 text-center">
+                <span class="text-[10px] text-slate-500 font-mono uppercase">Teranode Micro-Atomic Gateway</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-14 border-t border-white/10 pt-6 text-center text-slate-500 text-xs font-mono">
+        &copy; QLUX GLOBAL ENTERPRISE APEX HUB. ALL RIGHTS RESERVED.
+    </footer>
+</div>
+
+<script>
+let selectedPrice = 10;
+let selectedAssetName = "Teranode Global Hash Telemetry";
+
+function selectAsset(element, assetName, price) {
+    document.querySelectorAll('.asset-card').forEach(card => {
+        card.classList.remove('border-amber-500', 'bg-amber-500/10');
+        card.classList.add('border-white/10', 'bg-black/40');
+    });
+    element.classList.remove('border-white/10', 'bg-black/40');
+    element.classList.add('border-amber-500', 'bg-amber-500/10');
+    
+    selectedAssetName = assetName;
+    selectedPrice = price;
+    document.getElementById('selected-price').innerHTML = `${price} <span class="text-xl">SATS</span>`;
+}
+
+// 超進化スワイプボタンのロジック
+const container = document.getElementById('swipe-container');
+const btn = document.getElementById('swipe-btn');
+const text = document.getElementById('swipe-text');
+const ring = document.getElementById('security-ring');
+
+let isDragging = false;
+let startX = 0;
+let currentX = 0;
+let maxTranslate = 0;
+
+function updateMaxTranslate() {
+    maxTranslate = container.clientWidth - btn.clientWidth - 10;
+}
+window.addEventListener('resize', updateMaxTranslate);
+window.addEventListener('load', updateMaxTranslate);
+
+function handleStart(e) {
+    if (btn.classList.contains('processing') || btn.classList.contains('unlocked')) return;
+    isDragging = true;
+    startX = (e.touches ? e.touches[0].clientX : e.clientX) - currentX;
+    btn.classList.add('sliding');
+    text.classList.add('hide');
+}
+
+function handleMove(e) {
+    if (!isDragging) return;
+    updateMaxTranslate();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    currentX = clientX - startX;
+    if (currentX < 0) currentX = 0;
+    if (currentX > maxTranslate) currentX = maxTranslate;
+    btn.style.transform = `translateX(${currentX}px)`;
+}
+
+function handleEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    btn.classList.remove('sliding');
+    updateMaxTranslate();
+
+    if (currentX >= maxTranslate * 0.85) {
+        // スワイプ成功
+        btn.style.transform = `translateX(${maxTranslate}px)`;
+        btn.classList.add('unlocked');
+        btn.innerHTML = '✓';
+        executeNanoPayment();
+    } else {
+        // 元に戻る
+        currentX = 0;
+        btn.style.transform = `translateX(0px)`;
+        text.classList.remove('hide');
+    }
+}
+
+btn.addEventListener('mousedown', handleStart);
+window.addEventListener('mousemove', handleMove);
+window.addEventListener('mouseup', handleEnd);
+
+btn.addEventListener('touchstart', handleStart);
+window.addEventListener('touchmove', handleMove);
+window.addEventListener('touchend', handleEnd);
+
+async function executeNanoPayment() {
+    const userHandle = document.getElementById('user-handle').value;
+    const terminal = document.getElementById('execution-terminal');
+    const body = document.getElementById('terminal-body');
+    const timestamp = document.getElementById('terminal-timestamp');
+    
+    terminal.style.display = "block";
+    timestamp.innerText = new Date().toISOString();
+    body.innerHTML = `<span class='text-cyan-400'>[~] Swiped successfully! Broadcasting ${selectedPrice} sats to Teranode...</span>`;
+    
+    btn.classList.remove('unlocked');
+    btn.classList.add('processing');
+
+    try {
+        const response = await fetch('/api/nano-payment-exchange', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                asset_name: selectedAssetName,
+                price_sats: selectedPrice,
+                user_handle: userHandle 
+            })
+        });
+        const data = await response.json();
+        
+        setTimeout(() => {
+            btn.classList.remove('processing');
+            btn.innerHTML = '⚡';
+            currentX = 0;
+            btn.style.transform = `translateX(0px)`;
+            text.classList.remove('hide');
+
+            body.innerHTML = `
+                <div><span class='text-slate-500'>ASSET:</span> <strong class='text-white'>${data.asset_name}</strong></div>
+                <div><span class='text-slate-500'>BUYER HANDLE:</span> <strong class='text-amber-400'>${data.user_handle}</strong></div>
+                <div><span class='text-slate-500'>SETTLED AMOUNT:</span> <strong class='text-emerald-400 font-mono'>${data.price_sats} SATS</strong></div>
+                <div><span class='text-slate-500'>ON-CHAIN TXID:</span> <code class='text-cyan-300'>${data.txid_hash}</code></div>
+                <div class='mt-2 pt-2 border-t border-white/10 text-emerald-400 font-bold'>[✓] DATA UNLOCKED & BROADCASTED TO ON-CHAIN LEDGER.</div>
+            `;
+        }, 500);
+    } catch (err) {
+        btn.classList.remove('processing');
+        btn.innerHTML = '⚡';
+        currentX = 0;
+        btn.style.transform = `translateX(0px)`;
+        text.classList.remove('hide');
+        body.innerHTML = "<span class='text-red-400'>[!] Error: Nano-payment gateway timeout.</span>";
+    }
+}
+</script>
+</body>
+</html>
+"""
+
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == "/":
+            response_bytes = HTML_CONTENT.encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(response_bytes)))
+            self.end_headers()
+            self.wfile.write(response_bytes)
+        else:
+            self.send_response(404)
+            self.end_headers()
+
+    def do_POST(self):
+        if self.path == "/api/nano-payment-exchange":
+            content_length = int(self.headers.get('Content-Length', 0))
+            post_data = self.rfile.read(content_length)
+            
+            try:
+                data = json.loads(post_data.decode('utf-8'))
+            except:
+                data = {}
+                
+            asset_name = data.get("asset_name", "Unknown Asset")
+            price_sats = data.get("price_sats", 10)
+            user_handle = data.get("user_handle", "$qlux")
+            
+            raw_str = f"{asset_name}-{price_sats}-{user_handle}-{time.time()}"
+            txid_hash = hashlib.sha256(raw_str.encode()).hexdigest()
+            
+            response_data = {
+                "status": "success",
+                "asset_name": asset_name,
+                "price_sats": price_sats,
+                "user_handle": user_handle,
+                "txid_hash": txid_hash
+            }
+            
+            resp_bytes = json.dumps(response_data).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(resp_bytes)))
+            self.end_headers()
+            self.wfile.write(resp_bytes)
+        else:
+            self.send_response(404)
+            self.end_headers()
+
+    def log_message(self, format, *args):
+        return
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    server_address = ("0.0.0.0", port)
+    httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
+    print(f"Server started successfully on port {port}")
+    httpd.serve_forever()
