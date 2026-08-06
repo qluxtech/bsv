@@ -1,8 +1,9 @@
+import os
+import hashlib
+import time
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-import hashlib
-import time
 
 app = FastAPI(
     title="QLUX Apex Global Enterprise Hub",
@@ -35,7 +36,6 @@ async def read_root():
 --accent-gold-glow: rgba(245, 158, 11, 0.45);
 --accent-cyan: #38bdf8;
 --accent-green: #4ade80;
---accent-purple: #c084fc;
 }
 
 * { box-sizing: border-box; }
@@ -191,3 +191,8 @@ async def api_global_dispatch(data: GlobalEnterpriseRequest):
         "user_handle": data.user_handle,
         "block_hash": block_hash
     }
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
