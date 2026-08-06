@@ -1,24 +1,11 @@
 import os
+import json
 import hashlib
 import time
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
+import asyncio
+from uvicorn import Config, Server
 
-app = FastAPI(
-    title="QLUX Apex Global Enterprise Hub",
-    version="1000.0.0"
-)
-
-class GlobalEnterpriseRequest(BaseModel):
-    global_module: str
-    scaling_tier: str
-    user_handle: str
-    security_signature: str
-
-@app.get("/", response_class=HTMLResponse)
-async def read_root():
-    return """<!DOCTYPE html>
+HTML_CONTENT = """<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -160,9 +147,7 @@ async function executeGlobalDispatch() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
                 global_module: globalModule, 
-                scaling_tier: "teranode_infinity_mesh", 
-                user_handle: userHandle,
-                security_signature: "QLUX-Apex-Secured"
+                user_handle: userHandle 
             })
         });
         const data = await response.json();
@@ -181,18 +166,81 @@ async function executeGlobalDispatch() {
 </html>
 """
 
-@app.post("/api/global-dispatch")
-async def api_global_dispatch(data: GlobalEnterpriseRequest):
-    raw_str = f"{data.global_module}-{data.user_handle}-{time.time()}"
-    block_hash = hashlib.sha256(raw_str.encode()).hexdigest()
-    return {
-        "status": "success",
-        "global_module": data.global_module,
-        "user_handle": data.user_handle,
-        "block_hash": block_hash
-    }
+async def app(scope, receive, send):
+    if scope["type"] == "http":
+        path = scope["path"]
+        method = scope["method"]
+        
+        if path == "/" and method == "GET":
+            body = HTML_CONTENT.encode("utf-8")
+            await send({
+                "type": "http.response.start",
+                "status": 200,
+                "headers": [
+                    [b"content-type", b"text/html; charset=utf-8"],
+                    [b"content-length", str(len(body)).encode()]
+                ]
+            })
+            await send({
+                "type": "http.response.body",
+                "body": body
+            })
+            return
+            
+        elif path == "/api/global-dispatch" and method == "POST":
+            body_bytes = b""
+            while True:
+                message = await receive()
+                if message["type"] == "http.request":
+                    body_bytes += message.get("body", b"")
+                    if not message.get("more_body", False):
+                        break
+            
+            try:
+                data = json.loads(body_bytes.decode("utf-8"))
+            except:
+                data = {}
+                
+            global_module = data.get("global_module", "unknown")
+            user_handle = data.get("user_handle", "$qlux")
+            
+            raw_str = f"{global_module}-{user_handle}-{time.time()}"
+            block_hash = hashlib.sha256(raw_str.encode()).hexdigest()
+            
+            response_data = {
+                "status": "success",
+                "global_module": global_module,
+                "user_handle": user_handle,
+                "block_hash": block_hash
+            }
+            
+            resp_body = json.dumps(response_data).encode("utf-8")
+            await send({
+                "type": "http.response.start",
+                "status": 200,
+                "headers": [
+                    [b"content-type", b"application/json; charset=utf-8"],
+                    [b"content-length", str(len(resp_body)).encode()]
+                ]
+            })
+            await send({
+                "type": "http.response.body",
+                "body": resp_body
+            })
+            return
+
+        # 404
+        await send({
+            "type": "http.response.start",
+            "status": 404,
+            "headers": [[b"content-type", b"text/plain"]]
+        })
+        await send({
+            "type": "http.response.body",
+            "body": b"Not Found"
+        })
 
 if __name__ == "__main__":
-    import uvicorn
     port = int(os.environ.get("PORT", 10000))
-    uvicorn.run("main:app", host="0.0.0.0", port=port)
+    server = Server(Config(app="main:app", host="0.0.0.0", port=port, log_level="info"))
+    asyncio.run(server.serve())
