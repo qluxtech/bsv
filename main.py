@@ -213,7 +213,6 @@ body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffff
 </div>
 
 <script>
-// リアルタイム時計とハッシュの更新シミュレーション
 setInterval(() => {
     const now = new Date();
     document.getElementById('live-clock').innerText = now.toISOString().slice(11, 19) + " UTC";
@@ -237,7 +236,6 @@ function selectAsset(element, assetName, price) {
     document.getElementById('selected-price').innerHTML = `${price} <span class="text-xl">SATS</span>`;
 }
 
-// 超高級スワイプボタンの滑らかなロジック
 const container = document.getElementById('swipe-container');
 const btn = document.getElementById('swipe-btn');
 const text = document.getElementById('swipe-text');
@@ -288,3 +286,109 @@ function handleEnd() {
         btn.style.transform = `translateX(0px)`;
         text.classList.remove('hide');
     }
+}
+
+btn.addEventListener('mousedown', handleStart);
+window.addEventListener('mousemove', handleMove);
+window.addEventListener('mouseup', handleEnd);
+
+btn.addEventListener('touchstart', handleStart);
+window.addEventListener('touchmove', handleMove);
+window.addEventListener('touchend', handleEnd);
+
+async function executeNanoPayment() {
+    const userHandle = document.getElementById('user-handle').value;
+    const terminal = document.getElementById('execution-terminal');
+    const body = document.getElementById('terminal-body');
+    const timestamp = document.getElementById('terminal-timestamp');
+    
+    terminal.style.display = "block";
+    timestamp.innerText = new Date().toISOString();
+    body.innerHTML = `<span class='text-cyan-400'>[~] Verified. Broadcasting ${selectedPrice} sats nano-payment to Teranode AI Mesh...</span>`;
+    
+    btn.classList.remove('unlocked');
+    btn.classList.add('processing');
+
+    try {
+        const response = await fetch('/api/nano-payment-exchange', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                asset_name: selectedAssetName,
+                price_sats: selectedPrice,
+                user_handle: userHandle 
+            })
+        });
+        const data = await response.json();
+        
+        setTimeout(() => {
+            btn.classList.remove('processing');
+            btn.innerHTML = '⚡';
+            currentX = 0;
+            btn.style.transform = `translateX(0px)`;
+            text.classList.remove('hide');
+
+            body.innerHTML = `
+                <div><span class='text-slate-400'>ACQUIRED ASSET:</span> <strong class='text-white'>${data.asset_name}</strong></div>
+                <div><span class='text-slate-400'>AI CONSUMER:</span> <strong class='text-amber-400'>${data.user_handle}</strong></div>
+                <div><span class='text-slate-400'>SETTLED AMOUNT:</span> <strong class='text-emerald-400 font-mono'>${data.price_sats} SATS</strong></div>
+                <div><span class='text-slate-400'>ATOMIC TXID:</span> <code class='text-cyan-300'>${data.txid_hash}</code></div>
+                <div class='mt-2 pt-2 border-t border-white/10 text-emerald-400 font-bold'>[✓] STREAM DECRYPTED & SYNCED WITH AI MESH.</div>
+            `;
+        }, 500);
+    } catch (err) {
+        btn.classList.remove('processing');
+        btn.innerHTML = '⚡';
+        currentX = 0;
+        btn.style.transform = `translateX(0px)`;
+        text.classList.remove('hide');
+        body.innerHTML = "<span class='text-red-400'>[!] Error: Teranode consensus timeout.</span>";
+    }
+}
+</script>
+</body>
+</html>
+"""
+
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == "/":
+            response_bytes = HTML_CONTENT.encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(response_bytes)))
+            self.end_headers()
+            self.wfile.write(response_bytes)
+        else:
+            self.send_response(404)
+            self.end_headers()
+
+    def do_POST(self):
+        if self.path == "/api/nano-payment-exchange":
+            content_length = int(self.headers.get('Content-Length', 0))
+            post_data = self.rfile.read(content_length)
+            
+            try:
+                data = json.loads(post_data.decode('utf-8'))
+            except:
+                data = {}
+                
+            asset_name = data.get("asset_name", "Unknown Asset")
+            price_sats = data.get("price_sats", 15)
+            user_handle = data.get("user_handle", "$qlux")
+            
+            raw_str = f"{asset_name}-{price_sats}-{user_handle}-{time.time()}"
+            txid_hash = hashlib.sha256(raw_str.encode()).hexdigest()
+            
+            response_data = {
+                "status": "success",
+                "asset_name": asset_name,
+                "price_sats": price_sats,
+                "user_handle": user_handle,
+                "txid_hash": txid_hash
+            }
+            
+            resp_bytes = json.dumps(response_data).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length
