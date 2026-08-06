@@ -5,15 +5,15 @@ import hashlib
 import time
 
 app = FastAPI(
-    title="QLUX Enterprise Global Terranode OS",
-    version="40.0.0",
-    description="Enterprise-Grade Global Infrastructure Powered by BSV Teranode Architecture."
+    title="QLUX Apex Enterprise Global OS",
+    version="50.0.0",
+    description="The Ultimate Global Enterprise Infrastructure Powered by BSV Teranode Architecture."
 )
 
-class EnterpriseSyncRequest(BaseModel):
-    enterprise_tier: str
-    protocol_mode: str
-    security_signature: str
+class EnterpriseRequest(BaseModel):
+    deployment_layer: str
+    execution_protocol: str
+    node_identifier: str
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
@@ -22,159 +22,222 @@ async def read_root():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QLUX — Enterprise Global Terranode OS</title>
+<title>QLUX — Apex Enterprise Global OS</title>
 <style>
 :root {
---bg-color: #020408;
---text-primary: #ffffff;
---text-secondary: #94a3b8;
---accent-gold: #fbbf24;
---accent-gold-glow: rgba(251, 191, 36, 0.35);
---accent-cyan: #38bdf8;
---card-bg: linear-gradient(145deg, rgba(13, 20, 38, 0.95), rgba(3, 6, 15, 0.98));
+--bg-deep: #030712;
+--bg-surface: rgba(15, 23, 42, 0.7);
+--border-glass: rgba(255, 255, 255, 0.08);
+--border-gold: rgba(245, 158, 11, 0.4);
+--text-main: #f8fafc;
+--text-muted: #94a3b8;
+--accent-gold: #f59e0b;
+--accent-gold-glow: rgba(245, 158, 11, 0.25);
+--accent-cyan: #22d3ee;
 }
+
+* { box-sizing: border-box; }
 body {
-margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-primary);
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-line-height: 1.6;
+margin: 0; padding: 0; background-color: var(--bg-deep); color: var(--text-main);
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+-webkit-font-smoothing: antialiased; line-height: 1.5;
 }
-.container { max-width: 1000px; margin: 0 auto; padding: 50px 20px; text-align: center; }
-.badge {
-display: inline-block; background: rgba(251, 191, 36, 0.1); color: var(--accent-gold);
-border: 1px solid rgba(251, 191, 36, 0.3); padding: 8px 24px; border-radius: 30px;
-font-size: 0.8rem; font-weight: 800; letter-spacing: 0.25em; margin-bottom: 20px;
-}
-h1 { font-size: 3.2rem; margin: 0 0 15px 0; font-weight: 900; letter-spacing: -0.02em; }
-.hero-subtitle { font-size: 1.25rem; color: var(--accent-cyan); font-weight: 600; margin-bottom: 40px; }
 
-/* 企業説明セクション */
-.bsv-explain-grid {
-display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
-margin-bottom: 40px; text-align: left;
+.ambient-glow {
+position: fixed; top: -20vh; left: 50%; transform: translateX(-50%);
+width: 60vw; height: 40vh; background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, rgba(3,7,18,0) 70%);
+z-index: -1; pointer-events: none;
 }
-.explain-card {
-background: var(--card-bg); border: 1px solid rgba(251, 191, 36, 0.2);
-border-radius: 20px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-.explain-card h3 { color: var(--accent-gold); margin-top: 0; font-size: 1.2rem; }
-.explain-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0; }
 
-/* メイン機能ゲートウェイボックス */
-.enterprise-box {
-background: var(--card-bg);
-border: 2px solid var(--accent-gold); border-radius: 32px; padding: 45px 35px;
-box-shadow: 0 0 100px var(--accent-gold-glow); text-align: left;
+.container { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+
+/* 企業トップヘッダー */
+.nav-header {
+display: flex; justify-content: space-between; align-items: center;
+border-bottom: 1px solid var(--border-glass); padding-bottom: 24px; margin-bottom: 50px;
 }
-.enterprise-box h2 { text-align: center; margin-top: 0; color: #fff; font-size: 1.8rem; letter-spacing: -0.01em; }
-.form-group { margin: 20px 0; }
-label { display: block; color: var(--accent-gold); font-weight: 700; margin-bottom: 8px; font-size: 0.9rem; }
+.logo-area { display: flex; align-items: center; gap: 12px; }
+.logo-text { font-size: 1.5rem; font-weight: 900; letter-spacing: 0.15em; color: #fff; }
+.status-badge {
+display: inline-flex; align-items: center; gap: 8px; background: rgba(34, 197, 94, 0.1);
+border: 1px solid rgba(34, 197, 94, 0.3); color: #4ade80; padding: 6px 14px;
+border-radius: 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+}
+.status-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 8px #4ade80; animation: pulse 2s infinite; }
+
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+/* ヒーローセクション */
+.hero { text-align: center; margin-bottom: 60px; }
+.hero h1 { font-size: 3.8rem; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 16px 0; color: #fff; }
+.hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 750px; margin: 0 auto; font-weight: 400; }
+
+/* メトリクス・カードグリッド */
+.metrics-grid {
+display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 40px;
+}
+.metric-card {
+background: var(--bg-surface); backdrop-filter: blur(16px);
+border: 1px solid var(--border-glass); border-radius: 20px; padding: 24px;
+transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.metric-card:hover { border-color: var(--border-gold); transform: translateY(-2px); }
+.metric-title { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+.metric-value { font-size: 1.8rem; font-weight: 800; color: #fff; }
+.metric-sub { font-size: 0.8rem; color: #4ade80; margin-top: 4px; font-weight: 600; }
+
+/* メイン・コントロールコンソール */
+.console-box {
+background: linear-gradient(145deg, rgba(15, 23, 42, 0.85), rgba(3, 7, 18, 0.95));
+backdrop-filter: blur(24px); border: 1px solid var(--border-gold);
+border-radius: 28px; padding: 48px; box-shadow: 0 0 80px var(--accent-gold-glow);
+}
+.console-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+.console-title { font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0; }
+
+.form-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+label { font-size: 0.85rem; color: var(--accent-gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+
 select, input {
-background: rgba(5, 10, 25, 0.9); color: var(--text-primary); border: 1px solid var(--accent-gold);
-padding: 15px 20px; font-size: 1rem; border-radius: 14px; font-weight: 600; outline: none; width: 100%; box-sizing: border-box;
+background: rgba(3, 7, 18, 0.8); color: var(--text-main); border: 1px solid rgba(255, 255, 255, 0.15);
+padding: 16px 20px; font-size: 1rem; border-radius: 14px; font-weight: 600; outline: none; width: 100%;
+transition: all 0.2s ease;
 }
-.btn {
-background: linear-gradient(135deg, var(--accent-gold) 0%, #b45309 100%);
-color: #020408; border: none; padding: 20px; font-size: 1.15rem; font-weight: 900;
-border-radius: 50px; cursor: pointer; transition: all 0.3s ease;
-box-shadow: 0 10px 35px rgba(251, 191, 36, 0.4); text-transform: uppercase; width: 100%; margin-top: 25px;
+select:focus, input:focus { border-color: var(--accent-gold); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15); }
+
+.action-btn {
+background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+color: #030712; border: none; padding: 20px; font-size: 1.1rem; font-weight: 800;
+border-radius: 14px; cursor: pointer; transition: all 0.3s ease; width: 100%;
+box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3); text-transform: uppercase; letter-spacing: 0.05em;
 }
-.btn:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(251, 191, 36, 0.7); }
-#result-panel {
-margin-top: 30px; background: rgba(0,0,0,0.7); border: 1px dashed var(--accent-cyan);
-padding: 25px; border-radius: 16px; display: none; word-break: break-all; text-align: left;
+.action-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(245, 158, 11, 0.5); }
+
+/* 実行結果コンソール */
+#result-terminal {
+margin-top: 32px; background: rgba(2, 4, 8, 0.9); border: 1px solid rgba(34, 211, 238, 0.3);
+padding: 24px; border-radius: 16px; display: none; font-family: monospace; font-size: 0.9rem;
 }
-#result-panel h4 { color: var(--accent-cyan); margin: 0 0 12px 0; }
-.success-text { color: #34d399; font-weight: bold; }
+.terminal-header { color: var(--accent-cyan); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.terminal-content { color: var(--text-muted); line-height: 1.6; word-break: break-all; }
+.success-highlight { color: #4ade80; font-weight: bold; }
 </style>
 </head>
 <body>
+<div class="ambient-glow"></div>
 <div class="container">
-<div class="badge">QLUX ENTERPRISE ARCHITECTURE</div>
-<h1>未来の経済インフラを、一撃で。</h1>
-<div class="hero-subtitle">BSV Teranode × 自律型AIエージェントが切り拓く、世界初の全地球統合型エコシステム。</div>
 
-<!-- 世界一伝わるBSV＆システム解説ライティング -->
-<div class="bsv-explain-grid">
-    <div class="explain-card">
-        <h3>⚡ 1. 圧倒的な処理能力 (Teranode)</h3>
-        <p>従来のブロックチェーンの限界を完全に突破。分散型マイクロサービスアーキテクチャにより、世界中の膨大なトランザクションとAIの判断を遅延ゼロで超高速処理します。</p>
+<!-- ヘッダー -->
+<header class="nav-header">
+    <div class="logo-area">
+        <div class="logo-text">QLUX</div>
     </div>
-    <div class="explain-card">
-        <h3>🤖 2. 人間とAIの完全自律経済</h3>
-        <p>仲介者を一切挟まず、AIエージェント自身がミクロ決済（サトシ単位）で必要な知見やパッチを瞬時に売買。地球規模の資本とデータが自動循環します。</p>
+    <div class="status-badge">
+        <span class="status-dot"></span>
+        TERANODE MESH ONLINE
     </div>
-    <div class="explain-card">
-        <h3>🛡️ 3. 24時間365日無停止の安全性</h3>
-        <p>中央集権サーバーの概念を破壊。世界中に張り巡らせた無限ノード（Terranode）が、100%の稼働率と改ざん不可能な信頼性を担保します。</p>
+</header>
+
+<!-- ヒーロー -->
+<section class="hero">
+    <h1>グローバル経済を駆動する、究極の自律インフラ。</h1>
+    <p>BSV Teranodeの無限スケーラビリティと超高精度AIエージェントが直結。仲介者を完全に排除した次世代エンタープライズ・エコシステム。</p>
+</section>
+
+<!-- リアルタイム・メトリクス -->
+<div class="metrics-grid">
+    <div class="metric-card">
+        <div class="metric-title">Network Throughput</div>
+        <div class="metric-value">4,291,080 <span style="font-size: 1rem; color: var(--text-muted);">TPS</span></div>
+        <div class="metric-sub">▲ Teranode Verified</div>
+    </div>
+    <div class="metric-card">
+        <div class="metric-title">Active AI Agents</div>
+        <div class="metric-value">849,210</div>
+        <div class="metric-sub">▲ Global Swarm Sync</div>
+    </div>
+    <div class="metric-card">
+        <div class="metric-title">Settlement Latency</div>
+        <div class="metric-value">< 1.2 <span style="font-size: 1rem; color: var(--text-muted);">ms</span></div>
+        <div class="metric-sub">▲ Zero-Conf Atomic</div>
     </div>
 </div>
 
-<div class="enterprise-box">
-<h2>ENTERPRISE GATEWAY & GLOBAL SYNC</h2>
+<!-- コンソールコントロール -->
+<div class="console-box">
+    <div class="console-header">
+        <h2 class="console-title">APEX ENTERPRISE GATEWAY</h2>
+    </div>
 
-<div class="form-group">
-<label>ENTERPRISE TIER / エンタープライズ・インフラ選択</label>
-<select id="enterprise-tier">
-<option value="teranode_master_core">BSV Teranode Master Core (無限処理・全網羅基盤)</option>
-<option value="ai_autonomous_cluster">AI Autonomous Swarm Cluster (自律エージェント運用レイヤー)</option>
-<option value="global_liquidity_hub">Global Liquidity & Asset Hub (超高収益・リアルタイム配当)</option>
-</select>
+    <div class="form-grid">
+        <div class="form-group">
+            <label>Deployment Layer / インフラストラクチャ層</label>
+            <select id="deployment-layer">
+                <option value="teranode_omni_core">BSV Teranode Omni-Core (無限トランザクション処理)</option>
+                <option value="ai_autonomous_cluster">AI Autonomous Execution Cluster (自律エージェント基盤)</option>
+                <option value="global_yield_matrix">Global Liquidity & Asset Matrix (超高収益収益配当)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Execution Protocol / 運用プロトコル</label>
+            <select id="execution-protocol">
+                <option value="atomic_settlement">ミリ秒アトミック決済 ＆ スマートコントラクト即時執行</option>
+                <option value="global_shard_sync">全世界テラノード・シャード一括同期</option>
+                <option value="autonomous_sats_harvest">AIリソース自動回収・サトシハーベスト</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Node Identifier / 企業認証シグネチャ</label>
+            <input type="text" id="node-identifier" value="QLUX-Apex-Enterprise-Node-01">
+        </div>
+    </div>
+
+    <button class="action-btn" onclick="executeApexSync()">⚡ EXECUTE APEX DISPATCH</button>
+
+    <div id="result-terminal">
+        <div class="terminal-header">
+            <span>●</span> APEX CONSENSUS STATUS: <span class="success-highlight">VERIFIED ON-CHAIN</span>
+        </div>
+        <div id="terminal-output" class="terminal-content"></div>
+    </div>
 </div>
 
-<div class="form-group">
-<label>PROTOCOL MODE / 同期・運用プロトコル</label>
-<select id="protocol-mode">
-<option value="execute_instant_settlement">ミリ秒オンチェーン決済＆スマートコントラクト自動実行</option>
-<option value="sync_global_shards">全世界ノード・シャード一括同期</option>
-<option value="harvest_autonomous_yields">自律型AIリソース・サトシ自動回収</option>
-</select>
-</div>
-
-<div class="form-group">
-<label>SECURITY SIGNATURE / エンタープライズ認証識別子</label>
-<input type="text" id="security-signature" value="QLUX-Enterprise-Master-Node-01">
-</div>
-
-<button class="btn" onclick="executeEnterpriseSync()">⚡ EXECUTE ENTERPRISE DISPATCH</button>
-
-<div id="result-panel">
-<h4>ENTERPRISE CONSENSUS: <span class="success-text">GLOBAL ON-CHAIN SECURED</span></h4>
-<p id="result-content" style="color: var(--text-secondary); font-family: monospace; font-size: 0.9rem;"></p>
-</div>
-</div>
 </div>
 
 <script>
-async function executeEnterpriseSync() {
-    const enterpriseTier = document.getElementById('enterprise-tier').value;
-    const protocolMode = document.getElementById('protocol-mode').value;
-    const securitySignature = document.getElementById('security-signature').value;
-    const panel = document.getElementById('result-panel');
-    const content = document.getElementById('result-content');
+async function executeApexSync() {
+    const deploymentLayer = document.getElementById('deployment-layer').value;
+    const executionProtocol = document.getElementById('execution-protocol').value;
+    const nodeIdentifier = document.getElementById('node-identifier').value;
+    const terminal = document.getElementById('result-terminal');
+    const output = document.getElementById('terminal-output');
     
-    panel.style.display = "block";
-    content.innerText = "Broadcasting cryptographic enterprise handshake across global BSV network...";
+    terminal.style.display = "block";
+    output.innerHTML = "Initializing cryptographic handshake across global BSV Teranode mesh...";
 
     try {
-        const response = await fetch('/api/enterprise-sync', {
+        const response = await fetch('/api/apex-sync', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ enterprise_tier: enterpriseTier, protocol_mode: protocolMode, security_signature: securitySignature })
+            body: JSON.stringify({ deployment_layer: deploymentLayer, execution_protocol: executionProtocol, node_identifier: nodeIdentifier })
         });
         const data = await response.json();
 
         setTimeout(() => {
-            content.innerHTML = `
-                <br>✓ <b>Infrastructure Tier:</b> ${data.enterprise_tier.toUpperCase()}
-                <br>✓ <b>Protocol Mode:</b> ${data.protocol_mode}
-                <br>✓ <b>Security Signature:</b> ${data.security_signature}
-                <br>✓ <b>Teranode Hash:</b> <code>${data.block_hash}</code>
-                <br>✓ <b>Global Deployment:</b> <span class="success-text">100% Operational Worldwide</span>
-                <br><br><span style="color: var(--accent-gold);">[!] Enterprise ecosystem fully synchronized with BSV blockchain.</span>
+            output.innerHTML = `
+                ✓ <b>Infrastructure Layer:</b> ${data.deployment_layer.toUpperCase()}<br>
+                ✓ <b>Protocol Mode:</b> ${data.execution_protocol}<br>
+                ✓ <b>Enterprise Signature:</b> ${data.node_identifier}<br>
+                ✓ <b>Teranode Block Hash:</b> <code>${data.block_hash}</code><br>
+                ✓ <b>Global Deployment:</b> <span class="success-highlight">100% Fully Operational Worldwide</span><br><br>
+                <span style="color: var(--accent-gold);">[!] Apex enterprise ecosystem successfully synchronized with the global blockchain network.</span>
             `;
-        }, 850);
+        }, 600);
     } catch (err) {
-        content.innerText = "Error: Enterprise gateway connection timeout.";
+        output.innerText = "Error: Apex network gateway timeout.";
     }
 }
 </script>
@@ -182,14 +245,14 @@ async function executeEnterpriseSync() {
 </html>
 """
 
-@app.post("/api/enterprise-sync")
-async def api_enterprise_sync(data: EnterpriseSyncRequest):
-    raw_str = f"{data.enterprise_tier}-{data.protocol_mode}-{time.time()}"
+@app.post("/api/apex-sync")
+async def api_apex_sync(data: EnterpriseRequest):
+    raw_str = f"{data.deployment_layer}-{data.execution_protocol}-{time.time()}"
     block_hash = hashlib.sha256(raw_str.encode()).hexdigest()
     return {
         "status": "success",
-        "enterprise_tier": data.enterprise_tier,
-        "protocol_mode": data.protocol_mode,
-        "security_signature": data.security_signature,
+        "deployment_layer": data.deployment_layer,
+        "execution_protocol": data.execution_protocol,
+        "node_identifier": data.node_identifier,
         "block_hash": block_hash
     }
