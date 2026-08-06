@@ -213,7 +213,6 @@ body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffff
 </div>
 
 <script>
-// リアルタイム時計とハッシュの更新シミュレーション
 setInterval(() => {
     const now = new Date();
     document.getElementById('live-clock').innerText = now.toISOString().slice(11, 19) + " UTC";
@@ -237,7 +236,6 @@ function selectAsset(element, assetName, price) {
     document.getElementById('selected-price').innerHTML = `${price} <span class="text-xl">SATS</span>`;
 }
 
-// 超高級スワイプボタンの滑らかなロジック
 const container = document.getElementById('swipe-container');
 const btn = document.getElementById('swipe-btn');
 const text = document.getElementById('swipe-text');
@@ -392,4 +390,5 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             
             resp_bytes = json.dumps(response_data).encode("utf-8")
             self.send_response(200)
-            self.send_header("Content-Type", "application/json; charset=u
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length
