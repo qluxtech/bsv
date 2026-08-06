@@ -2,9 +2,7 @@ import os
 import json
 import hashlib
 import time
-from flask import Flask, request, jsonify, render_template_string
-
-app = Flask(__name__)
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
 HTML_CONTENT = """<!DOCTYPE html>
 <html lang="ja">
@@ -167,27 +165,58 @@ async function executeGlobalDispatch() {
 </html>
 """
 
-@app.route("/", methods=["GET"])
-def index():
-    return render_template_string(HTML_CONTENT)
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == "/":
+            response_bytes = HTML_CONTENT.encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(response_bytes)))
+            self.end_headers()
+            self.wfile.write(response_bytes)
+        else:
+            self.send_response(404)
+            self.end_headers()
 
-@app.route("/api/global-dispatch", methods=["POST"])
-def global_dispatch():
-    data = request.get_json() or {}
-    global_module = data.get("global_module", "unknown")
-    user_handle = data.get("user_handle", "$qlux")
-    
-    raw_str = f"{global_module}-{user_handle}-{time.time()}"
-    block_hash = hashlib.sha256(raw_str.encode()).hexdigest()
-    
-    return jsonify({
-        "status": "success",
-        "global_module": global_module,
-        "user_handle": user_handle,
-        "block_hash": block_hash
-    })
+    def do_POST(self):
+        if self.path == "/api/global-dispatch":
+            content_length = int(self.headers.get('Content-Length', 0))
+            post_data = self.rfile.read(content_length)
+            
+            try:
+                data = json.loads(post_data.decode('utf-8'))
+            except:
+                data = {}
+                
+            global_module = data.get("global_module", "unknown")
+            user_handle = data.get("user_handle", "$qlux")
+            
+            raw_str = f"{global_module}-{user_handle}-{time.time()}"
+            block_hash = hashlib.sha256(raw_str.encode()).hexdigest()
+            
+            response_data = {
+                "status": "success",
+                "global_module": global_module,
+                "user_handle": user_handle,
+                "block_hash": block_hash
+            }
+            
+            resp_bytes = json.dumps(response_data).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(resp_bytes)))
+            self.end_headers()
+            self.wfile.write(resp_bytes)
+        else:
+            self.send_response(404)
+            self.end_headers()
+
+    def log_message(self, format, *args):
+        return
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
-
+    server_address = ("0.0.0.0", port)
+    httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
+    print(f"Server started instantly on port {port}")
+    httpd.serve_forever()
