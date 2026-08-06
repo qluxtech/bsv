@@ -1,4 +1,4 @@
- from fastapi import FastAPI, HTTPException
+    from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 import hashlib
@@ -46,7 +46,6 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, A
 -webkit-font-smoothing: antialiased; line-height: 1.6; overflow-x: hidden;
 }
 
-/* 宇宙・サイバー空間を演出する背景動画 */
 .video-bg {
 position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
 z-index: -2; overflow: hidden; pointer-events: none; opacity: 0.22;
@@ -61,7 +60,6 @@ z-index: -1; pointer-events: none;
 
 .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; position: relative; z-index: 1; }
 
-/* グローバル・トップナビゲーション */
 .global-nav {
 display: flex; justify-content: space-between; align-items: center;
 border-bottom: 1px solid var(--border-glass); padding-bottom: 24px; margin-bottom: 50px;
@@ -74,10 +72,9 @@ display: inline-flex; align-items: center; gap: 8px; background: rgba(34, 197, 9
 border: 1px solid rgba(34, 197, 94, 0.4); color: var(--accent-green); padding: 8px 16px;
 border-radius: 30px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em;
 }
-.pulse-dot { width: 7px; height: 7px; background: var(--accent-green); border-radius: 50%; box-shadow: 0 0 12px var(--accent-green); animation: pulse 1.5px infinite; }
+.pulse-dot { width: 7px; height: 7px; background: var(--accent-green); border-radius: 50%; box-shadow: 0 0 12px var(--accent-green); animation: pulse 1.5s infinite; }
 @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } 100% { opacity: 1; transform: scale(1); } }
 
-/* ヒーローセクション：世界一の説得力 */
 .hero-section { text-align: center; margin-bottom: 50px; }
 .hero-badge {
 display: inline-block; background: rgba(245, 158, 11, 0.12); color: var(--accent-gold);
@@ -87,7 +84,6 @@ font-size: 0.75rem; font-weight: 900; letter-spacing: 0.25em; margin-bottom: 24p
 .hero-section h1 { font-size: 3rem; font-weight: 900; letter-spacing: -0.03em; margin: 0 0 20px 0; color: #fff; line-height: 1.2; }
 .hero-section p { font-size: 1.1rem; color: var(--text-muted); max-width: 880px; margin: 0 auto; font-weight: 400; line-height: 1.7; }
 
-/* リアルタイム・グローバル経済メトリクス */
 .metrics-container {
 display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 50px;
 }
@@ -101,7 +97,6 @@ transition: transform 0.3s ease;
 .metric-val { font-size: 1.9rem; font-weight: 900; color: #fff; letter-spacing: -0.02em; }
 .metric-trend { font-size: 0.75rem; color: var(--accent-green); margin-top: 6px; font-weight: 700; }
 
-/* サービス・モジュールカード一覧（ユーザーが迷わず全機能にアクセス可能） */
 .section-header { font-size: 1.4rem; font-weight: 900; color: #fff; margin-bottom: 24px; border-left: 4px solid var(--accent-gold); padding-left: 14px; letter-spacing: 0.05em; }
 .services-grid {
 display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; margin-bottom: 50px;
@@ -116,7 +111,6 @@ transition: all 0.3s ease; position: relative; overflow: hidden;
 .service-badge-tag { font-size: 0.65rem; background: rgba(192, 132, 252, 0.15); color: var(--accent-purple); padding: 4px 10px; border-radius: 8px; font-weight: 800; }
 .service-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0; line-height: 1.65; }
 
-/* 超高精度操作コントロールコンソール */
 .apex-console {
 background: linear-gradient(145deg, rgba(8, 14, 28, 0.98), rgba(0, 2, 5, 0.99));
 backdrop-filter: blur(30px); border: 2px solid var(--accent-gold);
@@ -144,7 +138,6 @@ box-shadow: 0 12px 40px rgba(245, 158, 11, 0.45); text-transform: uppercase; let
 }
 .dispatch-btn:hover { transform: translateY(-3px); box-shadow: 0 18px 55px rgba(245, 158, 11, 0.65); }
 
-/* 実行結果ターミナル */
 #execution-terminal {
 margin-top: 35px; background: rgba(0, 2, 5, 0.98); border: 1px solid rgba(56, 189, 248, 0.5);
 padding: 28px; border-radius: 20px; display: none; font-family: monospace; font-size: 0.9rem; text-align: left;
