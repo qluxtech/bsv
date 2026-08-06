@@ -67,3 +67,116 @@ let currentX = 0;
 let maxDist = 0;
 
 function getMax() {
+    maxDist = container.clientWidth - btn.clientWidth - 8;
+}
+window.addEventListener('resize', getMax);
+window.addEventListener('load', getMax);
+
+btn.addEventListener('mousedown', e => {
+    dragging = true;
+    startX = e.clientX - currentX;
+    text.style.opacity = '0.3';
+});
+
+window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    getMax();
+    currentX = e.clientX - startX;
+    if (currentX < 0) currentX = 0;
+    if (currentX > maxDist) currentX = maxDist;
+    btn.style.transform = 'translateX(' + currentX + 'px)';
+});
+
+window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    getMax();
+    if (currentX >= maxDist * 0.8) {
+        btn.style.transform = 'translateX(' + maxDist + 'px)';
+        btn.classList.add('unlocked');
+        btn.innerHTML = 'OK';
+        pay();
+    } else {
+        currentX = 0;
+        btn.style.transform = 'translateX(0px)';
+        text.style.opacity = '1';
+    }
+});
+
+async function pay() {
+    const handle = document.getElementById('user-handle').value;
+    const term = document.getElementById('terminal');
+    const body = document.getElementById('terminal-body');
+    
+    term.style.display = 'block';
+    body.innerHTML = 'Broadcasting nano-payment to Teranode...';
+
+    try {
+        const res = await fetch('/api/pay', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ handle: handle, sats: 15 })
+        });
+        const data = await res.json();
+        
+        setTimeout(() => {
+            btn.classList.remove('unlocked');
+            btn.innerHTML = '&rarr;';
+            currentX = 0;
+            btn.style.transform = 'translateX(0px)';
+            text.style.opacity = '1';
+            body.innerHTML = 'Handle: ' + data.handle + '<br>Amount: ' + data.sats + ' SATS<br>TXID: ' + data.txid + '<br><b class="text-emerald-400">[UNLOCKED] Data stream active.</b>';
+        }, 400);
+    } catch (e) {
+        body.innerHTML = 'Error connecting to payment gateway.';
+    }
+}
+</script>
+</body>
+</html>
+"""
+
+class SimpleServer(BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == '/':
+            payload = HTML_CODE.encode('utf-8')
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html; charset=utf-8')
+            self.send_header('Content-Length', str(len(payload)))
+            self.end_headers()
+            self.wfile.write(payload)
+        else:
+            self.send_response(404)
+            self.end_headers()
+
+    def do_POST(self):
+        if self.path == '/api/pay':
+            length = int(self.headers.get('Content-Length', 0))
+            raw = self.rfile.read(length)
+            try:
+                data = json.loads(raw.decode('utf-8'))
+            except:
+                data = {}
+            
+            handle = data.get('handle', '$qlux')
+            sats = data.get('sats', 15)
+            txid = hashlib.sha256(f"{handle}-{sats}-{time.time()}".encode()).hexdigest()
+            
+            resp = json.dumps({'status': 'success', 'handle': handle, 'sats': sats, 'txid': txid}).encode('utf-8')
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.send_header('Content-Length', str(len(resp)))
+            self.end_headers()
+            self.wfile.write(resp)
+        else:
+            self.send_response(404)
+            self.end_headers()
+
+    def log_message(self, format, *args):
+        pass
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 10000))
+    server = HTTPServer(('0.0.0.0', port), SimpleServer)
+    print(f"Server started on port {port}")
+    server.serve_forever()
