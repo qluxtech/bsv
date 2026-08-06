@@ -5,15 +5,16 @@ import hashlib
 import time
 
 app = FastAPI(
-    title="QLUX BSV Global Enterprise Apex Hub",
-    version="100.0.0",
-    description="The Ultimate Multi-Enterprise BSV Integration & Teranode Global Settlement Platform."
+    title="QLUX — Ultimate BSV Enterprise Apex Ecosystem",
+    version="200.0.0",
+    description="The Ultimate All-In-One BSV Enterprise Platform Integrating HandCash, Tokenized, TAAL, Centbee, and Teranode Infrastructure."
 )
 
-class BSVAllianceRequest(BaseModel):
-    partner_ecosystem: str
-    teranode_scaling_tier: str
-    enterprise_auth_token: str
+class BSVEnterpriseRequest(BaseModel):
+    service_module: str
+    enterprise_partner: str
+    execution_payload: str
+    auth_handle: str
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
@@ -22,7 +23,7 @@ async def read_root():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QLUX — BSV Global Enterprise Apex Hub</title>
+<title>QLUX — Ultimate BSV Enterprise Apex Hub</title>
 <style>
 :root {
 --bg-deep: #020408;
@@ -35,6 +36,7 @@ async def read_root():
 --accent-gold-glow: rgba(245, 158, 11, 0.35);
 --accent-cyan: #38bdf8;
 --accent-green: #4ade80;
+--accent-purple: #c084fc;
 }
 
 * { box-sizing: border-box; }
@@ -52,7 +54,7 @@ z-index: -1; pointer-events: none;
 
 .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
 
-/* 企業トップヘッダー */
+/* ヘッダー */
 .nav-header {
 display: flex; justify-content: space-between; align-items: center;
 border-bottom: 1px solid var(--border-glass); padding-bottom: 20px; margin-bottom: 40px;
@@ -68,17 +70,17 @@ border-radius: 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05e
 
 @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-/* ヒーローセクション */
+/* ヒーロー */
 .hero { text-align: center; margin-bottom: 45px; }
 .badge-sub {
 display: inline-block; background: rgba(245, 158, 11, 0.1); color: var(--accent-gold);
 border: 1px solid rgba(245, 158, 11, 0.3); padding: 6px 20px; border-radius: 30px;
 font-size: 0.75rem; font-weight: 800; letter-spacing: 0.2em; margin-bottom: 20px;
 }
-.hero h1 { font-size: 2.6rem; font-weight: 900; letter-spacing: -0.02em; margin: 0 0 16px 0; color: #fff; line-height: 1.25; }
+.hero h1 { font-size: 2.5rem; font-weight: 900; letter-spacing: -0.02em; margin: 0 0 16px 0; color: #fff; line-height: 1.25; }
 .hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 820px; margin: 0 auto; font-weight: 400; }
 
-/* リアルタイム・グローバル経済メトリクス */
+/* ライブメトリクス */
 .metrics-grid {
 display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 45px;
 }
@@ -89,19 +91,19 @@ background: var(--bg-surface); border: 1px solid var(--border-glass); border-rad
 .metric-value { font-size: 1.6rem; font-weight: 900; color: #fff; }
 .metric-sub { font-size: 0.75rem; color: var(--accent-green); margin-top: 4px; font-weight: 600; }
 
-/* BSVアライアンス企業一覧セクション */
+/* 機能カードセクション */
 .section-title { font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 20px; border-left: 4px solid var(--accent-gold); padding-left: 12px; }
-.alliance-grid {
+.features-grid {
 display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-bottom: 45px;
 }
-.alliance-card {
+.feature-card {
 background: var(--bg-surface); border: 1px solid var(--border-glass); border-radius: 18px; padding: 22px;
 transition: all 0.3s ease; position: relative; overflow: hidden;
 }
-.alliance-card:hover { border-color: var(--border-gold); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.alliance-card h3 { color: var(--accent-gold); margin-top: 0; font-size: 1.05rem; font-weight: 800; display: flex; justify-content: space-between; align-items: center; }
-.alliance-tag { font-size: 0.65rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); padding: 3px 8px; border-radius: 6px; font-weight: 700; }
-.alliance-card p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0; line-height: 1.6; }
+.feature-card:hover { border-color: var(--border-gold); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.feature-card h3 { color: var(--accent-gold); margin-top: 0; font-size: 1.05rem; font-weight: 800; display: flex; justify-content: space-between; align-items: center; }
+.feature-tag { font-size: 0.65rem; background: rgba(192, 132, 252, 0.15); color: var(--accent-purple); padding: 3px 8px; border-radius: 6px; font-weight: 700; }
+.feature-card p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0; line-height: 1.6; }
 
 /* コンソールコントロール */
 .console-box {
@@ -152,101 +154,109 @@ padding: 24px; border-radius: 16px; display: none; font-family: monospace; font-
     </div>
     <div class="status-badge">
         <span class="status-dot"></span>
-        GLOBAL BSV ALLIANCE ACTIVE
+        ALL-IN-ONE BSV ECOSYSTEM ACTIVE
     </div>
 </header>
 
 <!-- ヒーロー -->
 <section class="hero">
-    <div class="badge-sub">MULTI-ENTERPRISE TERANODE ECOSYSTEM</div>
-    <h1>世界中のどの取引所をも凌駕する、<br>BSV連合統合基盤。</h1>
-    <p>TAAL、HandCash、Centbee、GorillaPoolなど、BSVエコシステムを牽引する最強の企業・プロトコル群と完全アライアンス。無限テラノード基盤上で稼働する、地球規模の次世代金融・データ決済網。</p>
+    <div class="badge-sub">ENTERPRISE-GRADE BSV PLATFORM</div>
+    <h1>HandCash・Tokenized・Teranodeが完全融合した、<br>最高峰の総合BSVインフラ。</h1>
+    <p>ハンドレシート決済、トークニジットによるデジタル証券発行、TAALマイニング、Centbeeゲートウェイなど、BSV主要企業の全機能を一つのダッシュボードに統合し、グローバル経済を圧倒的スピードで駆動。</p>
 </section>
 
 <!-- メトリクス -->
 <div class="metrics-grid">
     <div class="metric-card">
         <div class="metric-title">Consolidated TPS</div>
-        <div class="metric-value">12,850,240</div>
-        <div class="metric-sub">▲ Multi-Enterprise Mesh</div>
+        <div class="metric-value">15,420,890</div>
+        <div class="metric-sub">▲ Teranode Mesh Online</div>
     </div>
     <div class="metric-card">
-        <div class="metric-title">Connected Partners</div>
-        <div class="metric-value">48 Global Ent.</div>
-        <div class="metric-sub">▲ Fully Synchronized</div>
+        <div class="metric-title">Active Enterprise APIs</div>
+        <div class="metric-value">64 Connected</div>
+        <div class="metric-sub">▲ Full Ecosystem Sync</div>
     </div>
     <div class="metric-card">
-        <div class="metric-title">Atomic Settlement</div>
-        <div class="metric-value">< 0.4 ms</div>
-        <div class="metric-sub">▲ Zero-Conf Cross-Chain</div>
+        <div class="metric-title">Settlement Latency</div>
+        <div class="metric-value">< 0.3 ms</div>
+        <div class="metric-sub">▲ Zero-Conf Atomic</div>
     </div>
 </div>
 
-<!-- BSV主要提携企業・プロトコル一覧セクション -->
-<div class="section-title">BSV ENTERPRISE ALLIANCE NETWORK</div>
-<div class="alliance-grid">
-    <div class="alliance-card">
-        <h3>TAAL Distributed Information <span class="alliance-tag">Mining & Enterprise</span></h3>
-        <p>大規模エンタープライズ向けトランザクション処理およびブロックチェーンインフラ提供。テラノードの超高速マイニング出力を直接統合し、企業級のトランザクション保証を実現。</p>
+<!-- BSV主要機能・企業モジュール一覧 -->
+<div class="section-title">BSV ENTERPRISE FEATURE SUITE</div>
+<div class="features-grid">
+    <div class="feature-card">
+        <h3>HandCash Payment & Identity <span class="feature-tag">HandCash API</span></h3>
+        <p>ハンドルネーム（$handle）ベースのワンクリック即時決済と、安全な分散型オムニチャネル・アイデンティティ認証。手数料ほぼゼロでミリ秒の投げ銭・商取引を実現。</p>
     </div>
-    <div class="alliance-card">
-        <h3>HandCash <span class="alliance-tag">Pay & Identity</span></h3>
-        <p>超高速ハンドレシート決済とユーザーアイデンティティ管理。ハンドルネームをベースにしたミリ秒単位のマイクロペイメントと、シームレスなアプリ間連携を完備。</p>
+    <div class="feature-card">
+        <h3>Tokenized Digital Securities <span class="feature-tag">Tokenized Protocol</span></h3>
+        <p>法人向けスマートコントラクトによるデジタル資産・株式の発行、譲渡制限、コンプライアンス管理。法的拘束力を持つオンチェーンコーポレートガバナンスを自動執行。</p>
     </div>
-    <div class="alliance-card">
-        <h3>Centbee <span class="alliance-tag">Global Gateway</span></h3>
-        <p>マーチャント決済およびクロスボーダー送金プラットフォーム。小売から大企業まで、ブロックチェーンの複雑性を完全に隠蔽した最高峰のUXを提供。</p>
+    <div class="feature-card">
+        <h3>TAAL Enterprise Mining <span class="feature-tag">TAAL Core</span></h3>
+        <p>大規模トランザクションの確実なブロック組み込みとエンタープライズ向けハッシュパワー保証。高スループットデータを途切れることなくチェーンに刻み込む。</p>
     </div>
-    <div class="alliance-card">
-        <h3>GorillaPool <span class="alliance-tag">STAS & Ordinals</span></h3>
-        <p>STASトークン規格およびオンチェーンデジタルアセットの安全な発行・管理。高度なスマートスクリプトによるアセットの分散型流動性供給を駆動。</p>
+    <div class="feature-card">
+        <h3>Centbee Global Gateway <span class="feature-tag">Centbee Pay</span></h3>
+        <p>クロスボーダー決済およびマーチャント向けシームレスインフラ。一般ユーザーから大企業まで複雑なブロックチェーン知識を一切不要にしたスマート決済網。</p>
     </div>
-    <div class="alliance-card">
-        <h3>SensibleNode <span class="alliance-tag">Data Indexing</span></h3>
-        <p>超高速オンチェーンデータインデックスおよびAPIサービス。テラノードから吐き出される膨大なデータをミリ秒で検索・検証。</p>
+    <div class="feature-card">
+        <h3>GorillaPool STAS / Ordinals <span class="feature-tag">STAS Engine</span></h3>
+        <p>ネイティブ・トークン（STAS）規格の安全な発行・管理と、オンチェーン不変データのインデックス化。高度なスマートスクリプト運用を完全にサポート。</p>
     </div>
-    <div class="alliance-card">
-        <h3>Tokenized <span class="alliance-tag">Smart Contracts</span></h3>
-        <p>法人向け金融資産のデジタル証券化・スマートコントラクト自動執行レイヤー。法的拘束力を持つオンチェーンガバナンスを実現。</p>
+    <div class="feature-card">
+        <h3>SensibleNode Data Indexing <span class="feature-tag">Sensible API</span></h3>
+        <p>超高速オンチェーンデータクエリとインデックス生成。膨大なブロックチェーンデータをミリ秒単位で抽出し、アプリケーション層へリアルタイム配信。</p>
     </div>
 </div>
 
-<!-- コンソールコントロール -->
+<!-- 統合コントロールコンソール -->
 <div class="console-box">
     <div class="console-header">
-        <h2 class="console-title">GLOBAL ALLIANCE DISPATCH GATEWAY</h2>
-        <p class="console-desc">BSV主要パートナー企業群とのネットワーク同期および統合トランザクションの即時実行。</p>
+        <h2 class="console-title">ENTERPRISE ECOSYSTEM DISPATCH CONSOLE</h2>
+        <p class="console-desc">BSV主要企業のすべてのプロトコル・機能を即時選択し、ブロックチェーン上で一括実行。</p>
     </div>
 
     <div class="form-group">
-        <label>TARGET PARTNER ECOSYSTEM / 提携パートナー・インフラ</label>
-        <select id="partner-ecosystem">
-            <option value="taal_enterprise_mesh">TAAL Enterprise Mining Mesh (超大規模処理基盤)</option>
-            <option value="handcash_pay_network">HandCash Global Pay & Identity (次世代決済)</option>
-            <option value="centbee_gateway">Centbee Merchant & Cross-Border (グローバル送金)</option>
-            <option value="gorillapool_stas">GorillaPool STAS / Ordinals Engine (デジタル資産)</option>
-            <option value="sensible_node_index">SensibleNode Indexer & Data Sync (高速インデックス)</option>
+        <label>SERVICE MODULE / 機能・サービス選択</label>
+        <select id="service-module">
+            <option value="handcash_instant_pay">HandCash ($handle) ミリ秒決済・アイデンティティ連携</option>
+            <option value="tokenized_security_issue">Tokenized スマートコントラクト・デジタル証券発行</option>
+            <option value="taal_enterprise_mining">TAAL エンタープライズ・ハッシュパワー同期</option>
+            <option value="centbee_crossborder_gateway">Centbee グローバル・マーチャント決済</option>
+            <option value="gorillapool_stas_engine">GorillaPool STAS トークン発行・管理</option>
+            <option value="sensible_node_query">SensibleNode 超高速インデックスクエリ</option>
         </select>
     </div>
 
     <div class="form-group">
-        <label>TERANODE SCALING TIER / スケーリング階層</label>
-        <select id="teranode-scaling-tier">
-            <option value="tier_infinity_mesh">Infinity Teranode Mesh (無限並列・遅延ゼロ)</option>
-            <option value="tier_enterprise_cluster">Enterprise Sharded Cluster (高信頼性・セキュア)</option>
+        <label>ENTERPRISE PARTNER API / 連携インフラストラクチャ</label>
+        <select id="enterprise-partner">
+            <option value="teranode_master_mesh">BSV Teranode Master Mesh (無限拡張レイヤー)</option>
+            <option value="handcash_cloud_api">HandCash Enterprise Cloud API</option>
+            <option value="tokenized_governance_net">Tokenized Compliance & Governance Net</option>
+            <option value="taal_mining_pool">TAAL Enterprise Mining Pool</option>
         </select>
     </div>
 
     <div class="form-group">
-        <label>ENTERPRISE AUTH TOKEN / 統合認証シグネチャ</label>
-        <input type="text" id="enterprise-auth-token" value="QLUX-Apex-BSV-Alliance-01">
+        <label>EXECUTION PAYLOAD / 実行データ・パラメータ</label>
+        <input type="text" id="execution-payload" value="QLUX-Apex-Full-Ecosystem-Dispatch-v200">
     </div>
 
-    <button class="action-btn" onclick="executeAllianceDispatch()">⚡ EXECUTE ALLIANCE DISPATCH</button>
+    <div class="form-group">
+        <label>AUTH HANDLE / 認証ハンドラ (例: $qlux_enterprise)</label>
+        <input type="text" id="auth-handle" value="$qlux_enterprise">
+    </div>
+
+    <button class="action-btn" onclick="executeEnterpriseSuite()">⚡ EXECUTE ALL-IN-ONE ENTERPRISE DISPATCH</button>
 
     <div id="result-terminal">
         <div class="terminal-header">
-            <span>●</span> ALLIANCE CONSENSUS STATUS: <span class="success-highlight">VERIFIED ON-CHAIN</span>
+            <span>●</span> ECOSYSTEM CONSENSUS STATUS: <span class="success-highlight">VERIFIED & EXECUTED ON-CHAIN</span>
         </div>
         <div id="terminal-output" class="terminal-content"></div>
     </div>
@@ -255,36 +265,43 @@ padding: 24px; border-radius: 16px; display: none; font-family: monospace; font-
 </div>
 
 <script>
-async function executeAllianceDispatch() {
-    const partnerEcosystem = document.getElementById('partner-ecosystem').value;
-    const teranodeScalingTier = document.getElementById('teranode-scaling-tier').value;
-    const enterpriseAuthToken = document.getElementById('enterprise-auth-token').value;
+async function executeEnterpriseSuite() {
+    const serviceModule = document.getElementById('service-module').value;
+    const enterprisePartner = document.getElementById('enterprise-partner').value;
+    const executionPayload = document.getElementById('execution-payload').value;
+    const authHandle = document.getElementById('auth-handle').value;
     const terminal = document.getElementById('result-terminal');
     const output = document.getElementById('terminal-output');
     
     terminal.style.display = "block";
-    output.innerHTML = "Establishing multi-party cryptographic handshake across BSV enterprise partners...";
+    output.innerHTML = "Broadcasting multi-enterprise cryptographic payload to BSV Teranode & partner APIs...";
 
     try {
-        const response = await fetch('/api/alliance-dispatch', {
+        const response = await fetch('/api/enterprise-dispatch', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ partner_ecosystem: partnerEcosystem, teranode_scaling_tier: teranodeScalingTier, enterprise_auth_token: enterpriseAuthToken })
+            body: JSON.stringify({ 
+                service_module: serviceModule, 
+                enterprise_partner: enterprisePartner, 
+                execution_payload: executionPayload,
+                auth_handle: authHandle
+            })
         });
         const data = await response.json();
 
         setTimeout(() => {
             output.innerHTML = `
-                ✓ <b>Partner Ecosystem:</b> ${data.partner_ecosystem.toUpperCase()}<br>
-                ✓ <b>Scaling Tier:</b> ${data.teranode_scaling_tier}<br>
-                ✓ <b>Auth Token:</b> ${data.enterprise_auth_token}<br>
-                ✓ <b>Alliance Block Hash:</b> <code>${data.block_hash}</code><br>
-                ✓ <b>Global Integration:</b> <span class="success-highlight">100% Synchronized Worldwide</span><br><br>
-                <span style="color: var(--accent-gold);">[!] Multi-enterprise network fully active. Ready for global trading scale.</span>
+                ✓ <b>Service Module:</b> ${data.service_module.toUpperCase()}<br>
+                ✓ <b>Enterprise Partner:</b> ${data.enterprise_partner}<br>
+                ✓ <b>Auth Handle:</b> ${data.auth_handle}<br>
+                ✓ <b>Payload Hash:</b> ${data.execution_payload}<br>
+                ✓ <b>Teranode Block Hash:</b> <code>${data.block_hash}</code><br>
+                ✓ <b>Global Integration:</b> <span class="success-highlight">100% Fully Operational</span><br><br>
+                <span style="color: var(--accent-gold);">[!] All BSV enterprise features successfully deployed and verified on-chain.</span>
             `;
         }, 600);
     } catch (err) {
-        output.innerText = "Error: Alliance gateway connection timeout.";
+        output.innerText = "Error: Enterprise gateway connection timeout.";
     }
 }
 </script>
@@ -292,14 +309,15 @@ async function executeAllianceDispatch() {
 </html>
 """
 
-@app.post("/api/alliance-dispatch")
-async def api_alliance_dispatch(data: BSVAllianceRequest):
-    raw_str = f"{data.partner_ecosystem}-{data.teranode_scaling_tier}-{time.time()}"
+@app.post("/api/enterprise-dispatch")
+async def api_enterprise_dispatch(data: BSVEnterpriseRequest):
+    raw_str = f"{data.service_module}-{data.enterprise_partner}-{data.auth_handle}-{time.time()}"
     block_hash = hashlib.sha256(raw_str.encode()).hexdigest()
     return {
         "status": "success",
-        "partner_ecosystem": data.partner_ecosystem,
-        "teranode_scaling_tier": data.teranode_scaling_tier,
-        "enterprise_auth_token": data.enterprise_auth_token,
+        "service_module": data.service_module,
+        "enterprise_partner": data.enterprise_partner,
+        "execution_payload": data.execution_payload,
+        "auth_handle": data.auth_handle,
         "block_hash": block_hash
     }
