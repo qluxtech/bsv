@@ -218,5 +218,5 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     server_address = ("0.0.0.0", port)
     httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    print(f"Server started instantly on port {port}")
+    print(f"Server started successfully on port {port}")
     httpd.serve_forever()
