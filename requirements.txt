@@ -1,1 +1,1 @@
-uvicorn==0.28.0
+# No external package compilation required for ultimate stability
