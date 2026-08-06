@@ -1,4 +1,4 @@
-import os
+            import os
 import json
 import hashlib
 import time
@@ -229,7 +229,6 @@ async def app(scope, receive, send):
             })
             return
 
-        # 404
         await send({
             "type": "http.response.start",
             "status": 404,
@@ -242,5 +241,17 @@ async def app(scope, receive, send):
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
-    server = Server(Config(app="main:app", host="0.0.0.0", port=port, log_level="info"))
-    asyncio.run(server.serve())
+    # Python標準の組込機能を活用したサーバー起動
+    import http.server
+    import socketserver
+    
+    class SimpleHandler(http.server.SimpleHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(200)
+            self.send_header("Content-type", "text/html; charset=utf-8")
+            self.end_headers()
+            self.wfile.write(HTML_CONTENT.encode("utf-8"))
+            
+    with socketserver.TCPServer(("0.0.0.0", port), SimpleHandler) as httpd:
+        print(f"Serving at port {port}")
+        httpd.serve_forever()
