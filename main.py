@@ -9,7 +9,7 @@ HTML_CONTENT = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QLUX APEX — On-Chain Data Exchange & Teranode Nano-Payments Hub</title>
+<title>QLUX APEX — Ultimate On-Chain Data Exchange & Swipe Nano-Payments</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -18,7 +18,7 @@ tailwind.config = {
     extend: {
       colors: {
         void: '#000205',
-        glass: 'rgba(8, 14, 28, 0.88)',
+        glass: 'rgba(8, 14, 28, 0.92)',
         gold: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' }
       }
     }
@@ -27,21 +27,49 @@ tailwind.config = {
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
-body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffffff; }
+body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffffff; overflow-x: hidden; }
 .font-mono { font-family: 'JetBrains Mono', monospace; }
-.glass-card { background: rgba(8, 14, 28, 0.88); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.08); }
-.gold-glow { box-shadow: 0 0 60px rgba(245, 158, 11, 0.22); }
-.gold-border { border-color: rgba(245, 158, 11, 0.5); }
-.cyber-btn {
+.glass-card { background: rgba(8, 14, 28, 0.92); backdrop-filter: blur(30px); border: 1px solid rgba(255, 255, 255, 0.08); }
+.gold-glow { box-shadow: 0 0 80px rgba(245, 158, 11, 0.25); }
+.gold-border { border-color: rgba(245, 158, 11, 0.6); }
+
+/* 超進化スワイプボタンのスタイル */
+.swipe-container {
+  position: relative; width: 100%; height: 80px; background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px; padding: 5px; overflow: hidden; user-select: none;
+  border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+}
+.swipe-btn {
+  position: absolute; left: 5px; top: 5px; width: 70px; height: 70px;
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 16px; cursor: grab; display: flex; align-items: center; justify-content: center;
+  color: #000205; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  transition: transform 0.1s ease, background 0.3s ease, box-shadow 0.3s ease;
+  z-index: 10;
 }
-.cyber-btn::after {
-  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-  background: linear-gradient(0deg, transparent, rgba(255,255,255,0.3), transparent);
-  transform: rotate(45deg); transition: 0.5s; opacity: 0;
+.swipe-btn:active { cursor: grabbing; }
+.swipe-btn.unlocked { background: #10b981; color: #ffffff; transform: scale(1.02); }
+.swipe-btn.processing { background: #06b6d4; color: #ffffff; animation: pulse 1.5s infinite; cursor: wait;}
+.swipe-text {
+  position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+  background-size: 200% auto; color: transparent; -webkit-background-clip: text;
+  background-clip: text; animation: shine 3s linear infinite; opacity: 1; transition: opacity 0.3s;
 }
-.cyber-btn:hover::after { opacity: 1; transform: rotate(45deg) translate(50%, 50%); }
+.swipe-text.hide { opacity: 0; }
+
+/* セキュリティ・リングアニメーション */
+.security-ring {
+  position: absolute; top: -5px; left: -5px; width: 80px; height: 80px;
+  border: 3px solid transparent; border-top-color: #f59e0b; border-radius: 20px;
+  opacity: 0; transition: opacity 0.3s;
+}
+.swipe-btn.sliding .security-ring { opacity: 1; animation: spin 1s linear infinite; }
+
+@keyframes shine { to { background-position: 200% center; } }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 15px #06b6d4; } 50% { box-shadow: 0 0 30px #06b6d4; } }
 </style>
 </head>
 <body class="min-h-screen bg-void text-white selection:bg-amber-500 selection:text-black">
@@ -53,71 +81,66 @@ body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffff
 </div>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
-    <header class="flex justify-between items-center border-b border-white/10 pb-6 mb-10">
+    <header class="flex justify-between items-center border-b border-white/10 pb-5 mb-8">
         <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-200 flex items-center justify-center font-black text-black text-xl shadow-lg shadow-amber-500/30">Q</div>
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-200 flex items-center justify-center font-black text-black text-xl shadow-lg shadow-amber-500/30">Q</div>
             <div>
                 <span class="text-2xl font-black tracking-widest bg-gradient-to-r from-white via-slate-200 to-amber-400 bg-clip-text text-transparent">QLUX APEX</span>
-                <span class="block text-[10px] text-amber-400 tracking-widest font-mono uppercase">On-Chain Data Exchange & Nano-Payment Hub</span>
+                <span class="block text-[10px] text-amber-400 tracking-widest font-mono uppercase">On-Chain Data Exchange & Teranode Nano-Payment Hub</span>
             </div>
         </div>
-        <div class="flex items-center space-x-4">
-            <div class="hidden md:flex items-center space-x-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+        <div class="flex items-center space-x-3">
+            <div class="hidden md:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-bold">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>TERANODE MESH ACTIVE</span>
+                <span>TERANODE POWERED</span>
             </div>
-            <div class="px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider">
-                BSV #1 GLOBAL
+            <div class="px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-bold uppercase tracking-wider">
+                GLOBAL APEX
             </div>
         </div>
     </header>
 
-    <section class="text-center max-w-4xl mx-auto mb-12">
-        <div class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-extrabold tracking-widest uppercase mb-4">
-            Nano-Payment Powered On-Chain Data Exchange
+    <section class="text-center max-w-3xl mx-auto mb-10">
+        <div class="inline-block px-4 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-extrabold tracking-widest uppercase mb-3">
+            Next-Gen On-Chain Data Monetization
         </div>
-        <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-4 leading-tight">
-            秒速ナノペイメントで取引する、<br><span class="bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">世界最高峰のオンチェーン・データ取引所。</span>
+        <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-3 leading-tight">
+            秒速ナノペイメントで開く、<br><span class="bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">高価値エンタープライズ・データへのゲートウェイ。</span>
         </h1>
-        <p class="text-slate-400 text-base sm:text-lg font-normal max-w-2xl mx-auto leading-relaxed">
-            ワンクリックのナノペイメント（超少額決済）により、高価値なエンタープライズ・データをミリ秒単位でオンチェーン直接売買・収益化。
+        <p class="text-slate-400 text-sm font-normal max-w-xl mx-auto leading-relaxed">
+            ワン・スワイプの超少額決済（ナノペイメント）で、世界中のオンチェーン・データ資産をミリ秒単位で即座に購入・購読・収益化。
         </p>
     </section>
 
     <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div class="lg:col-span-2 glass-card rounded-3xl p-8 gold-glow gold-border">
-            <h2 class="text-xl font-bold mb-6 flex items-center text-amber-400">
+        <div class="lg:col-span-2 glass-card rounded-3xl p-7 gold-border">
+            <h2 class="text-lg font-bold mb-5 flex items-center text-amber-400">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-                On-Chain Data Exchange Marketplace
+                Data Exchange Marketplace
             </h2>
 
-            <div class="space-y-4 mb-6">
-                <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80">Select Enterprise Data Asset</label>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div onclick="selectAsset(this, 'Teranode Global Hash Telemetry Stream', 10)" class="asset-card cursor-pointer border border-amber-500/50 bg-amber-500/10 rounded-2xl p-4 transition-all hover:border-amber-400">
-                        <div class="text-sm font-bold text-white mb-1">Teranode Hash Telemetry</div>
-                        <div class="text-xs text-slate-400 mb-3">リアルタイム・ノードパフォーマンスデータ</div>
+            <div class="space-y-3 mb-5">
+                <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80">Select Monetized Data Asset</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div onclick="selectAsset(this, 'Teranode Global Hash Telemetry', 10)" class="asset-card cursor-pointer border border-amber-500/50 bg-amber-500/10 rounded-2xl p-3 transition-all hover:border-amber-400">
+                        <div class="text-sm font-bold text-white mb-0.5">Teranode Hash Telemetry</div>
+                        <div class="text-xs text-slate-400 mb-2">リアルタイム・ノードパフォーマンスデータ</div>
                         <div class="text-amber-400 font-mono font-bold text-sm">⚡ 10 Sats / Query</div>
                     </div>
-                    <div onclick="selectAsset(this, 'BSV Atomic Smart Contract State Feed', 25)" class="asset-card cursor-pointer border border-white/10 bg-black/40 rounded-2xl p-4 transition-all hover:border-amber-400">
-                        <div class="text-sm font-bold text-white mb-1">Atomic State Feed</div>
-                        <div class="text-xs text-slate-400 mb-3">クロスチェーン・アトミック状態証明</div>
+                    <div onclick="selectAsset(this, 'BSV Atomic Smart Contract Feed', 25)" class="asset-card cursor-pointer border border-white/10 bg-black/40 rounded-2xl p-3 transition-all hover:border-amber-400">
+                        <div class="text-sm font-bold text-white mb-0.5">Atomic State Feed</div>
+                        <div class="text-xs text-slate-400 mb-2">クロスチェーン・アトミック状態証明</div>
                         <div class="text-amber-400 font-mono font-bold text-sm">⚡ 25 Sats / Query</div>
                     </div>
                 </div>
             </div>
 
-            <div class="mb-6">
-                <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">Buyer / Node Handle</label>
-                <input type="text" id="user-handle" value="$qlux_enterprise_trader" class="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3.5 text-white font-mono focus:outline-none focus:border-amber-500 transition-colors">
+            <div class="mb-5">
+                <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-1.5">Buyer / Node Handle ID</label>
+                <input type="text" id="user-handle" value="$qlux_global_apex_trader" class="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-amber-500 transition-colors">
             </div>
 
-            <button onclick="executeNanoPayment()" class="cyber-btn w-full py-5 rounded-2xl text-black font-black text-lg uppercase tracking-wider shadow-xl shadow-amber-500/20 flex items-center justify-center space-x-3">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                <span id="btn-text">⚡ NANO-PAYMENT & FETCH DATA (10 SATS)</span>
-            </button>
-
-            <div id="execution-terminal" class="mt-6 bg-black/95 border border-cyan-500/40 rounded-2xl p-6 font-mono text-xs hidden">
+            <div id="execution-terminal" class="mt-5 bg-black/95 border border-cyan-500/40 rounded-2xl p-5 font-mono text-xs hidden">
                 <div class="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
                     <span class="text-cyan-400 font-bold flex items-center">
                         <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping mr-2"></span>
@@ -129,150 +152,17 @@ body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffff
             </div>
         </div>
 
-        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+        <div class="glass-card rounded-3xl p-7 flex flex-col justify-between gold-glow gold-border">
             <div>
-                <h3 class="text-lg font-bold mb-6 text-white flex items-center">
-                    <svg class="w-5 h-5 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                    Exchange Statistics
+                <h3 class="text-lg font-bold mb-5 text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Swipe to Pay & Unlock Data
                 </h3>
-                <div class="space-y-5">
-                    <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
-                        <div class="text-slate-400 text-[11px] uppercase tracking-wider mb-1">Total Volume (24h)</div>
-                        <div class="text-2xl font-black text-amber-400 font-mono">14,820,500 Sats</div>
-                    </div>
-                    <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
-                        <div class="text-slate-400 text-[11px] uppercase tracking-wider mb-1">Nano-Payment Latency</div>
-                        <div class="text-2xl font-black text-emerald-400 font-mono">&lt; 2.4 ms</div>
-                    </div>
-                    <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
-                        <div class="text-slate-400 text-[11px] uppercase tracking-wider mb-1">Active Data Providers</div>
-                        <div class="text-2xl font-black text-cyan-400 font-mono">1,420 Nodes</div>
-                    </div>
+                <div class="bg-white/5 rounded-2xl p-4 border border-white/5 mb-5 text-center">
+                    <div class="text-slate-400 text-[11px] uppercase tracking-wider mb-0.5">Selected Asset Price</div>
+                    <div id="selected-price" class="text-4xl font-black text-amber-400 font-mono">10 <span class="text-2xl">SATS</span></div>
                 </div>
-            </div>
-            
-            <div class="mt-8 pt-6 border-t border-white/10 text-center">
-                <span class="text-[10px] text-slate-500 font-mono uppercase">Powered by Teranode & BSV Script</span>
-            </div>
-        </div>
-    </main>
 
-    <footer class="mt-16 border-t border-white/10 pt-6 text-center text-slate-500 text-xs font-mono">
-        &copy; QLUX GLOBAL ENTERPRISE APEX HUB. ALL RIGHTS RESERVED.
-    </footer>
-</div>
-
-<script>
-let selectedPrice = 10;
-let selectedAssetName = "Teranode Global Hash Telemetry Stream";
-
-function selectAsset(element, assetName, price) {
-    document.querySelectorAll('.asset-card').forEach(card => {
-        card.classList.remove('border-amber-500', 'bg-amber-500/10');
-        card.classList.add('border-white/10', 'bg-black/40');
-    });
-    element.classList.remove('border-white/10', 'bg-black/40');
-    element.classList.add('border-amber-500', 'bg-amber-500/10');
-    
-    selectedAssetName = assetName;
-    selectedPrice = price;
-    document.getElementById('btn-text').innerText = `⚡ NANO-PAYMENT & FETCH DATA (${price} SATS)`;
-}
-
-async function executeNanoPayment() {
-    const userHandle = document.getElementById('user-handle').value;
-    const terminal = document.getElementById('execution-terminal');
-    const body = document.getElementById('terminal-body');
-    const timestamp = document.getElementById('terminal-timestamp');
-    
-    terminal.style.display = "block";
-    timestamp.innerText = new Date().toISOString();
-    body.innerHTML = `<span class='text-amber-400'>[~] Processing ${selectedPrice} sats nano-payment via Teranode mesh...</span>`;
-
-    try {
-        const response = await fetch('/api/nano-payment-exchange', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                asset_name: selectedAssetName,
-                price_sats: selectedPrice,
-                user_handle: userHandle 
-            })
-        });
-        const data = await response.json();
-        
-        setTimeout(() => {
-            body.innerHTML = `
-                <div><span class='text-slate-500'>ASSET:</span> <strong class='text-white'>${data.asset_name}</strong></div>
-                <div><span class='text-slate-500'>PAYER:</span> <strong class='text-amber-400'>${data.user_handle}</strong></div>
-                <div><span class='text-slate-500'>SETTLED AMOUNT:</span> <strong class='text-emerald-400 font-mono'>${data.price_sats} SATS</strong></div>
-                <div><span class='text-slate-500'>TXID HASH:</span> <code class='text-cyan-300'>${data.txid_hash}</code></div>
-                <div class='mt-2 pt-2 border-t border-white/10 text-emerald-400 font-bold'>[✓] DATA UNLOCKED & BROADCASTED TO ON-CHAIN LEDGER.</div>
-            `;
-        }, 350);
-    } catch (err) {
-        body.innerHTML = "<span class='text-red-400'>[!] Error: Nano-payment gateway timeout.</span>";
-    }
-}
-</script>
-</body>
-</html>
-"""
-
-class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        if self.path == "/":
-            response_bytes = HTML_CONTENT.encode("utf-8")
-            self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
-            self.send_header("Content-Length", str(len(response_bytes)))
-            self.end_headers()
-            self.wfile.write(response_bytes)
-        else:
-            self.send_response(404)
-            self.end_headers()
-
-    def do_POST(self):
-        if self.path == "/api/nano-payment-exchange":
-            content_length = int(self.headers.get('Content-Length', 0))
-            post_data = self.rfile.read(content_length)
-            
-            try:
-                data = json.loads(post_data.decode('utf-8'))
-            except:
-                data = {}
-                
-            asset_name = data.get("asset_name", "Unknown Asset")
-            price_sats = data.get("price_sats", 10)
-            user_handle = data.get("user_handle", "$qlux")
-            
-            raw_str = f"{asset_name}-{price_sats}-{user_handle}-{time.time()}"
-            txid_hash = hashlib.sha256(raw_str.encode()).hexdigest()
-            
-            response_data = {
-                "status": "success",
-                "asset_name": asset_name,
-                "price_sats": price_sats,
-                "user_handle": user_handle,
-                "txid_hash": txid_hash
-            }
-            
-            resp_bytes = json.dumps(response_data).encode("utf-8")
-            self.send_response(200)
-            self.send_header("Content-Type", "application/json; charset=utf-8")
-            self.send_header("Content-Length", str(len(resp_bytes)))
-            self.end_headers()
-            self.wfile.write(resp_bytes)
-        else:
-            self.send_response(404)
-            self.end_headers()
-
-    def log_message(self, format, *args):
-        return
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    server_address = ("0.0.0.0", port)
-    httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    print(f"Server started successfully on port {port}")
-    httpd.serve_forever()
+                <div class="swipe-container" id="swipe-container">
+                    <div class="swipe-text" id="swipe-text">⚡ SWIPE TO PAY NANO</div>
+                    <div class="swipe-btn
