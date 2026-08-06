@@ -1,9 +1,10 @@
-            import os
+import os
 import json
 import hashlib
 import time
-import asyncio
-from uvicorn import Config, Server
+from flask import Flask, request, jsonify, render_template_string
+
+app = Flask(__name__)
 
 HTML_CONTENT = """<!DOCTYPE html>
 <html lang="ja">
@@ -166,92 +167,26 @@ async function executeGlobalDispatch() {
 </html>
 """
 
-async def app(scope, receive, send):
-    if scope["type"] == "http":
-        path = scope["path"]
-        method = scope["method"]
-        
-        if path == "/" and method == "GET":
-            body = HTML_CONTENT.encode("utf-8")
-            await send({
-                "type": "http.response.start",
-                "status": 200,
-                "headers": [
-                    [b"content-type", b"text/html; charset=utf-8"],
-                    [b"content-length", str(len(body)).encode()]
-                ]
-            })
-            await send({
-                "type": "http.response.body",
-                "body": body
-            })
-            return
-            
-        elif path == "/api/global-dispatch" and method == "POST":
-            body_bytes = b""
-            while True:
-                message = await receive()
-                if message["type"] == "http.request":
-                    body_bytes += message.get("body", b"")
-                    if not message.get("more_body", False):
-                        break
-            
-            try:
-                data = json.loads(body_bytes.decode("utf-8"))
-            except:
-                data = {}
-                
-            global_module = data.get("global_module", "unknown")
-            user_handle = data.get("user_handle", "$qlux")
-            
-            raw_str = f"{global_module}-{user_handle}-{time.time()}"
-            block_hash = hashlib.sha256(raw_str.encode()).hexdigest()
-            
-            response_data = {
-                "status": "success",
-                "global_module": global_module,
-                "user_handle": user_handle,
-                "block_hash": block_hash
-            }
-            
-            resp_body = json.dumps(response_data).encode("utf-8")
-            await send({
-                "type": "http.response.start",
-                "status": 200,
-                "headers": [
-                    [b"content-type", b"application/json; charset=utf-8"],
-                    [b"content-length", str(len(resp_body)).encode()]
-                ]
-            })
-            await send({
-                "type": "http.response.body",
-                "body": resp_body
-            })
-            return
+@app.route("/", methods=["GET"])
+def index():
+    return render_template_string(HTML_CONTENT)
 
-        await send({
-            "type": "http.response.start",
-            "status": 404,
-            "headers": [[b"content-type", b"text/plain"]]
-        })
-        await send({
-            "type": "http.response.body",
-            "body": b"Not Found"
-        })
+@app.route("/api/global-dispatch", methods=["POST"])
+def global_dispatch():
+    data = request.get_json() or {}
+    global_module = data.get("global_module", "unknown")
+    user_handle = data.get("user_handle", "$qlux")
+    
+    raw_str = f"{global_module}-{user_handle}-{time.time()}"
+    block_hash = hashlib.sha256(raw_str.encode()).hexdigest()
+    
+    return jsonify({
+        "status": "success",
+        "global_module": global_module,
+        "user_handle": user_handle,
+        "block_hash": block_hash
+    })
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
-    # Python標準の組込機能を活用したサーバー起動
-    import http.server
-    import socketserver
-    
-    class SimpleHandler(http.server.SimpleHTTPRequestHandler):
-        def do_GET(self):
-            self.send_response(200)
-            self.send_header("Content-type", "text/html; charset=utf-8")
-            self.end_headers()
-            self.wfile.write(HTML_CONTENT.encode("utf-8"))
-            
-    with socketserver.TCPServer(("0.0.0.0", port), SimpleHandler) as httpd:
-        print(f"Serving at port {port}")
-        httpd.serve_forever()
+    app.run(host="0.0.0.0", port=port)
