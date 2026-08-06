@@ -1,4 +1,4 @@
-                          import os
+import os
 import json
 import hashlib
 import time
@@ -174,6 +174,66 @@ class SimpleServer(BaseHTTPRequestHandler):
 
     def log_message(self, format, *args):
         pass
+
+# GunicornなどのWSGIサーバーから呼び出せるようにするための互換ラッパー
+def app(environ, start_response):
+    class DummyWriter:
+        def write(self, data):
+            pass
+
+    class DummySocket:
+        def makefile(self, mode, *args):
+            if 'r' in mode:
+                # ボディデータのモック
+                content_length = int(environ.get('CONTENT_LENGTH', 0) or 0)
+                body = environ['wsgi.input'].read(content_length) if content_length > 0 else b''
+                import io
+                return io.BytesIO(body)
+            else:
+                return io.BytesIO()
+
+    # リクエストハンドラのシミュレーション実行
+    class DummyHandler(SimpleServer):
+        def __init__(self):
+            self.command = environ.get('REQUEST_METHOD', 'GET')
+            self.path = environ.get('PATH_INFO', '/')
+            self.headers = {}
+            for key, value in environ.items():
+                if key.startswith('HTTP_'):
+                    header_name = key[5:].replace('_', '-').title()
+                    self.headers[header_name] = value
+            if 'CONTENT_TYPE' in environ:
+                self.headers['Content-Type'] = environ['CONTENT_TYPE']
+            if 'CONTENT_LENGTH' in environ:
+                self.headers['Content-Length'] = environ['CONTENT_LENGTH']
+            
+            self.rfile = DummySocket().makefile('rb')
+            self.wfile = io.BytesIO()
+            
+        def send_response(self, code, message=None):
+            self._status = f"{code} OK"
+            
+        def send_header(self, keyword, value):
+            if not hasattr(self, '_headers'):
+                self._headers = []
+            self._headers.append((keyword, value))
+            
+        def end_headers(self):
+            pass
+
+    handler = DummyHandler()
+    if handler.command == 'GET':
+        handler.do_GET()
+    elif handler.command == 'POST':
+        handler.do_POST()
+    else:
+        handler.send_response(404)
+        handler.end_headers()
+
+    status = getattr(handler, '_status', '200 OK')
+    headers = getattr(handler, '_headers', [('Content-Type', 'text/html; charset=utf-8')])
+    start_response(status, headers)
+    return [handler.wfile.getvalue()]
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 10000))
