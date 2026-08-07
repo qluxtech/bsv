@@ -9,7 +9,7 @@ HTML_CODE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QLUX APEX - World's #1 BSV Teranode Data Exchange & Swarm Hub</title>
+<title>QLUX BSV APEX - World's #1 Teranode Data Exchange & Swarm Hub</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -103,61 +103,4 @@ body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffff
         <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-4 leading-tight">
             BSV Teranodeが生む無限のスケール、<br><span class="bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">世界中のオンチェーンデータを1スワイプ取引。</span>
         </h1>
-        <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            世界中のベンダーがBSVチェーン上にアップロードした超高精度データを一元化。サトシ単位のナノペイメントとサブスクで完全にエコシステム化。
-        </p>
-    </section>
-
-    <section class="max-w-5xl mx-auto">
-        <div class="matrix-screen matrix-grid p-6 sm:p-8">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 border-b border-emerald-500/20 pb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="pulse-dot"></div>
-                    <div>
-                        <h3 class="text-sm sm:text-base font-bold text-emerald-400 font-mono tracking-wider">BSV TERANODE ATOMIC MESH MONITOR</h3>
-                        <p class="text-[11px] text-slate-400 font-mono">Global Sharding & Zero-Fee Micro-Tx Stream</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 font-mono text-xs">
-                    <span class="px-3 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">BSV BLOCK: #842,915</span>
-                    <span class="px-3 py-1 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40" id="matrix-timer">00:00:00 UTC</span>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <div class="bg-black/60 border border-emerald-500/30 rounded-2xl p-5 space-y-3 font-mono">
-                    <div class="text-xs text-slate-400 flex justify-between">
-                        <span>TERANODE TPS</span>
-                        <span class="text-emerald-400 font-bold">UNLIMITED</span>
-                    </div>
-                    <div class="text-2xl font-black text-white" id="stat-tps">1,420,310 <span class="text-xs text-emerald-400">TPS</span></div>
-                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-emerald-500 to-cyan-400 h-full w-[88%] animate-pulse"></div>
-                    </div>
-                </div>
-
-                <div class="bg-black/60 border border-amber-500/30 rounded-2xl p-5 space-y-3 font-mono">
-                    <div class="text-xs text-slate-400 flex justify-between">
-                        <span>GLOBAL VENDORS</span>
-                        <span class="text-amber-400 font-bold">ACTIVE</span>
-                    </div>
-                    <div class="text-2xl font-black text-white">5,120 <span class="text-xs text-amber-400">PEERS</span></div>
-                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-amber-500 to-yellow-300 h-full w-[94%] animate-pulse"></div>
-                    </div>
-                </div>
-
-                <div class="bg-black/60 border border-cyan-500/30 rounded-2xl p-5 space-y-3 font-mono">
-                    <div class="text-xs text-slate-400 flex justify-between">
-                        <span>AVERAGE TX FEE</span>
-                        <span class="text-cyan-400 font-bold">ULTRA-LOW</span>
-                    </div>
-                    <div class="text-2xl font-black text-white">0.00001 <span class="text-xs text-cyan-400">BSV</span></div>
-                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full w-[99%] animate-pulse"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-black/80 rounded-xl p-4 border border-emerald-500/20 font-mono text-xs text-emerald-300/90 h-20 overflow-y-auto space-y-1" id="packet-log">
-                <div>[BSV-NET] TERANODE SHARD #4 CONNECTED. SYNCING ATOMIC LED
+        <p class="text-slate
