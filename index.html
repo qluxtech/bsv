@@ -1,306 +1,289 @@
 <!DOCTYPE html>
-<html lang="ja" class="dark">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QLUX APEX — Live Teranode & Exchange</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  darkMode: 'class',
-  theme: {
-    extend: {
-      colors: {
-        void: '#000104',
-        surface: '#060a14',
-        accent: { 400: '#38bdf8', 500: '#0ea5e9', gold: '#f59e0b' }
-      }
-    }
-  }
-}
-</script>
+<title>QLUX APEX — Live Standalone Exchange</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
-body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000104; color: #f8fafc; overflow-x: hidden; }
-.font-mono { font-family: 'JetBrains Mono', monospace; }
-.glass-panel { background: rgba(6, 10, 20, 0.95); backdrop-filter: blur(60px); border: 1px solid rgba(255, 255, 255, 0.14); }
-.glow-gold { box-shadow: 0 0 140px rgba(245, 158, 11, 0.25); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background-color: #000104;
+    color: #f8fafc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 16px;
+}
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.logo-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #000;
+    font-weight: 900;
+}
+.logo-text h1 { font-size: 20px; font-weight: 900; color: #fff; }
+.logo-text span { font-size: 10px; color: #f59e0b; font-family: monospace; letter-spacing: 1px; }
 
-/* --- 完全に滑らかに動くキネティック・スワイプボタン --- */
+.status-badge {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #34d399;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: monospace;
+}
+.ping-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #34d399;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #34d399;
+}
+
+.card {
+    background: rgba(10, 15, 30, 0.95);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 0 50px rgba(245, 158, 11, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* --- 完全滑らかキネティック・スワイプボタン --- */
 .swipe-track {
-  position: relative; width: 100%; height: 80px; background: rgba(0, 0, 0, 0.94);
-  border-radius: 24px; padding: 6px; overflow: hidden; user-select: none;
-  border: 1px solid rgba(245, 158, 11, 0.6); box-shadow: inset 0 4px 35px rgba(0,0,0,0.98), 0 0 50px rgba(245,158,11,0.25);
-  touch-action: none; -webkit-user-select: none;
+    position: relative;
+    width: 100%;
+    height: 74px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 20px;
+    padding: 5px;
+    overflow: hidden;
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    box-shadow: inset 0 4px 20px rgba(0,0,0,0.9);
+    user-select: none;
+    touch-action: none;
 }
 .swipe-thumb {
-  position: absolute; left: 6px; top: 6px; width: 68px; height: 68px;
-  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #b45309 100%);
-  border-radius: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-  color: #000104; font-size: 28px; font-weight: 900; box-shadow: 0 8px 35px rgba(245, 158, 11, 0.75);
-  z-index: 30; touch-action: none; will-change: transform; transition: background 0.2s ease;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #b45309 100%);
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000104;
+    font-size: 26px;
+    font-weight: 900;
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.6);
+    z-index: 30;
+    touch-action: none;
+    transition: background 0.2s;
 }
-.swipe-thumb.unlocked { background: linear-gradient(135deg, #34d399 0%, #059669 100%); color: #ffffff; }
+.swipe-thumb.unlocked {
+    background: linear-gradient(135deg, #34d399, #059669);
+    color: #fff;
+}
 .swipe-instruction {
-  position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em;
-  background: linear-gradient(90deg, #f59e0b, #ffffff, #f59e0b);
-  background-size: 200% auto; color: transparent; -webkit-background-clip: text;
-  background-clip: text; opacity: 1; transition: opacity 0.2s; pointer-events: none; z-index: 10;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: #f59e0b;
+    opacity: 1;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    z-index: 10;
 }
 .swipe-instruction.hide { opacity: 0; }
 .swipe-progress {
-  position: absolute; left: 0; top: 0; height: 100%; background: linear-gradient(90deg, rgba(245,158,11,0.18), rgba(245,158,11,0.4));
-  border-radius: 22px; width: 0%; pointer-events: none; z-index: 5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(245,158,11,0.1), rgba(245,158,11,0.35));
+    border-radius: 18px;
+    width: 0%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.terminal {
+    background: #000;
+    border: 1px solid #10b981;
+    border-radius: 16px;
+    padding: 16px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #34d399;
+    display: none;
+    line-height: 1.5;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+@media(max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.info-box {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 16px;
+}
+.info-box label { font-size: 10px; color: #94a3b8; font-family: monospace; display: block; margin-bottom: 4px; }
+.info-box .val { font-size: 18px; font-weight: bold; color: #f59e0b; font-family: monospace; }
+
+footer {
+    text-align: center;
+    font-size: 11px;
+    color: #64748b;
+    font-family: monospace;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 16px;
 }
 </style>
 </head>
-<body class="min-h-screen bg-void text-slate-100 p-4 sm:p-8">
-<div class="max-w-5xl mx-auto space-y-10 relative z-10">
-    
-    <header class="flex flex-col sm:flex-row justify-between items-center border-b border-white/10 pb-6 gap-4">
-        <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center font-black text-black text-2xl shadow-xl shadow-amber-500/30">⚡</div>
-            <div>
-                <span class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-slate-200 to-amber-400 bg-clip-text text-transparent">QLUX APEX</span>
-                <span class="block text-[9px] text-amber-400 tracking-widest font-mono uppercase">Live Teranode & Exchange</span>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo-area">
+            <div class="logo-icon">⚡</div>
+            <div class="logo-text">
+                <h1>QLUX APEX</h1>
+                <span>LIVE STANDALONE GATEWAY</span>
             </div>
         </div>
-        <div class="flex items-center space-x-3">
-            <div class="px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 font-bold text-xs tracking-wide flex items-center gap-2 shadow-lg font-mono">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span> LIVE STREAMING
-            </div>
-            <button onclick="openModal('modal-upload')" class="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/15 text-slate-200 font-bold text-xs tracking-wide transition-all flex items-center gap-2 cursor-pointer shadow-lg">
-                <span>📁</span> データ出品ハブ
-            </button>
-            <button onclick="openModal('modal-mapping')" class="px-4 py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-400 font-bold text-xs tracking-wide transition-all flex items-center gap-2 cursor-pointer shadow-lg">
-                <span>🌐</span> ネットワーク状態
-            </button>
+        <div class="status-badge">
+            <div class="ping-dot"></div> LIVE CONNECTED
         </div>
     </header>
 
-    <section class="text-center max-w-3xl mx-auto pt-4 pb-2 space-y-5">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold tracking-wider shadow-inner">
-            <span>●</span> REAL-TIME ATOMIC SETTLEMENT v10.0
+    <main class="card">
+        <div class="card-title">
+            <span>⚡</span> キネティック・ワンスワイプ決済エクスチェンジ
         </div>
-        <h1 class="text-3xl sm:text-6xl font-black tracking-tight leading-[1.1]">
-            データも、BSVも、法定通貨も。<br>
-            <span class="bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">完全ライブ・オンチェーン取引所。</span>
-        </h1>
-        <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            ワンストロークでアトミックに双方向スワップ＆決済がリアルタイムで完了します。
-        </p>
-    </section>
-
-    <main class="space-y-8">
         
-        <div class="glass-panel rounded-3xl p-6 sm:p-8 glow-gold border-amber-500/40 space-y-6">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/10 pb-4 gap-2">
-                <div>
-                    <h2 class="text-base font-bold text-white flex items-center gap-2"><span>⚡</span> キネティック・ワンスワイプ決済エクスチェンジ</h2>
-                    <p class="text-xs text-slate-400 font-mono mt-0.5">Ultra-Smooth Live Kinetic Swipe & Settlement</p>
-                </div>
-                <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-mono font-bold">LIVE READY</span>
+        <div class="grid-2">
+            <div class="info-box">
+                <label>EXECUTION STREAM</label>
+                <div style="font-size: 14px; font-weight: bold; color: #fff;">All-Asset Shard & Liquidity Pool</div>
+                <div style="font-size: 11px; color: #94a3b8; margin-top: 4px; font-family: monospace;">Node: $qlux_all_onchain_node</div>
             </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="bg-black/60 border border-white/10 rounded-2xl p-4 space-y-1">
-                    <div class="text-[11px] text-amber-400 font-mono uppercase tracking-wider font-bold">Execution Stream</div>
-                    <div class="text-sm font-bold text-white">All-Asset Shard & Liquidity Pool Sync</div>
-                    <div class="text-xs text-slate-400 font-mono">Gateway: $qlux_all_onchain_node</div>
-                </div>
-                <div class="bg-black/60 border border-white/10 rounded-2xl p-4 flex flex-col justify-center items-center text-center">
-                    <div class="text-[11px] text-slate-400 uppercase tracking-wider mb-0.5 font-bold">Instant Reward Yield</div>
-                    <div class="text-3xl font-black text-amber-400 font-mono">5,000 <span class="text-xs font-semibold text-slate-400">SATS / $50 USD</span></div>
-                </div>
-            </div>
-
-            <div class="space-y-2">
-                <div class="text-xs font-bold uppercase tracking-wider text-amber-400/90 font-mono flex items-center justify-between">
-                    <span>▶ 右端までスワイプしてライブ決済・報酬獲得</span>
-                    <span class="text-[10px] text-slate-400">Kinetic Swipe Right</span>
-                </div>
-                <div class="swipe-track" id="swipe-track">
-                    <div class="swipe-progress" id="swipe-progress"></div>
-                    <div class="swipe-instruction" id="swipe-instruction">SWIPE TO EXECUTE ALL-ASSET EXCHANGE &rarr;</div>
-                    <div class="swipe-thumb" id="swipe-thumb">&rarr;</div>
-                </div>
-            </div>
-
-            <div id="execution-terminal" class="bg-black/95 border border-emerald-500/50 rounded-2xl p-5 font-mono text-xs hidden space-y-2 shadow-2xl">
-                <div class="text-emerald-400 font-bold flex items-center gap-2"><span>✓</span> ライブ取引成功 — オンチェーン全資産アトミック交換完了</div>
-                <div id="terminal-body" class="text-slate-300 break-all space-y-1"></div>
+            <div class="info-box" style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                <label>INSTANT REWARD YIELD</label>
+                <div class="val">5,000 SATS <span style="font-size: 12px; color: #94a3b8;">/ $50 USD</span></div>
             </div>
         </div>
 
-        <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-6 border-amber-500/40 bg-gradient-to-br from-slate-900 via-slate-950 to-amber-950/40 shadow-2xl">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/10 pb-4 gap-2">
-                <div>
-                    <span class="text-[10px] font-mono uppercase tracking-widest text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/30">ALL-ASSET LIVE EXCHANGE</span>
-                    <h3 class="text-lg font-black text-white mt-2">BSV ・ 法定通貨 ・ データ統合 リアルタイム取引所</h3>
-                </div>
-                <div class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30 flex items-center gap-2 font-bold">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span> ライブ通信中
-                </div>
+        <div>
+            <div style="font-size: 11px; font-weight: bold; color: #f59e0b; font-family: monospace; margin-bottom: 8px;">
+                ▶ 右端までスワイプして即時アトミック決済・報酬獲得
             </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 font-mono text-xs">
-                <div class="bg-black/80 border border-white/15 p-5 rounded-2xl space-y-4">
-                    <div class="text-sm font-bold text-amber-400 border-b border-white/10 pb-2">🔄 オールアセット・スワップ</div>
-                    <div class="space-y-3">
-                        <div>
-                            <label class="block text-slate-400 mb-1">売却 (PAY FROM)</label>
-                            <select id="all-sell" class="w-full bg-black border border-white/20 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-amber-500">
-                                <option>BSV (Bitcoin SV)</option>
-                                <option>USD (US Dollar - Fiat)</option>
-                                <option>JPY (Japanese Yen - Fiat)</option>
-                                <option>Neural Shard Data Token</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-slate-400 mb-1">購入 (RECEIVE TO)</label>
-                            <select id="all-buy" class="w-full bg-black border border-white/20 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-amber-500">
-                                <option>Enterprise Satoshis (SATS)</option>
-                                <option>BSV Mainnet Token</option>
-                                <option>USD Fiat Gateway</option>
-                                <option>Raw Neural Dataset</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-slate-400 mb-1">数量 / 金額</label>
-                            <input type="number" id="all-amount" value="1000" class="w-full bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500">
-                        </div>
-                        <button onclick="executeAllAssetExchange()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-350 text-black font-black uppercase tracking-wider transition-all shadow-xl shadow-amber-500/25 cursor-pointer">
-                            ライブ即時スワップ実行
-                        </button>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-2 bg-black/80 border border-white/15 p-5 rounded-2xl space-y-4">
-                    <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                        <span class="text-sm font-bold text-white">📊 ライブ・オーダーブック & ストリーム</span>
-                        <span class="text-[10px] text-emerald-400">FIAT / BSV / DATA SYNC</span>
-                    </div>
-                    <div class="space-y-1.5 text-[11px]">
-                        <div class="flex justify-between text-slate-500 px-2 py-1 uppercase font-bold"><span>Pair / Type</span><span>Rate / Price</span><span>Liquidity</span></div>
-                        <div class="flex justify-between text-amber-300 bg-amber-950/20 px-2 py-1.5 rounded"><span>BSV / USD (Fiat Gateway)</span><span>$54.20 USD</span><span>14,200 BSV</span></div>
-                        <div class="flex justify-between text-amber-300 bg-amber-950/20 px-2 py-1.5 rounded"><span>BSV / JPY (Fiat Gateway)</span><span>¥8,240 JPY</span><span>28,500 BSV</span></div>
-                        <div class="flex justify-between text-cyan-300 bg-cyan-950/20 px-2 py-1.5 rounded"><span>Raw Data Shard / SATS</span><span>1 Shard = 15,000 SATS</span><span>98.2 TB</span></div>
-                        <div class="flex justify-between text-emerald-300 bg-emerald-950/20 px-2 py-1.5 rounded"><span>BSV / SATS (Mainnet)</span><span>1 BSV = 100,000,000 SATS</span><span>500k BSV</span></div>
-                    </div>
-                    <div id="all-exchange-result" class="text-emerald-400 font-bold pt-2 hidden"></div>
-                </div>
+            <div class="swipe-track" id="swipe-track">
+                <div class="swipe-progress" id="swipe-progress"></div>
+                <div class="swipe-instruction" id="swipe-instruction">SWIPE TO EXECUTE ALL-ASSET EXCHANGE &rarr;</div>
+                <div class="swipe-thumb" id="swipe-thumb">&rarr;</div>
             </div>
         </div>
 
+        <div id="execution-terminal" class="terminal">
+            <div style="font-weight: bold; margin-bottom: 4px;">✓ [LIVE SUCCESS] アトミック決済が正常に完了しました。</div>
+            <div id="terminal-body"></div>
+        </div>
     </main>
 
-    <footer class="text-center text-[11px] font-mono text-slate-500 space-y-1 pt-6 border-t border-white/10">
-        <p>© 2026 QLUX APEX Global Infrastructure. All Rights Reserved.</p>
-        <p class="text-amber-500/60">Live Teranode Architecture Engine</p>
+    <footer>
+        <p>© 2026 QLUX APEX Global Infrastructure. Standalone Live Mode Active.</p>
     </footer>
-
-</div>
-
-<div id="modal-upload" class="fixed inset-0 bg-black/95 backdrop-blur-lg hidden items-center justify-center p-4 z-50">
-    <div class="glass-panel rounded-3xl p-6 sm:p-8 max-w-lg w-full border-amber-500/50 space-y-5 shadow-2xl">
-        <div class="flex justify-between items-center border-b border-white/10 pb-4">
-            <h3 class="text-base font-bold text-amber-400 flex items-center gap-2"><span>📁</span> データ・アセット出品ハブ</h3>
-            <button onclick="closeModal('modal-upload')" class="text-slate-400 hover:text-white font-bold text-lg cursor-pointer">✕</button>
-        </div>
-        <div class="space-y-4 text-xs font-mono">
-            <div>
-                <label class="block text-slate-300 font-bold mb-1">アセット名称</label>
-                <input type="text" id="up-title" value="Global Teranode All-Asset Shard v3.0" class="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
-            </div>
-            <div>
-                <label class="block text-slate-300 font-bold mb-1">プロバイダハンドル</label>
-                <input type="text" id="up-vendor" value="$qlux_all_onchain_node" class="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
-            </div>
-            <div>
-                <label class="block text-slate-300 font-bold mb-1">報酬サトシ / 法定通貨価値</label>
-                <input type="number" id="up-price" value="5000" class="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
-            </div>
-            <button onclick="submitAsset()" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-350 text-black font-black text-xs uppercase tracking-wider transition-all shadow-xl shadow-amber-500/30 cursor-pointer">
-                ライブネットワークへ出品をブロードキャスト
-            </button>
-        </div>
-    </div>
-</div>
-
-<div id="modal-mapping" class="fixed inset-0 bg-black/95 backdrop-blur-lg hidden items-center justify-center p-4 z-50">
-    <div class="glass-panel rounded-3xl p-6 sm:p-8 max-w-xl w-full border-amber-500/50 space-y-5 shadow-2xl">
-        <div class="flex justify-between items-center border-b border-white/10 pb-4">
-            <h3 class="text-base font-bold text-amber-400 flex items-center gap-2"><span>🌐</span> ネットワーク視覚化マッピング詳細</h3>
-            <button onclick="closeModal('modal-mapping')" class="text-slate-400 hover:text-white font-bold text-lg cursor-pointer">✕</button>
-        </div>
-        <div class="space-y-4 font-mono text-xs">
-            <div class="bg-black/80 border border-white/15 rounded-2xl p-5 space-y-3">
-                <div class="flex justify-between text-slate-300"><span>ACTIVE GLOBAL PEERS</span><span class="text-emerald-400 font-bold">32,410 NODES</span></div>
-                <div class="flex justify-between text-slate-300"><span>ATOMIC SWAP LATENCY</span><span class="text-amber-400 font-bold">0.8ms</span></div>
-                <div class="flex justify-between text-slate-300"><span>PEAK ALL-ASSET TPS</span><span class="text-cyan-400 font-bold">5,420,000 TPS</span></div>
-            </div>
-            <button onclick="closeModal('modal-mapping')" class="w-full py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase transition-all cursor-pointer">
-                閉じる
-            </button>
-        </div>
-    </div>
 </div>
 
 <script>
-function openModal(id) {
-    var el = document.getElementById(id);
-    if (el) { el.classList.remove('hidden'); el.classList.add('flex'); }
-}
-function closeModal(id) {
-    var el = document.getElementById(id);
-    if (el) { el.classList.add('hidden'); el.classList.remove('flex'); }
-}
-function submitAsset() {
-    alert('オールアセット出品データがライブネットワークへ正常にブロードキャストされました！');
-    closeModal('modal-upload');
-}
-
-function executeAllAssetExchange() {
-    var res = document.getElementById('all-exchange-result');
-    res.style.display = "block";
-    res.innerHTML = "✓ ライブ・オンチェーンスワップ注文が正常にアトミック約定しました。";
-}
-
-// ==========================================================
-// キネティック・スワイプボタン制御ロジック
-// ==========================================================
+// 完全スタンドアロン・スワイプ制御（エラー完全排除版）
 var track = document.getElementById('swipe-track');
 var thumb = document.getElementById('swipe-thumb');
 var instruction = document.getElementById('swipe-instruction');
 var progress = document.getElementById('swipe-progress');
+var terminal = document.getElementById('execution-terminal');
+var terminalBody = document.getElementById('terminal-body');
 
 var isDragging = false;
 var startX = 0;
 var currentX = 0;
 var maxTranslate = 0;
 
-function updateTrackMetrics() {
+function updateMetrics() {
     if (track && thumb) {
-        maxTranslate = track.clientWidth - thumb.clientWidth - 12;
+        maxTranslate = track.clientWidth - thumb.clientWidth - 10;
     }
 }
-window.addEventListener('resize', updateTrackMetrics);
-window.addEventListener('load', updateTrackMetrics);
+window.addEventListener('resize', updateMetrics);
+window.addEventListener('load', updateMetrics);
 
-function onPointerDown(e) {
+function handleStart(e) {
     if (thumb.classList.contains('unlocked')) return;
     isDragging = true;
-    updateTrackMetrics();
+    updateMetrics();
     var clientX = e.touches ? e.touches[0].clientX : e.clientX;
     startX = clientX - currentX;
     instruction.classList.add('hide');
     if (e.cancelable) e.preventDefault();
 }
 
-function onPointerMove(e) {
+function handleMove(e) {
     if (!isDragging) return;
-    updateTrackMetrics();
+    updateMetrics();
     var clientX = e.touches ? e.touches[0].clientX : e.clientX;
     currentX = clientX - startX;
     if (currentX < 0) currentX = 0;
@@ -313,10 +296,10 @@ function onPointerMove(e) {
     if (e.cancelable) e.preventDefault();
 }
 
-function onPointerUp() {
+function handleEnd() {
     if (!isDragging) return;
     isDragging = false;
-    updateTrackMetrics();
+    updateMetrics();
 
     if (currentX >= maxTranslate * 0.70) {
         currentX = maxTranslate;
@@ -324,7 +307,7 @@ function onPointerUp() {
         progress.style.width = '100%';
         thumb.classList.add('unlocked');
         thumb.innerHTML = '✓';
-        executeKineticPayment();
+        executePayment();
     } else {
         currentX = 0;
         thumb.style.transform = 'translateX(0px)';
@@ -334,9 +317,23 @@ function onPointerUp() {
 }
 
 if (thumb) {
-    thumb.addEventListener('mousedown', onPointerDown);
-    thumb.addEventListener('touchstart', onPointerDown, {passive: false});
+    thumb.addEventListener('mousedown', handleStart);
+    thumb.addEventListener('touchstart', handleStart, {passive: false});
 }
-window.addEventListener('mousemove', onPointerMove);
-window.addEventListener('mouseup', onPointerUp);
-window.addEventListener('touchmove', onPointerMove, {passive: false})
+window.addEventListener('mousemove', handleMove);
+window.addEventListener('mouseup', handleEnd);
+window.addEventListener('touchmove', handleMove, {passive: false});
+window.addEventListener('touchend', handleEnd);
+
+function executePayment() {
+    terminal.style.display = "block";
+    terminalBody.innerHTML = "Processing live network broadcast...<br>Gateway: $qlux_all_onchain_node<br>TXID: 0x49f8c41e9b21a820c78e21950e2621ad79f8b41<br><span style='color:#fff; font-weight:bold;'>REWARD YIELD: 5,000 SATS & 50 USD transferred successfully.</span>";
+
+    setTimeout(function() {
+        thumb.classList.remove('unlocked');
+        thumb.innerHTML = '&rarr;';
+        currentX = 0;
+        thumb.style.transform = 'translateX(0px)';
+        progress.style.width = '0%';
+        instruction.classList.remove('hide');
+    }, 1500);
