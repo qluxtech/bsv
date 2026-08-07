@@ -1,62 +1,34 @@
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
+from pydantic import BaseModel
 import os
-import json
-import hashlib
-import time
-import socketserver
-from http.server import SimpleHTTPRequestHandler, HTTPServer
 
-class ThreadedHTTPServer(socketserver.ThreadingMixIn, HTTPServer):
-    allow_reuse_address = True
-    daemon_threads = True
+app = FastAPI(title="QLUX APEX All-On-Chain Teranode & Exchange")
 
-class ApexRequestHandler(SimpleHTTPRequestHandler):
-    def do_GET(self):
-        # ルートパスにアクセスがあったら index.html を返す
-        if self.path == '/' or self.path == '':
-            self.path = '/index.html'
-        return super().do_GET()
+class PaymentRequest(BaseModel):
+    sats: int
+    fiat: str = "50 USD"
 
-    def do_POST(self):
-        if self.path == '/api/pay':
-            length = int(self.headers.get('Content-Length', 0))
-            raw = self.rfile.read(length)
-            try:
-                data = json.loads(raw.decode('utf-8'))
-            except:
-                data = {}
-            
-            sats = data.get('sats', 15)
-            seed = str(time.time()) + "-" + str(sats)
-            txid = hashlib.sha256(seed.encode('utf-8')).hexdigest()
-            
-            resp_data = {'status': 'success', 'sats': sats, 'txid': txid}
-            resp = json.dumps(resp_data).encode('utf-8')
-            
-            self.send_response(200)
-            self.send_header('Content-Type', 'application/json; charset=utf-8')
-            self.send_header('Content-Length', str(len(resp)))
-            self.end_headers()
-            self.wfile.write(resp)
-        else:
-            self.send_response(404)
-            self.end_headers()
+@app.get("/", response_class=HTMLResponse)
+def read_root():
+    if os.path.exists("index.html"):
+        with open("index.html", "r", encoding="utf-8") as f:
+            return f.read()
+    return "<h1>index.html not found</h1>"
 
-    def log_message(self, format, *args):
-        pass
-
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 10000))
-    server = None
+@app.post("/api/pay")
+def process_payment(req: PaymentRequest):
+    # テラノード＆BSVオンチェーン決済のモック処理
+    if req.sats <= 0:
+        raise HTTPException(status_code=400, detail="Invalid satoshi amount")
     
-    for p in [port, port + 1, port + 2, 8080, 5000, 3000]:
-        try:
-            server = ThreadedHTTPServer(('0.0.0.0', p), ApexRequestHandler)
-            print(f"BSV APEX Server bound on port {p}")
-            break
-        except OSError:
-            continue
-            
-    if server is None:
-        server = ThreadedHTTPServer(('0.0.0.0', 0), ApexRequestHandler)
+    return {
+        "status": "success",
+        "sats": req.sats,
+        "fiat": req.fiat,
+        "txid": "0x49f8c41e9b21a820c78e21950e2621ad79f8b41"
+    }
 
-    server.serve_forever()
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
