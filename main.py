@@ -1,9 +1,19 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import os
 
 app = FastAPI(title="QLUX APEX Live On-Chain Gateway")
+
+# CORS設定（ブラウザからのリクエストを完全許可）
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class PaymentRequest(BaseModel):
     sats: int = 5000
@@ -14,7 +24,7 @@ def read_root():
     if os.path.exists("index.html"):
         with open("index.html", "r", encoding="utf-8") as f:
             return f.read()
-    return "<h1>index.htmlが見つかりません。同じディレクトリに配置してください。</h1>"
+    return "<h1>index.htmlが見つかりません。同じフォルダに index.html を配置してください。</h1>"
 
 @app.post("/api/pay")
 def process_payment(req: PaymentRequest):
@@ -27,4 +37,5 @@ def process_payment(req: PaymentRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    print("=== QLUX APEX Live Gateway Starting on http://127.0.0.1:8000 ===")
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
