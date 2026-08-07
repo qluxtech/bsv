@@ -5,7 +5,7 @@ import time
 import socketserver
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 
-# HTMLを外部ファイルとして自動生成することでPythonの構文エラーを100%回避
+# 起動時に自動生成されるフルボリュームのHTMLファイル
 HTML_CONTENT = """<!DOCTYPE html>
 <html lang="ja" class="dark">
 <head>
@@ -139,4 +139,40 @@ body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffff
                         <span>GLOBAL VENDORS</span>
                         <span class="text-amber-400 font-bold">ACTIVE</span>
                     </div>
-                    <div class="text-2xl font-black text-white">5,120 <
+                    <div class="text-2xl font-black text-white">5,120 <span class="text-xs text-amber-400">PEERS</span></div>
+                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                        <div class="bg-gradient-to-r from-amber-500 to-yellow-300 h-full w-[94%] animate-pulse"></div>
+                    </div>
+                </div>
+                <div class="bg-black/60 border border-cyan-500/30 rounded-2xl p-5 space-y-3 font-mono">
+                    <div class="text-xs text-slate-400 flex justify-between">
+                        <span>AVERAGE TX FEE</span>
+                        <span class="text-cyan-400 font-bold">ULTRA-LOW</span>
+                    </div>
+                    <div class="text-2xl font-black text-white">0.00001 <span class="text-xs text-cyan-400">BSV</span></div>
+                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                        <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full w-[99%] animate-pulse"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-black/80 rounded-xl p-4 border border-emerald-500/20 font-mono text-xs text-emerald-300/90 h-20 overflow-y-auto space-y-1">
+                <div>[BSV-NET] TERANODE SHARD #4 CONNECTED. SYNCING ATOMIC LEDGER...</div>
+                <div>[TX-SETTLED] 15 SATS NANO-PAYMENT RECORDED ON BSV BLOCK #842,915</div>
+                <div>[VENDOR-SYNC] NEW AI TELEMETRY STREAM REGISTERED FROM TOKYO NODE</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 glass-card rounded-3xl p-6 sm:p-8 gold-border space-y-6">
+            <h2 class="text-lg font-bold flex items-center text-amber-400">BSV On-Chain Market Assets</h2>
+            <div class="space-y-3">
+                <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80">Select Data Asset for 1-Swipe Purchase</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="asset-list">
+                    <div onclick="selectAsset(this, 'Tokyo Teranode AI Neural Telemetry', 15, 'Vendor: $bsv_tokyo')" class="asset-card cursor-pointer border border-amber-500 bg-amber-500/10 rounded-2xl p-4 transition-all">
+                        <div class="text-sm font-bold text-white mb-1">Tokyo Teranode AI Telemetry</div>
+                        <div class="text-xs text-slate-400 mb-2">Vendor: $bsv_tokyo</div>
+                        <div class="text-amber-400 font-mono font-bold text-sm">15 Sats</div>
+                    </div>
+                    <div onclick
