@@ -2,6 +2,7 @@ import os
 import json
 import hashlib
 import time
+import socket
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 HTML_CODE = '''<!DOCTYPE html>
@@ -376,5 +377,4 @@ function executePayment() {
     terminal.style.display = "block";
     body.innerHTML = 'Broadcasting ' + selectedPrice + ' sats nano-payment to BSV Teranode...';
 
-    fetch('/api/pay', {
-       
+    fetch('/api/p
