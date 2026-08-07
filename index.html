@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QLUX APEX — Global Teranode Data Exchange & BSV Exchange Infrastructure</title>
+<title>QLUX APEX — All-Asset On-Chain Teranode & BSV Fiat Exchange</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -11,8 +11,8 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        void: '#000206',
-        surface: '#080e1a',
+        void: '#000104',
+        surface: '#060a14',
         accent: { 400: '#38bdf8', 500: '#0ea5e9', gold: '#f59e0b' }
       }
     }
@@ -21,33 +21,39 @@ tailwind.config = {
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
-body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000206; color: #f8fafc; overflow-x: hidden; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000104; color: #f8fafc; overflow-x: hidden; }
 .font-mono { font-family: 'JetBrains Mono', monospace; }
-.glass-panel { background: rgba(8, 14, 26, 0.94); backdrop-filter: blur(50px); border: 1px solid rgba(255, 255, 255, 0.12); }
-.glow-gold { box-shadow: 0 0 120px rgba(245, 158, 11, 0.22); }
+.glass-panel { background: rgba(6, 10, 20, 0.95); backdrop-filter: blur(60px); border: 1px solid rgba(255, 255, 255, 0.14); }
+.glow-gold { box-shadow: 0 0 140px rgba(245, 158, 11, 0.25); }
 
-/* 完全改良：絶対滑らか＆確実スワイプコンテナ */
-.swipe-container {
-  position: relative; width: 100%; height: 76px; background: rgba(0, 0, 0, 0.9);
-  border-radius: 20px; padding: 6px; overflow: hidden; user-select: none;
-  border: 1px solid rgba(245, 158, 11, 0.6); box-shadow: inset 0 3px 30px rgba(0,0,0,0.98), 0 0 40px rgba(245,158,11,0.2);
+/* --- 究極の滑らかさを誇るキネティック・スワイプボタン --- */
+.swipe-track {
+  position: relative; width: 100%; height: 80px; background: rgba(0, 0, 0, 0.92);
+  border-radius: 24px; padding: 6px; overflow: hidden; user-select: none;
+  border: 1px solid rgba(245, 158, 11, 0.6); box-shadow: inset 0 4px 35px rgba(0,0,0,0.98), 0 0 50px rgba(245,158,11,0.25);
+  touch-action: none;
 }
-.swipe-btn {
-  position: absolute; left: 6px; top: 6px; width: 64px; height: 64px;
-  background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 50%, #b45309 100%);
-  border-radius: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-  color: #000206; font-size: 26px; font-weight: 900; box-shadow: 0 6px 30px rgba(245, 158, 11, 0.7);
-  z-index: 30; touch-action: none; will-change: transform; transition: background 0.2s ease;
+.swipe-thumb {
+  position: absolute; left: 6px; top: 6px; width: 68px; height: 68px;
+  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #b45309 100%);
+  border-radius: 18px; cursor: grab; display: flex; align-items: center; justify-content: center;
+  color: #000104; font-size: 28px; font-weight: 900; box-shadow: 0 8px 35px rgba(245, 158, 11, 0.75);
+  z-index: 30; touch-action: none; will-change: transform; transition: background 0.2s ease, transform 0.05s linear;
 }
-.swipe-btn.unlocked { background: linear-gradient(135deg, #34d399 0%, #059669 100%); color: #ffffff; }
-.swipe-text {
+.swipe-thumb:active { cursor: grabbing; }
+.swipe-thumb.unlocked { background: linear-gradient(135deg, #34d399 0%, #059669 100%); color: #ffffff; }
+.swipe-instruction {
   position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em;
+  font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em;
   background: linear-gradient(90deg, #f59e0b, #ffffff, #f59e0b);
   background-size: 200% auto; color: transparent; -webkit-background-clip: text;
   background-clip: text; opacity: 1; transition: opacity 0.2s; pointer-events: none; z-index: 10;
 }
-.swipe-text.hide { opacity: 0; }
+.swipe-instruction.hide { opacity: 0; }
+.swipe-progress {
+  position: absolute; left: 0; top: 0; height: 100%; background: linear-gradient(90deg, rgba(245,158,11,0.15), rgba(245,158,11,0.35));
+  border-radius: 22px; width: 0%; pointer-events: none; z-index: 5; transition: width 0.05s linear;
+}
 </style>
 </head>
 <body class="min-h-screen bg-void text-slate-100 p-4 sm:p-8">
@@ -58,7 +64,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000206; 
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center font-black text-black text-2xl shadow-xl shadow-amber-500/30">⚡</div>
             <div>
                 <span class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-slate-200 to-amber-400 bg-clip-text text-transparent">QLUX APEX</span>
-                <span class="block text-[9px] text-amber-400 tracking-widest font-mono uppercase">Teranode BSV Exchange & Nano-Settlement</span>
+                <span class="block text-[9px] text-amber-400 tracking-widest font-mono uppercase">All-Asset On-Chain Teranode Exchange</span>
             </div>
         </div>
         <div class="flex items-center space-x-3">
@@ -73,14 +79,14 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000206; 
 
     <section class="text-center max-w-3xl mx-auto pt-4 pb-2 space-y-5">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold tracking-wider shadow-inner">
-            <span>●</span> TERANODE BSV SETTLEMENT v4.8 LIVE
+            <span>●</span> ALL-ON-CHAIN ATOMIC SETTLEMENT v5.2 LIVE
         </div>
         <h1 class="text-3xl sm:text-6xl font-black tracking-tight leading-[1.1]">
-            圧倒的なスケールと報酬。<br>
-            <span class="bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">次世代BSVワンスワイプ取引。</span>
+            データも、BSVも、法定通貨も。<br>
+            <span class="bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">完全オンチェーン・オールエクスチェンジ。</span>
         </h1>
         <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            大量のBSVサトシを高速アトミック処理。エンタープライズ級の流動性とリアルタイムBSV取引所で、次世代の富とデータを瞬時に最大化します。
+            世界初。テラノード基盤上で、あらゆるデジタル資産・BSV・法定通貨をワンストロークで完全アトミックに双方向スワップ＆決済。
         </p>
     </section>
 
@@ -89,37 +95,38 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000206; 
         <div class="glass-panel rounded-3xl p-6 sm:p-8 glow-gold border-amber-500/40 space-y-6">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/10 pb-4 gap-2">
                 <div>
-                    <h2 class="text-base font-bold text-white flex items-center gap-2"><span>⚡</span> ワンスワイプ取引エクスチェンジ</h2>
-                    <p class="text-xs text-slate-400 font-mono mt-0.5">High-Yield BSV Nano-Settlement & Asset Stream</p>
+                    <h2 class="text-base font-bold text-white flex items-center gap-2"><span>⚡</span> キネティック・ワンスワイプ決済エクスチェンジ</h2>
+                    <p class="text-xs text-slate-400 font-mono mt-0.5">Ultra-Smooth Kinetic Swipe & Atomic Settlement</p>
                 </div>
-                <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-mono font-bold">YIELD: PREMIUM SATS</span>
+                <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-mono font-bold">KINETIC READY</span>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="bg-black/60 border border-white/10 rounded-2xl p-4 space-y-1">
-                    <div class="text-[11px] text-amber-400 font-mono uppercase tracking-wider font-bold">Target Yield Stream</div>
-                    <div class="text-sm font-bold text-white">Enterprise Neural Shard & Liquidity Pool</div>
-                    <div class="text-xs text-slate-400 font-mono">Gateway: $qlux_bsv_prime_node</div>
+                    <div class="text-[11px] text-amber-400 font-mono uppercase tracking-wider font-bold">Execution Stream</div>
+                    <div class="text-sm font-bold text-white">All-Asset Shard & Liquidity Pool Sync</div>
+                    <div class="text-xs text-slate-400 font-mono">Gateway: $qlux_all_onchain_node</div>
                 </div>
                 <div class="bg-black/60 border border-white/10 rounded-2xl p-4 flex flex-col justify-center items-center text-center">
-                    <div class="text-[11px] text-slate-400 uppercase tracking-wider mb-0.5 font-bold">Acquisition BSV Satoshis</div>
-                    <div class="text-3xl font-black text-amber-400 font-mono">1,500 <span class="text-xs font-semibold text-slate-400">SATS</span></div>
+                    <div class="text-[11px] text-slate-400 uppercase tracking-wider mb-0.5 font-bold">Instant Reward Yield</div>
+                    <div class="text-3xl font-black text-amber-400 font-mono">5,000 <span class="text-xs font-semibold text-slate-400">SATS / $50 USD</span></div>
                 </div>
             </div>
 
             <div class="space-y-2">
                 <div class="text-xs font-bold uppercase tracking-wider text-amber-400/90 font-mono flex items-center justify-between">
-                    <span>▶ 右端までスワイプして大量サトシを獲得・即時決済</span>
-                    <span class="text-[10px] text-slate-400">Swipe Right to Execute</span>
+                    <span>▶ 右端まで滑らかにスワイプしてアトミック決済・報酬獲得</span>
+                    <span class="text-[10px] text-slate-400">Kinetic Swipe Right</span>
                 </div>
-                <div class="swipe-container" id="swipe-container">
-                    <div class="swipe-text" id="swipe-text">SWIPE TO ACQUIRE SATS &rarr;</div>
-                    <div class="swipe-btn" id="swipe-btn">&rarr;</div>
+                <div class="swipe-track" id="swipe-track">
+                    <div class="swipe-progress" id="swipe-progress"></div>
+                    <div class="swipe-instruction" id="swipe-instruction">SWIPE TO EXECUTE ALL-ASSET EXCHANGE &rarr;</div>
+                    <div class="swipe-thumb" id="swipe-thumb">&rarr;</div>
                 </div>
             </div>
 
             <div id="execution-terminal" class="bg-black/95 border border-emerald-500/50 rounded-2xl p-5 font-mono text-xs hidden space-y-2 shadow-2xl">
-                <div class="text-emerald-400 font-bold flex items-center gap-2"><span>✓</span> ワンスワイプ取引成功 — 高額サトシ獲得＆アトミック決済完了</div>
+                <div class="text-emerald-400 font-bold flex items-center gap-2"><span>✓</span> キネティック・ワンスワイプ取引成功 — オンチェーン全資産アトミック交換完了</div>
                 <div id="terminal-body" class="text-slate-300 break-all space-y-1"></div>
             </div>
         </div>
@@ -127,57 +134,59 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000206; 
         <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-6 border-amber-500/40 bg-gradient-to-br from-slate-900 via-slate-950 to-amber-950/40 shadow-2xl">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/10 pb-4 gap-2">
                 <div>
-                    <span class="text-[10px] font-mono uppercase tracking-widest text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/30">BSV LIVE EXCHANGE PORTAL</span>
-                    <h3 class="text-lg font-black text-white mt-2">リアルタイム BSV アトミック取引所</h3>
+                    <span class="text-[10px] font-mono uppercase tracking-widest text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/30">ALL-ASSET ON-CHAIN EXCHANGE</span>
+                    <h3 class="text-lg font-black text-white mt-2">BSV ・ 法定通貨 ・ データ統合 リアルタイム取引所</h3>
                 </div>
                 <div class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30 flex items-center gap-2 font-bold">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span> 注文板リアルタイム同期
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span> 100% オンチェーン同期
                 </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 font-mono text-xs">
                 <div class="bg-black/80 border border-white/15 p-5 rounded-2xl space-y-4">
-                    <div class="text-sm font-bold text-amber-400 border-b border-white/10 pb-2">⚡ スワップ・指値注文</div>
+                    <div class="text-sm font-bold text-amber-400 border-b border-white/10 pb-2">🔄 オールアセット・スワップ</div>
                     <div class="space-y-3">
                         <div>
-                            <label class="block text-slate-400 mb-1">売却アセット (SELL)</label>
-                            <select id="ex-sell" class="w-full bg-black border border-white/20 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-amber-500">
+                            <label class="block text-slate-400 mb-1">売却 (PAY FROM)</label>
+                            <select id="all-sell" class="w-full bg-black border border-white/20 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-amber-500">
                                 <option>BSV (Bitcoin SV)</option>
-                                <option>USDT (Atomic)</option>
-                                <option>Neural Shard Token</option>
+                                <option>USD (US Dollar - Fiat)</option>
+                                <option>JPY (Japanese Yen - Fiat)</option>
+                                <option>Neural Shard Data Token</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-slate-400 mb-1">購入アセット (BUY)</label>
-                            <select id="ex-buy" class="w-full bg-black border border-white/20 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-amber-500">
+                            <label class="block text-slate-400 mb-1">購入 (RECEIVE TO)</label>
+                            <select id="all-buy" class="w-full bg-black border border-white/20 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-amber-500">
                                 <option>Enterprise Satoshis (SATS)</option>
                                 <option>BSV Mainnet Token</option>
+                                <option>USD Fiat Gateway</option>
+                                <option>Raw Neural Dataset</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-slate-400 mb-1">数量 (Amount)</label>
-                            <input type="number" id="ex-amount" value="50000" class="w-full bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500">
+                            <label class="block text-slate-400 mb-1">数量 / 金額</label>
+                            <input type="number" id="all-amount" value="1000" class="w-full bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500">
                         </div>
-                        <button onclick="executeExchangeOrder()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-350 text-black font-black uppercase tracking-wider transition-all shadow-xl shadow-amber-500/25 cursor-pointer">
-                            アトミック注文を発行
+                        <button onclick="executeAllAssetExchange()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-350 text-black font-black uppercase tracking-wider transition-all shadow-xl shadow-amber-500/25 cursor-pointer">
+                            オンチェーン即時スワップ実行
                         </button>
                     </div>
                 </div>
 
                 <div class="lg:col-span-2 bg-black/80 border border-white/15 p-5 rounded-2xl space-y-4">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                        <span class="text-sm font-bold text-white">📊 リアルタイム板情報 (BSV/SATS Order Book)</span>
-                        <span class="text-[10px] text-emerald-400">SPREAD: 0.01%</span>
+                        <span class="text-sm font-bold text-white">📊 オールアセット・ライブオーダーブック</span>
+                        <span class="text-[10px] text-emerald-400">FIAT / BSV / DATA SYNC</span>
                     </div>
                     <div class="space-y-1.5 text-[11px]">
-                        <div class="flex justify-between text-slate-500 px-2 py-1 uppercase font-bold"><span>Price (SATS)</span><span>Size (BSV)</span><span>Total</span></div>
-                        <div class="flex justify-between text-rose-400 bg-rose-950/20 px-2 py-1.5 rounded"><span>1.00042</span><span>12.4500</span><span>12.45 BSV</span></div>
-                        <div class="flex justify-between text-rose-400 bg-rose-950/20 px-2 py-1.5 rounded"><span>1.00038</span><span>45.1200</span><span>57.57 BSV</span></div>
-                        <div class="border-y border-white/10 my-2 py-1 text-center text-amber-400 font-bold bg-amber-500/10 rounded">現在の仲値: 1.00035 SATS / BSV (流動性MAX)</div>
-                        <div class="flex justify-between text-emerald-400 bg-emerald-950/20 px-2 py-1.5 rounded"><span>1.00030</span><span>89.4000</span><span>89.40 BSV</span></div>
-                        <div class="flex justify-between text-emerald-400 bg-emerald-950/20 px-2 py-1.5 rounded"><span>1.00025</span><span>150.0000</span><span>239.40 BSV</span></div>
+                        <div class="flex justify-between text-slate-500 px-2 py-1 uppercase font-bold"><span>Pair / Type</span><span>Rate / Price</span><span>Liquidity</span></div>
+                        <div class="flex justify-between text-amber-300 bg-amber-950/20 px-2 py-1.5 rounded"><span>BSV / USD (Fiat Gateway)</span><span>$54.20 USD</span><span>14,200 BSV</span></div>
+                        <div class="flex justify-between text-amber-300 bg-amber-950/20 px-2 py-1.5 rounded"><span>BSV / JPY (Fiat Gateway)</span><span>¥8,240 JPY</span><span>28,500 BSV</span></div>
+                        <div class="flex justify-between text-cyan-300 bg-cyan-950/20 px-2 py-1.5 rounded"><span>Raw Data Shard / SATS</span><span>1 Shard = 15,000 SATS</span><span>98.2 TB</span></div>
+                        <div class="flex justify-between text-emerald-300 bg-emerald-950/20 px-2 py-1.5 rounded"><span>BSV / SATS (Mainnet)</span><span>1 BSV = 100,000,000 SATS</span><span>500k BSV</span></div>
                     </div>
-                    <div id="exchange-result" class="text-emerald-400 font-bold pt-2 hidden"></div>
+                    <div id="all-exchange-result" class="text-emerald-400 font-bold pt-2 hidden"></div>
                 </div>
             </div>
         </div>
@@ -189,31 +198,31 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000206; 
                     <h3 class="text-lg font-black text-white mt-2">リアルタイム・シャーディング動態マッピング</h3>
                 </div>
                 <div class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30 flex items-center gap-2 font-bold">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span> ライブ同期中 (1.2ms)
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span> ライブ同期中 (0.8ms)
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
                 <div class="bg-black/70 border border-white/10 p-5 rounded-2xl space-y-3">
-                    <div class="text-slate-400 flex justify-between font-bold"><span>SHARD CLUSTER #01</span><span class="text-amber-400">99.99%</span></div>
+                    <div class="text-slate-400 flex justify-between font-bold"><span>ALL-ASSET CLUSTER</span><span class="text-amber-400">100% SECURE</span></div>
                     <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-amber-500 to-yellow-300 h-full w-[98%] animate-pulse"></div>
+                        <div class="bg-gradient-to-r from-amber-500 to-yellow-300 h-full w-[99%] animate-pulse"></div>
                     </div>
-                    <div class="text-[11px] text-slate-300">東京・シリコンバレー間アトミックリンクの超高速トラフィック波形</div>
+                    <div class="text-[11px] text-slate-300">法定通貨・BSV・データの全アトミック・クロスチェーン同期波形</div>
                 </div>
                 <div class="bg-black/70 border border-white/10 p-5 rounded-2xl space-y-3">
-                    <div class="text-slate-400 flex justify-between font-bold"><span>BSV SATS THROUGHPUT</span><span class="text-emerald-400">2.84M TPS</span></div>
+                    <div class="text-slate-400 flex justify-between font-bold"><span>GLOBAL THROUGHPUT</span><span class="text-emerald-400">5.42M TPS</span></div>
                     <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-emerald-500 to-teal-300 h-full w-[94%] animate-pulse"></div>
+                        <div class="bg-gradient-to-r from-emerald-500 to-teal-300 h-full w-[96%] animate-pulse"></div>
                     </div>
-                    <div class="text-[11px] text-slate-300">サトシ単位の高速決済ストリーム監視とゼロ混雑証明</div>
+                    <div class="text-[11px] text-slate-300">テラノード基盤での限界突破スループット監視とゼロ混雑証明</div>
                 </div>
                 <div class="bg-black/70 border border-white/10 p-5 rounded-2xl space-y-3">
-                    <div class="text-slate-400 flex justify-between font-bold"><span>ZERO-TRUST INDEX</span><span class="text-cyan-400">SECURE</span></div>
+                    <div class="text-slate-400 flex justify-between font-bold"><span>ZERO-TRUST INDEX</span><span class="text-cyan-400">VERIFIED</span></div>
                     <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
                         <div class="bg-gradient-to-r from-cyan-500 to-blue-400 h-full w-full"></div>
                     </div>
-                    <div class="text-[11px] text-slate-300">パブリックチェーン台帳へのアトミック暗号同期完全完了</div>
+                    <div class="text-[11px] text-slate-300">パブリックチェーン台帳への完全暗号アトミック記録</div>
                 </div>
             </div>
         </div>
@@ -222,7 +231,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000206; 
 
     <footer class="text-center text-[11px] font-mono text-slate-500 space-y-1 pt-6 border-t border-white/10">
         <p>© 2026 QLUX APEX Global Infrastructure. All Rights Reserved.</p>
-        <p class="text-amber-500/60">Powered by Teranode & BSV Enterprise Architecture</p>
+        <p class="text-amber-500/60">Powered by Teranode & All-Asset On-Chain Architecture</p>
     </footer>
 
 </div>
@@ -230,24 +239,24 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000206; 
 <div id="page-upload" class="fixed inset-0 bg-black/90 backdrop-blur-lg hidden items-center justify-center p-4 z-50">
     <div class="glass-panel rounded-3xl p-6 sm:p-8 max-w-lg w-full border-amber-500/50 space-y-5 shadow-2xl">
         <div class="flex justify-between items-center border-b border-white/10 pb-4">
-            <h3 class="text-base font-bold text-amber-400 flex items-center gap-2"><span>📁</span> データアセット出品ハブ</h3>
+            <h3 class="text-base font-bold text-amber-400 flex items-center gap-2"><span>📁</span> データ・アセット出品ハブ</h3>
             <button onclick="closePage('upload')" class="text-slate-400 hover:text-white font-bold text-lg cursor-pointer">✕</button>
         </div>
         <div class="space-y-4 text-xs font-mono">
             <div>
                 <label class="block text-slate-300 font-bold mb-1">アセット名称</label>
-                <input type="text" id="up-title" value="Global Teranode BSV Feed v2.0" class="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
+                <input type="text" id="up-title" value="Global Teranode All-Asset Shard v3.0" class="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
             </div>
             <div>
                 <label class="block text-slate-300 font-bold mb-1">プロバイダハンドル</label>
-                <input type="text" id="up-vendor" value="$qlux_bsv_prime_node" class="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
+                <input type="text" id="up-vendor" value="$qlux_all_onchain_node" class="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
             </div>
             <div>
-                <label class="block text-slate-300 font-bold mb-1">獲得サトシ報酬 (Sats)</label>
-                <input type="number" id="up-price" value="1500" class="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
+                <label class="block text-slate-300 font-bold mb-1">報酬サトシ / 法定通貨価値</label>
+                <input type="number" id="up-price" value="5000" class="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
             </div>
             <button onclick="submitAsset()" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-350 text-black font-black text-xs uppercase tracking-wider transition-all shadow-xl shadow-amber-500/30 cursor-pointer">
-                ネットワークへ出品をブロードキャスト
+                オンチェーンへ出品をブロードキャスト
             </button>
         </div>
     </div>
@@ -261,9 +270,9 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000206; 
         </div>
         <div class="space-y-4 font-mono text-xs">
             <div class="bg-black/80 border border-white/15 rounded-2xl p-5 space-y-3">
-                <div class="flex justify-between text-slate-300"><span>ACTIVE GLOBAL NODES</span><span class="text-emerald-400 font-bold">24,108 PEERS</span></div>
-                <div class="flex justify-between text-slate-300"><span>ATOMIC SHARD LATENCY</span><span class="text-amber-400 font-bold">0.8ms</span></div>
-                <div class="flex justify-between text-slate-300"><span>PEAK THROUGHPUT</span><span class="text-cyan-400 font-bold">3,890,200 TPS</span></div>
+                <div class="flex justify-between text-slate-300"><span>ACTIVE GLOBAL PEERS</span><span class="text-emerald-400 font-bold">32,410 NODES</span></div>
+                <div class="flex justify-between text-slate-300"><span>ATOMIC SWAP LATENCY</span><span class="text-amber-400 font-bold">0.8ms</span></div>
+                <div class="flex justify-between text-slate-300"><span>PEAK ALL-ASSET TPS</span><span class="text-cyan-400 font-bold">5,420,000 TPS</span></div>
             </div>
             <button onclick="closePage('mapping')" class="w-full py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase transition-all cursor-pointer">
                 閉じる
@@ -282,27 +291,4 @@ function closePage(type) {
     if (el) { el.classList.add('hidden'); el.classList.remove('flex'); }
 }
 function submitAsset() {
-    alert('データアセットの出品と高額サトシ報酬設定がネットワークに正常にブロードキャストされました！');
-    closePage('upload');
-}
-
-function executeExchangeOrder() {
-    var res = document.getElementById('exchange-result');
-    res.style.display = "block";
-    res.innerHTML = "✓ BSVアトミック取引所注文が正常に約定しました。ウォレット口座にサトシが入金されました。";
-}
-
-// ==========================================
-// 完全にスムーズ＆確実なワンスワイプスライダーループ
-// ==========================================
-var container = document.getElementById('swipe-container');
-var btn = document.getElementById('swipe-btn');
-var text = document.getElementById('swipe-text');
-
-var isDragging = false;
-var startX = 0;
-var currentX = 0;
-var maxTranslate = 0;
-
-function updateMax() {
-    if (contain
+    alert('オールア
