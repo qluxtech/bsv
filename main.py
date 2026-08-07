@@ -5,8 +5,8 @@ import time
 import socketserver
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 
-# HTMLを外部変数ではなく安全な複数行結合で完全に構築
-HTML_PART_1 = """<!DOCTYPE html>
+# HTMLを外部ファイルとして自動生成することでPythonの構文エラーを100%回避
+HTML_CONTENT = """<!DOCTYPE html>
 <html lang="ja" class="dark">
 <head>
 <meta charset="UTF-8">
@@ -97,9 +97,7 @@ body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffff
             </button>
         </div>
     </header>
-"""
 
-HTML_PART_2 = """
     <section class="text-center max-w-4xl mx-auto pt-2 pb-2">
         <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-4 leading-tight">
             BSV Teranodeが生む無限のスケール、<br><span class="bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">世界中のオンチェーンデータを1スワイプ取引。</span>
@@ -217,9 +215,156 @@ HTML_PART_2 = """
         </div>
     </main>
 </div>
-"""
 
-HTML_PART_3 = """
 <div id="upload-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
     <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-lg w-full gold-border space-y-5">
-        <div class="flex justify-between items-center border-b border
+        <div class="flex justify-between items-center border-b border-white/10 pb-4">
+            <h3 class="text-lg font-bold text-amber-400">BSVチェーンへデータを出品</h3>
+            <button onclick="closeModal('upload-modal')" class="text-slate-400 hover:text-white font-bold">✕</button>
+        </div>
+        <div class="space-y-4 text-xs">
+            <div>
+                <label class="block text-slate-300 font-bold mb-1">データタイトル</label>
+                <input type="text" id="up-title" placeholder="例: London BSV Swarm Feed" class="w-full bg-black/80 border border-white/20 rounded-xl px-3 py-2 text-white font-mono">
+            </div>
+            <div>
+                <label class="block text-slate-300 font-bold mb-1">出品者BSVハンドル</label>
+                <input type="text" id="up-vendor" value="$my_bsv_node" class="w-full bg-black/80 border border-white/20 rounded-xl px-3 py-2 text-white font-mono">
+            </div>
+            <div>
+                <label class="block text-slate-300 font-bold mb-1">販売価格 (Sats)</label>
+                <input type="number" id="up-price" value="25" class="w-full bg-black/80 border border-white/20 rounded-xl px-3 py-2 text-white font-mono">
+            </div>
+            <button onclick="submitAsset()" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-black text-sm uppercase transition-all shadow-lg">
+                BSVマーケットに出品する
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="sub-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-lg w-full gold-border space-y-5">
+        <div class="flex justify-between items-center border-b border-white/10 pb-4">
+            <h3 class="text-lg font-bold text-emerald-400">BSV VIP会員 サブスクリプション</h3>
+            <button onclick="closeModal('sub-modal')" class="text-slate-400 hover:text-white font-bold">✕</button>
+        </div>
+        <div class="space-y-4 text-xs">
+            <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-4 space-y-2">
+                <div class="text-emerald-400 font-bold text-sm">👑 BSV UNLIMITED VIP PASS</div>
+                <div class="text-slate-300">月額 1,000 Satsで、世界中のすべてのBSVオンチェーンデータをスワイプ不要で無制限にダウンロード・利用可能！</div>
+            </div>
+            <button onclick="alert('BSV VIPサブスクがアクティブになりました！全データが使い放題です。'); closeModal('sub-modal');" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-black text-sm uppercase transition-all shadow-lg">
+                VIPサブスクに加入する
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+function openModal(id) { document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('flex'); }
+function closeModal(id) { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); }
+
+var selectedPrice = 15;
+var selectedAssetName = "Tokyo Teranode AI Neural Telemetry";
+
+function selectAsset(element, assetName, price, vendor) {
+    var cards = document.querySelectorAll('.asset-card');
+    for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('border-amber-500', 'bg-amber-500/10');
+        cards[i].classList.add('border-white/10', 'bg-black/40');
+    }
+    element.classList.remove('border-white/10', 'bg-black/40');
+    element.classList.add('border-amber-500', 'bg-amber-500/10');
+    selectedAssetName = assetName;
+    selectedPrice = price;
+    document.getElementById('selected-price').innerHTML = price + ' <span class="text-xl">SATS</span>';
+}
+
+function submitAsset() {
+    var title = document.getElementById('up-title').value || 'BSV Custom Feed';
+    var vendor = document.getElementById('up-vendor').value || '$bsv_vendor';
+    var price = parseInt(document.getElementById('up-price').value) || 25;
+
+    var list = document.getElementById('asset-list');
+    var div = document.createElement('div');
+    div.className = 'asset-card cursor-pointer border border-white/10 bg-black/40 rounded-2xl p-4 transition-all';
+    div.setAttribute('onclick', "selectAsset(this, '" + title + "', " + price + ", 'Vendor: " + vendor + "')");
+    div.innerHTML = '<div class="text-sm font-bold text-white mb-1">' + title + '</div><div class="text-xs text-slate-400 mb-2">Vendor: ' + vendor + '</div><div class="text-amber-400 font-mono font-bold text-sm">' + price + ' Sats</div>';
+    list.appendChild(div);
+
+    closeModal('upload-modal');
+    alert('BSVチェーンへのデータ出品が完了しました！');
+}
+
+setInterval(function() {
+    var now = new Date();
+    document.getElementById('matrix-timer').innerText = now.toISOString().slice(11, 19) + " UTC";
+}, 1000);
+
+var container = document.getElementById('swipe-container');
+var btn = document.getElementById('swipe-btn');
+var text = document.getElementById('swipe-text');
+
+var isDragging = false;
+var startX = 0;
+var currentX = 0;
+var maxTranslate = 0;
+
+function updateMax() {
+    maxTranslate = container.clientWidth - btn.clientWidth - 12;
+}
+window.addEventListener('resize', updateMax);
+window.addEventListener('load', updateMax);
+
+function startDrag(e) {
+    if (btn.classList.contains('unlocked')) return;
+    isDragging = true;
+    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    startX = clientX - currentX;
+    text.classList.add('hide');
+}
+
+function onDrag(e) {
+    if (!isDragging) return;
+    updateMax();
+    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    currentX = clientX - startX;
+    if (currentX < 0) currentX = 0;
+    if (currentX > maxTranslate) currentX = maxTranslate;
+    btn.style.transform = 'translateX(' + currentX + 'px)';
+}
+
+function endDrag() {
+    if (!isDragging) return;
+    isDragging = false;
+    updateMax();
+
+    if (currentX >= maxTranslate * 0.7) {
+        btn.style.transform = 'translateX(' + maxTranslate + 'px)';
+        btn.classList.add('unlocked');
+        btn.innerHTML = '✓';
+        executePayment();
+    } else {
+        currentX = 0;
+        btn.style.transform = 'translateX(0px)';
+        text.classList.remove('hide');
+    }
+}
+
+btn.addEventListener('mousedown', startDrag);
+window.addEventListener('mousemove', onDrag);
+window.addEventListener('mouseup', endDrag);
+
+btn.addEventListener('touchstart', startDrag);
+window.addEventListener('touchmove', onDrag);
+window.addEventListener('touchend', endDrag);
+
+function executePayment() {
+    var handle = document.getElementById('user-handle').value;
+    var terminal = document.getElementById('execution-terminal');
+    var body = document.getElementById('terminal-body');
+    
+    terminal.style.display = "block";
+    body.innerHTML = 'Broadcasting ' + selectedPrice + ' sats nano-payment to BSV Teranode...';
+
+    fetch('/ap
