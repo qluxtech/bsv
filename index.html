@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QLUX BSV APEX - World's #1 Teranode Data Exchange & Swarm Hub</title>
+<title>QLUX APEX — Global Teranode Data Exchange & Nano-Payment Infrastructure</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -11,39 +11,39 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        void: '#000205',
-        glass: 'rgba(8, 14, 28, 0.95)',
-        bsvgold: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' }
+        void: '#000308',
+        surface: '#0a101f',
+        accent: { 400: '#38bdf8', 500: '#0ea5e9', gold: '#f59e0b' }
       }
     }
   }
 }
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
-body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffffff; overflow-x: hidden; }
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000308; color: #f8fafc; overflow-x: hidden; }
 .font-mono { font-family: 'JetBrains Mono', monospace; }
-.glass-card { background: rgba(8, 14, 28, 0.95); backdrop-filter: blur(35px); border: 1px solid rgba(255, 255, 255, 0.1); }
-.gold-glow { box-shadow: 0 0 100px rgba(245, 158, 11, 0.25); }
-.gold-border { border-color: rgba(245, 158, 11, 0.6); }
+.glass-panel { background: rgba(10, 16, 31, 0.85); backdrop-filter: blur(40px); border: 1px solid rgba(255, 255, 255, 0.08); }
+.glow-gold { box-shadow: 0 0 80px rgba(245, 158, 11, 0.15); }
+.glow-blue { box-shadow: 0 0 80px rgba(14, 165, 233, 0.15); }
 
-/* スワイプボタンのスタイル */
+/* スワイプ取引コンテナ */
 .swipe-container {
-  position: relative; width: 100%; height: 75px; background: rgba(0, 0, 0, 0.7);
-  border-radius: 20px; padding: 6px; overflow: hidden; user-select: none;
-  border: 1px solid rgba(245, 158, 11, 0.4); box-shadow: inset 0 4px 20px rgba(0,0,0,0.8), 0 0 30px rgba(245,158,11,0.15);
+  position: relative; width: 100%; height: 72px; background: rgba(0, 0, 0, 0.6);
+  border-radius: 18px; padding: 5px; overflow: hidden; user-select: none;
+  border: 1px solid rgba(245, 158, 11, 0.35); box-shadow: inset 0 2px 15px rgba(0,0,0,0.9);
 }
 .swipe-btn {
-  position: absolute; left: 6px; top: 6px; width: 63px; height: 63px;
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  position: absolute; left: 5px; top: 5px; width: 62px; height: 62px;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
   border-radius: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-  color: #000205; font-size: 22px; font-weight: bold; box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
+  color: #000308; font-size: 20px; font-weight: 800; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
   transition: background 0.2s ease; z-index: 10;
 }
 .swipe-btn.unlocked { background: linear-gradient(135deg, #34d399 0%, #059669 100%); color: #ffffff; }
 .swipe-text {
   position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em;
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em;
   background: linear-gradient(90deg, #f59e0b, #ffffff, #f59e0b);
   background-size: 200% auto; color: transparent; -webkit-background-clip: text;
   background-clip: text; opacity: 1; transition: opacity 0.2s;
@@ -51,53 +51,65 @@ body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffff
 .swipe-text.hide { opacity: 0; }
 </style>
 </head>
-<body class="min-h-screen bg-void text-white p-4 sm:p-8">
-<div class="max-w-4xl mx-auto space-y-8 relative z-10">
+<body class="min-h-screen bg-void text-slate-100 p-4 sm:p-8">
+<div class="max-w-5xl mx-auto space-y-10 relative z-10">
     
     <header class="flex flex-col sm:flex-row justify-between items-center border-b border-white/10 pb-6 gap-4">
         <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-200 flex items-center justify-center font-black text-black text-2xl shadow-xl shadow-amber-500/40">⚡</div>
+            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center font-black text-black text-xl shadow-lg shadow-amber-500/25">⚡</div>
             <div>
-                <span class="text-2xl font-black tracking-widest bg-gradient-to-r from-white via-slate-200 to-amber-400 bg-clip-text text-transparent">QLUX BSV APEX</span>
-                <span class="block text-[10px] text-amber-400 tracking-widest font-mono uppercase">Bitcoin SV Teranode Global Data & Nano-Payment Exchange</span>
+                <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-amber-400 bg-clip-text text-transparent">QLUX APEX</span>
+                <span class="block text-[9px] text-slate-400 tracking-widest font-mono uppercase">Global Teranode Infrastructure & Settlement</span>
             </div>
         </div>
-        <div class="flex items-center space-x-3 font-mono text-xs">
-            <span class="px-3 py-1.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">TPS: 1,420,310+</span>
+        <div class="flex items-center space-x-3">
+            <button onclick="openModal('upload-modal')" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 font-semibold text-xs tracking-wide transition-all flex items-center gap-2">
+                <span>📁</span> データ出品・アップロード
+            </button>
+            <button onclick="openModal('mapping-modal')" class="px-4 py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 font-semibold text-xs tracking-wide transition-all flex items-center gap-2">
+                <span>🌐</span> 視覚化マッピング
+            </button>
         </div>
     </header>
 
-    <section class="text-center max-w-3xl mx-auto pt-2 pb-2 space-y-4">
-        <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-            BSV Teranodeが生む無限のスケール、<br><span class="bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">世界中のデータをワンスワイプ取引。</span>
+    <section class="text-center max-w-3xl mx-auto pt-4 pb-2 space-y-5">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-semibold tracking-wider">
+            <span>●</span> TERANODE ARCHITECTURE v4.2 LIVE
+        </div>
+        <h1 class="text-3xl sm:text-6xl font-black tracking-tight leading-[1.1]">
+            無限のスケールとスピード。<br>
+            <span class="bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">次世代ワンスワイプ取引プラットフォーム。</span>
         </h1>
-        <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            世界中のベンダーがBSVチェーン上にアップロードした超高精度データを一元化。サトシ単位のナノペイメントとサブスクで完全にエコシステム化。
+        <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-normal">
+            世界中のエンタープライズ資産を高精度にインデックス化。サトシ単位のナノペイメントとアトミック決済を、かつてない洗練されたUXで実現します。
         </p>
     </section>
 
     <main class="space-y-8">
         
-        <div class="glass-card rounded-3xl p-6 sm:p-8 gold-glow gold-border space-y-6">
-            <div class="flex justify-between items-center border-b border-white/10 pb-4">
-                <h2 class="text-lg font-bold text-amber-400 flex items-center gap-2"><span>⚡</span> ワンスワイプ取引ポータル</h2>
-                <span class="text-xs font-mono text-slate-400">Instant Atomic Settlement</span>
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 glow-gold border-amber-500/30 space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/10 pb-4 gap-2">
+                <div>
+                    <h2 class="text-base font-bold text-white flex items-center gap-2"><span>⚡</span> ワンスワイプ取引エクスチェンジ</h2>
+                    <p class="text-xs text-slate-400 font-mono mt-0.5">Instant Atomic Settlement & Stream Unlocking</p>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-semibold">STATUS: READY</span>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="bg-black/60 border border-amber-500/40 rounded-2xl p-4 space-y-1">
-                    <div class="text-xs text-amber-400 font-mono font-bold">選択中データアセット</div>
-                    <div class="text-sm font-bold text-white">Enterprise AI Neural Telemetry v4.2</div>
-                    <div class="text-xs text-slate-400">プロバイダ: $qlux_enterprise_node</div>
+                <div class="bg-black/40 border border-white/10 rounded-2xl p-4 space-y-1">
+                    <div class="text-[11px] text-amber-400 font-mono uppercase tracking-wider">Target Asset Stream</div>
+                    <div class="text-sm font-bold text-white">Enterprise Neural Telemetry & Shard Feed</div>
+                    <div class="text-xs text-slate-400 font-mono">Provider: $qlux_enterprise_node</div>
                 </div>
-                <div class="bg-black/60 border border-white/10 rounded-2xl p-4 flex flex-col justify-center items-center text-center">
-                    <div class="text-xs text-slate-400 uppercase tracking-wider mb-1">決済料金 (Nano-Payment)</div>
-                    <div class="text-3xl font-black text-amber-400 font-mono">15 <span class="text-sm font-normal">SATS</span></div>
+                <div class="bg-black/40 border border-white/10 rounded-2xl p-4 flex flex-col justify-center items-center text-center">
+                    <div class="text-[11px] text-slate-400 uppercase tracking-wider mb-0.5">Required Nano-Fee</div>
+                    <div class="text-3xl font-black text-amber-400 font-mono">15 <span class="text-xs font-semibold text-slate-400">SATS</span></div>
                 </div>
             </div>
 
-            <div class="space-y-3">
-                <div class="text-xs font-bold uppercase tracking-wider text-amber-400/80">ワンスワイプ実行バー</div>
+            <div class="space-y-2">
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">Execute Transaction</div>
                 <div class="swipe-container" id="swipe-container">
                     <div class="swipe-text" id="swipe-text">SWIPE TO EXECUTE TRANSACTION &rarr;</div>
                     <div class="swipe-btn" id="swipe-btn">&rarr;</div>
@@ -105,173 +117,108 @@ body { font-family: 'Inter', sans-serif; background-color: #000205; color: #ffff
             </div>
 
             <div id="execution-terminal" class="bg-black/90 border border-emerald-500/40 rounded-2xl p-5 font-mono text-xs hidden space-y-2">
-                <div class="text-emerald-400 font-bold">[ワンスワイプ取引成功] データアンロック完了</div>
+                <div class="text-emerald-400 font-bold flex items-center gap-2"><span>✓</span> ワンスワイプ取引成功 — データストリームアンロック完了</div>
                 <div id="terminal-body" class="text-slate-300 break-all space-y-1"></div>
             </div>
         </div>
 
-        <div class="bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950/20 border border-amber-500/30 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
-            <div class="border-b border-amber-500/20 pb-4">
-                <span class="text-[10px] font-mono uppercase tracking-widest text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/30">FLAGSHIP ECOSYSTEM</span>
-                <h3 class="text-lg sm:text-xl font-black text-white mt-3">🚀 BSV超開発・超優良サービス機能セクション</h3>
-                <p class="text-xs text-slate-400 mt-1">ワンスワイプ取引と完全連動する、次世代エンタープライズ・インフラストラクチャの全容</p>
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
+            <div class="border-b border-white/10 pb-4">
+                <span class="text-[10px] font-mono uppercase tracking-widest text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/30">ENTERPRISE INFRASTRUCTURE</span>
+                <h3 class="text-lg sm:text-xl font-bold text-white mt-3">次世代クラウド＆分散型決済エコシステム</h3>
+                <p class="text-xs text-slate-400 mt-1">グローバルスケールでのデータ流通を加速させる、洗練されたコアテクノロジー</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
-                <div class="bg-black/60 border border-slate-800 p-5 rounded-2xl space-y-2 hover:border-amber-500/50 transition-colors">
-                    <div class="text-amber-300 font-bold flex items-center justify-between">
-                        <span class="flex items-center gap-2 text-sm">🌐 Teranode分散型アトミックシャーディング</span>
-                        <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">稼働中</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div class="bg-black/40 border border-white/10 p-5 rounded-2xl space-y-2 hover:border-amber-500/40 transition-all">
+                    <div class="text-amber-400 font-bold flex items-center justify-between text-sm">
+                        <span class="flex items-center gap-2">🌐 Teranode Distributed Sharding</span>
+                        <span class="text-[10px] text-emerald-400 font-mono bg-emerald-500/10 px-2 py-0.5 rounded">Active</span>
                     </div>
-                    <div class="text-slate-300 leading-relaxed text-xs">
-                        理論上無限のTPSを実現する最新テラノード基盤。世界中のノード間でデータを瞬時に同期し、混雑ゼロの高速アトミック処理を提供します。
-                    </div>
+                    <p class="text-slate-300 leading-relaxed font-normal">
+                        グローバル規模のノード間でデータを完全並列処理し、混雑や遅延のない限界突破のトラフィック処理を実現。
+                    </p>
                 </div>
 
-                <div class="bg-black/60 border border-slate-800 p-5 rounded-2xl space-y-2 hover:border-amber-500/50 transition-colors">
-                    <div class="text-amber-300 font-bold flex items-center justify-between">
-                        <span class="flex items-center gap-2 text-sm">💳 超低コスト・ナノペイメントエンジン</span>
-                        <span class="text-[10px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">手数料 < 0.00001 BSV</span>
+                <div class="bg-black/40 border border-white/10 p-5 rounded-2xl space-y-2 hover:border-amber-500/40 transition-all">
+                    <div class="text-amber-400 font-bold flex items-center justify-between text-sm">
+                        <span class="flex items-center gap-2">💳 Ultra-Low Nano-Payment Gateway</span>
+                        <span class="text-[10px] text-amber-400 font-mono bg-amber-500/10 px-2 py-0.5 rounded">< 0.00001 BSV</span>
                     </div>
-                    <div class="text-slate-300 leading-relaxed text-xs">
-                        1サトシ未満のマイクロ課金をワンスワイプで完全自動化。API利用料やデータ閲覧料の都度決済を極限まで効率化します。
-                    </div>
+                    <p class="text-slate-300 leading-relaxed font-normal">
+                        1サトシ単位のマイクロトランザクションを瞬時に決済。API利用やコンテンツ閲覧の都度課金を自動化。
+                    </p>
                 </div>
 
-                <div class="bg-black/60 border border-slate-800 p-5 rounded-2xl space-y-2 hover:border-amber-500/50 transition-colors">
-                    <div class="text-amber-300 font-bold flex items-center justify-between">
-                        <span class="flex items-center gap-2 text-sm">📊 オンチェーンAI・金融データ流通ハブ</span>
-                        <span class="text-[10px] text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">大容量対応</span>
+                <div class="bg-black/40 border border-white/10 p-5 rounded-2xl space-y-2 hover:border-amber-500/40 transition-all">
+                    <div class="text-amber-400 font-bold flex items-center justify-between text-sm">
+                        <span class="flex items-center gap-2">📊 On-Chain AI & Financial Hub</span>
+                        <span class="text-[10px] text-cyan-400 font-mono bg-cyan-500/10 px-2 py-0.5 rounded">High Capacity</span>
                     </div>
-                    <div class="text-slate-300 leading-relaxed text-xs">
-                        高精度AI学習用テレメトリー、リアルタイム金融ストリーム、企業機密アセットをブロックチェーン上に安全に永久保存・トレード。
-                    </div>
+                    <p class="text-slate-300 leading-relaxed font-normal">
+                        高精度AI学習用データやリアルタイム金融テレメトリーをブロックチェーン上に安全に永続記録・トレード。
+                    </p>
                 </div>
 
-                <div class="bg-black/60 border border-slate-800 p-5 rounded-2xl space-y-2 hover:border-amber-500/50 transition-colors">
-                    <div class="text-amber-300 font-bold flex items-center justify-between">
-                        <span class="flex items-center gap-2 text-sm">🛡️ ゼロトラスト・ゼロダウンタイム設計</span>
-                        <span class="text-[10px] text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded">24/365 完動</span>
+                <div class="bg-black/40 border border-white/10 p-5 rounded-2xl space-y-2 hover:border-amber-500/40 transition-all">
+                    <div class="text-amber-400 font-bold flex items-center justify-between text-sm">
+                        <span class="flex items-center gap-2">🛡️ Zero-Trust & High Availability</span>
+                        <span class="text-[10px] text-purple-400 font-mono bg-purple-500/10 px-2 py-0.5 rounded">24/365</span>
                     </div>
-                    <div class="text-slate-300 leading-relaxed text-xs">
-                        単一障害点（SPOF）を完全に排除したパブリックブロックチェーンの堅牢性により、世界中どこからでも停止しない超高信頼サービスを実現。
-                    </div>
+                    <p class="text-slate-300 leading-relaxed font-normal">
+                        単一障害点を持たないパブリックインフラにより、世界中どこからでも停止しない圧倒的な堅牢性を提供。
+                    </p>
                 </div>
             </div>
         </div>
 
-        <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-4">
-            <h3 class="text-sm font-bold text-amber-400 font-mono">📺 サービス紹介・デモプレビュー</h3>
-            <div class="aspect-video w-full bg-black/80 border border-slate-800 rounded-2xl flex flex-col items-center justify-center p-4 text-center space-y-2 relative overflow-hidden">
-                <div class="absolute inset-0 bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
-                <div class="text-4xl animate-bounce">▶️</div>
-                <p class="text-xs font-mono text-slate-300">QLUX BSV APEX: ワンスワイプ取引＆テラノード実演ストリーム</p>
-                <span class="px-3 py-1 bg-amber-500/20 border border-amber-500/40 rounded-full text-[10px] font-mono text-amber-400">HD STREAMING READY</span>
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="text-sm font-bold text-white flex items-center gap-2"><span>📺</span> Interactive Platform Demo Stream</h3>
+                <span class="text-[10px] font-mono text-amber-400">HD STREAM READY</span>
+            </div>
+            <div onclick="openDemoModal()" class="aspect-video w-full bg-black/80 border border-white/10 rounded-2xl flex flex-col items-center justify-center p-6 text-center space-y-3 relative overflow-hidden group cursor-pointer hover:border-amber-500/50 transition-all">
+                <div class="absolute inset-0 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:20px_20px] opacity-10 group-hover:opacity-25 transition-opacity"></div>
+                <div class="w-16 h-16 rounded-full bg-amber-500 text-black flex items-center justify-center text-2xl font-black shadow-lg shadow-amber-500/30 group-hover:scale-110 transition-transform">▶</div>
+                <div>
+                    <p class="text-sm font-bold text-white group-hover:text-amber-400 transition-colors">QLUX APEX: ワンスワイプ取引＆テラノード実演プレビュー</p>
+                    <p class="text-xs text-slate-400 mt-1 font-mono">Click to launch interactive high-definition stream</p>
+                </div>
             </div>
         </div>
 
     </main>
 
-    <footer class="text-center text-[10px] font-mono text-slate-500 space-y-1 pt-4 border-t border-white/10">
-        <p>© 2026 QLUX BSV APEX Ecosystem. All Rights Reserved.</p>
-        <p class="text-amber-500/60">Powered by Bitcoin SV Teranode & Enterprise Cloud Infrastructure</p>
+    <footer class="text-center text-[11px] font-mono text-slate-500 space-y-1 pt-6 border-t border-white/10">
+        <p>© 2026 QLUX APEX Global Infrastructure. All Rights Reserved.</p>
+        <p class="text-amber-500/60">Powered by Teranode & Enterprise Cloud Architecture</p>
     </footer>
 
 </div>
 
-<script>
-// スワイプバーの動作ロジック
-var container = document.getElementById('swipe-container');
-var btn = document.getElementById('swipe-btn');
-var text = document.getElementById('swipe-text');
+<div id="upload-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="glass-panel rounded-3xl p-6 sm:p-8 max-w-md w-full border-amber-500/40 space-y-5">
+        <div class="flex justify-between items-center border-b border-white/10 pb-4">
+            <h3 class="text-base font-bold text-amber-400">📁 データアセット出品・アップロード</h3>
+            <button onclick="closeModal('upload-modal')" class="text-slate-400 hover:text-white font-bold text-sm">✕</button>
+        </div>
+        <div class="space-y-4 text-xs font-mono">
+            <div>
+                <label class="block text-slate-300 font-bold mb-1">アセット名称 (Asset Title)</label>
+                <input type="text" id="up-title" value="Global Teranode Mesh Feed v1.0" class="w-full bg-black/60 border border-white/20 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500">
+            </div>
+            <div>
+                <label class="block text-slate-300 font-bold mb-1">プロバイダハンドル (Provider ID)</label>
+                <input type="text" id="up-vendor" value="$qlux_enterprise_node" class="w-full bg-black/60 border border-white/20 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500">
+            </div>
+            <div>
+                <label class="block text-slate-300 font-bold mb-1">ナノ決済料金 (Sats)</label>
+                <input type="number" id="up-price" value="25" class="w-full bg-black/60 border border-white/20 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500">
+            </div>
+            <button onclick="submitAsset()" class="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/25">
+                ネットワークへ出品をブロードキャスト
+            </button>
+        </div>
+    </div>
+</div>
 
-var isDragging = false;
-var startX = 0;
-var currentX = 0;
-var maxTranslate = 0;
-
-function updateMax() {
-    maxTranslate = container.clientWidth - btn.clientWidth - 12;
-}
-window.addEventListener('resize', updateMax);
-window.addEventListener('load', updateMax);
-
-function startDrag(e) {
-    if (btn.classList.contains('unlocked')) return;
-    isDragging = true;
-    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    startX = clientX - currentX;
-    text.classList.add('hide');
-}
-
-function onDrag(e) {
-    if (!isDragging) return;
-    updateMax();
-    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    currentX = clientX - startX;
-    if (currentX < 0) currentX = 0;
-    if (currentX > maxTranslate) currentX = maxTranslate;
-    btn.style.transform = 'translateX(' + currentX + 'px)';
-}
-
-function endDrag() {
-    if (!isDragging) return;
-    isDragging = false;
-    updateMax();
-
-    if (currentX >= maxTranslate * 0.7) {
-        btn.style.transform = 'translateX(' + maxTranslate + 'px)';
-        btn.classList.add('unlocked');
-        btn.innerHTML = '✓';
-        executePayment();
-    } else {
-        currentX = 0;
-        btn.style.transform = 'translateX(0px)';
-        text.classList.remove('hide');
-    }
-}
-
-btn.addEventListener('mousedown', startDrag);
-window.addEventListener('mousemove', onDrag);
-window.addEventListener('mouseup', endDrag);
-
-btn.addEventListener('touchstart', startDrag);
-window.addEventListener('touchmove', onDrag);
-window.addEventListener('touchend', endDrag);
-
-function executePayment() {
-    var terminal = document.getElementById('execution-terminal');
-    var body = document.getElementById('terminal-body');
-    
-    terminal.style.display = "block";
-    body.innerHTML = 'Broadcasting 15 sats nano-payment to BSV Teranode...';
-
-    fetch('/api/pay', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sats: 15 })
-    })
-    .then(function(res) { return res.json(); })
-    .then(function(data) {
-        setTimeout(function() {
-            btn.classList.remove('unlocked');
-            btn.innerHTML = '&rarr;';
-            currentX = 0;
-            btn.style.transform = 'translateX(0px)';
-            text.classList.remove('hide');
-
-            body.innerHTML = 'ASSET: Enterprise AI Neural Telemetry<br>BUYER: $qlux_member_01<br>AMOUNT: ' + data.sats + ' SATS<br>TXID: ' + data.txid + '<br><b class="text-emerald-400">[BSV OK] ワンスワイプ取引およびデータアンロック成功。</b>';
-        }, 400);
-    })
-    .catch(function(e) {
-        btn.classList.remove('unlocked');
-        btn.innerHTML = '&rarr;';
-        currentX = 0;
-        btn.style.transform = 'translateX(0px)';
-        text.classList.remove('hide');
-        body.innerHTML = 'Error: BSV Payment gateway communication failed.';
-    });
-}
-</script>
-</body>
-</html>
