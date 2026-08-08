@@ -3,439 +3,326 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BSV APEX GLOBAL — The Pinnacle of On-Chain All-Exchange Ecosystem</title>
+<title>BSV HARDWARE-ONCHAIN CORE APEX</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    background-color: #030712;
-    color: #f8fafc;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    padding: 24px;
+    background-color: #020408;
+    color: #e2e8f0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    padding: 16px;
     display: flex;
     justify-content: center;
-    overflow-x: hidden;
 }
-.container {
+.system-root {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 16px;
 }
-/* トップフラッグシップ・ヘッダー */
-header {
-    background: linear-gradient(135deg, rgba(15,23,42,0.98), rgba(2,6,23,0.98));
-    border: 1px solid rgba(245, 158, 11, 0.4);
-    border-radius: 24px;
-    padding: 28px 36px;
+
+/* トップ・インダストリアル・ヘッダー */
+.ind-header {
+    background: #060913;
+    border: 1px solid #334155;
+    border-left: 4px solid #f59e0b;
+    padding: 20px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 0 60px rgba(245, 158, 11, 0.15);
 }
-.logo-area {
+.ind-title h1 { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 0.05em; }
+.ind-title span { font-size: 11px; color: #f59e0b; letter-spacing: 2px; }
+
+.core-status {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid #059669;
+    color: #34d399;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 20px;
-}
-.logo-icon {
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #b45309 100%);
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    color: #000;
-    font-weight: 900;
-    box-shadow: 0 0 35px rgba(245, 158, 11, 0.6);
-}
-.logo-text h1 { font-size: 24px; font-weight: 900; color: #fff; letter-spacing: 0.05em; }
-.logo-text span { font-size: 11px; color: #f59e0b; font-family: monospace; letter-spacing: 2px; }
-
-.apex-badge {
-    background: rgba(245, 158, 11, 0.15);
-    border: 1px solid rgba(245, 158, 11, 0.5);
-    color: #f59e0b;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-size: 12px;
-    font-weight: 900;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: monospace;
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
-}
-.ping-dot {
-    width: 10px;
-    height: 10px;
-    background-color: #f59e0b;
-    border-radius: 50%;
-    box-shadow: 0 0 12px #f59e0b;
-    animation: pulse 1.5s infinite;
-}
-@keyframes pulse {
-    0% { transform: scale(0.95); opacity: 0.8; }
-    50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 18px #f59e0b; }
-    100% { transform: scale(0.95); opacity: 0.8; }
-}
-
-/* カード共通 */
-.card {
-    background: rgba(10, 15, 30, 0.94);
-    border: 1px solid rgba(245, 158, 11, 0.3);
-    border-radius: 28px;
-    padding: 32px;
-    box-shadow: 0 0 80px rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(25px);
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-.card-title {
-    font-size: 18px;
-    font-weight: 900;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    letter-spacing: 0.03em;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding-bottom: 14px;
-}
-
-/* グリッド構成 */
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media(max-width: 900px) {
-    .grid-3 { grid-template-columns: 1fr; }
-    .grid-2 { grid-template-columns: 1fr; }
-}
-
-/* スタッツカード */
-.stat-box {
-    background: rgba(0, 0, 0, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 22px;
-    display: flex;
-    flex-direction: column;
     gap: 8px;
 }
-.stat-box label { font-size: 10px; color: #94a3b8; font-family: monospace; letter-spacing: 0.15em; }
-.stat-box .val { font-size: 22px; font-weight: 900; color: #f59e0b; font-family: monospace; }
-.stat-box .sub { font-size: 11px; color: #34d399; font-family: monospace; }
+.status-led {
+    width: 8px;
+    height: 8px;
+    background-color: #34d399;
+    box-shadow: 0 0 8px #34d399;
+}
 
-/* キネティック・オールエクスチェンジ・スワイプ */
-.swipe-track {
+/* グリッドレイアウト */
+.grid-main { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media(max-width: 900px) {
+    .grid-main { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+}
+
+.panel {
+    background: #04070e;
+    border: 1px solid #1e293b;
+    border-radius: 4px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.panel-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #cbd5e1;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.05em;
+}
+
+/* ハードウェア・スペック行 */
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed #1e293b;
+    font-size: 12px;
+}
+.spec-row span:first-child { color: #64748b; }
+.spec-row span:last-child { color: #f8fafc; font-weight: bold; }
+
+/* 実行スワイプコントロール */
+.exec-track {
     position: relative;
     width: 100%;
-    height: 84px;
-    background: radial-gradient(circle at center, #050b16 0%, #000000 100%);
-    border-radius: 24px;
-    padding: 6px;
+    height: 64px;
+    background: #010204;
+    border: 1px solid #f59e0b;
+    padding: 4px;
     overflow: hidden;
-    border: 1px solid rgba(245, 158, 11, 0.7);
-    box-shadow: inset 0 6px 30px rgba(0,0,0,0.95), 0 0 25px rgba(245,158,11,0.2);
     user-select: none;
     touch-action: none;
 }
-.swipe-thumb {
+.exec-thumb {
     position: absolute;
-    left: 6px;
-    top: 6px;
-    width: 72px;
-    height: 72px;
-    background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #b45309 100%);
-    border-radius: 18px;
-    cursor: grab;
+    left: 4px;
+    top: 4px;
+    width: 56px;
+    height: 54px;
+    background: #f59e0b;
+    color: #000;
+    font-weight: 900;
+    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000104;
-    font-size: 30px;
-    font-weight: 900;
-    box-shadow: 0 4px 30px rgba(245, 158, 11, 0.8);
-    z-index: 30;
-    touch-action: none;
-    transition: transform 0.08s cubic-bezier(0.1, 0.9, 0.2, 1), background 0.3s;
+    cursor: pointer;
+    z-index: 20;
+    transition: transform 0.05s linear;
 }
-.swipe-thumb:active { cursor: grabbing; scale: 1.05; }
-.swipe-thumb.unlocked {
-    background: linear-gradient(135deg, #34d399, #059669);
+.exec-thumb:active { cursor: grabbing; }
+.exec-thumb.active-lock {
+    background: #10b981;
     color: #fff;
-    box-shadow: 0 0 40px rgba(52, 211, 153, 0.95);
 }
-.swipe-instruction {
+.exec-label {
     position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 0.2em;
+    font-size: 11px;
     color: #f59e0b;
-    opacity: 0.95;
-    transition: opacity 0.2s;
+    letter-spacing: 0.15em;
     pointer-events: none;
     z-index: 10;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
 }
-.swipe-instruction.hide { opacity: 0; }
-.swipe-progress {
+.exec-progress {
     position: absolute;
     left: 0;
     top: 0;
     height: 100%;
-    background: linear-gradient(90deg, rgba(245,158,11,0.2), rgba(245,158,11,0.5));
-    border-radius: 22px;
+    background: rgba(245, 158, 11, 0.15);
     width: 0%;
-    pointer-events: none;
     z-index: 5;
-    transition: width 0.05s linear;
 }
 
-/* ターミナル */
-.terminal {
+/* ターミナル出力 */
+.terminal-out {
     background: #000;
-    border: 1px solid #10b981;
-    border-radius: 20px;
-    padding: 22px;
-    font-family: monospace;
-    font-size: 12px;
+    border: 1px solid #059669;
+    padding: 16px;
+    font-size: 11px;
     color: #34d399;
+    line-height: 1.5;
     display: none;
-    line-height: 1.6;
-    box-shadow: inset 0 0 40px rgba(16, 185, 129, 0.15);
 }
 
-/* BSVトップサービス・ランキングセクション */
-.ranking-table {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+/* ランキングテーブル */
+.table-box {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
 }
-.rank-item {
-    background: rgba(5, 10, 20, 0.85);
-    border: 1px solid rgba(245, 158, 11, 0.25);
-    border-radius: 18px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s;
+.table-box th, .table-box td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #1e293b;
 }
-.rank-item:hover {
-    border-color: rgba(245, 158, 11, 0.8);
-    box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
-    transform: translateY(-2px);
-}
-.rank-left {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-.rank-num {
-    width: 36px;
-    height: 36px;
-    background: linear-gradient(135deg, #f59e0b, #b45309);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    font-weight: 900;
-    color: #000;
-}
-.rank-info h3 { font-size: 15px; font-weight: 900; color: #fff; margin-bottom: 3px; }
-.rank-info p { font-size: 11px; color: #94a3b8; font-family: monospace; }
-.rank-metric {
-    text-align: right;
-    font-family: monospace;
-}
-.rank-metric .score { font-size: 16px; font-weight: 900; color: #34d399; }
-.rank-metric .label { font-size: 10px; color: #64748b; }
+.table-box th { color: #64748b; font-size: 10px; letter-spacing: 0.1em; }
+.table-box td:last-child { text-align: right; color: #34d399; font-weight: bold; }
 
 footer {
     text-align: center;
-    font-size: 11px;
-    color: #64748b;
-    font-family: monospace;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 24px;
+    font-size: 10px;
+    color: #475569;
+    padding: 16px 0;
+    border-top: 1px solid #1e293b;
+    letter-spacing: 0.1em;
 }
 </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <div class="logo-area">
-            <div class="logo-icon">👑</div>
-            <div class="logo-text">
-                <h1>BSV APEX GLOBAL</h1>
-                <span>THE PINNACLE OF ON-CHAIN ALL-EXCHANGE ECOSYSTEM</span>
-            </div>
+<div class="system-root">
+    <header class="ind-header">
+        <div class="ind-title">
+            <h1>BSV HARDWARE-ONCHAIN APEX CORE</h1>
+            <span>INTEGRATED SYSTEM SPEC & ALL-EXCHANGE MATRIX</span>
         </div>
-        <div class="apex-badge">
-            <div class="ping-dot"></div> GLOBAL RANK #1 FLAGGED NODE
+        <div class="core-status">
+            <div class="status-led"></div> HARDWARE SYNC: ONLINE
         </div>
     </header>
 
-    <main class="card">
-        <div class="card-title">
-            <span>⚡</span> オンチェーン・オールエクスチェンジ ＆ 完全自動無人スマートコントラクト執行
-        </div>
-        
-        <div class="grid-2">
-            <div class="stat-box">
-                <label>GLOBAL ALL-EXCHANGE ROUTE</label>
-                <div style="font-size: 15px; font-weight: bold; color: #fff;">Teranode Multilateral Atomic Liquidity Matrix</div>
-                <div class="sub">Master Node: $bsv_apex_global_onchain</div>
+    <div class="grid-main">
+        <main class="panel">
+            <div class="panel-title">
+                <span>⚡ AUTOMATED ON-CHAIN EXECUTION ENGINE</span>
+                <span style="font-size: 11px; color: #f59e0b;">NODE: $bsv_hardware_master</span>
             </div>
-            <div class="stat-box" style="justify-content: center; text-align: center;">
-                <label>INSTANT REWARD YIELD</label>
-                <div class="val">5,000 SATS <span style="font-size: 12px; color: #94a3b8;">/ $50.00 USD equivalent</span></div>
-            </div>
-        </div>
 
-        <div>
-            <div style="font-size: 11px; font-weight: bold; color: #f59e0b; font-family: monospace; margin-bottom: 8px; display: flex; justify-content: space-between;">
-                <span>▶ 頂点アトミック・オールエクスチェンジ即時実行ワンスワイプ</span>
-                <span style="color: #64748b;">DRAG TO EXECUTE ALL-CHAIN SETTLEMENT</span>
+            <div class="spec-row">
+                <span>EXECUTION PROTOCOL</span>
+                <span>Teranode Shard & P2P Bitcoin Script</span>
             </div>
-            <div class="swipe-track" id="swipe-track">
-                <div class="swipe-progress" id="swipe-progress"></div>
-                <div class="swipe-instruction" id="swipe-instruction">SWIPE TO EXECUTE ON-CHAIN ALL-EXCHANGE &rarr;</div>
-                <div class="swipe-thumb" id="swipe-thumb">&rarr;</div>
+            <div class="spec-row">
+                <span>ATOMIC REWARD SETTLEMENT</span>
+                <span>5,000 SATS / $50.00 USD EQUIVALENT</span>
             </div>
-        </div>
 
-        <div id="execution-terminal" class="terminal">
-            <div style="font-weight: bold; margin-bottom: 6px; font-size: 13px; color: #fff;">✓ [GLOBAL APEX SUCCESS] オンチェーン・オールエクスチェンジがミリ秒で正常完了しました。</div>
-            <div id="terminal-body"></div>
-        </div>
-    </main>
-
-    <div class="card">
-        <div class="card-title">
-            <span>🏆</span> 世界一優良 BSV コア機能・サービス公式ランキング（グローバル基準）
-        </div>
-        
-        <div class="ranking-table">
-            <div class="rank-item">
-                <div class="rank-left">
-                    <div class="rank-num">01</div>
-                    <div class="rank-info">
-                        <h3>Teranode Unlimited Shard Engine</h3>
-                        <p>ブロックサイズ制限撤廃。毎秒数百万件のトランザクションを完全並列処理する世界最高峰のスケーリング基盤。</p>
-                    </div>
-                </div>
-                <div class="rank-metric">
-                    <div class="score">99.99%</div>
-                    <div class="label">EFFICIENCY SCORE</div>
+            <div style="margin-top: 8px;">
+                <div style="font-size: 11px; color: #64748b; margin-bottom: 6px; letter-spacing: 0.05em;">SLIDE TO TRIGGER HARDWARE-ONCHAIN ATOMIC SWAP</div>
+                <div class="exec-track" id="exec-track">
+                    <div class="exec-progress" id="exec-progress"></div>
+                    <div class="exec-label" id="exec-label">SLIDE RIGHT TO EXECUTE &rarr;</div>
+                    <div class="exec-thumb" id="exec-thumb">&rarr;</div>
                 </div>
             </div>
 
-            <div class="rank-item">
-                <div class="rank-left">
-                    <div class="rank-num">02</div>
-                    <div class="rank-info">
-                        <h3>Autonomous P2P Smart Contracts</h3>
-                        <p>仲介者不在。Bitcoin Scriptによる完全自動無人かつセキュアな条件合致型アトミック決済・契約執行。</p>
-                    </div>
-                </div>
-                <div class="rank-metric">
-                    <div class="score">0.00ms</div>
-                    <div class="label">LATENCY DELAY</div>
-                </div>
+            <div id="exec-terminal" class="terminal-out">
+                <div style="font-weight: bold; margin-bottom: 4px; color: #fff;">[SUCCESS] HARDWARE & ON-CHAIN SYNC COMPLETE.</div>
+                <div id="term-body"></div>
             </div>
+        </main>
 
-            <div class="rank-item">
-                <div class="rank-left">
-                    <div class="rank-num">03</div>
-                    <div class="rank-info">
-                        <h3>STAS Tokenization & Asset Protocol</h3>
-                        <p>ネイティブレイヤーでの完全準拠型トークン発行。実世界資産（RWA）および企業アセットの完璧なデジタル管理。</p>
-                    </div>
-                </div>
-                <div class="rank-metric">
-                    <div class="score">100%</div>
-                    <div class="label">COMPLIANCE SYNC</div>
-                </div>
+        <aside class="panel">
+            <div class="panel-title">
+                <span>🛠️ PHYSICAL SPECIFICATION</span>
             </div>
-
-            <div class="rank-item">
-                <div class="rank-left">
-                    <div class="rank-num">04</div>
-                    <div class="rank-info">
-                        <h3>SPV Instant Atomic Exchange</h3>
-                        <p>全チェーン同期不要の超高速検証。マルチアセット間での極小手数料・瞬時アトミック・スワップを実現。</p>
-                    </div>
-                </div>
-                <div class="rank-metric">
-                    <div class="score">#1</div>
-                    <div class="label">GLOBAL RANKING</div>
-                </div>
+            <div class="spec-row">
+                <span>F-CAME STRUCTURE</span>
+                <span>Ø30cm / H44.5cm / 3cm Thick</span>
             </div>
-        </div>
+            <div class="spec-row">
+                <span>DIAMETER & HOLE</span>
+                <span>5cm Polished / 1.95mm Lateral</span>
+            </div>
+            <div class="spec-row">
+                <span>ELECTRODE & WRAP</span>
+                <span>Special Electrode / 22SQ Blue Hose</span>
+            </div>
+            <div class="spec-row">
+                <span>MIRROR SHIELDING</span>
+                <span>Spiral Alternating In/Out Wrap</span>
+            </div>
+        </aside>
     </div>
+
+    <section class="panel">
+        <div class="panel-title">
+            <span>🏆 WORLDWIDE BSV SERVICE & CORE FUNCTION RANKING</span>
+            <span style="font-size: 11px; color: #34d399;">GLOBAL RANK #1</span>
+        </div>
+        
+        <table class="table-box">
+            <thead>
+                <tr>
+                    <th>RANK</th>
+                    <th>CORE SYSTEM / SERVICE</th>
+                    <th>TECHNICAL SPECIFICATION SUMMARY</th>
+                    <th>PERFORMANCE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>Teranode Shard Scale</td>
+                    <td>Block size limit completely removed. Millions of parallel transactions per second.</td>
+                    <td>99.99%</td>
+                </tr>
+                <tr>
+                    <td>02</td>
+                    <td>Autonomous Smart Contract</td>
+                    <td>Zero middlemen. Direct Bitcoin Script execution for instant unattended atomic settlements.</td>
+                    <td>0.00ms</td>
+                </tr>
+                <tr>
+                    <td>03</td>
+                    <td>STAS Tokenization Engine</td>
+                    <td>Native layer compliance-ready asset issuance and enterprise-grade tracking.</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td>04</td>
+                    <td>SPV Instant Atomic Exchange</td>
+                    <td>Cryptographic verification without full chain download. Micro-fee multi-asset exchange.</td>
+                    <td>#1 RANK</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
     <div class="grid-3">
-        <div class="stat-box">
-            <label>GLOBAL TPS THROUGHPUT</label>
-            <div class="val" id="tps-val">1,250,000 TPS</div>
-            <div class="sub">▲ Peak Teranode Capacity</div>
+        <div class="panel" style="padding: 16px;">
+            <div style="font-size: 10px; color: #64748b;">PEAK THROUGHPUT</div>
+            <div style="font-size: 18px; font-weight: bold; color: #f59e0b; margin-top: 4px;">2,500,000 TPS</div>
         </div>
-        <div class="stat-box">
-            <label>ON-CHAIN LIQUIDITY POOL</label>
-            <div class="val">$1,840,290,000</div>
-            <div class="sub">● Global All-Exchange Pool</div>
+        <div class="panel" style="padding: 16px;">
+            <div style="font-size: 10px; color: #64748b;">GLOBAL LIQUIDITY POOL</div>
+            <div style="font-size: 18px; font-weight: bold; color: #34d399; margin-top: 4px;">$3,420,100,000</div>
         </div>
-        <div class="stat-box">
-            <label>NETWORK FEE PER TX</label>
-            <div class="val">&lt; 0.00001 SAT</div>
-            <div class="sub">◆ Absolute Zero Bottleneck</div>
-        </div>
-    </div>
-
-    <div class="card" style="padding: 24px;">
-        <div class="card-title" style="font-size: 15px;">
-            <span>🌐</span> BSV グローバル頂点証明・リアルタイム監視ストリーム
-        </div>
-        <div style="background: rgba(2, 6, 23, 0.9); border-radius: 18px; padding: 20px; border: 1px dashed rgba(245, 158, 11, 0.4); font-family: monospace; font-size: 11px; color: #cbd5e1; display: flex; flex-direction: column; gap: 12px;">
-            <div style="display: flex; justify-content: space-between;">
-                <span>[FLAGSHIP_NODE] $bsv_apex_global_onchain: Verified #1 Rank</span>
-                <span style="color: #34d399;">VERIFIED</span>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <span>[ALL_EXCHANGE] Multilateral Liquidity Routing: Active</span>
-                <span style="color: #34d399;">OPTIMIZED</span>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <span>[SMART_CONTRACT] Autonomous Unattended Execution Engine</span>
-                <span style="color: #f59e0b;">ACTIVE_LISTENING</span>
-            </div>
+        <div class="panel" style="padding: 16px;">
+            <div style="font-size: 10px; color: #64748b;">NETWORK FEE OVERHEAD</div>
+            <div style="font-size: 18px; font-weight: bold; color: #f8fafc; margin-top: 4px;">&lt; 0.000001 SAT</div>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 BSV APEX GLOBAL. The Absolute Pinnacle Flagship of On-Chain All-Exchange Ecosystems.</p>
+        <p>© 2026 BSV HARDWARE-ONCHAIN APEX CORE. Industrial Infrastructure & Sovereign Matrix.</p>
     </footer>
 </div>
 
 <script>
-// キネティック・オールエクスチェンジ・スワイプ・エンジン
-var track = document.getElementById('swipe-track');
-var thumb = document.getElementById('swipe-thumb');
-var instruction = document.getElementById('swipe-instruction');
-var progress = document.getElementById('swipe-progress');
-var terminal = document.getElementById('execution-terminal');
-var terminalBody = document.getElementById('terminal-body');
+var track = document.getElementById('exec-track');
+var thumb = document.getElementById('exec-thumb');
+var label = document.getElementById('exec-label');
+var progress = document.getElementById('exec-progress');
+var terminal = document.getElementById('exec-terminal');
+var termBody = document.getElementById('term-body');
 
 var isDragging = false;
 var startX = 0;
@@ -444,20 +331,19 @@ var maxTranslate = 0;
 
 function updateMetrics() {
     if (track && thumb) {
-        maxTranslate = track.clientWidth - thumb.clientWidth - 12;
+        maxTranslate = track.clientWidth - thumb.clientWidth - 8;
     }
 }
 window.addEventListener('resize', updateMetrics);
 window.addEventListener('load', updateMetrics);
 
 function handleStart(e) {
-    if (thumb.classList.contains('unlocked')) return;
+    if (thumb.classList.contains('active-lock')) return;
     isDragging = true;
     updateMetrics();
     var clientX = e.touches ? e.touches[0].clientX : e.clientX;
     startX = clientX - currentX;
-    instruction.classList.add('hide');
-    thumb.style.transform = 'scale(1.08)';
+    label.style.opacity = '0';
     if (e.cancelable) e.preventDefault();
 }
 
@@ -469,9 +355,8 @@ function handleMove(e) {
     if (currentX < 0) currentX = 0;
     if (currentX > maxTranslate) currentX = maxTranslate;
     
-    thumb.style.transform = 'translateX(' + currentX + 'px) scale(1.08)';
-    var percent = (currentX / maxTranslate) * 100;
-    progress.style.width = percent + '%';
+    thumb.style.transform = 'translateX(' + currentX + 'px)';
+    progress.style.width = ((currentX / maxTranslate) * 100) + '%';
     
     if (e.cancelable) e.preventDefault();
 }
@@ -480,20 +365,19 @@ function handleEnd() {
     if (!isDragging) return;
     isDragging = false;
     updateMetrics();
-    thumb.style.transform = 'translateX(' + currentX + 'px) scale(1)';
 
-    if (currentX >= maxTranslate * 0.70) {
+    if (currentX >= maxTranslate * 0.75) {
         currentX = maxTranslate;
-        thumb.style.transform = 'translateX(' + maxTranslate + 'px) scale(1)';
+        thumb.style.transform = 'translateX(' + maxTranslate + 'px)';
         progress.style.width = '100%';
-        thumb.classList.add('unlocked');
+        thumb.classList.add('active-lock');
         thumb.innerHTML = '✓';
-        executeApexExchange();
+        executeHardwareContract();
     } else {
         currentX = 0;
         thumb.style.transform = 'translateX(0px)';
         progress.style.width = '0%';
-        instruction.classList.remove('hide');
+        label.style.opacity = '1';
     }
 }
 
@@ -506,22 +390,23 @@ window.addEventListener('mouseup', handleEnd);
 window.addEventListener('touchmove', handleMove, {passive: false});
 window.addEventListener('touchend', handleEnd);
 
-function executeApexExchange() {
+function executeHardwareContract() {
     terminal.style.display = "block";
-    terminalBody.innerHTML = 
-        "Global Apex Node: $bsv_apex_global_onchain<br>" +
-        "All-Exchange Atomic TXID: 0xapex99842109e82b41fc928410e7b4191a4ef88<br>" +
-        "Autonomous Smart Contract & STAS Shard Execution: Verified #1 Worldwide<br>" +
-        "<span style='color:#fff; font-weight:bold;'>REWARD YIELD: 5,000 SATS & $50 USD atomically settled via BSV Apex Global Network.</span>";
+    termBody.innerHTML = 
+        "Hardware Core: $bsv_hardware_master<br>" +
+        "TxID: 0xind9942109e82b41fc928410e7b4191a4ef8899cc<br>" +
+        "Physical Spec Integration: F-Came Ø30cm / Blue Hose / Mirror Spiral Verified<br>" +
+        "<span style='color:#fff; font-weight:bold;'>REWARD: 5,000 SATS & $50 USD atomically settled via hardware-onchain matrix.</span>";
 
     setTimeout(function() {
-        thumb.classList.remove('unlocked');
+        thumb.classList.remove('active-lock');
         thumb.innerHTML = '&rarr;';
         currentX = 0;
         thumb.style.transform = 'translateX(0px)';
         progress.style.width = '0%';
-        instruction.classList.remove('hide');
-    }, 2500);
+        label.style.opacity = '1';
+        terminal.style.display = "none";
+    }, 3000);
 }
 </script>
 
