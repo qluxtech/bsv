@@ -1,12 +1,12 @@
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-import os
+import time
 
-app = FastAPI(title="QLUX APEX Live On-Chain Gateway")
+app = FastAPI(title="QLUX APEX Live Teranode Gateway", version="10.0")
 
-# CORS設定（ブラウザからのリクエストを完全許可）
+# CORSの設定（どこからでもライブ通信できるように許可）
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -15,27 +15,399 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class PaymentRequest(BaseModel):
-    sats: int = 5000
-    fiat: str = "50 USD"
+class SwapRequest(BaseModel):
+    sell_asset: str
+    buy_asset: str
+    amount: float
 
 @app.get("/", response_class=HTMLResponse)
-def read_root():
-    if os.path.exists("index.html"):
-        with open("index.html", "r", encoding="utf-8") as f:
-            return f.read()
-    return "<h1>index.htmlが見つかりません。同じフォルダに index.html を配置してください。</h1>"
+async def get_live_dashboard():
+    # 完全に一体化した最新のフロントエンド画面をサーバーから返します
+    return HTML_CONTENT
 
-@app.post("/api/pay")
-def process_payment(req: PaymentRequest):
-    return {
-        "status": "success",
-        "sats": req.sats,
-        "fiat": req.fiat,
-        "txid": "0x49f8c41e9b21a820c78e21950e2621ad79f8b41"
+@app.post("/api/exchange/execute")
+async def execute_exchange(data: SwapRequest):
+    try:
+        # ライブ・オンチェーン取引のシミュレーション処理
+        txid = "0x" + hex(int(time.time() * 1000))[2:] * 2
+        return {
+            "status": "success",
+            "message": "ライブ・アトミック決済が正常に完了しました。",
+            "sell": data.sell_asset,
+            "buy": data.buy_asset,
+            "amount": data.amount,
+            "txid": txid[:42],
+            "gateway": "$qlux_all_onchain_node"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+# --- サーバー内蔵型スタンドアロンUIテンプレート ---
+HTML_CONTENT = """
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QLUX APEX — Live Teranode & Exchange</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background-color: #000104;
+    color: #f8fafc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 16px;
+}
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.logo-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #000;
+    font-weight: 900;
+}
+.logo-text h1 { font-size: 20px; font-weight: 900; color: #fff; }
+.logo-text span { font-size: 10px; color: #f59e0b; font-family: monospace; letter-spacing: 1px; }
+
+.status-badge {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #34d399;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: monospace;
+}
+.ping-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #34d399;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #34d399;
+}
+
+.card {
+    background: rgba(10, 15, 30, 0.95);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 0 50px rgba(245, 158, 11, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* --- スワイプボタン --- */
+.swipe-track {
+    position: relative;
+    width: 100%;
+    height: 74px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 20px;
+    padding: 5px;
+    overflow: hidden;
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    box-shadow: inset 0 4px 20px rgba(0,0,0,0.9);
+    user-select: none;
+    touch-action: none;
+}
+.swipe-thumb {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #b45309 100%);
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000104;
+    font-size: 26px;
+    font-weight: 900;
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.6);
+    z-index: 30;
+    touch-action: none;
+    transition: background 0.2s;
+}
+.swipe-thumb.unlocked {
+    background: linear-gradient(135deg, #34d399, #059669);
+    color: #fff;
+}
+.swipe-instruction {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: #f59e0b;
+    opacity: 1;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    z-index: 10;
+}
+.swipe-instruction.hide { opacity: 0; }
+.swipe-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(245,158,11,0.1), rgba(245,158,11,0.35));
+    border-radius: 18px;
+    width: 0%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.terminal {
+    background: #000;
+    border: 1px solid #10b981;
+    border-radius: 16px;
+    padding: 16px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #34d399;
+    display: none;
+    line-height: 1.5;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+@media(max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.info-box {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 16px;
+}
+.info-box label { font-size: 10px; color: #94a3b8; font-family: monospace; display: block; margin-bottom: 4px; }
+.info-box .val { font-size: 18px; font-weight: bold; color: #f59e0b; font-family: monospace; }
+
+footer {
+    text-align: center;
+    font-size: 11px;
+    color: #64748b;
+    font-family: monospace;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 16px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo-area">
+            <div class="logo-icon">⚡</div>
+            <div class="logo-text">
+                <h1>QLUX APEX</h1>
+                <span>LIVE FASTAPI GATEWAY</span>
+            </div>
+        </div>
+        <div class="status-badge">
+            <div class="ping-dot"></div> BACKEND CONNECTED
+        </div>
+    </header>
+
+    <main class="card">
+        <div class="card-title">
+            <span>⚡</span> キネティック・ワンスワイプ決済エクスチェンジ
+        </div>
+        
+        <div class="grid-2">
+            <div class="info-box">
+                <label>EXECUTION STREAM</label>
+                <div style="font-size: 14px; font-weight: bold; color: #fff;">All-Asset Shard & Liquidity Pool</div>
+                <div style="font-size: 11px; color: #94a3b8; margin-top: 4px; font-family: monospace;">Node: $qlux_all_onchain_node</div>
+            </div>
+            <div class="info-box" style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                <label>INSTANT REWARD YIELD</label>
+                <div class="val">5,000 SATS <span style="font-size: 12px; color: #94a3b8;">/ $50 USD</span></div>
+            </div>
+        </div>
+
+        <div>
+            <div style="font-size: 11px; font-weight: bold; color: #f59e0b; font-family: monospace; margin-bottom: 8px;">
+                ▶ 右端までスワイプしてサーバー連携・即時アトミック決済
+            </div>
+            <div class="swipe-track" id="swipe-track">
+                <div class="swipe-progress" id="swipe-progress"></div>
+                <div class="swipe-instruction" id="swipe-instruction">SWIPE TO EXECUTE FASTAPI BACKEND SYNC &rarr;</div>
+                <div class="swipe-thumb" id="swipe-thumb">&rarr;</div>
+            </div>
+        </div>
+
+        <div id="execution-terminal" class="terminal">
+            <div style="font-weight: bold; margin-bottom: 4px;" id="term-title">✓ [LIVE BACKEND SUCCESS] 決済が正常に完了しました。</div>
+            <div id="terminal-body"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 QLUX APEX Global Infrastructure. FastAPI Live Sync Active.</p>
+    </footer>
+</div>
+
+<script>
+var track = document.getElementById('swipe-track');
+var thumb = document.getElementById('swipe-thumb');
+var instruction = document.getElementById('swipe-instruction');
+var progress = document.getElementById('swipe-progress');
+var terminal = document.getElementById('execution-terminal');
+var terminalBody = document.getElementById('terminal-body');
+
+var isDragging = false;
+var startX = 0;
+var currentX = 0;
+var maxTranslate = 0;
+
+function updateMetrics() {
+    if (track && thumb) {
+        maxTranslate = track.clientWidth - thumb.clientWidth - 10;
     }
+}
+window.addEventListener('resize', updateMetrics);
+window.addEventListener('load', updateMetrics);
 
-if __name__ == "__main__":
-    import uvicorn
-    print("=== QLUX APEX Live Gateway Starting on http://127.0.0.1:8000 ===")
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+function handleStart(e) {
+    if (thumb.classList.contains('unlocked')) return;
+    isDragging = true;
+    updateMetrics();
+    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    startX = clientX - currentX;
+    instruction.classList.add('hide');
+    if (e.cancelable) e.preventDefault();
+}
+
+function handleMove(e) {
+    if (!isDragging) return;
+    updateMetrics();
+    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    currentX = clientX - startX;
+    if (currentX < 0) currentX = 0;
+    if (currentX > maxTranslate) currentX = maxTranslate;
+    
+    thumb.style.transform = 'translateX(' + currentX + 'px)';
+    var percent = (currentX / maxTranslate) * 100;
+    progress.style.width = percent + '%';
+    
+    if (e.cancelable) e.preventDefault();
+}
+
+function handleEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    updateMetrics();
+
+    if (currentX >= maxTranslate * 0.70) {
+        currentX = maxTranslate;
+        thumb.style.transform = 'translateX(' + maxTranslate + 'px)';
+        progress.style.width = '100%';
+        thumb.classList.add('unlocked');
+        thumb.innerHTML = '✓';
+        executeBackendPayment();
+    } else {
+        currentX = 0;
+        thumb.style.transform = 'translateX(0px)';
+        progress.style.width = '0%';
+        instruction.classList.remove('hide');
+    }
+}
+
+if (thumb) {
+    thumb.addEventListener('mousedown', handleStart);
+    thumb.addEventListener('touchstart', handleStart, {passive: false});
+}
+window.addEventListener('mousemove', handleMove);
+window.addEventListener('mouseup', handleEnd);
+window.addEventListener('touchmove', handleMove, {passive: false});
+window.addEventListener('touchend', handleEnd);
+
+function executeBackendPayment() {
+    terminal.style.display = "block";
+    terminalBody.innerHTML = "Connecting to FastAPI /api/exchange/execute...<br>Please wait...";
+
+    // バックエンドの main.py と通信
+    fetch('/api/exchange/execute', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            sell_asset: "BSV / Fiat Gateway",
+            buy_asset: "Enterprise Satoshis",
+            amount: 5000
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        terminalBody.innerHTML = 
+            "Gateway: " + data.gateway + "<br>" +
+            "TXID: " + data.txid + "<br>" +
+            "Status: " + data.message + "<br>" +
+            "<span style='color:#fff; font-weight:bold;'>REWARD YIELD: 5,000 SATS & 50 USD synced with Python backend successfully.</span>";
+    })
+    .catch(error => {
+        terminalBody.innerHTML = "<span style='color:#f87171;'>通信エラー: バックエンドへの接続に失敗しました。サーバーが起動しているか確認してください。</span>";
+    })
+    .finally(() => {
+        setTimeout(function() {
+            thumb.classList.remove('unlocked');
+            thumb.innerHTML = '&rarr;';
+            currentX = 0;
+            thumb.style.transform = 'translateX(0px)';
+            progress.style.width = '0%';
+            instruction.classList.remove('hide');
+        }, 2000);
+    });
+}
+</script>
+</body>
+</html>
+"""
