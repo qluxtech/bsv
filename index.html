@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QluxX Sovereign Super App — Ultimate Global Ecosystem</title>
+<title>Qlux (Twetch-Engineered) — Sovereign On-Chain Social Ecosystem</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
     background-color: #020409;
     color: #e2e8f0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    padding: 16px 10px;
+    padding: 12px 10px;
     display: flex;
     justify-content: center;
 }
-.qlux-wrapper { width: 100%; max-width: 1400px; display: flex; flex-direction: column; gap: 16px; }
+.qlux-wrapper { width: 100%; max-width: 1300px; display: flex; flex-direction: column; gap: 14px; }
 
 /* ヘッダー */
 .qlux-header {
     background: linear-gradient(135deg, #090e22 0%, #020409 100%);
     border: 1px solid rgba(59, 130, 246, 0.4);
     border-radius: 16px;
-    padding: 14px 24px;
+    padding: 14px 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,10 +33,10 @@ body {
     background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 22px; color: #fff; font-weight: 900;
+    font-size: 20px; color: #fff; font-weight: 900;
 }
 .qlux-title h1 { font-size: 15px; font-weight: 900; color: #fff; letter-spacing: 0.05em; }
-.qlux-title span { font-size: 8px; color: #3b82f6; font-family: monospace; letter-spacing: 1.5px; }
+.qlux-title span { font-size: 8px; color: #34d399; font-family: monospace; letter-spacing: 1.5px; }
 
 .qlux-nav-tabs {
     display: flex; gap: 4px; background: #060a17; padding: 4px;
@@ -44,26 +44,25 @@ body {
 }
 .qlux-tab-btn {
     background: transparent; border: none; color: #94a3b8;
-    padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 800;
+    padding: 6px 14px; border-radius: 8px; font-size: 11px; font-weight: 800;
     cursor: pointer; transition: all 0.2s;
 }
 .qlux-tab-btn.active {
     background: #3b82f6; color: #fff; box-shadow: 0 4px 12px rgba(59,130,246,0.4);
 }
 
-.qlux-user-badge {
+.qlux-wallet-info {
     background: rgba(16, 185, 129, 0.1);
     border: 1px solid rgba(16, 185, 129, 0.4);
     border-radius: 20px;
     padding: 6px 14px;
-    display: flex; align-items: center; gap: 8px;
-    font-size: 11px; font-family: monospace; color: #34d399; cursor: pointer;
+    font-size: 11px; font-family: monospace; color: #34d399;
 }
 
-/* メインレイアウト */
+/* グリッドレイアウト */
 .qlux-megagrid {
     display: grid;
-    grid-template-columns: 260px 1fr 300px;
+    grid-template-columns: 260px 1fr 280px;
     gap: 16px;
 }
 @media(max-width: 1100px) { .qlux-megagrid { grid-template-columns: 1fr; } }
@@ -78,65 +77,56 @@ body {
 .qlux-panel-header {
     font-size: 11px; font-weight: 800; color: #fff;
     display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: global 1px solid rgba(255, 255, 255, 0.08);
     padding-bottom: 8px; text-transform: uppercase; font-family: monospace;
 }
 
-/* 投稿・タイムライン系 */
-.x-compose-box {
+/* Twetch風ポストカード */
+.twetch-compose {
     background: #03060f; border: 1px solid rgba(59, 130, 246, 0.3);
     border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px;
 }
-.x-textarea {
+.twetch-textarea {
     width: 100%; background: #010206; border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px; padding: 10px; color: #fff; font-size: 12px; font-family: inherit;
-    resize: none; height: 70px; outline: none;
+    resize: none; height: 75px; outline: none;
 }
-.x-post-btn {
+.twetch-post-btn {
     background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff;
     border: none; border-radius: 16px; padding: 6px 16px; font-weight: 800; font-size: 11px; cursor: pointer;
 }
 
-.x-tweet-card {
+.twetch-card {
     background: #03060f; border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px;
-    transition: border-color 0.2s; position: relative;
+    border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px;
 }
-.x-tweet-card:hover { border-color: rgba(59, 130, 246, 0.4); }
-.x-tweet-header { display: flex; justify-content: space-between; align-items: center; }
-.x-user-info { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-.x-avatar {
-    width: 30px; height: 30px; background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+.twetch-card-header { display: flex; justify-content: space-between; align-items: center; }
+.twetch-user { display: flex; align-items: center; gap: 10px; }
+.twetch-avatar {
+    width: 32px; height: 32px; background: linear-gradient(135deg, #3b82f6, #10b981);
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-weight: 900; color: #fff; font-size: 11px;
+    font-weight: 900; color: #fff; font-size: 12px;
 }
-.x-username { font-size: 11px; font-weight: 800; color: #fff; }
-.x-handle { font-size: 8px; color: #64748b; font-family: monospace; }
-.x-tweet-body { font-size: 11px; color: #e2e8f0; line-height: 1.5; word-break: break-all; }
-.x-tag { color: #38bdf8; font-weight: bold; }
+.twetch-name { font-size: 12px; font-weight: 800; color: #fff; }
+.twetch-id { font-size: 9px; color: #64748b; font-family: monospace; }
+.twetch-body { font-size: 12px; color: #e2e8f0; line-height: 1.5; word-break: break-all; }
+.twetch-tag { color: #38bdf8; font-weight: bold; }
 
-.x-action-bar {
+/* アクションバー (Twitch / Twetch スタイル) */
+.twetch-actions {
     display: flex; justify-content: space-between; align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 6px; margin-top: 2px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 8px; font-size: 10px; font-family: monospace;
 }
-.x-action-btn {
+.twetch-action-btn {
     background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 6px; padding: 4px 8px; color: #94a3b8; font-size: 9px; font-family: monospace;
-    cursor: pointer; display: flex; align-items: center; gap: 4px;
+    border-radius: 6px; padding: 4px 10px; color: #94a3b8; cursor: pointer;
+    display: flex; align-items: center; gap: 4px;
 }
-.x-action-btn:hover { background: rgba(59, 130, 246, 0.15); border-color: #3b82f6; color: #60a5fa; }
-.x-delete-btn { color: #ef4444; border-color: rgba(239, 68, 68, 0.3); }
-.x-delete-btn:hover { background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #f87171; }
-
-/* モーダルポップアップ */
-.modal-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1000;
-}
-.modal-content {
-    background: #060a17; border: 1px solid #3b82f6; border-radius: 16px;
-    padding: 24px; width: 90%; max-width: 450px; display: flex; flex-direction: column; gap: 14px;
-}
+.twetch-action-btn:hover { background: rgba(59, 130, 246, 0.15); border-color: #3b82f6; color: #60a5fa; }
+.twetch-like-btn { color: #f43f5e; border-color: rgba(244, 63, 94, 0.3); }
+.twetch-like-btn:hover { background: rgba(244, 63, 94, 0.2); border-color: #f43f5e; color: #fb7185; }
+.twetch-delete-btn { color: #ef4444; border-color: rgba(239, 68, 68, 0.3); }
+.twetch-delete-btn:hover { background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #f87171; }
 </style>
 </head>
 <body>
@@ -146,215 +136,180 @@ body {
         <div class="qlux-brand">
             <div class="qlux-logo">Q</div>
             <div class="qlux-title">
-                <h1>QluxX Sovereign Super App</h1>
-                <span>HANDCASH APP ID: 6a499671... (CONNECTED)</span>
+                <h1>Qlux (Twetch-Engineered Edition)</h1>
+                <span>ON-CHAIN PROTOCOL: ACTIVE (PAY-PER-INTERACTION)</span>
             </div>
         </div>
         <div class="qlux-nav-tabs">
-            <button class="qlux-tab-btn active" onclick="switchTab('feed', this)">🌐 フィード</button>
-            <button class="qlux-tab-btn" onclick="switchTab('profile', this)">👤 プロフィール</button>
-            <button class="qlux-tab-btn" onclick="switchTab('notifications', this)">🔔 通知 (<span id="notif-count">2</span>)</button>
-            <button class="qlux-tab-btn" onclick="switchTab('leaderboard', this)">🏆 収益</button>
+            <button class="qlux-tab-btn active" onclick="switchTab('feed', this)">🌐 グローバルフィード</button>
+            <button class="qlux-tab-btn" onclick="switchTab('profile', this)">👤 マイプロフィール</button>
+            <button class="qlux-tab-btn" onclick="switchTab('wallet', this)">💎 ウォレット収益</button>
         </div>
-        <div class="qlux-user-badge" onclick="openProfileModal('@vlis_user')">
-            <span>⚡ @vlis_user</span>
+        <div class="qlux-wallet-info">
+            <span>⚡ 15,450.00 SAT</span>
         </div>
     </header>
 
     <div class="qlux-megagrid">
         
         <aside class="qlux-panel">
-            <div class="qlux-panel-header"><span>👤 アカウントマネージャー</span></div>
+            <div class="qlux-panel-header"><span>👤 ユーザーダッシュボード</span></div>
             <div style="background: #03060f; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); display: flex; gap: 10px; align-items: center;">
                 <div style="width: 36px; height: 36px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color:#fff;">V</div>
                 <div>
                     <div style="font-size: 11px; font-weight: 800; color: #fff;">VLIS Creator Node</div>
-                    <div style="font-size: 9px; color: #34d399; font-family: monospace;">@vlis_user (アクティブ)</div>
+                    <div style="font-size: 9px; color: #34d399; font-family: monospace;">id: 10936_vlis</div>
                 </div>
             </div>
             <div style="font-size: 10px; color: #64748b; font-family: monospace; display: flex; flex-direction: column; gap: 6px;">
-                <div>👥 フォロワー: 14,200</div>
-                <div>⭐ フォロー中: 342</div>
-                <div>💎 累計収益: 15,450 SAT</div>
+                <div>📦 総投稿数: <span id="stat-posts" style="color:#fff;">2</span></div>
+                <div>❤️ 総いいね収益: <span id="stat-likes" style="color:#34d399;">1,420 SAT</span></div>
+                <div>⚡ チップ受領: <span style="color:#38bdf8;">12,000 SAT</span></div>
             </div>
-            <button onclick="switchAccount()" style="background: rgba(59,130,246,0.1); border: 1px solid #3b82f6; color: #60a5fa; border-radius: 8px; padding: 8px; font-size: 10px; font-weight: 800; cursor: pointer;">
-                🔄 別アカウントに切り替え
-            </button>
         </aside>
 
         <main class="qlux-panel" id="center-container">
             
             <div id="tab-feed" class="tab-content">
                 <div class="qlux-panel-header">
-                    <span>🌐 Global On-Chain Feed</span>
-                    <span style="font-size: 9px; color: #34d399;">完全削除・編集機能搭載</span>
+                    <span>🌐 Twetch-Style On-Chain Feed</span>
+                    <span style="font-size: 9px; color: #34d399;">すべての行動がサトシに直結</span>
                 </div>
 
-                <div class="x-compose-box">
-                    <textarea id="x-input" class="x-textarea" placeholder="いま、何が起きている？ハッシュタグ(#BSV)を添えて世界中に発信..."></textarea>
+                <div class="twetch-compose">
+                    <textarea id="twetch-input" class="twetch-textarea" placeholder="いま何してる？（Twetch方式：投稿ごとに微小なトランザクション手数料が発生します） #BSV #Qlux"></textarea>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 8px; color: #64748b; font-family: monospace;">📷 画像・コード自動タイムスタンプ</span>
-                        <button onclick="publishPost()" class="x-post-btn">ポストする</button>
+                        <span style="font-size: 9px; color: #64748b; font-family: monospace;">TxID 即時ブロードキャスト</span>
+                        <button onclick="publishTwetchPost()" class="twetch-post-btn">トウェッチする</button>
                     </div>
                 </div>
 
-                <div id="x-timeline" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                <div id="twetch-timeline" style="display: flex; flex-direction: column; gap: 12px;"></div>
             </div>
 
             <div id="tab-profile" class="tab-content" style="display: none;">
-                <div class="qlux-panel-header"><span>👤 ユーザー詳細プロフィール編集</span></div>
-                <div style="background: #03060f; padding: 14px; border-radius: 12px; display: flex; flex-direction: column; gap: 10px; font-size: 11px;">
-                    <div>表示名: <input type="text" id="edit-name" value="VLIS Creator Node" style="width:1px; flex:1; background:#010206; border:1px solid rgba(255,255,255,0.1); color:#fff; padding:6px; border-radius:6px; margin-left:8px;"></div>
-                    <div>Bio: <textarea id="edit-bio" style="width:100%; background:#010206; border:1px solid rgba(255,255,255,0.1); color:#fff; padding:6px; border-radius:6px; height:50px; margin-top:4px;">QluxX Sovereign Ecosystem Developer & Teranode Enthusiast.</textarea></div>
-                    <button onclick="alert('✓ プロフィール情報がブロックチェーンに保存されました！')" style="background:#3b82f6; color:#fff; border:none; padding:8px; border-radius:8px; font-weight:800; cursor:pointer;">保存する</button>
+                <div class="qlux-panel-header"><span>👤 Twetch ID プロフィール設定</span></div>
+                <div style="background: #03060f; padding: 14px; border-radius: 12px; font-size: 11px; display: flex; flex-direction: column; gap: 10px;">
+                    <div>表示名: <input type="text" value="VLIS Creator Node" style="width:100%; background:#010206; border:1px solid rgba(255,255,255,0.1); color:#fff; padding:6px; border-radius:6px; margin-top:4px;"></div>
+                    <div>Bio: <textarea style="width:100%; background:#010206; border:1px solid rgba(255,255,255,0.1); color:#fff; padding:6px; border-radius:6px; height:50px; margin-top:4px;">Qlux & Twetch sovereign ecosystem builder.</textarea></div>
+                    <button onclick="alert('✓ ブロックチェーンにプロフィール変更が書き込まれました！')" style="background:#3b82f6; color:#fff; border:none; padding:8px; border-radius:8px; font-weight:800; cursor:pointer;">保存する</button>
                 </div>
             </div>
 
-            <div id="tab-notifications" class="tab-content" style="display: none;">
-                <div class="qlux-panel-header"><span>🔔 リアルタイム通知センター</span></div>
-                <div style="display: flex; flex-direction: column; gap: 8px; font-size: 11px;">
-                    <div style="background: #03060f; padding: 10px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.3);">
-                        ⚡ <span style="color:#34d399; font-weight:bold;">@qlux_core</span> さんから 500 SATS のチップが届きました！ (2分前)
-                    </div>
-                    <div style="background: #03060f; padding: 10px; border-radius: 8px; border: 1px solid rgba(59,130,246,0.3);">
-                        ❤️ <span style="color:#38bdf8; font-weight:bold;">@satoshi_fan</span> さんがあなたのポストにいいねしました。 (12分前)
-                    </div>
-                </div>
-            </div>
-
-            <div id="tab-leaderboard" class="tab-content" style="display: none;">
-                <div class="qlux-panel-header"><span>🏆 グローバル収益・ランキング</span></div>
-                <div style="background: #03060f; padding: 14px; border-radius: 12px; font-family: monospace; font-size: 11px;">
-                    <div style="color: #f59e0b; font-weight: bold; margin-bottom: 6px;">#1 @vlis_user — 15,450 SAT (首位独走中)</div>
-                    <div style="color: #94a3b8;">#2 @qlux_core — 12,800 SAT</div>
+            <div id="tab-wallet" class="tab-content" style="display: none;">
+                <div class="qlux-panel-header"><span>💎 ウォレット監査＆サトシ収益</span></div>
+                <div style="background: #03060f; padding: 14px; border-radius: 12px; font-family: monospace; font-size: 11px; display: flex; flex-direction: column; gap: 8px;">
+                    <div style="color: #34d399;">残高: 15,450.00 SAT</div>
+                    <div style="color: #94a3b8;">直近TxID: <span style="color:#38bdf8;">a1b2c3d4...ef789 (Teranode Verified)</span></div>
                 </div>
             </div>
 
         </main>
 
         <aside class="qlux-panel">
-            <div class="qlux-panel-header"><span>🔥 トレンド & 検索</span></div>
-            <input type="text" placeholder="🔍 全文検索..." style="background: #010206; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px; color: #fff; font-size: 11px; outline: none;">
-            <div style="font-size: 10px; font-weight: 800; color: #64748b; margin-top: 4px;">急上昇ハッシュタグ</div>
-            <div style="background: #03060f; padding: 8px; border-radius: 8px; font-size: 10px; color: #38bdf8; font-weight: bold;">#BSV (18.4K Posts)</div>
-            <div style="background: #03060f; padding: 8px; border-radius: 8px; font-size: 10px; color: #38bdf8; font-weight: bold;">#Teranode (12.1K Posts)</div>
+            <div class="qlux-panel-header"><span>🔥 トレンド</span></div>
+            <input type="text" placeholder="🔍 検索..." style="background: #010206; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px; color: #fff; font-size: 11px; outline: none;">
+            <div style="background: #03060f; padding: 10px; border-radius: 8px; font-size: 11px;">
+                <div style="color: #38bdf8; font-weight: bold;">#BSV</div>
+                <div style="font-size: 9px; color: #64748b;">Twetch Global Activity</div>
+            </div>
         </aside>
 
     </div>
 </div>
 
-<div id="profile-modal" class="modal-overlay">
-    <div class="modal-content">
-        <div style="font-weight: bold; font-size: 13px; color: #fff; display: flex; justify-content: space-between;">
-            <span id="modal-username">@user</span>
-            <span style="cursor:pointer; color:#64748b;" onclick="closeModal()">✕</span>
-        </div>
-        <div style="font-size: 11px; color: #94a3b8;" id="modal-bio">ユーザーの自己紹介文がここに表示されます。</div>
-        <button onclick="closeModal()" style="background:#3b82f6; color:#fff; border:none; padding:8px; border-radius:8px; font-weight:800; cursor:pointer;">閉じる</button>
-    </div>
-</div>
-
 <script>
-let posts = JSON.parse(localStorage.getItem('qlux_megafinal_posts')) || [
+let posts = JSON.parse(localStorage.getItem('qlux_twetch_posts')) || [
     {
         id: 1,
-        handle: "@vlis_user",
         name: "VLIS Creator Node",
+        idStr: "@10936",
         avatar: "V",
         time: "たった今",
-        content: "投稿の削除・編集機能、ユーザープロフィール詳細、通知センターを完全完備した世界最高峰のSNSがここに完成！ #BSV #Teranode",
-        likes: 142,
-        tips: 1200,
+        content: "QluxのTwetchエンジンが完全に起動。すべてのいいね、返信、削除がオンチェーンで連動する最高峰の仕組み！ #BSV #Qlux",
+        likes: 14,
+        replies: 3,
         isOwner: true
     },
     {
         id: 2,
-        handle: "@qlux_core",
-        name: "Qlux Sovereign Node",
-        avatar: "Q",
-        time: "5分前",
-        content: "HandCashウォレットとの完全同期により、あらゆるアクションが秒速でオンチェーン処理されます。 #HandCash",
-        likes: 289,
-        tips: 3400,
+        name: "Satoshi Sovereign",
+        idStr: "@sat_node",
+        avatar: "S",
+        time: "10分前",
+        content: "仲介者のない世界。いいねするだけで相手にサトシがダイレクトに支払われる。これぞ本物のTwetch体験。 #Twetch",
+        likes: 45,
+        replies: 8,
         isOwner: false
     }
 ];
 
 function renderTimeline() {
-    const timeline = document.getElementById('x-timeline');
+    const timeline = document.getElementById('twetch-timeline');
     if (!timeline) return;
     timeline.innerHTML = "";
     
     posts.forEach((post, index) => {
         const card = document.createElement('div');
-        card.className = 'x-tweet-card';
-        let formattedContent = escapeHtml(post.content).replace(/(#\w+)/g, '<span class="x-tag">$1</span>');
-
-        // 自分の投稿のみ削除ボタンを表示
-        let deleteButtonHtml = post.isOwner ? `<button class="x-action-btn x-delete-btn" onclick="deletePost(${index})">🗑️ 削除</button>` : '';
+        card.className = 'twetch-card';
+        let formatted = escapeHtml(post.content).replace(/(#\w+)/g, '<span class="twetch-tag">$1</span>');
+        let deleteBtn = post.isOwner ? `<button class="twetch-action-btn twetch-delete-btn" onclick="deletePost(${index})">🗑️ 削除</button>` : '';
 
         card.innerHTML = `
-            <div class="x-tweet-header">
-                <div class="x-user-info" onclick="openProfileModal('${post.handle}')">
-                    <div class="x-avatar">${post.avatar}</div>
+            <div class="twetch-card-header">
+                <div class="twetch-user">
+                    <div class="twetch-avatar">${post.avatar}</div>
                     <div>
-                        <div class="x-username">${post.name} <span style="color: #34d399; font-size: 8px;">● HandCash</span></div>
-                        <div class="x-handle">${post.handle} · ${post.time}</div>
+                        <div class="twetch-name">${post.name}</div>
+                        <div class="twetch-id">${post.idStr} · ${post.time}</div>
                     </div>
                 </div>
-                <div style="color: #3b82f6; font-size: 8px; font-family: monospace;">On-Chain</div>
+                <div style="color: #3b82f6; font-size: 8px; font-family: monospace;">Tx: On-Chain</div>
             </div>
-            <div class="x-tweet-body">${formattedContent}</div>
-            <div class="x-action-bar">
-                <button class="x-action-btn" onclick="alert('💬 返信モーダルを開きました')">💬 返信</button>
-                <button class="x-action-btn" onclick="likePost(${index})">❤️ いいね <span>${post.likes}</span></button>
-                <button class="x-action-btn" style="color:#34d399; border-color:rgba(16,185,129,0.3);" onclick="sendTip(${index}, 100)">⚡ 100 SATS</button>
-                ${deleteButtonHtml}
+            <div class="twetch-body">${formatted}</div>
+            <div class="twetch-actions">
+                <button class="twetch-action-btn" onclick="alert('💬 返信がブロックチェーンに記録されました')">💬 ${post.replies}</button>
+                <button class="twetch-action-btn twetch-like-btn" onclick="likePost(${index})">❤️ ${post.likes} (Pay-Like)</button>
+                ${deleteBtn}
             </div>
         `;
         timeline.appendChild(card);
     });
 }
 
-function publishPost() {
-    const input = document.getElementById('x-input');
+function publishTwetchPost() {
+    const input = document.getElementById('twetch-input');
     const text = input.value.trim();
     if (!text) return;
 
     posts.unshift({
         id: Date.now(),
-        handle: "@vlis_user",
         name: "VLIS Creator Node",
+        idStr: "@10936",
         avatar: "V",
         time: "たった今",
         content: text,
-        likes: 1,
-        tips: 0,
+        likes: 0,
+        replies: 0,
         isOwner: true
     });
-    localStorage.setItem('qlux_megafinal_posts', JSON.stringify(posts));
+    localStorage.setItem('qlux_twetch_posts', JSON.stringify(posts));
     input.value = "";
     renderTimeline();
 }
 
 function deletePost(index) {
-    if (confirm("本当にこの投稿をオンチェーンから削除しますか？")) {
+    if (confirm("このトウェッチ投稿をオンチェーンから削除しますか？")) {
         posts.splice(index, 1);
-        localStorage.setItem('qlux_megafinal_posts', JSON.stringify(posts));
+        localStorage.setItem('qlux_twetch_posts', JSON.stringify(posts));
         renderTimeline();
     }
 }
 
 function likePost(index) {
     posts[index].likes += 1;
-    localStorage.setItem('qlux_megafinal_posts', JSON.stringify(posts));
+    localStorage.setItem('qlux_twetch_posts', JSON.stringify(posts));
     renderTimeline();
-}
-
-function sendTip(index, sats) {
-    posts[index].tips += sats;
-    localStorage.setItem('qlux_megafinal_posts', JSON.stringify(posts));
-    alert(`⚡ ${sats} SATS のチップが HandCash アカウントへダイレクトに着金しました！`);
 }
 
 function switchTab(tabName, btn) {
@@ -362,20 +317,6 @@ function switchTab(tabName, btn) {
     document.querySelectorAll('.qlux-tab-btn').forEach(el => el.classList.remove('active'));
     document.getElementById('tab-' + tabName).style.display = 'block';
     btn.classList.add('active');
-}
-
-function openProfileModal(handle) {
-    document.getElementById('modal-username').innerText = handle;
-    document.getElementById('modal-bio').innerText = handle === '@vlis_user' ? 'VLIS Creator Node — メインアカウント' : 'QluxX Sovereign Network 運営ノード';
-    document.getElementById('profile-modal').style.display = 'flex';
-}
-
-function closeModal() {
-    document.getElementById('profile-modal').style.display = 'none';
-}
-
-function switchAccount() {
-    alert("アカウント切り替えシステム: 別のHandCashアカウントにスムーズにスイッチします。");
 }
 
 window.onload = function() {
