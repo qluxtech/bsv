@@ -3,412 +3,121 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BSV HARDWARE-ONCHAIN CORE APEX</title>
+<title>BSV SATOSHI APEX GLOBAL — The Supreme On-Chain Ecosystem & All-Exchange Citadel</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    background-color: #020408;
-    color: #e2e8f0;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    padding: 16px;
+    background-color: #02040a;
+    color: #f1f5f9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    padding: 24px;
     display: flex;
     justify-content: center;
+    overflow-x: hidden;
 }
-.system-root {
+.supreme-container {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1320px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 28px;
 }
 
-/* トップ・インダストリアル・ヘッダー */
-.ind-header {
-    background: #060913;
-    border: 1px solid #334155;
-    border-left: 4px solid #f59e0b;
-    padding: 20px 24px;
+/* サトシ・アペックス ヘッダー */
+header {
+    background: linear-gradient(135deg, rgba(15,23,42,0.98), rgba(2,6,23,0.98));
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    border-radius: 24px;
+    padding: 32px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 0 80px rgba(245, 158, 11, 0.2);
+    position: relative;
+    overflow: hidden;
 }
-.ind-title h1 { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 0.05em; }
-.ind-title span { font-size: 11px; color: #f59e0b; letter-spacing: 2px; }
-
-.core-status {
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid #059669;
-    color: #34d399;
-    padding: 6px 14px;
-    font-size: 11px;
-    font-weight: bold;
+header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: linear-gradient(180deg, #fef08a, #f59e0b, #b45309);
+}
+.logo-box {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 22px;
 }
-.status-led {
-    width: 8px;
-    height: 8px;
+.logo-emblem {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #92400e 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: #000;
+    font-weight: 900;
+    box-shadow: 0 0 40px rgba(245, 158, 11, 0.7);
+}
+.logo-text h1 { font-size: 28px; font-weight: 900; color: #fff; letter-spacing: 0.05em; }
+.logo-text span { font-size: 12px; color: #f59e0b; font-family: monospace; letter-spacing: 3px; }
+
+.live-badge {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.6);
+    color: #34d399;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: monospace;
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+}
+.pulse-dot {
+    width: 12px;
+    height: 12px;
     background-color: #34d399;
-    box-shadow: 0 0 8px #34d399;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #34d399;
+    animation: beacon 1.4s infinite;
+}
+@keyframes beacon {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.35); opacity: 1; box-shadow: 0 0 20px #34d399; }
+    100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* カードパネル共通 */
+.mega-card {
+    background: rgba(8, 13, 26, 0.95);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: 28px;
+    padding: 36px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(30px);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+.card-header-title {
+    font-size: 19px;
+    font-weight: 900;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 16px;
 }
 
 /* グリッドレイアウト */
-.grid-main { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-@media(max-width: 900px) {
-    .grid-main { grid-template-columns: 1fr; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media(max-width: 950px) {
     .grid-3 { grid-template-columns: 1fr; }
-}
-
-.panel {
-    background: #04070e;
-    border: 1px solid #1e293b;
-    border-radius: 4px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-.panel-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: #cbd5e1;
-    border-bottom: 1px solid #1e293b;
-    padding-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    letter-spacing: 0.05em;
-}
-
-/* ハードウェア・スペック行 */
-.spec-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px dashed #1e293b;
-    font-size: 12px;
-}
-.spec-row span:first-child { color: #64748b; }
-.spec-row span:last-child { color: #f8fafc; font-weight: bold; }
-
-/* 実行スワイプコントロール */
-.exec-track {
-    position: relative;
-    width: 100%;
-    height: 64px;
-    background: #010204;
-    border: 1px solid #f59e0b;
-    padding: 4px;
-    overflow: hidden;
-    user-select: none;
-    touch-action: none;
-}
-.exec-thumb {
-    position: absolute;
-    left: 4px;
-    top: 4px;
-    width: 56px;
-    height: 54px;
-    background: #f59e0b;
-    color: #000;
-    font-weight: 900;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 20;
-    transition: transform 0.05s linear;
-}
-.exec-thumb:active { cursor: grabbing; }
-.exec-thumb.active-lock {
-    background: #10b981;
-    color: #fff;
-}
-.exec-label {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    color: #f59e0b;
-    letter-spacing: 0.15em;
-    pointer-events: none;
-    z-index: 10;
-}
-.exec-progress {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background: rgba(245, 158, 11, 0.15);
-    width: 0%;
-    z-index: 5;
-}
-
-/* ターミナル出力 */
-.terminal-out {
-    background: #000;
-    border: 1px solid #059669;
-    padding: 16px;
-    font-size: 11px;
-    color: #34d399;
-    line-height: 1.5;
-    display: none;
-}
-
-/* ランキングテーブル */
-.table-box {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-}
-.table-box th, .table-box td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #1e293b;
-}
-.table-box th { color: #64748b; font-size: 10px; letter-spacing: 0.1em; }
-.table-box td:last-child { text-align: right; color: #34d399; font-weight: bold; }
-
-footer {
-    text-align: center;
-    font-size: 10px;
-    color: #475569;
-    padding: 16px 0;
-    border-top: 1px solid #1e293b;
-    letter-spacing: 0.1em;
-}
-</style>
-</head>
-<body>
-
-<div class="system-root">
-    <header class="ind-header">
-        <div class="ind-title">
-            <h1>BSV HARDWARE-ONCHAIN APEX CORE</h1>
-            <span>INTEGRATED SYSTEM SPEC & ALL-EXCHANGE MATRIX</span>
-        </div>
-        <div class="core-status">
-            <div class="status-led"></div> HARDWARE SYNC: ONLINE
-        </div>
-    </header>
-
-    <div class="grid-main">
-        <main class="panel">
-            <div class="panel-title">
-                <span>⚡ AUTOMATED ON-CHAIN EXECUTION ENGINE</span>
-                <span style="font-size: 11px; color: #f59e0b;">NODE: $bsv_hardware_master</span>
-            </div>
-
-            <div class="spec-row">
-                <span>EXECUTION PROTOCOL</span>
-                <span>Teranode Shard & P2P Bitcoin Script</span>
-            </div>
-            <div class="spec-row">
-                <span>ATOMIC REWARD SETTLEMENT</span>
-                <span>5,000 SATS / $50.00 USD EQUIVALENT</span>
-            </div>
-
-            <div style="margin-top: 8px;">
-                <div style="font-size: 11px; color: #64748b; margin-bottom: 6px; letter-spacing: 0.05em;">SLIDE TO TRIGGER HARDWARE-ONCHAIN ATOMIC SWAP</div>
-                <div class="exec-track" id="exec-track">
-                    <div class="exec-progress" id="exec-progress"></div>
-                    <div class="exec-label" id="exec-label">SLIDE RIGHT TO EXECUTE &rarr;</div>
-                    <div class="exec-thumb" id="exec-thumb">&rarr;</div>
-                </div>
-            </div>
-
-            <div id="exec-terminal" class="terminal-out">
-                <div style="font-weight: bold; margin-bottom: 4px; color: #fff;">[SUCCESS] HARDWARE & ON-CHAIN SYNC COMPLETE.</div>
-                <div id="term-body"></div>
-            </div>
-        </main>
-
-        <aside class="panel">
-            <div class="panel-title">
-                <span>🛠️ PHYSICAL SPECIFICATION</span>
-            </div>
-            <div class="spec-row">
-                <span>F-CAME STRUCTURE</span>
-                <span>Ø30cm / H44.5cm / 3cm Thick</span>
-            </div>
-            <div class="spec-row">
-                <span>DIAMETER & HOLE</span>
-                <span>5cm Polished / 1.95mm Lateral</span>
-            </div>
-            <div class="spec-row">
-                <span>ELECTRODE & WRAP</span>
-                <span>Special Electrode / 22SQ Blue Hose</span>
-            </div>
-            <div class="spec-row">
-                <span>MIRROR SHIELDING</span>
-                <span>Spiral Alternating In/Out Wrap</span>
-            </div>
-        </aside>
-    </div>
-
-    <section class="panel">
-        <div class="panel-title">
-            <span>🏆 WORLDWIDE BSV SERVICE & CORE FUNCTION RANKING</span>
-            <span style="font-size: 11px; color: #34d399;">GLOBAL RANK #1</span>
-        </div>
-        
-        <table class="table-box">
-            <thead>
-                <tr>
-                    <th>RANK</th>
-                    <th>CORE SYSTEM / SERVICE</th>
-                    <th>TECHNICAL SPECIFICATION SUMMARY</th>
-                    <th>PERFORMANCE</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>01</td>
-                    <td>Teranode Shard Scale</td>
-                    <td>Block size limit completely removed. Millions of parallel transactions per second.</td>
-                    <td>99.99%</td>
-                </tr>
-                <tr>
-                    <td>02</td>
-                    <td>Autonomous Smart Contract</td>
-                    <td>Zero middlemen. Direct Bitcoin Script execution for instant unattended atomic settlements.</td>
-                    <td>0.00ms</td>
-                </tr>
-                <tr>
-                    <td>03</td>
-                    <td>STAS Tokenization Engine</td>
-                    <td>Native layer compliance-ready asset issuance and enterprise-grade tracking.</td>
-                    <td>100%</td>
-                </tr>
-                <tr>
-                    <td>04</td>
-                    <td>SPV Instant Atomic Exchange</td>
-                    <td>Cryptographic verification without full chain download. Micro-fee multi-asset exchange.</td>
-                    <td>#1 RANK</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <div class="grid-3">
-        <div class="panel" style="padding: 16px;">
-            <div style="font-size: 10px; color: #64748b;">PEAK THROUGHPUT</div>
-            <div style="font-size: 18px; font-weight: bold; color: #f59e0b; margin-top: 4px;">2,500,000 TPS</div>
-        </div>
-        <div class="panel" style="padding: 16px;">
-            <div style="font-size: 10px; color: #64748b;">GLOBAL LIQUIDITY POOL</div>
-            <div style="font-size: 18px; font-weight: bold; color: #34d399; margin-top: 4px;">$3,420,100,000</div>
-        </div>
-        <div class="panel" style="padding: 16px;">
-            <div style="font-size: 10px; color: #64748b;">NETWORK FEE OVERHEAD</div>
-            <div style="font-size: 18px; font-weight: bold; color: #f8fafc; margin-top: 4px;">&lt; 0.000001 SAT</div>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2026 BSV HARDWARE-ONCHAIN APEX CORE. Industrial Infrastructure & Sovereign Matrix.</p>
-    </footer>
-</div>
-
-<script>
-var track = document.getElementById('exec-track');
-var thumb = document.getElementById('exec-thumb');
-var label = document.getElementById('exec-label');
-var progress = document.getElementById('exec-progress');
-var terminal = document.getElementById('exec-terminal');
-var termBody = document.getElementById('term-body');
-
-var isDragging = false;
-var startX = 0;
-var currentX = 0;
-var maxTranslate = 0;
-
-function updateMetrics() {
-    if (track && thumb) {
-        maxTranslate = track.clientWidth - thumb.clientWidth - 8;
-    }
-}
-window.addEventListener('resize', updateMetrics);
-window.addEventListener('load', updateMetrics);
-
-function handleStart(e) {
-    if (thumb.classList.contains('active-lock')) return;
-    isDragging = true;
-    updateMetrics();
-    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    startX = clientX - currentX;
-    label.style.opacity = '0';
-    if (e.cancelable) e.preventDefault();
-}
-
-function handleMove(e) {
-    if (!isDragging) return;
-    updateMetrics();
-    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    currentX = clientX - startX;
-    if (currentX < 0) currentX = 0;
-    if (currentX > maxTranslate) currentX = maxTranslate;
-    
-    thumb.style.transform = 'translateX(' + currentX + 'px)';
-    progress.style.width = ((currentX / maxTranslate) * 100) + '%';
-    
-    if (e.cancelable) e.preventDefault();
-}
-
-function handleEnd() {
-    if (!isDragging) return;
-    isDragging = false;
-    updateMetrics();
-
-    if (currentX >= maxTranslate * 0.75) {
-        currentX = maxTranslate;
-        thumb.style.transform = 'translateX(' + maxTranslate + 'px)';
-        progress.style.width = '100%';
-        thumb.classList.add('active-lock');
-        thumb.innerHTML = '✓';
-        executeHardwareContract();
-    } else {
-        currentX = 0;
-        thumb.style.transform = 'translateX(0px)';
-        progress.style.width = '0%';
-        label.style.opacity = '1';
-    }
-}
-
-if (thumb) {
-    thumb.addEventListener('mousedown', handleStart);
-    thumb.addEventListener('touchstart', handleStart, {passive: false});
-}
-window.addEventListener('mousemove', handleMove);
-window.addEventListener('mouseup', handleEnd);
-window.addEventListener('touchmove', handleMove, {passive: false});
-window.addEventListener('touchend', handleEnd);
-
-function executeHardwareContract() {
-    terminal.style.display = "block";
-    termBody.innerHTML = 
-        "Hardware Core: $bsv_hardware_master<br>" +
-        "TxID: 0xind9942109e82b41fc928410e7b4191a4ef8899cc<br>" +
-        "Physical Spec Integration: F-Came Ø30cm / Blue Hose / Mirror Spiral Verified<br>" +
-        "<span style='color:#fff; font-weight:bold;'>REWARD: 5,000 SATS & $50 USD atomically settled via hardware-onchain matrix.</span>";
-
-    setTimeout(function() {
-        thumb.classList.remove('active-lock');
-        thumb.innerHTML = '&rarr;';
-        currentX = 0;
-        thumb.style.transform = 'translateX(0px)';
-        progress.style.width = '0%';
-        label.style.opacity = '1';
-        terminal.style.display = "none";
-    }, 3000);
-}
-</script>
-
-</body>
-</html>
+    .grid-2 { grid-template-columns: 1
