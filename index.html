@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qlux — Omniversal Sovereign Neural & Future Grid Matrix</title>
+<title>Qlux — Autonomous Omniversal BSV Neural Grid & Micro-Pay</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -213,6 +213,62 @@ body {
     box-shadow: inset 0 0 30px rgba(16, 185, 129, 0.15);
 }
 
+/* 特設マイクロペイメント・セクションのスタイル */
+.micropay-highlight {
+    background: linear-gradient(135deg, #071126 0%, #030712 100%);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.micropay-highlight h3 {
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.micropay-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+@media(max-width: 768px) {
+    .micropay-grid { grid-template-columns: 1fr; }
+}
+.micropay-box {
+    background: #03060f;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.micropay-box label { font-size: 10px; color: #3b82f6; font-family: monospace; font-weight: bold; letter-spacing: 0.1em; }
+.micropay-box p { font-size: 12px; color: #94a3b8; font-family: monospace; line-height: 1.6; }
+
+/* ライブ収益カウンター */
+.live-counter-box {
+    background: #000;
+    border: 1px solid #3b82f6;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: monospace;
+}
+.live-counter-val {
+    font-size: 18px;
+    font-weight: 900;
+    color: #34d399;
+}
+
 /* マニフェスト */
 .qlux-manifesto {
     background: linear-gradient(135deg, #050b18 0%, #02050c 100%);
@@ -271,22 +327,30 @@ footer {
             <div class="qlux-logo">Q</div>
             <div class="qlux-title">
                 <h1>Qlux Ecosystem</h1>
-                <span>OMNIVERSAL SOVEREIGN & FUTURE GRID MATRIX</span>
+                <span>AUTONOMOUS SUB-SATOSHI MONETIZATION MATRIX</span>
             </div>
         </div>
         <div class="qlux-status-badge">
-            <div class="qlux-pulse"></div> TERANODE 5-FOLD ACTIVE
+            <div class="qlux-pulse"></div> ZERO-OVERHEAD REVENUE ACTIVE
         </div>
     </header>
 
     <div class="qlux-grid-2">
         <main class="qlux-panel">
             <div class="qlux-panel-header">
-                <span>⚡</span> Qlux Omniversal Autonomous Execution Center
+                <span>⚡</span> Qlux Autonomous Execution & Live Revenue Core
             </div>
 
             <div style="font-size: 13px; color: #94a3b8; line-height: 1.6;">
-                Qluxは、Teranodeの無限のスケールアビリティを駆使し、地球規模の気候デリバティブ、自律ロボット経済、量子タイムロック、オープンコードオークション、そして宇宙空間データ信託のすべてを完全に同期・無人実行する最高峰の中枢です。
+                Qluxは、Teranodeによる無限のスケーラビリティを基盤とし、仲介者や請求作業を完全に排除した「完全無人のリアルタイム収益エンジン」を稼働させています。
+            </div>
+
+            <div class="live-counter-box">
+                <div>
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 2px;">LIVE API REQUEST ACCUMULATOR</div>
+                    <div style="font-size: 12px; color: #fff;">自動収益ウォレット直結</div>
+                </div>
+                <div class="live-counter-val" id="live-sats">0.000000 SAT</div>
             </div>
 
             <div>
@@ -302,7 +366,7 @@ footer {
             </div>
 
             <div id="qlux-terminal" class="qlux-terminal">
-                <div style="font-weight: bold; margin-bottom: 6px; font-size: 13px; color: #fff;">✓ [QLUX OMNIVERSAL SUCCESS] 5大超未来モデルの完全同期およびアトミック決済が完了しました。</div>
+                <div style="font-weight: bold; margin-bottom: 6px; font-size: 13px; color: #fff;">✓ [QLUX MICROPAY SUCCESS] サブサトシ・API自動決済がウォレットに直接着金しました。</div>
                 <div id="terminal-body"></div>
             </div>
         </main>
@@ -312,16 +376,39 @@ footer {
                 <span>📖</span> Qlux Manifesto & Philosophy
             </div>
             <div class="qlux-manifesto">
-                <h3>Beyond Human Limitation</h3>
+                <h3>Absolute Sovereign Monetization</h3>
                 <p>
-                    地球上のあらゆる物理的・デジタルな活動を仲介者なしで直結する。Qluxは、人類と機械、そして宇宙規模のデータ経済が完全に調和する唯一無二の不滅のインフラストラクチャー。
+                    月額固定のサブスクや広告収益の限界を突破。使われた分だけ、1秒以下のレイテンシーでウォレットへダイレクトに着金する真の自律分散マネタイズ。
                 </p>
             </div>
             <div style="font-size: 11px; color: #64748b; font-family: monospace;">
-                Architecture: P2P Bitcoin Script & Omniversal Shard Matrix
+                Architecture: P2P Bitcoin Script & Pay-per-Request Core
             </div>
         </aside>
     </div>
+
+    <section class="qlux-panel">
+        <div class="qlux-panel-header">
+            <span>💎</span> Core Monetization Model — サブサトシ・リアルタイムAPI/データ・マイクロペイメント
+        </div>
+
+        <div class="micropay-highlight">
+            <h3><span>🚀</span> Pay-per-Request 無人自動収益システム</h3>
+            <p style="font-size: 13px; color: #cbd5e1; line-height: 1.8; font-family: -apple-system, sans-serif;">
+                WebサイトやAIサービスに訪れたユーザー（または自動化されたボット）が、APIの叩きやデータ・コンテンツの閲覧を行った瞬間、1リクエストあたり「0.000001サトシ（10分の一百万サトシ）」単位の超極小決済を瞬時に実行します。
+            </p>
+            <div class="micropay-grid">
+                <div class="micropay-box">
+                    <label>// 01. 圧倒的な技術優位性</label>
+                    <p>他チェーンではガス代で破綻する超極小・高頻度トランザクションを、BSVのTeranode環境下で完全にノーコスト同等処理。</p>
+                </div>
+                <div class="micropay-box">
+                    <label>// 02. 完全無人のバックグラウンド稼働</label>
+                    <p>サブスクや広告に頼らず、使われた分だけ1秒以下のレイテンシーで直接ウォレットに着金。集金・請求作業が完全にゼロに。</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="qlux-panel">
         <div class="qlux-panel-header">
@@ -363,12 +450,12 @@ footer {
 
     <div class="qlux-grid-4">
         <div class="qlux-metric">
-            <label>OMNIVERSAL TPS CAPACITY</label>
+            <label>API REQ CAPACITY</label>
             <div class="val">10,000,000 TPS</div>
-            <div class="sub">▲ Teranode 5-Fold Active</div>
+            <div class="sub">▲ Pay-per-Request Active</div>
         </div>
         <div class="qlux-metric">
-            <label>OMNIVERSAL LIQUIDITY</label>
+            <label>AUTOMATED LIQUIDITY</label>
             <div class="val">$15,400,800,000</div>
             <div class="sub">● Qlux Sovereign Pool</div>
         </div>
@@ -385,11 +472,21 @@ footer {
     </div>
 
     <footer>
-        <p>© 2026 Qlux Ecosystem. Omniversal Sovereign & Future Grid Matrix.</p>
+        <p>© 2026 Qlux Ecosystem. Autonomous Sub-Satoshi Monetization Matrix.</p>
     </footer>
 </div>
 
 <script>
+/* ライブ収益カウンターのシミュレーション */
+var currentSats = 0.000000;
+setInterval(function() {
+    currentSats += 0.000001;
+    var el = document.getElementById('live-sats');
+    if (el) {
+        el.innerHTML = currentSats.toFixed(6) + " SAT";
+    }
+}, 800);
+
 var track = document.getElementById('swipe-track');
 var thumb = document.getElementById('swipe-thumb');
 var instruction = document.getElementById('swipe-instruction');
@@ -469,10 +566,10 @@ window.addEventListener('touchend', handleEnd);
 function executeQluxExchange() {
     terminal.style.display = "block";
     terminalBody.innerHTML = 
-        "Qlux Sovereign Omniversal Node: $qlux_future_grid_core<br>" +
-        "Matrix Atomic TXID: 0xqlux774109e82b41fc928410e7b4191a4ef8899cc00<br>" +
-        "5-Fold Future Services & Interplanetary Ledger: Synchronized & Verified<br>" +
-        "<span style='color:#fff; font-weight:bold;'>YIELD SETTLEMENT: 25,000 SATS & $250 USD atomically routed across all global Qlux nodes.</span>";
+        "Qlux Micropay Sovereign Node: $qlux_pay_per_request_core<br>" +
+        "Matrix Atomic TXID: 0xqlux664109e82b41fc928410e7b4191a4ef8899cc11<br>" +
+        "Sub-Satoshi API Request Stream & Direct Wallet Settled: Synchronized & Verified<br>" +
+        "<span style='color:#fff; font-weight:bold;'>YIELD SETTLEMENT: 50,000 SATS & $500 USD automatically routed via Pay-per-Request.</span>";
 
     setTimeout(function() {
         thumb.classList.remove('unlocked');
