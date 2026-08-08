@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qlux — Omniversal Sovereign Mega-Platform & Autonomous Core</title>
+<title>Qlux — Sovereign Global Yield Engine & Autonomous Core</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
     background-color: #020409;
-    color: #cbd5e1;
+    color: #e2e8f0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     padding: 32px 16px;
     display: flex;
@@ -25,14 +25,14 @@ body {
 
 /* ヘッダー */
 .qlux-header {
-    background: linear-gradient(135deg, #070d1d 0%, #01040a 100%);
+    background: linear-gradient(135deg, #090e22 0%, #020409 100%);
     border: 1px solid rgba(59, 130, 246, 0.4);
     border-radius: 20px;
     padding: 32px 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 .qlux-brand {
     display: flex;
@@ -50,10 +50,10 @@ body {
     font-size: 28px;
     color: #fff;
     font-weight: 900;
-    box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.7);
 }
 .qlux-title h1 { font-size: 26px; font-weight: 900; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; }
-.qlux-title span { font-size: 11px; color: #3b82f6; font-family: monospace; letter-spacing: 3px; }
+.qlux-title span { font-size: 11px; color: #3b82f6; font-family: monospace; letter-spacing: 3px; font-weight: bold; }
 
 .qlux-status-badge {
     background: rgba(16, 185, 129, 0.1);
@@ -73,12 +73,12 @@ body {
     height: 8px;
     background-color: #34d399;
     border-radius: 50%;
-    box-shadow: 0 0 10px #34d399;
-    animation: qluxPulse 1.5s infinite;
+    box-shadow: 0 0 12px #34d399;
+    animation: qluxPulse 1.2s infinite;
 }
 @keyframes qluxPulse {
     0% { transform: scale(0.9); opacity: 0.7; }
-    50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 15px #34d399; }
+    50% { transform: scale(1.4); opacity: 1; box-shadow: 0 0 20px #34d399; }
     100% { transform: scale(0.9); opacity: 0.7; }
 }
 
@@ -137,7 +137,7 @@ body {
     border-radius: 16px;
     padding: 6px;
     overflow: hidden;
-    border: 2px solid rgba(59, 130, 246, 0.5);
+    border: 2px solid rgba(59, 130, 246, 0.6);
     box-shadow: inset 0 6px 25px rgba(0,0,0,0.9);
     user-select: none;
     touch-action: none;
@@ -157,7 +157,7 @@ body {
     color: #fff;
     font-size: 28px;
     font-weight: 900;
-    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.7);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.8);
     z-index: 30;
     touch-action: none;
     transition: transform 0.05s ease, background 0.3s;
@@ -176,7 +176,7 @@ body {
     justify-content: center;
     font-size: 12px;
     font-weight: 800;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     color: #60a5fa;
     opacity: 0.9;
     transition: opacity 0.2s;
@@ -189,7 +189,7 @@ body {
     left: 0;
     top: 0;
     height: 100%;
-    background: rgba(59, 130, 246, 0.2);
+    background: rgba(59, 130, 246, 0.25);
     border-radius: 14px;
     width: 0%;
     pointer-events: none;
@@ -226,20 +226,7 @@ body {
     color: #34d399;
 }
 
-/* マニフェスト */
-.qlux-manifesto {
-    background: linear-gradient(135deg, #050b18 0%, #02050c 100%);
-    border-left: 4px solid #3b82f6;
-    border-radius: 16px;
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-.qlux-manifesto h3 { font-size: 15px; font-weight: 800; color: #fff; letter-spacing: 0.05em; }
-.qlux-manifesto p { font-size: 13px; color: #94a3b8; line-height: 1.8; font-family: -apple-system, sans-serif; }
-
-/* 統合プラットフォームカード */
+/* 統合カード */
 .mega-card {
     background: #03060f;
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -251,294 +238,11 @@ body {
     transition: all 0.2s ease;
 }
 .mega-card:hover {
-    border-color: rgba(59, 130, 246, 0.5);
+    border-color: rgba(59, 130, 246, 0.6);
     background: #050a18;
     transform: translateY(-2px);
 }
 .mega-tag {
     font-size: 10px;
     font-family: monospace;
-    color: #3b82f6;
-    letter-spacing: 0.15em;
-    font-weight: 800;
-}
-.mega-card h4 { font-size: 15px; font-weight: 800; color: #fff; }
-.mega-card p { font-size: 12px; color: #94a3b8; font-family: monospace; line-height: 1.7; }
-
-footer {
-    text-align: center;
-    font-size: 11px;
-    color: #475569;
-    font-family: monospace;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 24px;
-    letter-spacing: 0.1em;
-}
-</style>
-</head>
-<body>
-
-<div class="qlux-wrapper">
-    <header class="qlux-header">
-        <div class="qlux-brand">
-            <div class="qlux-logo">Q</div>
-            <div class="qlux-title">
-                <h1>Qlux Ecosystem</h1>
-                <span>OMNIVERSAL SOVEREIGN MEGA-PLATFORM CORE</span>
-            </div>
-        </div>
-        <div class="qlux-status-badge">
-            <div class="qlux-pulse"></div> MEGA-MATRIX 100% SYNCHRONIZED
-        </div>
-    </header>
-
-    <div class="qlux-grid-2">
-        <main class="qlux-panel">
-            <div class="qlux-panel-header">
-                <span>⚡</span> Qlux Sovereign Mega-Execution & Live Revenue Core
-            </div>
-
-            <div style="font-size: 13px; color: #94a3b8; line-height: 1.6;">
-                Qluxメガプラットフォームは、Teranodeの無限スケーラビリティを基盤に、全AIモデル、P2P分散SNS、ゲーム経済、気候デリバティブ、宇宙データ信託のすべてを束ね、完全自動で収益を配分し続けます。
-            </div>
-
-            <div class="live-counter-box">
-                <div>
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 2px;">MEGA-PLATFORM LIVE ACCUMULATOR</div>
-                    <div style="font-size: 12px; color: #fff;">全インフラ自動収益直結</div>
-                </div>
-                <div class="live-counter-val" id="live-sats">0.000000 SAT</div>
-            </div>
-
-            <div>
-                <div style="font-size: 11px; font-weight: bold; color: #60a5fa; font-family: monospace; margin-bottom: 8px; display: flex; justify-content: space-between;">
-                    <span>▶ メガ・マトリックス即時アトミック発火制御</span>
-                    <span style="color: #64748b;">SLIDE TO RIGHT</span>
-                </div>
-                <div class="qlux-swipe-track" id="swipe-track">
-                    <div class="qlux-swipe-progress" id="swipe-progress"></div>
-                    <div class="qlux-swipe-instruction" id="swipe-instruction">SLIDE TO EXECUTE QLUX MEGA-PLATFORM &rarr;</div>
-                    <div class="qlux-swipe-thumb" id="swipe-thumb">&rarr;</div>
-                </div>
-            </div>
-
-            <div id="qlux-terminal" class="qlux-terminal">
-                <div style="font-weight: bold; margin-bottom: 6px; font-size: 13px; color: #fff;">✓ [QLUX MEGA-PLATFORM SUCCESS] 全8大超未来インフラの同期および収益の自動アトミック配分が完了しました。</div>
-                <div id="terminal-body"></div>
-            </div>
-        </main>
-
-        <aside class="qlux-panel" style="justify-content: space-between;">
-            <div class="qlux-panel-header">
-                <span>📖</span> Qlux Manifesto & Philosophy
-            </div>
-            <div class="qlux-manifesto">
-                <h3>The Ultimate Sovereign Singularity</h3>
-                <p>
-                    中央集権的なサーバー、広告、月額サブスクの概念を地球上から消し去る。AI、人間、ロボット、そして宇宙のすべてがダイレクトにつながる究極の無人経済圏。
-                </p>
-            </div>
-            <div style="font-size: 11px; color: #64748b; font-family: monospace;">
-                Architecture: Teranode Shard Matrix & Pay-per-Request Core
-            </div>
-        </aside>
-    </div>
-
-    <section class="qlux-panel">
-        <div class="qlux-panel-header">
-            <span>🌌</span> Qlux Horizon — 究極の8大BSVメガプラットフォーム完全統合
-        </div>
-
-        <div class="qlux-grid-3">
-            <div class="mega-card">
-                <div class="mega-tag">MEGA MODULE 01 // PAY-PER-REQUEST API</div>
-                <h4>サブサトシ・リアルタイムAPI</h4>
-                <p>APIの呼び出しやデータ閲覧ごとに1/100万サトシ単位で即時決済。請求・集金作業一切なしの完全無人マネタイズ。</p>
-            </div>
-
-            <div class="mega-card">
-                <div class="mega-tag">MEGA MODULE 02 // AI AGENT COMPUTE MATRIX</div>
-                <h4>P2P AIモデル・マーケットプレイス</h4>
-                <p>開発者の小型AIモデルが呼び出されるたび、スマートコントラクトが開発者ウォレットへ直接報酬を高速ルーティング。</p>
-            </div>
-
-            <div class="mega-card">
-                <div class="mega-tag">MEGA MODULE 03 // SOVEREIGN NEURAL FEED</div>
-                <h4>P2P分散型プライベートSNS</h4>
-                <p>すべての投稿・やり取りをBitcoinトランザクションとして直刻印。バズやインサイトに直結するダイレクトチップ経済圏。</p>
-            </div>
-
-            <div class="mega-card">
-                <div class="mega-tag">MEGA MODULE 04 // AUTONOMOUS GAME ECONOMY</div>
-                <h4>ゲーム内アセット＆P2Pオークション</h4>
-                <p>STASトークン規格による完全オンチェーンのアイテム売買。運営を介さずアトミック・スワップと永続ロイヤリティが自動稼働。</p>
-            </div>
-
-            <div class="mega-card">
-                <div class="mega-tag">MEGA MODULE 05 // QUANTUM CLIMATE DERIVATIVES</div>
-                <h4>クァンタム気候変動グリッド</h4>
-                <p>気象センサーの異常データを即刻印し、人間ゼロで保険金や補償金をミリ秒で一律自動送金する都市防衛インフラ。</p>
-            </div>
-
-            <div class="mega-card">
-                <div class="mega-tag">MEGA MODULE 06 // ROBOT-TO-ROBOT ECONOMY</div>
-                <h4>自律型AIロボット経済社会</h4>
-                <p>ドローンや自動運転車同士が電力や通信リソースをサブサトシ決済で無限に売り買いし合う機械のための自律社会。</p>
-            </div>
-
-            <div class="mega-card">
-                <div class="mega-tag">MEGA MODULE 07 // DEAD MAN'S TRUST</div>
-                <h4>量子タイムロック型遺言信託</h4>
-                <p>生存確認シグナルの途絶時に、極秘の知的財産や資産をパブリックアドレスへ自動解放・分配する不滅のタイムロック。</p>
-            </div>
-
-            <div class="mega-card">
-                <div class="mega-tag">MEGA MODULE 08 // DEEP SPACE DATA LEDGER</div>
-                <h4>宇宙空間データ分散信託</h4>
-                <p>低軌道衛星や火星探査の宇宙科学データを遅延ゼロで同期。宇宙資源の採掘権や通信帯域を安全に自動売買。</p>
-            </div>
-
-            <div class="mega-card" style="background: linear-gradient(135deg, #071126 0%, #030712 100%); border-color: rgba(59, 130, 246, 0.4);">
-                <div class="mega-tag" style="color: #60a5fa;">MEGA MODULE 09 // OMNIVERSAL CORE</div>
-                <h4 style="color: #fff;">完全無人自動収益のシンギュラリティ</h4>
-                <p style="color: #cbd5e1;">これらすべてのモジュールが1つのBSVコントラクトで結ばれ、寝ている間も世界中の経済活動から収益が流れ込み続ける。</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="qlux-grid-4">
-        <div class="qlux-metric">
-            <label>MEGA-PLATFORM TPS</label>
-            <div class="val">10,000,000 TPS</div>
-            <div class="sub">▲ Teranode 8-Fold Active</div>
-        </div>
-        <div class="qlux-metric">
-            <label>OMNIVERSAL LIQUIDITY</label>
-            <div class="val">$50,850,000,000</div>
-            <div class="sub">● Qlux Mega Pool</div>
-        </div>
-        <div class="qlux-metric">
-            <label>AVG NETWORK FEE</label>
-            <div class="val">&lt; 0.000001 SAT</div>
-            <div class="sub">◆ Absolute Zero Overhead</div>
-        </div>
-        <div class="qlux-metric">
-            <label>GLOBAL SEC_LEVEL</label>
-            <div class="val">SOVEREIGN</div>
-            <div class="sub">■ P2P Matrix Locked</div>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2026 Qlux Ecosystem. Omniversal Sovereign Mega-Platform Core.</p>
-    </footer>
-</div>
-
-<script>
-/* ライブ収益カウンターのシミュレーション */
-var currentSats = 0.000000;
-setInterval(function() {
-    currentSats += 0.000005; // 8大モジュールからの超高速収益流入
-    var el = document.getElementById('live-sats');
-    if (el) {
-        el.innerHTML = currentSats.toFixed(6) + " SAT";
-    }
-}, 500);
-
-var track = document.getElementById('swipe-track');
-var thumb = document.getElementById('swipe-thumb');
-var instruction = document.getElementById('swipe-instruction');
-var progress = document.getElementById('swipe-progress');
-var terminal = document.getElementById('qlux-terminal');
-var terminalBody = document.getElementById('terminal-body');
-
-var isDragging = false;
-var startX = 0;
-var currentX = 0;
-var maxTranslate = 0;
-
-function updateMetrics() {
-    if (track && thumb) {
-        maxTranslate = track.clientWidth - thumb.clientWidth - 12;
-    }
-}
-window.addEventListener('resize', updateMetrics);
-window.addEventListener('load', updateMetrics);
-
-function handleStart(e) {
-    if (thumb.classList.contains('unlocked')) return;
-    isDragging = true;
-    updateMetrics();
-    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    startX = clientX - currentX;
-    instruction.classList.add('hide');
-    thumb.style.transform = 'scale(1.05)';
-    if (e.cancelable) e.preventDefault();
-}
-
-function handleMove(e) {
-    if (!isDragging) return;
-    updateMetrics();
-    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    currentX = clientX - startX;
-    if (currentX < 0) currentX = 0;
-    if (currentX > maxTranslate) currentX = maxTranslate;
-    
-    thumb.style.transform = 'translateX(' + currentX + 'px) scale(1.05)';
-    var percent = (currentX / maxTranslate) * 100;
-    progress.style.width = percent + '%';
-    
-    if (e.cancelable) e.preventDefault();
-}
-
-function handleEnd() {
-    if (!isDragging) return;
-    isDragging = false;
-    updateMetrics();
-    thumb.style.transform = 'translateX(' + currentX + 'px) scale(1)';
-
-    if (currentX >= maxTranslate * 0.70) {
-        currentX = maxTranslate;
-        thumb.style.transform = 'translateX(' + maxTranslate + 'px) scale(1)';
-        progress.style.width = '100%';
-        thumb.classList.add('unlocked');
-        thumb.innerHTML = '✓';
-        executeQluxExchange();
-    } else {
-        currentX = 0;
-        thumb.style.transform = 'translateX(0px)';
-        progress.style.width = '0%';
-        instruction.classList.remove('hide');
-    }
-}
-
-if (thumb) {
-    thumb.addEventListener('mousedown', handleStart);
-    thumb.addEventListener('touchstart', handleStart, {passive: false});
-}
-window.addEventListener('mousemove', handleMove);
-window.addEventListener('mouseup', handleEnd);
-window.addEventListener('touchmove', handleMove, {passive: false});
-window.addEventListener('touchend', handleEnd);
-
-function executeQluxExchange() {
-    terminal.style.display = "block";
-    terminalBody.innerHTML = 
-        "Qlux Sovereign Mega-Platform Node: $qlux_omniversal_mega_core<br>" +
-        "Matrix Atomic TXID: 0xqlux994109e82b41fc928410e7b4191a4ef8899cc99<br>" +
-        "All 8 Modules & Sub-Satoshi Streams: Fully Synchronized & Verified<br>" +
-        "<span style='color:#fff; font-weight:bold;'>YIELD SETTLEMENT: 100,000 SATS & $1,000 USD atomically routed across the Mega-Platform.</span>";
-
-    setTimeout(function() {
-        thumb.classList.remove('unlocked');
-        thumb.innerHTML = '&rarr;';
-        currentX = 0;
-        thumb.style.transform = 'translateX(0px)';
-        progress.style.width = '0%';
-        instruction.classList.remove('hide');
-    }, 2500);
-}
-</script>
-
-</body>
-</html>
+    color: #
