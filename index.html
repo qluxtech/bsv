@@ -3,44 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QluxX — Sovereign Autonomous On-Chain Super Ecosystem</title>
+<title>QluxX Sovereign Global Hub — Universal Cross-Chain & BSV Super Ecosystem</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    background-color: #000205;
+    background-color: #000103;
     color: #e2e8f0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    padding: 12px 8px;
+    padding: 10px;
     display: flex;
     justify-content: center;
 }
-.qlux-wrapper { width: 100%; max-width: 1450px; display: flex; flex-direction: column; gap: 14px; }
+.qlux-wrapper { width: 100%; max-width: 1500px; display: flex; flex-direction: column; gap: 14px; }
 
-/* ヘッダー：完全オンチェーン＆クラウドレス表示 */
+/* ヘッダー */
 .qlux-header {
-    background: linear-gradient(135deg, #03071e 0%, #000205 100%);
+    background: linear-gradient(135deg, #050b26 0%, #000103 100%);
     border: 1px solid rgba(59, 130, 246, 0.6);
     border-radius: 16px;
-    padding: 14px 24px;
+    padding: 14px 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 0 35px rgba(59, 130, 246, 0.25);
 }
 .qlux-brand { display: flex; align-items: center; gap: 12px; }
 .qlux-logo {
-    width: 42px; height: 42px;
+    width: 44px; height: 44px;
     background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 22px; color: #fff; font-weight: 900;
+    font-size: 24px; color: #fff; font-weight: 900;
     box-shadow: 0 0 20px rgba(59,130,246,0.8);
 }
 .qlux-title h1 { font-size: 16px; font-weight: 900; color: #fff; letter-spacing: 0.05em; }
 .qlux-title span { font-size: 8px; color: #34d399; font-family: monospace; letter-spacing: 1.5px; }
 
 .qlux-nav-tabs {
-    display: flex; gap: 4px; background: #010409; padding: 4px;
+    display: flex; gap: 4px; background: #02050f; padding: 4px;
     border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);
 }
 .qlux-tab-btn {
@@ -61,16 +61,16 @@ body {
     display: flex; align-items: center; gap: 10px;
 }
 
-/* メガグリッドレイアウト */
+/* 4カラム / 3カラムのメガグリッドレイアウト */
 .qlux-megagrid {
     display: grid;
-    grid-template-columns: 280px 1fr 300px;
+    grid-template-columns: 270px 1fr 320px;
     gap: 16px;
 }
-@media(max-width: 1100px) { .qlux-megagrid { grid-template-columns: 1fr; } }
+@media(max-width: 1200px) { .qlux-megagrid { grid-template-columns: 1fr; } }
 
 .qlux-panel {
-    background: #020617;
+    background: #030818;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     padding: 16px;
@@ -83,13 +83,33 @@ body {
     padding-bottom: 8px; text-transform: uppercase; font-family: monospace;
 }
 
-/* 投稿・タイムライン系 */
+/* エクスチェンジ（全通貨→BSV自動コンバート）パネル */
+.exchange-box {
+    background: #01040a; border: 1px solid rgba(52, 211, 153, 0.3);
+    border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 10px;
+}
+.exchange-input-group { display: flex; gap: 6px; }
+.exchange-input {
+    width: 100%; background: #000103; border: 1px solid rgba(255,255,255,0.1);
+    color: #fff; padding: 6px 8px; border-radius: 6px; font-size: 11px; outline: none;
+}
+.exchange-select {
+    background: #000103; border: 1px solid rgba(255,255,255,0.1);
+    color: #34d399; padding: 6px; border-radius: 6px; font-size: 11px; outline: none; font-weight: bold;
+}
+.exchange-btn {
+    background: linear-gradient(135deg, #10b981, #059669); color: #fff;
+    border: none; border-radius: 12px; padding: 8px; font-weight: 800; font-size: 11px; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(16,185,129,0.3);
+}
+
+/* 投稿カード系 */
 .qlux-compose {
-    background: #010409; border: 1px solid rgba(59, 130, 246, 0.4);
+    background: #01040a; border: 1px solid rgba(59, 130, 246, 0.4);
     border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px;
 }
 .qlux-textarea {
-    width: 100%; background: #000205; border: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%; background: #000103; border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px; padding: 10px; color: #fff; font-size: 12px; font-family: inherit;
     resize: none; height: 80px; outline: none;
 }
@@ -99,7 +119,7 @@ body {
 }
 
 .qlux-card {
-    background: #010409; border: 1px solid rgba(255, 255, 255, 0.06);
+    background: #01040a; border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px;
 }
 .qlux-card-header { display: flex; justify-content: space-between; align-items: center; }
@@ -126,13 +146,13 @@ body {
 .qlux-action-btn:hover { background: rgba(59, 130, 246, 0.15); border-color: #3b82f6; color: #60a5fa; }
 .qlux-like-btn { color: #f43f5e; border-color: rgba(244, 63, 94, 0.3); }
 
-/* ウォレット・統計ウィジェット */
+/* メトリック・通行料プール表示 */
 .metric-box {
-    background: #010409; border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 4px;
+    background: #01040a; border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 4px;
 }
-.metric-val { font-size: 14px; font-weight: 900; color: #34d399; font-family: monospace; }
-.metric-lbl { font-size: 9px; color: #64748b; font-family: monospace; text-transform: uppercase; }
+.metric-val { font-size: 13px; font-weight: 900; color: #34d399; font-family: monospace; }
+.metric-lbl { font-size: 8px; color: #64748b; font-family: monospace; text-transform: uppercase; }
 </style>
 </head>
 <body>
@@ -142,46 +162,46 @@ body {
         <div class="qlux-brand">
             <div class="qlux-logo">Q</div>
             <div class="qlux-title">
-                <h1>QluxX Sovereign On-Chain Ecosystem</h1>
-                <span>SERVERLESS // TERANODE 10M TPS // FULLY DECENTRALIZED</span>
+                <h1>QluxX Universal Super Ecosystem</h1>
+                <span>CROSS-CHAIN ATOMIC CONVERTER // UNIVERSAL DEVICE NODE</span>
             </div>
         </div>
         <div class="qlux-nav-tabs">
-            <button class="qlux-tab-btn active" onclick="switchTab('feed', this)">🌐 オンチェーンフィード</button>
-            <button class="qlux-tab-btn" onclick="switchTab('metrics', this)">📊 ノード＆ネットワーク監査</button>
-            <button class="qlux-tab-btn" onclick="switchTab('vault', this)">💎 アトミック・収益プール</button>
+            <button class="qlux-tab-btn active" onclick="switchTab('feed', this)">🌐 グローバルフィード</button>
+            <button class="qlux-tab-btn" onclick="switchTab('exchange', this)">💱 資産コンバート</button>
+            <button class="qlux-tab-btn" onclick="switchTab('toll', this)">💎 通行料・収益監査</button>
         </div>
         <div class="qlux-wallet-box">
             <span id="header-balance">💎 15,450 SAT</span>
-            <span style="font-size: 8px; color: #34d399; background: rgba(52,211,153,0.1); padding: 2px 6px; border-radius: 4px;">HandCash Linked</span>
+            <span style="font-size: 8px; color: #34d399; background: rgba(52,211,153,0.1); padding: 2px 6px; border-radius: 4px;">Omni-Device Synced</span>
         </div>
     </header>
 
     <div class="qlux-megagrid">
         
         <aside class="qlux-panel">
-            <div class="qlux-panel-header"><span>⚡ Sovereign Identity</span></div>
+            <div class="qlux-panel-header"><span>⚡ デバイス & 通行料モニター</span></div>
             
-            <div style="background: #010409; padding: 12px; border-radius: 10px; border: 1px solid rgba(59,130,246,0.3); display: flex; gap: 10px; align-items: center;">
+            <div style="background: #01040a; padding: 12px; border-radius: 10px; border: 1px solid rgba(59,130,246,0.3); display: flex; gap: 10px; align-items: center;">
                 <div style="width: 36px; height: 36px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color:#fff;">V</div>
                 <div>
                     <div style="font-size: 11px; font-weight: 800; color: #fff;">VLIS Creator Node</div>
-                    <div style="font-size: 9px; color: #34d399; font-family: monospace;">@vlis_user · On-Chain Key</div>
+                    <div style="font-size: 9px; color: #34d399; font-family: monospace;">📱 Mobile & PC Synced</div>
                 </div>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 8px;">
                 <div class="metric-box">
-                    <div class="metric-lbl">グローバルネットワークTPS</div>
-                    <div class="metric-val" style="color: #38bdf8;">10,000,000 TPS</div>
+                    <div class="metric-lbl">累計コンバート通行料 (0.2%)</div>
+                    <div class="metric-val" style="color: #38bdf8;" id="total-toll-collected">2,450.00 SAT</div>
                 </div>
                 <div class="metric-box">
-                    <div class="metric-lbl">平均ネットワーク手数料</div>
-                    <div class="metric-val" style="color: #f59e0b;">&lt; 0.000001 SAT</div>
+                    <div class="metric-lbl">ネットワーク接続デバイス数</div>
+                    <div class="metric-val" style="color: #34d399;">14,892 デバイス</div>
                 </div>
                 <div class="metric-box">
-                    <div class="metric-lbl">クラウドサーバー依存度</div>
-                    <div class="metric-val" style="color: #ef4444;">0% (完全ゼロ)</div>
+                    <div class="metric-lbl">Teranode 処理速度</div>
+                    <div class="metric-val" style="color: #f59e0b;">10,000,000 TPS</div>
                 </div>
             </div>
         </aside>
@@ -190,50 +210,61 @@ body {
             
             <div id="tab-feed" class="tab-content">
                 <div class="qlux-panel-header">
-                    <span>🌐 Teranode Immutable Stream</span>
-                    <span style="font-size: 9px; color: #34d399;">Zero Cloud Overhead</span>
+                    <span>🌐 Universal On-Chain Feed</span>
+                    <span style="font-size: 9px; color: #34d399;">All Devices Connected</span>
                 </div>
 
                 <div class="qlux-compose">
-                    <textarea id="qlux-input" class="qlux-textarea" placeholder="いま、世界で何が起きている？ #BSV #Teranode を添えてブロックチェーンに直接刻印..."></textarea>
+                    <textarea id="qlux-input" class="qlux-textarea" placeholder="どのデバイスからでも瞬時にオンチェーン刻印... #BSV #QluxX"></textarea>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 9px; color: #64748b; font-family: monospace;">OP_RETURN直結・クラウド不要</span>
-                        <button onclick="publishOnChainPost()" class="qlux-post-btn">オンチェーン刻印</button>
+                        <span style="font-size: 9px; color: #64748b; font-family: monospace;">全デバイス自動同期・通行料自動適用</span>
+                        <button onclick="publishPost()" class="qlux-post-btn">ポスト発信</button>
                     </div>
                 </div>
 
                 <div id="qlux-timeline" style="display: flex; flex-direction: column; gap: 12px;"></div>
             </div>
 
-            <div id="tab-metrics" class="tab-content" style="display: none;">
-                <div class="qlux-panel-header"><span>📊 Teranode ネットワーク監査</span></div>
-                <div style="background: #010409; padding: 14px; border-radius: 12px; font-family: monospace; font-size: 11px; display: flex; flex-direction: column; gap: 8px;">
-                    <div style="color: #34d399;">✓ 全ノード同期完了: ブロック高 884,210</div>
-                    <div style="color: #38bdf8;">直近アトミックTxID:</div>
-                    <div style="background: #000205; padding: 6px; border-radius: 4px; color: #94a3b8; font-size: 9px; word-break: break-all;">qlux_autonomous_teranode_genesis_tx_999999</div>
+            <div id="tab-exchange" class="tab-content" style="display: none;">
+                <div class="qlux-panel-header"><span>💱 ユニバーサル・アトミック・エクスチェンジ</span></div>
+                <div class="exchange-box">
+                    <div style="font-size: 11px; color: #94a3b8;">保有する他暗号資産や法定通貨を、一瞬でBSVへ流し込み、エコシステム全体の「通行料（0.2%）」を生み出すエンジン：</div>
+                    <div class="exchange-input-group">
+                        <input type="number" id="convert-amount" class="exchange-input" placeholder="数量を入力 (例: 0.1)" value="1">
+                        <select id="from-currency" class="exchange-select">
+                            <option value="BTC">BTC (Bitcoin)</option>
+                            <option value="ETH">ETH (Ethereum)</option>
+                            <option value="USDT">USDT (Tether)</option>
+                            <option value="SOL">SOL (Solana)</option>
+                            <option value="JPY">JPY (法定通貨)</option>
+                            <option value="USD">USD (法定通貨)</option>
+                        </select>
+                    </div>
+                    <div style="font-size: 10px; color: #34d399; font-family: monospace;" id="convert-preview">↓ 換算予想: 15,450.00 SAT (プラットフォーム通行料 0.2% 含む)</div>
+                    <button onclick="executeExchange()" class="exchange-btn">⚡ アトミック・コンバート実行 (BSV化)</button>
                 </div>
             </div>
 
-            <div id="tab-vault" class="tab-content" style="display: none;">
-                <div class="qlux-panel-header"><span>💎 アトミック・収益プール</span></div>
-                <div style="background: #010409; padding: 14px; border-radius: 12px; font-family: monospace; font-size: 11px; display: flex; flex-direction: column; gap: 8px;">
-                    <div style="color: #34d399;">リアルタイム自動配当プール: 14,850.00 SAT</div>
-                    <div style="color: #38bdf8;">仲介者ゼロのスマートコントラクトによって毎秒ウォレットへ直結。</div>
+            <div id="tab-toll" class="tab-content" style="display: none;">
+                <div class="qlux-panel-header"><span>💎 通行料・リレーフィー監査プール</span></div>
+                <div style="background: #01040a; padding: 14px; border-radius: 12px; font-family: monospace; font-size: 11px; display: flex; flex-direction: column; gap: 8px;">
+                    <div style="color: #34d399;">直近徴収された通行料総額: <span id="audit-toll">2,450.00 SAT</span></div>
+                    <div style="color: #38bdf8;">仲介業者を介さず、スマートコントラクトにより毎秒自動分配。</div>
                 </div>
             </div>
 
         </main>
 
         <aside class="qlux-panel">
-            <div class="qlux-panel-header"><span>🔥 オンチェーン・トレンド</span></div>
-            <input type="text" placeholder="🔍 グローバル検索..." style="background: #000205; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px; color: #fff; font-size: 11px; outline: none;">
-            <div style="background: #010409; padding: 10px; border-radius: 8px; font-size: 11px; display: flex; flex-direction: column; gap: 4px;">
-                <div style="color: #38bdf8; font-weight: bold;">#BSV <span style="font-size:9px; color:#64748b;">(34.2K Posts)</span></div>
-                <div style="font-size: 9px; color: #64748b;">クラウド不要の次世代自律インフラストラクチャが急拡大中。</div>
+            <div class="qlux-panel-header"><span>🔥 グローバル・トレンド</span></div>
+            <input type="text" placeholder="🔍 クロスチェーン検索..." style="background: #000103; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px; color: #fff; font-size: 11px; outline: none;">
+            <div style="background: #01040a; padding: 10px; border-radius: 8px; font-size: 11px; display: flex; flex-direction: column; gap: 4px;">
+                <div style="color: #38bdf8; font-weight: bold;">#AtomicSwap <span style="font-size:9px; color:#64748b;">(41.2K Conversion)</span></div>
+                <div style="font-size: 9px; color: #64748b;">BTC・ETHからBSVへの自動コンバートが爆発的に増加中。</div>
             </div>
-            <div style="background: #010409; padding: 10px; border-radius: 8px; font-size: 11px; display: flex; flex-direction: column; gap: 4px;">
-                <div style="color: #38bdf8; font-weight: bold;">#Teranode <span style="font-size:9px; color:#64748b;">(18.2K Posts)</span></div>
-                <div style="font-size: 9px; color: #64748b;">1,000万TPSによる超高速アトミック決済。</div>
+            <div style="background: #01040a; padding: 10px; border-radius: 8px; font-size: 11px; display: flex; flex-direction: column; gap: 4px;">
+                <div style="color: #38bdf8; font-weight: bold;">#OmniDevice <span style="font-size:9px; color:#64748b;">(19.8K Posts)</span></div>
+                <div style="font-size: 9px; color: #64748b;">すべてのスマートデバイスからラグゼロでアクセス可能。</div>
             </div>
         </aside>
 
@@ -241,27 +272,18 @@ body {
 </div>
 
 <script>
-// 投稿データ（本来はオンチェーンのブロックからダイレクトに取得）
-let posts = JSON.parse(localStorage.getItem('qlux_onchain_posts')) || [
+let tollCollected = 2450;
+let balance = 15450;
+
+let posts = JSON.parse(localStorage.getItem('qlux_universal_posts')) || [
     {
         id: 1,
         name: "VLIS Creator Node",
         idStr: "@vlis_user",
         avatar: "V",
         time: "たった今",
-        content: "QluxX Sovereign Networkが世界最高峰のオンチェーン仕様にアップデート！AWSやクラウドサーバーを一切排除し、BSVとTeranodeの力で仲介手数料ゼロの完全自律マネタイズ空間が完成。🚀 #BSV #Teranode",
-        likes: 142,
-        tips: 1500
-    },
-    {
-        id: 2,
-        name: "Qlux Sovereign Node",
-        idStr: "@qlux_core",
-        avatar: "Q",
-        time: "3分前",
-        content: "HandCashウォレットとのダイレクト決済が全機能に組み込まれました。すべての閲覧やアクションがアトミックにサトシを動かす。 #HandCash #Web3",
-        likes: 289,
-        tips: 3400
+        content: "QluxXユニバーサル・エコシステムが起動！あらゆる暗号資産や法定通貨が瞬時にBSVにコンバートされ、すべてのデバイスから完全同期。自動通行料が無限にチャリンチャリン！🚀 #BSV #AtomicSwap",
+        likes: 312
     }
 ];
 
@@ -284,20 +306,20 @@ function renderTimeline() {
                         <div class="qlux-id">${post.idStr} · ${post.time}</div>
                     </div>
                 </div>
-                <div style="color: #34d399; font-size: 8px; font-family: monospace;">On-Chain Immutable</div>
+                <div style="color: #34d399; font-size: 8px; font-family: monospace;">Multi-Device Synced</div>
             </div>
             <div class="qlux-body">${formatted}</div>
             <div class="qlux-actions">
-                <button class="qlux-action-btn" onclick="alert('💬 オンチェーン返信トランザクションを生成中...')">💬 返信</button>
+                <button class="qlux-action-btn" onclick="alert('💬 返信トランザクション送信中...')">💬 返信</button>
                 <button class="qlux-action-btn qlux-like-btn" onclick="likePost(${index})">❤️ いいね ${post.likes}</button>
-                <button class="qlux-action-btn" style="color:#34d399;" onclick="sendAtomicTip(${index})">⚡ 100 SATS 入金</button>
+                <button class="qlux-action-btn" style="color:#34d399;" onclick="sendTollTip(${index})">⚡ 100 SATS (通行料込)</button>
             </div>
         `;
         timeline.appendChild(card);
     });
 }
 
-function publishOnChainPost() {
+function publishPost() {
     const input = document.getElementById('qlux-input');
     const text = input.value.trim();
     if (!text) return;
@@ -309,26 +331,46 @@ function publishOnChainPost() {
         avatar: "V",
         time: "たった今",
         content: text,
-        likes: 0,
-        tips: 0
+        likes: 0
     });
     
-    localStorage.setItem('qlux_onchain_posts', JSON.stringify(posts));
+    // 通行料加算
+    tollCollected += 5;
+    document.getElementById('total-toll-collected').innerText = tollCollected.toLocaleString() + ".00 SAT";
+    document.getElementById('audit-toll').innerText = tollCollected.toLocaleString() + ".00 SAT";
+
+    localStorage.setItem('qlux_universal_posts', JSON.stringify(posts));
     input.value = "";
     renderTimeline();
-    alert("✓ Teranodeネットワークへトランザクションがブロードキャストされ、クラウド不要でオンチェーンに永続刻印されました！");
+    alert("✓ すべてのデバイスへ即時同期され、トランザクション通行料が自動徴収されました！");
+}
+
+function executeExchange() {
+    const amt = document.getElementById('convert-amount').value;
+    const cur = document.getElementById('from-currency').value;
+    if (!amt || amt <= 0) return;
+
+    const generatedToll = Math.floor(amt * 12);
+    tollCollected += generatedToll;
+    balance += generatedToll * 5;
+
+    document.getElementById('total-toll-collected').innerText = tollCollected.toLocaleString() + ".00 SAT";
+    document.getElementById('audit-toll').innerText = tollCollected.toLocaleString() + ".00 SAT";
+    document.getElementById('header-balance').innerText = "💎 " + balance.toLocaleString() + " SAT";
+
+    alert(`💱 ${amt} ${cur} のアトミック・コンバートが完了しました！\nルート上で自動的に ${generatedToll} SAT のプラットフォーム通行料がチャリンと徴収されました。`);
 }
 
 function likePost(index) {
     posts[index].likes += 1;
-    localStorage.setItem('qlux_onchain_posts', JSON.stringify(posts));
+    localStorage.setItem('qlux_universal_posts', JSON.stringify(posts));
     renderTimeline();
 }
 
-function sendAtomicTip(index) {
-    posts[index].tips += 100;
-    alert("⚡ HandCash経由で 100 SATS のアトミック・ナノペイメントがクリエイターへ即時着金しました！");
-    renderTimeline();
+function sendTollTip(index) {
+    tollCollected += 2;
+    document.getElementById('total-toll-collected').innerText = tollCollected.toLocaleString() + ".00 SAT";
+    alert("⚡ ナノペイメント送信完了！システム通行料（リレーフィー）が自動でチャージされました。");
 }
 
 function switchTab(tabName, btn) {
