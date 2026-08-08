@@ -226,6 +226,146 @@ body {
     color: #34d399;
 }
 
+/* X (Twitter) スタイルのSNSタイムライン要素 */
+.x-compose-box {
+    background: #03060f;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.x-textarea {
+    width: 100%;
+    background: #010206;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 14px;
+    color: #fff;
+    font-size: 14px;
+    font-family: inherit;
+    resize: none;
+    height: 90px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.x-textarea:focus { border-color: #3b82f6; }
+
+.x-compose-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.x-fee-tag {
+    font-size: 11px;
+    font-family: monospace;
+    color: #34d399;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.x-post-btn {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 24px;
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5);
+    transition: transform 0.1s;
+}
+.x-post-btn:active { transform: scale(0.97); }
+
+.x-tweet-card {
+    background: #03060f;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.2s, background 0.2s;
+}
+.x-tweet-card:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    background: #050a18;
+}
+.x-tweet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.x-user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.x-avatar {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    color: #fff;
+    font-size: 14px;
+}
+.x-username { font-size: 13px; font-weight: 800; color: #fff; }
+.x-handle { font-size: 11px; color: #64748b; font-family: monospace; }
+.x-time { font-size: 11px; color: #64748b; font-family: monospace; }
+
+.x-tweet-body {
+    font-size: 14px;
+    color: #e2e8f0;
+    line-height: 1.6;
+    word-break: break-all;
+}
+
+/* 各所マイクロペイメント・アクションバー */
+.x-action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 12px;
+    margin-top: 4px;
+}
+.x-action-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 6px 12px;
+    color: #94a3b8;
+    font-size: 12px;
+    font-family: monospace;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+.x-action-btn:hover {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.5);
+    color: #60a5fa;
+}
+.x-tip-btn {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #34d399;
+}
+.x-tip-btn:hover {
+    background: rgba(16, 185, 129, 0.25);
+    border-color: #34d399;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
 /* 統合カード */
 .mega-card {
     background: #03060f;
@@ -328,35 +468,75 @@ footer {
         </aside>
     </div>
 
-    <section class="qlux-panel" style="margin-top: 24px;">
+    <section class="qlux-panel">
         <div class="qlux-panel-header">
-            <span>💬</span> 日本向け P2P分散型SNS ＆ マイクロペイメント・コア
+            <span>🌐</span> QluxX — ナノペイメント統合・完全分散型オンチェーンSNS
         </div>
 
         <div style="font-size: 13px; color: #94a3b8; line-height: 1.6;">
-            月額の広告やサブスクに頼らず、日本のユーザー間・クリエイター間で「いいね」や「閲覧」の瞬間にサブサトシ単位の報酬がダイレクトに往来する次世代のSNSインフラ。
+            すべての「投稿」「閲覧」「いいね」「リプライ」にマイクロペイメント＆ナノサトシ決済を装備。中央管理サーバーを完全に排除し、アクションと同時に価値がウォレットへダイレクトに着金するXレベルのSNSインフラ。
         </div>
 
-        <div style="background: #03060f; border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
-            <div style="font-size: 11px; font-family: monospace; color: #60a5fa; font-weight: bold;">LIVE NEURAL FEED & MICRO-TIP MATRIX</div>
-            <div style="display: flex; gap: 10px;">
-                <input type="text" id="sns-input" placeholder="いま何が起きている？（オンチェーンに即時刻印＆収益化）" style="flex: 1; background: #010206; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 12px; color: #fff; font-size: 13px; outline: none;">
-                <button onclick="publishSnsPost()" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; border: none; border-radius: 8px; padding: 0 20px; font-weight: bold; cursor: pointer; font-size: 12px; font-family: monospace;">投稿・即時刻印</button>
+        <div class="x-compose-box">
+            <textarea id="x-input" class="x-textarea" placeholder="いま、何が起きている？（オンチェーンに秒速刻印 ＆ 収益化スタート）"></textarea>
+            <div class="x-compose-footer">
+                <div class="x-fee-tag">
+                    <span>⚡ ネットワーク手数料: &lt; 0.000001 SAT</span>
+                </div>
+                <button onclick="publishXTweet()" class="x-post-btn">ポストする</button>
             </div>
         </div>
 
-        <div id="sns-feed-container" style="display: flex; flex-direction: column; gap: 12px;">
-            <div style="background: #03060f; border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 8px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-family: monospace; color: #64748b;">
-                    <span>@Qlux_Creator_JP <span style="color: #34d399;">● Verified P2P Node</span></span>
-                    <span>たった今 (0.000001 SAT/view)</span>
+        <div id="x-timeline" style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="x-tweet-card">
+                <div class="x-tweet-header">
+                    <div class="x-user-info">
+                        <div class="x-avatar">Q</div>
+                        <div>
+                            <div class="x-username">Qlux Core Team <span style="color: #34d399; font-size: 11px;">● Verified</span></div>
+                            <div class="x-handle">@qlux_official · 1分前</div>
+                        </div>
+                    </div>
+                    <div class="x-time" style="color: #3b82f6;">#Teranode #BSV</div>
                 </div>
-                <div style="font-size: 13px; color: #e2e8f0; line-height: 1.5;">
-                    日本国内のクリエイター向けに、仲介手数料ゼロのマイクロペイメント付きSNS機能をサイトへ完全に統合しました。使われた分だけ秒速でウォレットに着金します！🚀
+                <div class="x-tweet-body">
+                    日本市場向けに最適化されたXレベルのオンチェーンSNSモジュールを完全に統合しました！各アクションボタンを押すだけで、ナノサトシ単位のマイクロペイメントが即座にウォレットへ着金します。🚀✨
                 </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px; font-family: monospace; font-size: 11px;">
-                    <span style="color: #f59e0b;" id="tip-count-1">投げ銭累計: 15,000 SATS</span>
-                    <button onclick="sendMicroTip(1, '15,000 SATS')" style="background: rgba(59, 130, 246, 0.1); border: 1px solid #3b82f6; color: #60a5fa; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: all 0.2s;">⚡ 100 SATS チップを送る</button>
+                <div class="x-action-bar">
+                    <button class="x-action-btn" onclick="triggerAction('💬 リプライ課金', '10 SATS がリプライ報酬として着金しました！')">
+                        💬 返信 <span style="color: #38bdf8;">12</span>
+                    </button>
+                    <button class="x-action-btn" onclick="triggerAction('🔄 リポスト報酬', '50 SATS が拡散報酬として分配されました！')">
+                        🔄 リポスト <span style="color: #34d399;">48</span>
+                    </button>
+                    <button class="x-action-btn" onclick="triggerAction('❤️ いいね報酬', '5 SATS がいいね同時に着金しました！')">
+                        ❤️ いいね <span style="color: #f43f5e;">256</span>
+                    </button>
+                    <button class="x-action-btn x-tip-btn" onclick="triggerAction('⚡ ナノチップ送金', '100 SATS のダイレクトチップが着金しました！')">
+                        ⚡ 100 SATS チップ
+                    </button>
+                </div>
+            </div>
+
+            <div class="x-tweet-card">
+                <div class="x-tweet-header">
+                    <div class="x-user-info">
+                        <div class="x-avatar" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">J</div>
+                        <div>
+                            <div class="x-username">Japan Crypto Guild <span style="color: #34d399; font-size: 11px;">● Node Operator</span></div>
+                            <div class="x-handle">@japan_guild_node · 5分前</div>
+                        </div>
+                    </div>
+                    <div class="x-time" style="color: #f59e0b;">Pay-per-View</div>
+                </div>
+                <div class="x-tweet-body">
+                    スクロールや閲覧（Pay-per-View）だけでもサブサトシ単位の収益が発生する仕組みが最高すぎる。仲介手数料ゼロの世界がここに実現！
+                </div>
+                <div class="x-action-bar">
+                    <button class="x-action-btn" onclick="triggerAction('💬 リプライ課金', '10 SATS が着金しました！')">💬 返信 <span>4</span></button>
+                    <button class="x-action-btn" onclick="triggerAction('🔄 リポスト報酬', '50 SATS が着金しました！')">🔄 リポスト <span>19</span></button>
+                    <button class="x-action-btn" onclick="triggerAction('❤️ いいね報酬', '5 SATS が着金しました！')">❤️ いいね <span>88</span></button>
+                    <button class="x-action-btn x-tip-btn" onclick="triggerAction('⚡ ナノチップ送金', '100 SATS のダイレクトチップが着金しました！')">⚡ 100 SATS チップ</button>
                 </div>
             </div>
         </div>
@@ -444,114 +624,4 @@ function updateMetrics() {
         maxTranslate = track.clientWidth - thumb.clientWidth - 12;
     }
 }
-window.addEventListener('resize', updateMetrics);
-window.addEventListener('load', updateMetrics);
-
-function handleStart(e) {
-    if (thumb.classList.contains('unlocked')) return;
-    isDragging = true;
-    updateMetrics();
-    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    startX = clientX - currentX;
-    instruction.classList.add('hide');
-    thumb.style.transform = 'scale(1.05)';
-    if (e.cancelable) e.preventDefault();
-}
-
-function handleMove(e) {
-    if (!isDragging) return;
-    updateMetrics();
-    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    currentX = clientX - startX;
-    if (currentX < 0) currentX = 0;
-    if (currentX > maxTranslate) currentX = maxTranslate;
-    
-    thumb.style.transform = 'translateX(' + currentX + 'px) scale(1.05)';
-    var percent = (currentX / maxTranslate) * 100;
-    progress.style.width = percent + '%';
-    
-    if (e.cancelable) e.preventDefault();
-}
-
-function handleEnd() {
-    if (!isDragging) return;
-    isDragging = false;
-    updateMetrics();
-    thumb.style.transform = 'translateX(' + currentX + 'px) scale(1)';
-
-    if (currentX >= maxTranslate * 0.70) {
-        currentX = maxTranslate;
-        thumb.style.transform = 'translateX(' + maxTranslate + 'px) scale(1)';
-        progress.style.width = '100%';
-        thumb.classList.add('unlocked');
-        thumb.innerHTML = '✓';
-        executeQluxExchange();
-    } else {
-        currentX = 0;
-        thumb.style.transform = 'translateX(0px)';
-        progress.style.width = '0%';
-        instruction.classList.remove('hide');
-    }
-}
-
-if (thumb) {
-    thumb.addEventListener('mousedown', handleStart);
-    thumb.addEventListener('touchstart', handleStart, {passive: false});
-}
-window.addEventListener('mousemove', handleMove);
-window.addEventListener('mouseup', handleEnd);
-window.addEventListener('touchmove', handleMove, {passive: false});
-window.addEventListener('touchend', handleEnd);
-
-function executeQluxExchange() {
-    terminal.style.display = "block";
-    terminalBody.innerHTML = 
-        "Qlux Supreme Yield Node: $qlux_supreme_autonomous_core<br>" +
-        "Matrix Atomic TXID: 0xqlux_supreme_global_txid_999999<br>" +
-        "Teranode Shard Split & Direct Wallet Routing: Synchronized & Verified<br>" +
-        "<span style='color:#fff; font-weight:bold;'>YIELD SETTLEMENT: 2,000,000 SATS & $20,000 USD atomically routed across global network.</span>";
-
-    setTimeout(function() {
-        thumb.classList.remove('unlocked');
-        thumb.innerHTML = '&rarr;';
-        currentX = 0;
-        thumb.style.transform = 'translateX(0px)';
-        progress.style.width = '0%';
-        instruction.classList.remove('hide');
-    }, 2500);
-}
-
-/* SNS機能スクリプト */
-function publishSnsPost() {
-    var input = document.getElementById('sns-input');
-    var feed = document.getElementById('sns-feed-container');
-    if (!input.value.trim()) return;
-
-    var newPost = document.createElement('div');
-    newPost.style.cssText = "background: #03060f; border: 1px solid rgba(59,130,246,0.4); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 8px;";
-    newPost.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-family: monospace; color: #64748b;">
-            <span>@Current_User_JP <span style="color: #34d399;">● On-Chain Verified</span></span>
-            <span>たった今</span>
-        </div>
-        <div style="font-size: 13px; color: #e2e8f0; line-height: 1.5;">${escapeHtml(input.value)}</div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px; font-family: monospace; font-size: 11px;">
-            <span style="color: #f59e0b;">投げ銭累計: 0 SATS</span>
-            <button onclick="sendMicroTip(99, '0 SATS')" style="background: rgba(59, 130, 246, 0.1); border: 1px solid #3b82f6; color: #60a5fa; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: bold;">⚡ 100 SATS チップを送る</button>
-        </div>
-    `;
-    feed.prepend(newPost);
-    input.value = "";
-}
-
-function sendMicroTip(id, current) {
-    alert("✓ [ATOMIC TIP SUCCESS]\n100 SATS のマイクロチップが、仲介手数料ゼロでクリエイターのウォレットへダイレクトに着金しました！");
-}
-
-function escapeHtml(str) {
-    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-}
-</script>
-
-</body>
-</html>
+window.addEventListener('resize', updateM
