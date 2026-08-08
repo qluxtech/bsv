@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QLUX APEX — Live Gateway Standalone</title>
+<title>QLUX APEX — Ultra Teranode Live Dashboard</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
     background-color: #000104;
     color: #f8fafc;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    padding: 24px;
     display: flex;
     justify-content: center;
+    overflow-x: hidden;
 }
 .container {
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -25,107 +26,124 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+    padding-bottom: 20px;
 }
 .logo-area {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
 }
 .logo-icon {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    border-radius: 12px;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #b45309 100%);
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 28px;
     color: #000;
     font-weight: 900;
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
 }
-.logo-text h1 { font-size: 20px; font-weight: 900; color: #fff; }
-.logo-text span { font-size: 10px; color: #f59e0b; font-family: monospace; letter-spacing: 1px; }
+.logo-text h1 { font-size: 24px; font-weight: 900; color: #fff; letter-spacing: 0.05em; }
+.logo-text span { font-size: 11px; color: #f59e0b; font-family: monospace; letter-spacing: 2px; }
 
 .status-badge {
     background: rgba(16, 185, 129, 0.15);
     border: 1px solid rgba(16, 185, 129, 0.4);
     color: #34d399;
-    padding: 6px 14px;
-    border-radius: 20px;
+    padding: 8px 16px;
+    border-radius: 30px;
     font-size: 12px;
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-family: monospace;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
 }
 .ping-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     background-color: #34d399;
     border-radius: 50%;
-    box-shadow: 0 0 8px #34d399;
+    box-shadow: 0 0 10px #34d399;
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 15px #34d399; }
+    100% { transform: scale(0.95); opacity: 0.8; }
 }
 
 .card {
-    background: rgba(10, 15, 30, 0.95);
-    border: 1px solid rgba(245, 158, 11, 0.3);
-    border-radius: 24px;
-    padding: 24px;
-    box-shadow: 0 0 50px rgba(245, 158, 11, 0.15);
+    background: rgba(10, 15, 30, 0.9);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: 0 0 60px rgba(245, 158, 11, 0.15);
+    backdrop-filter: blur(20px);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
 }
 
 .card-title {
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 900;
     color: #fff;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    letter-spacing: 0.03em;
 }
 
-/* --- スワイプボタン --- */
+/* --- 超進化したスマート・キネティック・スワイプ --- */
+.swipe-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 .swipe-track {
     position: relative;
     width: 100%;
-    height: 74px;
-    background: rgba(0, 0, 0, 0.9);
-    border-radius: 20px;
-    padding: 5px;
+    height: 80px;
+    background: radial-gradient(circle at center, #050b14 0%, #000000 100%);
+    border-radius: 22px;
+    padding: 6px;
     overflow: hidden;
-    border: 1px solid rgba(245, 158, 11, 0.5);
-    box-shadow: inset 0 4px 20px rgba(0,0,0,0.9);
+    border: 1px solid rgba(245, 158, 11, 0.6);
+    box-shadow: inset 0 6px 25px rgba(0,0,0,0.9), 0 0 20px rgba(245,158,11,0.2);
     user-select: none;
     touch-action: none;
 }
 .swipe-thumb {
     position: absolute;
-    left: 5px;
-    top: 5px;
-    width: 64px;
-    height: 64px;
+    left: 6px;
+    top: 6px;
+    width: 68px;
+    height: 68px;
     background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #b45309 100%);
-    border-radius: 15px;
-    cursor: pointer;
+    border-radius: 16px;
+    cursor: grab;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #000104;
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 900;
-    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.6);
+    box-shadow: 0 4px 25px rgba(245, 158, 11, 0.7);
     z-index: 30;
     touch-action: none;
-    transition: background 0.2s;
+    transition: transform 0.08s cubic-bezier(0.1, 0.9, 0.2, 1), background 0.3s, box-shadow 0.3s;
 }
+.swipe-thumb:active { cursor: grabbing; scale: 1.05; }
 .swipe-thumb.unlocked {
     background: linear-gradient(135deg, #34d399, #059669);
     color: #fff;
+    box-shadow: 0 0 35px rgba(52, 211, 153, 0.9);
 }
 .swipe-instruction {
     position: absolute;
@@ -134,14 +152,15 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 900;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     color: #f59e0b;
-    opacity: 1;
+    opacity: 0.9;
     transition: opacity 0.2s;
     pointer-events: none;
     z-index: 10;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
 .swipe-instruction.hide { opacity: 0; }
 .swipe-progress {
@@ -149,48 +168,87 @@ header {
     left: 0;
     top: 0;
     height: 100%;
-    background: linear-gradient(90deg, rgba(245,158,11,0.1), rgba(245,158,11,0.35));
-    border-radius: 18px;
+    background: linear-gradient(90deg, rgba(245,158,11,0.15), rgba(245,158,11,0.45));
+    border-radius: 20px;
     width: 0%;
     pointer-events: none;
     z-index: 5;
+    transition: width 0.05s linear;
 }
 
-.terminal {
-    background: #000;
-    border: 1px solid #10b981;
-    border-radius: 16px;
-    padding: 16px;
-    font-family: monospace;
-    font-size: 12px;
-    color: #34d399;
-    display: none;
-    line-height: 1.5;
+/* --- 圧倒的ボリュームのグリッドレイアウト --- */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
 }
-
 .grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
 }
-@media(max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+@media(max-width: 768px) {
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+}
 
 .info-box {
-    background: rgba(0,0,0,0.6);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-color 0.3s, transform 0.2s;
+}
+.info-box:hover {
+    border-color: rgba(245, 158, 11, 0.5);
+    transform: translateY(-2px);
+}
+.info-box label { font-size: 10px; color: #94a3b8; font-family: monospace; letter-spacing: 0.1em; }
+.info-box .val { font-size: 18px; font-weight: 900; color: #f59e0b; font-family: monospace; }
+.info-box .sub { font-size: 11px; color: #34d399; font-family: monospace; }
+
+/* ログ・ターミナル */
+.terminal {
+    background: #000;
+    border: 1px solid #10b981;
+    border-radius: 18px;
+    padding: 20px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #34d399;
+    display: none;
+    line-height: 1.6;
+    box-shadow: inset 0 0 30px rgba(16, 185, 129, 0.15);
+}
+
+.system-stream {
+    background: rgba(2, 6, 23, 0.8);
     border-radius: 16px;
     padding: 16px;
+    border: 1px dashed rgba(245, 158, 11, 0.3);
+    font-family: monospace;
+    font-size: 11px;
+    color: #cbd5e1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
-.info-box label { font-size: 10px; color: #94a3b8; font-family: monospace; display: block; margin-bottom: 4px; }
-.info-box .val { font-size: 18px; font-weight: bold; color: #f59e0b; font-family: monospace; }
+.stream-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 footer {
     text-align: center;
     font-size: 11px;
     color: #64748b;
     font-family: monospace;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 20px;
 }
 </style>
 </head>
@@ -202,54 +260,94 @@ footer {
             <div class="logo-icon">⚡</div>
             <div class="logo-text">
                 <h1>QLUX APEX</h1>
-                <span>LIVE STANDALONE GATEWAY</span>
+                <span>ULTRA TERANODE LIVE ECOSYSTEM</span>
             </div>
         </div>
         <div class="status-badge">
-            <div class="ping-dot"></div> LIVE CONNECTED
+            <div class="ping-dot"></div> ALL SHARDS ONLINE (99.99%)
         </div>
     </header>
 
     <main class="card">
         <div class="card-title">
-            <span>⚡</span> キネティック・ワンスワイプ決済エクスチェンジ
+            <span>⚡</span> キネティック・ワンスワイプ アトミック決済ハブ
         </div>
         
         <div class="grid-2">
             <div class="info-box">
-                <label>EXECUTION STREAM</label>
-                <div style="font-size: 14px; font-weight: bold; color: #fff;">All-Asset Shard & Liquidity Pool</div>
-                <div style="font-size: 11px; color: #94a3b8; margin-top: 4px; font-family: monospace;">Node: $qlux_all_onchain_node</div>
+                <label>EXECUTION ROUTE</label>
+                <div style="font-size: 14px; font-weight: bold; color: #fff;">Teranode Shard Liquidity Matrix</div>
+                <div class="sub">Node: $qlux_all_onchain_master</div>
             </div>
-            <div class="info-box" style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+            <div class="info-box" style="justify-content: center; text-align: center;">
                 <label>INSTANT REWARD YIELD</label>
-                <div class="val">5,000 SATS <span style="font-size: 12px; color: #94a3b8;">/ $50 USD</span></div>
+                <div class="val">5,000 SATS <span style="font-size: 12px; color: #94a3b8;">/ $50.00 USD</span></div>
             </div>
         </div>
 
-        <div>
-            <div style="font-size: 11px; font-weight: bold; color: #f59e0b; font-family: monospace; margin-bottom: 8px;">
-                ▶ 右端までスワイプして即時アトミック決済・報酬獲得
+        <div class="swipe-container">
+            <div style="font-size: 11px; font-weight: bold; color: #f59e0b; font-family: monospace; display: flex; justify-content: space-between;">
+                <span>▶ スムーズ・キネティック・スワイプ認証</span>
+                <span style="color: #64748b;">DRAG TO RIGHT END</span>
             </div>
             <div class="swipe-track" id="swipe-track">
                 <div class="swipe-progress" id="swipe-progress"></div>
-                <div class="swipe-instruction" id="swipe-instruction">SWIPE TO EXECUTE ALL-ASSET EXCHANGE &rarr;</div>
+                <div class="swipe-instruction" id="swipe-instruction">SWIPE TO EXECUTE ATOMIC EXCHANGE &rarr;</div>
                 <div class="swipe-thumb" id="swipe-thumb">&rarr;</div>
             </div>
         </div>
 
         <div id="execution-terminal" class="terminal">
-            <div style="font-weight: bold; margin-bottom: 4px;">✓ [LIVE SUCCESS] アトミック決済が正常に完了しました。</div>
+            <div style="font-weight: bold; margin-bottom: 6px; font-size: 13px; color: #fff;">✓ [LIVE ATOMIC BROADCAST SUCCESS] 決済処理が正常に完了しました。</div>
             <div id="terminal-body"></div>
         </div>
     </main>
 
+    <div class="grid-3">
+        <div class="info-box">
+            <label>CURRENT BLOCK HEIGHT</label>
+            <div class="val" id="block-height">842,910 TPS</div>
+            <div class="sub">▲ Realtime Sync Active</div>
+        </div>
+        <div class="info-box">
+            <label>LIQUIDITY DEPTH</label>
+            <div class="val">$148,920,400</div>
+            <div class="sub">● Multi-Shard Pool</div>
+        </div>
+        <div class="info-box">
+            <label>GAS / FEE EFFICIENCY</label>
+            <div class="val">0.00001 SAT</div>
+            <div class="sub">◆ Zero-Delay Engine</div>
+        </div>
+    </div>
+
+    <div class="card" style="padding: 20px;">
+        <div class="card-title" style="font-size: 14px;">
+            <span>🌐</span> ライブ・テレノード通信ストリーム・モニター
+        </div>
+        <div class="system-stream">
+            <div class="stream-row">
+                <span>[NODE_01] Shard Synchronization: Stable</span>
+                <span style="color: #34d399;">CONNECTED</span>
+            </div>
+            <div class="stream-row">
+                <span>[NODE_02] Atomic Swap Protocol: Ready</span>
+                <span style="color: #34d399;">SECURE</span>
+            </div>
+            <div class="stream-row">
+                <span>[GATEWAY] $qlux_all_onchain_node: Listening</span>
+                <span style="color: #f59e0b;">ACTIVE</span>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>© 2026 QLUX APEX Global Infrastructure. Standalone Live Mode Active.</p>
+        <p>© 2026 QLUX APEX Global Infrastructure. Ultra Live Standalone Build v10.4.</p>
     </footer>
 </div>
 
 <script>
+// 超滑らか・キネティック・スワイプエンジン
 var track = document.getElementById('swipe-track');
 var thumb = document.getElementById('swipe-thumb');
 var instruction = document.getElementById('swipe-instruction');
@@ -264,7 +362,7 @@ var maxTranslate = 0;
 
 function updateMetrics() {
     if (track && thumb) {
-        maxTranslate = track.clientWidth - thumb.clientWidth - 10;
+        maxTranslate = track.clientWidth - thumb.clientWidth - 12;
     }
 }
 window.addEventListener('resize', updateMetrics);
@@ -277,6 +375,7 @@ function handleStart(e) {
     var clientX = e.touches ? e.touches[0].clientX : e.clientX;
     startX = clientX - currentX;
     instruction.classList.add('hide');
+    thumb.style.transform = 'scale(1.08)';
     if (e.cancelable) e.preventDefault();
 }
 
@@ -288,7 +387,7 @@ function handleMove(e) {
     if (currentX < 0) currentX = 0;
     if (currentX > maxTranslate) currentX = maxTranslate;
     
-    thumb.style.transform = 'translateX(' + currentX + 'px)';
+    thumb.style.transform = 'translateX(' + currentX + 'px) scale(1.08)';
     var percent = (currentX / maxTranslate) * 100;
     progress.style.width = percent + '%';
     
@@ -299,15 +398,18 @@ function handleEnd() {
     if (!isDragging) return;
     isDragging = false;
     updateMetrics();
+    thumb.style.transform = 'translateX(' + currentX + 'px) scale(1)';
 
+    // 70%以上スワイプしたらロック解除＆成功判定
     if (currentX >= maxTranslate * 0.70) {
         currentX = maxTranslate;
-        thumb.style.transform = 'translateX(' + maxTranslate + 'px)';
+        thumb.style.transform = 'translateX(' + maxTranslate + 'px) scale(1)';
         progress.style.width = '100%';
         thumb.classList.add('unlocked');
         thumb.innerHTML = '✓';
         executePayment();
     } else {
+        // 元に戻るバウンス
         currentX = 0;
         thumb.style.transform = 'translateX(0px)';
         progress.style.width = '0%';
@@ -326,7 +428,11 @@ window.addEventListener('touchend', handleEnd);
 
 function executePayment() {
     terminal.style.display = "block";
-    terminalBody.innerHTML = "Processing live network broadcast...<br>Gateway: $qlux_all_onchain_node<br>TXID: 0x49f8c41e9b21a820c78e21950e2621ad79f8b41<br><span style='color:#fff; font-weight:bold;'>REWARD YIELD: 5,000 SATS & 50 USD transferred successfully.</span>";
+    terminalBody.innerHTML = 
+        "Network Node: $qlux_all_onchain_master<br>" +
+        "TXID Hash: 0x89a4ef2091c782109e82b41fc928410e7b41<br>" +
+        "Shard Routing: Verified via Teranode Matrix<br>" +
+        "<span style='color:#fff; font-weight:bold;'>REWARD YIELD: 5,000 SATS & $50 USD successfully credited to node.</span>";
 
     setTimeout(function() {
         thumb.classList.remove('unlocked');
@@ -335,7 +441,7 @@ function executePayment() {
         thumb.style.transform = 'translateX(0px)';
         progress.style.width = '0%';
         instruction.classList.remove('hide');
-    }, 1500);
+    }, 2500);
 }
 </script>
 
