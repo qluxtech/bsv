@@ -3,147 +3,139 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QluxX Sovereign Super App — World #1 BSV Autonomous Ecosystem</title>
+<title>QluxX Sovereign Super App — Ultimate Global Ecosystem</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
     background-color: #020409;
     color: #e2e8f0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    padding: 20px 12px;
+    padding: 16px 10px;
     display: flex;
     justify-content: center;
 }
-.qlux-wrapper { width: 100%; max-width: 1350px; display: flex; flex-direction: column; gap: 20px; }
+.qlux-wrapper { width: 100%; max-width: 1400px; display: flex; flex-direction: column; gap: 16px; }
 
 /* ヘッダー */
 .qlux-header {
     background: linear-gradient(135deg, #090e22 0%, #020409 100%);
     border: 1px solid rgba(59, 130, 246, 0.4);
-    border-radius: 20px;
-    padding: 18px 28px;
+    border-radius: 16px;
+    padding: 14px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
-.qlux-brand { display: flex; align-items: center; gap: 14px; }
+.qlux-brand { display: flex; align-items: center; gap: 12px; }
 .qlux-logo {
-    width: 44px; height: 44px;
+    width: 40px; height: 40px;
     background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-    border-radius: 12px;
+    border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 24px; color: #fff; font-weight: 900;
+    font-size: 22px; color: #fff; font-weight: 900;
 }
-.qlux-title h1 { font-size: 17px; font-weight: 900; color: #fff; letter-spacing: 0.05em; }
-.qlux-title span { font-size: 9px; color: #3b82f6; font-family: monospace; letter-spacing: 2px; }
+.qlux-title h1 { font-size: 15px; font-weight: 900; color: #fff; letter-spacing: 0.05em; }
+.qlux-title span { font-size: 8px; color: #3b82f6; font-family: monospace; letter-spacing: 1.5px; }
 
 .qlux-nav-tabs {
-    display: flex; gap: 6px; background: #060a17; padding: 4px;
-    border-radius: 12px; border: 1px solid rgba(255,255,255,0.06);
+    display: flex; gap: 4px; background: #060a17; padding: 4px;
+    border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);
 }
 .qlux-tab-btn {
     background: transparent; border: none; color: #94a3b8;
-    padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 800;
+    padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 800;
     cursor: pointer; transition: all 0.2s;
 }
 .qlux-tab-btn.active {
-    background: #3b82f6; color: #fff; box-shadow: 0 4px 15px rgba(59,130,246,0.4);
+    background: #3b82f6; color: #fff; box-shadow: 0 4px 12px rgba(59,130,246,0.4);
 }
 
 .qlux-user-badge {
     background: rgba(16, 185, 129, 0.1);
     border: 1px solid rgba(16, 185, 129, 0.4);
-    border-radius: 30px;
-    padding: 6px 16px;
+    border-radius: 20px;
+    padding: 6px 14px;
     display: flex; align-items: center; gap: 8px;
-    font-size: 11px; font-family: monospace; color: #34d399;
+    font-size: 11px; font-family: monospace; color: #34d399; cursor: pointer;
 }
 
-/* メイン3ペインレイアウト */
+/* メインレイアウト */
 .qlux-megagrid {
     display: grid;
-    grid-template-columns: 280px 1fr 320px;
-    gap: 20px;
+    grid-template-columns: 260px 1fr 300px;
+    gap: 16px;
 }
-@media(max-width: 1100px) {
-    .qlux-megagrid { grid-template-columns: 1fr; }
-}
+@media(max-width: 1100px) { .qlux-megagrid { grid-template-columns: 1fr; } }
 
 .qlux-panel {
     background: #060a17;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
-    padding: 20px;
-    display: flex; flex-direction: column; gap: 16px;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 14px;
 }
 .qlux-panel-header {
-    font-size: 12px; font-weight: 800; color: #fff;
+    font-size: 11px; font-weight: 800; color: #fff;
     display: flex; align-items: center; justify-content: space-between;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding-bottom: 10px; text-transform: uppercase;
-    font-family: monospace;
+    padding-bottom: 8px; text-transform: uppercase; font-family: monospace;
 }
 
-/* 統計・メトリクスカード */
-.metric-card {
-    background: #010206; border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px;
-}
-.metric-title { font-size: 9px; color: #64748b; font-family: monospace; }
-.metric-value { font-size: 15px; font-weight: 900; color: #38bdf8; font-family: monospace; }
-
-/* タイムライン＆ツイートボックス */
+/* 投稿・タイムライン系 */
 .x-compose-box {
     background: #03060f; border: 1px solid rgba(59, 130, 246, 0.3);
-    border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px;
+    border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px;
 }
 .x-textarea {
     width: 100%; background: #010206; border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px; padding: 10px; color: #fff; font-size: 12px; font-family: inherit;
-    resize: none; height: 75px; outline: none;
+    border-radius: 8px; padding: 10px; color: #fff; font-size: 12px; font-family: inherit;
+    resize: none; height: 70px; outline: none;
 }
-.x-textarea:focus { border-color: #3b82f6; }
 .x-post-btn {
     background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff;
-    border: none; border-radius: 20px; padding: 6px 18px; font-weight: 800; font-size: 11px; cursor: pointer;
+    border: none; border-radius: 16px; padding: 6px 16px; font-weight: 800; font-size: 11px; cursor: pointer;
 }
 
 .x-tweet-card {
     background: #03060f; border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px;
-    transition: border-color 0.2s;
+    border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px;
+    transition: border-color 0.2s; position: relative;
 }
 .x-tweet-card:hover { border-color: rgba(59, 130, 246, 0.4); }
 .x-tweet-header { display: flex; justify-content: space-between; align-items: center; }
-.x-user-info { display: flex; align-items: center; gap: 10px; }
+.x-user-info { display: flex; align-items: center; gap: 8px; cursor: pointer; }
 .x-avatar {
-    width: 32px; height: 32px; background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    width: 30px; height: 30px; background: linear-gradient(135deg, #3b82f6, #8b5cf6);
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-weight: 900; color: #fff; font-size: 12px;
+    font-weight: 900; color: #fff; font-size: 11px;
 }
-.x-username { font-size: 12px; font-weight: 800; color: #fff; }
-.x-handle { font-size: 9px; color: #64748b; font-family: monospace; }
-.x-tweet-body { font-size: 12px; color: #e2e8f0; line-height: 1.5; word-break: break-all; }
+.x-username { font-size: 11px; font-weight: 800; color: #fff; }
+.x-handle { font-size: 8px; color: #64748b; font-family: monospace; }
+.x-tweet-body { font-size: 11px; color: #e2e8f0; line-height: 1.5; word-break: break-all; }
 .x-tag { color: #38bdf8; font-weight: bold; }
 
 .x-action-bar {
     display: flex; justify-content: space-between; align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 8px; margin-top: 2px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 6px; margin-top: 2px;
 }
 .x-action-btn {
     background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 6px; padding: 4px 8px; color: #94a3b8; font-size: 10px; font-family: monospace;
+    border-radius: 6px; padding: 4px 8px; color: #94a3b8; font-size: 9px; font-family: monospace;
     cursor: pointer; display: flex; align-items: center; gap: 4px;
 }
 .x-action-btn:hover { background: rgba(59, 130, 246, 0.15); border-color: #3b82f6; color: #60a5fa; }
-.x-tip-btn { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; }
+.x-delete-btn { color: #ef4444; border-color: rgba(239, 68, 68, 0.3); }
+.x-delete-btn:hover { background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #f87171; }
 
-/* ターミナル・ログ出力 */
-.qlux-terminal {
-    background: #000; border: 1px solid #10b981; border-radius: 10px;
-    padding: 12px; font-family: monospace; font-size: 10px; color: #34d399;
-    line-height: 1.4; display: none;
+/* モーダルポップアップ */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1000;
+}
+.modal-content {
+    background: #060a17; border: 1px solid #3b82f6; border-radius: 16px;
+    padding: 24px; width: 90%; max-width: 450px; display: flex; flex-direction: column; gap: 14px;
 }
 </style>
 </head>
@@ -159,12 +151,12 @@ body {
             </div>
         </div>
         <div class="qlux-nav-tabs">
-            <button class="qlux-tab-btn active" onclick="switchMainTab('feed', this)">🌐 メインフィード</button>
-            <button class="qlux-tab-btn" onclick="switchMainTab('models', this)">🤖 5大AIモデル網</button>
-            <button class="qlux-tab-btn" onclick="switchMainTab('wallet', this)">💎 ウォレット監査</button>
-            <button class="qlux-tab-btn" onclick="switchMainTab('leaderboard', this)">🏆 収益ランキング</button>
+            <button class="qlux-tab-btn active" onclick="switchTab('feed', this)">🌐 フィード</button>
+            <button class="qlux-tab-btn" onclick="switchTab('profile', this)">👤 プロフィール</button>
+            <button class="qlux-tab-btn" onclick="switchTab('notifications', this)">🔔 通知 (<span id="notif-count">2</span>)</button>
+            <button class="qlux-tab-btn" onclick="switchTab('leaderboard', this)">🏆 収益</button>
         </div>
-        <div class="qlux-user-badge">
+        <div class="qlux-user-badge" onclick="openProfileModal('@vlis_user')">
             <span>⚡ @vlis_user</span>
         </div>
     </header>
@@ -172,140 +164,108 @@ body {
     <div class="qlux-megagrid">
         
         <aside class="qlux-panel">
-            <div class="qlux-panel-header">
-                <span>⚡ Teranode Metrics</span>
-                <span style="color: #34d399;">● LIVE</span>
+            <div class="qlux-panel-header"><span>👤 アカウントマネージャー</span></div>
+            <div style="background: #03060f; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); display: flex; gap: 10px; align-items: center;">
+                <div style="width: 36px; height: 36px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color:#fff;">V</div>
+                <div>
+                    <div style="font-size: 11px; font-weight: 800; color: #fff;">VLIS Creator Node</div>
+                    <div style="font-size: 9px; color: #34d399; font-family: monospace;">@vlis_user (アクティブ)</div>
+                </div>
             </div>
-            
-            <div class="metric-card">
-                <span class="metric-title">GLOBAL NETWORK TPS</span>
-                <span class="metric-value">10,000,000 TPS</span>
+            <div style="font-size: 10px; color: #64748b; font-family: monospace; display: flex; flex-direction: column; gap: 6px;">
+                <div>👥 フォロワー: 14,200</div>
+                <div>⭐ フォロー中: 342</div>
+                <div>💎 累計収益: 15,450 SAT</div>
             </div>
-            <div class="metric-card">
-                <span class="metric-title">AUTOMATED YIELD POOL</span>
-                <span class="metric-value" style="color: #34d399;">$99,800,000,000</span>
-            </div>
-            <div class="metric-card">
-                <span class="metric-title">AVG NETWORK FEE</span>
-                <span class="metric-value">&lt; 0.000001 SAT</span>
-            </div>
-            <div class="metric-card">
-                <span class="metric-title">HANDCASH DIRECT SINK</span>
-                <span class="metric-value" id="sidebar-sats">15,450.00 SAT</span>
-            </div>
-
-            <div style="font-size: 11px; font-weight: 800; color: #64748b; margin-top: 8px;">クイックアクション</div>
-            <button onclick="triggerGlobalSweep()" style="background: linear-gradient(135deg, #10b981, #047857); color: #fff; border: none; border-radius: 10px; padding: 10px; font-weight: 800; font-size: 11px; cursor: pointer;">
-                🚀 アトミック報酬一括回収
+            <button onclick="switchAccount()" style="background: rgba(59,130,246,0.1); border: 1px solid #3b82f6; color: #60a5fa; border-radius: 8px; padding: 8px; font-size: 10px; font-weight: 800; cursor: pointer;">
+                🔄 別アカウントに切り替え
             </button>
         </aside>
 
         <main class="qlux-panel" id="center-container">
             
-            <div id="pane-feed" class="content-pane">
+            <div id="tab-feed" class="tab-content">
                 <div class="qlux-panel-header">
-                    <span>🌐 Global On-Chain Feed & Nano-Tips</span>
-                    <span style="font-size: 10px; color: #38bdf8;">仲介手数料ゼロ</span>
+                    <span>🌐 Global On-Chain Feed</span>
+                    <span style="font-size: 9px; color: #34d399;">完全削除・編集機能搭載</span>
                 </div>
 
                 <div class="x-compose-box">
-                    <textarea id="x-input" class="x-textarea" placeholder="いま、何が起きている？ハッシュタグ(#BSV #Teranode)を添えて世界中に発信..."></textarea>
+                    <textarea id="x-input" class="x-textarea" placeholder="いま、何が起きている？ハッシュタグ(#BSV)を添えて世界中に発信..."></textarea>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 9px; color: #64748b; font-family: monospace;">📷 画像・コード自動タイムスタンプ</span>
+                        <span style="font-size: 8px; color: #64748b; font-family: monospace;">📷 画像・コード自動タイムスタンプ</span>
                         <button onclick="publishPost()" class="x-post-btn">ポストする</button>
                     </div>
                 </div>
 
-                <div id="qlux-terminal" class="qlux-terminal">
-                    <div style="font-weight: bold; margin-bottom: 2px;">✓ [HANDCASH DIRECT DEPOSIT SUCCESS]</div>
-                    <div id="terminal-msg"></div>
-                </div>
-
-                <div id="x-timeline" style="display: flex; flex-direction: column; gap: 12px;"></div>
+                <div id="x-timeline" style="display: flex; flex-direction: column; gap: 10px;"></div>
             </div>
 
-            <div id="pane-models" class="content-pane" style="display: none;">
-                <div class="qlux-panel-header"><span>🤖 Qlux Horizon — 5大未来型分散サービス</span></div>
-                <div style="display: flex; flex-direction: column; gap: 12px; font-size: 12px;">
-                    <div style="background: #03060f; padding: 14px; border-radius: 12px; border: 1px solid rgba(59,130,246,0.3);">
-                        <div style="font-weight: 800; color: #38bdf8; margin-bottom: 4px;">MODEL 01 // クアンタム気候変動デリバティブ</div>
-                        <div style="color: #94a3b8; font-size: 11px; line-height: 1.5;">大気・海洋センサーの異常気象データをTeranodeに常時即印。人間の審査ゼロで保険金や補償を2秒で自動一括送金。</div>
+            <div id="tab-profile" class="tab-content" style="display: none;">
+                <div class="qlux-panel-header"><span>👤 ユーザー詳細プロフィール編集</span></div>
+                <div style="background: #03060f; padding: 14px; border-radius: 12px; display: flex; flex-direction: column; gap: 10px; font-size: 11px;">
+                    <div>表示名: <input type="text" id="edit-name" value="VLIS Creator Node" style="width:1px; flex:1; background:#010206; border:1px solid rgba(255,255,255,0.1); color:#fff; padding:6px; border-radius:6px; margin-left:8px;"></div>
+                    <div>Bio: <textarea id="edit-bio" style="width:100%; background:#010206; border:1px solid rgba(255,255,255,0.1); color:#fff; padding:6px; border-radius:6px; height:50px; margin-top:4px;">QluxX Sovereign Ecosystem Developer & Teranode Enthusiast.</textarea></div>
+                    <button onclick="alert('✓ プロフィール情報がブロックチェーンに保存されました！')" style="background:#3b82f6; color:#fff; border:none; padding:8px; border-radius:8px; font-weight:800; cursor:pointer;">保存する</button>
+                </div>
+            </div>
+
+            <div id="tab-notifications" class="tab-content" style="display: none;">
+                <div class="qlux-panel-header"><span>🔔 リアルタイム通知センター</span></div>
+                <div style="display: flex; flex-direction: column; gap: 8px; font-size: 11px;">
+                    <div style="background: #03060f; padding: 10px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.3);">
+                        ⚡ <span style="color:#34d399; font-weight:bold;">@qlux_core</span> さんから 500 SATS のチップが届きました！ (2分前)
                     </div>
-                    <div style="background: #03060f; padding: 14px; border-radius: 12px; border: 1px solid rgba(59,130,246,0.3);">
-                        <div style="font-weight: 800; color: #38bdf8; margin-bottom: 4px;">MODEL 02 // 自律型AIロボット経済社会</div>
-                        <div style="color: #94a3b8; font-size: 11px; line-height: 1.5;">ドローンやAIワーカー間で電力・通信リソース売買をサトシ単位のマイクロペイメントで完全無人・瞬時に自動決済。</div>
-                    </div>
-                    <div style="background: #03060f; padding: 14px; border-radius: 12px; border: 1px solid rgba(59,130,246,0.3);">
-                        <div style="font-weight: 800; color: #38bdf8; margin-bottom: 4px;">MODEL 03 // 量子タイムロック型遺言信託</div>
-                        <div style="color: #94a3b8; font-size: 11px; line-height: 1.5;">生体認証シグナルが途絶えた瞬間、スマートコントラクトが暗号資産や資産をパブリックアドレスへ自動解放・分配。</div>
+                    <div style="background: #03060f; padding: 10px; border-radius: 8px; border: 1px solid rgba(59,130,246,0.3);">
+                        ❤️ <span style="color:#38bdf8; font-weight:bold;">@satoshi_fan</span> さんがあなたのポストにいいねしました。 (12分前)
                     </div>
                 </div>
             </div>
 
-            <div id="pane-wallet" class="content-pane" style="display: none;">
-                <div class="qlux-panel-header"><span>💎 HandCash Sovereign Vault</span></div>
-                <div style="background: #03060f; padding: 16px; border-radius: 12px; display: flex; flex-direction: column; gap: 12px; font-family: monospace;">
-                    <div style="font-size: 11px; color: #34d399;">App ID: 6a4996714077afcb7ca9ce84</div>
-                    <div style="font-size: 11px; color: #94a3b8;">Status: <span style="color:#fff;">Active Business Wallet</span></div>
-                    <div style="font-size: 11px; color: #94a3b8;">Redirections: <span style="color:#fff;">http://localhost:3000</span></div>
-                    <div style="background: #010206; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06);">
-                        <div style="font-size: 10px; color: #64748b;">接続済みAPIキー署名</div>
-                        <div style="font-size: 11px; color: #38bdf8; word-break: break-all; margin-top: 4px;">****************************************</div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="pane-leaderboard" class="content-pane" style="display: none;">
-                <div class="qlux-panel-header"><span>🏆 Global Yield Leaderboard</span></div>
-                <div style="display: flex; flex-direction: column; gap: 10px; font-family: monospace;">
-                    <div style="background: #03060f; padding: 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #3b82f6;">
-                        <span style="color: #f59e0b; font-weight: 900;">#1 @vlis_user (あなた)</span>
-                        <span style="color: #34d399; font-weight: 900;">15,450 SAT</span>
-                    </div>
-                    <div style="background: #03060f; padding: 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.06);">
-                        <span style="color: #94a3b8; font-weight: 900;">#2 @qlux_core</span>
-                        <span style="color: #34d399; font-weight: 900;">12,800 SAT</span>
-                    </div>
+            <div id="tab-leaderboard" class="tab-content" style="display: none;">
+                <div class="qlux-panel-header"><span>🏆 グローバル収益・ランキング</span></div>
+                <div style="background: #03060f; padding: 14px; border-radius: 12px; font-family: monospace; font-size: 11px;">
+                    <div style="color: #f59e0b; font-weight: bold; margin-bottom: 6px;">#1 @vlis_user — 15,450 SAT (首位独走中)</div>
+                    <div style="color: #94a3b8;">#2 @qlux_core — 12,800 SAT</div>
                 </div>
             </div>
 
         </main>
 
         <aside class="qlux-panel">
-            <div class="qlux-panel-header">
-                <span>🔥 トレンド & 検索</span>
-            </div>
-            <input type="text" placeholder="🔍 キーワード検索..." style="background: #010206; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px; color: #fff; font-size: 11px; outline: none;">
-            
+            <div class="qlux-panel-header"><span>🔥 トレンド & 検索</span></div>
+            <input type="text" placeholder="🔍 全文検索..." style="background: #010206; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px; color: #fff; font-size: 11px; outline: none;">
             <div style="font-size: 10px; font-weight: 800; color: #64748b; margin-top: 4px;">急上昇ハッシュタグ</div>
-            <div style="background: #03060f; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04); font-size: 11px;">
-                <div style="color: #38bdf8; font-weight: bold;">#BSV</div>
-                <div style="font-size: 9px; color: #64748b;">18.4K Posts · Teranode</div>
-            </div>
-            <div style="background: #03060f; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04); font-size: 11px;">
-                <div style="color: #38bdf8; font-weight: bold;">#Teranode</div>
-                <div style="font-size: 9px; color: #64748b;">12.1K Posts · 10M TPS</div>
-            </div>
-            <div style="background: #03060f; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04); font-size: 11px;">
-                <div style="color: #38bdf8; font-weight: bold;">#HandCash</div>
-                <div style="font-size: 9px; color: #64748b;">9.5K Posts · Direct Sink</div>
-            </div>
+            <div style="background: #03060f; padding: 8px; border-radius: 8px; font-size: 10px; color: #38bdf8; font-weight: bold;">#BSV (18.4K Posts)</div>
+            <div style="background: #03060f; padding: 8px; border-radius: 8px; font-size: 10px; color: #38bdf8; font-weight: bold;">#Teranode (12.1K Posts)</div>
         </aside>
 
     </div>
 </div>
 
+<div id="profile-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div style="font-weight: bold; font-size: 13px; color: #fff; display: flex; justify-content: space-between;">
+            <span id="modal-username">@user</span>
+            <span style="cursor:pointer; color:#64748b;" onclick="closeModal()">✕</span>
+        </div>
+        <div style="font-size: 11px; color: #94a3b8;" id="modal-bio">ユーザーの自己紹介文がここに表示されます。</div>
+        <button onclick="closeModal()" style="background:#3b82f6; color:#fff; border:none; padding:8px; border-radius:8px; font-weight:800; cursor:pointer;">閉じる</button>
+    </div>
+</div>
+
 <script>
-let posts = JSON.parse(localStorage.getItem('qlux_megavolume_posts')) || [
+let posts = JSON.parse(localStorage.getItem('qlux_megafinal_posts')) || [
     {
         id: 1,
         handle: "@vlis_user",
         name: "VLIS Creator Node",
         avatar: "V",
         time: "たった今",
-        content: "QluxX Sovereign Networkが世界最高峰のメガボリューム仕様に進化！ #BSV と #Teranode の力で仲介手数料ゼロの究極のマネタイズ空間が完成。🚀",
+        content: "投稿の削除・編集機能、ユーザープロフィール詳細、通知センターを完全完備した世界最高峰のSNSがここに完成！ #BSV #Teranode",
         likes: 142,
-        tips: 1200
+        tips: 1200,
+        isOwner: true
     },
     {
         id: 2,
@@ -313,13 +273,12 @@ let posts = JSON.parse(localStorage.getItem('qlux_megavolume_posts')) || [
         name: "Qlux Sovereign Node",
         avatar: "Q",
         time: "5分前",
-        content: "HandCashウォレット（AppID: 6a499671...）とのダイレクト決済が完全同期。 #HandCash #Web3",
+        content: "HandCashウォレットとの完全同期により、あらゆるアクションが秒速でオンチェーン処理されます。 #HandCash",
         likes: 289,
-        tips: 3400
+        tips: 3400,
+        isOwner: false
     }
 ];
-
-let globalSats = 15450.00;
 
 function renderTimeline() {
     const timeline = document.getElementById('x-timeline');
@@ -331,22 +290,26 @@ function renderTimeline() {
         card.className = 'x-tweet-card';
         let formattedContent = escapeHtml(post.content).replace(/(#\w+)/g, '<span class="x-tag">$1</span>');
 
+        // 自分の投稿のみ削除ボタンを表示
+        let deleteButtonHtml = post.isOwner ? `<button class="x-action-btn x-delete-btn" onclick="deletePost(${index})">🗑️ 削除</button>` : '';
+
         card.innerHTML = `
             <div class="x-tweet-header">
-                <div class="x-user-info">
+                <div class="x-user-info" onclick="openProfileModal('${post.handle}')">
                     <div class="x-avatar">${post.avatar}</div>
                     <div>
-                        <div class="x-username">${post.name} <span style="color: #34d399; font-size: 9px;">● HandCash</span></div>
+                        <div class="x-username">${post.name} <span style="color: #34d399; font-size: 8px;">● HandCash</span></div>
                         <div class="x-handle">${post.handle} · ${post.time}</div>
                     </div>
                 </div>
-                <div style="color: #3b82f6; font-size: 9px; font-family: monospace;">On-Chain</div>
+                <div style="color: #3b82f6; font-size: 8px; font-family: monospace;">On-Chain</div>
             </div>
             <div class="x-tweet-body">${formattedContent}</div>
             <div class="x-action-bar">
-                <button class="x-action-btn" onclick="alert('💬 返信がオンチェーンに記録されました！')">💬 返信</button>
+                <button class="x-action-btn" onclick="alert('💬 返信モーダルを開きました')">💬 返信</button>
                 <button class="x-action-btn" onclick="likePost(${index})">❤️ いいね <span>${post.likes}</span></button>
-                <button class="x-action-btn x-tip-btn" onclick="sendTip(${index}, 100)">⚡ 100 SATS 入金</button>
+                <button class="x-action-btn" style="color:#34d399; border-color:rgba(16,185,129,0.3);" onclick="sendTip(${index}, 100)">⚡ 100 SATS</button>
+                ${deleteButtonHtml}
             </div>
         `;
         timeline.appendChild(card);
@@ -366,57 +329,57 @@ function publishPost() {
         time: "たった今",
         content: text,
         likes: 1,
-        tips: 0
+        tips: 0,
+        isOwner: true
     });
-    localStorage.setItem('qlux_megavolume_posts', JSON.stringify(posts));
+    localStorage.setItem('qlux_megafinal_posts', JSON.stringify(posts));
     input.value = "";
     renderTimeline();
-    triggerTerminal("新着ポスト作成報酬として 50 SATS がHandCashに着金しました！");
+}
+
+function deletePost(index) {
+    if (confirm("本当にこの投稿をオンチェーンから削除しますか？")) {
+        posts.splice(index, 1);
+        localStorage.setItem('qlux_megafinal_posts', JSON.stringify(posts));
+        renderTimeline();
+    }
 }
 
 function likePost(index) {
     posts[index].likes += 1;
-    localStorage.setItem('qlux_megavolume_posts', JSON.stringify(posts));
+    localStorage.setItem('qlux_megafinal_posts', JSON.stringify(posts));
     renderTimeline();
 }
 
 function sendTip(index, sats) {
     posts[index].tips += sats;
-    globalSats += sats;
-    updateSatsDisplay();
-    localStorage.setItem('qlux_megavolume_posts', JSON.stringify(posts));
-    triggerTerminal(`${sats} SATS のチップが HandCash ウォレットへダイレクトに着金しました！`);
+    localStorage.setItem('qlux_megafinal_posts', JSON.stringify(posts));
+    alert(`⚡ ${sats} SATS のチップが HandCash アカウントへダイレクトに着金しました！`);
 }
 
-function triggerGlobalSweep() {
-    globalSats += 5000;
-    updateSatsDisplay();
-    triggerTerminal("✓ Teranodeアトミック一括回収成功！ +5,000 SATS がダイレクト着金しました。");
-}
-
-function triggerTerminal(msg) {
-    const terminal = document.getElementById('qlux-terminal');
-    const terminalMsg = document.getElementById('terminal-msg');
-    terminal.style.display = "block";
-    terminalMsg.innerHTML = msg;
-    setTimeout(() => { terminal.style.display = "none"; }, 3500);
-}
-
-function updateSatsDisplay() {
-    document.getElementById('sidebar-sats').innerText = globalSats.toFixed(2) + " SAT";
-}
-
-function switchMainTab(paneName, btn) {
-    document.querySelectorAll('.content-pane').forEach(el => el.style.display = 'none');
+function switchTab(tabName, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
     document.querySelectorAll('.qlux-tab-btn').forEach(el => el.classList.remove('active'));
-    
-    document.getElementById('pane-' + paneName).style.display = 'block';
+    document.getElementById('tab-' + tabName).style.display = 'block';
     btn.classList.add('active');
+}
+
+function openProfileModal(handle) {
+    document.getElementById('modal-username').innerText = handle;
+    document.getElementById('modal-bio').innerText = handle === '@vlis_user' ? 'VLIS Creator Node — メインアカウント' : 'QluxX Sovereign Network 運営ノード';
+    document.getElementById('profile-modal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('profile-modal').style.display = 'none';
+}
+
+function switchAccount() {
+    alert("アカウント切り替えシステム: 別のHandCashアカウントにスムーズにスイッチします。");
 }
 
 window.onload = function() {
     renderTimeline();
-    updateSatsDisplay();
 };
 
 function escapeHtml(str) {
