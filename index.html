@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qlux — Autonomous Omniversal BSV Neural Grid & Micro-Pay</title>
+<title>Qlux — Omniversal Sovereign Mega-Platform & Autonomous Core</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -85,13 +85,9 @@ body {
 /* グリッドレイアウト */
 .qlux-grid-2 { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
 .qlux-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.qlux-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
 .qlux-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-@media(max-width: 1200px) {
-    .qlux-grid-5 { grid-template-columns: repeat(2, 1fr); }
-}
 @media(max-width: 1024px) {
-    .qlux-grid-2, .qlux-grid-3, .qlux-grid-5 { grid-template-columns: 1fr; }
+    .qlux-grid-2, .qlux-grid-3 { grid-template-columns: 1fr; }
     .qlux-grid-4 { grid-template-columns: 1fr 1fr; }
 }
 
@@ -213,45 +209,6 @@ body {
     box-shadow: inset 0 0 30px rgba(16, 185, 129, 0.15);
 }
 
-/* 特設マイクロペイメント・セクションのスタイル */
-.micropay-highlight {
-    background: linear-gradient(135deg, #071126 0%, #030712 100%);
-    border: 1px solid rgba(59, 130, 246, 0.4);
-    border-radius: 16px;
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-.micropay-highlight h3 {
-    font-size: 18px;
-    font-weight: 900;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.micropay-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-@media(max-width: 768px) {
-    .micropay-grid { grid-template-columns: 1fr; }
-}
-.micropay-box {
-    background: #03060f;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-.micropay-box label { font-size: 10px; color: #3b82f6; font-family: monospace; font-weight: bold; letter-spacing: 0.1em; }
-.micropay-box p { font-size: 12px; color: #94a3b8; font-family: monospace; line-height: 1.6; }
-
 /* ライブ収益カウンター */
 .live-counter-box {
     background: #000;
@@ -282,31 +239,31 @@ body {
 .qlux-manifesto h3 { font-size: 15px; font-weight: 800; color: #fff; letter-spacing: 0.05em; }
 .qlux-manifesto p { font-size: 13px; color: #94a3b8; line-height: 1.8; font-family: -apple-system, sans-serif; }
 
-/* 5大超未来サービスカード */
-.future-5-card {
+/* 統合プラットフォームカード */
+.mega-card {
     background: #03060f;
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 16px;
-    padding: 20px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     gap: 12px;
     transition: all 0.2s ease;
 }
-.future-5-card:hover {
+.mega-card:hover {
     border-color: rgba(59, 130, 246, 0.5);
     background: #050a18;
     transform: translateY(-2px);
 }
-.future-5-num {
+.mega-tag {
     font-size: 10px;
     font-family: monospace;
     color: #3b82f6;
     letter-spacing: 0.15em;
     font-weight: 800;
 }
-.future-5-card h4 { font-size: 14px; font-weight: 800; color: #fff; line-height: 1.4; }
-.future-5-card p { font-size: 11px; color: #94a3b8; font-family: monospace; line-height: 1.6; }
+.mega-card h4 { font-size: 15px; font-weight: 800; color: #fff; }
+.mega-card p { font-size: 12px; color: #94a3b8; font-family: monospace; line-height: 1.7; }
 
 footer {
     text-align: center;
@@ -327,46 +284,46 @@ footer {
             <div class="qlux-logo">Q</div>
             <div class="qlux-title">
                 <h1>Qlux Ecosystem</h1>
-                <span>AUTONOMOUS SUB-SATOSHI MONETIZATION MATRIX</span>
+                <span>OMNIVERSAL SOVEREIGN MEGA-PLATFORM CORE</span>
             </div>
         </div>
         <div class="qlux-status-badge">
-            <div class="qlux-pulse"></div> ZERO-OVERHEAD REVENUE ACTIVE
+            <div class="qlux-pulse"></div> MEGA-MATRIX 100% SYNCHRONIZED
         </div>
     </header>
 
     <div class="qlux-grid-2">
         <main class="qlux-panel">
             <div class="qlux-panel-header">
-                <span>⚡</span> Qlux Autonomous Execution & Live Revenue Core
+                <span>⚡</span> Qlux Sovereign Mega-Execution & Live Revenue Core
             </div>
 
             <div style="font-size: 13px; color: #94a3b8; line-height: 1.6;">
-                Qluxは、Teranodeによる無限のスケーラビリティを基盤とし、仲介者や請求作業を完全に排除した「完全無人のリアルタイム収益エンジン」を稼働させています。
+                Qluxメガプラットフォームは、Teranodeの無限スケーラビリティを基盤に、全AIモデル、P2P分散SNS、ゲーム経済、気候デリバティブ、宇宙データ信託のすべてを束ね、完全自動で収益を配分し続けます。
             </div>
 
             <div class="live-counter-box">
                 <div>
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 2px;">LIVE API REQUEST ACCUMULATOR</div>
-                    <div style="font-size: 12px; color: #fff;">自動収益ウォレット直結</div>
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 2px;">MEGA-PLATFORM LIVE ACCUMULATOR</div>
+                    <div style="font-size: 12px; color: #fff;">全インフラ自動収益直結</div>
                 </div>
                 <div class="live-counter-val" id="live-sats">0.000000 SAT</div>
             </div>
 
             <div>
                 <div style="font-size: 11px; font-weight: bold; color: #60a5fa; font-family: monospace; margin-bottom: 8px; display: flex; justify-content: space-between;">
-                    <span>▶ オムニバーサル・マトリックス即時発火制御</span>
+                    <span>▶ メガ・マトリックス即時アトミック発火制御</span>
                     <span style="color: #64748b;">SLIDE TO RIGHT</span>
                 </div>
                 <div class="qlux-swipe-track" id="swipe-track">
                     <div class="qlux-swipe-progress" id="swipe-progress"></div>
-                    <div class="qlux-swipe-instruction" id="swipe-instruction">SLIDE TO EXECUTE QLUX OMNIVERSAL MATRIX &rarr;</div>
+                    <div class="qlux-swipe-instruction" id="swipe-instruction">SLIDE TO EXECUTE QLUX MEGA-PLATFORM &rarr;</div>
                     <div class="qlux-swipe-thumb" id="swipe-thumb">&rarr;</div>
                 </div>
             </div>
 
             <div id="qlux-terminal" class="qlux-terminal">
-                <div style="font-weight: bold; margin-bottom: 6px; font-size: 13px; color: #fff;">✓ [QLUX MICROPAY SUCCESS] サブサトシ・API自動決済がウォレットに直接着金しました。</div>
+                <div style="font-weight: bold; margin-bottom: 6px; font-size: 13px; color: #fff;">✓ [QLUX MEGA-PLATFORM SUCCESS] 全8大超未来インフラの同期および収益の自動アトミック配分が完了しました。</div>
                 <div id="terminal-body"></div>
             </div>
         </main>
@@ -376,88 +333,89 @@ footer {
                 <span>📖</span> Qlux Manifesto & Philosophy
             </div>
             <div class="qlux-manifesto">
-                <h3>Absolute Sovereign Monetization</h3>
+                <h3>The Ultimate Sovereign Singularity</h3>
                 <p>
-                    月額固定のサブスクや広告収益の限界を突破。使われた分だけ、1秒以下のレイテンシーでウォレットへダイレクトに着金する真の自律分散マネタイズ。
+                    中央集権的なサーバー、広告、月額サブスクの概念を地球上から消し去る。AI、人間、ロボット、そして宇宙のすべてがダイレクトにつながる究極の無人経済圏。
                 </p>
             </div>
             <div style="font-size: 11px; color: #64748b; font-family: monospace;">
-                Architecture: P2P Bitcoin Script & Pay-per-Request Core
+                Architecture: Teranode Shard Matrix & Pay-per-Request Core
             </div>
         </aside>
     </div>
 
     <section class="qlux-panel">
         <div class="qlux-panel-header">
-            <span>💎</span> Core Monetization Model — サブサトシ・リアルタイムAPI/データ・マイクロペイメント
+            <span>🌌</span> Qlux Horizon — 究極の8大BSVメガプラットフォーム完全統合
         </div>
 
-        <div class="micropay-highlight">
-            <h3><span>🚀</span> Pay-per-Request 無人自動収益システム</h3>
-            <p style="font-size: 13px; color: #cbd5e1; line-height: 1.8; font-family: -apple-system, sans-serif;">
-                WebサイトやAIサービスに訪れたユーザー（または自動化されたボット）が、APIの叩きやデータ・コンテンツの閲覧を行った瞬間、1リクエストあたり「0.000001サトシ（10分の一百万サトシ）」単位の超極小決済を瞬時に実行します。
-            </p>
-            <div class="micropay-grid">
-                <div class="micropay-box">
-                    <label>// 01. 圧倒的な技術優位性</label>
-                    <p>他チェーンではガス代で破綻する超極小・高頻度トランザクションを、BSVのTeranode環境下で完全にノーコスト同等処理。</p>
-                </div>
-                <div class="micropay-box">
-                    <label>// 02. 完全無人のバックグラウンド稼働</label>
-                    <p>サブスクや広告に頼らず、使われた分だけ1秒以下のレイテンシーで直接ウォレットに着金。集金・請求作業が完全にゼロに。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="qlux-panel">
-        <div class="qlux-panel-header">
-            <span>🌌</span> Qlux Horizon — 世界初・5大超未来分散型サービス完全設計
-        </div>
-
-        <div class="qlux-grid-5">
-            <div class="future-5-card">
-                <div class="future-5-num">MODEL 01 // QUANTUM CLIMATE</div>
-                <h4>クァンタム気候変動デリバティブ</h4>
-                <p>大気・海洋センサーの異常気象データをTeranodeに即時刻印。人間の審査ゼロで保険金や補償をミリ秒で自動一括送金。</p>
+        <div class="qlux-grid-3">
+            <div class="mega-card">
+                <div class="mega-tag">MEGA MODULE 01 // PAY-PER-REQUEST API</div>
+                <h4>サブサトシ・リアルタイムAPI</h4>
+                <p>APIの呼び出しやデータ閲覧ごとに1/100万サトシ単位で即時決済。請求・集金作業一切なしの完全無人マネタイズ。</p>
             </div>
 
-            <div class="future-5-card">
-                <div class="future-5-num">MODEL 02 // ROBOT AUTONOMY</div>
+            <div class="mega-card">
+                <div class="mega-tag">MEGA MODULE 02 // AI AGENT COMPUTE MATRIX</div>
+                <h4>P2P AIモデル・マーケットプレイス</h4>
+                <p>開発者の小型AIモデルが呼び出されるたび、スマートコントラクトが開発者ウォレットへ直接報酬を高速ルーティング。</p>
+            </div>
+
+            <div class="mega-card">
+                <div class="mega-tag">MEGA MODULE 03 // SOVEREIGN NEURAL FEED</div>
+                <h4>P2P分散型プライベートSNS</h4>
+                <p>すべての投稿・やり取りをBitcoinトランザクションとして直刻印。バズやインサイトに直結するダイレクトチップ経済圏。</p>
+            </div>
+
+            <div class="mega-card">
+                <div class="mega-tag">MEGA MODULE 04 // AUTONOMOUS GAME ECONOMY</div>
+                <h4>ゲーム内アセット＆P2Pオークション</h4>
+                <p>STASトークン規格による完全オンチェーンのアイテム売買。運営を介さずアトミック・スワップと永続ロイヤリティが自動稼働。</p>
+            </div>
+
+            <div class="mega-card">
+                <div class="mega-tag">MEGA MODULE 05 // QUANTUM CLIMATE DERIVATIVES</div>
+                <h4>クァンタム気候変動グリッド</h4>
+                <p>気象センサーの異常データを即刻印し、人間ゼロで保険金や補償金をミリ秒で一律自動送金する都市防衛インフラ。</p>
+            </div>
+
+            <div class="mega-card">
+                <div class="mega-tag">MEGA MODULE 06 // ROBOT-TO-ROBOT ECONOMY</div>
                 <h4>自律型AIロボット経済社会</h4>
-                <p>ドローンやAIワーカー間での電力・通信リソース売買をサブサトシ単位のマイクロペイメントで完全無人・無限に自動決済。</p>
+                <p>ドローンや自動運転車同士が電力や通信リソースをサブサトシ決済で無限に売り買いし合う機械のための自律社会。</p>
             </div>
 
-            <div class="future-5-card">
-                <div class="future-5-num">MODEL 03 // DEAD MAN'S TRUST</div>
+            <div class="mega-card">
+                <div class="mega-tag">MEGA MODULE 07 // DEAD MAN'S TRUST</div>
                 <h4>量子タイムロック型遺言信託</h4>
-                <p>生存確認シグナルが途絶えた瞬間、スマートコントラクトが極秘の知的財産や資産をパブリックアドレスへ自動解放・分配。</p>
+                <p>生存確認シグナルの途絶時に、極秘の知的財産や資産をパブリックアドレスへ自動解放・分配する不滅のタイムロック。</p>
             </div>
 
-            <div class="future-5-card">
-                <div class="future-5-num">MODEL 04 // OPEN CODE AUCTION</div>
-                <h4>自律型オープンプルーフ競売</h4>
-                <p>AIが世界中の提出コードの性能をリアルタイム評価。優良コードに貢献度・使用頻度に応じた収益を永続的に自動配分。</p>
-            </div>
-
-            <div class="future-5-card">
-                <div class="future-5-num">MODEL 05 // DEEP SPACE LEDGER</div>
+            <div class="mega-card">
+                <div class="mega-tag">MEGA MODULE 08 // DEEP SPACE DATA LEDGER</div>
                 <h4>宇宙空間データ分散信託</h4>
-                <p>地球低軌道や火星探査の宇宙科学データを遅延ゼロで同期。宇宙資源の採掘権や通信帯域をP2Pで安全に自動売買。</p>
+                <p>低軌道衛星や火星探査の宇宙科学データを遅延ゼロで同期。宇宙資源の採掘権や通信帯域を安全に自動売買。</p>
+            </div>
+
+            <div class="mega-card" style="background: linear-gradient(135deg, #071126 0%, #030712 100%); border-color: rgba(59, 130, 246, 0.4);">
+                <div class="mega-tag" style="color: #60a5fa;">MEGA MODULE 09 // OMNIVERSAL CORE</div>
+                <h4 style="color: #fff;">完全無人自動収益のシンギュラリティ</h4>
+                <p style="color: #cbd5e1;">これらすべてのモジュールが1つのBSVコントラクトで結ばれ、寝ている間も世界中の経済活動から収益が流れ込み続ける。</p>
             </div>
         </div>
     </section>
 
     <div class="qlux-grid-4">
         <div class="qlux-metric">
-            <label>API REQ CAPACITY</label>
+            <label>MEGA-PLATFORM TPS</label>
             <div class="val">10,000,000 TPS</div>
-            <div class="sub">▲ Pay-per-Request Active</div>
+            <div class="sub">▲ Teranode 8-Fold Active</div>
         </div>
         <div class="qlux-metric">
-            <label>AUTOMATED LIQUIDITY</label>
-            <div class="val">$15,400,800,000</div>
-            <div class="sub">● Qlux Sovereign Pool</div>
+            <label>OMNIVERSAL LIQUIDITY</label>
+            <div class="val">$50,850,000,000</div>
+            <div class="sub">● Qlux Mega Pool</div>
         </div>
         <div class="qlux-metric">
             <label>AVG NETWORK FEE</label>
@@ -472,7 +430,7 @@ footer {
     </div>
 
     <footer>
-        <p>© 2026 Qlux Ecosystem. Autonomous Sub-Satoshi Monetization Matrix.</p>
+        <p>© 2026 Qlux Ecosystem. Omniversal Sovereign Mega-Platform Core.</p>
     </footer>
 </div>
 
@@ -480,12 +438,12 @@ footer {
 /* ライブ収益カウンターのシミュレーション */
 var currentSats = 0.000000;
 setInterval(function() {
-    currentSats += 0.000001;
+    currentSats += 0.000005; // 8大モジュールからの超高速収益流入
     var el = document.getElementById('live-sats');
     if (el) {
         el.innerHTML = currentSats.toFixed(6) + " SAT";
     }
-}, 800);
+}, 500);
 
 var track = document.getElementById('swipe-track');
 var thumb = document.getElementById('swipe-thumb');
@@ -566,10 +524,10 @@ window.addEventListener('touchend', handleEnd);
 function executeQluxExchange() {
     terminal.style.display = "block";
     terminalBody.innerHTML = 
-        "Qlux Micropay Sovereign Node: $qlux_pay_per_request_core<br>" +
-        "Matrix Atomic TXID: 0xqlux664109e82b41fc928410e7b4191a4ef8899cc11<br>" +
-        "Sub-Satoshi API Request Stream & Direct Wallet Settled: Synchronized & Verified<br>" +
-        "<span style='color:#fff; font-weight:bold;'>YIELD SETTLEMENT: 50,000 SATS & $500 USD automatically routed via Pay-per-Request.</span>";
+        "Qlux Sovereign Mega-Platform Node: $qlux_omniversal_mega_core<br>" +
+        "Matrix Atomic TXID: 0xqlux994109e82b41fc928410e7b4191a4ef8899cc99<br>" +
+        "All 8 Modules & Sub-Satoshi Streams: Fully Synchronized & Verified<br>" +
+        "<span style='color:#fff; font-weight:bold;'>YIELD SETTLEMENT: 100,000 SATS & $1,000 USD atomically routed across the Mega-Platform.</span>";
 
     setTimeout(function() {
         thumb.classList.remove('unlocked');
