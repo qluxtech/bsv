@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>QLUX // Global Sovereign Settlement Engine</title>
+    <title>QLUX // Global Sovereign Settlement Engine v3.0</title>
     <style>
         :root {
             --bg-deep: #010206;
@@ -17,6 +17,7 @@
             --border-cyan: rgba(0, 242, 254, 0.3);
             --success-green: #00ff66;
             --accent-pink: #ff007f;
+            --purple-glow: rgba(120, 0, 254, 0.3);
         }
 
         * {
@@ -35,11 +36,44 @@
             flex-direction: column;
             line-height: 1.8;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 🌌 サイバーグリッド＆オーロラ背景アニメーション */
+        .cyber-grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                linear-gradient(to right, rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+        }
+
+        .cyber-aurora {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200vw;
+            height: 200vh;
+            background: radial-gradient(circle at 50% 30%, rgba(0, 114, 255, 0.08), transparent 60%),
+                        radial-gradient(circle at 80% 70%, rgba(0, 242, 254, 0.06), transparent 50%);
+            z-index: -1;
+            animation: auroraPulse 12s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes auroraPulse {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(-20px, 20px); }
         }
 
         /* 🌐 ヘッダー */
         header {
-            background: rgba(5, 8, 20, 0.95);
+            background: rgba(5, 8, 20, 0.9);
             border-bottom: 1px solid var(--border-cyan);
             padding: 12px 20px;
             display: flex;
@@ -111,7 +145,7 @@
 
         /* 📊 最上部固定：15大未来技術マトリクスバー */
         .top-matrix-bar {
-            background: rgba(5, 8, 20, 0.98);
+            background: rgba(5, 8, 20, 0.95);
             border-bottom: 1px solid var(--border-cyan);
             padding: 10px 14px;
             display: flex;
@@ -163,7 +197,7 @@
             color: #fff;
         }
 
-        /* メインコンテンツ */
+        /* メインコンテンツエリア */
         main {
             max-width: 1000px;
             width: 100%;
@@ -171,11 +205,11 @@
             padding: 30px 16px;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 35px;
             padding-bottom: 220px;
         }
 
-        /* 💡 圧倒的インパクトのライディングセクション */
+        /* 💡 圧倒的インパクトのマスターカード */
         .editorial-master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
@@ -185,7 +219,8 @@
             flex-direction: column;
             gap: 28px;
             position: relative;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
         }
 
         .editorial-master-card::before {
@@ -208,17 +243,17 @@
         }
 
         h2 {
-            font-size: 1.6rem;
+            font-size: 1.55rem;
             font-weight: 900;
             color: #fff;
-            line-height: 1.35;
+            line-height: 1.4;
         }
 
         .editorial-lead {
-            font-size: 0.98rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-primary);
-            line-height: 2.0;
+            line-height: 2.1;
             border-left: 3px solid var(--cyan-primary);
             padding-left: 20px;
             background: var(--cyan-dim);
@@ -232,6 +267,95 @@
             font-weight: 900;
         }
 
+        /* 🌟 追加ボリューム：3大キラーピラー（メリット解説セクション） */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media(min-width: 768px) {
+            .pillars-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .pillar-card {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-cyan);
+            border-radius: 14px;
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px var(--cyan-glow);
+            border-color: var(--cyan-primary);
+        }
+
+        .pillar-number {
+            font-size: 0.65rem;
+            font-weight: 900;
+            color: var(--accent-pink);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .pillar-title {
+            font-size: 1.05rem;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .pillar-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* 📈 ライブテレメトリー統計パネル */
+        .stats-banner {
+            background: linear-gradient(135deg, rgba(5,8,20,0.95), rgba(10,16,40,0.95));
+            border: 1px solid var(--border-cyan);
+            border-radius: 14px;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        @media(min-width: 768px) {
+            .stats-banner {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--cyan-primary);
+            text-shadow: 0 0 10px var(--cyan-glow);
+        }
+
         /* 開発者向けリアルタイムログストリーム */
         .dev-stream-box {
             background: #02040b;
@@ -241,7 +365,7 @@
             font-family: 'Courier New', Courier, monospace;
             font-size: 0.72rem;
             color: var(--success-green);
-            max-height: 140px;
+            max-height: 150px;
             overflow-y: auto;
         }
 
@@ -260,7 +384,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(5, 8, 20, 0.98);
+            background: rgba(5, 8, 20, 0.96);
             backdrop-filter: blur(25px);
             border-top: 2px solid var(--cyan-primary);
             padding: 14px 20px;
@@ -312,7 +436,7 @@
             white-space: nowrap;
         }
 
-        /* 🚀 修正された完全滑らかに追従・発火するスワイプトラック */
+        /* 🚀 完全に滑らかに追従・発火するスワイプトラック */
         .swipe-track-modern {
             background: linear-gradient(90deg, #02040b, #0a1232, #02040b);
             border: 1px solid var(--cyan-primary);
@@ -381,6 +505,9 @@
 </head>
 <body>
 
+    <div class="cyber-grid-bg"></div>
+    <div class="cyber-aurora"></div>
+
     <header>
         <div class="brand">
             <div class="brand-logo">Ω</div>
@@ -413,6 +540,31 @@
                 画面下のサイバーノブをスワイプした瞬間、地球の裏側から世界中に散らばるすべての経済成果が、あなたのウォレットへと一筋の光のようにテレポートし、一瞬で定着する――これこそが、人類史の摩擦をゼロにする次世代の絶対的スタンダードです。
             </div>
 
+            <div class="stats-banner">
+                <div class="stat-item"><span class="stat-label">Global TPS</span><span class="stat-value">12,450,000+</span></div>
+                <div class="stat-item"><span class="stat-label">Settlement Latency</span><span class="stat-value">&lt; 0.001s</span></div>
+                <div class="stat-item"><span class="stat-label">Intermediary Fees</span><span class="stat-value">0.00%</span></div>
+                <div class="stat-item"><span class="stat-label">Network Trust</span><span class="stat-value">100% Math</span></div>
+            </div>
+
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <span class="pillar-number">Pillar 01 // Global Settlement</span>
+                    <h3 class="pillar-title">仲介銀行・数日間の遅延を完全に完全消滅</h3>
+                    <p class="pillar-desc">従来の国際送金やプラットフォーム手数料の搾取を一切排除。地球規模のペイメントをノーディレイで完結させます。</p>
+                </div>
+                <div class="pillar-card">
+                    <span class="pillar-number">Pillar 02 // Autonomous Escrow</span>
+                    <h3 class="pillar-title">あらゆる契約・知財の「1秒オンチェーン証明」</h3>
+                    <p class="pillar-desc">人間の信頼ではなく数学的証明（sCryptスマートコトラクト）により条件が強制執行されるため、不払いや詐欺が物理的に不可能になります。</p>
+                </div>
+                <div class="pillar-card">
+                    <span class="pillar-number">Pillar 03 // Gamified UX</span>
+                    <h3 class="pillar-title">「指先ひとつで世界が動く」究極の経済体験</h3>
+                    <p class="pillar-desc">グローバルな経済活動への参加が、直感的なスワイプアクションを通じてダイレクトに富へと変換される、誰もが熱狂するエコシステム。</p>
+                </div>
+            </div>
+
             <div class="dev-stream-box">
                 <div class="dev-stream-title">&gt;&gt; Teranode Real-time Mempool &amp; Atomic Settlement Stream</div>
                 <div id="logStream">
@@ -431,129 +583,4 @@
                     <span style="font-size: 0.6rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">GLOBAL SETTLEMENT CORE</span>
                     <div class="wallet-amount-display" id="mainWalletBalance">7,450,000 SAT</div>
                 </div>
-                <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">一括アトミック清算を実行</button>
-            </div>
-
-            <div class="swipe-track-modern" id="swipeTrack">
-                <div class="swipe-guide-text" id="swipeInstruction">👉 スワイプして未清算報酬（3,500,000 SAT）を一括回収</div>
-                <div class="swipe-thumb-modern" id="swipeThumb">SWIPE ⚡</div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        &copy; 2026 QLUX Global Sovereign Master Enterprise. Powered by BSV Teranode &amp; Global Settlement Engine.
-    </footer>
-
-    <script>
-        const track = document.getElementById('swipeTrack');
-        const thumb = document.getElementById('swipeThumb');
-        const instruction = document.getElementById('swipeInstruction');
-        const walletEl = document.getElementById('mainWalletBalance');
-        const dashWalletEl = document.getElementById('dashWalletVal');
-        const logStream = document.getElementById('logStream');
-
-        let isDragging = false;
-        let startX = 0;
-        let currentX = 0;
-        let maxTrackWidth = 0;
-
-        function updateMetrics() {
-            if (track && thumb) {
-                maxTrackWidth = track.clientWidth - thumb.clientWidth - 6;
-            }
-        }
-
-        window.addEventListener('resize', updateMetrics);
-        window.addEventListener('load', updateMetrics);
-        updateMetrics();
-
-        // ポインターイベントによる確実なドラッグ実装
-        thumb.addEventListener('pointerdown', (e) => {
-            isDragging = true;
-            updateMetrics();
-            startX = e.clientX - currentX;
-            thumb.setPointerCapture(e.pointerId);
-            instruction.style.opacity = '0.2';
-            e.preventDefault();
-        });
-
-        window.addEventListener('pointermove', (e) => {
-            if (!isDragging) return;
-            updateMetrics();
-            const diff = e.clientX - startX;
-            currentX = Math.max(0, Math.min(diff, maxTrackWidth));
-            thumb.style.transform = `translateX(${currentX}px)`;
-
-            // 65%以上スワイプしたら完了判定
-            if (currentX >= maxTrackWidth * 0.65) {
-                completeSwipeAction();
-            }
-        });
-
-        window.addEventListener('pointerup', () => {
-            if (!isDragging) return;
-            isDragging = false;
-            updateMetrics();
-
-            if (currentX < maxTrackWidth * 0.65) {
-                // 未達の場合は元の位置に戻す
-                thumb.style.transition = 'transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1)';
-                thumb.style.transform = 'translateX(0px)';
-                currentX = 0;
-                setTimeout(() => {
-                    thumb.style.transition = 'none';
-                }, 300);
-                instruction.style.opacity = '1';
-            }
-        });
-
-        function completeSwipeAction() {
-            if (!isDragging) return;
-            isDragging = false;
-            updateMetrics();
-
-            const pendingVal = 3500000;
-            thumb.style.transition = 'transform 0.2s ease';
-            thumb.style.transform = `translateX(${maxTrackWidth}px)`;
-            thumb.style.background = '#00ff66';
-            thumb.style.color = '#010206';
-            thumb.innerText = 'SETTLED ✓';
-
-            const timeStr = new Date().toTimeString().split(' ')[0];
-            logStream.innerHTML += `<br>[${timeStr}] <span style="color:#00ff66;">SUCCESS:</span> Atomic Sweep of 3,500,000 SAT verified &amp; settled!`;
-            logStream.scrollTop = logStream.scrollHeight;
-
-            setTimeout(() => {
-                alert(`🌐 BSV Teranode Global Settlement Success!\n\n世界中の未清算報酬 ${pendingVal.toLocaleString()} SAT が仲介者なしでミリ秒アトミック清算され、ウォレットへ着金しました！`);
-                
-                let currentBal = parseInt(walletEl.innerText.replace(/[^0-9]/g, '')) || 7450000;
-                currentBal += pendingVal;
-                walletEl.innerText = currentBal.toLocaleString() + ' SAT';
-                if(dashWalletEl) dashWalletEl.innerText = currentBal.toLocaleString() + ' SAT';
-
-                instruction.innerText = '● 全ての未清算報酬のテレポート回収・同期完了';
-
-                setTimeout(() => {
-                    thumb.style.transition = 'none';
-                    thumb.style.transform = 'translateX(0px)';
-                    thumb.style.background = 'linear-gradient(135deg, var(--cyan-primary), #0072ff)';
-                    thumb.style.color = '#010206';
-                    thumb.innerText = 'SWIPE ⚡';
-                    currentX = 0;
-                    instruction.style.opacity = '1';
-                    instruction.innerText = '👉 スワイプして未清算報酬（3,500,000 SAT）を一括回収';
-                }, 1000);
-            }, 100);
-        }
-
-        function executeAdvancedWithdraw() {
-            const timeStr = new Date().toTimeString().split(' ')[0];
-            logStream.innerHTML += `<br>[${timeStr}] Manual batch broadcasted to Teranode.`;
-            logStream.scrollTop = logStream.scrollHeight;
-            alert('💳 グローバル統合アトミック清算トランザクションが BSV Teranode メインネットへブロードキャストされました！');
-        }
-    </script>
-</body>
-</html>
-
+             
