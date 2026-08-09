@@ -32,7 +32,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            line-height: 1.8;
+            line-height: 1.85;
         }
 
         /* 🌐 Header */
@@ -107,7 +107,7 @@
             box-shadow: 0 0 12px var(--cyan-glow);
         }
 
-        /* 📊 1. 最上部：30大未来技術 マトリクスバー */
+        /* 📊 1. 最上部固定：30大未来技術 マトリクスバー */
         .top-matrix-bar {
             background: rgba(6, 9, 23, 0.98);
             border-bottom: 1px solid var(--border-cyan);
@@ -162,28 +162,28 @@
             color: #fff;
         }
 
-        /* Main Wrapper */
+        /* Main Container */
         main {
             max-width: 1100px;
             width: 100%;
             margin: 0 auto;
-            padding: 30px 16px;
+            padding: 35px 16px;
             display: flex;
             flex-direction: column;
-            gap: 35px; /* 各セクションの間に十分な縦のゆとりを確保 */
+            gap: 40px;
         }
 
-        /* 💡 2. 中央：圧倒的なボリュームの長文エディトリアル解説セクション */
+        /* 💡 2. 中央：圧倒的な10倍長大なBSV名文・未来思想ライティングセクション */
         .editorial-master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
             border-radius: 16px;
-            padding: 36px 30px;
+            padding: 40px 32px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 28px;
             position: relative;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
 
         .editorial-master-card::before {
@@ -201,57 +201,73 @@
             font-weight: 900;
             color: var(--cyan-primary);
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
         }
 
         h2 {
-            font-size: 1.6rem;
+            font-size: 1.65rem;
             font-weight: 900;
             color: #fff;
             line-height: 1.45;
         }
 
         .editorial-lead {
-            font-size: 1.02rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--text-primary);
-            line-height: 1.85;
+            line-height: 1.9;
             border-left: 3px solid var(--cyan-primary);
-            padding-left: 18px;
+            padding-left: 20px;
             background: var(--cyan-dim);
-            padding-top: 14px;
-            padding-bottom: 14px;
+            padding-top: 16px;
+            padding-bottom: 16px;
             border-radius: 0 8px 8px 0;
         }
 
         .editorial-body-content {
-            font-size: 0.92rem;
+            font-size: 0.93rem;
             color: var(--text-secondary);
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 22px;
+            line-height: 1.9;
         }
 
         .editorial-body-content strong {
             color: #fff;
         }
 
-        /* 3大キラー機能グリッド（長文解説の中に内包） */
+        .editorial-body-content h3 {
+            font-size: 1.15rem;
+            color: var(--cyan-primary);
+            margin-top: 10px;
+            font-weight: 900;
+            border-bottom: 1px dashed var(--border-cyan);
+            padding-bottom: 8px;
+        }
+
+        /* 3大キラー機能グリッド */
         .killer-features-grid {
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin-top: 10px;
+            gap: 18px;
+            margin-top: 15px;
         }
 
         .killer-feature-item {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .killer-feature-item:hover {
+            border-color: var(--cyan-primary);
+            transform: translateY(-2px);
         }
 
         .killer-feature-header {
@@ -264,12 +280,12 @@
             font-size: 0.65rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
         }
 
         .killer-badge-sub {
             font-size: 0.6rem;
-            padding: 3px 8px;
+            padding: 4px 10px;
             border-radius: 4px;
             background: var(--cyan-dim);
             border: 1px solid var(--border-cyan);
@@ -278,27 +294,41 @@
         }
 
         .killer-title {
-            font-size: 1.05rem;
+            font-size: 1.08rem;
             font-weight: 900;
             color: #fff;
         }
 
         .killer-text {
-            font-size: 0.85rem;
+            font-size: 0.87rem;
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
-        /* ⚡ 3. 最下部：長文をすべて読み終えたユーザーを待ち受けるスワイプアクションボックス */
+        /* ⚡ 3. 最下部：長文をすべて読み終えたユーザーを待ち受ける超カッコいいスワイプアクション */
         .wallet-bottom-action-section {
-            background: var(--surface);
+            background: linear-gradient(135deg, rgba(6, 9, 23, 0.95), rgba(12, 18, 43, 0.95));
             border: 1px solid var(--border-cyan);
-            border-radius: 16px;
-            padding: 30px;
+            border-radius: 18px;
+            padding: 36px 30px;
             display: flex;
             flex-direction: column;
-            gap: 22px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            gap: 26px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 30px rgba(0, 242, 254, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wallet-bottom-action-section::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: var(--cyan-glow);
+            filter: blur(60px);
+            pointer-events: none;
         }
 
         .wallet-top-flex {
@@ -306,20 +336,20 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 20px;
         }
 
         .wallet-balance-box {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
         }
 
         .wallet-amount-display {
-            font-size: 2.4rem;
+            font-size: 2.6rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            text-shadow: 0 0 25px var(--cyan-glow);
+            text-shadow: 0 0 30px var(--cyan-glow);
             letter-spacing: -0.02em;
         }
 
@@ -327,73 +357,89 @@
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             color: #010208;
             border: none;
-            padding: 10px 22px;
-            border-radius: 10px;
+            padding: 12px 26px;
+            border-radius: 12px;
             font-weight: 900;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             cursor: pointer;
-            box-shadow: 0 4px 15px var(--cyan-glow);
+            box-shadow: 0 0 20px var(--cyan-glow);
+            transition: all 0.2s ease;
+        }
+
+        .cyber-action-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px var(--cyan-primary);
         }
 
         .cyber-swipe-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 14px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 16px;
         }
 
+        /* 🚀 最高にカッコいいスワイプトラック＆ノブデザイン */
         .swipe-track-modern {
-            background: var(--surface);
-            border: 1px solid var(--border-cyan);
+            background: linear-gradient(90deg, #030612, #08102b, #030612);
+            border: 1px solid var(--cyan-primary);
             border-radius: 50px;
-            height: 54px;
+            height: 62px;
             position: relative;
             display: flex;
             align-items: center;
-            padding: 0 4px;
+            padding: 0 5px;
             overflow: hidden;
             user-select: none;
-            max-width: 460px;
+            box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.2);
+            max-width: 500px;
             margin: 0 auto;
             width: 100%;
         }
 
         .swipe-thumb-modern {
-            width: 115px;
-            height: 44px;
+            width: 130px;
+            height: 50px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #010208;
             position: absolute;
-            left: 4px;
+            left: 5px;
             cursor: grab;
-            box-shadow: 0 0 18px var(--cyan-glow);
+            box-shadow: 0 0 22px var(--cyan-glow), inset 0 2px 4px rgba(255,255,255,0.6);
             z-index: 10;
+            letter-spacing: 0.05em;
+            transition: background 0.2s ease;
+        }
+
+        .swipe-thumb-modern:active {
+            cursor: grabbing;
         }
 
         .swipe-guide-text {
             width: 100%;
             text-align: center;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 700;
             color: var(--text-secondary);
             z-index: 1;
             pointer-events: none;
             position: absolute;
+            letter-spacing: 0.05em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 28px;
+            padding: 30px;
             font-size: 0.72rem;
             color: var(--text-secondary);
             border-top: 1px solid var(--border-cyan);
@@ -446,28 +492,4 @@
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">26. NanoLive</span><span class="matrix-mini-badge">Streaming</span></div><div class="matrix-mini-value">秒単位エフェクト投げ銭</div></div>
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">27. App Store</span><span class="matrix-mini-badge">Open API</span></div><div class="matrix-mini-value">ミニアプリストア</div></div>
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">28. Ordinals Pulse</span><span class="matrix-mini-badge">Dynamic</span></div><div class="matrix-mini-value">変動オンチェーンNFT</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">29. Syndicate</span><span class="matrix-mini-badge">Daily DAO</span></div><div class="matrix-mini-value">日次自動配当組織</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">30. Cyber-Sweep</span><span class="matrix-mini-badge" style="color:#00ff66;">Unified</span></div><div class="matrix-mini-value">一括アトミック回収</div></div>
-    </div>
-
-    <main>
-        <section class="editorial-master-card">
-            <div class="section-tag">⚡ The Ultimate Global Infrastructure // Manifesto</div>
-            <h2>なぜ、世界中の全人口・全企業がこのポータルを欲しがるのか？<br>——仲介者なき経済、秒速清算の未来。</h2>
-            
-            <div class="editorial-lead">
-                地球上のあらゆる個人と企業が毎日直面しているストレス。それは、<strong>「おカネのやり取りにおける高額な手数料の搾取」「国境をまたぐ送金の遅延」「契約やデータの不確実性」</strong>です。もし、このメインポータルにアクセスし、長大な未来の論理を理解した上で、<strong>「画面の一番下にあるノブをスライス（スワイプ）するだけで、世界中の誰とでも、仲介銀行を一切挟まず、手数料を払わずに、ミリ秒で価値の移転と契約の証明が完了する」</strong>としたら？――その未来の全貌がここにあります。
-            </div>
-
-            <div class="editorial-body-content">
-                <p>
-                    私たちが開発した<strong>Global Instant Settlement & Proof Engine</strong>は、BSV Teranodeの圧倒的なスケーラビリティを基盤とし、地球上のすべての経済活動をシームレスに結びつける人類史上最強のインフラストラクチャです。ここでは、世界中の誰もが導入を熱望する**「3大キラー機能」**が完全に体系化されています。
-                </p>
-            </div>
-
-            <div class="killer-features-grid">
-                
-                <div class="killer-feature-item">
-                    <div class="killer-feature-header">
-                        <span class="killer-num">KILLER FEATURE 01</span>
-                        <span class="killer-badge-sub">Ze
+        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">29. Syndicate</sp
