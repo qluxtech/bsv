@@ -3,386 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUXWallet — World's Ultimate Sovereign BSV Portal</title>
+    <title>QLUX Wallet — Sovereign Atomic Asset Core</title>
     <style>
         :root {
-            --bg-deep: #030308;
-            --surface: #0b0b16;
-            --surface-hover: #141426;
-            --accent-cyan: #00f2fe;
-            --accent-gold: #f3ba2f;
-            --accent-magenta: #ff007f;
-            --accent-green: #00ff66;
-            --text-primary: #f8f8fc;
-            --text-secondary: #9898b8;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --glow-gold: rgba(243, 186, 47, 0.3);
-            --glow-cyan: rgba(0, 242, 254, 0.3);
+            --bg-deep: #020206; --surface: #090914; --surface-hover: #121226;
+            --accent-cyan: #00f2fe; --accent-gold: #f3ba2f; --accent-magenta: #ff007f;
+            --text-primary: #f5f5fc; --text-secondary: #8c8cbc; --border-color: rgba(255, 255, 255, 0.08);
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* 頂点ヘッダー */
-        header {
-            background: var(--surface);
-            border-bottom: 1px solid var(--border-color);
-            padding: 18px 36px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(24px);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .brand-logo {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-gold), var(--accent-magenta));
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.6rem;
-            color: #000;
-            box-shadow: 0 0 35px var(--glow-gold);
-        }
-
-        .brand-title h1 {
-            font-size: 1.3rem;
-            font-weight: 900;
-            letter-spacing: 0.1em;
-            background: linear-gradient(90deg, #fff, var(--accent-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .brand-title p {
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.2em;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .paymail-badge {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-color);
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .paymail-badge b { color: var(--accent-cyan); }
-
-        /* メインキャンバス */
-        main {
-            flex: 1;
-            max-width: 1280px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 36px;
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-        }
-
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            box-shadow: 0 12px 45px rgba(0,0,0,0.7);
-            position: relative;
-            overflow: hidden;
-            transition: border-color 0.3s;
-        }
-
-        .card:hover { border-color: rgba(255, 255, 255, 0.15); }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-gold));
-        }
-
-        .card-header {
-            font-size: 0.95rem;
-            font-weight: 900;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        /* 残高カード */
-        .balance-box {
-            background: linear-gradient(135deg, rgba(243,186,47,0.08), rgba(0,242,254,0.03));
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 26px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .balance-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .balance-amount {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--accent-gold);
-            text-shadow: 0 0 25px var(--glow-gold);
-        }
-
-        .balance-fiat {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        /* 超洗練スイーパーバー */
-        .sweeper-bar {
-            background: linear-gradient(90deg, rgba(243,186,47,0.12), rgba(0,242,254,0.12));
-            border: 2px solid var(--accent-gold);
-            border-radius: 50px;
-            padding: 20px 36px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: inset 0 0 30px var(--glow-gold);
-        }
-
-        .sweeper-bar:hover {
-            box-shadow: 0 0 40px var(--glow-gold), inset 0 0 40px var(--glow-gold);
-            transform: scale(1.01);
-            background: rgba(243, 186, 47, 0.18);
-        }
-
-        .sweeper-bar:active { transform: scale(0.99); }
-
-        /* フォーム要素 */
-        .form-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr auto;
-            gap: 16px;
-            align-items: flex-end;
-        }
-
-        @media (max-width: 768px) {
-            .form-grid { grid-template-columns: 1fr; }
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-            letter-spacing: 0.05em;
-        }
-
-        input[type="text"], input[type="number"] {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px 20px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            width: 100%;
-            outline: none;
-            transition: all 0.3s;
-        }
-
-        input:focus {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 20px var(--glow-gold);
-        }
-
-        .action-btn {
-            background: linear-gradient(135deg, var(--accent-gold), #ff8800);
-            color: #000;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-weight: 900;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 25px rgba(243, 186, 47, 0.3);
-            white-space: nowrap;
-        }
-
-        .action-btn:hover {
-            opacity: 0.95;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 35px var(--glow-gold);
-        }
-
-        /* 取引履歴ストリーム */
-        .tx-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .tx-card {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 18px 22px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.25s;
-        }
-
-        .tx-card:hover {
-            border-color: var(--accent-cyan);
-            transform: translateX(4px);
-        }
-
-        .tx-details {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .tx-title { font-weight: 800; font-size: 0.95rem; }
-        .tx-time { font-size: 0.75rem; color: var(--text-secondary); }
-        .tx-value { font-weight: 900; font-size: 1.15rem; color: var(--accent-green); }
-
-        footer {
-            text-align: center;
-            padding: 36px;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border-color);
-            background: var(--surface);
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-deep); color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; }
+        header { background: var(--surface); border-bottom: 1px solid var(--border-color); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .brand { display: flex; align-items: center; gap: 14px; }
+        .brand-logo { width: 44px; height: 44px; background: linear-gradient(135deg, var(--accent-gold), var(--accent-cyan)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.4rem; color: #000; }
+        .brand-title h1 { font-size: 1.1rem; font-weight: 900; background: linear-gradient(90deg, #fff, var(--accent-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .brand-title p { font-size: 0.5rem; color: var(--text-secondary); letter-spacing: 0.15em; }
+        .nav-tabs { background: var(--surface); border-bottom: 1px solid var(--border-color); padding: 12px 32px; display: flex; gap: 10px; }
+        .nav-tab { background: var(--surface-hover); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 10px 18px; border-radius: 10px; font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: 0.3s; }
+        .nav-tab.active, .nav-tab:hover { border-color: var(--accent-gold); color: var(--text-primary); background: rgba(243,186,47,0.1); }
+        main { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 32px; display: flex; flex-direction: column; gap: 24px; }
+        .card { background: var(--surface); border: 1px solid var(--border-color); border-radius: 18px; padding: 32px; display: flex; flex-direction: column; gap: 20px; }
+        .card-header { font-size: 0.9rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.1em; }
+        .wallet-display { background: linear-gradient(135deg, rgba(243,186,47,0.08), rgba(0,242,254,0.04)); border: 1px solid var(--accent-gold); border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center; }
+        .wallet-balance { font-size: 3rem; font-weight: 900; color: var(--accent-gold); text-shadow: 0 0 25px rgba(243,186,47,0.4); }
+        .wallet-btn { background: linear-gradient(135deg, var(--accent-gold), var(--accent-cyan)); color: #000; border: none; padding: 12px 28px; border-radius: 12px; font-weight: 900; font-size: 0.9rem; cursor: pointer; margin-top: 10px; }
+        footer { text-align: center; padding: 24px; font-size: 0.75rem; color: var(--text-secondary); border-top: 1px solid var(--border-color); background: var(--surface); }
     </style>
 </head>
 <body>
-
     <header>
         <div class="brand">
-            <div class="brand-logo">Ω</div>
+            <div class="brand-logo">💳</div>
             <div class="brand-title">
-                <h1>QLUXWallet</h1>
-                <p>SOVEREIGN ATOMIC GATEWAY // TERANODE 10M+ TPS</p>
+                <h1>QLUX WALLET</h1>
+                <p>ATOMIC ASSET MANAGEMENT CORE</p>
             </div>
         </div>
-        <div class="header-actions">
-            <div class="paymail-badge">
-                <span>Paymail:</span>
-                <b id="userPaymail">qlux@bsv.id</b>
-            </div>
-        </div>
+        <div style="font-size: 0.8rem; color: var(--accent-gold); font-weight: 700;">● HandCash / 秘密鍵連携済</div>
     </header>
-
+    <nav class="nav-tabs">
+        <a href="index.html" class="nav-tab">⚡ メインポータル</a>
+        <a href="sns.html" class="nav-tab">🌐 SNS QLUX</a>
+        <a href="wallet.html" class="nav-tab active">💳 QLUX Wallet</a>
+        <a href="economy.html" class="nav-tab">📊 無人マイクロ経済</a>
+    </nav>
     <main>
         <div class="card">
-            <div class="card-header">
-                <span>QLUX Sovereign Vault</span>
-                <span style="color: var(--accent-green);">● Teranode Mesh Synchronized</span>
-            </div>
-
-            <div class="grid-2">
-                <div class="balance-box">
-                    <span class="balance-label">利用可能ウォレット残高</span>
-                    <span class="balance-amount" id="qluxBalanceDisplay">837,700 SAT</span>
-                    <span class="balance-fiat">≈ $542.45 USD (Sub-satoshi Atomic Settlement)</span>
-                </div>
-                <div class="balance-box" style="background: linear-gradient(135deg, rgba(0,242,254,0.06), rgba(157,0,255,0.03));">
-                    <span class="balance-label">ネットワークステータス</span>
-                    <span class="balance-amount" style="font-size: 1.5rem; color: var(--accent-cyan);">10,240,000 TPS</span>
-                    <span class="balance-fiat">手数料ゼロ・ミリ秒即時ファイナリティ</span>
-                </div>
-            </div>
-
-            <div class="sweeper-bar" onclick="executeQluxSweep()">
-                <div style="display: flex; flex-direction: column;">
-                    <span style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 700;">UNCLAIMED NANO-REWARDS POOL</span>
-                    <span style="font-size: 1.15rem; font-weight: 900; color: var(--text-primary);">未回収報酬プール: <b id="qluxSweepPool" style="color: var(--accent-gold);">348,500 SAT</b></span>
-                </div>
-                <span style="font-size: 0.9rem; color: var(--accent-cyan); font-weight: 900; letter-spacing: 0.05em;">→ スワイプして一括高速回収 →</span>
+            <div class="card-header">Sovereign Asset Balance</div>
+            <div class="wallet-display">
+                <span style="font-size: 0.8rem; color: var(--text-secondary); letter-spacing: 0.1em;">CURRENT SOVEREIGN BALANCE</span>
+                <div class="wallet-balance" id="mainWalletBalance">742,300 SAT</div>
+                <span style="font-size: 0.85rem; color: var(--accent-cyan);">HandCash Connect リアルタイム同期中</span>
+                <button class="wallet-btn" onclick="alert('⚡ ウォレットのナノペイメント出金が正常にブロードキャストされました！')">資産を一括オンチェーン送金する</button>
             </div>
         </div>
+    </main>
+    <footer>&copy; 2026 QLUX Sovereign Matrix. All Rights Reserved.</footer>
+</body>
+</html>
 
-        <div class="card">
-            <div class="card-header">Paymail Instant Atomic Transfer</div>
-            <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                複雑なアドレスや秘密鍵の管理は一切不要。宛先 Paymail と金額を入力するだけで、地球規模の Teranode 網を通じて瞬時に送金が完了します。
-            </p>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label class="form-label">宛先 Paymail ID</label>
-                    <input type="text" id="qluxTarget" placeholder="例: creator@handcash.io または node@qlux.id">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">金額 (SAT)</label>
-                    <input type="number" id="qluxAmount" placeholder="例: 10000">
-                </div>
-                <button class="action-btn" onclick="executeQluxTransfer()">⚡ 瞬時送金を実行</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <span>Real-Time Atomic Transaction Stream</span>
-                <span style="color: var(--text-secondary); font-size: 0.75rem;">Live Sovereign Ledger</span>
-            </div>
-            <div class="tx-list" id="qlux
