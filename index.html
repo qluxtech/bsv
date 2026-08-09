@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX — Global Sovereign Enterprise Matrix & Perpetual Yield</title>
+    <title>QLUX — Global Sovereign Enterprise & BSV Developer Matrix</title>
     <style>
         :root {
             --bg-deep: #010208;
             --surface: #060917;
             --surface-hover: #0c122b;
             --cyan-primary: #00f2fe;
-            --cyan-glow: rgba(0, 242, 254, 0.45);
-            --cyan-dim: rgba(0, 242, 254, 0.08);
+            --cyan-glow: rgba(0, 242, 254, 0.4);
+            --cyan-dim: rgba(0, 242, 254, 0.07);
             --text-primary: #f0f4ff;
             --text-secondary: #8b9bb4;
-            --border-cyan: rgba(0, 242, 254, 0.25);
+            --border-cyan: rgba(0, 242, 254, 0.22);
             --border-subtle: rgba(255, 255, 255, 0.06);
         }
 
@@ -31,11 +31,11 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            line-height: 1.9;
+            line-height: 1.85;
             overflow-x: hidden;
         }
 
-        /* 🌐 超スマート・シアンブルーヘッダー */
+        /* 🌐 Header */
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border-cyan);
@@ -98,7 +98,7 @@
             gap: 8px;
         }
 
-        /* メインコンテナ */
+        /* Main Container */
         main {
             flex: 1;
             max-width: 1350px;
@@ -110,7 +110,7 @@
             gap: 40px;
         }
 
-        /* セクション共通カード */
+        /* Master Cards */
         .master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
@@ -143,7 +143,7 @@
         }
 
         h2 {
-            font-size: 2.3rem;
+            font-size: 2.2rem;
             font-weight: 900;
             letter-spacing: -0.02em;
             line-height: 1.35;
@@ -164,15 +164,15 @@
             color: var(--text-primary);
         }
 
-        /* 心理的拘束・脱出不能バリューグリッド */
-        .value-grid {
+        /* Smart Grid */
+        .smart-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
             margin-top: 10px;
         }
 
-        .value-tile {
+        .smart-tile {
             background: var(--cyan-dim);
             border: 1px solid var(--border-cyan);
             border-radius: 16px;
@@ -183,33 +183,33 @@
             transition: all 0.3s;
         }
 
-        .value-tile:hover {
+        .smart-tile:hover {
             border-color: var(--cyan-primary);
             box-shadow: 0 0 25px var(--cyan-dim);
             transform: translateY(-3px);
         }
 
-        .val-tile-title {
+        .tile-title {
             font-size: 0.95rem;
             font-weight: 900;
             color: var(--cyan-primary);
             letter-spacing: 0.05em;
         }
 
-        .val-tile-desc {
+        .tile-desc {
             font-size: 0.88rem;
             color: var(--text-secondary);
             line-height: 1.6;
         }
 
-        /* 📊 テレメトリー中枢グリッド */
-        .telemetry-grid {
+        /* Dashboard & BSV Dev Grid */
+        .dash-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
         }
 
-        .tele-card {
+        .dash-card {
             background: var(--surface-hover);
             border: 1px solid var(--border-subtle);
             border-radius: 16px;
@@ -217,9 +217,14 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            transition: all 0.3s;
         }
 
-        .tele-title {
+        .dash-card:hover {
+            border-color: var(--border-cyan);
+        }
+
+        .dash-title {
             font-size: 0.75rem;
             color: var(--text-secondary);
             text-transform: uppercase;
@@ -227,14 +232,14 @@
             font-weight: 700;
         }
 
-        .tele-value {
-            font-size: 1.8rem;
+        .dash-value {
+            font-size: 1.6rem;
             font-weight: 900;
             color: var(--cyan-primary);
             text-shadow: 0 0 15px var(--cyan-dim);
         }
 
-        /* 💎 Sovereign Vault */
+        /* Sovereign Vault */
         .vault-section {
             background: linear-gradient(135deg, rgba(0,242,254,0.06), rgba(0,114,255,0.03));
             border: 2px solid var(--cyan-primary);
@@ -260,7 +265,7 @@
             letter-spacing: 0.15em;
         }
 
-        /* 💳 QLUX Wallet ＆ 超スマート・長さ半分スワイプセクション */
+        /* Wallet & Swipe Section */
         .wallet-matrix-section {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
@@ -286,14 +291,13 @@
         }
 
         .wallet-amount-display {
-            font-size: 3.4rem;
+            font-size: 3.2rem;
             font-weight: 900;
             color: var(--cyan-primary);
             text-shadow: 0 0 35px var(--cyan-glow);
             letter-spacing: -0.02em;
         }
 
-        /* ✨ 次世代ボタン */
         .cyber-action-btn {
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             color: #010208;
@@ -314,7 +318,7 @@
             filter: brightness(1.1);
         }
 
-        /* ⚡ 超スマート・長さ半分スワイプコンテナ (完全実動・高感度) */
+        /* ⚡ 超スマート・長さ半分スワイプコンテナ（完全修正版・超高感度） */
         .cyber-swipe-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
@@ -336,14 +340,15 @@
             padding: 0 4px;
             overflow: hidden;
             user-select: none;
+            -webkit-user-select: none;
             touch-action: none;
-            max-width: 480px; /* 長さを半分に絞り込み、超スマートな造形へ */
+            max-width: 440px; /* 長さを半分にスマート化 */
             margin: 0 auto;
             width: 100%;
         }
 
         .swipe-thumb-modern {
-            width: 120px; /* サムネイルもコンパクトに設計 */
+            width: 120px;
             height: 48px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 40px;
@@ -368,11 +373,12 @@
             font-size: 0.85rem;
             font-weight: 700;
             color: var(--text-secondary);
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             z-index: 1;
+            pointer-events: none;
         }
 
-        /* フッター */
+        /* Footer */
         footer {
             text-align: center;
             padding: 40px;
@@ -390,47 +396,47 @@
             <div class="brand-logo">Ω</div>
             <div class="brand-title">
                 <h1>QLUX MEGATRON</h1>
-                <p>GLOBAL SOVEREIGN ENTERPRISE MATRIX</p>
+                <p>GLOBAL SOVEREIGN ENTERPRISE & BSV ECOSYSTEM</p>
             </div>
         </div>
         <div class="matrix-status">
-            <span>● Teranode 10M+ TPS Locked & Synced</span>
+            <span>● Teranode 10M+ TPS Synchronized</span>
         </div>
     </header>
 
     <main>
         <section class="master-card">
             <div class="section-tag">
-                <span>⚡ Mandatory Sovereign Architecture</span>
-                <span style="color: var(--text-primary);">● The Point of No Return for Global Capital</span>
+                <span>⚡ Seamless Enterprise Integration</span>
+                <span style="color: var(--text-primary);">● The Autonomous Global Standard</span>
             </div>
 
-            <h2>この画面を開いた瞬間から、<br>あなたの経済的選択肢は「完全同調」以外に存在しない</h2>
+            <h2>次世代の自律分散インフラストラクチャへ、<br>シームレスに同期する未来の選択</h2>
 
             <div class="deep-editorial">
                 <p>
-                    今、あなたはこの世界最高峰のメガロポリスに足を踏み入れた。ここで立ち止まり、ページを閉じようとしたならば、それは旧時代の非効率な中央集権システムと不当な搾取の構造へ、自らの意思で再び縛られることを意味する。<strong>QLUX</strong>の扉が開いた今、もはや「逃げる」という選択肢は物理的・論理的に存在しない。
+                    現代のグローバルビジネスやクリエイターエコノミーにおいて、真の価値は「仲介者の排除」と「圧倒的なスケーラビリティ」の融合によってのみもたらされます。<strong>QLUX</strong>は、世界最高峰のBSVインフラストラクチャを基盤に、グローバル企業から個人開発者までがシームレスにつながる、次世代のAutonomous Enterprise Ecosystem（自律型エンタープライズ生態系）です。
                 </p>
                 <p>
-                    秒間1,000万件超（10M+ TPS）の圧倒的なトランザクション処理能力を持つ<strong>Teranode</strong>インフラは、地球上で発生するすべての価値交換とデータ流動を、1件あたり0.000001 SAT未満という極小のアトミックコストで完璧に調停している。この要塞に到達した世界中のトップ投資家、クリエイター、そして先見の明を持つすべてのユーザーは、すでにこのシステムに全資産を預け、自動複利運用の恩恵を享受し始めている。
+                    私たちが提供するアーキテクチャは、単なるブロックチェーンの枠を超えた<strong>Teranode 10M+ TPS</strong>の超高速処理能力を備えています。1トランザクションあたりのコストは0.000001 SAT未満という極小のマイクロ経済を実現し、地球規模のデータ配信やアトミック決済を遅延ゼロで完全自動化します。
                 </p>
                 <p>
-                    あなたがこの文章を読んでいるこの瞬間も、ネットワーク全体の収益配分は凄まじいスピードで蓄積されている。ここでスワイプボタンを押し、自身の主権を確立するか、あるいは永遠に機会損失の闇に取り残されるか——。選ぶべき道は、すでに一つしか残されていない。
+                    ここでこのプラットフォームに触れ、システムと同期するということは、未来のデジタル経済圏における「絶対的な主権（Sovereign Control）」を自らの手中に収めることを意味します。一度このインフラの恩恵を体験したユーザーにとって、旧時代の非効率なシステムに戻る選択肢はもはや存在しません。今、この瞬間からあなたの資産とデータは、完全なる自由と強固なセキュリティに守られます。
                 </p>
             </div>
 
-            <div class="value-grid">
-                <div class="value-tile">
-                    <div class="val-tile-title">01. 離脱不能な経済同調磁場</div>
-                    <div class="val-tile-desc">一度接続されたウォレットとリアルタイム同期エンジンは、グローバル市場の成長益を片時も逃さずあなたの手元へアトミックに送り続けます。</div>
+            <div class="smart-grid">
+                <div class="smart-tile">
+                    <div class="tile-title">01. Enterprise Scalability</div>
+                    <div class="tile-desc">Teranodeエンジンにより、どれほど巨大なネットワーク負荷も一瞬で処理。グローバル展開に限界はありません。</div>
                 </div>
-                <div class="value-tile">
-                    <div class="val-tile-title">02. 0.000001 SATの絶対優位性</div>
-                    <div class="val-tile-desc">他のいかなるチェーンも模倣できない限界突破の超低コスト。仲介手数料という名の搾取構造を完全に永久粉砕します。</div>
+                <div class="smart-tile">
+                    <div class="tile-title">02. Autonomous Micro-Economy</div>
+                    <div class="tile-desc">スマートコントラクトとアトミック決済が、手数料の搾取や人手を一切介さずに収益分配を自動遂行します。</div>
                 </div>
-                <div class="value-tile">
-                    <div class="val-tile-title">03. 国家・検閲からの完全独立</div>
-                    <div class="val-tile-desc">誰にも介入されない量子耐性の要塞。あなたの富と表現の自由は、数学的絶対正当性によって永久に保護されます。</div>
+                <div class="smart-tile">
+                    <div class="tile-title">03. Sovereign Data Security</div>
+                    <div class="tile-desc">数学的正当性と量子耐性シールドにより、国家や第三者による検閲・改ざんを完全に物理ブロックします。</div>
                 </div>
             </div>
         </section>
@@ -439,45 +445,45 @@
             <div class="vault-badge">GLOBAL EXCLUSIVE VIP</div>
             <div class="section-tag">
                 <span>💎 QLUX Sovereign Vault ＆ Perpetual Yield</span>
-                <span style="color: var(--cyan-primary);">● 世界中のエリートが渇望する永続配当・主権金庫</span>
+                <span style="color: var(--cyan-primary);">● グローバルエリートが熱望する永続配当金庫</span>
             </div>
-            <h2>世界中の投資家・クリエイターが羨む、<br>グローバル・プレミアム・メンバーシップ要塞</h2>
+            <h2>世界中の投資家・トップクリエイターが羨む、<br>自律分散型・パーペチュアル・イールド要塞</h2>
             <div class="deep-editorial">
                 <p>
-                    QLUXエコシステムの頂点に位置する<strong>Sovereign Vault（主権金庫）</strong>。ここでは、プラットフォーム全体で生成される膨大なアトミック収益の一部が、参加者の貢献度と保有ステータスに応じてリアルタイムかつ自動的に複利運用・配当されます。
+                    QLUXエコシステムの頂点に位置する<strong>Sovereign Vault</strong>。プラットフォーム全体で生み出される膨大なマイクロアトミック収益が、参加者のアクティビティと貢献度に応じてリアルタイムかつ自動的に複利運用・配当される仕組みです。
                 </p>
                 <p>
-                    従来の金融商品のような複雑なロックアップ期間や運用手数料は一切ありません。いつでも瞬時に資産をオンチェーンで引き出すことができ、グローバル経済の成長そのものがダイレクトに自身のポートフォリオへと直結する、まさに「世界で最も美しい自律型マネー・マシン」です。
+                    複雑なロックアップや運用リスクは一切排除されており、いつでも自由なタイミングでオンチェーンから即座に資産を引き出すことが可能です。グローバル経済の成長そのものがダイレクトに自身のポートフォリオを加速させる、究極のマネー・エンジンがここにあります。
                 </p>
             </div>
         </section>
 
         <section class="master-card" style="padding: 36px;">
             <div class="section-tag">
-                <span>📊 Global Infrastructure Telemetry Matrix</span>
-                <span style="color: var(--text-primary);">● Real-Time Enterprise Monitoring</span>
+                <span>📊 BSV Developer Ecosystem & Telemetry Matrix</span>
+                <span style="color: var(--text-primary);">● Core Infrastructure & Developer Tools</span>
             </div>
-            <h2>グローバル主権インフラ・テレメトリー中枢</h2>
-            <div class="telemetry-grid">
-                <div class="tele-card">
-                    <span class="tele-title">01. QLUX Wallet 資産核</span>
-                    <span class="tele-value" id="dashWalletVal">3,120,000 SAT</span>
+            <h2>BSV開発群 ＆ テレメトリー中枢</h2>
+            <div class="dash-grid">
+                <div class="dash-card">
+                    <span class="dash-title">01. QLUX Wallet 資産核</span>
+                    <span class="dash-value" id="dashWalletVal">4,280,000 SAT</span>
                     <span style="font-size: 0.78rem; color: var(--text-secondary);">ハイブリッド署名同期済</span>
                 </div>
-                <div class="tele-card">
-                    <span class="tele-title">02. SNS QLUX リレー</span>
-                    <span class="tele-value" style="color: #00f2fe;">100% 稼働</span>
-                    <span style="font-size: 0.78rem; color: var(--text-secondary);">検閲フリー・オンチェーン</span>
+                <div class="dash-card">
+                    <span class="dash-title">02. BSV Teranode SDK</span>
+                    <span class="dash-value" style="color: #00f2fe;">v3.8.4 Active</span>
+                    <span style="font-size: 0.78rem; color: var(--text-secondary);">超高速API・ノード接続完了</span>
                 </div>
-                <div class="tele-card">
-                    <span class="tele-title">03. Teranode Node Pulse</span>
-                    <span class="tele-value" style="color: #00ff66;">65,536 Nodes</span>
-                    <span style="font-size: 0.78rem; color: var(--text-secondary);">グローバル分散同期</span>
+                <div class="dash-card">
+                    <span class="dash-title">03. Atomic Script Engine</span>
+                    <span class="dash-value" style="color: #00ff66;">1e-6 SAT/Tx</span>
+                    <span style="font-size: 0.78rem; color: var(--text-secondary);">オンチェーン・スマートスクリプト</span>
                 </div>
-                <div class="tele-card">
-                    <span class="tele-title">04. Atomic Economy</span>
-                    <span class="tele-value" style="color: #ff007f;">1e-6 SAT/Tx</span>
-                    <span style="font-size: 0.78rem; color: var(--text-secondary);">超低コスト・アトミック確定</span>
+                <div class="dash-card">
+                    <span class="dash-title">04. Global Node Pulse</span>
+                    <span class="dash-value" style="color: #ff007f;">65,536 Nodes</span>
+                    <span style="font-size: 0.78rem; color: var(--text-secondary);">完全分散型リレー稼働中</span>
                 </div>
             </div>
         </section>
@@ -485,8 +491,8 @@
         <section class="wallet-matrix-section">
             <div class="wallet-top-flex">
                 <div class="wallet-balance-box">
-                    <span style="font-size: 0.8rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.15em;">QLUX WALLET // ACTIVE SOVEREIGN CORE</span>
-                    <div class="wallet-amount-display" id="mainWalletBalance">3,120,000 SAT</div>
+                    <span style="font-size: 0.8rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.15em;">QLUX WALLET // SOVEREIGN CORE ACTIVE</span>
+                    <div class="wallet-amount-display" id="mainWalletBalance">4,280,000 SAT</div>
                     <span style="font-size: 0.85rem; color: var(--text-secondary);">HandCash Connect & ネイティブ秘密鍵ハイブリッド接続中</span>
                 </div>
                 <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">アトミック資産を一括出金する</button>
@@ -495,7 +501,7 @@
             <div class="cyber-swipe-box">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                     <span style="font-size: 0.85rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">CYBERNETIC SWIPE-TO-PAY & REVENUE SWEEP</span>
-                    <span style="font-size: 0.82rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">1,240,000 SAT</b></span>
+                    <span style="font-size: 0.82rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">1,650,000 SAT</b></span>
                 </div>
 
                 <div class="swipe-track-modern" id="swipeTrack">
@@ -524,14 +530,16 @@
         let maxTrackWidth = 0;
 
         function updateMetrics() {
-            maxTrackWidth = track.clientWidth - thumb.clientWidth - 8;
+            if (track && thumb) {
+                maxTrackWidth = track.clientWidth - thumb.clientWidth - 8;
+            }
         }
 
         window.addEventListener('resize', updateMetrics);
         window.addEventListener('load', updateMetrics);
         updateMetrics();
 
-        // ポインターイベントの厳密なバインド（タッチ・マウス完全同期）
+        // ポインターイベントの厳密なバインド（タッチ・マウス両対応の完全無欠実装）
         thumb.addEventListener('pointerdown', startDrag);
         window.addEventListener('pointermove', onDrag);
         window.addEventListener('pointerup', stopDrag);
@@ -551,8 +559,8 @@
             
             thumb.style.transform = `translateX(${currentX}px)`;
 
-            // わずか75%（長さ半分サイズのさらに浅い位置）で即座にトリガー発動
-            if (currentX >= maxTrackWidth * 0.75) {
+            // わずか70%の移動で瞬時にトリガー発動（長さ半分サイズに最適化）
+            if (currentX >= maxTrackWidth * 0.70) {
                 completeSwipeAction();
             }
         }
@@ -562,7 +570,7 @@
             isDragging = false;
             updateMetrics();
 
-            if (currentX < maxTrackWidth * 0.75) {
+            if (currentX < maxTrackWidth * 0.70) {
                 thumb.style.transform = 'translateX(0px)';
                 instruction.style.opacity = '1';
             }
@@ -574,8 +582,4 @@
             isDragging = false;
             updateMetrics();
 
-            let pendingVal = parseInt(pendingEl.innerText.replace(/[^0-9]/g, '')) || 0;
-            if (pendingVal > 0) {
-                thumb.style.transform = `translateX(${maxTrackWidth}px)`;
-                thumb.style.background = '#00ff66';
-       
+            let pendingVal = parseInt(pendingEl
