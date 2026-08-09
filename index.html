@@ -430,4 +430,166 @@
         <p>地球規模の経済データをミリ秒単位で束ねる分散共鳴コア。全てのトランザクションが絶対的なエネルギーパルスとして同期されます。</p>
     </div>
     <div class="graphic-side">
-        <div class="desig
+                <div class="design-pulse">
+            <div class="design-pulse-center"></div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container bleed-graphic-layout">
+    <div class="content-side">
+        <h2 class="slide-title">The Singularity</h2>
+        <h3>価値の集束点</h3>
+        <p>宇宙の全ての光が一点に集まるように、世界中の価値があなたの指先に集約される。QLUXは、経済の重力を再定義します。</p>
+    </div>
+    <div class="graphic-side">
+        <div class="design-singularity">
+            <div class="singularity-glow"></div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container">
+    <div class="content-area">
+        <div class="scroller-box">
+            <h3 style="font-size: 26px;">最後のステップ。主権をあなたの掌へ。</h3>
+            <p style="font-size: 16px; line-height: 1.6; color: #fff;">もはや中間コストによる搾取や、不確実な支払いを許容する必要はない。このスワイプは、単なる操作ではない。<b>「自分の価値を、自分自身で確定させる」という人類の根源的な力の行使である。</b><br><br>下のシアンブルーのバーをスライドし、あなたの元に集約された全ての富を、不変の現実へとテレポートさせよ。</p>
+        </div>
+
+        <div class="swipe-area">
+            <div style="display:flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px; width: 100%;">
+                <div style="text-align: left;">
+                    <p style="font-size: 12px; color: #00f2fe; margin-bottom: 2px; font-weight:900;">SOVEREIGN ACTIVE BALANCE</p>
+                    <h2 id="finalBalance" style="font-size: 36px; margin: 0; text-align: left; color: #fff;">57,450,000 SAT</h2>
+                </div>
+                <div style="text-align: right;">
+                    <p style="font-size: 12px; color: #a5b6cb; margin-bottom: 2px; font-weight:900;">UNSETTLED NANO ASSETS</p>
+                    <h3 id="pendingVal" style="margin: 0; color: #00f2fe; font-size: 26px; text-align: right;">5,500,000 SAT</h3>
+                </div>
+            </div>
+
+            <div class="swipe-track" id="swipeTrack">
+                <div class="swipe-text" id="swipeText">👉 SLIDE TO TELEPORT REWARDS</div>
+                <div class="swipe-thumb" id="swipeThumb">SLIDE ⚡ QLUX</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* Dashboards Toggle Button Function */
+    function toggleTile(element) {
+        element.classList.toggle('active');
+        const badge = element.querySelector('.status-badge');
+        if (element.classList.contains('active')) {
+            badge.innerText = 'ACTIVE (CLICK TO TOGGLE)';
+        } else {
+            badge.innerText = 'PAUSED / IDLE';
+        }
+    }
+
+    /* Swipe Logic (Smooth & Guaranteed Move) */
+    const track = document.getElementById('swipeTrack');
+    const thumb = document.getElementById('swipeThumb');
+    const txt = document.getElementById('swipeText');
+    const bal = document.getElementById('finalBalance');
+    const pend = document.getElementById('pendingVal');
+
+    let isDragging = false;
+    let startX = 0;
+    let maxDist = 0;
+
+    const updateMetrics = () => { 
+        if(track && thumb) {
+            maxDist = track.clientWidth - thumb.clientWidth - 16; 
+        }
+    };
+
+    const startDrag = (clientX) => {
+        if (!thumb || thumb.classList.contains('settled')) return;
+        isDragging = true;
+        startX = clientX - (parseFloat(thumb.style.transform.replace('translateX(', '').replace('px)', '')) || 0);
+        txt.style.opacity = '0.1';
+        thumb.style.transition = 'none';
+    };
+
+    const moveDrag = (clientX) => {
+        if (!isDragging || !thumb) return;
+        updateMetrics();
+        let move = clientX - startX;
+        move = Math.max(0, Math.min(move, maxDist));
+        thumb.style.transform = `translateX(${move}px)`;
+        if (move >= maxDist * 0.92) triggerSettlement();
+    };
+
+    const endDrag = () => {
+        if (!isDragging || !thumb) return;
+        isDragging = false;
+        let match = thumb.style.transform.match(/translateX\(([-\d.]+)px\)/);
+        let currentPos = match ? parseFloat(match[1]) : 0;
+        if (currentPos < maxDist * 0.92) {
+            thumb.style.transition = 'transform 0.4s cubic-bezier(0.1, 0.9, 0.2, 1)';
+            thumb.style.transform = 'translateX(0px)';
+            txt.style.opacity = '1';
+        }
+    };
+
+    if (thumb && track) {
+        thumb.addEventListener('mousedown', (e) => { startDrag(e.clientX); e.preventDefault(); });
+        window.addEventListener('mousemove', (e) => moveDrag(e.clientX));
+        window.addEventListener('mouseup', endDrag);
+
+        thumb.addEventListener('touchstart', (e) => { startDrag(e.touches[0].clientX); e.preventDefault(); }, {passive:false});
+        window.addEventListener('touchmove', (e) => moveDrag(e.touches[0].clientX), {passive:false});
+        window.addEventListener('touchend', endDrag);
+
+        // Click track fallback to jump/slide
+        track.addEventListener('click', (e) => {
+            if(thumb.classList.contains('settled') || isDragging) return;
+            updateMetrics();
+            let rect = track.getBoundingClientRect();
+            let clickX = e.clientX - rect.left - (thumb.clientWidth / 2);
+            let move = Math.max(0, Math.min(clickX, maxDist));
+            thumb.style.transition = 'transform 0.3s ease';
+            thumb.style.transform = `translateX(${move}px)`;
+            if (move >= maxDist * 0.92) {
+                triggerSettlement();
+            } else {
+                setTimeout(() => {
+                    if(!isDragging && !thumb.classList.contains('settled')) {
+                        thumb.style.transform = 'translateX(0px)';
+                        txt.style.opacity = '1';
+                    }
+                }, 400);
+            }
+        });
+    }
+
+    function triggerSettlement() {
+        if (!thumb || thumb.classList.contains('settled')) return;
+        isDragging = false;
+        thumb.classList.add('settled');
+        thumb.style.transition = 'transform 0.2s ease, background 0.3s';
+        thumb.style.transform = `translateX(${maxDist}px)`;
+        thumb.style.background = '#00ff66';
+        thumb.style.boxShadow = '0 0 40px rgba(0,255,102,1)';
+        thumb.innerText = 'SETTLED ✓';
+        
+        setTimeout(() => {
+            alert("🌐 QLUX Supreme Settlement Success!\n報酬は数学的真理に基づき、主権下へ完全に同期・テレポートされました。");
+            bal.innerText = "62,950,000 SAT";
+            bal.style.color = "#00ff66";
+            bal.style.textShadow = "0 0 30px rgba(0,255,102,0.6)";
+            pend.innerText = "0 SAT";
+            pend.style.color = "#a5b6cb";
+            txt.innerText = "● UNIVERSAL SOVEREIGN SYNC COMPLETE";
+            txt.style.opacity = '1';
+        }, 150);
+    }
+    
+    window.addEventListener('resize', updateMetrics);
+    updateMetrics();
+</script>
+
+</body>
+</html>
