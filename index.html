@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX // Global Instant Settlement & Proof Engine</title>
+    <title>QLUX // Sovereign Teranode Master Engine</title>
     <style>
         :root {
-            --bg-deep: #010208;
-            --surface: #060917;
-            --surface-hover: #0c122b;
+            --bg-deep: #010206;
+            --surface: #050814;
+            --surface-hover: #0a1028;
             --cyan-primary: #00f2fe;
-            --cyan-glow: rgba(0, 242, 254, 0.4);
-            --cyan-dim: rgba(0, 242, 254, 0.08);
-            --text-primary: #f0f4ff;
-            --text-secondary: #94a3b8;
-            --border-cyan: rgba(0, 242, 254, 0.3);
+            --cyan-glow: rgba(0, 242, 254, 0.35);
+            --cyan-dim: rgba(0, 242, 254, 0.06);
+            --text-primary: #f4f7ff;
+            --text-secondary: #8b9bb4;
+            --border-cyan: rgba(0, 242, 254, 0.25);
             --success-green: #00ff66;
             --accent-pink: #ff007f;
         }
@@ -32,13 +32,13 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            line-height: 1.9;
+            line-height: 1.8;
             overflow-x: hidden;
         }
 
         /* 🌐 Header */
         header {
-            background: rgba(6, 9, 23, 0.95);
+            background: rgba(5, 8, 20, 0.95);
             border-bottom: 1px solid var(--border-cyan);
             padding: 14px 24px;
             display: flex;
@@ -47,7 +47,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
         }
 
         .brand {
@@ -66,14 +66,14 @@
             justify-content: center;
             font-weight: 900;
             font-size: 1.1rem;
-            color: #010208;
+            color: #010206;
             box-shadow: 0 0 20px var(--cyan-glow);
         }
 
         .brand-title h1 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 900;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
             background: linear-gradient(90deg, #fff, var(--cyan-primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -99,7 +99,7 @@
         .auth-btn-main {
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border: none;
-            color: #010208;
+            color: #010206;
             padding: 6px 16px;
             border-radius: 6px;
             font-size: 0.75rem;
@@ -110,7 +110,7 @@
 
         /* 📊 1. 最上部固定：15大未来技術マトリクスバー */
         .top-matrix-bar {
-            background: rgba(6, 9, 23, 0.98);
+            background: rgba(5, 8, 20, 0.98);
             border-bottom: 1px solid var(--border-cyan);
             padding: 10px 14px;
             display: flex;
@@ -175,7 +175,7 @@
             padding-bottom: 220px;
         }
 
-        /* 💡 2. 中央：熱量のこもったライティングセクション（テキスト削除完了版） */
+        /* 💡 2. 中央：最高峰の思想・マニフェストセクション */
         .editorial-master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
@@ -185,7 +185,7 @@
             flex-direction: column;
             gap: 32px;
             position: relative;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.8);
         }
 
         .editorial-master-card::before {
@@ -215,32 +215,18 @@
         }
 
         .editorial-lead {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--text-primary);
-            line-height: 2;
+            line-height: 2.1;
             border-left: 4px solid var(--cyan-primary);
             padding-left: 24px;
             background: var(--cyan-dim);
-            padding-top: 20px;
-            padding-bottom: 20px;
+            padding-top: 22px;
+            padding-bottom: 22px;
             border-radius: 0 10px 10px 0;
         }
 
-        .editorial-body-content {
-            font-size: 0.98rem;
-            color: var(--text-secondary);
-            display: flex;
-            flex-direction: column;
-            gap: 26px;
-            line-height: 2;
-        }
-
-        .editorial-body-content strong {
-            color: #fff;
-        }
-
-        /* 3大キラー機能グリッド */
         .killer-features-grid {
             display: flex;
             flex-direction: column;
@@ -299,18 +285,18 @@
             line-height: 1.9;
         }
 
-        /* ⚡ 3. 最下部固定：世界中の決済と完全連動するスワイプパネル */
+        /* ⚡ 3. 最下部固定：究極の決済連動スワイプコントロールパネル */
         .wallet-bottom-action-section {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(6, 9, 23, 0.96);
+            background: rgba(5, 8, 20, 0.97);
             backdrop-filter: blur(25px);
             border-top: 2px solid var(--cyan-primary);
             padding: 20px 24px;
             z-index: 1050;
-            box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 242, 254, 0.15);
+            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 242, 254, 0.2);
             display: flex;
             justify-content: center;
         }
@@ -347,7 +333,7 @@
 
         .cyber-action-btn {
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
-            color: #010208;
+            color: #010206;
             border: none;
             padding: 10px 22px;
             border-radius: 10px;
@@ -363,9 +349,9 @@
             box-shadow: 0 0 25px var(--cyan-primary);
         }
 
-        /* 🚀 世界中の決済と直結するサイバースワイプ・トラック＆ノブ */
+        /* 🚀 世界中全ての決済連動サイバースワイプ・トラック */
         .swipe-track-modern {
-            background: linear-gradient(90deg, #030612, #0c1538, #030612);
+            background: linear-gradient(90deg, #02040b, #0a1232, #02040b);
             border: 1px solid var(--cyan-primary);
             border-radius: 50px;
             height: 56px;
@@ -375,7 +361,7 @@
             padding: 0 4px;
             overflow: hidden;
             user-select: none;
-            box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.3);
+            box-shadow: inset 0 0 25px rgba(0, 242, 254, 0.35);
             width: 100%;
         }
 
@@ -389,7 +375,7 @@
             justify-content: center;
             font-weight: 900;
             font-size: 0.8rem;
-            color: #010208;
+            color: #010206;
             position: absolute;
             left: 4px;
             cursor: grab;
@@ -432,7 +418,7 @@
         <div class="brand">
             <div class="brand-logo">Ω</div>
             <div class="brand-title">
-                <h1>QLUX // GLOBAL PORTAL</h1>
+                <h1>QLUX // SOVEREIGN MASTER PORTAL</h1>
             </div>
         </div>
         <div class="header-auth-group">
@@ -461,52 +447,45 @@
 
     <main>
         <section class="editorial-master-card">
-            <div class="section-tag">⚡ The Ultimate Global Infrastructure // Manifesto</div>
-            <h2>なぜ、世界中の「全人口・全企業・全個人」が100%欲しがるのか？</h2>
+            <div class="section-tag">⚡ Sovereign Teranode Architecture // Ultimate Manifesto</div>
+            <h2>「仲介者なき経済」と「完全自律型富の循環」の到達点</h2>
             
             <div class="editorial-lead">
-                地球上のあらゆる人間と企業が毎日直面している最大のストレス、それは<strong>「お金のやり取りにおける手数料の搾取」「国境をまたぐ送金の遅延（数日かかる）」「契約やデータの不確実性（詐欺や未払い）」</strong>です。<br><br>
-                もし、このメインポータルにアクセスし、<strong>「指先をスライス（スワイプ）するだけで、世界中の誰とでも、どんな企業とでも、中継銀行を一切挟まず、1サトシ未満の手数料で、ミリ秒（0.001秒）で価値の移転と契約の証明が100%完了する」</strong>としたら？
-            </div>
-
-            <div class="editorial-body-content">
-                <p>
-                    私たちが開発した<strong>Global Instant Settlement & Proof Engine</strong>は、BSV Teranodeの圧倒的なスケーラビリティを基盤とし、地球上のすべての経済活動をシームレスに結びつける人類史上最強のインフラストラクチャです。ここでは、世界中の誰もが導入を熱望する3大キラー機能が完全に体系化されています。
-                </p>
+                ビットコインの本来の設計思想（Nakamoto Protocol）を極限まで押し進め、地球上のすべての商取引・未清算報酬・グローバル企業間の決済データを、仲介者を一切介さずにアトミック同期させる。<br><br>
+                画面下のノブをスワイプした瞬間、世界中に散らばるすべての経済成果がミリ秒単位で自身のウォレットへ流れ込む――これこそが、次世代のスタンダードです。
             </div>
 
             <div class="killer-features-grid">
                 <div class="killer-feature-item">
                     <div class="killer-feature-header">
-                        <span class="killer-num">KILLER FEATURE 01</span>
-                        <span class="killer-badge-sub">Zero-Fee & Instant Infrastructure</span>
+                        <span class="killer-num">PILLAR 01</span>
+                        <span class="killer-badge-sub">Teranode Instant Engine</span>
                     </div>
-                    <div class="killer-title">全人類・全企業の「秒速・ゼロ手数料・グローバル給与＆決済インフラ」</div>
+                    <div class="killer-title">世界中の全企業・全個人を接続する「秒速グローバル清算」</div>
                     <div class="killer-text">
-                        <strong>企業にとって:</strong> 世界中のどこにいる従業員やフリーランスへの報酬支払い、グローバルなサプライチェーンの決済を、手数料を一切払わずに<strong>「一瞬」</strong>で完了させられるため、コストが劇的に消滅します。<br>
-                        <strong>個人にとって:</strong> 国境の壁に関係なく、地球の裏側の仕事の報酬が働いた瞬間に自分のウォレットへ秒速で着金します。
+                        従来の金融システムが抱えていた数日間のタイムラグと莫大な手数料の搾取を完全に消滅させ、地球規模のペイメントをノーディレイで完結させます。
                     </div>
                 </div>
 
                 <div class="killer-feature-item">
                     <div class="killer-feature-header">
-                        <span class="killer-num">KILLER FEATURE 02</span>
-                        <span class="killer-badge-sub">Mathematical Trust & Escrow</span>
+                        <span class="killer-num">PILLAR 02</span>
+                        <span class="killer-badge-sub">Mathematical Trust</span>
                     </div>
-                    <div class="killer-title">あらゆる契約・知的財産の「1秒オンチェーン証明書（自動エスクロー）」</div>
+                    <div class="killer-title">あらゆる契約と知的財産の「1秒オンチェーン自動エスクロー」</div>
                     <div class="killer-text">
-                        <strong>企業・個人にとって:</strong> 「デザインの納品」「コードの共有」「売買の約束」など、あらゆるビジネスの合意をポータル上で交わした瞬間、BSVブロックチェーン上に数学的証明が刻まれます。条件が満たされたら<strong>仲介者なしで自動的にお金が移動する（不払いが100%起きない）</strong>ため、弁護士や仲介プラットフォームに高いマージンを払う必要が一切なくなります。
+                        人間の信頼ではなく、数学的証明（sCryptスマートコントラクト）によって条件が強制執行されるため、不払いや詐欺が物理的に不可能になります。
                     </div>
                 </div>
 
                 <div class="killer-feature-item">
                     <div class="killer-feature-header">
-                        <span class="killer-num">KILLER FEATURE 03</span>
-                        <span class="killer-badge-sub">Auto Nano-Reward Economy</span>
+                        <span class="killer-num">PILLAR 03</span>
+                        <span class="killer-badge-sub">Autonomous Nano-Economy</span>
                     </div>
-                    <div class="killer-title">「生きているだけで価値が循環する」オート・ナノリワード（全行動のマネタイズ）</div>
+                    <div class="killer-title">「指先ひとつで世界が動く」究極のゲーミフィケーションUX</div>
                     <div class="killer-text">
-                        企業がこのポータル上で発信する情報を見たり、個人が日常の買い物やデータ共有を行ったりするだけで、そのすべての背景で自動的に極小のナノペイメントが動き、<strong>「地球上の全員が、経済活動に参加すればするほど自動的に豊かになる」</strong>仕組みが回ります。
+                        グローバルな経済活動への参加が、直感的なスワイプアクションを通じてダイレクトに富へと変換される、誰もが熱狂するエコシステム。
                     </div>
                 </div>
             </div>
@@ -524,4 +503,38 @@
             </div>
 
             <div class="swipe-track-modern" id="swipeTrack">
-                <div class="swipe-guide-text" id="swipeInstruction">👉 スワイプして世界中の未清算報酬（3,500,000 
+                <div class="swipe-guide-text" id="swipeInstruction">👉 スワイプして世界中の未清算報酬（3,500,000 SAT）を一括テレポート回収</div>
+                <div class="swipe-thumb-modern" id="swipeThumb">SWIPE ⚡</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 QLUX Global Sovereign Master Enterprise. Powered by BSV Teranode & Global Settlement Engine.
+    </footer>
+
+    <script>
+        const track = document.getElementById('swipeTrack');
+        const thumb = document.getElementById('swipeThumb');
+        const instruction = document.getElementById('swipeInstruction');
+        const walletEl = document.getElementById('mainWalletBalance');
+        const dashWalletEl = document.getElementById('dashWalletVal');
+
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        let maxTrackWidth = 0;
+
+        function updateMetrics() {
+            if (track && thumb) {
+                maxTrackWidth = track.clientWidth - thumb.clientWidth - 8;
+            }
+        }
+
+        window.addEventListener('resize', updateMetrics);
+        window.addEventListener('load', updateMetrics);
+        updateMetrics();
+
+        thumb.addEventListener('pointerdown', (e) => {
+            startDrag(e.clientX);
+      
