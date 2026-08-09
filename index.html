@@ -14,7 +14,7 @@
             --cyan-dim: rgba(0, 242, 254, 0.08);
             --text-primary: #f0f4ff;
             --text-secondary: #94a3b8;
-            --border-cyan: rgba(0, 242, 254, 0.25);
+            --border-cyan: rgba(0, 242, 254, 0.3);
             --success-green: #00ff66;
             --accent-pink: #ff007f;
         }
@@ -32,12 +32,13 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            line-height: 1.85;
+            line-height: 1.9;
+            overflow-x: hidden;
         }
 
         /* 🌐 Header */
         header {
-            background: var(--surface);
+            background: rgba(6, 9, 23, 0.95);
             border-bottom: 1px solid var(--border-cyan);
             padding: 14px 24px;
             display: flex;
@@ -56,21 +57,21 @@
         }
 
         .brand-logo {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #010208;
-            box-shadow: 0 0 15px var(--cyan-glow);
+            box-shadow: 0 0 20px var(--cyan-glow);
         }
 
         .brand-title h1 {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 900;
             letter-spacing: 0.15em;
             background: linear-gradient(90deg, #fff, var(--cyan-primary));
@@ -81,7 +82,7 @@
         .header-auth-group {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .auth-btn-sub {
@@ -90,7 +91,7 @@
             color: var(--cyan-primary);
             padding: 6px 14px;
             border-radius: 6px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 700;
             cursor: pointer;
         }
@@ -101,10 +102,10 @@
             color: #010208;
             padding: 6px 16px;
             border-radius: 6px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 900;
             cursor: pointer;
-            box-shadow: 0 0 12px var(--cyan-glow);
+            box-shadow: 0 0 15px var(--cyan-glow);
         }
 
         /* 📊 1. 最上部固定：30大未来技術 マトリクスバー */
@@ -113,10 +114,10 @@
             border-bottom: 1px solid var(--border-cyan);
             padding: 10px 14px;
             display: flex;
-            gap: 8px;
+            gap: 10px;
             overflow-x: auto;
             position: sticky;
-            top: 57px;
+            top: 65px;
             z-index: 990;
             white-space: nowrap;
             scrollbar-width: thin;
@@ -127,12 +128,12 @@
             background: var(--surface-hover);
             border: 1px solid var(--border-cyan);
             border-radius: 6px;
-            padding: 6px 12px;
-            min-width: 135px;
+            padding: 8px 12px;
+            min-width: 140px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 4px;
         }
 
         .matrix-mini-header {
@@ -142,22 +143,22 @@
         }
 
         .matrix-mini-title {
-            font-size: 0.45rem;
+            font-size: 0.5rem;
             font-weight: 900;
             color: var(--cyan-primary);
             text-transform: uppercase;
         }
 
         .matrix-mini-badge {
-            font-size: 0.35rem;
-            padding: 0px 4px;
+            font-size: 0.4rem;
+            padding: 1px 5px;
             border-radius: 3px;
             background: var(--cyan-dim);
             color: var(--cyan-primary);
         }
 
         .matrix-mini-value {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: 900;
             color: #fff;
         }
@@ -167,23 +168,24 @@
             max-width: 1100px;
             width: 100%;
             margin: 0 auto;
-            padding: 35px 16px;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 50px;
+            padding-bottom: 220px; /* 下部固定スワイプの余白確保 */
         }
 
         /* 💡 2. 中央：圧倒的な10倍長大なBSV名文・未来思想ライティングセクション */
         .editorial-master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
-            border-radius: 16px;
-            padding: 40px 32px;
+            border-radius: 20px;
+            padding: 50px 40px;
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 32px;
             position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.7);
         }
 
         .editorial-master-card::before {
@@ -191,46 +193,47 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 4px;
+            width: 5px;
             height: 100%;
             background: linear-gradient(to bottom, var(--cyan-primary), var(--accent-pink));
+            border-radius: 20px 0 0 20px;
         }
 
         .section-tag {
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             font-weight: 900;
             color: var(--cyan-primary);
             text-transform: uppercase;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.3em;
         }
 
         h2 {
-            font-size: 1.65rem;
+            font-size: 1.85rem;
             font-weight: 900;
             color: #fff;
-            line-height: 1.45;
+            line-height: 1.4;
         }
 
         .editorial-lead {
-            font-size: 1.05rem;
+            font-size: 1.12rem;
             font-weight: 700;
             color: var(--text-primary);
-            line-height: 1.9;
-            border-left: 3px solid var(--cyan-primary);
-            padding-left: 20px;
+            line-height: 2;
+            border-left: 4px solid var(--cyan-primary);
+            padding-left: 24px;
             background: var(--cyan-dim);
-            padding-top: 16px;
-            padding-bottom: 16px;
-            border-radius: 0 8px 8px 0;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-radius: 0 10px 10px 0;
         }
 
         .editorial-body-content {
-            font-size: 0.93rem;
+            font-size: 0.98rem;
             color: var(--text-secondary);
             display: flex;
             flex-direction: column;
-            gap: 22px;
-            line-height: 1.9;
+            gap: 26px;
+            line-height: 2;
         }
 
         .editorial-body-content strong {
@@ -238,36 +241,36 @@
         }
 
         .editorial-body-content h3 {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             color: var(--cyan-primary);
-            margin-top: 10px;
+            margin-top: 15px;
             font-weight: 900;
             border-bottom: 1px dashed var(--border-cyan);
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
 
         /* 3大キラー機能グリッド */
         .killer-features-grid {
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            margin-top: 15px;
+            gap: 20px;
+            margin-top: 20px;
         }
 
         .killer-feature-item {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
-            border-radius: 12px;
-            padding: 24px;
+            border-radius: 14px;
+            padding: 28px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
         .killer-feature-item:hover {
             border-color: var(--cyan-primary);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
         .killer-feature-header {
@@ -277,15 +280,15 @@
         }
 
         .killer-num {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            letter-spacing: 0.12em;
+            letter-spacing: 0.15em;
         }
 
         .killer-badge-sub {
-            font-size: 0.6rem;
-            padding: 4px 10px;
+            font-size: 0.65rem;
+            padding: 4px 12px;
             border-radius: 4px;
             background: var(--cyan-dim);
             border: 1px solid var(--border-cyan);
@@ -294,41 +297,39 @@
         }
 
         .killer-title {
-            font-size: 1.08rem;
+            font-size: 1.15rem;
             font-weight: 900;
             color: #fff;
         }
 
         .killer-text {
-            font-size: 0.87rem;
+            font-size: 0.92rem;
             color: var(--text-secondary);
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
-        /* ⚡ 3. 最下部：長文をすべて読み終えたユーザーを待ち受ける超カッコいいスワイプアクション */
+        /* ⚡ 3. 最下部固定：超カッコいいスワイプアクションパネル */
         .wallet-bottom-action-section {
-            background: linear-gradient(135deg, rgba(6, 9, 23, 0.95), rgba(12, 18, 43, 0.95));
-            border: 1px solid var(--border-cyan);
-            border-radius: 18px;
-            padding: 36px 30px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(6, 9, 23, 0.96);
+            backdrop-filter: blur(25px);
+            border-top: 2px solid var(--cyan-primary);
+            padding: 20px 24px;
+            z-index: 1050;
+            box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 242, 254, 0.15);
+            display: flex;
+            justify-content: center;
+        }
+
+        .wallet-bottom-inner {
+            max-width: 1050px;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 26px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 30px rgba(0, 242, 254, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .wallet-bottom-action-section::after {
-            content: '';
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 150px;
-            height: 150px;
-            background: var(--cyan-glow);
-            filter: blur(60px);
-            pointer-events: none;
+            gap: 14px;
         }
 
         .wallet-top-flex {
@@ -336,20 +337,20 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
         }
 
         .wallet-balance-box {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 2px;
         }
 
         .wallet-amount-display {
-            font-size: 2.6rem;
+            font-size: 1.8rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            text-shadow: 0 0 30px var(--cyan-glow);
+            text-shadow: 0 0 20px var(--cyan-glow);
             letter-spacing: -0.02em;
         }
 
@@ -357,51 +358,39 @@
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             color: #010208;
             border: none;
-            padding: 12px 26px;
-            border-radius: 12px;
+            padding: 10px 22px;
+            border-radius: 10px;
             font-weight: 900;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             cursor: pointer;
-            box-shadow: 0 0 20px var(--cyan-glow);
+            box-shadow: 0 0 15px var(--cyan-glow);
             transition: all 0.2s ease;
         }
 
         .cyber-action-btn:hover {
             transform: scale(1.03);
-            box-shadow: 0 0 30px var(--cyan-primary);
-        }
-
-        .cyber-swipe-box {
-            background: var(--bg-deep);
-            border: 1px solid var(--border-cyan);
-            border-radius: 14px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+            box-shadow: 0 0 25px var(--cyan-primary);
         }
 
         /* 🚀 最高にカッコいいスワイプトラック＆ノブデザイン */
         .swipe-track-modern {
-            background: linear-gradient(90deg, #030612, #08102b, #030612);
+            background: linear-gradient(90deg, #030612, #0c1538, #030612);
             border: 1px solid var(--cyan-primary);
             border-radius: 50px;
-            height: 62px;
+            height: 56px;
             position: relative;
             display: flex;
             align-items: center;
-            padding: 0 5px;
+            padding: 0 4px;
             overflow: hidden;
             user-select: none;
-            box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.2);
-            max-width: 500px;
-            margin: 0 auto;
+            box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.3);
             width: 100%;
         }
 
         .swipe-thumb-modern {
-            width: 130px;
-            height: 50px;
+            width: 140px;
+            height: 46px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 30px;
             display: flex;
@@ -411,12 +400,11 @@
             font-size: 0.8rem;
             color: #010208;
             position: absolute;
-            left: 5px;
+            left: 4px;
             cursor: grab;
-            box-shadow: 0 0 22px var(--cyan-glow), inset 0 2px 4px rgba(255,255,255,0.6);
+            box-shadow: 0 0 20px var(--cyan-glow), inset 0 2px 4px rgba(255,255,255,0.7);
             z-index: 10;
-            letter-spacing: 0.05em;
-            transition: background 0.2s ease;
+            letter-spacing: 0.08em;
         }
 
         .swipe-thumb-modern:active {
@@ -433,18 +421,17 @@
             pointer-events: none;
             position: absolute;
             letter-spacing: 0.05em;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 30px;
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             border-top: 1px solid var(--border-cyan);
             background: var(--surface);
-            margin-top: 20px;
         }
     </style>
 </head>
@@ -492,4 +479,9 @@
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">26. NanoLive</span><span class="matrix-mini-badge">Streaming</span></div><div class="matrix-mini-value">秒単位エフェクト投げ銭</div></div>
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">27. App Store</span><span class="matrix-mini-badge">Open API</span></div><div class="matrix-mini-value">ミニアプリストア</div></div>
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">28. Ordinals Pulse</span><span class="matrix-mini-badge">Dynamic</span></div><div class="matrix-mini-value">変動オンチェーンNFT</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">29. Syndicate</sp
+        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">29. Syndicate</span><span class="matrix-mini-badge">Daily DAO</span></div><div class="matrix-mini-value">日次自動配当組織</div></div>
+        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">30. Cyber-Sweep</span><span class="matrix-mini-badge" style="color:#00ff66;">Unified</span></div><div class="matrix-mini-value">一括アトミック回収</div></div>
+    </div>
+
+    <main>
+        <section class="editorial-master-c
