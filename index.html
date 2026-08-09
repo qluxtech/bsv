@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>QLUX // Global Sovereign Settlement Engine v4.0</title>
+    <title>QLUX // Global Sovereign Settlement Engine v4.1</title>
     <style>
         :root {
             --bg-deep: #010206;
@@ -16,7 +16,7 @@
             --text-secondary: #8b9bb4;
             --border-cyan: rgba(0, 242, 254, 0.3);
             --success-green: #00ff66;
-            --accent-pink: #ff007f;
+            --accent-pink: #00f2fe; /* シアンで完全に統一 */
         }
 
         * {
@@ -38,7 +38,7 @@
             position: relative;
         }
 
-        /* 🌌 サイバーグリッド＆オーロラ背景アニメーション */
+        /* 🌌 サイバーグリッド＆シアン・オーロラ背景 */
         .cyber-grid-bg {
             position: fixed;
             top: 0;
@@ -58,8 +58,8 @@
             left: -50%;
             width: 200vw;
             height: 200vh;
-            background: radial-gradient(circle at 50% 30%, rgba(0, 114, 255, 0.08), transparent 60%),
-                        radial-gradient(circle at 80% 70%, rgba(0, 242, 254, 0.06), transparent 50%);
+            background: radial-gradient(circle at 50% 30%, rgba(0, 114, 255, 0.1), transparent 60%),
+                        radial-gradient(circle at 80% 70%, rgba(0, 242, 254, 0.08), transparent 50%);
             z-index: -1;
             animation: auroraPulse 12s ease-in-out infinite alternate;
             pointer-events: none;
@@ -229,7 +229,7 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--cyan-primary), var(--accent-pink));
+            background: linear-gradient(to bottom, var(--cyan-primary), #0072ff);
             border-radius: 18px 0 0 18px;
         }
 
@@ -304,7 +304,7 @@
             text-shadow: 0 0 10px var(--cyan-glow);
         }
 
-        /* 🌟 長文＆メリット解説：3大キラーピラーズ */
+        /* 🌟 3大キラーピラーズ */
         .pillars-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -337,7 +337,7 @@
         .pillar-number {
             font-size: 0.65rem;
             font-weight: 900;
-            color: var(--accent-pink);
+            color: var(--cyan-primary);
             letter-spacing: 0.15em;
             text-transform: uppercase;
         }
@@ -355,30 +355,30 @@
             line-height: 1.7;
         }
 
-        /* ⚡ スワイプ機能解説セクション（長文ライディング追加） */
-        .swipe-instruction-box {
-            background: linear-gradient(135deg, rgba(0,242,254,0.05), rgba(0,114,255,0.05));
-            border: 1px dashed var(--cyan-primary);
+        /* 🔥 超強力なユーザー引き込み用説明文（要望対応） */
+        .powerful-hook-box {
+            background: linear-gradient(135deg, rgba(0,242,254,0.08), rgba(0,114,255,0.08));
+            border: 1px solid var(--cyan-primary);
             border-radius: 14px;
-            padding: 24px;
+            padding: 28px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 16px;
+            box-shadow: inset 0 0 25px rgba(0,242,254,0.15);
         }
 
-        .swipe-instruction-title {
-            font-size: 0.95rem;
+        .powerful-hook-title {
+            font-size: 1.1rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            line-height: 1.5;
+            text-shadow: 0 0 10px var(--cyan-glow);
         }
 
-        .swipe-instruction-text {
-            font-size: 0.82rem;
+        .powerful-hook-text {
+            font-size: 0.85rem;
             color: var(--text-primary);
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
         /* 開発者向けリアルタイムログストリーム */
@@ -434,12 +434,6 @@
             gap: 10px;
         }
 
-        .wallet-balance-box {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
         .wallet-amount-display {
             font-size: 1.5rem;
             font-weight: 900;
@@ -461,7 +455,7 @@
             white-space: nowrap;
         }
 
-        /* 🚀 完全に滑らかに追従・発火するスワイプトラック */
+        /* 🚀 スワイプトラック＆ノブ */
         .swipe-track-modern {
             background: linear-gradient(90deg, #02040b, #0a1232, #02040b);
             border: 1px solid var(--cyan-primary);
@@ -551,7 +545,7 @@
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">2. STAS Token</span><span class="matrix-mini-badge">規格</span></div><div class="matrix-mini-value">オンチェーン</div></div>
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">3. SPV Wallet</span><span class="matrix-mini-badge" style="color:#00f2fe;">証明</span></div><div class="matrix-mini-value">ミリ秒検証</div></div>
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">4. Script 2.0</span><span class="matrix-mini-badge">契約</span></div><div class="matrix-mini-value">条件付き自動化</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">5. sCrypt</span><span class="matrix-mini-badge" style="color:#ff007f;">TypeScript</span></div><div class="matrix-mini-value">スマート直結</div></div>
+        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">5. sCrypt</span><span class="matrix-mini-badge" style="color:#00f2fe;">TypeScript</span></div><div class="matrix-mini-value">スマート直結</div></div>
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">14. Revenue Sweep</span><span class="matrix-mini-badge" style="color:#00ff66;">アクティブ</span></div><div class="matrix-mini-value" id="dashWalletVal">7,450,000 SAT</div></div>
     </div>
 
@@ -581,7 +575,7 @@
                 <div class="pillar-card">
                     <span class="pillar-number">Pillar 02 // Autonomous Escrow</span>
                     <h3 class="pillar-title">あらゆる契約・知財の「1秒オンチェーン証明」</h3>
-                    <p class="pillar-desc">人間の信頼ではなく数学的証明（sCryptスマートコトラクト）により条件が強制執行されるため、不払いや詐欺が物理的に不可能になります。</p>
+                    <p class="pillar-desc">人間の信頼ではなく数学的証明（sCryptスマートコントラクト）により条件が強制執行されるため、不払いや詐欺が物理的に不可能になります。</p>
                 </div>
                 <div class="pillar-card">
                     <span class="pillar-number">Pillar 03 // Gamified UX</span>
@@ -590,9 +584,10 @@
                 </div>
             </div>
 
-            <div class="swipe-instruction-box">
-                <div class="swipe-instruction-title">
-                    <span>💡 なぜ「スワイプ・トゥ・セトルメント（Swipe-to-Settlement）」が最強なのか？</span>
+            <div class="powerful-hook-box">
+                <div class="powerful-hook-title">
+                    🔥 なぜ、世界中の「全人口・全企業・全個人」がこのポータルを100%欲しがるのか？<br>――仲介者なき経済、秒速清算の未来。
                 </div>
-                <p class="swipe-instruction-text">
-                    従来のウェブサービスでは、売上の回収や報酬の引き出しに何段階もの面倒なボタンクリックや本人確認、
+                <p class="powerful-hook-text">
+                    地球上のあらゆる人間と企業が毎日直面している最大のストレス。それは、<strong>「お金のやり取りにおける手数料の搾取」「国境をまたぐ送金の遅延（数日かかる）」「契約やデータの不確実性（詐欺や未払い）」</strong>です。<br><br>
+                    もし、このメインポータルにア
