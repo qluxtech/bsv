@@ -11,10 +11,10 @@
             --surface-hover: #0c122b;
             --cyan-primary: #00f2fe;
             --cyan-glow: rgba(0, 242, 254, 0.4);
-            --cyan-dim: rgba(0, 242, 254, 0.07);
+            --cyan-dim: rgba(0, 242, 254, 0.08);
             --text-primary: #f0f4ff;
             --text-secondary: #8b9bb4;
-            --border-cyan: rgba(0, 242, 254, 0.22);
+            --border-cyan: rgba(0, 242, 254, 0.25);
             --border-subtle: rgba(255, 255, 255, 0.06);
         }
 
@@ -35,11 +35,11 @@
             overflow-x: hidden;
         }
 
-        /* 🌐 Header */
+        /* 🌐 Header & Auth Menu */
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border-cyan);
-            padding: 20px 40px;
+            padding: 18px 36px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -56,46 +56,73 @@
         }
 
         .brand-logo {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: #010208;
-            box-shadow: 0 0 30px var(--cyan-glow);
+            box-shadow: 0 0 25px var(--cyan-glow);
         }
 
         .brand-title h1 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 900;
-            letter-spacing: 0.18em;
+            letter-spacing: 0.15em;
             background: linear-gradient(90deg, #fff, var(--cyan-primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .brand-title p {
-            font-size: 0.52rem;
+            font-size: 0.5rem;
             color: var(--text-secondary);
-            letter-spacing: 0.25em;
+            letter-spacing: 0.2em;
         }
 
-        .matrix-status {
-            background: var(--cyan-dim);
-            border: 1px solid var(--cyan-primary);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.78rem;
-            color: var(--cyan-primary);
-            font-weight: 700;
-            box-shadow: 0 0 20px var(--cyan-dim);
+        .header-auth-group {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+        }
+
+        .auth-btn-sub {
+            background: transparent;
+            border: 1px solid var(--border-cyan);
+            color: var(--cyan-primary);
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .auth-btn-sub:hover {
+            background: var(--cyan-dim);
+            box-shadow: 0 0 15px var(--cyan-dim);
+        }
+
+        .auth-btn-main {
+            background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
+            border: none;
+            color: #010208;
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--cyan-glow);
+            transition: all 0.2s;
+        }
+
+        .auth-btn-main:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
         }
 
         /* Main Container */
@@ -143,7 +170,7 @@
         }
 
         h2 {
-            font-size: 2.2rem;
+            font-size: 2.1rem;
             font-weight: 900;
             letter-spacing: -0.02em;
             line-height: 1.35;
@@ -202,41 +229,66 @@
             line-height: 1.6;
         }
 
-        /* Dashboard & BSV Dev Grid */
-        .dash-grid {
+        /* 📊 GitHub風・BSVマルチダッシュボードグリッド（右側画像連動レイアウト） */
+        .dashboard-multi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
-        .dash-card {
+        .dash-module-card {
             background: var(--surface-hover);
-            border: 1px solid var(--border-subtle);
+            border: 1px solid var(--border-cyan);
             border-radius: 16px;
-            padding: 24px;
+            padding: 26px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             transition: all 0.3s;
+            position: relative;
         }
 
-        .dash-card:hover {
-            border-color: var(--border-cyan);
+        .dash-module-card:hover {
+            border-color: var(--cyan-primary);
+            box-shadow: 0 0 25px var(--cyan-dim);
+            transform: translateY(-2px);
         }
 
-        .dash-title {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
+        .dash-module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dash-mod-title {
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: var(--cyan-primary);
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
+        }
+
+        .dash-mod-badge {
+            background: var(--cyan-dim);
+            border: 1px solid var(--cyan-primary);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            color: var(--cyan-primary);
             font-weight: 700;
         }
 
-        .dash-value {
+        .dash-mod-value {
             font-size: 1.6rem;
             font-weight: 900;
-            color: var(--cyan-primary);
-            text-shadow: 0 0 15px var(--cyan-dim);
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+
+        .dash-mod-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
         }
 
         /* Sovereign Vault */
@@ -318,7 +370,7 @@
             filter: brightness(1.1);
         }
 
-        /* ⚡ 超スマート・長さ半分スワイプコンテナ（完全修正版・超高感度） */
+        /* ⚡ 超高感度・完全動作スワイプコンテナ（長さ半分・完全修復版） */
         .cyber-swipe-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
@@ -342,7 +394,7 @@
             user-select: none;
             -webkit-user-select: none;
             touch-action: none;
-            max-width: 440px; /* 長さを半分にスマート化 */
+            max-width: 440px;
             margin: 0 auto;
             width: 100%;
         }
@@ -364,7 +416,7 @@
             box-shadow: 0 0 25px var(--cyan-glow);
             z-index: 2;
             letter-spacing: 0.08em;
-            will-change: transform;
+            touch-action: none;
         }
 
         .swipe-guide-text {
@@ -399,8 +451,9 @@
                 <p>GLOBAL SOVEREIGN ENTERPRISE & BSV ECOSYSTEM</p>
             </div>
         </div>
-        <div class="matrix-status">
-            <span>● Teranode 10M+ TPS Synchronized</span>
+        <div class="header-auth-group">
+            <button class="auth-btn-sub" onclick="handleSignIn()">Sign In</button>
+            <button class="auth-btn-main" onclick="handleSignUp()">Sign Up / Create Account</button>
         </div>
     </header>
 
@@ -460,30 +513,46 @@
 
         <section class="master-card" style="padding: 36px;">
             <div class="section-tag">
-                <span>📊 BSV Developer Ecosystem & Telemetry Matrix</span>
-                <span style="color: var(--text-primary);">● Core Infrastructure & Developer Tools</span>
+                <span>📊 QLUX & BSV Multi-Dashboard Matrix</span>
+                <span style="color: var(--text-primary);">● Core Modules & Developer Ecosystem</span>
             </div>
-            <h2>BSV開発群 ＆ テレメトリー中枢</h2>
-            <div class="dash-grid">
-                <div class="dash-card">
-                    <span class="dash-title">01. QLUX Wallet 資産核</span>
-                    <span class="dash-value" id="dashWalletVal">4,280,000 SAT</span>
-                    <span style="font-size: 0.78rem; color: var(--text-secondary);">ハイブリッド署名同期済</span>
+            <h2>BSV未来開発群 ＆ ダッシュボード中枢</h2>
+
+            <div class="dashboard-multi-grid">
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">QLUX Wallet</span>
+                        <span class="dash-mod-badge">Active Core</span>
+                    </div>
+                    <div class="dash-mod-value" id="dashWalletVal">5,140,000 SAT</div>
+                    <div class="dash-mod-desc">ハイブリッド署名対応の超高速アトミックウォレット。リアルタイムで残高を同期。</div>
                 </div>
-                <div class="dash-card">
-                    <span class="dash-title">02. BSV Teranode SDK</span>
-                    <span class="dash-value" style="color: #00f2fe;">v3.8.4 Active</span>
-                    <span style="font-size: 0.78rem; color: var(--text-secondary);">超高速API・ノード接続完了</span>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">QLUX SNS Protocol</span>
+                        <span class="dash-mod-badge" style="color: #00ff66; border-color: #00ff66;">Decentralized</span>
+                    </div>
+                    <div class="dash-mod-value" style="color: #00ff66;">100% 稼働</div>
+                    <div class="dash-mod-desc">検閲フリーのオンチェーンSNSリレー。投稿ごとに収益が自動還元される次世代レイヤー。</div>
                 </div>
-                <div class="dash-card">
-                    <span class="dash-title">03. Atomic Script Engine</span>
-                    <span class="dash-value" style="color: #00ff66;">1e-6 SAT/Tx</span>
-                    <span style="font-size: 0.78rem; color: var(--text-secondary);">オンチェーン・スマートスクリプト</span>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">BSV Teranode SDK</span>
+                        <span class="dash-mod-badge">v3.8.4</span>
+                    </div>
+                    <div class="dash-mod-value" style="color: #00f2fe;">10M+ TPS</div>
+                    <div class="dash-mod-desc">秒間1000万件超のトランザクションを処理する次世代エンタープライズ・開発キット。</div>
                 </div>
-                <div class="dash-card">
-                    <span class="dash-title">04. Global Node Pulse</span>
-                    <span class="dash-value" style="color: #ff007f;">65,536 Nodes</span>
-                    <span style="font-size: 0.78rem; color: var(--text-secondary);">完全分散型リレー稼働中</span>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">Atomic Script Engine</span>
+                        <span class="dash-mod-badge">Optimized</span>
+                    </div>
+                    <div class="dash-mod-value" style="color: #ff007f;">1e-6 SAT</div>
+                    <div class="dash-mod-desc">極小コストでスマートコントラクトを自動実行するネイティブスクリプトエンジン。</div>
                 </div>
             </div>
         </section>
@@ -492,7 +561,7 @@
             <div class="wallet-top-flex">
                 <div class="wallet-balance-box">
                     <span style="font-size: 0.8rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.15em;">QLUX WALLET // SOVEREIGN CORE ACTIVE</span>
-                    <div class="wallet-amount-display" id="mainWalletBalance">4,280,000 SAT</div>
+                    <div class="wallet-amount-display" id="mainWalletBalance">5,140,000 SAT</div>
                     <span style="font-size: 0.85rem; color: var(--text-secondary);">HandCash Connect & ネイティブ秘密鍵ハイブリッド接続中</span>
                 </div>
                 <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">アトミック資産を一括出金する</button>
@@ -501,7 +570,7 @@
             <div class="cyber-swipe-box">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                     <span style="font-size: 0.85rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">CYBERNETIC SWIPE-TO-PAY & REVENUE SWEEP</span>
-                    <span style="font-size: 0.82rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">1,650,000 SAT</b></span>
+                    <span style="font-size: 0.82rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">2,100,000 SAT</b></span>
                 </div>
 
                 <div class="swipe-track-modern" id="swipeTrack">
@@ -517,69 +586,4 @@
     </footer>
 
     <script>
-        const track = document.getElementById('swipeTrack');
-        const thumb = document.getElementById('swipeThumb');
-        const instruction = document.getElementById('swipeInstruction');
-        const pendingEl = document.getElementById('pendingSweepAmount');
-        const walletEl = document.getElementById('mainWalletBalance');
-        const dashWalletEl = document.getElementById('dashWalletVal');
-
-        let isDragging = false;
-        let startX = 0;
-        let currentX = 0;
-        let maxTrackWidth = 0;
-
-        function updateMetrics() {
-            if (track && thumb) {
-                maxTrackWidth = track.clientWidth - thumb.clientWidth - 8;
-            }
-        }
-
-        window.addEventListener('resize', updateMetrics);
-        window.addEventListener('load', updateMetrics);
-        updateMetrics();
-
-        // ポインターイベントの厳密なバインド（タッチ・マウス両対応の完全無欠実装）
-        thumb.addEventListener('pointerdown', startDrag);
-        window.addEventListener('pointermove', onDrag);
-        window.addEventListener('pointerup', stopDrag);
-
-        function startDrag(e) {
-            isDragging = true;
-            startX = e.clientX;
-            thumb.setPointerCapture(e.pointerId);
-            instruction.style.opacity = '0.2';
-        }
-
-        function onDrag(e) {
-            if (!isDragging) return;
-            updateMetrics();
-            const diff = e.clientX - startX;
-            currentX = Math.max(0, Math.min(diff, maxTrackWidth));
-            
-            thumb.style.transform = `translateX(${currentX}px)`;
-
-            // わずか70%の移動で瞬時にトリガー発動（長さ半分サイズに最適化）
-            if (currentX >= maxTrackWidth * 0.70) {
-                completeSwipeAction();
-            }
-        }
-
-        function stopDrag(e) {
-            if (!isDragging) return;
-            isDragging = false;
-            updateMetrics();
-
-            if (currentX < maxTrackWidth * 0.70) {
-                thumb.style.transform = 'translateX(0px)';
-                instruction.style.opacity = '1';
-            }
-            currentX = 0;
-        }
-
-        function completeSwipeAction() {
-            if (!isDragging) return;
-            isDragging = false;
-            updateMetrics();
-
-            let pendingVal = parseInt(pendingEl
+        const track = document.getElementBy
