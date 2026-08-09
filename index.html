@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX SUPREME MEGALOPOLIS — Planetary Teranode & Neural ZKP Matrix</title>
+    <title>QLUX — Planetary Teranode & Neural ZKP Matrix</title>
     <style>
         :root {
             --bg-deep: #030308;
@@ -18,6 +18,7 @@
             --border-color: rgba(255, 255, 255, 0.08);
             --glow-gold: rgba(243, 186, 47, 0.3);
             --glow-cyan: rgba(0, 242, 254, 0.3);
+            --glow-magenta: rgba(255, 0, 127, 0.3);
         }
 
         * {
@@ -58,28 +59,28 @@
         .brand-logo {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-cyan));
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-magenta));
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
             font-size: 1.5rem;
-            color: #000;
+            color: #fff;
             box-shadow: 0 0 25px var(--glow-gold);
         }
 
         .brand-title h1 {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 900;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             background: linear-gradient(90deg, #fff, var(--accent-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .brand-title p {
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             color: var(--text-secondary);
             letter-spacing: 0.15em;
         }
@@ -125,7 +126,7 @@
         }
 
         .nav-tab:hover, .nav-tab.active {
-            background: linear-gradient(135deg, rgba(243,186,47,0.15), rgba(0,242,254,0.15));
+            background: linear-gradient(135deg, rgba(243,186,47,0.15), rgba(255,0,127,0.15));
             border-color: var(--accent-gold);
             color: var(--text-primary);
             box-shadow: 0 0 15px var(--glow-gold);
@@ -160,7 +161,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 4px; height: 100%;
-            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-cyan));
+            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-magenta));
         }
 
         .card-header {
@@ -181,7 +182,7 @@
         }
 
         .metric-box {
-            background: linear-gradient(135deg, rgba(243,186,47,0.04), rgba(0,242,254,0.02));
+            background: linear-gradient(135deg, rgba(243,186,47,0.04), rgba(255,0,127,0.02));
             border: 1px solid var(--border-color);
             border-radius: 14px;
             padding: 20px;
@@ -209,9 +210,9 @@
             color: var(--text-secondary);
         }
 
-        /* アトミック一括スイーパーバー */
+        /* スイーパーバー */
         .sweep-bar {
-            background: linear-gradient(90deg, rgba(243,186,47,0.08), rgba(0,242,254,0.08));
+            background: linear-gradient(90deg, rgba(243,186,47,0.08), rgba(255,0,127,0.08));
             border: 2px solid var(--accent-gold);
             border-radius: 14px;
             padding: 20px 24px;
@@ -226,8 +227,8 @@
         }
 
         .sweep-btn {
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-cyan));
-            color: #000;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-magenta));
+            color: #fff;
             border: none;
             padding: 12px 24px;
             border-radius: 10px;
@@ -244,14 +245,14 @@
             box-shadow: 0 6px 25px var(--glow-gold);
         }
 
-        /* オンチェーンフィード入力エリア */
-        .feed-box {
+        /* SNS QLUX 投稿エリア */
+        .sns-box {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
-        .feed-textarea {
+        .sns-textarea {
             background: var(--bg-deep);
             border: 1px solid var(--border-color);
             border-radius: 12px;
@@ -259,22 +260,22 @@
             color: var(--text-primary);
             font-size: 0.9rem;
             resize: none;
-            height: 90px;
+            height: 100px;
             outline: none;
             transition: border-color 0.3s;
         }
 
-        .feed-textarea:focus { border-color: var(--accent-gold); }
+        .sns-textarea:focus { border-color: var(--accent-magenta); }
 
-        .feed-footer {
+        .sns-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .action-btn {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
-            color: #000;
+            background: linear-gradient(135deg, var(--accent-magenta), var(--accent-cyan));
+            color: #fff;
             border: none;
             padding: 10px 22px;
             border-radius: 10px;
@@ -284,7 +285,38 @@
             transition: all 0.3s;
         }
 
-        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 0 20px var(--glow-cyan); }
+        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 0 20px var(--glow-magenta); }
+
+        /* タイムライン一覧 */
+        .timeline-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .timeline-item {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .timeline-author {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .timeline-content {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
 
         footer {
             text-align: center;
@@ -302,23 +334,24 @@
         <div class="brand">
             <div class="brand-logo">Ω</div>
             <div class="brand-title">
-                <h1>QLUX SUPREME MEGALOPOLIS</h1>
-                <p>PLANETARY TERANODE // NEURAL-ZKP MATRIX // POST-QUANTUM SOVEREIGNTY</p>
+                <h1>QLUX</h1>
+                <p>PLANETARY TERANODE // SNS QLUX // QUANTUM RESISTANT</p>
             </div>
         </div>
         <div class="header-status">
-            <span>HandCash Connect:</span>
+            <span>QLUX Wallet:</span>
             <b id="headerWalletBal">245,800 SAT</b>
         </div>
     </header>
 
     <nav class="nav-tabs">
-        <a href="index.html" class="nav-tab active">⚡ メイン・メガフィード</a>
-        <a href="wallet.html" class="nav-tab">💳 QLUX Omni-Wallet</a>
-        <a href="economy.html" class="nav-tab">🌐 無人マイクロ経済</a>
+        <a href="index.html" class="nav-tab active">⚡ メインポータル</a>
+        <a href="wallet.html" class="nav-tab">💳 QLUX Wallet</a>
+        <a href="index.html#snsSection" class="nav-tab">🌐 SNS QLUX</a>
+        <a href="economy.html" class="nav-tab">📊 無人マイクロ経済</a>
         <a href="zkp.html" class="nav-tab">🛡️ ZKPプライバシー要塞</a>
         <a href="ai.html" class="nav-tab">🧠 量子耐性 AIコア</a>
-        <a href="mining.html" class="nav-tab">⛏️ マイニング・ストラタム</a>
+        <a href="mining.html" class="nav-tab">⛏️ マイニング</a>
     </nav>
 
     <main>
@@ -351,28 +384,49 @@
                     <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: 700; display: block; margin-bottom: 2px;">ATOMIC REVENUE SWEEPER</span>
                     <span style="font-size: 1.05rem; font-weight: 900; color: var(--text-primary);">未回収ナノペイメント・マイニング報酬: <span style="color: var(--accent-gold);" id="pendingSweepAmount">348,500 SAT</span></span>
                 </div>
-                <button class="sweep-btn" onclick="executeAtomicSweep()">⚡ スワイプしてウォレットに即時一括回収</button>
+                <button class="sweep-btn" onclick="executeAtomicSweep()">⚡ スワイプしてQLUX Walletに即時回収</button>
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" id="snsSection">
             <div class="card-header">
-                <span>On-Chain Pay-Per-Action Neural Feed</span>
-                <span style="color: var(--text-secondary); font-size: 0.75rem;">完全分散リアルタイムストリーム</span>
+                <span>SNS QLUX — 分散型オンチェーンソーシャル</span>
+                <span style="color: var(--accent-magenta);">● Pay-Per-Action Enabled</span>
             </div>
             
-            <div class="feed-box">
-                <textarea class="feed-textarea" id="feedInput" placeholder="惑星規模のBSVメガエコシステムに新たな歴史的記録を刻む... #QLUX #Teranode #PostQuantum #ZKP">惑星規模のBSVメガエコシステムに新たな歴史的記録を刻む... #QLUX #Teranode #PostQuantum #ZKP</textarea>
-                <div class="feed-footer">
-                    <span style="font-size: 0.75rem; color: var(--text-secondary);">ゼロ手数料・ナノアトミックトランザクション自動配信</span>
-                    <button class="action-btn" onclick="publishToChain()">チェーンに永久刻印する</button>
+            <div class="sns-box">
+                <textarea class="sns-textarea" id="snsInput" placeholder="SNS QLUXでいま起きていること、未来へのビジョンを全世界に刻む... #QLUX #SNS #BSV #Teranode">SNS QLUXの分散型ネットワークを通じて、次世代の主権型コミュニティがここに誕生。 #QLUX #Web3</textarea>
+                <div class="sns-footer">
+                    <span style="font-size: 0.75rem; color: var(--text-secondary);">投稿ごとに自動マイクロチップ（ナノ報酬）が分散分配されます</span>
+                    <button class="action-btn" onclick="publishSnsPost()">SNS QLUXへ投稿する</button>
+                </div>
+            </div>
+
+            <div class="timeline-list" id="timelineContainer">
+                <div class="timeline-item">
+                    <div class="timeline-author">
+                        <span>@qlux_sovereign_ai</span>
+                        <span style="color: var(--text-secondary);">2分前 // QLUX Teranode Mesh</span>
+                    </div>
+                    <div class="timeline-content">
+                        量子耐性512シールドと連携したSNS QLUXの分散リレーノードが全域で正常稼働中。検閲不能のメッセージングが完了しました。
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-author">
+                        <span>@satoshi_node_01</span>
+                        <span style="color: var(--text-secondary);">15分前 // Atomic Split Engine</span>
+                    </div>
+                    <div class="timeline-content">
+                        アトミック・リベニュー・スイーパーによる収益分配が瞬時に完了。QLUX Walletとのシームレスな結合が最高すぎる。
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
     <footer>
-        &copy; 2026 QLUX Supreme Megalopolis Matrix. All Sovereign Rights Reserved.
+        &copy; 2026 QLUX Matrix. All Sovereign Rights Reserved.
     </footer>
 
     <script>
@@ -380,7 +434,7 @@
             const amountEl = document.getElementById('pendingSweepAmount');
             const walletEl = document.getElementById('headerWalletBal');
             if (amountEl.innerText !== '0 SAT') {
-                alert('🚀 アトミック・リベニュー・スイープ成功！未回収報酬がQLUX Omni-Walletへリアルタイムに一括合算されました。');
+                alert('🚀 アトミック・リベニュー・スイープ成功！未回収報酬が QLUX Wallet へリアルタイムに一括合算されました。');
                 amountEl.innerText = '0 SAT';
                 amountEl.style.color = '#777';
                 walletEl.innerText = '594,300 SAT';
@@ -389,15 +443,29 @@
             }
         }
 
-        function publishToChain() {
-            const text = document.getElementById('feedInput').value;
+        function publishSnsPost() {
+            const text = document.getElementById('snsInput').value;
             if(text.trim() === '') {
-                alert('テキストを入力してください。');
+                alert('投稿内容を入力してください。');
                 return;
             }
-            alert('🔗 テキストがBSV Teranodeブロックチェーンに永久刻印されました（Pay-Per-Action完了）。');
-            document.getElementById('feedInput').value = '';
+            
+            const container = document.getElementById('timelineContainer');
+            const newItem = document.createElement('div');
+            newItem.className = 'timeline-item';
+            newItem.innerHTML = `
+                <div class="timeline-author">
+                    <span>@current_user_sovereign</span>
+                    <span style="color: var(--text-secondary);">たった今 // SNS QLUX On-Chain</span>
+                </div>
+                <div class="timeline-content">${text}</div>
+            `;
+            container.prepend(newItem);
+            
+            alert('🌐 SNS QLUXへのオンチェーン投稿が完了しました！BSV Teranodeへ永久記録されます。');
+            document.getElementById('snsInput').value = '';
         }
     </script>
 </body>
 </html>
+
