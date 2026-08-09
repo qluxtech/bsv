@@ -101,7 +101,7 @@
         .metric-item span { color: var(--text-secondary); }
         .metric-item b { color: var(--accent-gold); }
 
-        /* ナビゲーションタブ（全機能超拡張版） */
+        /* ナビゲーションタブ */
         nav {
             background: var(--surface);
             padding: 12px 28px;
@@ -186,7 +186,6 @@
 
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
 
         .stat-box {
             background: var(--surface-hover);
@@ -280,18 +279,6 @@
             color: var(--text-secondary);
         }
 
-        .data-item {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            font-size: 0.85rem;
-        }
-        .data-item b { color: var(--accent-gold); font-size: 0.9rem; }
-
         footer {
             text-align: center;
             padding: 28px;
@@ -313,7 +300,7 @@
             </div>
         </div>
         <div class="global-metrics-pill">
-            <div class="metric-item"><span>QLUX Pay (Omni-Wallet):</span> <b>489,200 SAT</b></div>
+            <div class="metric-item"><span>QLUX Pay:</span> <b>489,200 SAT</b></div>
             <div class="metric-item"><span>Global TPS:</span> <b style="color: var(--accent-green);">10,240,000</b></div>
         </div>
     </header>
@@ -485,17 +472,36 @@
     </footer>
 
     <script>
+        // タブ切り替え関数を確実に動作させる処理
         function switchTab(tabId, event) {
-            document.querySelectorAll('.section-panel').forEach(panel => panel.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
+            // すべてのセクションパネルを非表示にする
+            document.querySelectorAll('.section-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            // すべてのタブボタンのアクティブ状態を解除する
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 選択されたセクションパネルを表示する
+            const targetPanel = document.getElementById(tabId);
+            if(targetPanel) {
+                targetPanel.classList.add('active');
+            }
+            
+            // クリックされたタブボタンをアクティブにする
+            if(event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+
+            // ページトップへスムーズにスクロール
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function sweepSats() {
             const satsElement = document.getElementById('satsAmount');
             alert('未回収のナノペイメントおよびマイニング報酬をOmni-Walletへ一括回収しました！');
-            satsElement.innerText = '0 SAT';
+            if(satsElement) satsElement.innerText = '0 SAT';
         }
 
         function sendPaymail() {
@@ -505,5 +511,5 @@
                 alert('宛先と金額を入力してください。');
                 return;
             }
-            alert(target +へ ' に ' + amount + ' SAT の瞬時送金が完了しました！');
-            document.getElementById('paymailT
+            alert(target + ' に ' + amount + ' SAT の瞬時送金が完了しました！');
+            docum
