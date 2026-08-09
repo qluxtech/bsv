@@ -38,7 +38,7 @@
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border-cyan);
-            padding: 10px 24px;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -51,25 +51,25 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .brand-logo {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #010208;
-            box-shadow: 0 0 15px var(--cyan-glow);
+            box-shadow: 0 0 12px var(--cyan-glow);
         }
 
         .brand-title h1 {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 900;
             letter-spacing: 0.15em;
             background: linear-gradient(90deg, #fff, var(--cyan-primary));
@@ -80,65 +80,57 @@
         .header-auth-group {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .auth-btn-sub {
             background: transparent;
             border: 1px solid var(--border-cyan);
             color: var(--cyan-primary);
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 6px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .auth-btn-sub:hover {
-            background: var(--cyan-dim);
         }
 
         .auth-btn-main {
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border: none;
             color: #010208;
-            padding: 5px 14px;
+            padding: 4px 12px;
             border-radius: 6px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 900;
             cursor: pointer;
-            box-shadow: 0 0 12px var(--cyan-glow);
-            transition: all 0.2s;
+            box-shadow: 0 0 10px var(--cyan-glow);
         }
 
-        .auth-btn-main:hover {
-            filter: brightness(1.1);
-        }
-
-        /* 📊 横並び・12項目超高密度ミニグリッド（スクロール可能で完全一列収容） */
+        /* 📊 さらに小さく・美しく横一列に収まる12項目超高密度グリッドバー */
         .top-matrix-bar {
             background: rgba(6, 9, 23, 0.98);
             border-bottom: 1px solid var(--border-cyan);
-            padding: 8px 16px;
+            padding: 6px 12px;
             display: flex;
-            gap: 8px;
+            gap: 6px;
             overflow-x: auto;
             position: sticky;
-            top: 53px;
+            top: 49px;
             z-index: 990;
             backdrop-filter: blur(20px);
             white-space: nowrap;
-            scrollbar-width: thin;
-            scrollbar-color: var(--cyan-primary) var(--surface);
+            scrollbar-width: none; /* Firefox用スクロールバー非表示 */
+        }
+        .top-matrix-bar::-webkit-scrollbar {
+            display: none; /* Chrome/Safari用スクロールバー非表示ですっきり */
         }
 
         .matrix-mini-card {
             background: var(--surface-hover);
             border: 1px solid var(--border-cyan);
-            border-radius: 8px;
-            padding: 6px 10px;
-            min-width: 135px;
+            border-radius: 6px;
+            padding: 4px 8px;
+            min-width: 115px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
@@ -152,24 +144,24 @@
         }
 
         .matrix-mini-title {
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.03em;
             text-transform: uppercase;
         }
 
         .matrix-mini-badge {
-            font-size: 0.45rem;
-            padding: 1px 4px;
-            border-radius: 4px;
+            font-size: 0.4rem;
+            padding: 0px 3px;
+            border-radius: 3px;
             background: var(--cyan-dim);
             border: 1px solid var(--border-cyan);
             color: var(--cyan-primary);
         }
 
         .matrix-mini-value {
-            font-size: 0.75rem;
+            font-size: 0.68rem;
             font-weight: 900;
             color: #fff;
         }
@@ -180,21 +172,21 @@
             max-width: 1300px;
             width: 100%;
             margin: 0 auto;
-            padding: 24px 16px;
+            padding: 20px 16px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 20px;
         }
 
-        /* Wallet & Swipe Section (最上部に配置して即座に体験可能に) */
+        /* Wallet & Swipe Section */
         .wallet-matrix-section {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
             border-radius: 14px;
-            padding: 28px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 18px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.7);
         }
 
@@ -203,7 +195,7 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 14px;
         }
 
         .wallet-balance-box {
@@ -213,7 +205,7 @@
         }
 
         .wallet-amount-display {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             font-weight: 900;
             color: var(--cyan-primary);
             text-shadow: 0 0 25px var(--cyan-glow);
@@ -224,36 +216,30 @@
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             color: #010208;
             border: none;
-            padding: 10px 24px;
+            padding: 9px 20px;
             border-radius: 10px;
             font-weight: 900;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             cursor: pointer;
-            transition: all 0.3s;
             box-shadow: 0 4px 15px var(--cyan-glow);
         }
 
-        .cyber-action-btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
-        }
-
-        /* ⚡ タッチ＆ポインター完全対応スワイプコンテナ */
+        /* ⚡ 永久確実動作：無敵スワイプコンテナ */
         .cyber-swipe-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
             border-radius: 12px;
-            padding: 18px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .swipe-track-modern {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
             border-radius: 50px;
-            height: 52px;
+            height: 50px;
             position: relative;
             display: flex;
             align-items: center;
@@ -261,29 +247,28 @@
             overflow: hidden;
             user-select: none;
             -webkit-user-select: none;
-            touch-action: pan-y;
-            max-width: 420px;
+            touch-action: none; /* スワイプ中のブラウザのスクロール誤作動を完全に遮断 */
+            max-width: 400px;
             margin: 0 auto;
             width: 100%;
         }
 
         .swipe-thumb-modern {
-            width: 110px;
-            height: 42px;
+            width: 105px;
+            height: 40px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: #010208;
             position: absolute;
             left: 4px;
             cursor: grab;
             box-shadow: 0 0 18px var(--cyan-glow);
             z-index: 10;
-            touch-action: none;
         }
 
         .swipe-thumb-modern:active {
@@ -293,7 +278,7 @@
         .swipe-guide-text {
             width: 100%;
             text-align: center;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             font-weight: 700;
             color: var(--text-secondary);
             z-index: 1;
@@ -301,19 +286,19 @@
             position: absolute;
         }
 
-        /* 💎 スマート・ライティング解説セクション（スワイプのメリット・解説） */
+        /* メリット解説セクション */
         .master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
             border-radius: 14px;
-            padding: 32px;
+            padding: 28px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
 
         .section-tag {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 900;
             color: var(--cyan-primary);
             text-transform: uppercase;
@@ -321,18 +306,18 @@
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             font-weight: 900;
             letter-spacing: -0.02em;
             color: #fff;
         }
 
         .deep-editorial {
-            font-size: 0.88rem;
+            font-size: 0.84rem;
             color: var(--text-secondary);
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
 
         .deep-editorial strong {
@@ -342,8 +327,8 @@
         /* Footer */
         footer {
             text-align: center;
-            padding: 24px;
-            font-size: 0.72rem;
+            padding: 20px;
+            font-size: 0.7rem;
             color: var(--text-secondary);
             border-top: 1px solid var(--border-cyan);
             background: var(--surface);
@@ -420,17 +405,17 @@
         <section class="wallet-matrix-section">
             <div class="wallet-top-flex">
                 <div class="wallet-balance-box">
-                    <span style="font-size: 0.72rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">QLUX WALLET // SOVEREIGN CORE ACTIVE</span>
+                    <span style="font-size: 0.68rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">QLUX WALLET // SOVEREIGN CORE ACTIVE</span>
                     <div class="wallet-amount-display" id="mainWalletBalance">7,450,000 SAT</div>
-                    <span style="font-size: 0.78rem; color: var(--text-secondary);">HandCash Connect & ネイティブ秘密鍵ハイブリッド接続中</span>
+                    <span style="font-size: 0.75rem; color: var(--text-secondary);">HandCash Connect & ネイティブ秘密鍵ハイブリッド接続中</span>
                 </div>
                 <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">アトミック資産を一括出金する</button>
             </div>
 
             <div class="cyber-swipe-box">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                    <span style="font-size: 0.78rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.08em;">CYBERNETIC SWIPE-TO-PAY & REVENUE SWEEP</span>
-                    <span style="font-size: 0.78rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">3,500,000 SAT</b></span>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <span style="font-size: 0.75rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.08em;">CYBERNETIC SWIPE-TO-PAY & REVENUE SWEEP</span>
+                    <span style="font-size: 0.75rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">3,500,000 SAT</b></span>
                 </div>
 
                 <div class="swipe-track-modern" id="swipeTrack">
@@ -484,7 +469,7 @@
         window.addEventListener('load', updateMetrics);
         updateMetrics();
 
-        // 🖱️ Mouse (Pointer Events)
+        // 🖱️ PC用 (Pointer Events)
         thumb.addEventListener('pointerdown', (e) => {
             startDrag(e.clientX);
             thumb.setPointerCapture(e.pointerId);
@@ -501,7 +486,7 @@
             endDrag();
         });
 
-        // 📱 Touch Events
+        // 📱 スマホ・タブレット用 (Touch Events - 窓全体で確実に追跡)
         thumb.addEventListener('touchstart', (e) => {
             if (e.touches.length > 0) {
                 startDrag(e.touches[0].clientX);
@@ -569,4 +554,8 @@
                 thumb.innerText = 'SUCCESS ✓';
 
                 setTimeout(() => {
-             
+                    alert(`⚡ Cybernetic Swipe Success!\n未回収収益 ${pendingVal.toLocaleString()} SAT が QLUX Wallet へ完全アトミック同期されました。`);
+                    
+                    let currentBal = parseInt(walletEl.innerText.replace(/[^0-9]/g, '')) || 0;
+                    currentBal += pendingVal;
+                    walletEl.innerText = currentBal.to
