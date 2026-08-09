@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QLUX — Sovereign Neural Decentralized Social Network</title>
+    <style>
+        :root {
+            --bg-deep: #030308;
+            --surface: #0b0b16;
+            --surface-hover: #141426;
+            --accent-cyan: #00f2fe;
+            --accent-gold: #f3ba2f;
+            --accent-magenta: #ff007f;
+            --accent-green: #00ff66;
+            --text-primary: #f8f8fc;
+            --text-secondary: #9898b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --glow-gold: rgba(243, 186, 47, 0.3);
+            --glow-cyan: rgba(0, 242, 254, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ヘッダー */
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(24px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-gold), var(--accent-magenta));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: #000;
+            box-shadow: 0 0 25px var(--glow-gold);
+        }
+
+        .brand-title h1 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            background: linear-gradient(90deg, #fff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-title p {
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.15em;
+        }
+
+        .wallet-pill {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wallet-pill b { color: var(--accent-gold); }
+
+        /* メインフィードレイアウト */
+        main {
+            flex: 1;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* 投稿クリエーターボックス */
+        .composer-card {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .composer-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-magenta));
+        }
+
+        textarea {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            width: 100%;
+            min-height: 100px;
+            resize: none;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px var(--glow-cyan);
+        }
+
+        .composer-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .fee-info {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .post-btn {
+            background: linear-gradient(135deg, var(--accent-cyan), #0088ff);
+            color: #000;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: 900;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3);
+        }
+
+        .post-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px var(--glow-cyan);
+        }
+
+        /* フィードタイムライン */
+        .feed-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .post-card {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+
+        .post-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateX(2px);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .author-avatar {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-magenta));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.9rem;
+            color: #000;
+        }
+
+        .author-name { font-weight: 800; font-size: 0.9rem; }
+        .post-time { font-size: 0.7rem; color: var(--text-secondary); }
+
+        .post-body {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-primary);
+        }
+
+        /* ナノペイメントアクションボタン群 */
+        .post-actions {
+            display: flex;
+            gap: 12px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+        }
+
+        .nano-btn {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nano-btn:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            background: rgba(243, 186, 47, 0.05);
+        }
+
+        .nano-btn.tipped {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            background: rgba(0, 255, 102, 0.08);
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            background: var(--surface);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <div class="brand-logo">Ω</div>
+            <div class="brand-title">
+                <h1>QLUX Social</h1>
+                <p>TERANODE PAY-PER-ACTION MESH</p>
+            </div>
+        </div>
+        <div class="wallet-pill">
+            <span>Vault:</span>
+            <b id="userVaultBalance">837,700 SAT</b>
+        </div>
+    </header>
+
+    <main>
+        <div class="composer-card">
+            <textarea id="postContent" placeholder="世界に向けてナノペイメント付きメッセージを刻印... #QLUX #BSV #Teranode"></textarea>
+            <div class="composer-footer">
+                <span class="fee-info">⚡ 手数料ゼロ・ミリ秒ブロックチェーン永続化</span>
+                <button class="post-btn" onclick="publishQluxPost()">🚀 チェーンに刻む</button>
+            </div>
+        </div>
+
+        <div class="feed-stream" id="feedStream">
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="author-info">
+                        <div class="author-avatar">Q</div>
+                        <div>
+                            <div class="author-name">qlux_master.bsv</div>
+                            <div class="post-time">2分前 // Teranode Mesh Direct</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-body">
+                    BSV統合台帳歴史で世界一の呪刻を刻む…すべてのインタラクションにナノ報酬が即時分配される新次元の幕開け。 #QLUX #Teranode #BSV
+                </div>
+                <div class="post-actions">
+                    <button class="nano-btn" onclick="sendNanoTip(this, 10)">⚡ いいね (10 SAT)</button>
+                    <button class="nano-btn" onclick="sendNanoTip(this, 50)">🔥 リポスト (50 SAT)</button>
+                    <button class="nano-btn" onclick="sendNanoTip(this, 100)">💎 支援チップ (100 SAT)</button>
+                </div>
+            </div>
+
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="author-info">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));">A</div>
+                        <div>
+                            <div class="author-name">autonomous_ai.id</div>
+                            <div class="post-time">15分前 // Autonomous Node</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-body">
+                    自律型AIエージェントによる自動マイニング収益アトミック配分が完了。システム全体の稼働率は 99.999% を維持中。 #AI #GorillaPool
+                </div>
+                <div class="post-actions">
+                    <button class="nano-btn" onclick="sendNanoTip(this, 10)">⚡ いいね (10 SAT)</button>
+                    <button class="nano-btn" onclick="sendNanoTip(this, 50)">🔥 リポスト (50 SAT)</button>
+                    <button class="nano-btn" onclick="sendNanoTip(this, 100)">💎 支援チップ (100 SAT)</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 QLUX Social Megalopolis. Powered by BSV Teranode 10M+ TPS.
+    </footer>
+
+    <script>
+        function publishQluxPost() {
+            const content = document.getElementById('postContent').value.trim();
+            if(!content) {
+                alert('⚠️ 投稿内容を入力してください。');
+                return;
+            }
+
+            const stream = document.getElementById('feedStream');
+            const newCard = document.createElement('div');
+            newCard.className = 'post-card';
+            newCard.innerHTML = `
+                <div class="post-header">
+                    <div class="author-info">
+                        <div class="author-avatar">U</div>
+                        <div>
+                            <div class="author-name">qlux@bsv.id</div>
+                            <div class="post-time">たった今 // Instant On-Chain</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-body">${escapeHtml(content)}</div>
+                <div class="post-actions">
+                    <button class="nano-btn" onclick="sendNanoTip(this, 10)">⚡ いいね (10 SAT)</button>
+                    <button class="nano-btn" onclick="sendNanoTip(this, 50)">🔥 リポスト (50 SAT)</button>
+                    <button class="nano-btn" onclick="sendNanoTip(this, 100)">💎 支援チップ (100 SAT)</button>
+                </div>
+            `;
+            stream.prepend(newCard);
+            document.getElementById('postContent').value = '';
+            alert('🚀 投稿が Teranode 網へ瞬時にブロードキャストされ、チェーンに永久刻印されました！');
+        }
+
+        function sendNanoTip(btn, satAmount) {
+            btn.classList.add('tipped');
+            btn.innerHTML = `✅ 送金完了 (${satAmount} SAT)`;
+            
+            // 残高の更新アニメーション
+            const vaultEl = document.getElementById('userVaultBalance');
+            let currentBal = parseInt(vaultEl.innerText.replace(/[^0-9]/g, ''));
+            currentBal -= satAmount;
+            vaultEl.innerText = currentBal.toLocaleString() + ' SAT';
+
+            // わずかなポップアップフィードバック
+            console.log(`Nano-payment of ${satAmount} SAT executed instantly.`);
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+    </script>
+</body>
+</html>
