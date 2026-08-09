@@ -2,592 +2,426 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>QLUX // Global Sovereign Settlement Engine v4.1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Sovereign Economy — Powered by BSV Teranode</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root {
-            --bg-deep: #010206;
-            --surface: #050814;
-            --surface-hover: #0a1028;
-            --cyan-primary: #00f2fe;
-            --cyan-glow: rgba(0, 242, 254, 0.4);
-            --cyan-dim: rgba(0, 242, 254, 0.08);
-            --text-primary: #f4f7ff;
-            --text-secondary: #8b9bb4;
-            --border-cyan: rgba(0, 242, 254, 0.3);
-            --success-green: #00ff66;
-            --accent-pink: #00f2fe; /* シアンで完全に統一 */
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
+        /* 1. SETUP & CORE DESIGN PRINCIPLES */
+        * { box-sizing: border-box; }
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
+            background-color: #010206;
+            display: grid;
+            gap: 40px;
+            grid-template-columns: 1fr;
+            margin: 0;
             min-height: 100vh;
+            padding: 40px 0;
+            place-items: center;
+            color: #f4f7ff;
+            font-family: 'Urbanist', 'Noto Sans JP', sans-serif;
+        }
+
+        .slide-container {
+            align-items: flex-start;
+            background-color: #010206;
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
             display: flex;
             flex-direction: column;
-            line-height: 1.8;
-            overflow-x: hidden;
+            height: 720px;
+            justify-content: flex-start;
+            overflow: hidden;
+            padding: 60px;
             position: relative;
+            width: 1280px;
+            border: 1px solid rgba(0, 242, 254, 0.2);
         }
 
-        /* 🌌 サイバーグリッド＆シアン・オーロラ背景 */
-        .cyber-grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-image: 
-                linear-gradient(to right, rgba(0, 242, 254, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -2;
-        }
-
-        .cyber-aurora {
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200vw;
-            height: 200vh;
-            background: radial-gradient(circle at 50% 30%, rgba(0, 114, 255, 0.1), transparent 60%),
-                        radial-gradient(circle at 80% 70%, rgba(0, 242, 254, 0.08), transparent 50%);
-            z-index: -1;
-            animation: auroraPulse 12s ease-in-out infinite alternate;
-            pointer-events: none;
-        }
-
-        @keyframes auroraPulse {
-            0% { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.1) translate(-20px, 20px); }
-        }
-
-        /* 🌐 ヘッダー */
-        header {
-            background: rgba(5, 8, 20, 0.9);
-            border-bottom: 1px solid var(--border-cyan);
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .brand-logo {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1rem;
-            color: #010206;
-            box-shadow: 0 0 15px var(--cyan-glow);
-        }
-
-        .brand-title h1 {
-            font-size: 0.85rem;
-            font-weight: 900;
-            letter-spacing: 0.1em;
-            background: linear-gradient(90deg, #fff, var(--cyan-primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header-auth-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .auth-btn-sub {
-            background: transparent;
-            border: 1px solid var(--border-cyan);
-            color: var(--cyan-primary);
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .auth-btn-main {
-            background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
-            border: none;
-            color: #010206;
-            padding: 5px 14px;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow: 0 0 12px var(--cyan-glow);
-        }
-
-        /* 📊 最上部固定：15大未来技術マトリクスバー */
-        .top-matrix-bar {
-            background: rgba(5, 8, 20, 0.95);
-            border-bottom: 1px solid var(--border-cyan);
-            padding: 10px 14px;
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            position: sticky;
-            top: 57px;
-            z-index: 990;
-            white-space: nowrap;
-            scrollbar-width: thin;
-        }
-
-        .matrix-mini-card {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-cyan);
-            border-radius: 6px;
-            padding: 6px 10px;
-            min-width: 130px;
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .matrix-mini-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .matrix-mini-title {
-            font-size: 0.5rem;
-            font-weight: 900;
-            color: var(--cyan-primary);
-            text-transform: uppercase;
-        }
-
-        .matrix-mini-badge {
-            font-size: 0.4rem;
-            padding: 1px 4px;
-            border-radius: 3px;
-            background: var(--cyan-dim);
-            color: var(--cyan-primary);
-        }
-
-        .matrix-mini-value {
-            font-size: 0.65rem;
-            font-weight: 900;
-            color: #fff;
-        }
-
-        /* メインコンテンツエリア */
-        main {
-            max-width: 1000px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 30px 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 35px;
-            padding-bottom: 220px;
-        }
-
-        /* 💡 圧倒的インパクトのマニフェストカード */
-        .editorial-master-card {
-            background: var(--surface);
-            border: 1px solid var(--border-cyan);
-            border-radius: 18px;
-            padding: 36px 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-            position: relative;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-        }
-
-        .editorial-master-card::before {
+        .slide-container::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--cyan-primary), #0072ff);
-            border-radius: 18px 0 0 18px;
+            top: -200px;
+            right: -200px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, transparent 75%);
+            z-index: 0;
         }
 
-        .section-tag {
-            font-size: 0.7rem;
-            font-weight: 900;
-            color: var(--cyan-primary);
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-        }
-
-        h2 {
-            font-size: 1.55rem;
-            font-weight: 900;
-            color: #fff;
-            line-height: 1.4;
-        }
-
-        .editorial-lead {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            line-height: 2.1;
-            border-left: 3px solid var(--cyan-primary);
-            padding-left: 20px;
-            background: var(--cyan-dim);
-            padding-top: 18px;
-            padding-bottom: 18px;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .highlight-quote {
-            color: var(--cyan-primary);
-            font-weight: 900;
-        }
-
-        /* 📈 ライブテレメトリー統計パネル */
-        .stats-banner {
-            background: linear-gradient(135deg, rgba(5,8,20,0.95), rgba(10,16,40,0.95));
-            border: 1px solid var(--border-cyan);
-            border-radius: 14px;
-            padding: 24px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            text-align: center;
-        }
-
-        @media(min-width: 768px) {
-            .stats-banner {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .stat-label {
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .stat-value {
-            font-size: 1.2rem;
-            font-weight: 900;
-            color: var(--cyan-primary);
-            text-shadow: 0 0 10px var(--cyan-glow);
-        }
-
-        /* 🌟 3大キラーピラーズ */
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        @media(min-width: 768px) {
-            .pillars-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .pillar-card {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-cyan);
-            border-radius: 14px;
-            padding: 24px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .pillar-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px var(--cyan-glow);
-            border-color: var(--cyan-primary);
-        }
-
-        .pillar-number {
-            font-size: 0.65rem;
-            font-weight: 900;
-            color: var(--cyan-primary);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
-
-        .pillar-title {
-            font-size: 1.05rem;
-            font-weight: 900;
-            color: #fff;
-            line-height: 1.4;
-        }
-
-        .pillar-desc {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* 🔥 超強力なユーザー引き込み用説明文（要望対応） */
-        .powerful-hook-box {
-            background: linear-gradient(135deg, rgba(0,242,254,0.08), rgba(0,114,255,0.08));
-            border: 1px solid var(--cyan-primary);
-            border-radius: 14px;
-            padding: 28px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            box-shadow: inset 0 0 25px rgba(0,242,254,0.15);
-        }
-
-        .powerful-hook-title {
-            font-size: 1.1rem;
-            font-weight: 900;
-            color: var(--cyan-primary);
-            line-height: 1.5;
-            text-shadow: 0 0 10px var(--cyan-glow);
-        }
-
-        .powerful-hook-text {
-            font-size: 0.85rem;
-            color: var(--text-primary);
-            line-height: 1.9;
-        }
-
-        /* 開発者向けリアルタイムログストリーム */
-        .dev-stream-box {
-            background: #02040b;
-            border: 1px solid var(--border-cyan);
-            border-radius: 10px;
-            padding: 16px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.72rem;
-            color: var(--success-green);
-            max-height: 150px;
-            overflow-y: auto;
-        }
-
-        .dev-stream-title {
-            font-size: 0.65rem;
-            font-weight: 900;
-            color: var(--cyan-primary);
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* ⚡ 最下部固定：完全動作するスワイプ・トゥ・セトルメントパネル */
-        .wallet-bottom-action-section {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(5, 8, 20, 0.96);
-            backdrop-filter: blur(25px);
-            border-top: 2px solid var(--cyan-primary);
-            padding: 14px 20px;
-            z-index: 1050;
-            box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 242, 254, 0.2);
-            display: flex;
-            justify-content: center;
-        }
-
-        .wallet-bottom-inner {
-            max-width: 980px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .wallet-top-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .wallet-amount-display {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--cyan-primary);
-            text-shadow: 0 0 15px var(--cyan-glow);
-            letter-spacing: -0.02em;
-        }
-
-        .cyber-action-btn {
-            background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
-            color: #010206;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: 900;
-            font-size: 0.7rem;
-            cursor: pointer;
-            box-shadow: 0 0 12px var(--cyan-glow);
-            white-space: nowrap;
-        }
-
-        /* 🚀 スワイプトラック＆ノブ */
-        .swipe-track-modern {
-            background: linear-gradient(90deg, #02040b, #0a1232, #02040b);
-            border: 1px solid var(--cyan-primary);
-            border-radius: 50px;
-            height: 50px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            padding: 0 3px;
-            overflow: hidden;
-            user-select: none;
-            box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.3);
-            width: 100%;
-        }
-
-        .swipe-thumb-modern {
-            width: 130px;
-            height: 42px;
-            background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 0.75rem;
-            color: #010206;
+        .slide-container::after {
+            content: '';
             position: absolute;
-            left: 3px;
-            cursor: grab;
-            box-shadow: 0 0 15px var(--cyan-glow), inset 0 2px 4px rgba(255,255,255,0.7);
-            z-index: 10;
-            touch-action: none;
-            letter-spacing: 0.05em;
+            bottom: 50px;
+            left: 60px;
+            right: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(0, 242, 254, 0.4) 0%, transparent 100%);
+            z-index: 0;
         }
 
-        .swipe-thumb-modern:active {
-            cursor: grabbing;
-        }
+        .slide-container > * { position: relative; z-index: 1; }
 
-        .swipe-guide-text {
-            width: 100%;
-            text-align: center;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-            z-index: 1;
-            pointer-events: none;
-            position: absolute;
-            letter-spacing: 0.01em;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
-            padding: 0 15px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+        /* TYPOGRAPHY */
+        h1, h2, h3 { color: #ffffff; font-weight: 700; margin: 0; line-height: 1.1; }
+        h1 { font-size: 72px; letter-spacing: -2px; }
+        .slide-title { font-size: 42px; margin-bottom: 35px; color: #00f2fe; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; width: 100%; border-bottom: 1px solid rgba(0, 242, 254, 0.1); padding-bottom: 10px; }
+        h3 { font-size: 32px; color: #00f2fe; margin-bottom: 20px; }
+        p, li, td, th { font-size: 19px; line-height: 1.65; color: #daffde; }
+        strong { color: #00f2fe; font-weight: 700; }
 
-        footer {
-            text-align: center;
-            padding: 24px;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border-cyan);
-            background: var(--surface);
-        }
+        /* LAYOUTS */
+        .content-area { flex-grow: 1; width: 100%; display: flex; flex-direction: column; justify-content: center; }
+        .table-layout { width: 100%; }
+        table { border-collapse: collapse; width: 100%; background: rgba(5, 8, 20, 0.7); border-radius: 12px; overflow: hidden; }
+        th, td { padding: 22px 35px; text-align: left; border-bottom: 1px solid rgba(0, 242, 254, 0.1); }
+        th { background-color: rgba(0, 242, 254, 0.15); color: #00f2fe; font-size: 22px; text-transform: uppercase; }
+
+        .two-column.tiled { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; }
+        .two-column.tiled > div { background: rgba(10, 16, 40, 0.9); border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 20px; padding: 45px; }
+
+        .tiled-content { display: flex; gap: 30px; width: 100%; }
+        .tile { flex: 1; background: rgba(5, 8, 20, 0.9); border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 20px; padding: 35px; text-align: center; }
+        .tile .icon { font-size: 48px; color: #00f2fe; margin-bottom: 25px; }
+
+        .highlight-numbers-layout { display: flex; align-items: center; gap: 80px; width: 100%; }
+        .number-box { flex: 1; text-align: center; }
+        .number { font-size: 160px; font-weight: 700; color: #00f2fe; line-height: 0.9; text-shadow: 0 0 30px rgba(0, 242, 254, 0.4); }
+        .number-label { font-size: 28px; font-weight: 700; color: #ffffff; margin-top: 15px; }
+
+        .chart-container { width: 100%; height: 420px; background: rgba(255,255,255,0.02); border-radius: 16px; padding: 30px; display: flex; flex-direction: column; justify-content: flex-end; }
+        .chart-summary { margin-top: 35px; font-style: italic; color: #8b9bb4; text-align: center; font-size: 20px; }
+
+        .bleed-image-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; align-items: start; }
+        .bleed-image-layout .content-container { padding: 80px 70px; }
+        .bleed-image-layout .image-container { height: 720px; width: 100%; }
+        .bleed-image-layout img { height: 720px; width: 100%; object-fit: cover; border-radius: 0; }
+
+        .master-portal { display: flex; flex-direction: column; height: 100%; gap: 30px; }
+        .scrolling-manifesto { flex-grow: 1; overflow-y: auto; background: rgba(5, 8, 20, 0.8); border: 1px solid rgba(0, 242, 254, 0.2); border-radius: 16px; padding: 40px; }
+        .scrolling-manifesto h3 { border-left: 4px solid #00f2fe; padding-left: 20px; }
+        .scrolling-manifesto::-webkit-scrollbar { width: 8px; }
+        .scrolling-manifesto::-webkit-scrollbar-thumb { background: #00f2fe; border-radius: 10px; }
+
+        .swipe-portal-section { background: rgba(5, 8, 20, 0.9); border-radius: 20px; padding: 25px 35px; border: 1px solid rgba(0, 242, 254, 0.3); }
+        .swipe-track { background: #030612; border: 2px solid #00f2fe; border-radius: 60px; height: 80px; position: relative; max-width: 800px; width: 100%; margin: 15px auto 0; display: flex; align-items: center; padding: 0 8px; cursor: pointer; overflow: hidden; }
+        .swipe-thumb { width: 200px; height: 64px; background: linear-gradient(135deg, #00f2fe, #0072ff); border-radius: 40px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; color: #010206; position: absolute; left: 8px; box-shadow: 0 0 30px #00f2fe; transition: transform 0.1s linear; z-index: 10; }
+        .swipe-text { width: 100%; text-align: center; color: rgba(0, 242, 254, 0.4); font-weight: 700; font-size: 18px; pointer-events: none; z-index: 5; text-transform: uppercase; letter-spacing: 2px; }
+
+        #formula-container { background: rgba(0, 242, 254, 0.05); padding: 25px; border-radius: 12px; margin: 30px 0; border: 1px solid rgba(0, 242, 254, 0.2); }
+        math { font-size: 32px; }
     </style>
 </head>
 <body>
 
-    <div class="cyber-grid-bg"></div>
-    <div class="cyber-aurora"></div>
-
-    <header>
-        <div class="brand">
-            <div class="brand-logo">Ω</div>
-            <div class="brand-title">
-                <h1>QLUX // SOVEREIGN ENGINE</h1>
-            </div>
-        </div>
-        <div class="header-auth-group">
-            <button class="auth-btn-sub" onclick="alert('Web3 ID Auth connected')">Sign In</button>
-            <button class="auth-btn-main" onclick="alert('Initializing Sovereign Wallet...')">Sign Up</button>
-        </div>
-    </header>
-
-    <div class="top-matrix-bar">
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">1. Teranode</span><span class="matrix-mini-badge" style="color:#00ff66;">秒速</span></div><div class="matrix-mini-value" style="color:#00ff66;">10M+ TPS</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">2. STAS Token</span><span class="matrix-mini-badge">規格</span></div><div class="matrix-mini-value">オンチェーン</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">3. SPV Wallet</span><span class="matrix-mini-badge" style="color:#00f2fe;">証明</span></div><div class="matrix-mini-value">ミリ秒検証</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">4. Script 2.0</span><span class="matrix-mini-badge">契約</span></div><div class="matrix-mini-value">条件付き自動化</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">5. sCrypt</span><span class="matrix-mini-badge" style="color:#00f2fe;">TypeScript</span></div><div class="matrix-mini-value">スマート直結</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">14. Revenue Sweep</span><span class="matrix-mini-badge" style="color:#00ff66;">アクティブ</span></div><div class="matrix-mini-value" id="dashWalletVal">7,450,000 SAT</div></div>
+<div class="slide-container" id="slide1">
+    <div class="content-area" style="max-width: 950px; margin-top: 50px;">
+        <h1>The Genesis of the<br><span style="color: #00f2fe;">Sovereign Economy</span></h1>
+        <p class="subtitle" style="font-size: 28px; margin-top: 40px; color: #8b9bb4; border-left: 6px solid #00f2fe; padding-left: 30px;">
+            BSV Teranodeが実現する「摩擦ゼロ」の最終形態。全人類80億人と全企業が渇望する、数学的に裏付けられた富の瞬間テレポート。
+        </p>
     </div>
+</div>
 
-    <main>
-        <section class="editorial-master-card">
-            <div class="section-tag">⚡ Sovereign Manifesto // The Ultimate Paradigm Shift</div>
-            <h2>「仲介者なき経済」と「完全自律型富の循環」の最終到達点</h2>
-            
-            <div class="editorial-lead">
-                サトシ・ナカモトが遺した不変の設計思想（<span class="highlight-quote">Nakamoto Protocol</span>）を極限まで押し進め、地球上のすべての商取引、未清算報酬、そして国境を越えた企業間決済データを、中間業者を一切挟むことなく<span class="highlight-quote">ミリ秒単位でアトミックに同期・消火</span>させる。<br><br>
-                画面下のサイバーノブをスワイプした瞬間、地球の裏側から世界中に散らばるすべての経済成果が、あなたのウォレットへと一筋の光のようにテレポートし、一瞬で定着する――これこそが、人類史の摩擦をゼロにする次世代の絶対的スタンダードです。
+<div class="slide-container" id="slide2">
+    <h2 class="slide-title">The $100 Trillion Friction Tax</h2>
+    <div class="content-area">
+        <p style="font-size: 24px; margin-bottom: 40px;">現代の経済活動は、旧態依然とした金融システムの「摩擦」によって蝕まれています。</p>
+        <div class="two-column tiled">
+            <div>
+                <h3>手数料の搾取</h3>
+                <p>中間銀行やプラットフォームが、あなたの生み出した価値の数%を無慈悲に抜き取っています。これは人類の総生産性に対する巨大な罰金です。</p>
+            </div>
+            <div>
+                <h3>時間の壁</h3>
+                <p>国境を越える送金に数日、契約の履行に数週間。光速で情報が飛び交う時代に、価値の移動だけが鈍足のまま取り残されています。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">Teranode: Scaling to Infinity</h2>
+    <div class="content-area">
+        <div class="highlight-numbers-layout">
+            <div class="number-box">
+                <div class="number">10M+</div>
+                <div class="number-label">Transactions Per Second</div>
+            </div>
+            <div style="flex: 1.2;">
+                <h3>The Central Nervous System</h3>
+                <p>データと価値が不可分に統合された地球規模の神経系インフラ。</p>
+                <p>Teranodeは、秒間1,000万件を超えるトランザクションを1サトシ未満の手数料で処理し、人類の全行動をリアルタイムでオンチェーンに記録します。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title">100% Demand Architecture</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Instant Settlement</h3>
+                <p>0.001秒で完了する清算。銀行の承認を待つ時代は終わりました。数学が決済を保証します。</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                <h3>Zero Friction</h3>
+                <p>1サトシ未満の手数料。1円以下の価値を世界中に送る「ナノ決済」が経済の常識を変えます。</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Absolute Proof</h3>
+                <p>改ざん不可能なオンチェーン契約。不払いは物理的に不可能な構造へと進化します。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container bleed-image-layout" id="slide5">
+    <div class="content-container">
+        <h2 class="slide-title">Global Pay Infrastructure</h2>
+        <h3>The End of Payroll Delay</h3>
+        <p>企業にとって、グローバルな報酬支払いは最大のコストセンターです。BSVはこれを劇的に消滅させます。</p>
+        <p>サプライチェーンの各工程が完了した瞬間に、地球の裏側のパートナーへミリ秒で着金。ビジネスの回転速度は1,000倍に加速します。</p>
+    </div>
+    <div class="image-container">
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/12448642774859618999" alt="Global Network Connectivity">
+    </div>
+</div>
+
+<div class="slide-container" id="slide6">
+    <h2 class="slide-title">Mathematical Trust (Auto-Escrow)</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div style="background: rgba(0, 242, 254, 0.05);">
+                <h3>sCrypt Smart Contracts</h3>
+                <p>人間の主観や信頼に頼る必要はありません。TypeScript直結のスマートコントラクトが、コード通りに契約を強制執行します。</p>
+                <div id="formula-container">
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <msub><mi>P</mi><mi>settle</mi></msub><mo>=</mo><mo>(</mo><mi>Action</mi><mo>=</mo><mi>Verified</mi><mo>)</mo><mo>&#x2192;</mo><mi>Instant</mi><mo>&#xA0;</mo><mi>TX</mi>
+                    </math>
+                </div>
+            </div>
+            <div>
+                <h3>No More Bad Debt</h3>
+                <p>デザインの納品、コードの共有、売買の約束。全てが1秒オンチェーン証明書として機能し、条件が満たされたら自動でお金が移動します。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide7">
+    <h2 class="slide-title">Auto-Nano-Reward Economy</h2>
+    <div class="content-area">
+        <p style="font-size: 24px; margin-bottom: 40px; text-align: center;">「生きているだけで価値が循環する」マネタイズの新次元</p>
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-eye"></i></div>
+                <h3>Active Viewing</h3>
+                <p>企業の発信する情報を見るだけで、あなたの時間はナノペイメントとしてウォレットに還元されます。</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-share-nodes"></i></div>
+                <h3>Data Sovereignty</h3>
+                <p>日常の買い物やデータ共有。そのすべての背景で極小の報酬が動き続け、全員が自動的に豊かになります。</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-users"></i></div>
+                <h3>Collective Wealth</h3>
+                <p>経済活動に参加すればするほど、ネットワーク全体の価値があなたに直接分配される仕組みが回ります。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container bleed-image-layout" id="slide8">
+    <div class="content-container" style="padding: 60px 50px;">
+        <h2 class="slide-title" style="font-size: 34px;">Protocol Integrity</h2>
+        <h3>Visionaries of the New Era</h3>
+        <p>BSV協会によるエンタープライズ標準、そして濱平真澄氏が描く戦略的社会実装。</p>
+        <p>これら全ての知恵を統合したこのポータルは、単なるWebサイトではありません。それは人類が初めて手にする、国家・企業・個人が等しく繁栄できる<strong>「数学的ユートピア」</strong>への入口です。</p>
+    </div>
+    <div class="image-container">
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/8436315407356263646" alt="BSV Gold Coin">
+    </div>
+</div>
+
+<div class="slide-container" id="slide9">
+    <h2 class="slide-title">Financial Efficiency Table</h2>
+    <div class="content-area">
+        <div class="table-layout">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Legacy Banking</th>
+                        <th>BSV Master Portal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Intermediary Fees</td>
+                        <td>3.0% - 15.0%</td>
+                        <td><strong>0.00% (Native)</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Verification Method</td>
+                        <td>Human Oversight</td>
+                        <td><strong>Mathematical Proof</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Minimum Amount</td>
+                        <td>$0.50 (Web2)</td>
+                        <td><strong>$0.00001 (Micro)</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Trust Model</td>
+                        <td>Institutional Trust</td>
+                        <td><strong>Protocol Integrity</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide10">
+    <h2 class="slide-title">The Rise of Sovereign Users</h2>
+    <div class="content-area">
+        <div class="chart-container">
+            <svg class="area-chart-svg" viewBox="0 0 1000 350" width="1000" height="350">
+                <defs>
+                    <linearGradient id="area-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#00f2fe;stop-opacity:0.6" />
+                        <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:0.1" />
+                    </linearGradient>
+                </defs>
+                <path d="M0 350 L200 330 L400 300 L600 220 L800 100 L1000 20 V350 H0 Z" fill="url(#area-grad)" />
+                <polyline points="0,350 200,330 400,300 600,220 800,100 1000,20" fill="none" stroke="#00f2fe" stroke-width="6" />
+                <circle cx="200" cy="330" r="10" fill="#fff" stroke="#00f2fe" stroke-width="4" />
+                <circle cx="600" cy="220" r="10" fill="#fff" stroke="#00f2fe" stroke-width="4" />
+                <circle cx="1000" cy="20" r="10" fill="#fff" stroke="#00f2fe" stroke-width="4" />
+            </svg>
+        </div>
+        <p class="chart-summary">摩擦がゼロに近づくほど、富の移動は幾何級数的に増加。80億人がこの「重力」から逃れることはできません。</p>
+    </div>
+</div>
+
+<div class="slide-container bleed-image-layout" id="slide11">
+    <div class="content-container">
+        <h2 class="slide-title">The Act of Sovereignty</h2>
+        <h3>指先ひとつで世界を回せ</h3>
+        <p>この長大な論理を理解したとき、あなたは気づくはずです。スワイプは単なる操作ではないということに。</p>
+        <p>それは、世界中に散らばるあなたの未清算報酬を、一瞬であなたの掌へテレポートさせる<strong>「意志の証明」</strong>です。</p>
+    </div>
+    <div class="image-container">
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/17789189709593347792" alt="User Swiping Interface">
+    </div>
+</div>
+
+<div class="slide-container" id="slide12">
+    <div class="master-portal">
+        <div class="scrolling-manifesto">
+            <h3 style="font-size: 28px; margin-bottom: 20px;">なぜ、世界中の「全人口・全企業・全個人」がこのポータルを100%欲しがるのか？</h3>
+            <p style="font-size: 20px; line-height: 1.8;">
+                ――仲介者なき経済、秒速清算の未来。<br><br>
+                地球上のあらゆる人間と企業が毎日直面している最大のストレス。それは、「お金のやり取りにおける手数料の搾取」「国境をまたぐ送金の遅延（数日かかる）」「契約やデータの不確実性（詐欺や未払い）」です。銀行や巨大プラットフォーム、中間マージンによって、あなたの本来の富は日々奪われ続けています。<br><br>
+                もし、このメインポータルにアクセスし、指先をスライス（スワイプ）するだけで、世界中の誰とでも、どんな企業とでも、中継銀行を一切挟まず、1サトシ未満の手数料で、ミリ秒で価値の移転と契約の証明が完了するとしたら？<br><br>
+                世界中の企業や個人との間で発生していた<strong>「未清算のグローバル報酬、商取引の売上、契約完了フィー」</strong>のすべてが、BSV Teranodeの超高速ネットワークによって一瞬で一括精算され、自分のウォレットになだれ込んでくる。これこそが、誰もが納得するBSVの最終形。世界中のすべての企業がコスト削減のために導入し、すべての個人が富を掴むために毎日開き、スワイプせずにはいられない究極のメインポータルが、いまあなたの前にあります。
+            </p>
+        </div>
+
+        <div class="swipe-portal-section">
+            <div style="display:flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
+                <div style="text-align: left;">
+                    <p style="font-size: 13px; color: #00f2fe; margin-bottom: 2px;">SOVEREIGN ACTIVE CORE</p>
+                    <h2 id="main-balance" style="font-size: 40px; color: #ffffff;">29,950,000 SAT</h2>
+                </div>
+                <div style="text-align: right;">
+                    <p style="font-size: 13px; color: #8b9bb4; margin-bottom: 2px;">PENDING REWARDS</p>
+                    <h3 id="pending-val" style="margin-bottom: 0; color: #00f2fe; font-size: 26px;">5,500,000 SAT</h3>
+                </div>
             </div>
 
-            <div class="stats-banner">
-                <div class="stat-item"><span class="stat-label">Global TPS</span><span class="stat-value">12,450,000+</span></div>
-                <div class="stat-item"><span class="stat-label">Settlement Latency</span><span class="stat-value">&lt; 0.001s</span></div>
-                <div class="stat-item"><span class="stat-label">Intermediary Fees</span><span class="stat-value">0.00%</span></div>
-                <div class="stat-item"><span class="stat-label">Network Trust</span><span class="stat-value">100% Math</span></div>
+            <div class="swipe-track" id="swipeTrack">
+                <div class="swipe-text" id="swipeInstr">👉 SLIDE TO TELEPORT REWARDS</div>
+                <div class="swipe-thumb" id="swipeThumb">SWIPE ⚡</div>
             </div>
+        </div>
+    </div>
+</div>
 
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <span class="pillar-number">Pillar 01 // Global Settlement</span>
-                    <h3 class="pillar-title">仲介銀行・数日間の遅延を完全に完全消滅</h3>
-                    <p class="pillar-desc">従来の国際送金やプラットフォーム手数料の搾取を一切排除。地球規模のペイメントをノーディレイで完結させます。</p>
-                </div>
-                <div class="pillar-card">
-                    <span class="pillar-number">Pillar 02 // Autonomous Escrow</span>
-                    <h3 class="pillar-title">あらゆる契約・知財の「1秒オンチェーン証明」</h3>
-                    <p class="pillar-desc">人間の信頼ではなく数学的証明（sCryptスマートコントラクト）により条件が強制執行されるため、不払いや詐欺が物理的に不可能になります。</p>
-                </div>
-                <div class="pillar-card">
-                    <span class="pillar-number">Pillar 03 // Gamified UX</span>
-                    <h3 class="pillar-title">「指先ひとつで世界が動く」究極の経済体験</h3>
-                    <p class="pillar-desc">グローバルな経済活動への参加が、直感的なスワイプアクションを通じてダイレクトに富へと変換される、誰もが熱狂するエコシステム。</p>
-                </div>
-            </div>
+<script>
+    const track = document.getElementById('swipeTrack');
+    const thumb = document.getElementById('swipeThumb');
+    const instr = document.getElementById('swipeInstr');
+    const balEl = document.getElementById('main-balance');
+    const pendEl = document.getElementById('pending-val');
 
-            <div class="powerful-hook-box">
-                <div class="powerful-hook-title">
-                    🔥 なぜ、世界中の「全人口・全企業・全個人」がこのポータルを100%欲しがるのか？<br>――仲介者なき経済、秒速清算の未来。
-                </div>
-                <p class="powerful-hook-text">
-                    地球上のあらゆる人間と企業が毎日直面している最大のストレス。それは、<strong>「お金のやり取りにおける手数料の搾取」「国境をまたぐ送金の遅延（数日かかる）」「契約やデータの不確実性（詐欺や未払い）」</strong>です。<br><br>
-                    もし、このメインポータルにア
+    let isDragging = false;
+    let startX = 0;
+    let maxMove = 0;
+
+    const initMetrics = () => {
+        maxMove = track.clientWidth - thumb.clientWidth - 16;
+    };
+
+    thumb.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        thumb.setPointerCapture(e.pointerId);
+        instr.style.opacity = '0.1';
+    });
+
+    window.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        initMetrics();
+        let moveX = e.clientX - startX;
+        moveX = Math.max(0, Math.min(moveX, maxMove));
+        thumb.style.transform = `translateX(${moveX}px)`;
+
+        if (moveX >= maxMove * 0.9) {
+            completeSettlement();
+        }
+    });
+
+    window.addEventListener('pointerup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        initMetrics();
+        if (parseFloat(thumb.style.transform.replace('translateX(', '')) < maxMove * 0.9) {
+            thumb.style.transition = 'transform 0.4s cubic-bezier(0.1, 0.9, 0.2, 1)';
+            thumb.style.transform = 'translateX(0px)';
+            instr.style.opacity = '1';
+            setTimeout(() => thumb.style.transition = 'none', 400);
+        }
+    });
+
+    function completeSettlement() {
+        isDragging = false;
+        thumb.style.transition = 'transform 0.2s ease';
+        thumb.style.transform = `translateX(${maxMove}px)`;
+        thumb.style.background = '#00ff66';
+        thumb.style.color = '#010206';
+        thumb.innerText = 'SETTLED ✓';
+        
+        setTimeout(() => {
+            alert("🌐 Global Instant Settlement Success!\nTeranode経由で5,500,000 SATがアトミック清算され、ウォレットへ着金しました。");
+            balEl.innerText = "35,450,000 SAT";
+            balEl.style.color = "#00ff66";
+            pendEl.innerText = "0 SAT";
+            pendEl.style.color = "#8b9bb4";
+            instr.innerText = "● 全ての未清算報酬のアトミック回収・同期完了";
+            instr.style.opacity = '1';
+        }, 150);
+    }
+</script>
+
+</body>
+</html>
+
