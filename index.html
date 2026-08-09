@@ -156,7 +156,7 @@ strong {
   font-weight: 700;
 }
 
-/* BLEED IMAGE LAYOUT WITH USER BLUEPRINTS */
+/* BLEED IMAGE LAYOUT WITH LATEST UPLOADED BLUEPRINTS */
 .slide-container.bleed-image-layout {
   align-items: start;
   display: grid;
@@ -234,7 +234,7 @@ th {
   font-weight: 900;
 }
 
-/* SCROLLER & SWIPE FIX */
+/* SCROLLER & SWIPE */
 .scroller-box {
   background: rgba(4, 7, 18, 0.9);
   border-radius: 16px;
@@ -371,10 +371,10 @@ th {
     <div class="content-container">
         <h2 class="slide-title" style="border: none; padding: 0;">Blueprint Alpha</h2>
         <h3>電極・外側構造の精密設計</h3>
-        <p>ご提示いただいた設計図 11177.jpg。特急電極および真Fカメ外側の厳格な物理配置データ。すべてのエネルギーロスを防ぐ幾何学的最適解。</p>
+        <p>特急電極および真Fカメ外側の厳格な物理配置データ。すべてのエネルギーロスを防ぐ幾何学的最適解と、オンチェーン証明の完全同期。</p>
     </div>
     <div class="image-container">
-        <img src="uploaded:11177.jpg-2a7443f1-bcd9-4364-a210-6d077194cb90" alt="Blueprint 11177">
+        <img src="uploaded:11181.jpg-0ecd3194-45e6-4899-b6ec-83d67fd2cf6a" alt="Blueprint 11181">
     </div>
 </div>
 
@@ -398,10 +398,10 @@ th {
     <div class="content-container">
         <h2 class="slide-title" style="border: none; padding: 0;">Blueprint Beta</h2>
         <h3>研磨紙・ディスクの統合モジュール</h3>
-        <p>ご提示いただいた設計図 11178.jpg。ジルコニア研磨紙ディスク輪っかとダイヤモンドカッター、パラジウムビーズの精密配置仕様。</p>
+        <p>ジルコニア研磨紙ディスク輪っかとダイヤモンドカッター、パラジウムビーズの精密配置仕様。微小経済を支える物質的基盤。</p>
     </div>
     <div class="image-container">
-        <img src="uploaded:11178.jpg-bb61a7e8-a30c-4a83-bf3f-ebcdab0ead87" alt="Blueprint 11178">
+        <img src="uploaded:11182.jpg-6d2590d5-99ab-497c-9a0a-467ad6ad39c7" alt="Blueprint 11182">
     </div>
 </div>
 
@@ -427,10 +427,10 @@ th {
     <div class="content-container">
         <h2 class="slide-title" style="border: none; padding: 0;">Blueprint Gamma</h2>
         <h3>大蛇巻き・ミラーシート構造</h3>
-        <p>ご提示いただいた設計図 11179.jpg。22SQホース青い大蛇とアルミミラーシートによる螺旋巻き（交互正巻き逆巻き）の完全実装。</p>
+        <p>22SQホース青い大蛇とアルミミラーシートによる螺旋巻き（交互正巻き逆巻き）の完全実装。エネルギーを最適化する高次元構造。</p>
     </div>
     <div class="image-container">
-        <img src="uploaded:11179.jpg-b87cce71-0553-4409-bbac-50d95d20ce2d" alt="Blueprint 11179">
+        <img src="uploaded:11183.jpg-e1170147-7743-40a7-8bb8-d2c4cce181e5" alt="Blueprint 11183">
     </div>
 </div>
 
@@ -458,10 +458,10 @@ th {
     <div class="content-container">
         <h2 class="slide-title" style="border: none; padding: 0;">Blueprint Delta</h2>
         <h3>最終アセンブリと一括同期</h3>
-        <p>ご提示いただいた設計図 11180.jpg。すべての物理構造とオンチェーンデータが一つに結ばれ、究極のエネルギー循環が完成する。</p>
+        <p>すべての物理構造とオンチェーンデータが一つに結ばれ、究極のエネルギー循環が完成する。指先ひとつで未来を起動する瞬間。</p>
     </div>
     <div class="image-container">
-        <img src="uploaded:11180.jpg-738bbd98-75f4-42a4-b97a-0c5805cb2af8" alt="Blueprint 11180">
+        <img src="uploaded:11184.jpg-c627c9bd-2e7e-40c5-b567-2008583df770" alt="Blueprint 11184">
     </div>
 </div>
 
@@ -504,14 +504,12 @@ th {
 
     let isDragging = false;
     let startX = 0;
-    let currentX = 0;
     let maxDist = 0;
 
     const updateMetrics = () => {
         maxDist = track.clientWidth - thumb.clientWidth - 16;
     };
 
-    // 確実に動くようにpointerイベントとtouch/mouse両対応を完全強化
     const startDrag = (clientX) => {
         isDragging = true;
         startX = clientX;
