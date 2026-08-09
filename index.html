@@ -59,7 +59,7 @@
             width: 44px;
             height: 44px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
-            border-radius: 50%; /* 円形のΩエンブレム */
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -185,8 +185,8 @@
             color: var(--text-primary);
         }
 
-        /* 📊 GitHub風・10モジュール多重ダッシュボードグリッド */
-        .dashboard-10-grid {
+        /* 📊 GitHub風・12モジュール多重ダッシュボードグリッド */
+        .dashboard-12-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 18px;
@@ -226,7 +226,7 @@
 
         .dash-mod-badge {
             background: var(--cyan-dim);
-            border: 1px solid var(--cyan-primary);
+            border: 1px solid var(--border-cyan);
             padding: 2px 8px;
             border-radius: 20px;
             font-size: 0.6rem;
@@ -247,15 +247,15 @@
             line-height: 1.45;
         }
 
-        /* Sovereign Vault */
+        /* Sovereign Vault（スマート・超優良企業ライティング仕様） */
         .vault-section {
             background: linear-gradient(135deg, rgba(0,242,254,0.06), rgba(0,114,255,0.03));
             border: 2px solid var(--cyan-primary);
             border-radius: 20px;
-            padding: 44px;
+            padding: 48px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 28px;
             box-shadow: 0 0 50px var(--cyan-dim);
             position: relative;
         }
@@ -326,7 +326,7 @@
             filter: brightness(1.1);
         }
 
-        /* ⚡ 超高感度スワイプコンテナ（長さ半分・完全動作） */
+        /* ⚡ 超高感度・完全確実スワイプコンテナ（バグ完全根絶版） */
         .cyber-swipe-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
@@ -349,7 +349,7 @@
             overflow: hidden;
             user-select: none;
             -webkit-user-select: none;
-            touch-action: none;
+            touch-action: pan-y; /* 縦スクロールを邪魔せず横スワイプを確実にキャッチ */
             max-width: 440px;
             margin: 0 auto;
             width: 100%;
@@ -368,11 +368,15 @@
             color: #010208;
             position: absolute;
             left: 4px;
-            cursor: pointer;
+            cursor: grab;
             box-shadow: 0 0 25px var(--cyan-glow);
-            z-index: 2;
+            z-index: 10;
             letter-spacing: 0.08em;
             touch-action: none;
+        }
+
+        .swipe-thumb-modern:active {
+            cursor: grabbing;
         }
 
         .swipe-guide-text {
@@ -384,6 +388,7 @@
             letter-spacing: 0.08em;
             z-index: 1;
             pointer-events: none;
+            position: absolute;
         }
 
         /* Footer */
@@ -441,13 +446,13 @@
             </div>
             <h2>QLUX Core & Autonomous Matrix</h2>
 
-            <div class="dashboard-10-grid">
+            <div class="dashboard-12-grid">
                 <div class="dash-module-card">
                     <div class="dash-module-header">
                         <span class="dash-mod-title">QLUX Wallet</span>
                         <span class="dash-mod-badge">Active</span>
                     </div>
-                    <div class="dash-mod-value" id="dashWalletVal">6,250,000 SAT</div>
+                    <div class="dash-mod-value" id="dashWalletVal">7,450,000 SAT</div>
                     <div class="dash-mod-desc">ハイブリッド署名対応の超高速アトミックウォレットコア。</div>
                 </div>
 
@@ -531,19 +536,40 @@
                     <div class="dash-mod-value" style="color: #00ff66;">Online</div>
                     <div class="dash-mod-desc">外部システムとアトミック接続するための超高機能APIハブ。</div>
                 </div>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">Autonomous Liquidity Pool</span>
+                        <span class="dash-mod-badge">AMM Core</span>
+                    </div>
+                    <div class="dash-mod-value" style="color: #00f2fe;">$142M+</div>
+                    <div class="dash-mod-desc">スリッページゼロを誇る自律型アトミック流動性プールシステム。</div>
+                </div>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">Zero-Knowledge Mesh</span>
+                        <span class="dash-mod-badge">ZK-Rollup</span>
+                    </div>
+                    <div class="dash-mod-value" style="color: #00ff66;">Verified</div>
+                    <div class="dash-mod-desc">完全なプライバシーを担保しながら検証を瞬時に完了させるZKレイヤー。</div>
+                </div>
             </div>
         </section>
 
         <section class="vault-section">
             <div class="vault-badge">GLOBAL EXCLUSIVE VIP</div>
             <div class="section-tag">
-                <span>💎 QLUX Sovereign Vault ＆ Perpetual Yield</span>
-                <span style="color: var(--cyan-primary);">● グローバルエリートが熱望する永続配当金庫</span>
+                <span>💎 QLUX Sovereign Vault & Autonomous Yield Architecture</span>
+                <span style="color: var(--cyan-primary);">● グローバルスタンダード・永続的価値創造基盤</span>
             </div>
-            <h2>世界中の投資家・トップクリエイターが羨む、<br>自律分散型・パーペチュアル・イールド要塞</h2>
+            <h2>次世代の富と信頼を自動生成する、<br>自律分散型・パーペチュアル・イールド・エコシステム</h2>
             <div class="deep-editorial">
                 <p>
-                    QLUXエコシステムの頂点に位置する<strong>Sovereign Vault</strong>。プラットフォーム全体で生み出される膨大なマイクロアトミック収益が、参加者のアクティビティと貢献度に応じてリアルタイムかつ自動的に複利運用・配当される仕組みです。
+                    QLUXエコシステムの頂点に位置する<strong>Sovereign Vault</strong>は、単なる資産の保管庫ではありません。プラットフォーム全体の経済活動から生まれる膨大なマイクロアトミック収益を、透明性と公正性をもってリアルタイムに再分配する次世代のパーペチュアル・イールド（永続的収益）アーキテクチャです。
+                </p>
+                <p>
+                    仲介金融機関や不透明な中央集権的コミットメントを完全に排除し、数学的に証明されたスマートコントラクトがすべての収益分配を自律執行します。グローバル市場の成長と連動しながら資産が自律的に複利成長していく、世界最高峰のエリートのための洗練された財務要塞です。
                 </p>
             </div>
         </section>
@@ -552,7 +578,7 @@
             <div class="wallet-top-flex">
                 <div class="wallet-balance-box">
                     <span style="font-size: 0.8rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.15em;">QLUX WALLET // SOVEREIGN CORE ACTIVE</span>
-                    <div class="wallet-amount-display" id="mainWalletBalance">6,250,000 SAT</div>
+                    <div class="wallet-amount-display" id="mainWalletBalance">7,450,000 SAT</div>
                     <span style="font-size: 0.85rem; color: var(--text-secondary);">HandCash Connect & ネイティブ秘密鍵ハイブリッド接続中</span>
                 </div>
                 <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">アトミック資産を一括出金する</button>
@@ -561,5 +587,134 @@
             <div class="cyber-swipe-box">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                     <span style="font-size: 0.85rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">CYBERNETIC SWIPE-TO-PAY & REVENUE SWEEP</span>
-                    <span style="font-size: 0.82rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">2,800,000 SAT</b></span>
-                </di
+                    <span style="font-size: 0.82rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">3,500,000 SAT</b></span>
+                </div>
+
+                <div class="swipe-track-modern" id="swipeTrack">
+                    <div class="swipe-guide-text" id="swipeInstruction">👉 スライドして報酬を回収</div>
+                    <div class="swipe-thumb-modern" id="swipeThumb">SWIPE ⚡</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 QLUX Global Sovereign Enterprise. All Rights Reserved.
+    </footer>
+
+    <script>
+        const track = document.getElementById('swipeTrack');
+        const thumb = document.getElementById('swipeThumb');
+        const instruction = document.getElementById('swipeInstruction');
+        const pendingEl = document.getElementById('pendingSweepAmount');
+        const walletEl = document.getElementById('mainWalletBalance');
+        const dashWalletEl = document.getElementById('dashWalletVal');
+
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        let maxTrackWidth = 0;
+
+        function updateMetrics() {
+            if (track && thumb) {
+                maxTrackWidth = track.clientWidth - thumb.clientWidth - 8;
+            }
+        }
+
+        window.addEventListener('resize', updateMetrics);
+        window.addEventListener('load', updateMetrics);
+        updateMetrics();
+
+        // タッチ＆マウス両対応の完全無欠なポインターイベント
+        thumb.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            startX = e.clientX - currentX;
+            thumb.setPointerCapture(e.pointerId);
+            instruction.style.opacity = '0.2';
+            e.stopPropagation();
+        });
+
+        window.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            updateMetrics();
+            
+            const diff = e.clientX - startX;
+            currentX = Math.max(0, Math.min(diff, maxTrackWidth));
+            
+            thumb.style.transform = `translateX(${currentX}px)`;
+
+            // 70%以上スライドで瞬時発動
+            if (currentX >= maxTrackWidth * 0.70) {
+                completeSwipeAction();
+            }
+        });
+
+        window.addEventListener('pointerup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            updateMetrics();
+
+            if (currentX < maxTrackWidth * 0.70) {
+                thumb.style.transition = 'transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1)';
+                thumb.style.transform = 'translateX(0px)';
+                currentX = 0;
+                setTimeout(() => {
+                    thumb.style.transition = 'none';
+                }, 300);
+                instruction.style.opacity = '1';
+            }
+        });
+
+        function completeSwipeAction() {
+            if (!isDragging) return;
+            isDragging = false;
+            updateMetrics();
+
+            let pendingVal = parseInt(pendingEl.innerText.replace(/[^0-9]/g, '')) || 0;
+            if (pendingVal > 0) {
+                thumb.style.transition = 'transform 0.2s ease';
+                thumb.style.transform = `translateX(${maxTrackWidth}px)`;
+                thumb.style.background = '#00ff66';
+                thumb.style.color = '#010208';
+                thumb.innerText = 'SUCCESS ✓';
+
+                setTimeout(() => {
+                    alert(`⚡ Cybernetic Swipe Success!\n未回収収益 ${pendingVal.toLocaleString()} SAT が QLUX Wallet へ完全アトミック同期されました。`);
+                    
+                    let currentBal = parseInt(walletEl.innerText.replace(/[^0-9]/g, '')) || 0;
+                    currentBal += pendingVal;
+                    walletEl.innerText = currentBal.toLocaleString() + ' SAT';
+                    dashWalletEl.innerText = currentBal.toLocaleString() + ' SAT';
+
+                    pendingEl.innerText = '0 SAT';
+                    pendingEl.style.opacity = '0.4';
+                    instruction.innerText = '● すべての収益がアトミック確定済';
+
+                    setTimeout(() => {
+                        thumb.style.transition = 'none';
+                        thumb.style.transform = 'translateX(0px)';
+                        thumb.style.background = 'linear-gradient(135deg, var(--cyan-primary), #0072ff)';
+                        thumb.style.color = '#010208';
+                        thumb.innerText = 'SWIPE ⚡';
+                        currentX = 0;
+                        instruction.style.opacity = '1';
+                        instruction.innerText = '👉 スライドして報酬を回収';
+                    }, 1200);
+                }, 150);
+            }
+        }
+
+        function executeAdvancedWithdraw() {
+            alert('💳 QLUX Wallet からのアトミック出金トランザクションが Teranode メインネットへ高速ブロードキャストされました！');
+        }
+
+        function handleSignIn() {
+            alert('🔐 QLUX Sovereign Network へのサインイン画面をロード中...');
+        }
+
+        function handleSignUp() {
+            alert('🚀 新規アカウント作成（Sign Up / Create Account）プロセスを開始します。完全分散ウォレットを生成中...');
+        }
+    </script>
+</body>
+</html>
