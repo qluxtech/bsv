@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX — Global Sovereign 30-Core Teranode Matrix</title>
+    <title>QLUX — Global Instant Settlement & Proof Engine</title>
     <style>
         :root {
             --bg-deep: #010208;
@@ -13,7 +13,7 @@
             --cyan-glow: rgba(0, 242, 254, 0.4);
             --cyan-dim: rgba(0, 242, 254, 0.08);
             --text-primary: #f0f4ff;
-            --text-secondary: #8b9bb4;
+            --text-secondary: #94a3b8;
             --border-cyan: rgba(0, 242, 254, 0.25);
             --success-green: #00ff66;
             --accent-pink: #ff007f;
@@ -32,7 +32,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            line-height: 1.7;
+            line-height: 1.8;
             overflow-x: hidden;
         }
 
@@ -40,7 +40,7 @@
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border-cyan);
-            padding: 12px 24px;
+            padding: 14px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -53,27 +53,27 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .brand-logo {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #010208;
-            box-shadow: 0 0 15px var(--cyan-glow);
+            box-shadow: 0 0 18px var(--cyan-glow);
         }
 
         .brand-title h1 {
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 900;
-            letter-spacing: 0.18em;
+            letter-spacing: 0.2em;
             background: linear-gradient(90deg, #fff, var(--cyan-primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -82,16 +82,16 @@
         .header-auth-group {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .auth-btn-sub {
             background: transparent;
             border: 1px solid var(--border-cyan);
             color: var(--cyan-primary);
-            padding: 6px 14px;
+            padding: 7px 16px;
             border-radius: 8px;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -105,24 +105,24 @@
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border: none;
             color: #010208;
-            padding: 6px 16px;
+            padding: 7px 18px;
             border-radius: 8px;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-weight: 900;
             cursor: pointer;
-            box-shadow: 0 0 12px var(--cyan-glow);
+            box-shadow: 0 0 15px var(--cyan-glow);
         }
 
         /* 📊 30大BSV未来技術 横一列超高密度グリッドバー */
         .top-matrix-bar {
             background: rgba(6, 9, 23, 0.98);
             border-bottom: 1px solid var(--border-cyan);
-            padding: 8px 12px;
+            padding: 8px 14px;
             display: flex;
             gap: 6px;
             overflow-x: auto;
             position: sticky;
-            top: 57px;
+            top: 61px;
             z-index: 990;
             backdrop-filter: blur(20px);
             white-space: nowrap;
@@ -136,12 +136,12 @@
             background: var(--surface-hover);
             border: 1px solid var(--border-cyan);
             border-radius: 6px;
-            padding: 4px 8px;
-            min-width: 130px;
+            padding: 5px 10px;
+            min-width: 135px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            gap: 1px;
+            gap: 2px;
         }
 
         .matrix-mini-header {
@@ -151,7 +151,7 @@
         }
 
         .matrix-mini-title {
-            font-size: 0.45rem;
+            font-size: 0.46rem;
             font-weight: 900;
             color: var(--cyan-primary);
             letter-spacing: 0.03em;
@@ -159,7 +159,7 @@
         }
 
         .matrix-mini-badge {
-            font-size: 0.35rem;
+            font-size: 0.36rem;
             padding: 0px 3px;
             border-radius: 3px;
             background: var(--cyan-dim);
@@ -168,7 +168,7 @@
         }
 
         .matrix-mini-value {
-            font-size: 0.62rem;
+            font-size: 0.64rem;
             font-weight: 900;
             color: #fff;
         }
@@ -179,22 +179,22 @@
             max-width: 1300px;
             width: 100%;
             margin: 0 auto;
-            padding: 24px 16px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 28px;
         }
 
         /* Wallet & World-Class Swipe Section */
         .wallet-matrix-section {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
-            border-radius: 16px;
-            padding: 28px;
+            border-radius: 18px;
+            padding: 32px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            gap: 22px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
         }
 
         .wallet-top-flex {
@@ -202,20 +202,20 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 18px;
         }
 
         .wallet-balance-box {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
         }
 
         .wallet-amount-display {
-            font-size: 2.4rem;
+            font-size: 2.6rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            text-shadow: 0 0 25px var(--cyan-glow);
+            text-shadow: 0 0 30px var(--cyan-glow);
             letter-spacing: -0.02em;
         }
 
@@ -223,12 +223,12 @@
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             color: #010208;
             border: none;
-            padding: 10px 22px;
-            border-radius: 10px;
+            padding: 12px 26px;
+            border-radius: 12px;
             font-weight: 900;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             cursor: pointer;
-            box-shadow: 0 4px 18px var(--cyan-glow);
+            box-shadow: 0 4px 20px var(--cyan-glow);
             transition: transform 0.2s ease;
         }
 
@@ -240,18 +240,18 @@
         .cyber-swipe-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
-            border-radius: 12px;
-            padding: 18px;
+            border-radius: 14px;
+            padding: 22px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .swipe-track-modern {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
             border-radius: 50px;
-            height: 52px;
+            height: 56px;
             position: relative;
             display: flex;
             align-items: center;
@@ -260,26 +260,26 @@
             user-select: none;
             -webkit-user-select: none;
             touch-action: none;
-            max-width: 420px;
+            max-width: 460px;
             margin: 0 auto;
             width: 100%;
         }
 
         .swipe-thumb-modern {
-            width: 110px;
-            height: 42px;
+            width: 120px;
+            height: 46px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             color: #010208;
             position: absolute;
             left: 4px;
             cursor: grab;
-            box-shadow: 0 0 20px var(--cyan-glow);
+            box-shadow: 0 0 22px var(--cyan-glow);
             z-index: 10;
         }
 
@@ -290,7 +290,7 @@
         .swipe-guide-text {
             width: 100%;
             text-align: center;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 700;
             color: var(--text-secondary);
             z-index: 1;
@@ -298,15 +298,15 @@
             position: absolute;
         }
 
-        /* 💡 世界一愛されるポータルライティング＆解説セクション */
+        /* 💡 全世界を納得させる圧倒的長文・サイバーエディトリアルセクション */
         .master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
-            border-radius: 16px;
-            padding: 36px;
+            border-radius: 18px;
+            padding: 40px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 24px;
             position: relative;
             overflow: hidden;
         }
@@ -316,82 +316,94 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 4px;
+            width: 5px;
             height: 100%;
             background: linear-gradient(to bottom, var(--cyan-primary), var(--accent-pink));
         }
 
         .section-tag {
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-weight: 900;
             color: var(--cyan-primary);
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
         }
 
         h2 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 900;
             letter-spacing: -0.02em;
             color: #fff;
-            line-height: 1.4;
+            line-height: 1.35;
         }
 
-        .portal-lead {
-            font-size: 1.05rem;
+        .editorial-lead {
+            font-size: 1.12rem;
             font-weight: 700;
             color: var(--text-primary);
-            line-height: 1.8;
-            border-left: 2px solid var(--cyan-primary);
-            padding-left: 16px;
-            margin: 6px 0;
+            line-height: 1.9;
+            border-left: 3px solid var(--cyan-primary);
+            padding-left: 20px;
+            margin: 10px 0;
+            background: var(--cyan-dim);
+            padding-top: 14px;
+            padding-bottom: 14px;
+            border-radius: 0 8px 8px 0;
         }
 
-        .deep-editorial {
-            font-size: 0.9rem;
+        .editorial-body {
+            font-size: 0.95rem;
             color: var(--text-secondary);
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
 
-        .deep-editorial strong {
+        .editorial-body strong {
             color: var(--text-primary);
         }
 
-        .feature-grid-30 {
+        .pillar-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
             margin-top: 10px;
         }
 
-        .feature-item-box {
+        .pillar-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
-            border-radius: 10px;
-            padding: 14px;
+            border-radius: 12px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 8px;
         }
 
-        .feature-item-title {
-            font-size: 0.75rem;
+        .pillar-number {
+            font-size: 0.68rem;
             font-weight: 900;
             color: var(--cyan-primary);
+            letter-spacing: 0.1em;
         }
 
-        .feature-item-desc {
-            font-size: 0.75rem;
+        .pillar-title {
+            font-size: 0.95rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .pillar-desc {
+            font-size: 0.82rem;
             color: var(--text-secondary);
+            line-height: 1.7;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 24px;
-            font-size: 0.72rem;
+            padding: 28px;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             border-top: 1px solid var(--border-cyan);
             background: var(--surface);
@@ -404,7 +416,7 @@
         <div class="brand">
             <div class="brand-logo">Ω</div>
             <div class="brand-title">
-                <h1>QLUX // GLOBAL PORTAL</h1>
+                <h1>QLUX // GLOBAL SETTLEMENT PORTAL</h1>
             </div>
         </div>
         <div class="header-auth-group">
@@ -450,18 +462,14 @@
         <section class="wallet-matrix-section">
             <div class="wallet-top-flex">
                 <div class="wallet-balance-box">
-                    <span style="font-size: 0.7rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.12em;">BSV 30-CORE TERANODE // SOVEREIGN HUB</span>
+                    <span style="font-size: 0.72rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.15em;">GLOBAL SETTLEMENT & PROOF ENGINE // 30-CORE SOVEREIGN</span>
                     <div class="wallet-amount-display" id="mainWalletBalance">7,450,000 SAT</div>
-                    <span style="font-size: 0.75rem; color: var(--text-secondary);">30大独立サービス・全ナノペイメント回路完全同期稼働中</span>
+                    <span style="font-size: 0.78rem; color: var(--text-secondary);">世界中の企業・個人間取引の未清算アトミック報酬プール同期中</span>
                 </div>
-                <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">30コア統合アトミック出金を実行</button>
+                <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">グローバル一括アトミック清算を実行</button>
             </div>
 
             <div class="cyber-swipe-box">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                    <span style="font-size: 0.75rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.08em;">CYBERNETIC 30-ENGINE SWIPE-TO-SETTLEMENT</span>
-                    <span style="font-size: 0.75rem; color: var(--text-secondary);">全30サービス未回収収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">3,500,000 SAT</b></span>
-                </div>
-
-                <div class="swipe-track-modern" id="swipeTrack">
-                    <div class="swipe-guide-text" id="swipeInstruction">👉 スライドして30大サービスの全収
+                    <span style="font-size: 0.78rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.08em;">SWIPE-TO-SETTLE // ミリ秒グローバル一括テレポート</span>
+       
