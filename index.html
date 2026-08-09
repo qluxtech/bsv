@@ -171,11 +171,11 @@
             padding: 40px 20px;
             display: flex;
             flex-direction: column;
-            gap: 50px;
-            padding-bottom: 220px; /* 下部固定スワイプの余白確保 */
+            gap: 40px;
+            padding-bottom: 220px;
         }
 
-        /* 💡 2. 中央：ご指定の熱量のこもった最高峰のライティングセクション */
+        /* 💡 2. 中央：熱量のこもったライティングセクション（テキスト削除完了版） */
         .editorial-master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
@@ -240,15 +240,6 @@
             color: #fff;
         }
 
-        .editorial-body-content h3 {
-            font-size: 1.25rem;
-            color: var(--cyan-primary);
-            margin-top: 15px;
-            font-weight: 900;
-            border-bottom: 1px dashed var(--border-cyan);
-            padding-bottom: 10px;
-        }
-
         /* 3大キラー機能グリッド */
         .killer-features-grid {
             display: flex;
@@ -308,7 +299,7 @@
             line-height: 1.9;
         }
 
-        /* ⚡ 3. 最下部固定：スワイプアクションパネル */
+        /* ⚡ 3. 最下部固定：世界中の決済と完全連動するスワイプパネル */
         .wallet-bottom-action-section {
             position: fixed;
             bottom: 0;
@@ -372,7 +363,7 @@
             box-shadow: 0 0 25px var(--cyan-primary);
         }
 
-        /* 🚀 サイバースワイプ・トラック＆ノブ */
+        /* 🚀 世界中の決済と直結するサイバースワイプ・トラック＆ノブ */
         .swipe-track-modern {
             background: linear-gradient(90deg, #030612, #0c1538, #030612);
             border: 1px solid var(--cyan-primary);
@@ -519,13 +510,18 @@
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="editorial-body-content" style="margin-top: 15px;">
-                <h3>💡 この「究極のモノ」をスワイプにどう繋げるか？</h3>
-                <p>
-                    ユーザーが画面下のサイバーノブを右へスワイプした瞬間、何が起きるか？<br>
-                    世界中の企業や個人との間で発生していた<strong>「未清算のグローバル報酬、商取引の売上、契約完了フィー」のすべてが、BSV Teranodeの超高速ネットワークによって一瞬で一括精算され、自分のウォレットになだれ込んでくる。</strong><br><br>
-                    <strong>「世界中のすべての企業がコスト削減のために導入し、すべての個人が富を掴むために毎日開き、スワイプせずにはいられない」</strong>――これこそが、誰もが納得するBSVの形です。
-                </p>
+    <section class="wallet-bottom-action-section">
+        <div class="wallet-bottom-inner">
+            <div class="wallet-top-flex">
+                <div class="wallet-balance-box">
+                    <span style="font-size: 0.7rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.15em;">QLUX WALLET // GLOBAL SETTLEMENT CORE</span>
+                    <div class="wallet-amount-display" id="mainWalletBalance">7,450,000 SAT</div>
+                </div>
+                <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">グローバル一括アトミック清算を実行</button>
             </div>
-       
+
+            <div class="swipe-track-modern" id="swipeTrack">
+                <div class="swipe-guide-text" id="swipeInstruction">👉 スワイプして世界中の未清算報酬（3,500,000 
