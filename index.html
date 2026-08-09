@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX — Global Sovereign Teranode Matrix</title>
+    <title>QLUX — Global Sovereign 15-Core Teranode Matrix</title>
     <style>
         :root {
             --bg-deep: #010208;
@@ -16,6 +16,7 @@
             --text-secondary: #8b9bb4;
             --border-cyan: rgba(0, 242, 254, 0.25);
             --success-green: #00ff66;
+            --accent-pink: #ff007f;
         }
 
         * {
@@ -107,7 +108,7 @@
             box-shadow: 0 0 10px var(--cyan-glow);
         }
 
-        /* 📊 超コンパクト・12項目横一列グリッドバー */
+        /* 📊 15大BSV未来技術 横一列超高密度グリッドバー */
         .top-matrix-bar {
             background: rgba(6, 9, 23, 0.98);
             border-bottom: 1px solid var(--border-cyan);
@@ -131,7 +132,7 @@
             border: 1px solid var(--border-cyan);
             border-radius: 6px;
             padding: 4px 8px;
-            min-width: 115px;
+            min-width: 125px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
@@ -145,7 +146,7 @@
         }
 
         .matrix-mini-title {
-            font-size: 0.5rem;
+            font-size: 0.48rem;
             font-weight: 900;
             color: var(--cyan-primary);
             letter-spacing: 0.03em;
@@ -153,7 +154,7 @@
         }
 
         .matrix-mini-badge {
-            font-size: 0.4rem;
+            font-size: 0.38rem;
             padding: 0px 3px;
             border-radius: 3px;
             background: var(--cyan-dim);
@@ -162,7 +163,7 @@
         }
 
         .matrix-mini-value {
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             font-weight: 900;
             color: #fff;
         }
@@ -287,7 +288,7 @@
             position: absolute;
         }
 
-        /* 💡 未来開発ビジョン・メリット解説 */
+        /* 💡 15大技術詳細セクション */
         .master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
@@ -353,52 +354,64 @@
 
     <div class="top-matrix-bar">
         <div class="matrix-mini-card">
-            <div class="matrix-mini-header"><span class="matrix-mini-title">Wallet</span><span class="matrix-mini-badge">Active</span></div>
+            <div class="matrix-mini-header"><span class="matrix-mini-title">1. Teranode</span><span class="matrix-mini-badge" style="color:#00ff66;">10M TPS</span></div>
+            <div class="matrix-mini-value" style="color:#00ff66;">高速アトミック決済</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">2. STAS Token</span><span class="matrix-mini-badge">Native</span></div>
+            <div class="matrix-mini-value">オンチェーン資産</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">3. SPV Wallet</span><span class="matrix-mini-badge" style="color:#00f2fe;">Millisec</span></div>
+            <div class="matrix-mini-value">高速残高証明</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">4. Script 2.0</span><span class="matrix-mini-badge">Escrow</span></div>
+            <div class="matrix-mini-value">条件付き自動契約</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">5. sCrypt</span><span class="matrix-mini-badge" style="color:#ff007f;">Smart</span></div>
+            <div class="matrix-mini-value">TypeScript直結</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">6. Metanet</span><span class="matrix-mini-badge">Tree</span></div>
+            <div class="matrix-mini-value">URL経済資産化</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">7. ZK-Privacy</span><span class="matrix-mini-badge" style="color:#00ff66;">Anchor</span></div>
+            <div class="matrix-mini-value">ゼロ知識証明</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">8. Storage</span><span class="matrix-mini-badge">Yottabyte</span></div>
+            <div class="matrix-mini-value">永久分散ストレージ</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">9. Streaming</span><span class="matrix-mini-badge" style="color:#00f2fe;">Per Sec</span></div>
+            <div class="matrix-mini-value">秒単位マイクロ課金</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">10. Web3 ID</span><span class="matrix-mini-badge">Global</span></div>
+            <div class="matrix-mini-value">HandCash直結</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">11. M2M IoT</span><span class="matrix-mini-badge">Machine</span></div>
+            <div class="matrix-mini-value">AI・デバイス自律決済</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">12. Enterprise API</span><span class="matrix-mini-badge">B2B</span></div>
+            <div class="matrix-mini-value">データ監査ブリッジ</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">13. Ordinals</span><span class="matrix-mini-badge" style="color:#ff007f;">NFT</span></div>
+            <div class="matrix-mini-value">オンチェーンアート</div>
+        </div>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header"><span class="matrix-mini-title">14. Revenue Sweep</span><span class="matrix-mini-badge" style="color:#00ff66;">Active</span></div>
             <div class="matrix-mini-value" id="dashWalletVal">7,450,000 SAT</div>
         </div>
         <div class="matrix-mini-card">
-            <div class="matrix-mini-header"><span class="matrix-mini-title">QLUX SNS</span><span class="matrix-mini-badge" style="color: #00ff66;">Live</span></div>
-            <div class="matrix-mini-value" style="color: #00ff66;">100% 稼働</div>
-        </div>
-        <div class="matrix-mini-card">
-            <div class="matrix-mini-header"><span class="matrix-mini-title">Teranode</span><span class="matrix-mini-badge">v3.8</span></div>
-            <div class="matrix-mini-value" style="color: #00f2fe;">10M+ TPS</div>
-        </div>
-        <div class="matrix-mini-card">
-            <div class="matrix-mini-header"><span class="matrix-mini-title">Atomic Script</span><span class="matrix-mini-badge">Opt</span></div>
-            <div class="matrix-mini-value" style="color: #ff007f;">1e-6 SAT</div>
-        </div>
-        <div class="matrix-mini-card">
-            <div class="matrix-mini-header"><span class="matrix-mini-title">Sovereign Vault</span><span class="matrix-mini-badge">VIP</span></div>
-            <div class="matrix-mini-value">Perpetual</div>
-        </div>
-        <div class="matrix-mini-card">
-            <div class="matrix-mini-header"><span class="matrix-mini-title">Quantum Shield</span><span class="matrix-mini-badge">Secured</span></div>
-            <div class="matrix-mini-value" style="color: #00ff66;">Active</div>
-        </div>
-        <div class="matrix-mini-card">
-            <div class="matrix-mini-header"><span class="matrix-mini-title">Data Stream</span><span class="matrix-mini-badge">Sync</span></div>
-            <div class="matrix-mini-value" style="color: #00f2fe;">0.1ms</div>
-        </div>
-        <div class="matrix-mini-card">
-            <div class="matrix-mini-header"><span class="matrix-mini-title">Identity & Auth</span><span class="matrix-mini-badge">Web3 ID</span></div>
-            <div class="matrix-mini-value">Decentralized</div>
-        </div>
-        <div class="matrix-mini-card">
-            <div class="matrix-mini-header"><span class="matrix-mini-title">Node Pulse</span><span class="matrix-mini-badge">Mesh</span></div>
-            <div class="matrix-mini-value" style="color: #ff007f;">65,536</div>
-        </div>
-        <div class="matrix-mini-card">
-            <div class="matrix-mini-header"><span class="matrix-mini-title">Enterprise API</span><span class="matrix-mini-badge">Gateway</span></div>
-            <div class="matrix-mini-value" style="color: #00ff66;">Online</div>
-        </div>
-        <div class="matrix-mini-card">
-            <div class="matrix-mini-header"><span class="matrix-mini-title">Liquidity Pool</span><span class="matrix-mini-badge">AMM</span></div>
-            <div class="matrix-mini-value" style="color: #00f2fe;">$142M+</div>
-        </div>
-        <div class="matrix-mini-card">
-            <div class="matrix-mini-header"><span class="matrix-mini-title">Zero-Knowledge</span><span class="matrix-mini-badge">ZK-Rollup</span></div>
-            <div class="matrix-mini-value" style="color: #00ff66;">Verified</div>
+            <div class="matrix-mini-header"><span class="matrix-mini-title">15. DAO Core</span><span class="matrix-mini-badge">Autonomy</span></div>
+            <div class="matrix-mini-value" style="color:#00ff66;">自律分散型分配</div>
         </div>
     </div>
 
@@ -406,45 +419,45 @@
         <section class="wallet-matrix-section">
             <div class="wallet-top-flex">
                 <div class="wallet-balance-box">
-                    <span style="font-size: 0.68rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">BSV TERANODE // ATOMIC SOVEREIGN CORE</span>
+                    <span style="font-size: 0.68rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">BSV 15-CORE TERANODE // MASTER SOVEREIGN</span>
                     <div class="wallet-amount-display" id="mainWalletBalance">7,450,000 SAT</div>
-                    <span style="font-size: 0.75rem; color: var(--text-secondary);">秒間10M+ TPS メインネット直結・レイテンシ完全ゼロ</span>
+                    <span style="font-size: 0.75rem; color: var(--text-secondary);">15大未来技術ネットワーク全系統 同時同期稼働中</span>
                 </div>
-                <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">アトミック資産を一括出金する</button>
+                <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">15コア統合アトミック出金を実行</button>
             </div>
 
             <div class="cyber-swipe-box">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                    <span style="font-size: 0.75rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.08em;">BSV CYBERNETIC SWIPE-TO-SETTLEMENT</span>
+                    <span style="font-size: 0.75rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.08em;">CYBERNETIC 15-ENGINE SWIPE-TO-SETTLEMENT</span>
                     <span style="font-size: 0.75rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">3,500,000 SAT</b></span>
                 </div>
 
                 <div class="swipe-track-modern" id="swipeTrack">
-                    <div class="swipe-guide-text" id="swipeInstruction">👉 スライドして収益を即時アトミック確定</div>
+                    <div class="swipe-guide-text" id="swipeInstruction">👉 スライドして15大技術の収益を一括アトミック回収</div>
                     <div class="swipe-thumb-modern" id="swipeThumb">SWIPE ⚡</div>
                 </div>
             </div>
         </section>
 
         <section class="master-card">
-            <div class="section-tag">⚡ BSV Teranode & Sovereign Architecture</div>
-            <h2>なぜこのスワイプ体験が世界一の優良サービスなのか？<br>未来開発技術がもたらす圧倒的な優位性</h2>
+            <div class="section-tag">⚡ 15-Core BSV Sovereign Architecture & Infinite Monetization</div>
+            <h2>世界中から愛され、無限にマネタイズを生み出す<br>「15のBSV未来技術」融合の全貌</h2>
             <div class="deep-editorial">
                 <p>
-                    私たちが開発するこのシステムは、従来の「サーバーを介した中央集権型サービス」とは根本的に異なります。基盤に<strong>BSV（Bitcoin Satoshi Vision）のTeranodeインフラ</strong>を採用することで、世界中どこからアクセスしても秒間1,000万件以上のトランザクションをミリ秒単位で処理し、仲介手数料やタイムラグを完全に排除しています。
+                    このプラットフォームは、BSVが誇る最高峰の未来技術（Teranodeの超高速TPS、STASトークン規格、Metanet経済ツリー、sCryptスマートコントラクトなど）のすべてを1つに統合した、<strong>地球上で唯一無二のスーパー・エコシステム</strong>です。
                 </p>
                 <p>
-                    ユーザーが画面上のノブを<strong>スワイプ</strong>した瞬間、バックグラウンドのスマートコントラクトが直ちに起動し、未回収の収益が1サトシ単位の狂いもなくウォレットの残高へとテレポートします。この「指先のジェスチャーとブロックチェーンの不変な真実が直結する快感」こそが、他のいかなるビッグテック企業も真似できない、次世代の最高峰UXです。
+                    ユーザーが下のノブをスワイプした瞬間、上部の15個すべてのコアエンジン（決済、データ同期、NFT流通、秒単位ストリーミング課金、自動DAO分配など）が完全に同期し、地球上のあらゆる経済活動から発生した収益が一瞬にしてウォレットへテレポートします。仲介者や遅延は一切存在せず、すべての価値が数学的真実によって完璧に担保されます。
                 </p>
                 <p>
-                    中央管理者の介入を一切必要としない「完全自律分散型の経済圏」を、この美しいデザインと極限まで磨き上げられたインタラクションとともに、世界へ向けて放ちましょう。
+                    この圧倒的な技術力と、指先ひとつで世界を動かすような至高のUXを武器に、世界中から愛され、永続的に繁栄する究極のサービスを共に築き上げましょう！
                 </p>
             </div>
         </section>
     </main>
 
     <footer>
-        &copy; 2026 QLUX Global Sovereign Enterprise. Powered by BSV Teranode.
+        &copy; 2026 QLUX Global Sovereign Enterprise. Powered by 15-Core BSV Teranode Infrastructure.
     </footer>
 
     <script>
@@ -473,95 +486,5 @@
         // 🖱️ PC用 (Pointer Events)
         thumb.addEventListener('pointerdown', (e) => {
             startDrag(e.clientX);
-            thumb.setPointerCapture(e.pointerId);
-            e.stopPropagation();
-        });
+            thumb.setPointerCapture(e
 
-        window.addEventListener('pointermove', (e) => {
-            if (!isDragging) return;
-            onDrag(e.clientX);
-        });
-
-        window.addEventListener('pointerup', () => {
-            if (!isDragging) return;
-            endDrag();
-        });
-
-        // 📱 スマホ・タブレット用 (Touch Events)
-        thumb.addEventListener('touchstart', (e) => {
-            if (e.touches.length > 0) {
-                startDrag(e.touches[0].clientX);
-                e.stopPropagation();
-            }
-        }, { passive: true });
-
-        window.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            if (e.touches.length > 0) {
-                onDrag(e.touches[0].clientX);
-            }
-        }, { passive: true });
-
-        window.addEventListener('touchend', () => {
-            if (!isDragging) return;
-            endDrag();
-        }, { passive: true });
-
-        function startDrag(clientX) {
-            isDragging = true;
-            updateMetrics();
-            startX = clientX - currentX;
-            instruction.style.opacity = '0.2';
-        }
-
-        function onDrag(clientX) {
-            updateMetrics();
-            const diff = clientX - startX;
-            currentX = Math.max(0, Math.min(diff, maxTrackWidth));
-            thumb.style.transform = `translateX(${currentX}px)`;
-
-            if (currentX >= maxTrackWidth * 0.70) {
-                completeSwipeAction();
-            }
-        }
-
-        function endDrag() {
-            if (!isDragging) return;
-            isDragging = false;
-            updateMetrics();
-
-            if (currentX < maxTrackWidth * 0.70) {
-                thumb.style.transition = 'transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1)';
-                thumb.style.transform = 'translateX(0px)';
-                currentX = 0;
-                setTimeout(() => {
-                    thumb.style.transition = 'none';
-                }, 300);
-                instruction.style.opacity = '1';
-            }
-        }
-
-        function completeSwipeAction() {
-            if (!isDragging) return;
-            isDragging = false;
-            updateMetrics();
-
-            let pendingVal = parseInt(pendingEl.innerText.replace(/[^0-9]/g, '')) || 0;
-            if (pendingVal > 0) {
-                thumb.style.transition = 'transform 0.2s ease';
-                thumb.style.transform = `translateX(${maxTrackWidth}px)`;
-                thumb.style.background = '#00ff66';
-                thumb.style.color = '#010208';
-                thumb.innerText = 'SUCCESS ✓';
-
-                setTimeout(() => {
-                    alert(`⚡ BSV Teranode Atomic Settlement Success!\n未回収収益 ${pendingVal.toLocaleString()} SAT がメインネット経由で瞬時に同期されました。`);
-                    
-                    let currentBal = parseInt(walletEl.innerText.replace(/[^0-9]/g, '')) || 0;
-                    currentBal += pendingVal;
-                    walletEl.innerText = currentBal.toLocaleString() + ' SAT';
-                    if(dashWalletEl) dashWalletEl.innerText = currentBal.toLocaleString() + ' SAT';
-
-                    pendingEl.innerText = '0 SAT';
-                    pendingEl.style.opacity = '0.4';
-  
