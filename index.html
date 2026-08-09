@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX — Global Sovereign Enterprise Matrix</title>
+    <title>QLUX — Global Sovereign Teranode Matrix</title>
     <style>
         :root {
             --bg-deep: #010208;
@@ -15,6 +15,7 @@
             --text-primary: #f0f4ff;
             --text-secondary: #8b9bb4;
             --border-cyan: rgba(0, 242, 254, 0.25);
+            --success-green: #00ff66;
         }
 
         * {
@@ -34,7 +35,7 @@
             overflow-x: hidden;
         }
 
-        /* 🌐 Header & Auth Module */
+        /* 🌐 Header Module */
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border-cyan);
@@ -106,7 +107,7 @@
             box-shadow: 0 0 10px var(--cyan-glow);
         }
 
-        /* 📊 さらに小さく・美しく横一列に収まる12項目超高密度グリッドバー */
+        /* 📊 超コンパクト・12項目横一列グリッドバー */
         .top-matrix-bar {
             background: rgba(6, 9, 23, 0.98);
             border-bottom: 1px solid var(--border-cyan);
@@ -119,10 +120,10 @@
             z-index: 990;
             backdrop-filter: blur(20px);
             white-space: nowrap;
-            scrollbar-width: none; /* Firefox用スクロールバー非表示 */
+            scrollbar-width: none;
         }
         .top-matrix-bar::-webkit-scrollbar {
-            display: none; /* Chrome/Safari用スクロールバー非表示ですっきり */
+            display: none;
         }
 
         .matrix-mini-card {
@@ -178,7 +179,7 @@
             gap: 20px;
         }
 
-        /* Wallet & Swipe Section */
+        /* Wallet & World-Class Swipe Section */
         .wallet-matrix-section {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
@@ -224,7 +225,7 @@
             box-shadow: 0 4px 15px var(--cyan-glow);
         }
 
-        /* ⚡ 永久確実動作：無敵スワイプコンテナ */
+        /* ⚡ 無敵・完全追従スワイプコンテナ */
         .cyber-swipe-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
@@ -247,7 +248,7 @@
             overflow: hidden;
             user-select: none;
             -webkit-user-select: none;
-            touch-action: none; /* スワイプ中のブラウザのスクロール誤作動を完全に遮断 */
+            touch-action: none;
             max-width: 400px;
             margin: 0 auto;
             width: 100%;
@@ -286,7 +287,7 @@
             position: absolute;
         }
 
-        /* メリット解説セクション */
+        /* 💡 未来開発ビジョン・メリット解説 */
         .master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
@@ -405,45 +406,45 @@
         <section class="wallet-matrix-section">
             <div class="wallet-top-flex">
                 <div class="wallet-balance-box">
-                    <span style="font-size: 0.68rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">QLUX WALLET // SOVEREIGN CORE ACTIVE</span>
+                    <span style="font-size: 0.68rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">BSV TERANODE // ATOMIC SOVEREIGN CORE</span>
                     <div class="wallet-amount-display" id="mainWalletBalance">7,450,000 SAT</div>
-                    <span style="font-size: 0.75rem; color: var(--text-secondary);">HandCash Connect & ネイティブ秘密鍵ハイブリッド接続中</span>
+                    <span style="font-size: 0.75rem; color: var(--text-secondary);">秒間10M+ TPS メインネット直結・レイテンシ完全ゼロ</span>
                 </div>
                 <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">アトミック資産を一括出金する</button>
             </div>
 
             <div class="cyber-swipe-box">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                    <span style="font-size: 0.75rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.08em;">CYBERNETIC SWIPE-TO-PAY & REVENUE SWEEP</span>
+                    <span style="font-size: 0.75rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.08em;">BSV CYBERNETIC SWIPE-TO-SETTLEMENT</span>
                     <span style="font-size: 0.75rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">3,500,000 SAT</b></span>
                 </div>
 
                 <div class="swipe-track-modern" id="swipeTrack">
-                    <div class="swipe-guide-text" id="swipeInstruction">👉 スライドして報酬を回収</div>
+                    <div class="swipe-guide-text" id="swipeInstruction">👉 スライドして収益を即時アトミック確定</div>
                     <div class="swipe-thumb-modern" id="swipeThumb">SWIPE ⚡</div>
                 </div>
             </div>
         </section>
 
         <section class="master-card">
-            <div class="section-tag">⚡ Autonomous Yield & UX Architecture Integration</div>
-            <h2>スワイプアクションがもたらす革新的なメリットと<br>次世代デジタル経済の経済圏優位性</h2>
+            <div class="section-tag">⚡ BSV Teranode & Sovereign Architecture</div>
+            <h2>なぜこのスワイプ体験が世界一の優良サービスなのか？<br>未来開発技術がもたらす圧倒的な優位性</h2>
             <div class="deep-editorial">
                 <p>
-                    顧客（ユーザー）がこの<strong>Cybernetic Swipe-to-Pay & Revenue Sweep</strong>を実行することの本質的な価値は、単なる資金の移動に留まりません。プラットフォーム全体で発生した未確定の報酬（Pending Revenue）を、ユーザー自らの直感的なスワイプジェスチャーによって<strong>瞬時にアトミック確定・回収（Sweep）</strong>させることで、従来の金融システムが抱えていた「入金・反映待ちのタイムラグ」や「機会損失」を完全にゼロへと昇華させます。
+                    私たちが開発するこのシステムは、従来の「サーバーを介した中央集権型サービス」とは根本的に異なります。基盤に<strong>BSV（Bitcoin Satoshi Vision）のTeranodeインフラ</strong>を採用することで、世界中どこからアクセスしても秒間1,000万件以上のトランザクションをミリ秒単位で処理し、仲介手数料やタイムラグを完全に排除しています。
                 </p>
                 <p>
-                    裏側では秒間10M+ TPSを誇るTeranodeメインネットが稼働しており、回収された直後の資産は直ちにQLUX Walletの残高にリアルタイムで合算・同期されます。これにより、顧客は自身の活動成果が即座に手元に反映される圧倒的な<strong>トランスペアレンシー（透明性）</strong>と、指先一つで世界中の経済圏をコントロールしているかのような<strong>至高の没入感（Gamified UX）</strong>を体感します。
+                    ユーザーが画面上のノブを<strong>スワイプ</strong>した瞬間、バックグラウンドのスマートコントラクトが直ちに起動し、未回収の収益が1サトシ単位の狂いもなくウォレットの残高へとテレポートします。この「指先のジェスチャーとブロックチェーンの不変な真実が直結する快感」こそが、他のいかなるビッグテック企業も真似できない、次世代の最高峰UXです。
                 </p>
                 <p>
-                    結果として、顧客エンゲージメントとプラットフォームへのロイヤルティは最高潮に達し、エコシステム全体における自律的な経済循環の速度が劇的に加速します。これこそが、仲介者を排除した次世代自律分散型インフラストラクチャが提供する究極の競争優位性です。
+                    中央管理者の介入を一切必要としない「完全自律分散型の経済圏」を、この美しいデザインと極限まで磨き上げられたインタラクションとともに、世界へ向けて放ちましょう。
                 </p>
             </div>
         </section>
     </main>
 
     <footer>
-        &copy; 2026 QLUX Global Sovereign Enterprise. All Rights Reserved.
+        &copy; 2026 QLUX Global Sovereign Enterprise. Powered by BSV Teranode.
     </footer>
 
     <script>
@@ -486,7 +487,7 @@
             endDrag();
         });
 
-        // 📱 スマホ・タブレット用 (Touch Events - 窓全体で確実に追跡)
+        // 📱 スマホ・タブレット用 (Touch Events)
         thumb.addEventListener('touchstart', (e) => {
             if (e.touches.length > 0) {
                 startDrag(e.touches[0].clientX);
@@ -554,8 +555,13 @@
                 thumb.innerText = 'SUCCESS ✓';
 
                 setTimeout(() => {
-                    alert(`⚡ Cybernetic Swipe Success!\n未回収収益 ${pendingVal.toLocaleString()} SAT が QLUX Wallet へ完全アトミック同期されました。`);
+                    alert(`⚡ BSV Teranode Atomic Settlement Success!\n未回収収益 ${pendingVal.toLocaleString()} SAT がメインネット経由で瞬時に同期されました。`);
                     
                     let currentBal = parseInt(walletEl.innerText.replace(/[^0-9]/g, '')) || 0;
                     currentBal += pendingVal;
-                    walletEl.innerText = currentBal.to
+                    walletEl.innerText = currentBal.toLocaleString() + ' SAT';
+                    if(dashWalletEl) dashWalletEl.innerText = currentBal.toLocaleString() + ' SAT';
+
+                    pendingEl.innerText = '0 SAT';
+                    pendingEl.style.opacity = '0.4';
+  
