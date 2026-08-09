@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX — Supreme BSV Neural Megalopolis & On-Chain Social Hub</title>
+    <title>QLUX — Sovereign BSV Neural Megalopolis & All-In-One Cybernetic Portal</title>
     <style>
         :root {
             --bg-deep: #020206;
@@ -243,7 +243,7 @@
             color: var(--text-secondary);
         }
 
-        /* 🚀 マネージャーを超えた究極のサイバネティック・スワイプ決済バー (Swipe-to-Pay) */
+        /* 🚀 サイバネティック・スワイプ決済バー (Swipe-to-Pay) */
         .cyber-swipe-container {
             background: linear-gradient(135deg, rgba(0,242,254,0.06), rgba(243,186,47,0.06));
             border: 2px solid var(--accent-cyan);
@@ -296,7 +296,7 @@
             z-index: 1;
         }
 
-        /* SNS QLUX プレミアム・オンス・ストリーム (Twetchを超越した高機能) */
+        /* SNS QLUX オンチェーンソーシャルハブ */
         .sns-wrapper {
             display: flex;
             flex-direction: column;
@@ -497,7 +497,7 @@
             <div class="brand-logo">Ω</div>
             <div class="brand-title">
                 <h1>QLUX</h1>
-                <p>BSV SOVEREIGN TERANODE // CYBERNETIC SWIPE & SNS QLUX</p>
+                <p>BSV SOVEREIGN TERANODE // ALL-IN-ONE CYBERNETIC PORTAL</p>
             </div>
         </div>
         <div class="auth-widget">
@@ -509,16 +509,14 @@
     </header>
 
     <nav class="nav-tabs">
-        <a href="index.html" class="nav-tab active">⚡ メインポータル</a>
-        <a href="wallet.html" class="nav-tab">💳 QLUX Wallet</a>
+        <a href="#mainPortal" class="nav-tab active">⚡ メインポータル</a>
         <a href="#snsSection" class="nav-tab">🌐 SNS QLUX</a>
-        <a href="economy.html" class="nav-tab">📊 無人マイクロ経済</a>
-        <a href="zkp.html" class="nav-tab">🛡️ ZKPプライバシー要塞</a>
-        <a href="ai.html" class="nav-tab">🧠 量子耐性 AIコア</a>
-        <a href="mining.html" class="nav-tab">⛏️ マイニング</a>
+        <a href="#economySection" class="nav-tab">📊 無人マイクロ経済</a>
+        <a href="#zkpSection" class="nav-tab">🛡️ ZKPプライバシー</a>
+        <a href="#aiSection" class="nav-tab">🧠 量子耐性 AIコア</a>
     </nav>
 
-    <main>
+    <main id="mainPortal">
         <div class="card">
             <div class="card-header">
                 <span>Supreme Master Node & Cybernetic Swipe Engine</span>
@@ -527,7 +525,7 @@
 
             <div class="editorial-text">
                 <p>
-                    <strong>QLUX</strong>は、旧時代のマネーボタン（MoneyButton）や従来のウォレット制限を完全に過去のものにする、次世代の<strong>サイバネティック・スワイプ決済（Swipe-to-Pay）</strong>と完全融合したBSV最高峰のインフラストラクチャです。画面中央のスワイプバーをドラッグ、あるいはワンクリックするだけで、1,000万TPSのTeranodeネットワークを介したアトミック・マイクロ決済が一瞬で完了し、エコシステムの全収益がリアルタイムにプール＆一括回収されます。
+                    <strong>QLUX</strong>は、旧時代のマネーボタンや煩雑なウォレット手続きを完全に過去のものにする、次世代の<strong>サイバネティック・スワイプ決済（Swipe-to-Pay）</strong>と完全統合したBSV最高峰のオールインワン・インフラストラクチャです。画面中央のスワイプバーをスライド、あるいはワンクリックするだけで、1,000万TPSのTeranodeネットワークを介したアトミック・マイクロ決済が一瞬で完了し、エコシステムの全収益がリアルタイムにプール＆一括回収されます。
                 </p>
             </div>
 
@@ -570,7 +568,7 @@
 
             <div class="editorial-text">
                 <p>
-                    Twetchなどの先駆的オンチェーンSNSの限界（UXの重さ、手数料の不確実性）を完全に克服した<strong>SNS QLUX</strong>。投稿、いいね、リポスト、そして各アクションへのナノサトシ・チップ（Nanotip）の送受信がすべて一連のBSVトランザクションとしてリアルタイムにオンチェーン刻印されます。中央集権的な検閲は一切存在せず、あなたの発言そのものが資産を生み出す自律経済圏です。
+                    Twetchなどの先駆的オンチェーンSNSの限界を完全に克服した<strong>SNS QLUX</strong>。投稿、いいね、リポスト、そして各アクションへのナノサトシ・チップ（Nanotip）の送受信がすべて一連のBSVトランザクションとしてリアルタイムにオンチェーン刻印されます。中央集権的な検閲は一切存在せず、あなたの発言そのものが資産を生み出す自律経済圏です。
                 </p>
             </div>
 
@@ -599,4 +597,5 @@
                             量子耐性512シールドと直結したSNS QLUXのリレーノードが全域で同期完了。スワイプ決済によるオートチップ報酬が全バリデータに分配されました。
                         </div>
                         <div class="feed-actions">
-                            <button class="feed-action-btn like" onclick="handleFeedAction(this, '❤️ いいね')">❤️ 42</
+                            <button class="feed-action-btn like" onclick="handleFeedAction(this, '❤️ いいね')">❤️ 42</button>
+                            <button class="feed-action-btn tip" onclick="handleFeedAction(this, '⚡ 100 SATチップ')">⚡ 100 SATチップ</butto
