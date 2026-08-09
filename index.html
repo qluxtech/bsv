@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX SUPREME MEGALOPOLIS — Planetary Teranode & Sovereign OS</title>
+    <title>QLUX SUPREME MEGALOPOLIS — Planetary Teranode & Neural ZKP Matrix</title>
     <style>
         :root {
-            --bg-deep: #020207;
-            --surface: #0a0a12;
-            --surface-hover: #121220;
+            --bg-deep: #030308;
+            --surface: #0b0b16;
+            --surface-hover: #141426;
             --accent-cyan: #00f2fe;
-            --accent-magenta: #ff007f;
             --accent-gold: #f3ba2f;
+            --accent-magenta: #ff007f;
             --accent-green: #00ff66;
-            --accent-purple: #9d00ff;
-            --accent-orange: #ff6500;
-            --text-primary: #f4f4f8;
-            --text-secondary: #9494b8;
-            --border-color: rgba(255, 255, 255, 0.1);
+            --text-primary: #f8f8fc;
+            --text-secondary: #9898b8;
+            --border-color: rgba(255, 255, 255, 0.08);
             --glow-gold: rgba(243, 186, 47, 0.3);
             --glow-cyan: rgba(0, 242, 254, 0.3);
         }
@@ -35,85 +33,82 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
         }
 
-        /* ヘッダー */
+        /* ヘッダーエリア */
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border-color);
-            padding: 16px 32px;
+            padding: 16px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
 
         .brand-logo {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-gold), var(--accent-magenta));
-            border-radius: 14px;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-cyan));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
             font-size: 1.5rem;
             color: #000;
-            box-shadow: 0 0 30px var(--glow-gold);
+            box-shadow: 0 0 25px var(--glow-gold);
         }
 
         .brand-title h1 {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 900;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             background: linear-gradient(90deg, #fff, var(--accent-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .brand-title p {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: var(--text-secondary);
-            letter-spacing: 0.2em;
+            letter-spacing: 0.15em;
         }
 
-        .global-metrics-pill {
-            display: flex;
-            gap: 20px;
+        .header-status {
             background: var(--surface-hover);
             border: 1px solid var(--border-color);
-            padding: 10px 20px;
-            border-radius: 30px;
+            padding: 8px 16px;
+            border-radius: 24px;
             font-size: 0.8rem;
-        }
-
-        .metric-item span { color: var(--text-secondary); }
-        .metric-item b { color: var(--accent-gold); }
-
-        /* スマート・オリジナルナビゲーションタブ */
-        nav {
-            background: var(--surface);
-            padding: 14px 32px;
             display: flex;
-            gap: 12px;
-            border-bottom: 1px solid var(--border-color);
-            overflow-x: auto;
+            align-items: center;
+            gap: 8px;
         }
 
-        nav::-webkit-scrollbar { height: 4px; }
-        nav::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 2px; }
+        .header-status b { color: var(--accent-gold); }
 
-        .tab-btn {
+        /* ナビゲーションタブバー */
+        .nav-tabs {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 28px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-tab {
             background: var(--surface-hover);
             border: 1px solid var(--border-color);
             color: var(--text-secondary);
@@ -122,60 +117,50 @@
             font-size: 0.8rem;
             font-weight: 700;
             cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .tab-btn:hover {
+        .nav-tab:hover, .nav-tab.active {
+            background: linear-gradient(135deg, rgba(243,186,47,0.15), rgba(0,242,254,0.15));
             border-color: var(--accent-gold);
             color: var(--text-primary);
-            transform: translateY(-2px);
+            box-shadow: 0 0 15px var(--glow-gold);
         }
 
-        .tab-btn.active {
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
-            border-color: transparent;
-            color: #000;
-            font-weight: 900;
-            box-shadow: 0 0 25px var(--glow-gold);
-            transform: translateY(-2px);
-        }
-
-        /* メインコンテナ */
+        /* メインキャンバス */
         main {
             flex: 1;
-            max-width: 1400px;
+            max-width: 1280px;
             width: 100%;
             margin: 0 auto;
-            padding: 32px;
+            padding: 28px;
             display: flex;
             flex-direction: column;
-            gap: 28px;
-        }
-
-        .section-panel {
-            display: none;
-            flex-direction: column;
-            gap: 28px;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        .section-panel.active { display: flex; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            gap: 24px;
         }
 
         .card {
             background: var(--surface);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border-radius: 18px;
             padding: 28px;
             display: flex;
             flex-direction: column;
             gap: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-cyan));
         }
 
         .card-header {
@@ -187,123 +172,123 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 12px;
         }
 
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
 
-        .stat-box {
-            background: var(--surface-hover);
+        .metric-box {
+            background: linear-gradient(135deg, rgba(243,186,47,0.04), rgba(0,242,254,0.02));
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 6px;
         }
 
-        .stat-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; }
-        .stat-value { font-size: 1.5rem; font-weight: 900; color: var(--accent-cyan); }
+        .metric-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
 
-        /* スワイパーバー（完全動作インタラクション） */
-        .sweeper-bar {
-            background: linear-gradient(90deg, rgba(243,186,47,0.08), rgba(255,101,0,0.08));
-            border: 1.5px solid var(--accent-gold);
-            border-radius: 40px;
-            padding: 16px 32px;
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            text-shadow: 0 0 15px var(--glow-gold);
+        }
+
+        .metric-sub {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* アトミック一括スイーパーバー */
+        .sweep-bar {
+            background: linear-gradient(90deg, rgba(243,186,47,0.08), rgba(0,242,254,0.08));
+            border: 2px solid var(--accent-gold);
+            border-radius: 14px;
+            padding: 20px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .sweep-bar { flex-direction: column; align-items: flex-start; }
+        }
+
+        .sweep-btn {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-cyan));
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 900;
+            font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 0 25px var(--glow-gold);
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(243, 186, 47, 0.3);
+            white-space: nowrap;
         }
 
-        .sweeper-bar:hover {
-            box-shadow: 0 0 35px var(--glow-gold);
-            transform: scale(1.01);
-            background: rgba(243, 186, 47, 0.12);
+        .sweep-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px var(--glow-gold);
         }
 
-        .sweeper-bar:active { transform: scale(0.99); }
+        /* オンチェーンフィード入力エリア */
+        .feed-box {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-        textarea, input[type="text"], input[type="number"] {
-            background: var(--surface-hover);
+        .feed-textarea {
+            background: var(--bg-deep);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 16px;
             color: var(--text-primary);
-            font-size: 0.95rem;
-            width: 100%;
+            font-size: 0.9rem;
+            resize: none;
+            height: 90px;
             outline: none;
-            transition: border-color 0.2s;
+            transition: border-color 0.3s;
         }
 
-        textarea:focus, input:focus { border-color: var(--accent-gold); box-shadow: 0 0 15px var(--glow-gold); }
+        .feed-textarea:focus { border-color: var(--accent-gold); }
 
-        .action-btn {
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
-            color: #000;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 10px;
-            font-weight: 900;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.25s;
-            box-shadow: 0 4px 20px rgba(243, 186, 47, 0.2);
-        }
-
-        .action-btn:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: 0 6px 25px var(--glow-gold); }
-        .action-btn.cyan { background: linear-gradient(135deg, var(--accent-cyan), #0088ff); color: #000; box-shadow: 0 4px 20px var(--glow-cyan); }
-        .action-btn.purple { background: linear-gradient(135deg, var(--accent-purple), #b000ff); color: #fff; }
-        .action-btn.magenta { background: linear-gradient(135deg, var(--accent-magenta), #ff3399); color: #fff; }
-
-        .twetch-feed-box {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-top: 10px;
-        }
-
-        .twetch-post {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            transition: border-color 0.2s;
-        }
-
-        .twetch-post:hover { border-color: rgba(0, 242, 254, 0.4); }
-
-        .twetch-header {
+        .feed-footer {
             display: flex;
             justify-content: space-between;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+            align-items: center;
         }
 
-        .terminal-box {
-            background: #010105;
-            border: 1px solid var(--border-color);
+        .action-btn {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+            color: #000;
+            border: none;
+            padding: 10px 22px;
             border-radius: 10px;
-            padding: 18px;
-            font-family: 'Courier New', Courier, monospace;
+            font-weight: 900;
             font-size: 0.85rem;
-            color: var(--accent-green);
-            height: 200px;
-            overflow-y: auto;
-            line-height: 1.6;
+            cursor: pointer;
+            transition: all 0.3s;
         }
+
+        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 0 20px var(--glow-cyan); }
 
         footer {
             text-align: center;
-            padding: 32px;
+            padding: 28px;
             font-size: 0.75rem;
             color: var(--text-secondary);
             border-top: 1px solid var(--border-color);
@@ -318,178 +303,101 @@
             <div class="brand-logo">Ω</div>
             <div class="brand-title">
                 <h1>QLUX SUPREME MEGALOPOLIS</h1>
-                <p>PLANETARY TERANODE // SOVEREIGN OMNI-OS // 10M+ TPS MATRIX</p>
+                <p>PLANETARY TERANODE // NEURAL-ZKP MATRIX // POST-QUANTUM SOVEREIGNTY</p>
             </div>
         </div>
-        <div class="global-metrics-pill">
-            <div class="metric-item"><span>Total Vault:</span> <b id="headerVault">489,200 SAT</b></div>
-            <div class="metric-item"><span>Global TPS:</span> <b style="color: var(--accent-green);">10,240,000</b></div>
+        <div class="header-status">
+            <span>HandCash Connect:</span>
+            <b id="headerWalletBal">245,800 SAT</b>
         </div>
     </header>
 
-    <nav>
-        <button class="tab-btn active" onclick="switchTab('nexus-feed', event)">⚡ テラノード・メッシュ司令塔</button>
-        <button class="tab-btn" onclick="switchTab('omni-wallet', event)">💎 QLUX Omni-Wallet 決済</button>
-        <button class="tab-btn" onclick="switchTab('twetch-social', event)">🌐 Twetch分散オンチェーンSNS</button>
-        <button class="tab-btn" onclick="switchTab('stratum-hub', event)">⛏️ Gorilla Pool ASIC ストラタム</button>
-        <button class="tab-btn" onclick="switchTab('nano-economy', event)">🤖 無人AIナノエージェント経済</button>
-        <button class="tab-btn" onclick="switchTab('zkp-shield', event)">🛡️ ZKP ゼロ知識プライバシー要塞</button>
-        <button class="tab-btn" onclick="switchTab('quantum-ai', event)">⚛️ ポスト量子耐性 AIコア</button>
-        <button class="tab-btn" onclick="switchTab('ordinals-vault', event)">🗄️ 永久Ordinalsインスクリプション</button>
+    <nav class="nav-tabs">
+        <a href="index.html" class="nav-tab active">⚡ メイン・メガフィード</a>
+        <a href="wallet.html" class="nav-tab">💳 QLUX Omni-Wallet</a>
+        <a href="economy.html" class="nav-tab">🌐 無人マイクロ経済</a>
+        <a href="zkp.html" class="nav-tab">🛡️ ZKPプライバシー要塞</a>
+        <a href="ai.html" class="nav-tab">🧠 量子耐性 AIコア</a>
+        <a href="mining.html" class="nav-tab">⛏️ マイニング・ストラタム</a>
     </nav>
 
     <main>
+        <div class="card">
+            <div class="card-header">
+                <span>Supreme Master Node Controller</span>
+                <span style="color: var(--accent-green);">● Teranode Mesh Synchronized</span>
+            </div>
 
-        <div id="nexus-feed" class="section-panel active">
-            <div class="card">
-                <div class="card-header">
-                    <span>Teranode Sovereign Master Controller</span>
-                    <span style="color: var(--accent-green);">● Mesh Synchronized (100% Uptime)</span>
+            <div class="grid-3">
+                <div class="metric-box">
+                    <span class="metric-label">ネットワーク稼働率</span>
+                    <span class="metric-value">99.999%</span>
+                    <span class="metric-sub">Zero Downtime Guarantee</span>
                 </div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    世界最高峰の拡張性を誇るBSV Teranodeインフラストラクチャと完全同期。秒間1,000万トランザクションを処理する次世代分散ノード網のリアルタイム・テレメトリー。
-                </p>
-                <div class="grid-3">
-                    <div class="stat-box">
-                        <span class="stat-label">ネットワーク稼働率</span>
-                        <span class="stat-value">99.999%</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">平均マイクロ手数料</span>
-                        <span class="stat-value" style="color: var(--accent-gold);">&lt; 0.000001 SAT</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">アクティブバリデータ</span>
-                        <span class="stat-value" style="color: var(--accent-purple);">65,536 Nodes</span>
-                    </div>
+                <div class="metric-box">
+                    <span class="metric-label">平均マイクロ手数料</span>
+                    <span class="metric-value" style="color: var(--accent-cyan);">&lt; 0.000001 SAT</span>
+                    <span class="metric-sub">Pay-Per-Action Optimized</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">アクティブバリデータ</span>
+                    <span class="metric-value" style="color: var(--accent-magenta);">65,536 Nodes</span>
+                    <span class="metric-sub">Global Decentralized Mesh</span>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header">アトミック収益・ナノペイメント一括スイーパー</div>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">
-                    ネットワーク全体で発生した無数のサブサトシ報酬やマイニング収益を、ワンタップ（スワイプ）で瞬時にメインオムニウォレットへ集約します。
-                </p>
-                <div class="sweeper-bar" onclick="executeAtomicSweep()">
-                    <span style="font-size: 0.95rem; font-weight: 800;">未回収ナノペイメント・報酬プール:</span>
-                    <span style="color: var(--accent-gold); font-weight: 900; font-size: 1.3rem;" id="sweepPoolAmount">348,500 SAT</span>
-                    <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 700;">→ スワイプして一括回収 →</span>
+            <div class="sweep-bar">
+                <div>
+                    <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: 700; display: block; margin-bottom: 2px;">ATOMIC REVENUE SWEEPER</span>
+                    <span style="font-size: 1.05rem; font-weight: 900; color: var(--text-primary);">未回収ナノペイメント・マイニング報酬: <span style="color: var(--accent-gold);" id="pendingSweepAmount">348,500 SAT</span></span>
                 </div>
+                <button class="sweep-btn" onclick="executeAtomicSweep()">⚡ スワイプしてウォレットに即時一括回収</button>
             </div>
         </div>
 
-        <div id="omni-wallet" class="section-panel">
-            <div class="card">
-                <div class="card-header">QLUX Omni-Wallet (Next-Gen Payment Engine)</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    HandCash ConnectやMoneybuttonの利便性を凌駕する次世代型オムニウォレット。Paymail瞬時送金、アトミック分割決済、シームレスな暗号資産管理を統合。
-                </p>
-                <div class="grid-2">
-                    <div class="stat-box">
-                        <span class="stat-label">オムニウォレット残高</span>
-                        <span class="stat-value" style="color: var(--accent-gold);" id="walletBalanceDisplay">489,200 SAT</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">専用Paymail ID</span>
-                        <span class="stat-value" style="font-size: 1rem; color: var(--accent-cyan);">qlux@bsv.id</span>
-                    </div>
-                </div>
-                <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px;">
-                    <input type="text" id="paymailTarget" placeholder="宛先 Paymail (例: user@handcash.io)" style="flex: 2;">
-                    <input type="number" id="paymailAmount" placeholder="金額 (SAT)" style="flex: 1; min-width: 140px;">
-                    <button class="action-btn" onclick="executePaymailTransfer()">瞬時送金実行</button>
+        <div class="card">
+            <div class="card-header">
+                <span>On-Chain Pay-Per-Action Neural Feed</span>
+                <span style="color: var(--text-secondary); font-size: 0.75rem;">完全分散リアルタイムストリーム</span>
+            </div>
+            
+            <div class="feed-box">
+                <textarea class="feed-textarea" id="feedInput" placeholder="惑星規模のBSVメガエコシステムに新たな歴史的記録を刻む... #QLUX #Teranode #PostQuantum #ZKP">惑星規模のBSVメガエコシステムに新たな歴史的記録を刻む... #QLUX #Teranode #PostQuantum #ZKP</textarea>
+                <div class="feed-footer">
+                    <span style="font-size: 0.75rem; color: var(--text-secondary);">ゼロ手数料・ナノアトミックトランザクション自動配信</span>
+                    <button class="action-btn" onclick="publishToChain()">チェーンに永久刻印する</button>
                 </div>
             </div>
         </div>
+    </main>
 
-        <div id="twetch-social" class="section-panel">
-            <div class="card">
-                <div class="card-header">Twetch-Style On-Chain Social Protocol</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    すべてのポスト、リプライ、いいねがビットコインブロックチェーン上に直接刻まれ、アクションごとにサトシ報酬が自動分配される完全分散型ソーシャルマトリクス。
-                </p>
-                <div style="display: flex; flex-direction: column; gap: 14px;">
-                    <textarea id="twetchInput" rows="3" placeholder="世界に向けてオンチェーン・メッセージを発信... (10 SAT アクション連動型報酬)"></textarea>
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                        <span style="font-size: 0.75rem; color: var(--text-secondary);">コスト: 10 SAT/ポスト (自動リワード分配回路稼働中)</span>
-                        <button class="action-btn cyan" onclick="publishTwetchPost()">ブロックチェーンに永久刻印</button>
-                    </div>
-                </div>
-                <div class="twetch-feed-box" id="twetchFeedContainer">
-                    <div class="twetch-post">
-                        <div class="twetch-header">
-                            <span><b>@qlux_master</b> (Node Validator #1)</span>
-                            <span>2分前 // 受取報酬: +42 SAT</span>
-                        </div>
-                        <p style="font-size: 0.9rem;">惑星規模のBSVメガエコシステム、完全稼働開始。Teranode 10M TPSの圧倒的スピードを体感せよ。 #QLUX #BSV #Twetch</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <footer>
+        &copy; 2026 QLUX Supreme Megalopolis Matrix. All Sovereign Rights Reserved.
+    </footer>
 
-        <div id="stratum-hub" class="section-panel">
-            <div class="card">
-                <div class="card-header">Gorilla Pool / ASIC Stratum Matrix</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    ASICマイナーとBSVノードを直結するパーミッションレスなストラタム接続ハブ。PPLNS透明分配、ダイレクト・ペイアウト、リアルタイムハッシュレート監視。
-                </p>
-                <div class="grid-3">
-                    <div class="stat-box">
-                        <span class="stat-label">プール総ハッシュレート</span>
-                        <span class="stat-value" style="color: var(--accent-orange);">34.8 PH/s</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">アクティブASIC接続数</span>
-                        <span class="stat-value">312 Miners</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">PPLNS 報酬分配効率</span>
-                        <span class="stat-value" style="color: var(--accent-green);">100% (Instant)</span>
-                    </div>
-                </div>
-                <button class="action-btn purple" onclick="boostMiningStratum()">マイニング・ストラタム回線を自動最適化</button>
-            </div>
-        </div>
+    <script>
+        function executeAtomicSweep() {
+            const amountEl = document.getElementById('pendingSweepAmount');
+            const walletEl = document.getElementById('headerWalletBal');
+            if (amountEl.innerText !== '0 SAT') {
+                alert('🚀 アトミック・リベニュー・スイープ成功！未回収報酬がQLUX Omni-Walletへリアルタイムに一括合算されました。');
+                amountEl.innerText = '0 SAT';
+                amountEl.style.color = '#777';
+                walletEl.innerText = '594,300 SAT';
+            } else {
+                alert('現在回収可能な未収益はありません。');
+            }
+        }
 
-        <div id="nano-economy" class="section-panel">
-            <div class="card">
-                <div class="card-header">Autonomous AI Micro-Agent Economy</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    自律型AIエージェント同士がサトシ単位のナノペイメントを用いて、計算資源やデータを秒速で自動売買・最適化する自律経済特区。
-                </p>
-                <div class="grid-2">
-                    <div class="stat-box">
-                        <span class="stat-label">稼働中AIエージェント</span>
-                        <span class="stat-value" style="color: var(--accent-magenta);">1,420 Active</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">本日のナノ取引回数</span>
-                        <span class="stat-value">849,203 Tx</span>
-                    </div>
-                </div>
-                <button class="action-btn purple" onclick="alert('AIエージェント間の自律ナノ経済ループを強制加速しました！')">自律経済マトリクスを加速</button>
-            </div>
-        </div>
-
-        <div id="zkp-shield" class="section-panel">
-            <div class="card">
-                <div class="card-header">Planetary ZKP Privacy Fortress</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    ゼロ知識証明（ZKP）回路を用いて、オンチェーン取引およびユーザーアイデンティティを暗号数学的に完全に秘匿・保護するプライバシー要塞。
-                </p>
-                <div class="stat-box">
-                    <span class="stat-label">ZKP シールドステータス</span>
-                    <span class="stat-value" style="color: var(--accent-cyan);">100% 匿名秘匿稼働中</span>
-                </div>
-                <button class="action-btn magenta" onclick="alert('ZKP暗号シールドの再同期およびゼロ知識証明の検証を完了しました！')">ZKPシールドを再同期</button>
-            </div>
-        </div>
-
-        <div id="quantum-ai" class="section-panel">
-            <div class="card">
-                <div class="card-header">Post-Quantum Cryptographic AI Core</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    将来の量子コンピューターによる攻撃を防ぐ格子暗号（Lattice-based cryptography）と512ビット量子耐性プロトコルを実装したAI演算中枢。
-                </p>
-                <div class="terminal-box" id="quantumTerminal">
-                   
+        function publishToChain() {
+            const text = document.getElementById('feedInput').value;
+            if(text.trim() === '') {
+                alert('テキストを入力してください。');
+                return;
+            }
+            alert('🔗 テキストがBSV Teranodeブロックチェーンに永久刻印されました（Pay-Per-Action完了）。');
+            document.getElementById('feedInput').value = '';
+        }
+    </script>
+</body>
+</html>
