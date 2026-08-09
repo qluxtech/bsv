@@ -1,595 +1,308 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX — The Sovereign Engine</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>QLUX — Complete Sovereignty</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        qlux: {
+                            dark: '#030712',
+                            card: '#0b0f19',
+                            cyan: '#00f2fe',
+                            blue: '#4facfe',
+                            border: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * { box-sizing: border-box; }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;700&display=swap');
         body {
-            background-color: #010205;
-            margin: 0;
-            padding: 40px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 60px;
-            width: 100%;
-            color: #fff;
-            font-family: 'Urbanist', 'Noto Sans JP', sans-serif;
+            font-family: 'Noto Sans JP', 'Orbitron', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+            overflow-x: hidden;
         }
-        .slide-container {
-            background-color: #010206;
-            border-radius: 12px;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
-            display: flex;
-            flex-direction: column;
-            height: 720px;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            padding: 50px 70px;
-            position: relative;
-            width: 1280px;
-            border: 1px solid rgba(0, 242, 254, 0.25);
-            text-align: center;
+        .glow-text {
+            text-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
         }
-        .slide-container::before {
-            content: '';
-            position: absolute;
-            top: -20%; right: -10%;
-            width: 60%; height: 60%;
-            background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, transparent 70%);
-            z-index: 0;
+        .glow-border {
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
         }
-        .slide-container > * { position: relative; z-index: 1; width: 100%; max-width: 1100px; }
-        h1, h2, h3 { font-weight: 900; margin: 0; line-height: 1.1; text-align: center; }
-        h1 { font-size: 110px; letter-spacing: -4px; color: #fff; text-shadow: 0 0 35px rgba(0, 242, 254, 0.4); }
-        .slide-title { font-size: 36px; margin-bottom: 20px; color: #00f2fe; text-transform: uppercase; letter-spacing: 4px; border-bottom: 1px solid rgba(0, 242, 254, 0.1); padding-bottom: 12px; width: 100%; text-align: center; }
-        h3 { font-size: 26px; color: #00f2fe; margin-bottom: 12px; }
-        p, li { font-size: 18px; line-height: 1.6; color: #a5b6cb; max-width: 900px; margin: 0 auto; text-align: center; }
-        strong { color: #00f2fe; font-weight: 900; }
-        
-        .content-area {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-
-        /* Tiled Content (Dashboard 3 buttons) */
-        .tiled-content { display: flex; gap: 25px; width: 100%; align-items: stretch; justify-content: center; }
-        .tile { 
-            flex: 1; 
-            background: rgba(5, 10, 30, 0.9); 
-            border: 1px solid rgba(0, 242, 254, 0.3); 
-            border-radius: 16px; 
-            padding: 30px 20px; 
-            text-align: center; 
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            cursor: pointer;
+        .white-glow-active {
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9), 0 0 50px rgba(0, 242, 254, 0.5) !important;
+            border-color: #ffffff !important;
+            color: #ffffff !important;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
-        .tile:hover {
-            border-color: #00f2fe;
-            box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
-            transform: translateY(-5px);
-            background: rgba(0, 242, 254, 0.08);
-        }
-        .tile.active {
-            border-color: #00ff66;
-            background: rgba(0, 255, 102, 0.1);
-            box-shadow: 0 0 30px rgba(0, 255, 102, 0.4);
-        }
-        .tile i { color: #00f2fe; font-size: 36px; margin-bottom: 15px; text-align: center; width: 100%; transition: color 0.3s; }
-        .tile.active i { color: #00ff66; }
-        .tile .status-badge {
-            margin-top: 15px;
-            font-size: 12px;
-            font-weight: 950;
-            color: #00f2fe;
-            background: rgba(0,242,254,0.15);
-            padding: 4px 10px;
-            border-radius: 20px;
-            display: inline-block;
-            align-self: center;
-        }
-        .tile.active .status-badge {
-            color: #00ff66;
-            background: rgba(0,255,102,0.2);
-        }
-
-        /* Bleed Graphic Layout (2 Columns: Center aligned text + Graphic) */
-        .slide-container.bleed-graphic-layout {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            padding: 0 !important;
-            text-align: left;
-            align-items: center;
-            max-width: 1280px !important;
-        }
-        .bleed-graphic-layout .content-side {
-            padding: 50px 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            text-align: center;
-        }
-        .bleed-graphic-layout .content-side p,
-        .bleed-graphic-layout .content-side h3,
-        .bleed-graphic-layout .content-side .slide-title {
-            text-align: center;
-            margin: 0 auto 12px auto;
-        }
-        .bleed-graphic-layout .graphic-side {
-            height: 720px;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            border-left: 1px solid rgba(0, 242, 254, 0.2);
-            overflow: hidden;
-        }
-
-        /* Pure CSS Graphics */
-        .design-mesh { 
-            width: 300px; height: 300px; 
-            border: 1px solid rgba(0, 242, 254, 0.4); 
-            background-image: linear-gradient(rgba(0, 242, 254, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 242, 254, 0.15) 1px, transparent 1px); 
-            background-size: 25px 25px; 
-            position: relative; 
-            box-shadow: 0 0 40px rgba(0, 242, 254, 0.2);
-        }
-        .design-mesh::after { 
-            content: ''; position: absolute; top: 50%; left: 50%; width: 170px; height: 190px; 
-            transform: translate(-50%, -50%); border-radius: 50%; 
-            background: radial-gradient(circle, rgba(0,242,254,0.3) 0%, transparent 70%); 
-            border: 1px solid #00f2fe; 
-        }
-        .design-core { 
-            width: 230px; height: 230px; 
-            transform: rotate(45deg); 
-            border: 2px solid #00f2fe; 
-            box-shadow: 0 0 50px rgba(0, 242, 254, 0.5); 
-            position: relative; 
-            background: rgba(0, 242, 254, 0.08); 
-            display: flex; align-items: center; justify-content: center;
-        }
-        .design-sanctuary { 
-            width: 270px; height: 270px; 
-            background: rgba(0, 242, 254, 0.04); 
-            clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%); 
-            border: 2px solid #00f2fe; 
-            display: flex; align-items: center; justify-content: center; 
-            box-shadow: 0 0 40px rgba(0, 242, 254, 0.3);
-        }
-        .design-sanctuary-inner { 
-            width: 190px; height: 190px; 
-            clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%); 
-            border: 1px solid rgba(0, 242, 254, 0.5); 
-            background: radial-gradient(circle, rgba(0,242,254,0.25) 0%, transparent 80%); 
-        }
-        .design-singularity { 
-            width: 280px; height: 280px; 
-            border-radius: 50%; 
-            border: 1px solid rgba(0, 242, 254, 0.2); 
-            display: flex; align-items: center; justify-content: center; 
-            position: relative; 
-            box-shadow: inset 0 0 35px rgba(0, 242, 254, 0.2);
-        }
-        .design-singularity::before { content: ''; width: 2px; height: 130px; background: #00f2fe; box-shadow: 0 0 20px #00f2fe; }
-        .design-singularity::after { content: ''; height: 2px; width: 130px; background: #00f2fe; position: absolute; box-shadow: 0 0 20px #00f2fe; }
-        .singularity-glow { position: absolute; width: 140px; height: 140px; background: radial-gradient(circle, rgba(0,242,254,0.5) 0%, transparent 70%); filter: blur(20px); }
-        .design-pulse {
-            width: 270px; height: 270px;
-            border-radius: 50%;
-            border: 2px dashed rgba(0, 242, 254, 0.6);
-            display: flex; align-items: center; justify-content: center;
-            position: relative;
-            box-shadow: 0 0 35px rgba(0,242,254,0.2);
-        }
-        .design-pulse-center {
-            width: 120px; height: 120px;
-            background: rgba(0,242,254,0.15);
-            border-radius: 50%;
-            border: 2px solid #00f2fe;
-            box-shadow: 0 0 25px #00f2fe;
-        }
-
-        /* Formula Container (Slide 7 - Highlighted) */
-        .formula-box {
-            background: linear-gradient(135deg, rgba(0, 242, 254, 0.12) 0%, rgba(0, 114, 255, 0.12) 100%);
-            border: 2px solid #00f2fe;
-            border-radius: 16px;
-            margin: 20px auto;
-            padding: 20px;
-            text-align: center;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 0 0 30px rgba(0, 242, 254, 0.3);
-        }
-        math { font-size: 24px; color: #fff; display: block; font-weight: bold; text-shadow: 0 0 15px rgba(0,242,254,0.8); }
-
-        table { width: 100%; border-collapse: collapse; background: rgba(5, 10, 30, 0.6); border-radius: 14px; overflow: hidden; }
-        th, td { padding: 15px; text-align: center; border-bottom: 1px solid rgba(0, 242, 254, 0.1); font-size: 16px; }
-        th { background: rgba(0, 242, 254, 0.18); color: #00f2fe; font-size: 18px; font-weight: 900; }
-
-        /* Swipe Area (Slide 12) */
-        .swipe-area { 
-            background: rgba(4, 8, 20, 0.98); 
-            border: 2px solid #00f2fe; 
-            border-radius: 20px; 
-            padding: 20px 30px; 
-            box-shadow: 0 0 50px rgba(0, 242, 254, 0.3); 
-            width: 100%; 
-            max-width: 900px;
-            margin-top: 15px; 
-            position: relative;
-        }
-        .swipe-track { 
-            background: #010308; 
-            border-radius: 50px; 
-            border: 1px solid rgba(0, 242, 254, 0.4); 
-            height: 76px; 
-            position: relative; 
-            width: 100%; 
-            display: flex; 
-            align-items: center; 
-            padding: 0 8px; 
-            cursor: pointer; 
-            overflow: hidden; 
-            user-select: none;
-        }
-        .swipe-thumb {
-            width: 260px; height: 60px;
-            background: linear-gradient(135deg, #00f2fe 0%, #0072ff 100%);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 35px; 
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 900; font-size: 19px; color: #000411; 
-            position: absolute; left: 8px;
-            box-shadow: 0 0 30px rgba(0, 242, 254, 0.8), inset 0 2px 6px rgba(255, 255, 255, 0.7);
-            z-index: 10; touch-action: none; letter-spacing: 2px;
-            cursor: grab;
-        }
-        .swipe-thumb:active { cursor: grabbing; }
-        .swipe-text { width: 100%; text-align: center; color: rgba(0, 242, 254, 0.5); font-weight: 900; font-size: 16px; pointer-events: none; letter-spacing: 2px; }
-        
-        .dash-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; width: 100%; margin-bottom: 20px; }
-        .dash-item { background: rgba(8, 16, 40, 0.9); border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 14px; padding: 18px; text-align: center; }
-        .dash-item span { display: block; color: #00f2fe; font-size: 11px; font-weight: 900; text-transform: uppercase; margin-bottom: 5px; }
-        .dash-item b { font-size: 17px; color: #fff; }
-        
-        .scroller-box { background: rgba(4, 7, 18, 0.9); border-radius: 14px; border: 1px solid rgba(0, 242, 254, 0.3); margin-bottom: 15px; max-height: 190px; overflow-y: auto; padding: 20px 30px; text-align: center; width: 100%; max-width: 900px; }
-        .scroller-box::-webkit-scrollbar { width: 6px; }
-        .scroller-box::-webkit-scrollbar-thumb { background: #00f2fe; border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="bg-qlux-dark min-h-screen flex flex-col items-center justify-start space-y-12 py-12 px-4">
 
-<div class="slide-container">
-    <div class="content-area">
-        <h4 style="color: #00f2fe; letter-spacing: 12px; margin-bottom: 15px; font-size: 14px;">ABSOLUTE SOVEREIGNTY</h4>
-        <h1>QLUX</h1>
-        <p style="font-size: 26px; color: #fff; margin-top: 20px; font-weight: 700;">The Universal Engine of Economic Convergence.</p>
-        <p style="font-size: 18px; color: #a5b6cb; margin-top: 12px;">あらゆる既存インフラを統括し、個人へ主権を返還する最上位執行レイヤー。</p>
-    </div>
-</div>
+    <!-- 1. Hero Section -->
+    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-12 text-center relative overflow-hidden glow-border">
+        <p class="text-xs uppercase tracking-[0.3em] text-qlux-cyan font-semibold mb-4">ABSOLUTE SOVEREIGNTY</p>
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-wider text-white mb-4 glow-text">QLUX</h1>
+        <h2 class="text-lg md:text-xl text-gray-300 font-medium mb-6">The Universal Engine of Economic Convergence.</h2>
+        <p class="text-sm text-gray-400 max-w-xl mx-auto">あらゆる既存インフラを統括し、個人へ主権を返還する最上位執行レイヤー。</p>
+    </section>
 
-<div class="slide-container">
-    <h2 class="slide-title">The Supreme Hierarchy</h2>
-    <div class="content-area">
-        <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%;">
-            <div style="background: linear-gradient(90deg, rgba(0,242,254,0.1) 0%, rgba(0,242,254,0.3) 50%, rgba(0,242,254,0.1) 100%); border: 2px solid #00f2fe; padding: 22px; border-radius: 16px; width: 100%; max-width: 750px; box-shadow: 0 0 40px rgba(0,242,254,0.2);">
-                <h3 style="margin-bottom: 6px; font-size: 30px;">QLUX: Sovereign Gateway</h3>
-                <p style="font-size: 16px; color: #fff; font-weight: 700;">Command Tier. 全ての価値を支配下におく最終ポータル。</p>
+    <!-- 2. The Supreme Hierarchy -->
+    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
+        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-6">THE SUPREME HIERARCHY</h3>
+        <div class="space-y-4">
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border-2 border-qlux-cyan rounded-xl p-6 bg-qlux-dark/80 shadow-[0_0_20px_rgba(0,242,254,0.2)] transition-all">
+                <h4 class="text-lg font-bold text-white mb-1">QLUX: Sovereign Gateway</h4>
+                <p class="text-xs text-qlux-cyan">Command Tier. 全ての価値を支配下に置く最終ポータル。</p>
             </div>
-            <div style="font-size: 24px; color: #00f2fe;"><i class="fa-solid fa-angles-down"></i></div>
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(0,242,254,0.2); padding: 16px; border-radius: 14px; width: 100%; max-width: 680px;">
-                <p style="font-size: 16px;">Infrastructure & Enterprise Tier: 汎用インフラおよび個別ビジネスロジック</p>
-            </div>
-        </div>
-        <p style="margin-top: 20px; font-size: 17px;">QLUXは既存の技術群を束ね、人類へ「完璧な確定」のみを提供します。</p>
-    </div>
-</div>
-
-<div class="slide-container">
-    <h2 class="slide-title">Global Synchronization</h2>
-    <div class="content-area">
-        <div class="dash-grid">
-            <div class="dash-item"><span>Architecture</span><b>Neural Scale Matrix</b></div>
-            <div class="dash-item"><span>Settlement</span><b>Quantum Atomic</b></div>
-            <div class="dash-item"><span>Efficiency</span><b>Zero Gravity Friction</b></div>
-            <div class="dash-item"><span>Integrity</span><b>Mathematical Absolute</b></div>
-        </div>
-        <p style="font-size: 22px; color: #fff; font-weight: 700;">世界に「遅延」と「不透明」が許される場所はもうありません。</p>
-    </div>
-</div>
-
-<div class="slide-container">
-    <h2 class="slide-title">The Act of Reset</h2>
-    <div class="content-area">
-        <h3 style="font-size: 40px; margin-bottom: 20px;">スワイプ。それは旧世界への「決別」。</h3>
-        <p style="font-size: 20px; color: #fff; line-height: 1.5;">中央集権的な「許可」を待つ時代を終わらせます。スワイプした瞬間、宇宙の物理法則に基づいた富があなたの手元へ直結されます。</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 30px; width: 100%;">
-            <div style="text-align: left; padding: 20px; border-left: 5px solid #00f2fe; background: rgba(0,242,254,0.06);">
-                <b style="color: #fff; font-size: 19px;">Impact: 依存の消滅</b><br><span style="font-size: 15px; color: #a5b6cb;">銀行や企業の承認を介さず、不変のプロトコルが直接あなたを認識し執行します。</span>
-            </div>
-            <div style="text-align: left; padding: 20px; border-left: 5px solid #00f2fe; background: rgba(0,242,254,0.06);">
-                <b style="color: #fff; font-size: 19px;">Effect: 自由の確定</b><br><span style="font-size: 15px; color: #a5b6cb;">待機時間はゼロへ。未清算の可能性は、即時利用可能な現実の購買力へと昇華されます。</span>
+            <div class="flex justify-center text-qlux-cyan text-xl">⌄</div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border rounded-xl p-4 bg-qlux-dark/40 text-gray-400 text-xs transition-all">
+                Infrastructure & Enterprise Tier: 汎用インフラおよび個別ビジネスロジック
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-<div class="slide-container bleed-graphic-layout">
-    <div class="content-side">
-        <h2 class="slide-title">Universal Mesh</h2>
-        <h3>世界の経済再構築</h3>
-        <p>国境、言語、階層。QLUXはそれらをデータ的に無効化し、全ての経済活動を一つの均質な高効率網（Mesh）へと収束させます。</p>
-    </div>
-    <div class="graphic-side">
-        <div class="design-mesh"></div>
-    </div>
-</div>
+    <!-- 3. Global Synchronization -->
+    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
+        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">GLOBAL SYNCHRONIZATION</h3>
+        <p class="text-xs text-gray-400 mb-6">地球規模の同調性を担保する12のコア・モジュール。</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">01</span><span class="text-xs font-bold text-white">MATRIX</span></div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">02</span><span class="text-xs font-bold text-white">SYNC</span></div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">03</span><span class="text-xs font-bold text-white">PULSE</span></div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">04</span><span class="text-xs font-bold text-white">FLOW</span></div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">05</span><span class="text-xs font-bold text-white">AXIOM</span></div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">06</span><span class="text-xs font-bold text-white">LOGIC</span></div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">07</span><span class="text-xs font-bold text-white">PRIME</span></div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">08</span><span class="text-xs font-bold text-white">OMEGA</span></div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">09</span><span class="text-xs font-bold text-white">VOID</span></div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">10</span><span class="text-xs font-bold text-white">ZEN</span></div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">11</span><span class="text-xs font-bold text-white">TRUE</span></div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">12</span><span class="text-xs font-bold text-white">CORE</span></div>
+        </div>
+    </section>
 
-<div class="slide-container">
-    <h2 class="slide-title">The Absolute Comparison</h2>
-    <div class="content-area">
-        <p style="margin-bottom: 25px; font-size: 20px; font-weight: 700;">QLUXは「改善」ではありません。システムの「定義」そのものの書き換えです。</p>
-        <table>
-            <thead>
-                <tr><th>Metaphysics</th><th>Legacy Banking / Web3 Apps</th><th>QLUX Sovereign Engine</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>Trust Source</td><td>Human / Institutional Trust</td><td><strong>Mathematical Integrity</strong></td></tr>
-                <tr><td>Settlement Time</td><td>Pending (High Friction)</td><td><strong>Native Atomic (Frictionless)</strong></td></tr>
-                <tr><td>Ownership</td><td>Custodial (Third-party)</td><td><strong>Absolute Self-Sovereignty</strong></td></tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+    <!-- 4. The Act of Reset -->
+    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
+        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">THE ACT OF RESET</h3>
+        <h4 class="text-xl md:text-2xl font-bold text-white mb-4">スワイプ。それは旧世界への「決別」。</h4>
+        <p class="text-xs text-gray-400 max-w-lg mx-auto mb-6">中央集権的な「許可」を待つ時代を終わらせます。スワイプした瞬間、宇宙の物理法則に基づいた富があなたの手元へ直結されます。</p>
+        <div class="grid md:grid-cols-2 gap-4 text-left">
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border rounded-xl p-4 bg-qlux-dark/50 transition-all">
+                <h5 class="text-xs font-bold text-qlux-cyan mb-1">Impact: 依存の消滅</h5>
+                <p class="text-[11px] text-gray-300">銀行や企業の承認を介さず、不変のプロトコルが直接あなたを認証し執行します。</p>
+            </div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border rounded-xl p-4 bg-qlux-dark/50 transition-all">
+                <h5 class="text-xs font-bold text-qlux-cyan mb-1">Effect: 自由の確定</h5>
+                <p class="text-[11px] text-gray-300">待機時間はゼロへ。未清算の可能性は、即時利用可能な現実の購買力へと昇華されます。</p>
+            </div>
+        </div>
+    </section>
 
-<div class="slide-container bleed-graphic-layout">
-    <div class="content-side">
-        <h2 class="slide-title">MATHEMATICAL TRUST</h2>
-        <h3>契約の自動執行（Auto-Escrow）</h3>
-        <p>人間の主観に頼る必要はありません。TypeScript直結のスマートコントラクトが、物理法則のように契約を執行します。</p>
+    <!-- 5. Universal Mesh -->
+    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
+        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">UNIVERSAL MESH</h3>
+        <h4 class="text-xl font-bold text-white mb-4">世界の経済再構築</h4>
+        <p class="text-xs text-gray-400 max-w-lg mx-auto">国境、言語、階層。QLUXはそれらをデータ的に無効化し、全ての経済活動を一つの均質な高効率卿へと収束させます。</p>
+    </section>
+
+    <!-- 6. The Absolute Comparison -->
+    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
+        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">THE ABSOLUTE COMPARISON</h3>
+        <p class="text-xs text-gray-400 mb-6">QLUXは「改善」ではありません。システムの「定義」そのものの書き換えです。</p>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                    <tr class="border-b border-qlux-border text-qlux-cyan">
+                        <th class="p-3">Metaphysics</th>
+                        <th class="p-3">Legacy Banking / Web3 Apps</th>
+                        <th class="p-3 font-bold">QLUX Sovereign Engine</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-qlux-border text-gray-300">
+                    <tr>
+                        <td class="p-3 font-semibold text-gray-400">Trust Source</td>
+                        <td class="p-3">Human / Institutional Trust</td>
+                        <td class="p-3 text-qlux-cyan font-bold">Mathematical Integrity</td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 font-semibold text-gray-400">Settlement Time</td>
+                        <td class="p-3">Pending (High Friction)</td>
+                        <td class="p-3 text-qlux-cyan font-bold">Native Atomic (Frictionless)</td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 font-semibold text-gray-400">Ownership</td>
+                        <td class="p-3">Custodial (Third-party)</td>
+                        <td class="p-3 text-qlux-cyan font-bold">Absolute Self-Sovereignty</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 7. Mathematical Trust -->
+    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
+        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">MATHEMATICAL TRUST</h3>
+        <h4 class="text-lg font-bold text-white mb-4">契約の自動執行 (Auto-Escrow)</h4>
+        <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-cyan rounded-xl p-6 bg-qlux-dark/80 max-w-md mx-auto mb-4 text-left font-mono text-xs text-qlux-cyan shadow-[0_0_15px_rgba(0,242,254,0.1)] transition-all">
+            <p>P<sub>settle</sub></p>
+            <p class="pl-4">Action = Verified</p>
+            <p class="pl-4">Instant TX</p>
+        </div>
+        <p class="text-xs text-gray-400">TypeScript調和のスマートコントラクトが、物理法則のように契約を執行。</p>
+    </section>
+
+    <!-- 8. Auto-Nano-Reward Economy -->
+    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
+        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">AUTO-NANO-REWARD ECONOMY</h3>
+        <h4 class="text-lg font-bold text-white mb-2">「生きているだけで価値が循環する」マネタイズの新次元</h4>
+        <p class="text-[10px] text-gray-400 mb-6">(クリックして切替)</p>
+        <div class="grid md:grid-cols-3 gap-4 text-left">
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-cyan rounded-xl p-4 bg-qlux-dark/80 shadow-[0_0_15px_rgba(0,242,254,0.15)] transition-all">
+                <span class="text-qlux-cyan text-lg block mb-2">👁️</span>
+                <h5 class="text-xs font-bold text-white mb-1">Active Viewing</h5>
+                <p class="text-[11px] text-gray-300">情報を閲覧するだけで、あなたの時間線はナノペイメントとして還元されます。</p>
+            </div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border rounded-xl p-4 bg-qlux-dark/40 transition-all">
+                <span class="text-qlux-cyan text-lg block mb-2">🗄️</span>
+                <h5 class="text-xs font-bold text-white mb-1">Data Sovereignty</h5>
+                <p class="text-[11px] text-gray-400">日常のデータ共有の自律で隠岐の報酬が働きかけ、全員が自動的に豊かになります。</p>
+            </div>
+            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border rounded-xl p-4 bg-qlux-dark/40 transition-all">
+                <span class="text-qlux-cyan text-lg block mb-2">📈</span>
+                <h5 class="text-xs font-bold text-white mb-1">Collective Wealth</h5>
+                <p class="text-[11px] text-gray-400">経済活動への参加深度に応じ、ネットワーク全体の価値があなたに直接分配されます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Eternal Sanctuary -->
+    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
+        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">ETERNAL SANCTUARY</h3>
+        <h4 class="text-xl font-bold text-white mb-4">改ざん不能の不変性</h4>
+        <p class="text-xs text-gray-400 max-w-lg mx-auto">一度刻まれた真実は、宇宙の法則のように決して揺らぎません。QLUXはすべての商取引に「永遠」という名のセキュリティを付与します。</p>
+    </section>
+
+    <!-- 10. Quantum Pulse -->
+    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
+        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">QUANTUM PULSE</h3>
+        <h4 class="text-xl font-bold text-white mb-4">量子同期ネットワーク</h4>
+        <p class="text-xs text-gray-400 max-w-lg mx-auto">地球規模の経済データをミリ秒単位で束ねる分散共鳴コア。全てのトランザクションが絶対的なエネルギーパルスとして同期されます。</p>
+    </section>
+
+    <!-- 11. The Singularity -->
+    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
+        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">THE SINGULARITY</h3>
+        <h4 class="text-xl font-bold text-white mb-4">価値の集束点</h4>
+        <p class="text-xs text-gray-400 max-w-lg mx-auto">宇宙の全ての光が一点に集まるように、世界中の価値があなたの指先に集約される。QLUXは、経済の重力を再定義します。</p>
+    </section>
+
+    <!-- 12. Final Call to Action -->
+    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
+        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">最後のステップ。主権をあなたの掌へ。</h3>
+        <p class="text-xs text-gray-400 max-w-md mx-auto mb-6">中間搾取の連鎖は、ここで終わる。全てのインフラ、全ての契約、全ての物理的証明が今、あなたの指先に集結した。<br>「自分の価値を、自分自身で確定させる」という人類の根源的な力の行使である。</p>
         
-        <div class="formula-box">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <msub><mi>P</mi><mi>settle</mi></msub><mo>=</mo><mfenced><mrow><mi>Action</mi><mo>=</mo><mi>Verified</mi></mrow></mfenced><mo>&#x2192;</mo><mi>Instant</mi><mo>&#xA0;</mo><mi>TX</mi>
-            </math>
-        </div>
-        <p style="font-size: 14px;">不払い・不履行の概念は、この数式によって物理的に消滅します。</p>
-    </div>
-    <div class="graphic-side">
-        <div class="design-core">
-            <div style="font-size: 15px; color: #00f2fe; font-weight: 900; transform: rotate(-45deg);">QLUX CORE</div>
-        </div>
-    </div>
-</div>
-
-<div class="slide-container">
-    <h2 class="slide-title">AUTO-NANO-REWARD ECONOMY</h2>
-    <div class="content-area">
-        <p style="font-size: 20px; color: #fff; margin-bottom: 25px; font-weight: 700;">「生きているだけで価値が循環する」マネタイズの新次元（下のカードをクリック可能）</p>
-        <div class="tiled-content">
-            <div class="tile active" onclick="toggleTile(this)">
-                <i class="fa-solid fa-eye"></i>
-                <h3>Active Viewing</h3>
-                <p style="font-size: 15px;">情報を閲覧するだけで、あなたの時間はナノペイメントとしてウォレットに還元されます。</p>
-                <div class="status-badge">ACTIVE (CLICK TO TOGGLE)</div>
-            </div>
-            <div class="tile" onclick="toggleTile(this)">
-                <i class="fa-solid fa-database"></i>
-                <h3>Data Sovereignty</h3>
-                <p style="font-size: 15px;">日常のデータ共有の背景で極小の報酬が動き続け、全員が自動的に豊かになります。</p>
-                <div class="status-badge">READY</div>
-            </div>
-            <div class="tile" onclick="toggleTile(this)">
-                <i class="fa-solid fa-chart-line"></i>
-                <h3>Collective Wealth</h3>
-                <p style="font-size: 15px;">経済活動への参加深度に応じ、ネットワーク全体の価値があなたに直接分配されます。</p>
-                <div class="status-badge">READY</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="slide-container bleed-graphic-layout">
-    <div class="content-side">
-        <h2 class="slide-title">Eternal Sanctuary</h2>
-        <h3>改ざん不能の不変性</h3>
-        <p>一度刻まれた真実は、宇宙の法則のように決して揺らぎません。QLUXはすべての商取引に「永遠」という名のセキュリティを付与します。</p>
-    </div>
-    <div class="graphic-side">
-        <div class="design-sanctuary">
-            <div class="design-sanctuary-inner"></div>
-        </div>
-    </div>
-</div>
-
-<div class="slide-container bleed-graphic-layout">
-    <div class="content-side">
-        <h2 class="slide-title">Quantum Pulse</h2>
-        <h3>量子同期ネットワーク</h3>
-        <p>地球規模の経済データをミリ秒単位で束ねる分散共鳴コア。全てのトランザクションが絶対的なエネルギーパルスとして同期されます。</p>
-    </div>
-    <div class="graphic-side">
-                <div class="design-pulse">
-            <div class="design-pulse-center"></div>
-        </div>
-    </div>
-</div>
-
-<div class="slide-container bleed-graphic-layout">
-    <div class="content-side">
-        <h2 class="slide-title">The Singularity</h2>
-        <h3>価値の集束点</h3>
-        <p>宇宙の全ての光が一点に集まるように、世界中の価値があなたの指先に集約される。QLUXは、経済の重力を再定義します。</p>
-    </div>
-    <div class="graphic-side">
-        <div class="design-singularity">
-            <div class="singularity-glow"></div>
-        </div>
-    </div>
-</div>
-
-<div class="slide-container">
-    <div class="content-area">
-        <div class="scroller-box">
-            <h3 style="font-size: 26px;">最後のステップ。主権をあなたの掌へ。</h3>
-            <p style="font-size: 16px; line-height: 1.6; color: #fff;">もはや中間コストによる搾取や、不確実な支払いを許容する必要はない。このスワイプは、単なる操作ではない。<b>「自分の価値を、自分自身で確定させる」という人類の根源的な力の行使である。</b><br><br>下のシアンブルーのバーをスライドし、あなたの元に集約された全ての富を、不変の現実へとテレポートさせよ。</p>
-        </div>
-
-        <div class="swipe-area">
-            <div style="display:flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px; width: 100%;">
-                <div style="text-align: left;">
-                    <p style="font-size: 12px; color: #00f2fe; margin-bottom: 2px; font-weight:900;">SOVEREIGN ACTIVE BALANCE</p>
-                    <h2 id="finalBalance" style="font-size: 36px; margin: 0; text-align: left; color: #fff;">57,450,000 SAT</h2>
+        <div class="border border-qlux-border rounded-xl p-6 bg-qlux-dark max-w-xl mx-auto space-y-4">
+            <div class="flex justify-between items-center text-xs">
+                <div>
+                    <span class="text-[10px] text-gray-500 block">SOVEREIGN ACTIVE BALANCE</span>
+                    <span class="text-lg font-bold text-white">57,450,000 SAT</span>
                 </div>
-                <div style="text-align: right;">
-                    <p style="font-size: 12px; color: #a5b6cb; margin-bottom: 2px; font-weight:900;">UNSETTLED NANO ASSETS</p>
-                    <h3 id="pendingVal" style="margin: 0; color: #00f2fe; font-size: 26px; text-align: right;">5,500,000 SAT</h3>
+                <div>
+                    <span class="text-[10px] text-gray-500 block">PENDING-NANO REWARDS</span>
+                    <span class="text-sm font-bold text-qlux-cyan">5,500,000 SAT</span>
                 </div>
             </div>
 
-            <div class="swipe-track" id="swipeTrack">
-                <div class="swipe-text" id="swipeText">👉 SLIDE TO TELEPORT REWARDS</div>
-                <div class="swipe-thumb" id="swipeThumb">SLIDE ⚡ QLUX</div>
+            <!-- Swipe Container -->
+            <div id="swipe-container" class="relative w-full bg-qlux-card border border-qlux-cyan/40 rounded-full h-14 flex items-center p-1 overflow-hidden select-none shadow-[0_0_15px_rgba(0,242,254,0.2)]">
+                <div id="swipe-track-text" class="absolute inset-0 flex justify-center items-center pointer-events-none text-[10px] text-gray-400 tracking-wider">
+                    SLIDE TO TELEPORT VALUE
+                </div>
+                <!-- Draggable Knob -->
+                <div id="swipe-btn" class="absolute left-1 top-1 bottom-1 w-36 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center cursor-pointer shadow-lg transition-transform duration-75">
+                    <span class="text-xs font-bold text-gray-950 tracking-wider">SWIPE ⚡ QLUX</span>
+                </div>
             </div>
+            <div id="swipe-status" class="text-xs text-qlux-cyan h-4"></div>
         </div>
-    </div>
-</div>
+    </section>
 
-<script>
-    /* Dashboards Toggle Button Function */
-    function toggleTile(element) {
-        element.classList.toggle('active');
-        const badge = element.querySelector('.status-badge');
-        if (element.classList.contains('active')) {
-            badge.innerText = 'ACTIVE (CLICK TO TOGGLE)';
-        } else {
-            badge.innerText = 'PAUSED / IDLE';
+    <script>
+        function toggleWhiteGlow(element) {
+            element.classList.toggle('white-glow-active');
         }
-    }
 
-    /* Swipe Logic (Smooth & Guaranteed Move) */
-    const track = document.getElementById('swipeTrack');
-    const thumb = document.getElementById('swipeThumb');
-    const txt = document.getElementById('swipeText');
-    const bal = document.getElementById('finalBalance');
-    const pend = document.getElementById('pendingVal');
+        const container = document.getElementById('swipe-container');
+        const btn = document.getElementById('swipe-btn');
+        const statusText = document.getElementById('swipe-status');
 
-    let isDragging = false;
-    let startX = 0;
-    let maxDist = 0;
+        let isDragging = false;
+        let startX = 0;
 
-    const updateMetrics = () => { 
-        if(track && thumb) {
-            maxDist = track.clientWidth - thumb.clientWidth - 16; 
+        const getMaxTranslate = () => container.clientWidth - btn.clientWidth - 8;
+
+        function startDrag(e) {
+            isDragging = true;
+            startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            btn.style.transition = 'none';
         }
-    };
 
-    const startDrag = (clientX) => {
-        if (!thumb || thumb.classList.contains('settled')) return;
-        isDragging = true;
-        startX = clientX - (parseFloat(thumb.style.transform.replace('translateX(', '').replace('px)', '')) || 0);
-        txt.style.opacity = '0.1';
-        thumb.style.transition = 'none';
-    };
+        function onDrag(e) {
+            if (!isDragging) return;
+            const currentX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            const diff = currentX - startX;
+            let newPos = Math.max(0, Math.min(diff, getMaxTranslate()));
+            btn.style.transform = `translateX(${newPos}px)`;
 
-    const moveDrag = (clientX) => {
-        if (!isDragging || !thumb) return;
-        updateMetrics();
-        let move = clientX - startX;
-        move = Math.max(0, Math.min(move, maxDist));
-        thumb.style.transform = `translateX(${move}px)`;
-        if (move >= maxDist * 0.92) triggerSettlement();
-    };
-
-    const endDrag = () => {
-        if (!isDragging || !thumb) return;
-        isDragging = false;
-        let match = thumb.style.transform.match(/translateX\(([-\d.]+)px\)/);
-        let currentPos = match ? parseFloat(match[1]) : 0;
-        if (currentPos < maxDist * 0.92) {
-            thumb.style.transition = 'transform 0.4s cubic-bezier(0.1, 0.9, 0.2, 1)';
-            thumb.style.transform = 'translateX(0px)';
-            txt.style.opacity = '1';
+            if (newPos >= getMaxTranslate() * 0.95) {
+                completeSwipe();
+            }
         }
-    };
 
-    if (thumb && track) {
-        thumb.addEventListener('mousedown', (e) => { startDrag(e.clientX); e.preventDefault(); });
-        window.addEventListener('mousemove', (e) => moveDrag(e.clientX));
+        function endDrag() {
+            if (!isDragging) return;
+            isDragging = false;
+            btn.style.transition = 'transform 0.3s ease';
+
+            const currentTransform = btn.style.transform;
+            const match = currentTransform.match(/translateX\(([-\d.]+)px\)/);
+            const currentPos = match ? parseFloat(match[1]) : 0;
+
+            if (currentPos < getMaxTranslate() * 0.95) {
+                btn.style.transform = 'translateX(0px)';
+            }
+        }
+
+        function completeSwipe() {
+            if (!isDragging && btn.style.transform.includes(getMaxTranslate())) return;
+            isDragging = false;
+            btn.style.transition = 'transform 0.3s ease';
+            btn.style.transform = `translateX(${getMaxTranslate()}px)`;
+            btn.classList.add('white-glow-active');
+            statusText.textContent = "⚡ TELEPORT COMPLETED: 主権が確定しました";
+            
+            document.querySelectorAll('.interactive-glow').forEach(el => {
+                el.classList.add('white-glow-active');
+            });
+        }
+
+        btn.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', onDrag);
         window.addEventListener('mouseup', endDrag);
 
-        thumb.addEventListener('touchstart', (e) => { startDrag(e.touches[0].clientX); e.preventDefault(); }, {passive:false});
-        window.addEventListener('touchmove', (e) => moveDrag(e.touches[0].clientX), {passive:false});
+        btn.addEventListener('touchstart', startDrag);
+        window.addEventListener('touchmove', onDrag);
         window.addEventListener('touchend', endDrag);
-
-        // Click track fallback to jump/slide
-        track.addEventListener('click', (e) => {
-            if(thumb.classList.contains('settled') || isDragging) return;
-            updateMetrics();
-            let rect = track.getBoundingClientRect();
-            let clickX = e.clientX - rect.left - (thumb.clientWidth / 2);
-            let move = Math.max(0, Math.min(clickX, maxDist));
-            thumb.style.transition = 'transform 0.3s ease';
-            thumb.style.transform = `translateX(${move}px)`;
-            if (move >= maxDist * 0.92) {
-                triggerSettlement();
-            } else {
-                setTimeout(() => {
-                    if(!isDragging && !thumb.classList.contains('settled')) {
-                        thumb.style.transform = 'translateX(0px)';
-                        txt.style.opacity = '1';
-                    }
-                }, 400);
-            }
-        });
-    }
-
-    function triggerSettlement() {
-        if (!thumb || thumb.classList.contains('settled')) return;
-        isDragging = false;
-        thumb.classList.add('settled');
-        thumb.style.transition = 'transform 0.2s ease, background 0.3s';
-        thumb.style.transform = `translateX(${maxDist}px)`;
-        thumb.style.background = '#00ff66';
-        thumb.style.boxShadow = '0 0 40px rgba(0,255,102,1)';
-        thumb.innerText = 'SETTLED ✓';
-        
-        setTimeout(() => {
-            alert("🌐 QLUX Supreme Settlement Success!\n報酬は数学的真理に基づき、主権下へ完全に同期・テレポートされました。");
-            bal.innerText = "62,950,000 SAT";
-            bal.style.color = "#00ff66";
-            bal.style.textShadow = "0 0 30px rgba(0,255,102,0.6)";
-            pend.innerText = "0 SAT";
-            pend.style.color = "#a5b6cb";
-            txt.innerText = "● UNIVERSAL SOVEREIGN SYNC COMPLETE";
-            txt.style.opacity = '1';
-        }, 150);
-    }
-    
-    window.addEventListener('resize', updateMetrics);
-    updateMetrics();
-</script>
-
+    </script>
 </body>
 </html>
+
