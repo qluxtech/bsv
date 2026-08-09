@@ -1,21 +1,24 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX ULTIMATE — BSV Sovereign Megalopolis Ecosystem</title>
+    <title>QLUX OMNI-MEGALOPOLIS — Autonomous AI, ZKP & Quantum-Resistant BSV Ecosystem</title>
     <style>
         :root {
-            --bg-deep: #050508;
-            --surface: #0e0e14;
-            --surface-hover: #161622;
+            --bg-deep: #030305;
+            --surface: #0a0a0f;
+            --surface-hover: #13131c;
             --accent-cyan: #00f2fe;
             --accent-magenta: #ff007f;
             --accent-gold: #ffd700;
+            --accent-green: #00ff66;
+            --accent-purple: #9d00ff;
             --text-primary: #f0f0f5;
             --text-secondary: #8a8a9e;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --glow-cyan: rgba(0, 242, 254, 0.15);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --glow-cyan: rgba(0, 242, 254, 0.2);
+            --glow-purple: rgba(157, 0, 255, 0.2);
         }
 
         * {
@@ -34,7 +37,7 @@
             overflow-x: hidden;
         }
 
-        /* ヘッダーエリア */
+        /* ヘッダー */
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border-color);
@@ -45,7 +48,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
         }
 
         .brand {
@@ -55,27 +58,27 @@
         }
 
         .brand-logo {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
-            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-magenta));
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
+            font-weight: 900;
+            font-size: 1.3rem;
             color: #fff;
-            box-shadow: 0 0 15px var(--glow-cyan);
+            box-shadow: 0 0 20px var(--glow-cyan);
         }
 
         .brand-title h1 {
-            font-size: 1rem;
-            font-weight: 700;
+            font-size: 1.05rem;
+            font-weight: 800;
             letter-spacing: 0.05em;
         }
 
         .brand-title p {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-secondary);
             letter-spacing: 0.1em;
         }
@@ -91,7 +94,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
         }
 
         /* ナビゲーションタブ */
@@ -99,10 +102,13 @@
             background: var(--surface);
             padding: 10px 24px;
             display: flex;
-            gap: 12px;
+            gap: 10px;
             border-bottom: 1px solid var(--border-color);
             overflow-x: auto;
         }
+
+        nav::-webkit-scrollbar { height: 4px; }
+        nav::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 2px; }
 
         .tab-btn {
             background: transparent;
@@ -111,7 +117,7 @@
             padding: 8px 16px;
             border-radius: 6px;
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             white-space: nowrap;
             transition: all 0.2s ease;
@@ -126,14 +132,14 @@
             background: var(--accent-cyan);
             border-color: var(--accent-cyan);
             color: #000;
-            font-weight: 700;
-            box-shadow: 0 0 12px var(--glow-cyan);
+            font-weight: 800;
+            box-shadow: 0 0 15px var(--glow-cyan);
         }
 
-        /* メインコンテンツエリア */
+        /* メイン */
         main {
             flex: 1;
-            max-width: 1200px;
+            max-width: 1280px;
             width: 100%;
             margin: 0 auto;
             padding: 24px;
@@ -148,11 +154,8 @@
             gap: 20px;
         }
 
-        .section-panel.active {
-            display: flex;
-        }
+        .section-panel.active { display: flex; }
 
-        /* カード・グリッド */
         .card {
             background: var(--surface);
             border: 1px solid var(--border-color);
@@ -161,27 +164,94 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
 
         .card-header {
             font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-secondary);
+            font-weight: 700;
+            color: var(--accent-cyan);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
         }
 
-        /* ライブインフラステータス */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-        }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 
         .stat-box {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .stat-label { font-size: 0.75rem; color: var(--text-secondary); }
+        .stat-value { font-size: 1.2rem; font-weight: 800; color: var(--accent-cyan); }
+
+        .sweeper-bar {
+            background: var(--surface-hover);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 30px;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sweeper-bar:hover { box-shadow: 0 0 25px var(--glow-cyan); }
+
+        textarea, input[type="text"] {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            width: 100%;
+            outline: none;
+        }
+
+        textarea:focus, input[type="text"]:focus { border-color: var(--accent-cyan); }
+
+        .action-btn {
+            background: linear-gradient(135deg, var(--accent-cyan), #0099ff);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .action-btn:hover { opacity: 0.9; }
+        .action-btn.purple { background: linear-gradient(135deg, var(--accent-purple), #d400ff); color: #fff; }
+        .action-btn.magenta { background: linear-gradient(135deg, var(--accent-magenta), #ff55aa); color: #fff; }
+
+        .terminal-output {
+            background: #020204;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            height: 140px;
+            overflow-y: auto;
+        }
+
+        .data-item {
             background: var(--surface-hover);
             border: 1px solid var(--border-color);
             border-radius: 8px;
@@ -189,112 +259,17 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .stat-value {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--accent-cyan);
-        }
-
-        /* アトミック収益スイーパー */
-        .sweeper-bar {
-            background: var(--surface-hover);
-            border: 1px solid var(--accent-cyan);
-            border-radius: 30px;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.1);
-        }
-
-        .sweeper-bar:hover {
-            box-shadow: 0 0 20px var(--glow-cyan);
-        }
-
-        /* フィード投稿入力 */
-        .feed-input-area {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        textarea {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 14px;
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            resize: vertical;
-            min-height: 100px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        textarea:focus {
-            border-color: var(--accent-cyan);
-        }
-
-        .feed-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .action-btn {
-            background: linear-gradient(135deg, var(--accent-cyan), #0099ff);
-            color: #000;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: opacity 0.2s, transform 0.1s;
-        }
-
-        .action-btn:hover {
-            opacity: 0.9;
-        }
-
-        .action-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* トレンド・リスト */
-        .trend-item {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 12px 16px;
             font-size: 0.85rem;
-            color: var(--text-secondary);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
+        .data-item b { color: var(--accent-gold); }
 
-        .trend-item span {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        /* フッター情報 */
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 24px;
             font-size: 0.75rem;
             color: var(--text-secondary);
             border-top: 1px solid var(--border-color);
+            background: var(--surface);
         }
     </style>
 </head>
@@ -304,60 +279,60 @@
         <div class="brand">
             <div class="brand-logo">Q</div>
             <div class="brand-title">
-                <h1>QLUX ULTIMATE</h1>
-                <p>BSV SOVEREIGN MEGALOPOLIS // TERANODE 10M TPS // OMNI-AI ENGINE</p>
+                <h1>QLUX OMNI-MEGALOPOLIS</h1>
+                <p>AUTONOMOUS AI AGENTS // ZKP PRIVACY FORTRESS // QUANTUM-RESISTANT BSV</p>
             </div>
         </div>
-        <div class="wallet-badge" id="walletStatus">
-            ⚡ HandCash 連携済: 48,900 SAT
-        </div>
+        <div class="wallet-badge">⚡ HandCash Connect: 124,500 SAT</div>
     </header>
 
     <nav>
-        <button class="tab-btn active" onclick="switchTab('feed', event)">メインフィード</button>
-        <button class="tab-btn" onclick="switchTab('nodes', event)">総合技術網</button>
-        <button class="tab-btn" onclick="switchTab('accounts', event)">アカウント管理</button>
-        <button class="tab-btn" onclick="switchTab('wallet', event)">ウォレット監査</button>
-        <button class="tab-btn" onclick="switchTab('ai', event)">AIエージェント</button>
-        <button class="tab-btn" onclick="switchTab('storage', event)">Ordinalストレージ</button>
+        <button class="tab-btn active" onclick="switchTab('feed', event)">🚀 メインフィード</button>
+        <button class="tab-btn" onclick="switchTab('agents', event)">🤖 無人マイクロ経済</button>
+        <button class="tab-btn" onclick="switchTab('zkp', event)">🛡️ ZKPプライバシー要塞</button>
+        <button class="tab-btn" onclick="switchTab('quantum', event)">⚛️ 量子耐性 AIプロトコル</button>
+        <button class="tab-btn" onclick="switchTab('teranode', event)">⚡ Teranode 10M</button>
+        <button class="tab-btn" onclick="switchTab('contracts', event)">📜 アトミック契約</button>
+        <button class="tab-btn" onclick="switchTab('audit', event)">🔍 資産・ウォレット監査</button>
     </nav>
 
     <main>
+
         <div id="feed" class="section-panel active">
             <div class="card">
-                <div class="card-header">アクティブノード制御</div>
+                <div class="card-header">アクティブ・ノードコントローラー</div>
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
-                        <strong style="font-size: 0.95rem;">QLUX Sovereign Master</strong>
-                        <div style="font-size: 0.75rem; color: var(--text-secondary);">qlux_master (Active)</div>
+                        <strong style="font-size: 1rem;">QLUX Autonomous Sovereign Node</strong>
+                        <div style="font-size: 0.75rem; color: var(--text-secondary);">ID: node_omni_secure_v9 (Active)</div>
                     </div>
-                    <button class="tab-btn" onclick="alert('アカウントを切り替えました')">アカウント切替</button>
+                    <button class="action-btn" onclick="alert('ノードクラスタを再同期しました')">ネットワーク同期</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-header">アトミック収益スイーパー</div>
+                <div class="card-header">アトミック収益一括スイーパー</div>
                 <div class="sweeper-bar" onclick="sweepSats()">
-                    <span style="font-size: 0.85rem; font-weight: 600;">未回収サトシ:</span>
-                    <span style="color: var(--accent-cyan); font-weight: 700;" id="satsAmount">14,200 SAT</span>
-                    <span style="font-size: 0.8rem; color: var(--text-secondary);">→ スワイプして一括回収 →</span>
+                    <span style="font-size: 0.9rem; font-weight: 700;">未回収ナノペイメント収益:</span>
+                    <span style="color: var(--accent-cyan); font-weight: 900; font-size: 1.1rem;" id="satsAmount">45,200 SAT</span>
+                    <span style="font-size: 0.8rem; color: var(--text-secondary);">→ スワイプして一括ウォレット回収 →</span>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-header">ライブBSVインフラステータス</div>
-                <div class="stats-grid">
+                <div class="card-header">Global Sovereign Megalopolis Metrics</div>
+                <div class="grid-3">
                     <div class="stat-box">
-                        <span class="stat-label">⚡ Teranode TPS</span>
-                        <span class="stat-value">10,000,000</span>
+                        <span class="stat-label">🤖 自律AIエージェント数</span>
+                        <span class="stat-value">1,420 Active</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-label">📌 手数料レート</span>
-                        <span class="stat-value">&lt; 0.00001 SAT</span>
+                        <span class="stat-label">🛡️ ZKPシールド状態</span>
+                        <span class="stat-value" style="color: var(--accent-purple);">100% 匿名隠蔽</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-label">🔲 ノード同期率</span>
-                        <span class="stat-value">100% 稼働</span>
+                        <span class="stat-label">⚛️ 量子耐性署名レベル</span>
+                        <span class="stat-value" style="color: var(--accent-green);">Post-Quantum 512</span>
                     </div>
                 </div>
             </div>
@@ -367,99 +342,134 @@
                     <span>On-Chain Pay-Per-Action Feed</span>
                     <span style="color: var(--accent-cyan); font-size: 0.75rem;">完全分散リアルタイム配信</span>
                 </div>
-                <div class="feed-input-area">
-                    <textarea id="postContent" placeholder="BSV統合台帳歴史して世界一の呪脳を刻む... #QLUX #Teranode #BSV"></textarea>
-                    <div class="feed-footer">
-                        <span style="font-size: 0.75rem; color: var(--text-secondary);">手数料ゼロ・ナノペイメント自動開放</span>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <textarea id="postContent" placeholder="完全自律型経済圏の未来をブロックチェーンに刻む... #QLUX #AutonomousAI #ZKP #BSV"></textarea>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.75rem; color: var(--text-secondary);">ゼロ手数料・ナノ秒自動トランザクション</span>
                         <button class="action-btn" onclick="postToChain()">ブロックチェーンに刻む</button>
                     </div>
                 </div>
             </div>
-
-            <div class="card">
-                <div class="card-header">グローバル・トレンド</div>
-                <div class="trend-item">
-                    <div>#BSV <span style="font-size: 0.75rem; color: var(--text-secondary);">(88.2K Posts)</span><br>無限スケーラビリティを誇る次世代レイヤー1インフラ。</div>
-                </div>
-                <div class="trend-item">
-                    <div>#Teranode <span style="font-size: 0.75rem; color: var(--text-secondary);">(36.5K Posts)</span><br>1000万TPSを達成する次世代バリデーター。</div>
-                </div>
-                <div class="trend-item">
-                    <div>#QLUX <span style="font-size: 0.75rem; color: var(--text-secondary);">(85.1K Posts)</span><br>世界最先端の磁気統合メガエコシステム。</div>
-                </div>
-            </div>
         </div>
 
-        <div id="nodes" class="section-panel">
+        <div id="agents" class="section-panel">
             <div class="card">
-                <div class="card-header">ネットワーク・アーキテクチャ概要</div>
+                <div class="card-header">無人・超高速アトミック・マイクロエージェント経済</div>
                 <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
-                    QLUXエコシステムは、Bitcoin SVのTeranode基盤を活用した超高速レイヤー1分散ネットワークです。アトミックコントラクトおよび物理磁気制御デバイスとの統合により、完全自律型の経済圏を構築します。
+                    人間の介入を一切介さず、AIエージェント同士がBSV上のサトシ単位のナノペイメントだけで、リアルタイムに計算資源、APIコール、およびデータ売買を自律的に遂行するSF的マイクロエコシステム。
                 </p>
+                <div class="grid-2">
+                    <div class="data-item">
+                        <b>Agent-Alpha: Compute Market</b>
+                        <span>ステータス: 稼働中 (Autonomous)</span>
+                        <span>取引速度: 0.2ms / Micro-TX</span>
+                    </div>
+                    <div class="data-item">
+                        <b>Agent-Beta: Data Broker</b>
+                        <span>ステータス: 稼働中 (Autonomous)</span>
+                        <span>処理量: 14.8 GB/sec</span>
+                    </div>
+                </div>
+                <button class="action-btn purple" onclick="alert('AIエージェント間の自動売買ループを起動しました！')">自律経済ループを加速</button>
             </div>
         </div>
 
-        <div id="accounts" class="section-panel">
+        <div id="zkp" class="section-panel">
             <div class="card">
-                <div class="card-header">ノード・アカウントマネージャー</div>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">現在接続中のマスターキーおよびサブアカウントの管理を行えます。</p>
+                <div class="card-header">地球規模・分散型 ZKP プライバシー要塞</div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                    ブロックチェーンの改ざん不可能な透明性を完全に維持しながら、個人のデータ、取引の機密、アイデンティティ情報を暗号数学的ゼロ知識証明（ZKP）で完全に隠蔽。国家や大企業すらアクセス不可能なソブリン要塞を構築。
+                </p>
+                <div class="data-item">
+                    <b>ZKP Circuit Status</b>
+                    <span>証明生成: Groth16 / Plonk Verified</span>
+                    <span>プライバシーレベル: Military-Grade Absolute Zero-Knowledge</span>
+                </div>
+                <button class="action-btn magenta" onclick="alert('ZKPゼロ知識証明シールドを展開・暗号化しました！')">ZKPシールドを展開</button>
             </div>
         </div>
 
-        <div id="wallet" class="section-panel">
+        <div id="quantum" class="section-panel">
             <div class="card">
-                <div class="card-header">HandCash & アトミック残高監査</div>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">リアルタイムでのサトシ残高、およびオンチェーン上の報酬収益のトラッキング状況を表示しています。</p>
+                <div class="card-header">量子耐性・次世代オンチェーンAIプロトコル</div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                    将来の量子コンピュータによる解読脅威（Shorのアルゴリズム等）に完全耐性を持つ次世代の格子暗号ベース署名をBSV基盤に統合。AIの思考プロセスおよび推論ログを改ざん不能な形で永久保存。
+                </p>
+                <div class="terminal-output" id="quantumLog">
+                    [QUANTUM] Lattice-based cryptography module loaded...<br>
+                    [OK] Post-quantum signature verification active.<br>
+                    [SECURE] AI reasoning logs locked with quantum-resistant hash.
+                </div>
+                <button class="action-btn" onclick="alert('量子耐性AIログのオンチェーン検証を実行しました！')">量子耐性ログを検証</button>
             </div>
         </div>
 
-        <div id="ai" class="section-panel">
+        <div id="teranode" class="section-panel">
             <div class="card">
-                <div class="card-header">Omni-AI Autonomous Engine</div>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">AIエージェントによる自動最適化、およびスマートコントラクトの監視・実行を行います。</p>
+                <div class="card-header">Teranode 10M+ TPS スケーリングエンジン</div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                    世界最高峰の処理速度を誇るBitcoin SV Teranode基盤。AIエージェントの爆発的なマイクロトランザクションを完全ノーペインで処理。
+                </p>
+                <div class="stat-box">
+                    <span class="stat-label">リアルタイム処理能力</span>
+                    <span class="stat-value">10,000,000+ TPS</span>
+                </div>
             </div>
         </div>
 
-        <div id="storage" class="section-panel">
+        <div id="contracts" class="section-panel">
             <div class="card">
-                <div class="card-header">永久Ordinalsストレージ</div>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">設計図やジルコニア研磨データ、ミラーシート構成などの永続的オンチェーン保存を管理します。</p>
+                <div class="card-header">アトミック・スプリット スマートコントラクト</div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                    すべての自律トランザクションや売買収益を、仲介者なしで秒速で分配・実行するスマートコントラクト。
+                </p>
+                <button class="action-btn" onclick="alert('アトミック契約条件を更新しました')">スマートコントラクト実行</button>
             </div>
         </div>
+
+        <div id="audit" class="section-panel">
+            <div class="card">
+                <div class="card-header">HandCash & 自律エコシステム監査</div>
+                <div class="grid-2">
+                    <div class="stat-box">
+                        <span class="stat-label">HandCash 残高</span>
+                        <span class="stat-value">124,500 SAT</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">自律エージェント収益総額</span>
+                        <span class="stat-value" style="color: var(--accent-gold);">3,490,000 SAT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <footer>
-        &copy; 2026 QLUX Sovereign Megalopolis Ecosystem. Powered by BSV Teranode & HandCash.
+        &copy; 2026 QLUX OMNI-MEGALOPOLIS. Powered by BSV Teranode, ZKP & Autonomous AI.
     </footer>
 
     <script>
-        // タブ切り替えロジック
         function switchTab(tabId, event) {
-            document.querySelectorAll('.section-panel').forEach(panel => {
-                panel.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.section-panel').forEach(panel => panel.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
 
-        // サトシ一括スイープのアクション
         function sweepSats() {
             const satsElement = document.getElementById('satsAmount');
-            alert('アトミック収益をウォレットに一括回収しました！');
+            alert('AIエージェントの未回収ナノペイメント収益をウォレットへ一括回収しました！');
             satsElement.innerText = '0 SAT';
         }
 
-        // ブロックチェーン投稿のアクション
         function postToChain() {
             const content = document.getElementById('postContent').value.trim();
             if(!content) {
                 alert('投稿内容を入力してください。');
                 return;
             }
-            alert('ブロックチェーンにトランザクションとして刻まれました: ' + content);
+            alert('Teranode経由で完全自律ブロックチェーンに永久刻まれました: ' + content);
             document.getElementById('postContent').value = '';
         }
     </script>
