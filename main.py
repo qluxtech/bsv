@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import time
 
-app = FastAPI(title="QLUX Sovereign API", version="3.0.0")
+app = FastAPI(title="QLUX Sovereign Megalopolis API", version="5.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -11,44 +11,45 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
->
+)
 
-class PostCreate(BaseModel):
+class PostModel(BaseModel):
     name: str
     id_str: str
     content: str
     avatar: str
 
-posts_db = [
+db_posts = [
     {
         "id": 1,
-        "name": "QLUX Sovereign Node",
+        "name": "QLUX Sovereign Master",
         "id_str": "@qlux_master",
         "avatar": "Q",
         "time": "たった今",
-        "content": "QLUXウルトラメガボリューム版が完全稼働！Teranodeの1000万TPSで世界を圧倒する。 #QLUX #Teranode #BSV",
-        "likes": 512
+        "content": "QLUXメガボリューム最終版バックエンド稼働中。Teranode 1000万TPS全開！ #QLUX #Teranode",
+        "likes": 1024
     }
 ]
 
-@app.get("/api/status")
-def get_system_status():
+@app.get("/api/v5/status")
+def system_status():
     return {
+        "system": "QLUX Sovereign Megalopolis",
         "status": "ONLINE",
         "tps": "10,000,000",
-        "active_nodes": 14892,
+        "active_ai_nodes": 8192,
         "fee_sats": "< 0.000001",
         "timestamp": time.time()
     }
 
-@app.get("/api/posts")
+@app.get("/api/v5/posts")
 def get_posts():
-    return {"posts": posts_db}
+    return {"posts": db_posts}
 
-@app.post("/api/posts")
-def create_post(post: PostCreate):
-    new_post = {
-        "id": len(posts_db) + 1,
+@app.post("/api/v5/posts")
+def add_post(post: PostModel):
+    new_item = {
+        "id": len(db_posts) + 1,
         "name": post.name,
         "id_str": post.id_str,
         "avatar": post.avatar,
@@ -56,6 +57,5 @@ def create_post(post: PostCreate):
         "content": post.content,
         "likes": 0
     }
-    posts_db.insert(0, new_post)
-    return {"success": True, "post": new_post}
-
+    db_posts.insert(0, new_item)
+    return {"success": True, "post": new_item}
