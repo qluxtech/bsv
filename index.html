@@ -3,493 +3,400 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX — The Universal Sovereign Architecture</title>
+    <title>QLUX — The Sovereign Engine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #020408;
-  display: grid;
-  gap: 40px;
-  grid-template-columns: 1fr;
-  margin: 0;
-  min-height: 100vh;
-  padding: 40px 0;
-  place-items: center;
-}
-
-.slide-container {
-  align-items: center;
-  background-color: #010205;
-  border-radius: 16px;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.98);
-  display: flex;
-  flex-direction: column;
-  height: 720px;
-  justify-content: center;
-  overflow: hidden;
-  padding: 60px 80px;
-  position: relative;
-  width: 1280px;
-  border: 1px solid rgba(0, 242, 254, 0.35);
-  font-family: 'Urbanist', 'Noto Sans JP', sans-serif;
-  text-align: center;
-}
-
-.slide-container::before {
-  content: '';
-  position: absolute;
-  top: -300px;
-  right: -300px;
-  width: 900px;
-  height: 900px;
-  background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, transparent 70%);
-  z-index: 0;
-}
-
-.slide-container>* {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-}
-
-h1, h2, h3 {
-  color: #ffffff;
-  font-weight: 900;
-  margin: 0;
-  line-height: 1.1;
-  text-align: center;
-}
-
-h1 {
-  font-size: 68px;
-  letter-spacing: -2px;
-}
-
-.slide-title {
-  font-size: 38px;
-  margin-bottom: 25px;
-  color: #00f2fe;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-weight: 900;
-  border-bottom: 1px solid rgba(0, 242, 254, 0.15);
-  padding-bottom: 15px;
-  text-align: center;
-  width: 100%;
-}
-
-h3 {
-  font-size: 30px;
-  color: #00f2fe;
-  margin-bottom: 15px;
-}
-
-p, li, td, th, .subtitle {
-  font-size: 19px;
-  line-height: 1.7;
-  color: #e2fef5;
-  text-align: center;
-}
-
-strong {
-  color: #00f2fe;
-  font-weight: 900;
-}
-
-.content-area {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 0 auto;
-}
-
-/* DASHBOARD */
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  width: 100%;
-  margin-bottom: 30px;
-}
-
-.dash-btn {
-  background: rgba(8, 14, 35, 0.95);
-  border-radius: 14px;
-  border: 1px solid rgba(0, 242, 254, 0.4);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 20px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  align-items: center;
-  justify-content: center;
-}
-
-.dash-btn:hover {
-  background: rgba(0, 242, 254, 0.2);
-  border-color: #00f2fe;
-  transform: translateY(-5px);
-}
-
-.dash-meta {
-  color: #00f2fe;
-  font-size: 11px;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.dash-label {
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-/* BLEED IMAGE LAYOUT WITH LATEST UPLOADED BLUEPRINTS */
-.slide-container.bleed-image-layout {
-  align-items: start;
-  display: grid;
-  gap: 0;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  padding: 0;
-}
-
-.bleed-image-layout .content-container {
-  padding: 60px 70px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 100%;
-}
-
-.bleed-image-layout .image-container {
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
-  border-left: 1px solid rgba(0, 242, 254, 0.3);
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bleed-image-layout img {
-  border-radius: 0;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-/* TILES */
-.two-column {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 35px;
-  width: 100%;
-}
-
-.tile-box {
-  background: rgba(8, 14, 35, 0.92);
-  border-radius: 18px;
-  border: 1px solid rgba(0, 242, 254, 0.35);
-  padding: 35px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 100%;
-}
-
-table {
-  background: rgba(4, 7, 18, 0.9);
-  border-collapse: collapse;
-  border-radius: 16px;
-  margin: 0 auto;
-  overflow: hidden;
-  width: 100%;
-}
-th, td {
-  border-bottom: 1px solid rgba(0, 242, 254, 0.15);
-  padding: 20px 30px;
-  text-align: center;
-}
-th {
-  background-color: rgba(0, 242, 254, 0.2);
-  color: #00f2fe;
-  font-size: 20px;
-  font-weight: 900;
-}
-
-/* SCROLLER & SWIPE */
-.scroller-box {
-  background: rgba(4, 7, 18, 0.9);
-  border-radius: 16px;
-  border: 1px solid rgba(0, 242, 254, 0.3);
-  margin-bottom: 20px;
-  max-height: 240px;
-  overflow-y: auto;
-  padding: 30px 45px;
-  text-align: center;
-  width: 100%;
-}
-
-.scroller-box::-webkit-scrollbar { width: 6px; }
-.scroller-box::-webkit-scrollbar-thumb { background: #00f2fe; border-radius: 10px; }
-
-.swipe-area {
-  background: rgba(4, 7, 18, 0.98);
-  border-radius: 20px;
-  border: 2px solid #00f2fe;
-  box-shadow: 0 0 50px rgba(0, 242, 254, 0.3);
-  padding: 22px 40px;
-  width: 100%;
-  position: relative;
-}
-
-.swipe-track {
-  align-items: center;
-  background: #020409;
-  border-radius: 60px;
-  border: 1px solid #00f2fe;
-  cursor: grab;
-  display: flex;
-  height: 76px;
-  margin-top: 15px;
-  overflow: hidden;
-  padding: 0 8px;
-  position: relative;
-  width: 100%;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.swipe-track:active {
-  cursor: grabbing;
-}
-
-.swipe-thumb {
-  align-items: center;
-  background: linear-gradient(135deg, #00f2fe, #0072ff);
-  border-radius: 38px;
-  box-shadow: 0 0 35px #00f2fe;
-  color: #010205;
-  display: flex;
-  font-size: 20px;
-  font-weight: 900;
-  height: 60px;
-  justify-content: center;
-  left: 8px;
-  position: absolute;
-  touch-action: none;
-  width: 220px;
-  z-index: 10;
-  cursor: pointer;
-}
-
-.swipe-text {
-  color: rgba(0, 242, 254, 0.5);
-  font-size: 18px;
-  font-weight: 900;
-  letter-spacing: 3px;
-  pointer-events: none;
-  text-align: center;
-  text-transform: uppercase;
-  width: 100%;
-  z-index: 5;
-}
+        * { box-sizing: border-box; }
+        body {
+            background-color: #010205;
+            margin: 0;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+            color: #fff;
+            font-family: 'Urbanist', 'Noto Sans JP', sans-serif;
+        }
+        .slide-container {
+            background-color: #010206;
+            border-radius: 12px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            height: 720px;
+            justify-content: center;
+            overflow: hidden;
+            padding: 60px 80px;
+            position: relative;
+            width: 1280px;
+            border: 1px solid rgba(0, 242, 254, 0.25);
+            text-align: center;
+        }
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: -20%; right: -10%;
+            width: 60%; height: 60%;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, transparent 70%);
+            z-index: 0;
+        }
+        .slide-container > * { position: relative; z-index: 1; width: 100%; }
+        h1, h2, h3 { font-weight: 900; margin: 0; line-height: 1.1; text-align: center; }
+        h1 { font-size: 130px; letter-spacing: -6px; color: #fff; text-shadow: 0 0 35px rgba(0, 242, 254, 0.4); }
+        .slide-title { font-size: 40px; margin-bottom: 25px; color: #00f2fe; text-transform: uppercase; letter-spacing: 4px; border-bottom: 1px solid rgba(0, 242, 254, 0.1); padding-bottom: 15px; width: 100%; }
+        h3 { font-size: 30px; color: #00f2fe; margin-bottom: 15px; }
+        p, li { font-size: 20px; line-height: 1.7; color: #a5b6cb; max-width: 1000px; margin: 0 auto; text-align: center; }
+        strong { color: #00f2fe; font-weight: 900; }
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .tiled-content { display: flex; gap: 30px; width: 100%; align-items: stretch; }
+        .tile { 
+            flex: 1; 
+            background: rgba(5, 10, 30, 0.9); 
+            border: 1px solid rgba(0, 242, 254, 0.25); 
+            border-radius: 20px; 
+            padding: 35px; 
+            text-align: center; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .tile i { color: #00f2fe; font-size: 40px; margin-bottom: 15px; text-align: center; width: 100%; }
+        .slide-container.bleed-graphic-layout {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            padding: 0 !important;
+            text-align: left;
+            align-items: start;
+        }
+        .bleed-graphic-layout .content-side {
+            padding: 50px 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100%;
+        }
+        .bleed-graphic-layout .content-side p,
+        .bleed-graphic-layout .content-side h3 {
+            text-align: left;
+            margin: 0 0 12px 0;
+        }
+        .bleed-graphic-layout .graphic-side {
+            height: 720px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-left: 1px solid rgba(0, 242, 254, 0.2);
+            overflow: hidden;
+        }
+        .design-mesh { 
+            width: 340px; height: 340px; 
+            border: 1px solid rgba(0, 242, 254, 0.4); 
+            background-image: linear-gradient(rgba(0, 242, 254, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 242, 254, 0.15) 1px, transparent 1px); 
+            background-size: 30px 30px; 
+            position: relative; 
+            box-shadow: 0 0 50px rgba(0, 242, 254, 0.2);
+        }
+        .design-mesh::after { 
+            content: ''; position: absolute; top: 50%; left: 50%; width: 200px; height: 220px; 
+            transform: translate(-50%, -50%); border-radius: 50%; 
+            background: radial-gradient(circle, rgba(0,242,254,0.3) 0%, transparent 70%); 
+            border: 1px solid #00f2fe; 
+        }
+        .design-core { 
+            width: 260px; height: 260px; 
+            transform: rotate(45deg); 
+            border: 2px solid #00f2fe; 
+            box-shadow: 0 0 60px rgba(0, 242, 254, 0.5); 
+            position: relative; 
+            background: rgba(0, 242, 254, 0.08); 
+            display: flex; align-items: center; justify-content: center;
+        }
+        .design-sanctuary { 
+            width: 300px; height: 300px; 
+            background: rgba(0, 242, 254, 0.04); 
+            clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%); 
+            border: 2px solid #00f2fe; 
+            display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 0 50px rgba(0, 242, 254, 0.3);
+        }
+        .design-sanctuary-inner { 
+            width: 220px; height: 220px; 
+            clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%); 
+            border: 1px solid rgba(0, 242, 254, 0.5); 
+            background: radial-gradient(circle, rgba(0,242,254,0.25) 0%, transparent 80%); 
+        }
+        .design-singularity { 
+            width: 320px; height: 320px; 
+            border-radius: 50%; 
+            border: 1px solid rgba(0, 242, 254, 0.2); 
+            display: flex; align-items: center; justify-content: center; 
+            position: relative; 
+            box-shadow: inset 0 0 40px rgba(0, 242, 254, 0.2);
+        }
+        .design-singularity::before { content: ''; width: 2px; height: 150px; background: #00f2fe; box-shadow: 0 0 25px #00f2fe; }
+        .design-singularity::after { content: ''; height: 2px; width: 150px; background: #00f2fe; position: absolute; box-shadow: 0 0 25px #00f2fe; }
+        .singularity-glow { position: absolute; width: 160px; height: 160px; background: radial-gradient(circle, rgba(0,242,254,0.5) 0%, transparent 70%); filter: blur(25px); }
+        .design-pulse {
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            border: 2px dashed rgba(0, 242, 254, 0.6);
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,242,254,0.2);
+        }
+        .design-pulse-center {
+            width: 140px; height: 140px;
+            background: rgba(0,242,254,0.15);
+            border-radius: 50%;
+            border: 2px solid #00f2fe;
+            box-shadow: 0 0 30px #00f2fe;
+        }
+        table { width: 100%; border-collapse: collapse; background: rgba(5, 10, 30, 0.6); border-radius: 16px; overflow: hidden; }
+        th, td { padding: 18px; text-align: center; border-bottom: 1px solid rgba(0, 242, 254, 0.1); font-size: 18px; }
+        th { background: rgba(0, 242, 254, 0.18); color: #00f2fe; font-size: 20px; font-weight: 900; }
+        .swipe-area { 
+            background: rgba(4, 8, 20, 0.98); 
+            border: 2px solid #00f2fe; 
+            border-radius: 24px; 
+            padding: 25px 40px; 
+            box-shadow: 0 0 70px rgba(0, 242, 254, 0.3); 
+            width: 100%; 
+            margin-top: 20px; 
+            position: relative;
+        }
+        .swipe-track { 
+            background: #010308; 
+            border-radius: 60px; 
+            border: 1px solid rgba(0, 242, 254, 0.3); 
+            height: 84px; 
+            position: relative; 
+            width: 100%; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 10px; 
+            cursor: grab; 
+            overflow: hidden; 
+        }
+        .swipe-thumb {
+            width: 280px; height: 64px;
+            background: linear-gradient(135deg, #00f2fe 0%, #0072ff 100%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 40px; 
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 21px; color: #000411; 
+            position: absolute; left: 10px;
+            box-shadow: 0 0 40px rgba(0, 242, 254, 0.8), inset 0 2px 8px rgba(255, 255, 255, 0.7);
+            z-index: 10; touch-action: none; letter-spacing: 2px;
+        }
+        .swipe-text { width: 100%; text-align: center; color: rgba(0, 242, 254, 0.4); font-weight: 900; font-size: 18px; pointer-events: none; letter-spacing: 2px; }
+        .dash-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; margin-bottom: 25px; }
+        .dash-item { background: rgba(8, 16, 40, 0.9); border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 16px; padding: 20px; text-align: center; }
+        .dash-item span { display: block; color: #00f2fe; font-size: 12px; font-weight: 900; text-transform: uppercase; margin-bottom: 6px; }
+        .dash-item b { font-size: 19px; color: #fff; }
+        .scroller-box { background: rgba(4, 7, 18, 0.9); border-radius: 16px; border: 1px solid rgba(0, 242, 254, 0.3); margin-bottom: 20px; max-height: 220px; overflow-y: auto; padding: 25px 40px; text-align: center; width: 100%; }
+        .scroller-box::-webkit-scrollbar { width: 6px; }
+        .scroller-box::-webkit-scrollbar-thumb { background: #00f2fe; border-radius: 10px; }
     </style>
 </head>
 <body>
 
-<div class="slide-container" id="slide1">
+<div class="slide-container">
     <div class="content-area">
-        <h4 style="color: #00f2fe; letter-spacing: 6px; margin-bottom: 20px;">UNIVERSAL ABSOLUTE TRUTH</h4>
-        <h1>QLUX: The Sovereign Engine</h1>
-        <p class="subtitle" style="font-size: 26px; margin-top: 30px; color: #a5b6cb; max-width: 1050px;">
-            「エネルギー保存則」と「数学的厳密性」。地球上の全人類が疑いようのない普遍的真理に基づき、あらゆる経済・データ・価値の不整合をゼロへ収束させる究極の統合中枢。
-        </p>
+        <h4 style="color: #00f2fe; letter-spacing: 15px; margin-bottom: 20px;">ABSOLUTE SOVEREIGNTY</h4>
+        <h1>QLUX</h1>
+        <p style="font-size: 30px; color: #fff; margin-top: 30px; font-weight: 700;">The Universal Engine of Economic Convergence.</p>
+        <p style="font-size: 20px; color: #a5b6cb; margin-top: 15px; max-width: 850px;">あらゆる既存インフラを統括し、個人へ主権を返還する最上位執行レイヤー。</p>
     </div>
 </div>
 
-<div class="slide-container" id="slide2">
-    <h2 class="slide-title">Global Universal Dashboard</h2>
+<div class="slide-container">
+    <h2 class="slide-title">The Supreme Hierarchy</h2>
     <div class="content-area">
-        <div class="dashboard-grid">
-            <a href="#slide4" class="dash-btn"><span class="dash-meta">Teranode Matrix</span><span class="dash-label">10M+ TPS 完全同期</span></a>
-            <a href="#slide6" class="dash-btn"><span class="dash-meta">Deterministic Law</span><span class="dash-label">改ざん不能の数理</span></a>
-            <a href="#slide7" class="dash-btn"><span class="dash-meta">Zero Friction</span><span class="dash-label">原生価値の自動直結</span></a>
-            <a href="#slide12" class="dash-btn"><span class="dash-meta">Atomic Settlement</span><span class="dash-label">一括アトミック清算</span></a>
-        </div>
-        <p style="margin-top: 30px; font-size: 21px; color: #a5b6cb; border-top: 1px solid rgba(0, 242, 254, 0.2); padding-top: 20px; max-width: 1050px;">
-            人類のあらゆる経済活動において、例外や例外規定は存在しない。世界中誰一人取り残さない完全同期ポータルへ今すぐアクセスせよ。
-        </p>
-    </div>
-</div>
-
-<div class="slide-container" id="slide3">
-    <h2 class="slide-title">Axiom: 不確実性の完全排除</h2>
-    <div class="content-area">
-        <div class="two-column">
-            <div class="tile-box">
-                <h3>仲介者という「情報の歪み」の消滅</h3>
-                <p>人類の歴史上、第三者の介在は常に摩擦と搾取を生んできた。QLUXはピア・ツー・ピアの数学的直結により、あらゆる無駄な中間コストを物理的にゼロにする。</p>
+        <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+            <div style="background: linear-gradient(90deg, rgba(0,242,254,0.1) 0%, rgba(0,242,254,0.3) 50%, rgba(0,242,254,0.1) 100%); border: 2px solid #00f2fe; padding: 30px; border-radius: 20px; width: 850px; box-shadow: 0 0 50px rgba(0,242,254,0.2);">
+                <h3 style="margin-bottom: 8px; font-size: 36px;">QLUX: Sovereign Gateway</h3>
+                <p style="font-size: 18px; color: #fff; font-weight: 700;">Command Tier. 全ての価値を支配下におく最終ポータル。</p>
             </div>
-            <div class="tile-box">
-                <h3>絶対的真実を刻む不変の台帳</h3>
-                <p>人間の恣意的な意思決定や不履行の概念を排除。一度刻まれたブロックチェーンの真実は、地球上のいかなる権力も覆すことができない。</p>
+            <div style="font-size: 30px; color: #00f2fe;"><i class="fa-solid fa-angles-down"></i></div>
+            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(0,242,254,0.2); padding: 20px; border-radius: 16px; width: 750px;">
+                <p style="font-size: 18px;">Infrastructure & Enterprise Tier: 汎用インフラおよび個別ビジネスロジック</p>
             </div>
         </div>
+        <p style="margin-top: 30px; font-size: 20px;">QLUXは既存の技術群を束ね、人類へ「完璧な確定」のみを提供します。</p>
     </div>
 </div>
 
-<div class="slide-container" id="slide4">
-    <h2 class="slide-title">Teranode: 無限の拡張性</h2>
+<div class="slide-container">
+    <h2 class="slide-title">Global Synchronization</h2>
     <div class="content-area">
-        <div style="font-size: 150px; font-weight: 900; color: #00f2fe; line-height: 0.9; text-shadow: 0 0 50px rgba(0, 242, 254, 0.4);">10M+</div>
-        <div style="font-size: 32px; font-weight: 900; color: #ffffff; margin-top: 20px;">Transactions Per Second</div>
-        <p style="margin-top: 25px; max-width: 1000px; font-size: 21px;">
-            世界中の全人口・全デバイスが同時刻にトランザクションを発行しても、目詰まりを起こさない唯一のアーキテクチャ。それがTeranodeが提示する絶対のスケール則。
-        </p>
+        <div class="dash-grid">
+            <div class="dash-item"><span>Architecture</span><b>Neural Scale Matrix</b></div>
+            <div class="dash-item"><span>Settlement</span><b>Quantum Atomic</b></div>
+            <div class="dash-item"><span>Efficiency</span><b>Zero Gravity Friction</b></div>
+            <div class="dash-item"><span>Integrity</span><b>Mathematical Absolute</b></div>
+        </div>
+        <p style="font-size: 24px; color: #fff; font-weight: 700;">世界に「遅延」と「不透明」が許される場所はもうありません。</p>
     </div>
 </div>
 
-<div class="slide-container bleed-image-layout" id="slide5">
-    <div class="content-container">
-        <h2 class="slide-title" style="border: none; padding: 0;">Blueprint Alpha</h2>
-        <h3>電極・外側構造の精密設計</h3>
-        <p>特急電極および真Fカメ外側の厳格な物理配置データ。すべてのエネルギーロスを防ぐ幾何学的最適解と、オンチェーン証明の完全同期。</p>
-    </div>
-    <div class="image-container">
-        <img src="uploaded:11181.jpg-0ecd3194-45e6-4899-b6ec-83d67fd2cf6a" alt="Blueprint 11181">
-    </div>
-</div>
-
-<div class="slide-container" id="slide6">
-    <h2 class="slide-title">Deterministic Execution: 契約の自動完結</h2>
+<div class="slide-container">
+    <h2 class="slide-title">The Act of Reset</h2>
     <div class="content-area">
-        <div class="two-column">
-            <div class="tile-box" style="background: rgba(0, 242, 254, 0.05);">
-                <h3>sCrypt Smart Contracts</h3>
-                <p>コードの実行結果がそのまま世界の物理的現実となる。条件が満たされた瞬間に、報酬の移動が不可逆的に完了する。</p>
+        <h3 style="font-size: 50px; margin-bottom: 25px;">スワイプ。それは旧世界への「決別」。</h3>
+        <p style="font-size: 24px; color: #fff; max-width: 950px; line-height: 1.5;">中央集権的な「許可」を待つ時代を終わらせます。スワイプした瞬間、宇宙の物理法則に基づいた富があなたの手元へ直結されます。</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px;">
+            <div style="text-align: left; padding: 25px; border-left: 6px solid #00f2fe; background: rgba(0,242,254,0.06);">
+                <b style="color: #fff; font-size: 22px;">Impact: 依存の消滅</b><br>銀行や企業の承認を介さず、不変のプロトコルが直接あなたを認識し執行します。
             </div>
-            <div class="tile-box">
-                <h3>不払い・未回収の物理的消滅</h3>
-                <p>人間の信用力に依存するシステムは時代遅れ。プロトコルそのものが債権と債務を同時に相殺するため、世界から未払いリスクが消失する。</p>
+            <div style="text-align: left; padding: 25px; border-left: 6px solid #00f2fe; background: rgba(0,242,254,0.06);">
+                <b style="color: #fff; font-size: 22px;">Effect: 自由の確定</b><br>待機時間はゼロへ。未清算の可能性は、即時利用可能な現実の購買力へと昇華されます。
             </div>
         </div>
     </div>
 </div>
 
-<div class="slide-container bleed-image-layout" id="slide7">
-    <div class="content-container">
-        <h2 class="slide-title" style="border: none; padding: 0;">Blueprint Beta</h2>
-        <h3>研磨紙・ディスクの統合モジュール</h3>
-        <p>ジルコニア研磨紙ディスク輪っかとダイヤモンドカッター、パラジウムビーズの精密配置仕様。微小経済を支える物質的基盤。</p>
+<div class="slide-container bleed-graphic-layout">
+    <div class="content-side">
+        <h2 class="slide-title" style="border: none; padding: 0;">Universal Mesh</h2>
+        <h3>世界の経済再構築</h3>
+        <p>国境、言語、階層。QLUXはそれらをデータ的に無効化し、全ての経済活動を一つの均質な高効率網（Mesh）へと収束させます。</p>
     </div>
-    <div class="image-container">
-        <img src="uploaded:11182.jpg-6d2590d5-99ab-497c-9a0a-467ad6ad39c7" alt="Blueprint 11182">
+    <div class="graphic-side">
+        <div class="design-mesh"></div>
     </div>
 </div>
 
-<div class="slide-container" id="slide8">
-    <h2 class="slide-title">Auto-Nano-Economy: 富の全自動循環</h2>
+<div class="slide-container">
+    <h2 class="slide-title">The Absolute Comparison</h2>
     <div class="content-area">
-        <div style="display: flex; gap: 30px; width: 100%;">
-            <div class="tile-box" style="flex: 1;">
-                <i class="fa-solid fa-sync" style="font-size: 45px; color: #00f2fe; margin-bottom: 20px;"></i>
-                <h3>日常行動の原生価値化</h3>
-                <p>あらゆる閲覧・データ送受信の裏側で、極小のナノペイメントが瞬時に動き、地球上の誰に対しても正当な報酬を漏れなく還元する。</p>
-            </div>
-            <div class="tile-box" style="flex: 1;">
-                <i class="fa-solid fa-microchip" style="font-size: 45px; color: #00f2fe; margin-bottom: 20px;"></i>
-                <h3>1サトシ未満の手数料革命</h3>
-                <p>手数料が価値そのものを圧迫する旧来のシステムを完全打破。真のマイクロ・エコノミーを地球規模で常時稼働させる。</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="slide-container bleed-image-layout" id="slide9">
-    <div class="content-container">
-        <h2 class="slide-title" style="border: none; padding: 0;">Blueprint Gamma</h2>
-        <h3>大蛇巻き・ミラーシート構造</h3>
-        <p>22SQホース青い大蛇とアルミミラーシートによる螺旋巻き（交互正巻き逆巻き）の完全実装。エネルギーを最適化する高次元構造。</p>
-    </div>
-    <div class="image-container">
-        <img src="uploaded:11183.jpg-e1170147-7743-40a7-8bb8-d2c4cce181e5" alt="Blueprint 11183">
-    </div>
-</div>
-
-<div class="slide-container" id="slide10">
-    <h2 class="slide-title">Global Efficiency Matrix</h2>
-    <div class="content-area">
+        <p style="margin-bottom: 40px; font-size: 24px; font-weight: 700;">QLUXは「改善」ではありません。システムの「定義」そのものの書き換えです。</p>
         <table>
             <thead>
-                <tr>
-                    <th>Metric</th>
-                    <th>Legacy Networks / L2</th>
-                    <th>QLUX Sovereign Core</th>
-                </tr>
+                <tr><th>Metaphysics</th><th>Legacy Banking / Web3 Apps</th><th>QLUX Sovereign Engine</th></tr>
             </thead>
             <tbody>
-                <tr><td>Scalability</td><td>Bottlenecked / Fragmented</td><td><strong>Unbounded (Teranode)</strong></td></tr>
-                <tr><td>Settlement Time</td><td>Days / High Latency</td><td><strong>Millisec (Atomic)</strong></td></tr>
-                <tr><td>Exclusion Risk</td><td>High (Inequitable Access)</td><td><strong>Zero (Universal Reach)</strong></td></tr>
+                <tr><td>Trust Source</td><td>Human / Institutional Trust</td><td><strong>Mathematical Integrity</strong></td></tr>
+                <tr><td>Settlement Time</td><td>Pending (High Friction)</td><td><strong>Native Atomic (Frictionless)</strong></td></tr>
+                <tr><td>Ownership</td><td>Custodial (Third-party)</td><td><strong>Absolute Self-Sovereignty</strong></td></tr>
             </tbody>
         </table>
     </div>
 </div>
 
-<div class="slide-container bleed-image-layout" id="slide11">
-    <div class="content-container">
-        <h2 class="slide-title" style="border: none; padding: 0;">Blueprint Delta</h2>
-        <h3>最終アセンブリと一括同期</h3>
-        <p>すべての物理構造とオンチェーンデータが一つに結ばれ、究極のエネルギー循環が完成する。指先ひとつで未来を起動する瞬間。</p>
+<div class="slide-container bleed-graphic-layout">
+    <div class="content-side">
+        <h2 class="slide-title" style="border: none; padding: 0;">MATHEMATICAL TRUST</h2>
+        <h3>契約の自動執行（Auto-Escrow）</h3>
+        <p>人間の主観に頼る必要はありません。TypeScript直結のスマートコントラクトが、物理法則のように契約を執行します。</p>
+        <p style="margin-top: 12px; font-size: 15px;">不払い・不履行の概念は、この数式によって物理的に消滅します。</p>
     </div>
-    <div class="image-container">
-        <img src="uploaded:11184.jpg-c627c9bd-2e7e-40c5-b567-2008583df770" alt="Blueprint 11184">
+    <div class="graphic-side">
+        <div class="design-core">
+            <div style="font-size: 16px; color: #00f2fe; font-weight: 900; transform: rotate(-45deg);">QLUX CORE</div>
+        </div>
     </div>
 </div>
 
-<div class="slide-container" id="slide12">
+<div class="slide-container">
+    <h2 class="slide-title">AUTO-NANO-REWARD ECONOMY</h2>
+    <div class="content-area">
+        <p style="font-size: 22px; color: #fff; margin-bottom: 30px; font-weight: 700;">「生きているだけで価値が循環する」マネタイズの新次元</p>
+        <div class="tiled-content">
+            <div class="tile">
+                <i class="fa-solid fa-eye"></i>
+                <h3>Active Viewing</h3>
+                <p>情報を閲覧するだけで、あなたの時間はナノペイメントとしてウォレットに還元されます。</p>
+            </div>
+            <div class="tile">
+                <i class="fa-solid fa-database"></i>
+                <h3>Data Sovereignty</h3>
+                <p>日常のデータ共有の背景で極小の報酬が動き続け、全員が自動的に豊かになります。</p>
+            </div>
+            <div class="tile">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Collective Wealth</h3>
+                <p>経済活動への参加深度に応じ、ネットワーク全体の価値があなたに直接分配されます。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container bleed-graphic-layout">
+    <div class="content-side">
+        <h2 class="slide-title" style="border: none; padding: 0;">Eternal Sanctuary</h2>
+        <h3>改ざん不能の不変性</h3>
+        <p>一度刻まれた真実は、宇宙の法則のように決して揺らぎません。QLUXはすべての商取引に「永遠」という名のセキュリティを付与します。</p>
+    </div>
+    <div class="graphic-side">
+        <div class="design-sanctuary">
+            <div class="design-sanctuary-inner"></div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container bleed-graphic-layout">
+    <div class="content-side">
+        <h2 class="slide-title" style="border: none; padding: 0;">Quantum Pulse</h2>
+        <h3>量子同期ネットワーク</h3>
+        <p>地球規模の経済データをミリ秒単位で束ねる分散共鳴コア。全てのトランザクションが絶対的なエネルギーパルスとして同期されます。</p>
+    </div>
+    <div class="graphic-side">
+        <div class="design-pulse">
+            <div class="design-pulse-center"></div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container bleed-graphic-layout">
+    <div class="content-side">
+        <h2 class="slide-title" style="border: none; padding: 0;">The Singularity</h2>
+        <h3>価値の集束点</h3>
+        <p>宇宙の全ての光が一点に集まるように、世界中の価値があなたの指先に集約される。QLUXは、経済の重力を再定義します。</p>
+    </div>
+    <div class="graphic-side">
+        <div class="design-singularity">
+            <div class="singularity-glow"></div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container">
     <div class="content-area">
         <div class="scroller-box">
-            <h3>地球上の全人類へ。QLUXが提示する絶対的真実の到達点。</h3>
-            <p style="font-size: 20px; line-height: 1.8; text-align: center;">
-                中間搾取と不確実性に満ちた旧来の経済は終焉を迎えた。Teranodeの超高速処理、sCryptの自動契約執行、そしてすべての設計図に基づく完全なエネルギー・データ統合。<br><br>
-                もはや取りこぼされる人間は一人もいない。下のバーをスライドさせ、蓄積されたすべての未清算報酬を瞬時に一括アトミック清算せよ。QLUXが、世界をあなたの手元から再起動する。
-            </p>
+            <h3 style="font-size: 34px;">最後のステップ。主権をあなたの掌へ。</h3>
+            <p style="font-size: 20px; line-height: 1.7; color: #fff;">もはや中間コストによる搾取や、不確実な支払いを許容する必要はない。このスワイプは、単なる操作ではない。<b>「自分の価値を、自分自身で確定させる」という人類の根源的な力の行使である。</b><br><br>下のシアンブルーのバーをスライドし、あなたの元に集約された全ての富を、不変の現実へとテレポートさせよ。</p>
         </div>
 
         <div class="swipe-area">
-            <div style="display:flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; width: 100%;">
+            <div style="display:flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px; width: 100%;">
                 <div style="text-align: left;">
-                    <p style="font-size: 13px; color: #00f2fe; margin-bottom: 4px; text-align: left;">UNIVERSAL CORE BALANCE</p>
-                    <h2 id="finalBalance" style="font-size: 40px; margin: 0; text-align: left; color: #fff;">57,450,000 SAT</h2>
+                    <p style="font-size: 13px; color: #00f2fe; margin-bottom: 4px; font-weight:900;">SOVEREIGN ACTIVE BALANCE</p>
+                    <h2 id="finalBalance" style="font-size: 44px; margin: 0; text-align: left; color: #fff;">57,450,000 SAT</h2>
                 </div>
                 <div style="text-align: right;">
-                    <p style="font-size: 13px; color: #a5b6cb; margin-bottom: 4px; text-align: right;">PENDING REWARDS</p>
-                    <h3 id="pendingVal" style="margin: 0; color: #00f2fe; font-size: 28px; text-align: right;">5,500,000 SAT</h3>
+                    <p style="font-size: 13px; color: #a5b6cb; margin-bottom: 4px; font-weight:900;">UNSETTLED NANO ASSETS</p>
+                    <h3 id="pendingVal" style="margin: 0; color: #00f2fe; font-size: 32px; text-align: right;">5,500,000 SAT</h3>
                 </div>
             </div>
 
             <div class="swipe-track" id="swipeTrack">
-                <div class="swipe-text" id="swipeText">👉 SLIDE TO EXECUTE ATOMIC SETTLEMENT</div>
-                <div class="swipe-thumb" id="swipeThumb">SETTLE ⚡</div>
+                <div class="swipe-text" id="swipeText">👉 SLIDE TO TELEPORT REWARDS</div>
+                <div class="swipe-thumb" id="swipeThumb">SLIDE ⚡ QLUX</div>
             </div>
         </div>
     </div>
@@ -506,100 +413,18 @@ th {
     let startX = 0;
     let maxDist = 0;
 
-    const updateMetrics = () => {
-        maxDist = track.clientWidth - thumb.clientWidth - 16;
-    };
+    const updateMetrics = () => { if(track && thumb) maxDist = track.clientWidth - thumb.clientWidth - 20; };
 
     const startDrag = (clientX) => {
+        if (!thumb || thumb.classList.contains('settled')) return;
         isDragging = true;
         startX = clientX;
         txt.style.opacity = '0.1';
+        thumb.style.transition = 'none';
     };
 
     const moveDrag = (clientX) => {
-        if (!isDragging) return;
+        if (!isDragging || !thumb) return;
         updateMetrics();
         let move = clientX - startX;
-        move = Math.max(0, Math.min(move, maxDist));
-        thumb.style.transform = `translateX(${move}px)`;
-
-        if (move >= maxDist * 0.92) {
-            triggerFinalSettlement();
-        }
-    };
-
-    const endDrag = () => {
-        if (!isDragging) return;
-        isDragging = false;
-        
-        let currentTransform = thumb.style.transform;
-        let match = currentTransform.match(/translateX\(([-\d.]+)px\)/);
-        let currentPos = match ? parseFloat(match[1]) : 0;
-
-        if (currentPos < maxDist * 0.92) {
-            thumb.style.transition = 'transform 0.4s cubic-bezier(0.1, 0.9, 0.2, 1)';
-            thumb.style.transform = 'translateX(0px)';
-            txt.style.opacity = '1';
-            setTimeout(() => {
-                thumb.style.transition = 'none';
-            }, 400);
-        }
-    };
-
-    // Mouse events
-    thumb.addEventListener('mousedown', (e) => {
-        startDrag(e.clientX);
-        e.preventDefault();
-    });
-    window.addEventListener('mousemove', (e) => {
-        moveDrag(e.clientX);
-    });
-    window.addEventListener('mouseup', () => {
-        endDrag();
-    });
-
-    // Touch events for mobile/tablet
-    thumb.addEventListener('touchstart', (e) => {
-        if (e.touches.length > 0) {
-            startDrag(e.touches[0].clientX);
-        }
-        e.preventDefault();
-    }, { passive: false });
-
-    window.addEventListener('touchmove', (e) => {
-        if (e.touches.length > 0) {
-            moveDrag(e.touches[0].clientX);
-        }
-    }, { passive: false });
-
-    window.addEventListener('touchend', () => {
-        endDrag();
-    });
-
-    function triggerFinalSettlement() {
-        if (!isDragging && thumb.classList.contains('settled')) return;
-        isDragging = false;
-        thumb.classList.add('settled');
-        thumb.style.transition = 'transform 0.2s ease';
-        thumb.style.transform = `translateX(${maxDist}px)`;
-        thumb.style.background = '#00ff66';
-        thumb.style.color = '#010205';
-        thumb.innerText = 'SETTLED ✓';
-        
-        setTimeout(() => {
-            alert("🌐 Universal On-Chain Settlement Success!\n設計図の完全同期と5,500,000 SATのアトミック一括清算が完了し、ウォレットへ着金しました。");
-            bal.innerText = "62,950,000 SAT";
-            bal.style.color = "#00ff66";
-            pend.innerText = "0 SAT";
-            pend.style.color = "#a5b6cb";
-            txt.innerText = "● 経済の再起動（ユニバーサル同期）が完了しました";
-            txt.style.opacity = '1';
-        }, 150);
-    }
-    
-    window.addEventListener('resize', updateMetrics);
-    updateMetrics();
-</script>
-
-</body>
-</html>
+        move = Math.max(0, Ma
