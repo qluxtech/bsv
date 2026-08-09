@@ -2,8 +2,8 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX // Sovereign Teranode Master Engine v4.2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>QLUX // Global Sovereign Settlement Engine</title>
     <style>
         :root {
             --bg-deep: #010206;
@@ -24,6 +24,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -36,44 +37,44 @@
             overflow-x: hidden;
         }
 
-        /* 🌐 Header */
+        /* 🌐 ヘッダー */
         header {
             background: rgba(5, 8, 20, 0.95);
             border-bottom: 1px solid var(--border-cyan);
-            padding: 14px 24px;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(25px);
+            backdrop-filter: blur(20px);
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .brand-logo {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #010206;
-            box-shadow: 0 0 20px var(--cyan-glow);
+            box-shadow: 0 0 15px var(--cyan-glow);
         }
 
         .brand-title h1 {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 900;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.1em;
             background: linear-gradient(90deg, #fff, var(--cyan-primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -82,16 +83,16 @@
         .header-auth-group {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .auth-btn-sub {
             background: transparent;
             border: 1px solid var(--border-cyan);
             color: var(--cyan-primary);
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 6px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             cursor: pointer;
         }
@@ -100,15 +101,15 @@
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border: none;
             color: #010206;
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 6px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 900;
             cursor: pointer;
-            box-shadow: 0 0 15px var(--cyan-glow);
+            box-shadow: 0 0 12px var(--cyan-glow);
         }
 
-        /* 📊 1. 最上部固定：15大未来技術マトリクスバー */
+        /* 📊 最上部固定：15大未来技術マトリクスバー */
         .top-matrix-bar {
             background: rgba(5, 8, 20, 0.98);
             border-bottom: 1px solid var(--border-cyan);
@@ -117,23 +118,22 @@
             gap: 10px;
             overflow-x: auto;
             position: sticky;
-            top: 65px;
+            top: 57px;
             z-index: 990;
             white-space: nowrap;
             scrollbar-width: thin;
-            scrollbar-color: var(--cyan-primary) var(--surface);
         }
 
         .matrix-mini-card {
             background: var(--surface-hover);
             border: 1px solid var(--border-cyan);
             border-radius: 6px;
-            padding: 8px 12px;
-            min-width: 140px;
+            padding: 6px 10px;
+            min-width: 130px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 2px;
         }
 
         .matrix-mini-header {
@@ -151,41 +151,41 @@
 
         .matrix-mini-badge {
             font-size: 0.4rem;
-            padding: 1px 5px;
+            padding: 1px 4px;
             border-radius: 3px;
             background: var(--cyan-dim);
             color: var(--cyan-primary);
         }
 
         .matrix-mini-value {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 900;
             color: #fff;
         }
 
-        /* Main Container */
+        /* メインコンテンツ */
         main {
-            max-width: 1100px;
+            max-width: 1000px;
             width: 100%;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 30px 16px;
             display: flex;
             flex-direction: column;
-            gap: 40px;
-            padding-bottom: 240px;
+            gap: 30px;
+            padding-bottom: 220px;
         }
 
-        /* 💡 2. 中央：圧倒的な先を行くライディング＆マニフェストセクション */
+        /* 💡 圧倒的インパクトのライディングセクション */
         .editorial-master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
-            border-radius: 20px;
-            padding: 50px 40px;
+            border-radius: 18px;
+            padding: 36px 24px;
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 28px;
             position: relative;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.8);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.7);
         }
 
         .editorial-master-card::before {
@@ -193,123 +193,68 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 5px;
+            width: 4px;
             height: 100%;
             background: linear-gradient(to bottom, var(--cyan-primary), var(--accent-pink));
-            border-radius: 20px 0 0 20px;
+            border-radius: 18px 0 0 18px;
         }
 
         .section-tag {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 900;
             color: var(--cyan-primary);
             text-transform: uppercase;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.25em;
         }
 
         h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 900;
             color: #fff;
-            line-height: 1.4;
+            line-height: 1.35;
         }
 
         .editorial-lead {
-            font-size: 1.05rem;
+            font-size: 0.98rem;
             font-weight: 700;
             color: var(--text-primary);
-            line-height: 2.1;
-            border-left: 4px solid var(--cyan-primary);
-            padding-left: 24px;
+            line-height: 2.0;
+            border-left: 3px solid var(--cyan-primary);
+            padding-left: 20px;
             background: var(--cyan-dim);
-            padding-top: 22px;
-            padding-bottom: 22px;
+            padding-top: 18px;
+            padding-bottom: 18px;
             border-radius: 0 10px 10px 0;
         }
 
-        .killer-features-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 10px;
-        }
-
-        .killer-feature-item {
-            background: var(--bg-deep);
-            border: 1px solid var(--border-cyan);
-            border-radius: 14px;
-            padding: 28px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .killer-feature-item:hover {
-            border-color: var(--cyan-primary);
-            transform: translateY(-3px);
-        }
-
-        .killer-feature-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .killer-num {
-            font-size: 0.7rem;
-            font-weight: 900;
+        .highlight-quote {
             color: var(--cyan-primary);
-            letter-spacing: 0.15em;
-        }
-
-        .killer-badge-sub {
-            font-size: 0.65rem;
-            padding: 4px 12px;
-            border-radius: 4px;
-            background: var(--cyan-dim);
-            border: 1px solid var(--border-cyan);
-            color: var(--cyan-primary);
-            font-weight: 700;
-        }
-
-        .killer-title {
-            font-size: 1.15rem;
             font-weight: 900;
-            color: #fff;
         }
 
-        .killer-text {
-            font-size: 0.92rem;
-            color: var(--text-secondary);
-            line-height: 1.9;
-        }
-
-        /* 💻 開発者・ハッカソン審査員を唸らせるリアルタイム・テラノードライブストリーム */
+        /* 開発者向けリアルタイムログストリーム */
         .dev-stream-box {
             background: #02040b;
             border: 1px solid var(--border-cyan);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 16px;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--success-green);
-            max-height: 160px;
+            max-height: 140px;
             overflow-y: auto;
-            box-shadow: inset 0 0 15px rgba(0,255,102,0.1);
         }
 
         .dev-stream-title {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
             font-family: 'Inter', sans-serif;
         }
 
-        /* ⚡ 3. 最下部固定：完全動作するスワイプ・トゥ・セトルメントパネル */
+        /* ⚡ 最下部固定：完全動作するスワイプ・トゥ・セトルメントパネル */
         .wallet-bottom-action-section {
             position: fixed;
             bottom: 0;
@@ -318,27 +263,26 @@
             background: rgba(5, 8, 20, 0.98);
             backdrop-filter: blur(25px);
             border-top: 2px solid var(--cyan-primary);
-            padding: 18px 24px;
+            padding: 14px 20px;
             z-index: 1050;
-            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 242, 254, 0.25);
+            box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 242, 254, 0.2);
             display: flex;
             justify-content: center;
         }
 
         .wallet-bottom-inner {
-            max-width: 1050px;
+            max-width: 980px;
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .wallet-top-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
+            gap: 10px;
         }
 
         .wallet-balance-box {
@@ -348,10 +292,10 @@
         }
 
         .wallet-amount-display {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            text-shadow: 0 0 20px var(--cyan-glow);
+            text-shadow: 0 0 15px var(--cyan-glow);
             letter-spacing: -0.02em;
         }
 
@@ -359,55 +303,49 @@
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             color: #010206;
             border: none;
-            padding: 9px 20px;
-            border-radius: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
             font-weight: 900;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             cursor: pointer;
-            box-shadow: 0 0 15px var(--cyan-glow);
-            transition: all 0.2s ease;
+            box-shadow: 0 0 12px var(--cyan-glow);
+            white-space: nowrap;
         }
 
-        .cyber-action-btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 25px var(--cyan-primary);
-        }
-
-        /* 🚀 完全スムーズに追従・発火するスワイプトラック */
+        /* 🚀 修正された完全滑らかに追従・発火するスワイプトラック */
         .swipe-track-modern {
             background: linear-gradient(90deg, #02040b, #0a1232, #02040b);
             border: 1px solid var(--cyan-primary);
             border-radius: 50px;
-            height: 54px;
+            height: 50px;
             position: relative;
             display: flex;
             align-items: center;
-            padding: 0 4px;
+            padding: 0 3px;
             overflow: hidden;
             user-select: none;
-            box-shadow: inset 0 0 25px rgba(0, 242, 254, 0.35);
+            box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.3);
             width: 100%;
         }
 
         .swipe-thumb-modern {
-            width: 140px;
-            height: 44px;
+            width: 130px;
+            height: 42px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             color: #010206;
             position: absolute;
-            left: 4px;
+            left: 3px;
             cursor: grab;
-            box-shadow: 0 0 20px var(--cyan-glow), inset 0 2px 4px rgba(255,255,255,0.7);
+            box-shadow: 0 0 15px var(--cyan-glow), inset 0 2px 4px rgba(255,255,255,0.7);
             z-index: 10;
             touch-action: none;
-            letter-spacing: 0.08em;
-            transition: background 0.2s ease;
+            letter-spacing: 0.05em;
         }
 
         .swipe-thumb-modern:active {
@@ -417,21 +355,24 @@
         .swipe-guide-text {
             width: 100%;
             text-align: center;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: var(--text-secondary);
             z-index: 1;
             pointer-events: none;
             position: absolute;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.01em;
             text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+            padding: 0 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        /* Footer */
         footer {
             text-align: center;
-            padding: 30px;
-            font-size: 0.75rem;
+            padding: 24px;
+            font-size: 0.7rem;
             color: var(--text-secondary);
             border-top: 1px solid var(--border-cyan);
             background: var(--surface);
@@ -444,84 +385,40 @@
         <div class="brand">
             <div class="brand-logo">Ω</div>
             <div class="brand-title">
-                <h1>QLUX // SOVEREIGN TERANODE ENGINE</h1>
+                <h1>QLUX // SOVEREIGN ENGINE</h1>
             </div>
         </div>
         <div class="header-auth-group">
-            <button class="auth-btn-sub" onclick="alert('HandCash & Spence Web3 ID 認証モジュール起動')">Sign In</button>
-            <button class="auth-btn-main" onclick="alert('グローバルウォレット生成シーケンス開始')">Sign Up</button>
+            <button class="auth-btn-sub" onclick="alert('Web3 ID Auth connected')">Sign In</button>
+            <button class="auth-btn-main" onclick="alert('Initializing Sovereign Wallet...')">Sign Up</button>
         </div>
     </header>
 
     <div class="top-matrix-bar">
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">1. Teranode</span><span class="matrix-mini-badge" style="color:#00ff66;">秒速アトミック</span></div><div class="matrix-mini-value" style="color:#00ff66;">10M+ TPS</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">2. STAS Token</span><span class="matrix-mini-badge">オンチェーン</span></div><div class="matrix-mini-value">資産規格</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">3. SPV Wallet</span><span class="matrix-mini-badge" style="color:#00f2fe;">高速残高</span></div><div class="matrix-mini-value">ミリ秒証明</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">4. Script 2.0</span><span class="matrix-mini-badge">条件付き</span></div><div class="matrix-mini-value">自動契約</div></div>
+        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">1. Teranode</span><span class="matrix-mini-badge" style="color:#00ff66;">秒速</span></div><div class="matrix-mini-value" style="color:#00ff66;">10M+ TPS</div></div>
+        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">2. STAS Token</span><span class="matrix-mini-badge">規格</span></div><div class="matrix-mini-value">オンチェーン</div></div>
+        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">3. SPV Wallet</span><span class="matrix-mini-badge" style="color:#00f2fe;">証明</span></div><div class="matrix-mini-value">ミリ秒検証</div></div>
+        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">4. Script 2.0</span><span class="matrix-mini-badge">契約</span></div><div class="matrix-mini-value">条件付き自動化</div></div>
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">5. sCrypt</span><span class="matrix-mini-badge" style="color:#ff007f;">TypeScript</span></div><div class="matrix-mini-value">スマート直結</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">6. Metanet</span><span class="matrix-mini-badge">URL経済</span></div><div class="matrix-mini-value">資産化ツリー</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">7. ZK-Privacy</span><span class="matrix-mini-badge" style="color:#00ff66;">ゼロ知識</span></div><div class="matrix-mini-value">証明アンカー</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">8. Storage</span><span class="matrix-mini-badge">永久分散</span></div><div class="matrix-mini-value">大容量ストレージ</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">9. Streaming</span><span class="matrix-mini-badge" style="color:#00f2fe;">秒単位</span></div><div class="matrix-mini-value">マイクロ課金</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">10. Web3 ID</span><span class="matrix-mini-badge">HandCash</span></div><div class="matrix-mini-value">グローバル接続</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">11. M2M IoT</span><span class="matrix-mini-badge">マシン</span></div><div class="matrix-mini-value">自律デバイス決済</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">12. Enterprise API</span><span class="matrix-mini-badge">B2B</span></div><div class="matrix-mini-value">データ監査ブリッジ</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">13. Ordinals</span><span class="matrix-mini-badge" style="color:#ff007f;">NFT</span></div><div class="matrix-mini-value">オンチェーンアート</div></div>
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">14. Revenue Sweep</span><span class="matrix-mini-badge" style="color:#00ff66;">アクティブ</span></div><div class="matrix-mini-value" id="dashWalletVal">7,450,000 SAT</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">15. DAO Core</span><span class="matrix-mini-badge">自律分散</span></div><div class="matrix-mini-value" style="color:#00ff66;">自動分配組織</div></div>
     </div>
 
     <main>
         <section class="editorial-master-card">
-            <div class="section-tag">⚡ Teranode Sovereign Architecture // Advanced Manifesto</div>
-            <h2>「仲介者なき経済」と「完全自律型富の循環」の到達点</h2>
+            <div class="section-tag">⚡ Sovereign Manifesto // The Ultimate Paradigm Shift</div>
+            <h2>「仲介者なき経済」と「完全自律型富の循環」の最終到達点</h2>
             
             <div class="editorial-lead">
-                ビットコインの本来の設計思想（Nakamoto Protocol）を極限まで押し進め、地球上のすべての商取引・未清算報酬・グローバル企業間の決済データを、仲介者を一切介さずにアトミック同期させる。<br><br>
-                画面下のノブをスワイプした瞬間、世界中に散らばるすべての経済成果がミリ秒単位で自身のウォレットへ流れ込む――これこそが、次世代のスタンダードです。
+                サトシ・ナカモトが遺した不変の設計思想（<span class="highlight-quote">Nakamoto Protocol</span>）を極限まで押し進め、地球上のすべての商取引、未清算報酬、そして国境を越えた企業間決済データを、中間業者を一切挟むことなく<span class="highlight-quote">ミリ秒単位でアトミックに同期・消火</span>させる。<br><br>
+                画面下のサイバーノブをスワイプした瞬間、地球の裏側から世界中に散らばるすべての経済成果が、あなたのウォレットへと一筋の光のようにテレポートし、一瞬で定着する――これこそが、人類史の摩擦をゼロにする次世代の絶対的スタンダードです。
             </div>
 
             <div class="dev-stream-box">
                 <div class="dev-stream-title">&gt;&gt; Teranode Real-time Mempool &amp; Atomic Settlement Stream</div>
                 <div id="logStream">
-                    [00:00:01] CONNECTED to BSV Global Teranode Cluster (Node ID: #9904-SZ)...<br>
-                    [00:00:03] sCrypt Smart Contract verified: Conditional Escrow #8821 active.<br>
-                    [00:00:05] Waiting for Swipe-to-Settlement trigger from Sovereign UI...
-                </div>
-            </div>
-
-            <div class="killer-features-grid">
-                <div class="killer-feature-item">
-                    <div class="killer-feature-header">
-                        <span class="killer-num">PILLAR 01</span>
-                        <span class="killer-badge-sub">Teranode Instant Engine</span>
-                    </div>
-                    <div class="killer-title">世界中の全企業・全個人を接続する「秒速グローバル清算」</div>
-                    <div class="killer-text">
-                        従来の金融システムが抱えていた数日間のタイムラグと莫大な手数料の搾取を完全に消滅させ、地球規模のペイメントをノーディレイで完結させます。
-                    </div>
-                </div>
-
-                <div class="killer-feature-item">
-                    <div class="killer-feature-header">
-                        <span class="killer-num">PILLAR 02</span>
-                        <span class="killer-badge-sub">Mathematical Trust</span>
-                    </div>
-                    <div class="killer-title">あらゆる契約と知的財産の「1秒オンチェーン自動エスクロー」</div>
-                    <div class="killer-text">
-                        人間の信頼ではなく、数学的証明（sCryptスマートコントラクト）によって条件が強制執行されるため、不払いや詐欺が物理的に不可能になります。
-                    </div>
-                </div>
-
-                <div class="killer-feature-item">
-                    <div class="killer-feature-header">
-                        <span class="killer-num">PILLAR 03</span>
-                        <span class="killer-badge-sub">Autonomous Nano-Economy</span>
-                    </div>
-                    <div class="killer-title">「指先ひとつで世界が動く」究極のゲーミフィケーションUX</div>
-                    <div class="killer-text">
-                        グローバルな経済活動への参加が、直感的なスワイプアクションを通じてダイレクトに富へと変換される、誰もが熱狂するエコシステム。
-                    </div>
+                    [18:45:00] CONNECTED to Global Teranode Cluster (Node ID: #9904-SZ)...<br>
+                    [18:45:02] sCrypt Smart Contract verified: Conditional Escrow active.<br>
+                    [18:45:04] Waiting for Swipe-to-Settlement trigger from Sovereign UI...
                 </div>
             </div>
         </section>
@@ -531,6 +428,132 @@
         <div class="wallet-bottom-inner">
             <div class="wallet-top-flex">
                 <div class="wallet-balance-box">
-                    <span style="font-size: 0.65rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.15em;">QLUX WALLET // GLOBAL SETTLEMENT CORE</span>
+                    <span style="font-size: 0.6rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">GLOBAL SETTLEMENT CORE</span>
                     <div class="wallet-amount-display" id="mainWalletBalance">7,450,000 SAT</div>
                 </div>
+                <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">一括アトミック清算を実行</button>
+            </div>
+
+            <div class="swipe-track-modern" id="swipeTrack">
+                <div class="swipe-guide-text" id="swipeInstruction">👉 スワイプして未清算報酬（3,500,000 SAT）を一括回収</div>
+                <div class="swipe-thumb-modern" id="swipeThumb">SWIPE ⚡</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 QLUX Global Sovereign Master Enterprise. Powered by BSV Teranode &amp; Global Settlement Engine.
+    </footer>
+
+    <script>
+        const track = document.getElementById('swipeTrack');
+        const thumb = document.getElementById('swipeThumb');
+        const instruction = document.getElementById('swipeInstruction');
+        const walletEl = document.getElementById('mainWalletBalance');
+        const dashWalletEl = document.getElementById('dashWalletVal');
+        const logStream = document.getElementById('logStream');
+
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        let maxTrackWidth = 0;
+
+        function updateMetrics() {
+            if (track && thumb) {
+                maxTrackWidth = track.clientWidth - thumb.clientWidth - 6;
+            }
+        }
+
+        window.addEventListener('resize', updateMetrics);
+        window.addEventListener('load', updateMetrics);
+        updateMetrics();
+
+        // ポインターイベントによる確実なドラッグ実装
+        thumb.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            updateMetrics();
+            startX = e.clientX - currentX;
+            thumb.setPointerCapture(e.pointerId);
+            instruction.style.opacity = '0.2';
+            e.preventDefault();
+        });
+
+        window.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            updateMetrics();
+            const diff = e.clientX - startX;
+            currentX = Math.max(0, Math.min(diff, maxTrackWidth));
+            thumb.style.transform = `translateX(${currentX}px)`;
+
+            // 65%以上スワイプしたら完了判定
+            if (currentX >= maxTrackWidth * 0.65) {
+                completeSwipeAction();
+            }
+        });
+
+        window.addEventListener('pointerup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            updateMetrics();
+
+            if (currentX < maxTrackWidth * 0.65) {
+                // 未達の場合は元の位置に戻す
+                thumb.style.transition = 'transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1)';
+                thumb.style.transform = 'translateX(0px)';
+                currentX = 0;
+                setTimeout(() => {
+                    thumb.style.transition = 'none';
+                }, 300);
+                instruction.style.opacity = '1';
+            }
+        });
+
+        function completeSwipeAction() {
+            if (!isDragging) return;
+            isDragging = false;
+            updateMetrics();
+
+            const pendingVal = 3500000;
+            thumb.style.transition = 'transform 0.2s ease';
+            thumb.style.transform = `translateX(${maxTrackWidth}px)`;
+            thumb.style.background = '#00ff66';
+            thumb.style.color = '#010206';
+            thumb.innerText = 'SETTLED ✓';
+
+            const timeStr = new Date().toTimeString().split(' ')[0];
+            logStream.innerHTML += `<br>[${timeStr}] <span style="color:#00ff66;">SUCCESS:</span> Atomic Sweep of 3,500,000 SAT verified &amp; settled!`;
+            logStream.scrollTop = logStream.scrollHeight;
+
+            setTimeout(() => {
+                alert(`🌐 BSV Teranode Global Settlement Success!\n\n世界中の未清算報酬 ${pendingVal.toLocaleString()} SAT が仲介者なしでミリ秒アトミック清算され、ウォレットへ着金しました！`);
+                
+                let currentBal = parseInt(walletEl.innerText.replace(/[^0-9]/g, '')) || 7450000;
+                currentBal += pendingVal;
+                walletEl.innerText = currentBal.toLocaleString() + ' SAT';
+                if(dashWalletEl) dashWalletEl.innerText = currentBal.toLocaleString() + ' SAT';
+
+                instruction.innerText = '● 全ての未清算報酬のテレポート回収・同期完了';
+
+                setTimeout(() => {
+                    thumb.style.transition = 'none';
+                    thumb.style.transform = 'translateX(0px)';
+                    thumb.style.background = 'linear-gradient(135deg, var(--cyan-primary), #0072ff)';
+                    thumb.style.color = '#010206';
+                    thumb.innerText = 'SWIPE ⚡';
+                    currentX = 0;
+                    instruction.style.opacity = '1';
+                    instruction.innerText = '👉 スワイプして未清算報酬（3,500,000 SAT）を一括回収';
+                }, 1000);
+            }, 100);
+        }
+
+        function executeAdvancedWithdraw() {
+            const timeStr = new Date().toTimeString().split(' ')[0];
+            logStream.innerHTML += `<br>[${timeStr}] Manual batch broadcasted to Teranode.`;
+            logStream.scrollTop = logStream.scrollHeight;
+            alert('💳 グローバル統合アトミック清算トランザクションが BSV Teranode メインネットへブロードキャストされました！');
+        }
+    </script>
+</body>
+</html>
+
