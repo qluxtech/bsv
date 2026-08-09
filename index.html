@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX Sovereign Megalopolis — Ultimate BSV Super Ecosystem</title>
+    <title>QLUX Sovereign Megalopolis — Universal On-Chain Engine</title>
     <style>
         :root {
             --bg-deep: #020307;
@@ -20,12 +20,10 @@
         body { background-color: var(--bg-deep); color: var(--text-main); padding: 12px; display: flex; justify-content: center; }
         .wrapper { width: 100%; max-width: 1600px; display: flex; flex-direction: column; gap: 14px; }
 
-        /* ヘッダー */
         header {
             background: linear-gradient(135deg, #090e1d 0%, #020307 100%);
             border: 1px solid var(--border-glow);
-            border-radius: 18px;
-            padding: 16px 24px;
+            border-radius: 18px; padding: 16px 24px;
             display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 0 50px rgba(0, 240, 255, 0.15);
             flex-wrap: wrap; gap: 14px;
@@ -41,7 +39,6 @@
         .title h1 { font-size: 24px; font-weight: 900; letter-spacing: 1.5px; }
         .title span { font-size: 9px; color: var(--accent-cyan); letter-spacing: 2px; }
 
-        /* ナビゲーションタブ */
         .nav-tabs {
             display: flex; gap: 6px; background: #04060b; padding: 5px;
             border-radius: 14px; border: 1px solid rgba(255,255,255,0.08);
@@ -63,10 +60,7 @@
             display: flex; align-items: center; gap: 10px;
         }
 
-        /* メインレイアウト */
-        .grid-layout {
-            display: grid; grid-template-columns: 300px 1fr 320px; gap: 14px;
-        }
+        .grid-layout { display: grid; grid-template-columns: 300px 1fr 320px; gap: 14px; }
         @media(max-width: 1300px) { .grid-layout { grid-template-columns: 1fr; } }
 
         .panel {
@@ -83,12 +77,11 @@
             border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 10px;
         }
 
-        /* スワイプスイーパー（高感度短縮版・完全動作） */
+        /* スワイプスイーパー */
         .swipe-box {
             position: relative; width: 100%; height: 42px;
             background: #000; border-radius: 21px; border: 1px solid var(--accent-cyan);
-            overflow: hidden; display: flex; align-items: center; padding: 4px;
-            touch-action: none;
+            overflow: hidden; display: flex; align-items: center; padding: 4px; touch-action: none;
         }
         .swipe-thumb {
             position: absolute; left: 4px; width: 34px; height: 34px;
@@ -99,12 +92,13 @@
         }
         .swipe-label { width: 100%; text-align: center; font-size: 10px; color: var(--text-sub); pointer-events: none; }
 
-        /* 入力・ボタン類 */
-        textarea {
+        textarea, select, input {
             width: 100%; background: #000; border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 10px; padding: 12px; color: #fff; font-size: 12px; resize: none; height: 85px; outline: none;
+            border-radius: 10px; padding: 10px; color: #fff; font-size: 12px; outline: none;
         }
-        textarea:focus { border-color: var(--accent-cyan); }
+        textarea { height: 85px; resize: none; }
+        textarea:focus, select:focus, input:focus { border-color: var(--accent-cyan); }
+
         .btn {
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
             color: #000; border: none; border-radius: 12px; padding: 10px 16px;
@@ -132,6 +126,12 @@
         .tag { color: var(--accent-cyan); font-weight: bold; }
         .view-sec { display: none; flex-direction: column; gap: 14px; }
         .view-sec.active { display: flex; }
+
+        .terminal-box {
+            background: #010204; border: 1px solid rgba(0,255,102,0.3);
+            border-radius: 10px; padding: 10px; font-size: 9px; color: var(--accent-green);
+            height: 110px; overflow-y: auto; line-height: 1.4; display: flex; flex-direction: column; gap: 3px;
+        }
     </style>
 </head>
 <body>
@@ -141,20 +141,19 @@
         <div class="brand">
             <div class="logo">Q</div>
             <div class="title">
-                <h1>QLUX ULTIMATE</h1>
-                <span>BSV SOVEREIGN MEGALOPOLIS // TERANODE 10M TPS // OMNI-AI ENGINE</span>
+                <h1>QLUX SOVEREIGN</h1>
+                <span>UNIVERSAL OMNI-CURRENCY & ON-CHAIN ENGINE</span>
             </div>
         </div>
         <div class="nav-tabs">
             <button class="tab-btn active" onclick="switchView('feed', this)">⚡ メインフィード</button>
-            <button class="tab-btn" onclick="switchView('ecosystem', this)">🌐 総合技術網</button>
-            <button class="tab-btn" onclick="switchView('profile', this)">👤 アカウント管理</button>
+            <button class="tab-btn" onclick="switchView('bridge', this)">🌐 マルチ通貨決済</button>
+            <button class="tab-btn" onclick="switchView('ordinals', this)">📦 ダイレクト銘刻</button>
+            <button class="tab-btn" onclick="switchView('profile', this)">👤 アカウント</button>
             <button class="tab-btn" onclick="switchView('wallet', this)">💎 ウォレット監査</button>
-            <button class="tab-btn" onclick="switchView('ai', this)">🤖 AIエージェント</button>
-            <button class="tab-btn" onclick="switchView('ordinals', this)">📦 銘刻ストレージ</button>
         </div>
         <div class="wallet-badge">
-            <span>⚡ HandCash 連動</span>
+            <span>⚡ BSV残高</span>
             <span id="top-sats" style="color:#fff; font-weight:bold;">48,900 SAT</span>
         </div>
     </header>
@@ -186,11 +185,10 @@
                 </div>
             </div>
 
-            <div class="panel-header"><span>📊 ライブBSVインフラステータス</span></div>
-            <div class="box" style="font-size: 10px; color: #cbd5e1; gap: 8px;">
-                <div style="color: var(--accent-cyan);">⚡ Teranode TPS: 10,000,000</div>
-                <div style="color: var(--accent-green);">💎 手数料レート: &lt; 0.000001 SAT</div>
-                <div style="color: var(--accent-pink);">🔄 ノード同期率: 100% 稼働</div>
+            <div class="panel-header"><span>💻 リアルタイム・ターミナルログ</span></div>
+            <div class="terminal-box" id="terminal-logs">
+                <div>[SYSTEM] Universal Omni-Chain Engine v7.0 Initialized.</div>
+                <div>[READY] Zero-server mode active.</div>
             </div>
         </aside>
 
@@ -202,28 +200,41 @@
                     <span style="font-size: 9px; color: var(--accent-cyan);">完全分散リアルタイム刻印</span>
                 </div>
                 <div class="box">
-                    <textarea id="post-input" placeholder="BSV総合技術駆使して世界一の投稿を刻む... #QLUX #Teranode #BSV"></textarea>
+                    <textarea id="post-input" placeholder="世界一の技術や設計図をブロックチェーンに刻む... #QLUX #BSV #Teranode"></textarea>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 9px; color: var(--text-sub);">手数料ゼロ・ナノペイメント自動連動</span>
+                        <span style="font-size: 9px; color: var(--text-sub);">ナノペイメント自動連動</span>
                         <button onclick="createPost()" class="btn">ブロックチェーンに刻む</button>
                     </div>
                 </div>
                 <div id="feed-container" style="display: flex; flex-direction: column; gap: 12px;"></div>
             </div>
 
-            <div id="view-ecosystem" class="view-sec">
-                <div class="panel-header"><span>🌐 BSV COMPREHENSIVE TECHNOLOGY MATRIX</span></div>
-                <div class="box" style="gap: 10px;">
-                    <div style="font-size: 12px; font-weight: bold; color: var(--accent-cyan);">⚡ 01 // Teranode 10M TPS スケーリングエンジン</div>
-                    <div style="font-size: 10px; color: var(--text-sub); line-height: 1.5;">ミリ秒単位で無限のトランザクションを処理し、ネットワーク混雑ゼロを完全に担保。</div>
+            <div id="view-bridge" class="view-sec">
+                <div class="panel-header"><span>🌐 マルチカレンシー・アトミックブリッジ</span></div>
+                <div class="box" style="gap: 12px; font-size: 11px;">
+                    <div style="color: var(--accent-cyan);">任意の通貨・法定通貨からBSVエコシステムへ資金を即時収斂。</div>
+                    <label style="color: var(--text-sub);">支払い元通貨の選択</label>
+                    <select id="bridge-currency">
+                        <option value="USD">米ドル (USD / Credit Card)</option>
+                        <option value="JPY">日本円 (JPY / Bank Transfer)</option>
+                        <option value="BTC">ビットコイン (BTC / Layer-1)</option>
+                        <option value="ETH">イーサリアム (ETH / ERC-20)</option>
+                        <option value="USDT">テザー (USDT / Multi-Chain)</option>
+                    </select>
+                    <label style="color: var(--text-sub);">投入金額 / 枚数</label>
+                    <input type="number" id="bridge-amount" value="50" style="background:#000; border:1px solid rgba(255,255,255,0.15); padding:8px; border-radius:8px; color:#fff;">
+                    <button onclick="executeUniversalBridge()" class="btn" style="width:100%;">🔄 通貨をBSVサトシに変換してチャージ</button>
                 </div>
-                <div class="box" style="gap: 10px;">
-                    <div style="font-size: 12px; font-weight: bold; color: var(--accent-green);">💎 02 // サブサトシ・アトミック・スプリットコントラクト</div>
-                    <div style="font-size: 10px; color: var(--text-sub); line-height: 1.5;">すべてのインタラクション（いいね、リプライ、チップ）から発生する価値を仲介者なしで秒速分配。</div>
-                </div>
-                <div class="box" style="gap: 10px;">
-                    <div style="font-size: 12px; font-weight: bold; color: var(--accent-purple);">📦 03 // 永久分散型 Ordinals / BRCストレージ</div>
-                    <div style="font-size: 10px; color: var(--text-sub); line-height: 1.5;">ファイルやデザイン図面をBSVブロックチェーン上に直接永遠に焼き付ける高信頼ストア。</div>
+            </div>
+
+            <div id="view-ordinals" class="view-sec">
+                <div class="panel-header"><span>📦 オーディナルズ・ダイレクト銘刻エンジン</span></div>
+                <div class="box" style="gap: 12px; font-size: 11px;">
+                    <div style="color: var(--accent-cyan);">HTML・CSS・JS・設計図データをチェーンへダイレクトインスクライブ</div>
+                    <input type="file" id="ordinal-file-input" style="background:#000; border:1px solid rgba(255,255,255,0.15); padding:8px; border-radius:8px; color:#fff; font-size:10px;">
+                    <textarea id="ordinal-raw-text" placeholder="または直接ソースコード・テキストを入力してオンチェーン刻印..." style="height:100px;"></textarea>
+                    <button onclick="executeInscribe()" class="btn" style="width:100%;">🚀 ブロックチェーンへ永久インスクライブ実行</button>
+                    <div id="inscription-result" style="font-size: 10px; color: var(--accent-green); word-break: break-all;"></div>
                 </div>
             </div>
 
@@ -232,36 +243,16 @@
                 <div class="box" style="gap: 10px; font-size: 11px;">
                     <label style="color: var(--text-sub); font-size: 10px;">表示名</label>
                     <input type="text" id="prof-name" value="QLUX Sovereign Master" style="background:#000; border:1px solid rgba(255,255,255,0.15); padding:8px; border-radius:8px; color:#fff; font-size:11px;">
-                    <label style="color: var(--text-sub); font-size: 10px;">バイオグラフィ</label>
-                    <textarea id="prof-bio" style="background:#000; border:1px solid rgba(255,255,255,0.15); padding:8px; border-radius:8px; color:#fff; font-size:11px; height:60px; resize:none;">BSV sovereign master & ecosystem supreme architect.</textarea>
-                    <button onclick="saveProfile()" class="btn" style="width:100%;">変更をブロックチェーンに保存</button>
+                    <button onclick="saveProfile()" class="btn" style="width:100%;">変更を保存</button>
                 </div>
             </div>
 
             <div id="view-wallet" class="view-sec">
-                <div class="panel-header"><span>💎 ウォレット監査 & ハンドキャッシュ直結明細</span></div>
+                <div class="panel-header"><span>💎 ウォレット監査 & 資産明細</span></div>
                 <div class="box" style="font-size: 11px; gap: 10px;">
-                    <div style="color: var(--accent-cyan);">HandCash App ID: <span style="color:#fff;">6a4996714077afcb7ca9ce84</span></div>
+                    <div style="color: var(--accent-cyan);">HandCash Node ID: <span style="color:#fff;">6a4996714077afcb7ca9ce84</span></div>
                     <div style="color: var(--accent-green);">累計ウォレット残高: <span id="wallet-balance-disp" style="color:#fff; font-weight:bold;">48,900 SAT</span></div>
-                    <div style="color: var(--accent-purple);">セキュリティモード: <span style="color:#fff;">エンドツーエンド・非カストディアル完全保護</span></div>
-                </div>
-            </div>
-
-            <div id="view-ai" class="view-sec">
-                <div class="panel-header"><span>🤖 自律型AIエージェント・コントロールセンター</span></div>
-                <div class="box" style="gap: 10px;">
-                    <div style="font-size: 12px; color: var(--accent-green);">🟢 AIエージェント群稼働中 (Active Nodes: 8,192)</div>
-                    <div style="font-size: 10px; color: var(--text-sub); line-height: 1.5;">スマートコントラクトの自動最適化、リアルタイム不正検知、報酬自動ルーティングを実行中。</div>
-                    <button onclick="alert('🤖 AIエージェント群が全ノードの同期とセキュリティ最適化を完了しました！')" class="btn">AIノード群を強制同期する</button>
-                </div>
-            </div>
-
-            <div id="view-ordinals" class="view-sec">
-                <div class="panel-header"><span>📦 Ordinals 永久銘刻ストレージ</span></div>
-                <div class="box" style="gap: 10px;">
-                    <div style="font-size: 11px; color: var(--accent-cyan);">ファイル・デザイン図面のオンチェーン刻印</div>
-                    <input type="file" id="ordinal-file" style="background:#000; border:1px solid rgba(255,255,255,0.15); padding:8px; border-radius:8px; color:#fff; font-size:10px;">
-                    <button onclick="alert('📦 ファイルのBSVブロックチェーンへの永久銘刻（Ordinals）が完了しました！')" class="btn">今すぐオンチェーン銘刻する</button>
+                    <div style="color: var(--accent-purple);">セキュリティ: <span style="color:#fff;">非カストディアル・完全分散管理</span></div>
                 </div>
             </div>
 
@@ -295,10 +286,17 @@ let activeName = "QLUX Sovereign Master";
 let activeIdStr = "@qlux_master";
 let activeAvatar = "Q";
 
-let posts = JSON.parse(localStorage.getItem('qlux_supreme_posts')) || [
-    { name: "QLUX Sovereign Master", idStr: "@qlux_master", avatar: "Q", time: "たった今", content: "BSV総合技術を完全網羅した究極のスーパーサイトが稼働開始！ #BSV #Teranode #QLUX", likes: 2480 },
-    { name: "VLIS Creator Node", idStr: "@vlis_user", avatar: "V", time: "10分前", content: "ハンドキャッシュ直結＆ナノペイメントによる秒速報酬分配が完璧すぎる。 #Web3 #BSV", likes: 980 }
+let posts = JSON.parse(localStorage.getItem('qlux_omni_posts')) || [
+    { name: "QLUX Sovereign Master", idStr: "@qlux_master", avatar: "Q", time: "たった今", content: "マルチ通貨ブリッジ＆完全オンチェーン銘刻システムが稼働開始！ #BSV #Teranode #QLUX", likes: 3120 }
 ];
+
+function logTerminal(msg) {
+    const term = document.getElementById('terminal-logs');
+    if (!term) return;
+    const timeStr = new Date().toLocaleTimeString();
+    term.innerHTML += `<div>[${timeStr}] ${msg}</div>`;
+    term.scrollTop = term.scrollHeight;
+}
 
 function renderFeeds(filter = "") {
     const container = document.getElementById('feed-container');
@@ -320,7 +318,7 @@ function renderFeeds(filter = "") {
                 </div>
                 <div style="font-size:11px; color:#e2e8f0; line-height:1.5;">${escapeHtml(p.content).replace(/(#\w+)/g, '<span class="tag">$1</span>')}</div>
                 <div class="actions">
-                    <button class="act-btn" onclick="alert('💬 リプライ送信完了 (+50 SATS 着金)')">💬 返信 (50S)</button>
+                    <button class="act-btn" onclick="logTerminal('💬 Reply sent'); alert('💬 リプライ送信完了 (+50 SATS)')">💬 返信 (50S)</button>
                     <button class="act-btn" onclick="likePost(${idx})">❤️ いいね ${p.likes}</button>
                     <button class="act-btn" style="color:var(--accent-green); border-color:rgba(0,255,102,0.4);" onclick="tipPost(100)">⚡ 100 SATS 入金</button>
                     ${p.name === activeName ? `<button class="act-btn" style="color:var(--accent-pink);" onclick="deletePost(${idx})">🗑️ 削除</button>` : ''}
@@ -335,9 +333,10 @@ function createPost() {
     const text = input.value.trim();
     if (!text) return;
     posts.unshift({ name: activeName, idStr: activeIdStr, avatar: activeAvatar, time: "たった今", content: text, likes: 0 });
-    localStorage.setItem('qlux_supreme_posts', JSON.stringify(posts));
+    localStorage.setItem('qlux_omni_posts', JSON.stringify(posts));
     input.value = "";
     renderFeeds();
+    logTerminal(`[POST] Broadcast inscribed on-chain by ${activeName}`);
     alert("✓ BSVネットワークへ正常に永久刻印されました！");
 }
 
@@ -345,20 +344,157 @@ function likePost(idx) {
     posts[idx].likes++;
     unclaimedPool += 50;
     document.getElementById('unclaimed-pool').innerText = unclaimedPool.toLocaleString() + " SAT";
-    localStorage.setItem('qlux_supreme_posts', JSON.stringify(posts));
+    localStorage.setItem('qlux_omni_posts', JSON.stringify(posts));
     renderFeeds(document.getElementById('search-input').value);
 }
 
 function tipPost(amount) {
     totalSats += amount;
     updateWallet();
-    alert(`⚡ HandCash経由で ${amount} SATS のチップがダイレクトに着金しました！`);
+    logTerminal(`[TIP] Direct micro-payment of ${amount} SATS received`);
+    alert(`⚡ HandCash経由で ${amount} SATS のチップが着金しました！`);
 }
 
 function deletePost(idx) {
     posts.splice(idx, 1);
-    localStorage.setItem('qlux_supreme_posts', JSON.stringify(posts));
+    localStorage.setItem('qlux_omni_posts', JSON.stringify(posts));
     renderFeeds(document.getElementById('search-input').value);
 }
 
-function 
+function updateWallet() {
+    document.getElementById('top-sats').innerText = totalSats.toLocaleString() + " SAT";
+    const d = document.getElementById('wallet-balance-disp');
+    if(d) d.innerText = totalSats.toLocaleString() + " SAT";
+}
+
+function switchView(name, btn) {
+    document.querySelectorAll('.view-sec').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    
+    const target = document.getElementById('view-' + name);
+    if (target) {
+        target.classList.add('active');
+        logTerminal(`[NAV] Switched view -> ${name.toUpperCase()}`);
+    }
+    if (btn) btn.classList.add('active');
+}
+
+function toggleAccount() {
+    if (activeName === "QLUX Sovereign Master") {
+        activeName = "VLIS Creator Node"; activeIdStr = "@vlis_user"; activeAvatar = "V";
+    } else {
+        activeName = "QLUX Sovereign Master"; activeIdStr = "@qlux_master"; activeAvatar = "Q";
+    }
+    document.getElementById('active-acc-name').innerText = activeName;
+    document.getElementById('active-acc-id').innerText = activeIdStr + " (Active)";
+    document.getElementById('left-avatar').innerText = activeAvatar;
+    logTerminal(`[ACCOUNT] Switched to ${activeName}`);
+    alert(`🔄 アクティブアカウントを「${activeName}」に変更しました。`);
+    renderFeeds();
+}
+
+function saveProfile() {
+    const n = document.getElementById('prof-name').value;
+    if(n) { 
+        activeName = n; 
+        document.getElementById('active-acc-name').innerText = n; 
+        logTerminal(`[PROFILE] Display name updated to ${n}`);
+        alert("✓ プロファイルが正常保存されました！"); 
+    }
+}
+
+function filterFeeds(kw) { renderFeeds(kw); }
+
+/* マルチ通貨ブリッジ実行 */
+function executeUniversalBridge() {
+    const cur = document.getElementById('bridge-currency').value;
+    const amt = document.getElementById('bridge-amount').value;
+    const convertedSats = amt * 1250; // 模擬換算レート
+    totalSats += convertedSats;
+    updateWallet();
+    logTerminal(`[BRIDGE] Converted ${amt} ${cur} into ${convertedSats.toLocaleString()} SATS successfully`);
+    alert(`🌐 ${amt} ${cur} の価値がアトミックにBSVへ変換され、${convertedSats.toLocaleString()} SATS がウォレットに着金しました！`);
+}
+
+/* ダイレクトインスクライブ実行 */
+function executeInscribe() {
+    const rawText = document.getElementById('ordinal-raw-text').value.trim();
+    const fileInput = document.getElementById('ordinal-file-input');
+    
+    let payloadSize = 512;
+    if (rawText) payloadSize = rawText.length;
+    else if (fileInput.files.length > 0) payloadSize = fileInput.files[0].size;
+
+    const fakeTxHash = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    const inscriptionId = `${fakeTxHash}_0`;
+
+    logTerminal(`[INSCRIBE] Data payload (${payloadSize} bytes) locked on BSV blockchain`);
+    document.getElementById('inscription-result').innerHTML = `
+        ✨ 永続銘刻成功！<br>
+        <b>Inscription ID:</b> ${inscriptionId}<br>
+        <span style="color:var(--accent-cyan);">https://ordinals.gorillapool.io/content/${inscriptionId}</span>
+    `;
+    alert("📦 ファイル・コードがBSVブロックチェーン上に永遠にインスクライブされました！");
+}
+
+/* スワイプスイーパー */
+let dragging = false;
+const thumb = document.getElementById('swipe-thumb');
+const cont = document.getElementById('swipe-container');
+
+if (thumb && cont) {
+    thumb.addEventListener('mousedown', (e) => { dragging = true; e.preventDefault(); });
+    thumb.addEventListener('touchstart', (e) => { dragging = true; e.preventDefault(); }, { passive: false });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        const rect = cont.getBoundingClientRect();
+        let x = e.clientX - rect.left - 18;
+        if (x < 4) x = 4;
+        if (x > rect.width - 38) x = rect.width - 38;
+        thumb.style.transform = `translateX(${x - 4}px)`;
+        if (x >= rect.width * 0.45) {
+            dragging = false;
+            totalSats += unclaimedPool;
+            unclaimedPool = 0;
+            document.getElementById('unclaimed-pool').innerText = "0 SAT";
+            updateWallet();
+            thumb.style.transform = `translateX(0px)`;
+            logTerminal(`[SWEEP] Claimed atomic pool successfully!`);
+            alert("✨ 未回収の報酬が一括でハンドキャッシュウォレットへ秒速着金しました！");
+        }
+    });
+
+    window.addEventListener('touchmove', (e) => {
+        if (!dragging) return;
+        const rect = cont.getBoundingClientRect();
+        let x = e.touches[0].clientX - rect.left - 18;
+        if (x < 4) x = 4;
+        if (x > rect.width - 38) x = rect.width - 38;
+        thumb.style.transform = `translateX(${x - 4}px)`;
+        if (x >= rect.width * 0.45) {
+            dragging = false;
+            totalSats += unclaimedPool;
+            unclaimedPool = 0;
+            document.getElementById('unclaimed-pool').innerText = "0 SAT";
+            updateWallet();
+            thumb.style.transform = `translateX(0px)`;
+            logTerminal(`[SWEEP] Claimed atomic pool successfully!`);
+            alert("✨ 未回収の報酬が一括でハンドキャッシュウォレットへ秒速着金しました！");
+        }
+    }, { passive: true });
+
+    window.addEventListener('mouseup', () => { if(dragging) { dragging = false; thumb.style.transform = `translateX(0px)`; } });
+    window.addEventListener('touchend', () => { if(dragging) { dragging = false; thumb.style.transform = `translateX(0px)`; } });
+}
+
+window.onload = function() { 
+    renderFeeds(); 
+    logTerminal("[READY] Sovereign Megalopolis fully operational.");
+};
+
+function escapeHtml(str) { return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+</script>
+
+</body>
+</html>
