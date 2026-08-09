@@ -39,7 +39,7 @@
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border-cyan);
-            padding: 18px 36px;
+            padding: 16px 36px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -56,21 +56,21 @@
         }
 
         .brand-logo {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #010208;
-            box-shadow: 0 0 25px var(--cyan-glow);
+            box-shadow: 0 0 20px var(--cyan-glow);
         }
 
         .brand-title h1 {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 900;
             letter-spacing: 0.2em;
             background: linear-gradient(90deg, #fff, var(--cyan-primary));
@@ -88,9 +88,9 @@
             background: transparent;
             border: 1px solid var(--border-cyan);
             color: var(--cyan-primary);
-            padding: 8px 18px;
-            border-radius: 10px;
-            font-size: 0.8rem;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 0.78rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
@@ -105,18 +105,92 @@
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border: none;
             color: #010208;
-            padding: 8px 20px;
-            border-radius: 10px;
-            font-size: 0.8rem;
+            padding: 6px 18px;
+            border-radius: 8px;
+            font-size: 0.78rem;
             font-weight: 900;
             cursor: pointer;
-            box-shadow: 0 0 20px var(--cyan-glow);
+            box-shadow: 0 0 18px var(--cyan-glow);
             transition: all 0.2s;
         }
 
         .auth-btn-main:hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
+        }
+
+        /* 🔄 ヘッダー直下：横スクロール型・マルチダッシュボードバー（コンパクト・テキスト小） */
+        .horizontal-dashboard-bar {
+            background: rgba(6, 9, 23, 0.95);
+            border-bottom: 1px solid var(--border-cyan);
+            padding: 12px 24px;
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            white-space: nowrap;
+            position: sticky;
+            top: 73px;
+            z-index: 990;
+            backdrop-filter: blur(20px);
+            scrollbar-width: thin;
+            scrollbar-color: var(--cyan-primary) var(--surface);
+        }
+
+        .horizontal-dashboard-bar::-webkit-scrollbar {
+            height: 4px;
+        }
+        .horizontal-dashboard-bar::-webkit-scrollbar-thumb {
+            background: var(--cyan-primary);
+            border-radius: 4px;
+        }
+
+        .ticker-card {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-cyan);
+            border-radius: 10px;
+            padding: 10px 16px;
+            min-width: 190px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .ticker-card:hover {
+            border-color: var(--cyan-primary);
+            box-shadow: 0 0 15px var(--cyan-dim);
+            transform: translateY(-1px);
+        }
+
+        .ticker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ticker-title {
+            font-size: 0.7rem;
+            font-weight: 900;
+            color: var(--cyan-primary);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .ticker-badge {
+            font-size: 0.55rem;
+            padding: 1px 6px;
+            border-radius: 10px;
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-cyan);
+            color: var(--cyan-primary);
+        }
+
+        .ticker-value {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -0.01em;
         }
 
         /* Main Container */
@@ -185,69 +259,7 @@
             color: var(--text-primary);
         }
 
-        /* 📊 GitHub風・12モジュール多重ダッシュボードグリッド */
-        .dashboard-12-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 18px;
-        }
-
-        .dash-module-card {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-cyan);
-            border-radius: 16px;
-            padding: 22px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .dash-module-card:hover {
-            border-color: var(--cyan-primary);
-            box-shadow: 0 0 25px var(--cyan-dim);
-            transform: translateY(-2px);
-        }
-
-        .dash-module-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .dash-mod-title {
-            font-size: 0.8rem;
-            font-weight: 900;
-            color: var(--cyan-primary);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .dash-mod-badge {
-            background: var(--cyan-dim);
-            border: 1px solid var(--border-cyan);
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-size: 0.6rem;
-            color: var(--cyan-primary);
-            font-weight: 700;
-        }
-
-        .dash-mod-value {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: #fff;
-            letter-spacing: -0.01em;
-        }
-
-        .dash-mod-desc {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            line-height: 1.45;
-        }
-
-        /* Sovereign Vault（スマート・超優良企業ライティング仕様） */
+        /* Sovereign Vault */
         .vault-section {
             background: linear-gradient(135deg, rgba(0,242,254,0.06), rgba(0,114,255,0.03));
             border: 2px solid var(--cyan-primary);
@@ -326,7 +338,7 @@
             filter: brightness(1.1);
         }
 
-        /* ⚡ 超高感度・完全確実スワイプコンテナ（バグ完全根絶版） */
+        /* ⚡ 超高感度スワイプコンテナ */
         .cyber-swipe-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
@@ -349,7 +361,7 @@
             overflow: hidden;
             user-select: none;
             -webkit-user-select: none;
-            touch-action: pan-y; /* 縦スクロールを邪魔せず横スワイプを確実にキャッチ */
+            touch-action: pan-y;
             max-width: 440px;
             margin: 0 auto;
             width: 100%;
@@ -417,6 +429,93 @@
         </div>
     </header>
 
+    <div class="horizontal-dashboard-bar">
+        <div class="ticker-card">
+            <div class="ticker-header">
+                <span class="ticker-title">QLUX Wallet</span>
+                <span class="ticker-badge">Active</span>
+            </div>
+            <div class="ticker-value" id="dashWalletVal">7,450,000 SAT</div>
+        </div>
+        <div class="ticker-card">
+            <div class="ticker-header">
+                <span class="ticker-title">QLUX SNS</span>
+                <span class="ticker-badge" style="color: #00ff66;">Live</span>
+            </div>
+            <div class="ticker-value" style="color: #00ff66;">100% 稼働</div>
+        </div>
+        <div class="ticker-card">
+            <div class="ticker-header">
+                <span class="ticker-title">Teranode Engine</span>
+                <span class="ticker-badge">v3.8</span>
+            </div>
+            <div class="ticker-value" style="color: #00f2fe;">10M+ TPS</div>
+        </div>
+        <div class="ticker-card">
+            <div class="ticker-header">
+                <span class="ticker-title">Atomic Script</span>
+                <span class="ticker-badge">Opt</span>
+            </div>
+            <div class="ticker-value" style="color: #ff007f;">1e-6 SAT</div>
+        </div>
+        <div class="ticker-card">
+            <div class="ticker-header">
+                <span class="ticker-title">Sovereign Vault</span>
+                <span class="ticker-badge">VIP</span>
+            </div>
+            <div class="ticker-value">Perpetual</div>
+        </div>
+        <div class="ticker-card">
+            <div class="ticker-header">
+                <span class="ticker-title">Quantum Shield</span>
+                <span class="ticker-badge">Secured</span>
+            </div>
+            <div class="ticker-value" style="color: #00ff66;">Active</div>
+        </div>
+        <div class="ticker-card">
+            <div class="ticker-header">
+                <span class="ticker-title">Data Stream</span>
+                <span class="ticker-badge">Sync</span>
+            </div>
+            <div class="ticker-value" style="color: #00f2fe;">0.1ms</div>
+        </div>
+        <div class="ticker-card">
+            <div class="ticker-header">
+                <span class="ticker-title">Identity & Auth</span>
+                <span class="ticker-badge">Web3 ID</span>
+            </div>
+            <div class="ticker-value">Decentralized</div>
+        </div>
+        <div class="ticker-card">
+            <div class="ticker-header">
+                <span class="ticker-title">Global Node Pulse</span>
+                <span class="ticker-badge">Mesh</span>
+            </div>
+            <div class="ticker-value" style="color: #ff007f;">65,536</div>
+        </div>
+        <div class="ticker-card">
+            <div class="ticker-header">
+                <span class="ticker-title">Enterprise API</span>
+                <span class="ticker-badge">Gateway</span>
+            </div>
+            <div class="ticker-value" style="color: #00ff66;">Online</div>
+        </div>
+        <div class="ticker-card">
+            <div class="ticker-header">
+                <span class="ticker-title">Liquidity Pool</span>
+                <span class="ticker-badge">AMM</span>
+            </div>
+            <div class="ticker-value" style="color: #00f2fe;">$142M+</div>
+        </div>
+        <div class="ticker-card">
+            <div class="ticker-header">
+                <span class="ticker-title">Zero-Knowledge</span>
+                <span class="ticker-badge">ZK-Rollup</span>
+            </div>
+            <div class="ticker-value" style="color: #00ff66;">Verified</div>
+        </div>
+    </div>
+
     <main>
         <section class="master-card">
             <div class="section-tag">
@@ -436,124 +535,6 @@
                 <p>
                     ここでこのプラットフォームに触れ、システムと同期するということは、未来のデジタル経済圏における「絶対的な主権（Sovereign Control）」を自らの手中に収めることを意味します。一度このインフラの恩恵を体験したユーザーにとって、旧時代の非効率なシステムに戻る選択肢はもはや存在しません。今、この瞬間からあなたの資産とデータは、完全なる自由と強固なセキュリティに守られます。
                 </p>
-            </div>
-        </section>
-
-        <section class="master-card" style="padding: 36px;">
-            <div class="section-tag">
-                <span>📊 GitHub Core & Multi-Module Architecture</span>
-                <span style="color: var(--text-primary);">● Full-Stack Ecosystem Hub</span>
-            </div>
-            <h2>QLUX Core & Autonomous Matrix</h2>
-
-            <div class="dashboard-12-grid">
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">QLUX Wallet</span>
-                        <span class="dash-mod-badge">Active</span>
-                    </div>
-                    <div class="dash-mod-value" id="dashWalletVal">7,450,000 SAT</div>
-                    <div class="dash-mod-desc">ハイブリッド署名対応の超高速アトミックウォレットコア。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">QLUX SNS Protocol</span>
-                        <span class="dash-mod-badge" style="color: #00ff66; border-color: #00ff66;">Live</span>
-                    </div>
-                    <div class="dash-mod-value" style="color: #00ff66;">100% 稼働</div>
-                    <div class="dash-mod-desc">検閲フリー・収益還元型のオンチェーンソーシャルリレー。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">Teranode Engine</span>
-                        <span class="dash-mod-badge">v3.8</span>
-                    </div>
-                    <div class="dash-mod-value" style="color: #00f2fe;">10M+ TPS</div>
-                    <div class="dash-mod-desc">秒間1000万件超のトランザクションを並列処理する超分散基盤。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">Atomic Script Core</span>
-                        <span class="dash-mod-badge">Optimized</span>
-                    </div>
-                    <div class="dash-mod-value" style="color: #ff007f;">1e-6 SAT</div>
-                    <div class="dash-mod-desc">仲介者を一切介さず自動実行されるネイティブスマートスクリプト。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">Sovereign Vault</span>
-                        <span class="dash-mod-badge">VIP Yield</span>
-                    </div>
-                    <div class="dash-mod-value">Perpetual</div>
-                    <div class="dash-mod-desc">ネットワーク全体の収益がリアルタイムで複利配当される金庫。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">Quantum Shield</span>
-                        <span class="dash-mod-badge">Secured</span>
-                    </div>
-                    <div class="dash-mod-value" style="color: #00ff66;">Active</div>
-                    <div class="dash-mod-desc">数学的絶対正当性により改ざんや不正アクセスを完全ブロック。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">Data Stream Matrix</span>
-                        <span class="dash-mod-badge">Syncing</span>
-                    </div>
-                    <div class="dash-mod-value" style="color: #00f2fe;">0.1ms</div>
-                    <div class="dash-mod-desc">グローバルノード間を超低遅延で結ぶリアルタイムデータパイプ。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">Identity & Auth</span>
-                        <span class="dash-mod-badge">Web3 ID</span>
-                    </div>
-                    <div class="dash-mod-value">Decentralized</div>
-                    <div class="dash-mod-desc">秘密鍵に完全紐づいたセキュアなサインイン・アカウント管理。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">Global Node Pulse</span>
-                        <span class="dash-mod-badge">Mesh Net</span>
-                    </div>
-                    <div class="dash-mod-value" style="color: #ff007f;">65,536</div>
-                    <div class="dash-mod-desc">世界中に分散配置されたフルノードのネットワーク同期状態。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">Enterprise API</span>
-                        <span class="dash-mod-badge">Gateway</span>
-                    </div>
-                    <div class="dash-mod-value" style="color: #00ff66;">Online</div>
-                    <div class="dash-mod-desc">外部システムとアトミック接続するための超高機能APIハブ。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">Autonomous Liquidity Pool</span>
-                        <span class="dash-mod-badge">AMM Core</span>
-                    </div>
-                    <div class="dash-mod-value" style="color: #00f2fe;">$142M+</div>
-                    <div class="dash-mod-desc">スリッページゼロを誇る自律型アトミック流動性プールシステム。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">Zero-Knowledge Mesh</span>
-                        <span class="dash-mod-badge">ZK-Rollup</span>
-                    </div>
-                    <div class="dash-mod-value" style="color: #00ff66;">Verified</div>
-                    <div class="dash-mod-desc">完全なプライバシーを担保しながら検証を瞬時に完了させるZKレイヤー。</div>
-                </div>
             </div>
         </section>
 
@@ -605,116 +586,4 @@
     <script>
         const track = document.getElementById('swipeTrack');
         const thumb = document.getElementById('swipeThumb');
-        const instruction = document.getElementById('swipeInstruction');
-        const pendingEl = document.getElementById('pendingSweepAmount');
-        const walletEl = document.getElementById('mainWalletBalance');
-        const dashWalletEl = document.getElementById('dashWalletVal');
-
-        let isDragging = false;
-        let startX = 0;
-        let currentX = 0;
-        let maxTrackWidth = 0;
-
-        function updateMetrics() {
-            if (track && thumb) {
-                maxTrackWidth = track.clientWidth - thumb.clientWidth - 8;
-            }
-        }
-
-        window.addEventListener('resize', updateMetrics);
-        window.addEventListener('load', updateMetrics);
-        updateMetrics();
-
-        // タッチ＆マウス両対応の完全無欠なポインターイベント
-        thumb.addEventListener('pointerdown', (e) => {
-            isDragging = true;
-            startX = e.clientX - currentX;
-            thumb.setPointerCapture(e.pointerId);
-            instruction.style.opacity = '0.2';
-            e.stopPropagation();
-        });
-
-        window.addEventListener('pointermove', (e) => {
-            if (!isDragging) return;
-            updateMetrics();
-            
-            const diff = e.clientX - startX;
-            currentX = Math.max(0, Math.min(diff, maxTrackWidth));
-            
-            thumb.style.transform = `translateX(${currentX}px)`;
-
-            // 70%以上スライドで瞬時発動
-            if (currentX >= maxTrackWidth * 0.70) {
-                completeSwipeAction();
-            }
-        });
-
-        window.addEventListener('pointerup', (e) => {
-            if (!isDragging) return;
-            isDragging = false;
-            updateMetrics();
-
-            if (currentX < maxTrackWidth * 0.70) {
-                thumb.style.transition = 'transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1)';
-                thumb.style.transform = 'translateX(0px)';
-                currentX = 0;
-                setTimeout(() => {
-                    thumb.style.transition = 'none';
-                }, 300);
-                instruction.style.opacity = '1';
-            }
-        });
-
-        function completeSwipeAction() {
-            if (!isDragging) return;
-            isDragging = false;
-            updateMetrics();
-
-            let pendingVal = parseInt(pendingEl.innerText.replace(/[^0-9]/g, '')) || 0;
-            if (pendingVal > 0) {
-                thumb.style.transition = 'transform 0.2s ease';
-                thumb.style.transform = `translateX(${maxTrackWidth}px)`;
-                thumb.style.background = '#00ff66';
-                thumb.style.color = '#010208';
-                thumb.innerText = 'SUCCESS ✓';
-
-                setTimeout(() => {
-                    alert(`⚡ Cybernetic Swipe Success!\n未回収収益 ${pendingVal.toLocaleString()} SAT が QLUX Wallet へ完全アトミック同期されました。`);
-                    
-                    let currentBal = parseInt(walletEl.innerText.replace(/[^0-9]/g, '')) || 0;
-                    currentBal += pendingVal;
-                    walletEl.innerText = currentBal.toLocaleString() + ' SAT';
-                    dashWalletEl.innerText = currentBal.toLocaleString() + ' SAT';
-
-                    pendingEl.innerText = '0 SAT';
-                    pendingEl.style.opacity = '0.4';
-                    instruction.innerText = '● すべての収益がアトミック確定済';
-
-                    setTimeout(() => {
-                        thumb.style.transition = 'none';
-                        thumb.style.transform = 'translateX(0px)';
-                        thumb.style.background = 'linear-gradient(135deg, var(--cyan-primary), #0072ff)';
-                        thumb.style.color = '#010208';
-                        thumb.innerText = 'SWIPE ⚡';
-                        currentX = 0;
-                        instruction.style.opacity = '1';
-                        instruction.innerText = '👉 スライドして報酬を回収';
-                    }, 1200);
-                }, 150);
-            }
-        }
-
-        function executeAdvancedWithdraw() {
-            alert('💳 QLUX Wallet からのアトミック出金トランザクションが Teranode メインネットへ高速ブロードキャストされました！');
-        }
-
-        function handleSignIn() {
-            alert('🔐 QLUX Sovereign Network へのサインイン画面をロード中...');
-        }
-
-        function handleSignUp() {
-            alert('🚀 新規アカウント作成（Sign Up / Create Account）プロセスを開始します。完全分散ウォレットを生成中...');
-        }
-    </script>
-</body>
-</html>
+        const instruction = document.getElementById('swipeIns
