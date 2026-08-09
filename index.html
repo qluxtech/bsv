@@ -31,7 +31,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            line-height: 1.85;
+            line-height: 1.8;
             overflow-x: hidden;
         }
 
@@ -39,7 +39,7 @@
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border-cyan);
-            padding: 16px 36px;
+            padding: 14px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -52,25 +52,25 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
         }
 
         .brand-logo {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #010208;
-            box-shadow: 0 0 20px var(--cyan-glow);
+            box-shadow: 0 0 18px var(--cyan-glow);
         }
 
         .brand-title h1 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 900;
             letter-spacing: 0.2em;
             background: linear-gradient(90deg, #fff, var(--cyan-primary));
@@ -81,16 +81,16 @@
         .header-auth-group {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .auth-btn-sub {
             background: transparent;
             border: 1px solid var(--border-cyan);
             color: var(--cyan-primary);
-            padding: 6px 16px;
+            padding: 6px 14px;
             border-radius: 8px;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
@@ -98,19 +98,19 @@
 
         .auth-btn-sub:hover {
             background: var(--cyan-dim);
-            box-shadow: 0 0 15px var(--cyan-dim);
+            box-shadow: 0 0 12px var(--cyan-dim);
         }
 
         .auth-btn-main {
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border: none;
             color: #010208;
-            padding: 6px 18px;
+            padding: 6px 16px;
             border-radius: 8px;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             font-weight: 900;
             cursor: pointer;
-            box-shadow: 0 0 18px var(--cyan-glow);
+            box-shadow: 0 0 15px var(--cyan-glow);
             transition: all 0.2s;
         }
 
@@ -119,75 +119,62 @@
             transform: translateY(-1px);
         }
 
-        /* 🔄 ヘッダー直下：横スクロール型・マルチダッシュボードバー（コンパクト・テキスト小） */
-        .horizontal-dashboard-bar {
+        /* 📊 ヘッダー直下：1ページに美しく収まる12項目・超高密度グリッドバー */
+        .top-matrix-bar {
             background: rgba(6, 9, 23, 0.95);
             border-bottom: 1px solid var(--border-cyan);
-            padding: 12px 24px;
-            display: flex;
-            gap: 14px;
-            overflow-x: auto;
-            white-space: nowrap;
+            padding: 16px 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 10px;
             position: sticky;
-            top: 73px;
+            top: 65px;
             z-index: 990;
             backdrop-filter: blur(20px);
-            scrollbar-width: thin;
-            scrollbar-color: var(--cyan-primary) var(--surface);
         }
 
-        .horizontal-dashboard-bar::-webkit-scrollbar {
-            height: 4px;
-        }
-        .horizontal-dashboard-bar::-webkit-scrollbar-thumb {
-            background: var(--cyan-primary);
-            border-radius: 4px;
-        }
-
-        .ticker-card {
+        .matrix-mini-card {
             background: var(--surface-hover);
             border: 1px solid var(--border-cyan);
             border-radius: 10px;
-            padding: 10px 16px;
-            min-width: 190px;
+            padding: 8px 12px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 2px;
             transition: all 0.2s;
-            flex-shrink: 0;
         }
 
-        .ticker-card:hover {
+        .matrix-mini-card:hover {
             border-color: var(--cyan-primary);
-            box-shadow: 0 0 15px var(--cyan-dim);
+            box-shadow: 0 0 12px var(--cyan-dim);
             transform: translateY(-1px);
         }
 
-        .ticker-header {
+        .matrix-mini-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .ticker-title {
-            font-size: 0.7rem;
+        .matrix-mini-title {
+            font-size: 0.65rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            letter-spacing: 0.06em;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
         }
 
-        .ticker-badge {
-            font-size: 0.55rem;
-            padding: 1px 6px;
-            border-radius: 10px;
+        .matrix-mini-badge {
+            font-size: 0.5rem;
+            padding: 1px 5px;
+            border-radius: 8px;
             background: var(--cyan-dim);
             border: 1px solid var(--border-cyan);
             color: var(--cyan-primary);
         }
 
-        .ticker-value {
-            font-size: 1rem;
+        .matrix-mini-value {
+            font-size: 0.9rem;
             font-weight: 900;
             color: #fff;
             letter-spacing: -0.01em;
@@ -199,22 +186,22 @@
             max-width: 1400px;
             width: 100%;
             margin: 0 auto;
-            padding: 40px 24px;
+            padding: 36px 24px;
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 36px;
         }
 
         /* Master Cards */
         .master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
-            border-radius: 20px;
-            padding: 48px;
+            border-radius: 18px;
+            padding: 42px;
             display: flex;
             flex-direction: column;
-            gap: 32px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+            gap: 28px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.8);
             position: relative;
             overflow: hidden;
         }
@@ -227,18 +214,18 @@
         }
 
         .section-tag {
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             font-weight: 900;
             color: var(--cyan-primary);
             text-transform: uppercase;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.2em;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         h2 {
-            font-size: 2.1rem;
+            font-size: 1.9rem;
             font-weight: 900;
             letter-spacing: -0.02em;
             line-height: 1.35;
@@ -248,27 +235,27 @@
         }
 
         .deep-editorial {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
             display: flex;
             flex-direction: column;
-            gap: 22px;
+            gap: 20px;
         }
 
         .deep-editorial strong {
             color: var(--text-primary);
         }
 
-        /* Sovereign Vault */
+        /* 💎 Sovereign Vault（圧倒的にスマートで長文の最高峰ライティング） */
         .vault-section {
             background: linear-gradient(135deg, rgba(0,242,254,0.06), rgba(0,114,255,0.03));
             border: 2px solid var(--cyan-primary);
-            border-radius: 20px;
-            padding: 48px;
+            border-radius: 18px;
+            padding: 44px;
             display: flex;
             flex-direction: column;
-            gap: 28px;
-            box-shadow: 0 0 50px var(--cyan-dim);
+            gap: 26px;
+            box-shadow: 0 0 45px var(--cyan-dim);
             position: relative;
         }
 
@@ -277,9 +264,9 @@
             top: 24px; right: 28px;
             background: var(--cyan-dim);
             border: 1px solid var(--cyan-primary);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.72rem;
+            padding: 5px 14px;
+            border-radius: 18px;
+            font-size: 0.7rem;
             color: var(--cyan-primary);
             font-weight: 900;
             letter-spacing: 0.15em;
@@ -289,11 +276,11 @@
         .wallet-matrix-section {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
-            border-radius: 20px;
-            padding: 44px;
+            border-radius: 18px;
+            padding: 40px;
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 28px;
         }
 
         .wallet-top-flex {
@@ -301,20 +288,20 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 20px;
         }
 
         .wallet-balance-box {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
         }
 
         .wallet-amount-display {
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            text-shadow: 0 0 35px var(--cyan-glow);
+            text-shadow: 0 0 30px var(--cyan-glow);
             letter-spacing: -0.02em;
         }
 
@@ -322,38 +309,38 @@
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             color: #010208;
             border: none;
-            padding: 16px 36px;
-            border-radius: 14px;
+            padding: 14px 32px;
+            border-radius: 12px;
             font-weight: 900;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
-            box-shadow: 0 6px 25px var(--cyan-glow);
+            box-shadow: 0 6px 20px var(--cyan-glow);
             letter-spacing: 0.05em;
         }
 
         .cyber-action-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 40px var(--cyan-glow);
+            box-shadow: 0 10px 35px var(--cyan-glow);
             filter: brightness(1.1);
         }
 
-        /* ⚡ 超高感度スワイプコンテナ */
+        /* ⚡ 神速高感度・完全確実スワイプコンテナ（完全修復版） */
         .cyber-swipe-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
-            border-radius: 18px;
-            padding: 28px;
+            border-radius: 16px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 16px;
         }
 
         .swipe-track-modern {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
             border-radius: 60px;
-            height: 60px;
+            height: 58px;
             position: relative;
             display: flex;
             align-items: center;
@@ -361,7 +348,7 @@
             overflow: hidden;
             user-select: none;
             -webkit-user-select: none;
-            touch-action: pan-y;
+            touch-action: none; /* スワイプ中の画面暴れを完全防止 */
             max-width: 440px;
             margin: 0 auto;
             width: 100%;
@@ -381,7 +368,7 @@
             position: absolute;
             left: 4px;
             cursor: grab;
-            box-shadow: 0 0 25px var(--cyan-glow);
+            box-shadow: 0 0 22px var(--cyan-glow);
             z-index: 10;
             letter-spacing: 0.08em;
             touch-action: none;
@@ -394,7 +381,7 @@
         .swipe-guide-text {
             width: 100%;
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 700;
             color: var(--text-secondary);
             letter-spacing: 0.08em;
@@ -406,8 +393,8 @@
         /* Footer */
         footer {
             text-align: center;
-            padding: 40px;
-            font-size: 0.8rem;
+            padding: 36px;
+            font-size: 0.78rem;
             color: var(--text-secondary);
             border-top: 1px solid var(--border-cyan);
             background: var(--surface);
@@ -429,90 +416,90 @@
         </div>
     </header>
 
-    <div class="horizontal-dashboard-bar">
-        <div class="ticker-card">
-            <div class="ticker-header">
-                <span class="ticker-title">QLUX Wallet</span>
-                <span class="ticker-badge">Active</span>
+    <div class="top-matrix-bar">
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header">
+                <span class="matrix-mini-title">QLUX Wallet</span>
+                <span class="matrix-mini-badge">Active</span>
             </div>
-            <div class="ticker-value" id="dashWalletVal">7,450,000 SAT</div>
+            <div class="matrix-mini-value" id="dashWalletVal">7,450,000 SAT</div>
         </div>
-        <div class="ticker-card">
-            <div class="ticker-header">
-                <span class="ticker-title">QLUX SNS</span>
-                <span class="ticker-badge" style="color: #00ff66;">Live</span>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header">
+                <span class="matrix-mini-title">QLUX SNS</span>
+                <span class="matrix-mini-badge" style="color: #00ff66;">Live</span>
             </div>
-            <div class="ticker-value" style="color: #00ff66;">100% 稼働</div>
+            <div class="matrix-mini-value" style="color: #00ff66;">100% 稼働</div>
         </div>
-        <div class="ticker-card">
-            <div class="ticker-header">
-                <span class="ticker-title">Teranode Engine</span>
-                <span class="ticker-badge">v3.8</span>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header">
+                <span class="matrix-mini-title">Teranode Engine</span>
+                <span class="matrix-mini-badge">v3.8</span>
             </div>
-            <div class="ticker-value" style="color: #00f2fe;">10M+ TPS</div>
+            <div class="matrix-mini-value" style="color: #00f2fe;">10M+ TPS</div>
         </div>
-        <div class="ticker-card">
-            <div class="ticker-header">
-                <span class="ticker-title">Atomic Script</span>
-                <span class="ticker-badge">Opt</span>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header">
+                <span class="matrix-mini-title">Atomic Script</span>
+                <span class="matrix-mini-badge">Opt</span>
             </div>
-            <div class="ticker-value" style="color: #ff007f;">1e-6 SAT</div>
+            <div class="matrix-mini-value" style="color: #ff007f;">1e-6 SAT</div>
         </div>
-        <div class="ticker-card">
-            <div class="ticker-header">
-                <span class="ticker-title">Sovereign Vault</span>
-                <span class="ticker-badge">VIP</span>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header">
+                <span class="matrix-mini-title">Sovereign Vault</span>
+                <span class="matrix-mini-badge">VIP</span>
             </div>
-            <div class="ticker-value">Perpetual</div>
+            <div class="matrix-mini-value">Perpetual</div>
         </div>
-        <div class="ticker-card">
-            <div class="ticker-header">
-                <span class="ticker-title">Quantum Shield</span>
-                <span class="ticker-badge">Secured</span>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header">
+                <span class="matrix-mini-title">Quantum Shield</span>
+                <span class="matrix-mini-badge">Secured</span>
             </div>
-            <div class="ticker-value" style="color: #00ff66;">Active</div>
+            <div class="matrix-mini-value" style="color: #00ff66;">Active</div>
         </div>
-        <div class="ticker-card">
-            <div class="ticker-header">
-                <span class="ticker-title">Data Stream</span>
-                <span class="ticker-badge">Sync</span>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header">
+                <span class="matrix-mini-title">Data Stream</span>
+                <span class="matrix-mini-badge">Sync</span>
             </div>
-            <div class="ticker-value" style="color: #00f2fe;">0.1ms</div>
+            <div class="matrix-mini-value" style="color: #00f2fe;">0.1ms</div>
         </div>
-        <div class="ticker-card">
-            <div class="ticker-header">
-                <span class="ticker-title">Identity & Auth</span>
-                <span class="ticker-badge">Web3 ID</span>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header">
+                <span class="matrix-mini-title">Identity & Auth</span>
+                <span class="matrix-mini-badge">Web3 ID</span>
             </div>
-            <div class="ticker-value">Decentralized</div>
+            <div class="matrix-mini-value">Decentralized</div>
         </div>
-        <div class="ticker-card">
-            <div class="ticker-header">
-                <span class="ticker-title">Global Node Pulse</span>
-                <span class="ticker-badge">Mesh</span>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header">
+                <span class="matrix-mini-title">Global Node Pulse</span>
+                <span class="matrix-mini-badge">Mesh</span>
             </div>
-            <div class="ticker-value" style="color: #ff007f;">65,536</div>
+            <div class="matrix-mini-value" style="color: #ff007f;">65,536</div>
         </div>
-        <div class="ticker-card">
-            <div class="ticker-header">
-                <span class="ticker-title">Enterprise API</span>
-                <span class="ticker-badge">Gateway</span>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header">
+                <span class="matrix-mini-title">Enterprise API</span>
+                <span class="matrix-mini-badge">Gateway</span>
             </div>
-            <div class="ticker-value" style="color: #00ff66;">Online</div>
+            <div class="matrix-mini-value" style="color: #00ff66;">Online</div>
         </div>
-        <div class="ticker-card">
-            <div class="ticker-header">
-                <span class="ticker-title">Liquidity Pool</span>
-                <span class="ticker-badge">AMM</span>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header">
+                <span class="matrix-mini-title">Liquidity Pool</span>
+                <span class="matrix-mini-badge">AMM</span>
             </div>
-            <div class="ticker-value" style="color: #00f2fe;">$142M+</div>
+            <div class="matrix-mini-value" style="color: #00f2fe;">$142M+</div>
         </div>
-        <div class="ticker-card">
-            <div class="ticker-header">
-                <span class="ticker-title">Zero-Knowledge</span>
-                <span class="ticker-badge">ZK-Rollup</span>
+        <div class="matrix-mini-card">
+            <div class="matrix-mini-header">
+                <span class="matrix-mini-title">Zero-Knowledge</span>
+                <span class="matrix-mini-badge">ZK-Rollup</span>
             </div>
-            <div class="ticker-value" style="color: #00ff66;">Verified</div>
+            <div class="matrix-mini-value" style="color: #00ff66;">Verified</div>
         </div>
     </div>
 
@@ -542,15 +529,17 @@
             <div class="vault-badge">GLOBAL EXCLUSIVE VIP</div>
             <div class="section-tag">
                 <span>💎 QLUX Sovereign Vault & Autonomous Yield Architecture</span>
-                <span style="color: var(--cyan-primary);">● グローバルスタンダード・永続的価値創造基盤</span>
             </div>
             <h2>次世代の富と信頼を自動生成する、<br>自律分散型・パーペチュアル・イールド・エコシステム</h2>
             <div class="deep-editorial">
                 <p>
-                    QLUXエコシステムの頂点に位置する<strong>Sovereign Vault</strong>は、単なる資産の保管庫ではありません。プラットフォーム全体の経済活動から生まれる膨大なマイクロアトミック収益を、透明性と公正性をもってリアルタイムに再分配する次世代のパーペチュアル・イールド（永続的収益）アーキテクチャです。
+                    QLUXエコシステムの頂点に位置する<strong>Sovereign Vault（永続配当金庫）</strong>は、単なる静的な資産の保管場所を超越し、グローバル規模の経済活動から生まれる膨大なマイクロアトミック収益を自律的かつ高精度に捉え続ける次世代の財務要塞です。従来型の金融システムが抱える不透明な中間マージン、煩雑な監査プロセス、および中央集権的な裁量を完全に排除し、数学的に絶対的な正当性が証明されたスマートコントラクトによって、すべての収益分配が遅延なく完全自動で執行されます。
                 </p>
                 <p>
-                    仲介金融機関や不透明な中央集権的コミットメントを完全に排除し、数学的に証明されたスマートコントラクトがすべての収益分配を自律執行します。グローバル市場の成長と連動しながら資産が自律的に複利成長していく、世界最高峰のエリートのための洗練された財務要塞です。
+                    世界中のトップクリエイターや機関投資家が羨望するこのパーペチュアル・イールド（永続的収益）構造は、グローバル市場の持続的な成長と強固に連動しながら、保有資産が複利的に拡大していく仕組みを構築しています。仲介者を一切介さないピア・ツー・ピアの信頼性と、極限まで最適化されたトランザクション効率が融合することで、あなたの資産ポートフォリオは常に最高水準の流動性と安全性、そして永続的な収益創出能力を維持し続けます。
+                </p>
+                <p>
+                    未来のデジタル主権を握るエリート層のために設計されたこのエコシステムは、単なる利回り追求の枠を超え、次世代のグローバルスタンダードとなる究極の信頼のインフラストラクチャを提供します。
                 </p>
             </div>
         </section>
@@ -558,17 +547,17 @@
         <section class="wallet-matrix-section">
             <div class="wallet-top-flex">
                 <div class="wallet-balance-box">
-                    <span style="font-size: 0.8rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.15em;">QLUX WALLET // SOVEREIGN CORE ACTIVE</span>
+                    <span style="font-size: 0.78rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.15em;">QLUX WALLET // SOVEREIGN CORE ACTIVE</span>
                     <div class="wallet-amount-display" id="mainWalletBalance">7,450,000 SAT</div>
-                    <span style="font-size: 0.85rem; color: var(--text-secondary);">HandCash Connect & ネイティブ秘密鍵ハイブリッド接続中</span>
+                    <span style="font-size: 0.82rem; color: var(--text-secondary);">HandCash Connect & ネイティブ秘密鍵ハイブリッド接続中</span>
                 </div>
                 <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">アトミック資産を一括出金する</button>
             </div>
 
             <div class="cyber-swipe-box">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                    <span style="font-size: 0.85rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">CYBERNETIC SWIPE-TO-PAY & REVENUE SWEEP</span>
-                    <span style="font-size: 0.82rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">3,500,000 SAT</b></span>
+                    <span style="font-size: 0.82rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">CYBERNETIC SWIPE-TO-PAY & REVENUE SWEEP</span>
+                    <span style="font-size: 0.8rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">3,500,000 SAT</b></span>
                 </div>
 
                 <div class="swipe-track-modern" id="swipeTrack">
@@ -581,9 +570,4 @@
 
     <footer>
         &copy; 2026 QLUX Global Sovereign Enterprise. All Rights Reserved.
-    </footer>
-
-    <script>
-        const track = document.getElementById('swipeTrack');
-        const thumb = document.getElementById('swipeThumb');
-        const instruction = document.getElementById('swipeIns
+    </foot
