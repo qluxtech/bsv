@@ -32,10 +32,10 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
-        /* 🌐 Header Module */
+        /* 🌐 Header */
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border-cyan);
@@ -107,13 +107,13 @@
             box-shadow: 0 0 12px var(--cyan-glow);
         }
 
-        /* 📊 30大BSV未来技術 横一列バー */
+        /* 📊 1. 最上部：30大未来技術 マトリクスバー */
         .top-matrix-bar {
-            background: rgba(6, 9, 23, 0.95);
+            background: rgba(6, 9, 23, 0.98);
             border-bottom: 1px solid var(--border-cyan);
-            padding: 8px 12px;
+            padding: 10px 14px;
             display: flex;
-            gap: 6px;
+            gap: 8px;
             overflow-x: auto;
             position: sticky;
             top: 57px;
@@ -127,12 +127,12 @@
             background: var(--surface-hover);
             border: 1px solid var(--border-cyan);
             border-radius: 6px;
-            padding: 6px 10px;
-            min-width: 130px;
+            padding: 6px 12px;
+            min-width: 135px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 3px;
         }
 
         .matrix-mini-header {
@@ -150,39 +150,155 @@
 
         .matrix-mini-badge {
             font-size: 0.35rem;
-            padding: 0px 3px;
+            padding: 0px 4px;
             border-radius: 3px;
             background: var(--cyan-dim);
             color: var(--cyan-primary);
         }
 
         .matrix-mini-value {
-            font-size: 0.62rem;
+            font-size: 0.65rem;
             font-weight: 900;
             color: #fff;
         }
 
-        /* Main Container */
+        /* Main Wrapper */
         main {
-            max-width: 1200px;
+            max-width: 1100px;
             width: 100%;
             margin: 0 auto;
-            padding: 24px 16px;
+            padding: 30px 16px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 35px; /* 各セクションの間に十分な縦のゆとりを確保 */
         }
 
-        /* Wallet & Swipe Section */
-        .wallet-matrix-section {
+        /* 💡 2. 中央：圧倒的なボリュームの長文エディトリアル解説セクション */
+        .editorial-master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
             border-radius: 16px;
-            padding: 24px;
+            padding: 36px 30px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            gap: 24px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        .editorial-master-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--cyan-primary), var(--accent-pink));
+        }
+
+        .section-tag {
+            font-size: 0.72rem;
+            font-weight: 900;
+            color: var(--cyan-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.45;
+        }
+
+        .editorial-lead {
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.85;
+            border-left: 3px solid var(--cyan-primary);
+            padding-left: 18px;
+            background: var(--cyan-dim);
+            padding-top: 14px;
+            padding-bottom: 14px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .editorial-body-content {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .editorial-body-content strong {
+            color: #fff;
+        }
+
+        /* 3大キラー機能グリッド（長文解説の中に内包） */
+        .killer-features-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .killer-feature-item {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-cyan);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .killer-feature-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .killer-num {
+            font-size: 0.65rem;
+            font-weight: 900;
+            color: var(--cyan-primary);
+            letter-spacing: 0.1em;
+        }
+
+        .killer-badge-sub {
+            font-size: 0.6rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-cyan);
+            color: var(--cyan-primary);
+            font-weight: 700;
+        }
+
+        .killer-title {
+            font-size: 1.05rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .killer-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ⚡ 3. 最下部：長文をすべて読み終えたユーザーを待ち受けるスワイプアクションボックス */
+        .wallet-bottom-action-section {
+            background: var(--surface);
+            border: 1px solid var(--border-cyan);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
         }
 
         .wallet-top-flex {
@@ -219,36 +335,35 @@
             box-shadow: 0 4px 15px var(--cyan-glow);
         }
 
-        /* ⚡ スワイプコンテナ */
         .cyber-swipe-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
             border-radius: 12px;
-            padding: 18px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .swipe-track-modern {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
             border-radius: 50px;
-            height: 52px;
+            height: 54px;
             position: relative;
             display: flex;
             align-items: center;
             padding: 0 4px;
             overflow: hidden;
             user-select: none;
-            max-width: 440px;
+            max-width: 460px;
             margin: 0 auto;
             width: 100%;
         }
 
         .swipe-thumb-modern {
-            width: 110px;
-            height: 42px;
+            width: 115px;
+            height: 44px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             border-radius: 30px;
             display: flex;
@@ -275,157 +390,15 @@
             position: absolute;
         }
 
-        /* 💡 3大キラー機能 完全解説エディトリアルセクション */
-        .master-card {
-            background: var(--surface);
-            border: 1px solid var(--border-cyan);
-            border-radius: 16px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 22px;
-            position: relative;
-        }
-
-        .master-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--cyan-primary), var(--accent-pink));
-        }
-
-        .section-tag {
-            font-size: 0.7rem;
-            font-weight: 900;
-            color: var(--cyan-primary);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: #fff;
-            line-height: 1.4;
-        }
-
-        .editorial-lead {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            line-height: 1.8;
-            border-left: 3px solid var(--cyan-primary);
-            padding-left: 16px;
-            background: var(--cyan-dim);
-            padding-top: 12px;
-            padding-bottom: 12px;
-            border-radius: 0 6px 6px 0;
-        }
-
-        .editorial-body {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .editorial-body strong {
-            color: var(--text-primary);
-        }
-
-        /* ⚡ 3大キラー機能 グリッド */
-        .killer-features-container {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .killer-box {
-            background: var(--bg-deep);
-            border: 1px solid var(--border-cyan);
-            border-radius: 12px;
-            padding: 22px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .killer-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .killer-num {
-            font-size: 0.65rem;
-            font-weight: 900;
-            color: var(--cyan-primary);
-            letter-spacing: 0.1em;
-        }
-
-        .killer-badge {
-            font-size: 0.6rem;
-            padding: 3px 8px;
-            border-radius: 4px;
-            background: var(--cyan-dim);
-            border: 1px solid var(--border-cyan);
-            color: var(--cyan-primary);
-            font-weight: 700;
-        }
-
-        .killer-title {
-            font-size: 1.1rem;
-            font-weight: 900;
-            color: #fff;
-        }
-
-        .killer-target-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
-            margin-top: 4px;
-        }
-
-        .target-card {
-            background: var(--surface);
-            border: 1px solid var(--border-cyan);
-            border-radius: 8px;
-            padding: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .target-role {
-            font-size: 0.72rem;
-            font-weight: 900;
-            color: var(--cyan-primary);
-        }
-
-        .target-desc {
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .target-desc strong {
-            color: #fff;
-        }
-
         /* Footer */
         footer {
             text-align: center;
-            padding: 24px;
+            padding: 28px;
             font-size: 0.72rem;
             color: var(--text-secondary);
             border-top: 1px solid var(--border-cyan);
             background: var(--surface);
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -478,14 +451,23 @@
     </div>
 
     <main>
-        <section class="wallet-matrix-section">
-            <div class="wallet-top-flex">
-                <div class="wallet-balance-box">
-                    <span style="font-size: 0.7rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">GLOBAL SETTLEMENT & PROOF ENGINE</span>
-                    <div class="wallet-amount-display" id="mainWalletBalance">7,450,000 SAT</div>
-                    <span style="font-size: 0.75rem; color: var(--text-secondary);">世界中の企業・個人間取引の未清算報酬プール同期中</span>
-                </div>
-                <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">一括アトミック清算を実行</button>
+        <section class="editorial-master-card">
+            <div class="section-tag">⚡ The Ultimate Global Infrastructure // Manifesto</div>
+            <h2>なぜ、世界中の全人口・全企業がこのポータルを欲しがるのか？<br>——仲介者なき経済、秒速清算の未来。</h2>
+            
+            <div class="editorial-lead">
+                地球上のあらゆる個人と企業が毎日直面しているストレス。それは、<strong>「おカネのやり取りにおける高額な手数料の搾取」「国境をまたぐ送金の遅延」「契約やデータの不確実性」</strong>です。もし、このメインポータルにアクセスし、長大な未来の論理を理解した上で、<strong>「画面の一番下にあるノブをスライス（スワイプ）するだけで、世界中の誰とでも、仲介銀行を一切挟まず、手数料を払わずに、ミリ秒で価値の移転と契約の証明が完了する」</strong>としたら？――その未来の全貌がここにあります。
             </div>
 
-      
+            <div class="editorial-body-content">
+                <p>
+                    私たちが開発した<strong>Global Instant Settlement & Proof Engine</strong>は、BSV Teranodeの圧倒的なスケーラビリティを基盤とし、地球上のすべての経済活動をシームレスに結びつける人類史上最強のインフラストラクチャです。ここでは、世界中の誰もが導入を熱望する**「3大キラー機能」**が完全に体系化されています。
+                </p>
+            </div>
+
+            <div class="killer-features-grid">
+                
+                <div class="killer-feature-item">
+                    <div class="killer-feature-header">
+                        <span class="killer-num">KILLER FEATURE 01</span>
+                        <span class="killer-badge-sub">Ze
