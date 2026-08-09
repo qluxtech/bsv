@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>QLUX // Global Sovereign Settlement Engine v3.0</title>
+    <title>QLUX // Global Sovereign Settlement Engine v4.0</title>
     <style>
         :root {
             --bg-deep: #010206;
@@ -17,7 +17,6 @@
             --border-cyan: rgba(0, 242, 254, 0.3);
             --success-green: #00ff66;
             --accent-pink: #ff007f;
-            --purple-glow: rgba(120, 0, 254, 0.3);
         }
 
         * {
@@ -209,7 +208,7 @@
             padding-bottom: 220px;
         }
 
-        /* 💡 圧倒的インパクトのマスターカード */
+        /* 💡 圧倒的インパクトのマニフェストカード */
         .editorial-master-card {
             background: var(--surface);
             border: 1px solid var(--border-cyan);
@@ -267,7 +266,45 @@
             font-weight: 900;
         }
 
-        /* 🌟 追加ボリューム：3大キラーピラー（メリット解説セクション） */
+        /* 📈 ライブテレメトリー統計パネル */
+        .stats-banner {
+            background: linear-gradient(135deg, rgba(5,8,20,0.95), rgba(10,16,40,0.95));
+            border: 1px solid var(--border-cyan);
+            border-radius: 14px;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        @media(min-width: 768px) {
+            .stats-banner {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--cyan-primary);
+            text-shadow: 0 0 10px var(--cyan-glow);
+        }
+
+        /* 🌟 長文＆メリット解説：3大キラーピラーズ */
         .pillars-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -318,42 +355,30 @@
             line-height: 1.7;
         }
 
-        /* 📈 ライブテレメトリー統計パネル */
-        .stats-banner {
-            background: linear-gradient(135deg, rgba(5,8,20,0.95), rgba(10,16,40,0.95));
-            border: 1px solid var(--border-cyan);
+        /* ⚡ スワイプ機能解説セクション（長文ライディング追加） */
+        .swipe-instruction-box {
+            background: linear-gradient(135deg, rgba(0,242,254,0.05), rgba(0,114,255,0.05));
+            border: 1px dashed var(--cyan-primary);
             border-radius: 14px;
             padding: 24px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            text-align: center;
-        }
-
-        @media(min-width: 768px) {
-            .stats-banner {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        .stat-item {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 14px;
         }
 
-        .stat-label {
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .stat-value {
-            font-size: 1.2rem;
+        .swipe-instruction-title {
+            font-size: 0.95rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            text-shadow: 0 0 10px var(--cyan-glow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .swipe-instruction-text {
+            font-size: 0.82rem;
+            color: var(--text-primary);
+            line-height: 1.8;
         }
 
         /* 開発者向けリアルタイムログストリーム */
@@ -565,22 +590,9 @@
                 </div>
             </div>
 
-            <div class="dev-stream-box">
-                <div class="dev-stream-title">&gt;&gt; Teranode Real-time Mempool &amp; Atomic Settlement Stream</div>
-                <div id="logStream">
-                    [18:45:00] CONNECTED to Global Teranode Cluster (Node ID: #9904-SZ)...<br>
-                    [18:45:02] sCrypt Smart Contract verified: Conditional Escrow active.<br>
-                    [18:45:04] Waiting for Swipe-to-Settlement trigger from Sovereign UI...
+            <div class="swipe-instruction-box">
+                <div class="swipe-instruction-title">
+                    <span>💡 なぜ「スワイプ・トゥ・セトルメント（Swipe-to-Settlement）」が最強なのか？</span>
                 </div>
-            </div>
-        </section>
-    </main>
-
-    <section class="wallet-bottom-action-section">
-        <div class="wallet-bottom-inner">
-            <div class="wallet-top-flex">
-                <div class="wallet-balance-box">
-                    <span style="font-size: 0.6rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">GLOBAL SETTLEMENT CORE</span>
-                    <div class="wallet-amount-display" id="mainWalletBalance">7,450,000 SAT</div>
-                </div>
-             
+                <p class="swipe-instruction-text">
+                    従来のウェブサービスでは、売上の回収や報酬の引き出しに何段階もの面倒なボタンクリックや本人確認、
