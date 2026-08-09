@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX — Global Sovereign Enterprise & BSV Developer Matrix</title>
+    <title>QLUX — Global Sovereign Enterprise Matrix</title>
     <style>
         :root {
             --bg-deep: #010208;
@@ -35,7 +35,7 @@
             overflow-x: hidden;
         }
 
-        /* 🌐 Header & Auth Menu */
+        /* 🌐 Header & Auth Module */
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border-cyan);
@@ -59,29 +59,23 @@
             width: 44px;
             height: 44px;
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
-            border-radius: 12px;
+            border-radius: 50%; /* 円形のΩエンブレム */
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #010208;
             box-shadow: 0 0 25px var(--cyan-glow);
         }
 
         .brand-title h1 {
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             font-weight: 900;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
             background: linear-gradient(90deg, #fff, var(--cyan-primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .brand-title p {
-            font-size: 0.5rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.2em;
         }
 
         .header-auth-group {
@@ -128,7 +122,7 @@
         /* Main Container */
         main {
             flex: 1;
-            max-width: 1350px;
+            max-width: 1400px;
             width: 100%;
             margin: 0 auto;
             padding: 40px 24px;
@@ -191,59 +185,21 @@
             color: var(--text-primary);
         }
 
-        /* Smart Grid */
-        .smart-grid {
+        /* 📊 GitHub風・10モジュール多重ダッシュボードグリッド */
+        .dashboard-10-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 10px;
-        }
-
-        .smart-tile {
-            background: var(--cyan-dim);
-            border: 1px solid var(--border-cyan);
-            border-radius: 16px;
-            padding: 28px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            transition: all 0.3s;
-        }
-
-        .smart-tile:hover {
-            border-color: var(--cyan-primary);
-            box-shadow: 0 0 25px var(--cyan-dim);
-            transform: translateY(-3px);
-        }
-
-        .tile-title {
-            font-size: 0.95rem;
-            font-weight: 900;
-            color: var(--cyan-primary);
-            letter-spacing: 0.05em;
-        }
-
-        .tile-desc {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* 📊 GitHub風・BSVマルチダッシュボードグリッド（右側画像連動レイアウト） */
-        .dashboard-multi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
         }
 
         .dash-module-card {
             background: var(--surface-hover);
             border: 1px solid var(--border-cyan);
             border-radius: 16px;
-            padding: 26px;
+            padding: 22px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             transition: all 0.3s;
             position: relative;
         }
@@ -261,34 +217,34 @@
         }
 
         .dash-mod-title {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
         }
 
         .dash-mod-badge {
             background: var(--cyan-dim);
             border: 1px solid var(--cyan-primary);
-            padding: 2px 10px;
+            padding: 2px 8px;
             border-radius: 20px;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: var(--cyan-primary);
             font-weight: 700;
         }
 
         .dash-mod-value {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 900;
             color: #fff;
             letter-spacing: -0.01em;
         }
 
         .dash-mod-desc {
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             color: var(--text-secondary);
-            line-height: 1.5;
+            line-height: 1.45;
         }
 
         /* Sovereign Vault */
@@ -370,7 +326,7 @@
             filter: brightness(1.1);
         }
 
-        /* ⚡ 超高感度・完全動作スワイプコンテナ（長さ半分・完全修復版） */
+        /* ⚡ 超高感度スワイプコンテナ（長さ半分・完全動作） */
         .cyber-swipe-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
@@ -447,8 +403,7 @@
         <div class="brand">
             <div class="brand-logo">Ω</div>
             <div class="brand-title">
-                <h1>QLUX MEGATRON</h1>
-                <p>GLOBAL SOVEREIGN ENTERPRISE & BSV ECOSYSTEM</p>
+                <h1>QLUX</h1>
             </div>
         </div>
         <div class="header-auth-group">
@@ -477,19 +432,104 @@
                     ここでこのプラットフォームに触れ、システムと同期するということは、未来のデジタル経済圏における「絶対的な主権（Sovereign Control）」を自らの手中に収めることを意味します。一度このインフラの恩恵を体験したユーザーにとって、旧時代の非効率なシステムに戻る選択肢はもはや存在しません。今、この瞬間からあなたの資産とデータは、完全なる自由と強固なセキュリティに守られます。
                 </p>
             </div>
+        </section>
 
-            <div class="smart-grid">
-                <div class="smart-tile">
-                    <div class="tile-title">01. Enterprise Scalability</div>
-                    <div class="tile-desc">Teranodeエンジンにより、どれほど巨大なネットワーク負荷も一瞬で処理。グローバル展開に限界はありません。</div>
+        <section class="master-card" style="padding: 36px;">
+            <div class="section-tag">
+                <span>📊 GitHub Core & Multi-Module Architecture</span>
+                <span style="color: var(--text-primary);">● Full-Stack Ecosystem Hub</span>
+            </div>
+            <h2>QLUX Core & Autonomous Matrix</h2>
+
+            <div class="dashboard-10-grid">
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">QLUX Wallet</span>
+                        <span class="dash-mod-badge">Active</span>
+                    </div>
+                    <div class="dash-mod-value" id="dashWalletVal">6,250,000 SAT</div>
+                    <div class="dash-mod-desc">ハイブリッド署名対応の超高速アトミックウォレットコア。</div>
                 </div>
-                <div class="smart-tile">
-                    <div class="tile-title">02. Autonomous Micro-Economy</div>
-                    <div class="tile-desc">スマートコントラクトとアトミック決済が、手数料の搾取や人手を一切介さずに収益分配を自動遂行します。</div>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">QLUX SNS Protocol</span>
+                        <span class="dash-mod-badge" style="color: #00ff66; border-color: #00ff66;">Live</span>
+                    </div>
+                    <div class="dash-mod-value" style="color: #00ff66;">100% 稼働</div>
+                    <div class="dash-mod-desc">検閲フリー・収益還元型のオンチェーンソーシャルリレー。</div>
                 </div>
-                <div class="smart-tile">
-                    <div class="tile-title">03. Sovereign Data Security</div>
-                    <div class="tile-desc">数学的正当性と量子耐性シールドにより、国家や第三者による検閲・改ざんを完全に物理ブロックします。</div>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">Teranode Engine</span>
+                        <span class="dash-mod-badge">v3.8</span>
+                    </div>
+                    <div class="dash-mod-value" style="color: #00f2fe;">10M+ TPS</div>
+                    <div class="dash-mod-desc">秒間1000万件超のトランザクションを並列処理する超分散基盤。</div>
+                </div>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">Atomic Script Core</span>
+                        <span class="dash-mod-badge">Optimized</span>
+                    </div>
+                    <div class="dash-mod-value" style="color: #ff007f;">1e-6 SAT</div>
+                    <div class="dash-mod-desc">仲介者を一切介さず自動実行されるネイティブスマートスクリプト。</div>
+                </div>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">Sovereign Vault</span>
+                        <span class="dash-mod-badge">VIP Yield</span>
+                    </div>
+                    <div class="dash-mod-value">Perpetual</div>
+                    <div class="dash-mod-desc">ネットワーク全体の収益がリアルタイムで複利配当される金庫。</div>
+                </div>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">Quantum Shield</span>
+                        <span class="dash-mod-badge">Secured</span>
+                    </div>
+                    <div class="dash-mod-value" style="color: #00ff66;">Active</div>
+                    <div class="dash-mod-desc">数学的絶対正当性により改ざんや不正アクセスを完全ブロック。</div>
+                </div>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">Data Stream Matrix</span>
+                        <span class="dash-mod-badge">Syncing</span>
+                    </div>
+                    <div class="dash-mod-value" style="color: #00f2fe;">0.1ms</div>
+                    <div class="dash-mod-desc">グローバルノード間を超低遅延で結ぶリアルタイムデータパイプ。</div>
+                </div>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">Identity & Auth</span>
+                        <span class="dash-mod-badge">Web3 ID</span>
+                    </div>
+                    <div class="dash-mod-value">Decentralized</div>
+                    <div class="dash-mod-desc">秘密鍵に完全紐づいたセキュアなサインイン・アカウント管理。</div>
+                </div>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">Global Node Pulse</span>
+                        <span class="dash-mod-badge">Mesh Net</span>
+                    </div>
+                    <div class="dash-mod-value" style="color: #ff007f;">65,536</div>
+                    <div class="dash-mod-desc">世界中に分散配置されたフルノードのネットワーク同期状態。</div>
+                </div>
+
+                <div class="dash-module-card">
+                    <div class="dash-module-header">
+                        <span class="dash-mod-title">Enterprise API</span>
+                        <span class="dash-mod-badge">Gateway</span>
+                    </div>
+                    <div class="dash-mod-value" style="color: #00ff66;">Online</div>
+                    <div class="dash-mod-desc">外部システムとアトミック接続するための超高機能APIハブ。</div>
                 </div>
             </div>
         </section>
@@ -505,55 +545,6 @@
                 <p>
                     QLUXエコシステムの頂点に位置する<strong>Sovereign Vault</strong>。プラットフォーム全体で生み出される膨大なマイクロアトミック収益が、参加者のアクティビティと貢献度に応じてリアルタイムかつ自動的に複利運用・配当される仕組みです。
                 </p>
-                <p>
-                    複雑なロックアップや運用リスクは一切排除されており、いつでも自由なタイミングでオンチェーンから即座に資産を引き出すことが可能です。グローバル経済の成長そのものがダイレクトに自身のポートフォリオを加速させる、究極のマネー・エンジンがここにあります。
-                </p>
-            </div>
-        </section>
-
-        <section class="master-card" style="padding: 36px;">
-            <div class="section-tag">
-                <span>📊 QLUX & BSV Multi-Dashboard Matrix</span>
-                <span style="color: var(--text-primary);">● Core Modules & Developer Ecosystem</span>
-            </div>
-            <h2>BSV未来開発群 ＆ ダッシュボード中枢</h2>
-
-            <div class="dashboard-multi-grid">
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">QLUX Wallet</span>
-                        <span class="dash-mod-badge">Active Core</span>
-                    </div>
-                    <div class="dash-mod-value" id="dashWalletVal">5,140,000 SAT</div>
-                    <div class="dash-mod-desc">ハイブリッド署名対応の超高速アトミックウォレット。リアルタイムで残高を同期。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">QLUX SNS Protocol</span>
-                        <span class="dash-mod-badge" style="color: #00ff66; border-color: #00ff66;">Decentralized</span>
-                    </div>
-                    <div class="dash-mod-value" style="color: #00ff66;">100% 稼働</div>
-                    <div class="dash-mod-desc">検閲フリーのオンチェーンSNSリレー。投稿ごとに収益が自動還元される次世代レイヤー。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">BSV Teranode SDK</span>
-                        <span class="dash-mod-badge">v3.8.4</span>
-                    </div>
-                    <div class="dash-mod-value" style="color: #00f2fe;">10M+ TPS</div>
-                    <div class="dash-mod-desc">秒間1000万件超のトランザクションを処理する次世代エンタープライズ・開発キット。</div>
-                </div>
-
-                <div class="dash-module-card">
-                    <div class="dash-module-header">
-                        <span class="dash-mod-title">Atomic Script Engine</span>
-                        <span class="dash-mod-badge">Optimized</span>
-                    </div>
-                    <div class="dash-mod-value" style="color: #ff007f;">1e-6 SAT</div>
-                    <div class="dash-mod-desc">極小コストでスマートコントラクトを自動実行するネイティブスクリプトエンジン。</div>
-                </div>
             </div>
         </section>
 
@@ -561,7 +552,7 @@
             <div class="wallet-top-flex">
                 <div class="wallet-balance-box">
                     <span style="font-size: 0.8rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.15em;">QLUX WALLET // SOVEREIGN CORE ACTIVE</span>
-                    <div class="wallet-amount-display" id="mainWalletBalance">5,140,000 SAT</div>
+                    <div class="wallet-amount-display" id="mainWalletBalance">6,250,000 SAT</div>
                     <span style="font-size: 0.85rem; color: var(--text-secondary);">HandCash Connect & ネイティブ秘密鍵ハイブリッド接続中</span>
                 </div>
                 <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">アトミック資産を一括出金する</button>
@@ -570,20 +561,5 @@
             <div class="cyber-swipe-box">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                     <span style="font-size: 0.85rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">CYBERNETIC SWIPE-TO-PAY & REVENUE SWEEP</span>
-                    <span style="font-size: 0.82rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">2,100,000 SAT</b></span>
-                </div>
-
-                <div class="swipe-track-modern" id="swipeTrack">
-                    <div class="swipe-guide-text" id="swipeInstruction">👉 スライドして報酬を回収</div>
-                    <div class="swipe-thumb-modern" id="swipeThumb">SWIPE ⚡</div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        &copy; 2026 QLUX Global Sovereign Enterprise. All Rights Reserved.
-    </footer>
-
-    <script>
-        const track = document.getElementBy
+                    <span style="font-size: 0.82rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">2,800,000 SAT</b></span>
+                </di
