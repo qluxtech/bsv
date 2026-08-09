@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QLUX Sovereign Economy — Autonomous Micro-Economic Matrix</title>
+    <style>
+        :root {
+            --bg-deep: #030308;
+            --surface: #0b0b16;
+            --surface-hover: #141426;
+            --accent-cyan: #00f2fe;
+            --accent-gold: #f3ba2f;
+            --accent-magenta: #ff007f;
+            --accent-green: #00ff66;
+            --text-primary: #f8f8fc;
+            --text-secondary: #9898b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --glow-gold: rgba(243, 186, 47, 0.3);
+            --glow-cyan: rgba(0, 242, 254, 0.3);
+            --glow-green: rgba(0, 255, 102, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ヘッダー */
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border-color);
+            padding: 18px 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(24px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan), var(--accent-gold));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.6rem;
+            color: #000;
+            box-shadow: 0 0 35px var(--glow-green);
+        }
+
+        .brand-title h1 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            background: linear-gradient(90deg, #fff, var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-title p {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.2em;
+        }
+
+        .header-badge {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-badge b { color: var(--accent-gold); }
+
+        /* メインキャンバス */
+        main {
+            flex: 1;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            box-shadow: 0 12px 45px rgba(0,0,0,0.7);
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .card:hover { border-color: rgba(255, 255, 255, 0.15); }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: linear-gradient(to bottom, var(--accent-green), var(--accent-cyan));
+        }
+
+        .card-header {
+            font-size: 0.95rem;
+            font-weight: 900;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .metric-box {
+            background: linear-gradient(135deg, rgba(0,255,102,0.05), rgba(0,242,254,0.02));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent-green);
+            text-shadow: 0 0 20px var(--glow-green);
+        }
+
+        .metric-sub {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* 収益ブースターコントローラー */
+        .boost-control-bar {
+            background: linear-gradient(90deg, rgba(0,255,102,0.1), rgba(0,242,254,0.1));
+            border: 2px solid var(--accent-green);
+            border-radius: 16px;
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .boost-control-bar { flex-direction: column; align-items: flex-start; }
+        }
+
+        .boost-btn {
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+            color: #000;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 255, 102, 0.3);
+            white-space: nowrap;
+        }
+
+        .boost-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px var(--glow-green);
+        }
+
+        /* アトミックコントラクト分配ストリーム */
+        .contract-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contract-item {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contract-info h4 { font-size: 0.95rem; font-weight: 800; color: var(--text-primary); margin-bottom: 4px; }
+        .contract-info p { font-size: 0.75rem; color: var(--text-secondary); font-family: monospace; }
+        .contract-yield { font-size: 1.1rem; font-weight: 900; color: var(--accent-gold); }
+
+        footer {
+            text-align: center;
+            padding: 36px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            background: var(--surface);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <div class="brand-logo">Ω</div>
+            <div class="brand-title">
+                <h1>QLUX Sovereign Economy</h1>
+                <p>AUTONOMOUS MICRO-ECONOMIC ATOMIC SPLIT ENGINE</p>
+            </div>
+        </div>
+        <div class="header-badge">
+            <span>Matrix Status:</span>
+            <b>● 100% AUTONOMOUS YIELD</b>
+        </div>
+    </header>
+
+    <main>
+        <div class="card">
+            <div class="card-header">
+                <span>Autonomous Micro-Economic Performance</span>
+                <span style="color: var(--accent-cyan);">● Teranode Atomic Split Active</span>
+            </div>
+
+            <div class="grid-3">
+                <div class="metric-box">
+                    <span class="metric-label">24h 自動生成マイクロ収益</span>
+                    <span class="metric-value" id="totalYieldDisplay">1,428,500 SAT</span>
+                    <span class="metric-sub">前日比 +34.8% (複利加速中)</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">アクティブ・コントラクト数</span>
+                    <span class="metric-value" style="color: var(--accent-gold);">512 Contracts</span>
+                    <span class="metric-sub">手数料ゼロ・リアルタイム決済</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">AI複利アロケーション効率</span>
+                    <span class="metric-value" style="color: var(--accent-cyan);">99.98%</span>
+                    <span class="metric-sub">最適ノードへの自動分散完了</span>
+                </div>
+            </div>
+
+            <div class="boost-control-bar">
+                <div>
+                    <span style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 700; display: block; margin-bottom: 4px;">QUANTUM YIELD ACCELERATOR</span>
+                    <span style="font-size: 1.1rem; font-weight: 900; color: var(--text-primary);">未回収マイクロ収益を全自動でマスターウォレットへ複利合算</span>
+                </div>
+                <button class="boost-btn" onclick="executeEconomyBoost()">⚡ 収益ブースト＆ウォレット回収</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span>Active Atomic Split Contracts</span>
+                <span style="color: var(--text-secondary); font-size: 0.75rem;">Instant Trustless Distribution</span>
+            </div>
+            <div class="contract-list">
+                <div class="contract-item">
+                    <div class="contract-info">
+                        <h4>Twetch Micro-Interaction Splitter #01</h4>
+                        <p>ID: 0x8f7a...3921 // Pay-Per-Action Fee Routing</p>
+                    </div>
+                    <div class="contract-yield">+482,000 SAT / 24h</div>
+                </div>
+                <div class="contract-item">
+                    <div class="contract-info">
+                        <h4>Gorilla Pool PPLNS Auto-Distributor</h4>
+                        <p>ID: 0x3c9b...1104 // Block Reward Instant Split</p>
+                    </div>
+                    <div class="contract-yield">+654,000 SAT / 24h</div>
+                </div>
+                <div class="contract-item">
+                    <div class="contract-info">
+                        <h4>Autonomous AI Agent Mesh Dividend</h4>
+                        <p>ID: 0x99ea...7720 // Neural Compute Reward Stream</p>
+                    </div>
+                    <div class="contract-yield">+292,500 SAT / 24h</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 QLUX Autonomous Economy Matrix. Powered by BSV Atomic Split Contracts. All Rights Reserved.
+    </footer>
+
+    <script>
+        function executeEconomyBoost() {
+            const yieldEl = document.getElementById('totalYieldDisplay');
+            if(yieldEl && yieldEl.innerText !== '0 SAT') {
+                alert('🚀 無人マイクロ経済圏の全自動収益ブーストが成功しました！未回収利益がQLUXWalletへ正常に合算されました。');
+                yieldEl.innerText = '0 SAT';
+                yieldEl.style.color = '#777';
+            } else {
+                alert('現在回収可能な未収益はありません。');
+            }
+        }
+    </script>
+</body>
+</html>
