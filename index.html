@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX SUPREME MEGALOPOLIS — Planetary BSV & Post-Quantum Neural Matrix</title>
+    <title>QLUX SUPREME MEGALOPOLIS — Planetary BSV, Twetch Social & Mining Stratum Matrix</title>
     <style>
         :root {
             --bg-deep: #020205;
@@ -20,6 +20,7 @@
             --border-color: rgba(255, 255, 255, 0.08);
             --glow-cyan: rgba(0, 242, 254, 0.25);
             --glow-purple: rgba(157, 0, 255, 0.25);
+            --glow-gold: rgba(255, 215, 0, 0.25);
         }
 
         * {
@@ -38,7 +39,7 @@
             overflow-x: hidden;
         }
 
-        /* ヘッダー構造 */
+        /* ヘッダー */
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border-color);
@@ -61,22 +62,22 @@
         .brand-logo {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-magenta));
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-gold), var(--accent-magenta));
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
             font-size: 1.4rem;
-            color: #fff;
-            box-shadow: 0 0 25px var(--glow-cyan);
+            color: #000;
+            box-shadow: 0 0 25px var(--glow-gold);
         }
 
         .brand-title h1 {
             font-size: 1.15rem;
             font-weight: 900;
             letter-spacing: 0.08em;
-            background: linear-gradient(90deg, #fff, var(--accent-cyan));
+            background: linear-gradient(90deg, #fff, var(--accent-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -97,14 +98,10 @@
             font-size: 0.75rem;
         }
 
-        .metric-item span {
-            color: var(--text-secondary);
-        }
-        .metric-item b {
-            color: var(--accent-cyan);
-        }
+        .metric-item span { color: var(--text-secondary); }
+        .metric-item b { color: var(--accent-gold); }
 
-        /* ナビゲーションタブ */
+        /* ナビゲーションタブ（全機能超拡張版） */
         nav {
             background: var(--surface);
             padding: 12px 28px;
@@ -121,7 +118,7 @@
             background: transparent;
             border: 1px solid var(--border-color);
             color: var(--text-secondary);
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 8px;
             font-size: 0.8rem;
             font-weight: 700;
@@ -131,16 +128,16 @@
         }
 
         .tab-btn:hover {
-            border-color: var(--accent-cyan);
+            border-color: var(--accent-gold);
             color: var(--text-primary);
         }
 
         .tab-btn.active {
-            background: linear-gradient(135deg, var(--accent-cyan), #0099ff);
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
             border-color: transparent;
             color: #000;
             font-weight: 900;
-            box-shadow: 0 0 20px var(--glow-cyan);
+            box-shadow: 0 0 20px var(--glow-gold);
         }
 
         /* メインエリア */
@@ -163,7 +160,6 @@
 
         .section-panel.active { display: flex; }
 
-        /* カード構造 */
         .card {
             background: var(--surface);
             border: 1px solid var(--border-color);
@@ -178,7 +174,7 @@
         .card-header {
             font-size: 0.85rem;
             font-weight: 800;
-            color: var(--accent-cyan);
+            color: var(--accent-gold);
             text-transform: uppercase;
             letter-spacing: 0.1em;
             display: flex;
@@ -205,10 +201,9 @@
         .stat-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
         .stat-value { font-size: 1.35rem; font-weight: 900; color: var(--accent-cyan); }
 
-        /* スイーパーバー */
         .sweeper-bar {
             background: var(--surface-hover);
-            border: 1px solid var(--accent-cyan);
+            border: 1px solid var(--accent-gold);
             border-radius: 35px;
             padding: 14px 28px;
             display: flex;
@@ -216,12 +211,12 @@
             align-items: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.1);
+            box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.1);
         }
 
         .sweeper-bar:hover {
-            box-shadow: 0 0 30px var(--glow-cyan);
-            background: rgba(0, 242, 254, 0.05);
+            box-shadow: 0 0 30px var(--glow-gold);
+            background: rgba(255, 215, 0, 0.05);
         }
 
         textarea, input[type="text"] {
@@ -236,10 +231,10 @@
             transition: border-color 0.2s;
         }
 
-        textarea:focus, input[type="text"]:focus { border-color: var(--accent-cyan); }
+        textarea:focus, input[type="text"]:focus { border-color: var(--accent-gold); }
 
         .action-btn {
-            background: linear-gradient(135deg, var(--accent-cyan), #0099ff);
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
             color: #000;
             border: none;
             padding: 12px 24px;
@@ -251,9 +246,9 @@
         }
 
         .action-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-        .action-btn.purple { background: linear-gradient(135deg, var(--accent-purple), #d400ff); color: #fff; box-shadow: 0 0 15px var(--glow-purple); }
+        .action-btn.cyan { background: linear-gradient(135deg, var(--accent-cyan), #0099ff); color: #000; }
+        .action-btn.purple { background: linear-gradient(135deg, var(--accent-purple), #d400ff); color: #fff; }
         .action-btn.magenta { background: linear-gradient(135deg, var(--accent-magenta), #ff55aa); color: #fff; }
-        .action-btn.gold { background: linear-gradient(135deg, var(--accent-gold), #ffaa00); color: #000; }
 
         .terminal-output {
             background: #010103;
@@ -266,6 +261,23 @@
             height: 180px;
             overflow-y: auto;
             line-height: 1.5;
+        }
+
+        .twetch-post {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .twetch-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
         }
 
         .data-item {
@@ -297,24 +309,24 @@
             <div class="brand-logo">Ω</div>
             <div class="brand-title">
                 <h1>QLUX SUPREME MEGALOPOLIS</h1>
-                <p>PLANETARY TERANODE 10M+ TPS // NEURAL-ZKP MATRIX // POST-QUANTUM SOVEREIGNTY</p>
+                <p>PLANETARY TERANODE // TWETCH ON-CHAIN SOCIAL // GORILLA POOL STRATUM // QUANTUM AI</p>
             </div>
         </div>
         <div class="global-metrics-pill">
-            <div class="metric-item"><span>HandCash:</span> <b>245,800 SAT</b></div>
+            <div class="metric-item"><span>QLUX Pay (Omni-Wallet):</span> <b>489,200 SAT</b></div>
             <div class="metric-item"><span>Global TPS:</span> <b style="color: var(--accent-green);">10,240,000</b></div>
         </div>
     </header>
 
     <nav>
         <button class="tab-btn active" onclick="switchTab('feed', event)">🚀 メイン・メガフィード</button>
-        <button class="tab-btn" onclick="switchTab('agents', event)">🤖 無人マイクロ経済網</button>
-        <button class="tab-btn" onclick="switchTab('zkp', event)">🛡️ ZKPプライバシー要塞</button>
-        <button class="tab-btn" onclick="switchTab('quantum', event)">⚛️ 量子耐性 AIプロトコル</button>
-        <button class="tab-btn" onclick="switchTab('teranode', event)">⚡ Teranode 10Mコア</button>
-        <button class="tab-btn" onclick="switchTab('contracts', event)">📜 アトミック・スプリット</button>
-        <button class="tab-btn" onclick="switchTab('ordinals', event)">🗄️ 永久Ordinalsマトリクス</button>
-        <button class="tab-btn" onclick="switchTab('audit', event)">🔍 グローバル資産監査</button>
+        <button class="tab-btn" onclick="switchTab('omniwallet', event)">💎 QLUX Omni-Wallet</button>
+        <button class="tab-btn" onclick="switchTab('twetch', event)">🌐 Twetch分散SNS</button>
+        <button class="tab-btn" onclick="switchTab('mining', event)">⛏️ マイニング・ストラタム</button>
+        <button class="tab-btn" onclick="switchTab('agents', event)">🤖 無人マイクロ経済</button>
+        <button class="tab-btn" onclick="switchTab('zkp', event)">🛡️ ZKPプライバシー</button>
+        <button class="tab-btn" onclick="switchTab('quantum', event)">⚛️ 量子耐性 AIコア</button>
+        <button class="tab-btn" onclick="switchTab('ordinals', event)">🗄️ 永久Ordinals</button>
     </nav>
 
     <main>
@@ -323,7 +335,7 @@
             <div class="card">
                 <div class="card-header">
                     <span>Supreme Master Node Controller</span>
-                    <span style="color: var(--accent-green);">● Synced & Operational</span>
+                    <span style="color: var(--accent-green);">● Teranode Mesh Synchronized</span>
                 </div>
                 <div class="grid-3">
                     <div class="stat-box">
@@ -332,7 +344,7 @@
                     </div>
                     <div class="stat-box">
                         <span class="stat-label">平均マイクロ手数料</span>
-                        <span class="stat-value">&lt; 0.000001 SAT</span>
+                        <span class="stat-value" style="color: var(--accent-gold);">&lt; 0.000001 SAT</span>
                     </div>
                     <div class="stat-box">
                         <span class="stat-label">アクティブバリデータ</span>
@@ -344,121 +356,115 @@
             <div class="card">
                 <div class="card-header">アトミック収益一括スイーパー</div>
                 <div class="sweeper-bar" onclick="sweepSats()">
-                    <span style="font-size: 0.95rem; font-weight: 800;">未回収ナノペイメント報酬:</span>
-                    <span style="color: var(--accent-cyan); font-weight: 900; font-size: 1.25rem;" id="satsAmount">89,400 SAT</span>
+                    <span style="font-size: 0.95rem; font-weight: 800;">未回収ナノペイメント・マイニング報酬:</span>
+                    <span style="color: var(--accent-gold); font-weight: 900; font-size: 1.25rem;" id="satsAmount">348,500 SAT</span>
                     <span style="font-size: 0.85rem; color: var(--text-secondary);">→ スワイプしてウォレットに即時一括回収 →</span>
                 </div>
             </div>
+        </div>
 
+        <div id="omniwallet" class="section-panel">
             <div class="card">
-                <div class="card-header">
-                    <span>On-Chain Pay-Per-Action Neural Feed</span>
-                    <span style="color: var(--accent-cyan); font-size: 0.75rem;">完全分散リアルタイムストリーム</span>
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 14px;">
-                    <textarea id="postContent" placeholder="惑星規模のBSVメガエコシステムに新たな歴史的記録を刻む... #QLUX #Teranode #PostQuantum #ZKP"></textarea>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 0.75rem; color: var(--text-secondary);">ゼロ手数料・ナノ秒アトミックトランザクション自動配信</span>
-                        <button class="action-btn" onclick="postToChain()">チェーンに永久刻印する</button>
+                <div class="card-header">QLUX Omni-Wallet (Next-Gen Payment Gateway)</div>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">
+                    HandCash ConnectやMoneybuttonの機能を完全網羅し、さらに超高速サブサトシ・アトミック決済、ワンタップPaymail送金、暗号資産オートスワップを統合した次世代ウォレットエンジン。
+                </p>
+                <div class="grid-2">
+                    <div class="stat-box">
+                        <span class="stat-label">ウォレット残高 (Omni)</span>
+                        <span class="stat-value" style="color: var(--accent-gold);">489,200 SAT</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Paymail アドレス</span>
+                        <span class="stat-value" style="font-size: 1rem; color: var(--accent-cyan);">qlux@bsv.id</span>
                     </div>
                 </div>
+                <div style="display: flex; gap: 12px; margin-top: 10px;">
+                    <input type="text" id="paymailTarget" placeholder="宛先 Paymail (例: user@handcash.io)">
+                    <input type="text" id="paymailAmount" placeholder="金額 (SAT)" style="width: 150px;">
+                    <button class="action-btn" onclick="sendPaymail()">送金実行</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="twetch" class="section-panel">
+            <div class="card">
+                <div class="card-header">Twetch-Style On-Chain Social Matrix</div>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">
+                    すべての「いいね」「リプライ」「ポスト」「メディア共有」がビットコインブロックチェーン上に直接記録され、アクションごとにサトシ報酬が自動発生・分配される完全分散型SNS。
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <textarea id="twetchContent" placeholder="世界に向けてオンチェーン・メッセージを放つ... (有料アクション連動)"></textarea>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.75rem; color: var(--text-secondary);">コスト: 10 SAT / アクション (自動報酬分配)</span>
+                        <button class="action-btn cyan" onclick="postTwetch()">オンチェーン投稿 (Twetch)</button>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;" id="twetchFeedList">
+                    <div class="twetch-post">
+                        <div class="twetch-header">
+                            <span><b>@qlux_master</b> (Node #1)</span>
+                            <span>2分前 // 報酬: +42 SAT</span>
+                        </div>
+                        <p style="font-size: 0.9rem;">惑星規模のBSVメガエコシステム、完全稼働開始。Teranode 10M TPSの圧倒的スピードを体感せよ。 #QLUX #BSV #Twetch</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mining" class="section-panel">
+            <div class="card">
+                <div class="card-header">Gorilla Pool / ASIC Mining Stratum Hub</div>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">
+                    ASICマイナーとBSVノードを直結するパーミッションレスなストラタムインターフェース。PPLNS透明分配、マイニング報酬の直接アドレス送金、リアルタイムハッシュレート監視。
+                </p>
+                <div class="grid-3">
+                    <div class="stat-box">
+                        <span class="stat-label">プールハッシュレート</span>
+                        <span class="stat-value" style="color: var(--accent-orange);">34.8 PH/s</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">接続マイナー数</span>
+                        <span class="stat-value">312 ASICs</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">PPLNS 報酬分配率</span>
+                        <span class="stat-value" style="color: var(--accent-green);">100% (Instant)</span>
+                    </div>
+                </div>
+                <button class="action-btn purple" onclick="alert('マイニング・ストラタム接続を最適化し、ブロック効率を12%向上させました！')">マイニング効率をブースト</button>
             </div>
         </div>
 
         <div id="agents" class="section-panel">
             <div class="card">
                 <div class="card-header">無人・超高速アトミック・マイクロエージェント経済</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
-                    人間の介入を1バイトたりとも介さず、数千体のAIエージェントがBSVブロックチェーン上でサトシ単位のナノペイメントを自律循環させ、計算資源・API・機械学習モデルを秒速で売買し合う完全自律型経済特区。
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">
+                    AIエージェント同士がサトシ単位のナノペイメントで計算資源やデータを秒速売買する自律特区。
                 </p>
-                <div class="grid-2">
-                    <div class="data-item">
-                        <b>Autonomous Cluster Alpha</b>
-                        <span>ステータス: 稼働中 (Autonomous Loop)</span>
-                        <span>処理速度: 0.08ms / マイクロTX</span>
-                        <span>総流通量: 1,420,000 SAT / h</span>
-                    </div>
-                    <div class="data-item">
-                        <b>Autonomous Cluster Beta</b>
-                        <span>ステータス: 稼働中 (Self-Optimizing)</span>
-                        <span>分散ストレージ: 1.2 PB リアルタイム同期</span>
-                        <span>AI知能指数報酬: 自動分配済み</span>
-                    </div>
-                </div>
-                <button class="action-btn purple" onclick="alert('AIエージェント間の自律経済ループを加速・ブーストしました！')">自律経済マトリクスを加速</button>
+                <button class="action-btn purple" onclick="alert('AIエージェント経済ループを加速しました！')">自律経済マトリクスを加速</button>
             </div>
         </div>
 
         <div id="zkp" class="section-panel">
             <div class="card">
                 <div class="card-header">地球規模・分散型 ZKP プライバシー要塞</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
-                    ブロックチェーンの改ざん不可能なパブリック透明性を完全に維持しながら、個人のデータ、取引の機密、資産所有権を暗号数学的ゼロ知識証明（ZKP）で完全秘匿。国家権力や巨大資本すら一切の覗き見ができない、究極のソブリン要塞。
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">
+                    ゼロ知識証明（ZKP）で取引とプライバシーを暗号数学的に完全秘匿。
                 </p>
-                <div class="grid-3">
-                    <div class="stat-box">
-                        <span class="stat-label">証明方式</span>
-                        <span class="stat-value" style="color: var(--accent-magenta);">Groth16 / Plonk</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">プライバシー保護度</span>
-                        <span class="stat-value" style="color: var(--accent-purple);">Absolute Zero-Knowledge</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">検証レイテンシ</span>
-                        <span class="stat-value">1.4 ms</span>
-                    </div>
-                </div>
-                <button class="action-btn magenta" onclick="alert('ZKP暗号シールドを展開し、全ノードの匿名性を極限まで高めました！')">ZKP完全シールドを展開</button>
+                <button class="action-btn magenta" onclick="alert('ZKPシールドを展開しました！')">ZKPシールドを展開</button>
             </div>
         </div>
 
         <div id="quantum" class="section-panel">
             <div class="card">
                 <div class="card-header">量子耐性・次世代オンチェーンAIプロトコル</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
-                    将来出現する超強力な量子コンピュータによる暗号解読脅威に対抗するため、格子暗号（Lattice-based Cryptography）に基づくポスト量子署名をBSVの根幹に統合。AIの全思考プロセスと推論ログを未来永劫改ざんから守り抜きます。
-                </p>
                 <div class="terminal-output" id="quantumLog">
-                    [QUANTUM-CORE] Initializing Post-Quantum Lattice Matrix...<br>
-                    [OK] CRYSTALS-Dilithium & Kyber verification online.<br>
-                    [SECURE] AI neural reasoning logs locked with 512-bit quantum-resistant hashes.<br>
-                    [STATUS] Ready for quantum-supremacy era.
+                    [QUANTUM-CORE] Lattice-based cryptography active.<br>
+                    [OK] Post-quantum signature verification online.<br>
+                    [SECURE] AI reasoning logs locked with 512-bit quantum-resistant hashes.
                 </div>
-                <button class="action-btn gold" onclick="alert('量子耐性AIプロトコルの全ログをブロックチェーン上で再検証しました！')">量子耐性ログを完全検証</button>
-            </div>
-        </div>
-
-        <div id="teranode" class="section-panel">
-            <div class="card">
-                <div class="card-header">Teranode 10M+ TPS スケーリングエンジン</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    世界最高峰の処理能力を誇るBitcoin SV Teranode。数千万ユーザーの同時アクセスや、AIエージェント群による秒単位のマイクロペイメントを、ボトルネック一切なしで完全処理。
-                </p>
-                <div class="grid-2">
-                    <div class="stat-box">
-                        <span class="stat-label">設計スループット</span>
-                        <span class="stat-value">10,000,000+ TPS</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">ハードウェア負荷率</span>
-                        <span class="stat-value" style="color: var(--accent-green);">1.4% (極小)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="contracts" class="section-panel">
-            <div class="card">
-                <div class="card-header">アトミック・スプリット スマートコントラクト</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    仲介者を一切排除し、発生したすべての収益やデータを、事前の数学的条件に基づいてミリ秒単位で複数アドレスへ自動分割・即時送金するトラストレスな分散型契約プロトコル。
-                </p>
-                <div class="data-item">
-                    <b>Active Split Rule #1</b>
-                    <span>クリエイター: 70% | AI基金: 20% | インフラ維持: 10% (自動執行中)</span>
-                </div>
-                <button class="action-btn" onclick="alert('アトミック契約の分配比率をオンチェーンで正常に更新しました！')">スマートコントラクトを再実行</button>
+                <button class="action-btn" onclick="alert('量子耐性ログを再検証しました！')">量子耐性ログを検証</button>
             </div>
         </div>
 
@@ -466,32 +472,16 @@
             <div class="card">
                 <div class="card-header">永久Ordinalsストレージマトリクス</div>
                 <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    設計図、AIモデルウェイト、開発ドキュメント等のあらゆるデジタル資産を、ビットコインブロックチェーン上に永久に刻み込む（インスクライブ）ための分散型ストレージハブ。
+                    設計図やAIモデルデータをビットコインブロックチェーン上に永久インスクライブ。
                 </p>
-                <button class="action-btn purple" onclick="alert('全システム設計データおよびAIウェイトをOrdinalsへ永久インスクライブしました！')">全データをブロックチェーンに永久刻印</button>
-            </div>
-        </div>
-
-        <div id="audit" class="section-panel">
-            <div class="card">
-                <div class="card-header">HandCash & グローバル資産監査レポート</div>
-                <div class="grid-2">
-                    <div class="stat-box">
-                        <span class="stat-label">HandCash コネクト残高</span>
-                        <span class="stat-value">245,800 SAT</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">全エコシステム累計収益</span>
-                        <span class="stat-value" style="color: var(--accent-gold);">14,890,000 SAT</span>
-                    </div>
-                </div>
+                <button class="action-btn" onclick="alert('全データをOrdinalsへ永久刻印しました！')">全データを永久刻印</button>
             </div>
         </div>
 
     </main>
 
     <footer>
-        &copy; 2026 QLUX SUPREME MEGALOPOLIS. Powered by Teranode 10M, Neural ZKP & Post-Quantum BSV Architecture.
+        &copy; 2026 QLUX SUPREME MEGALOPOLIS. Powered by Teranode, Twetch Social, Gorilla Stratum & Post-Quantum BSV.
     </footer>
 
     <script>
@@ -503,4 +493,17 @@
         }
 
         function sweepSats() {
-            const satsElement = document.getElementByI
+            const satsElement = document.getElementById('satsAmount');
+            alert('未回収のナノペイメントおよびマイニング報酬をOmni-Walletへ一括回収しました！');
+            satsElement.innerText = '0 SAT';
+        }
+
+        function sendPaymail() {
+            const target = document.getElementById('paymailTarget').value.trim();
+            const amount = document.getElementById('paymailAmount').value.trim();
+            if(!target || !amount) {
+                alert('宛先と金額を入力してください。');
+                return;
+            }
+            alert(target +へ ' に ' + amount + ' SAT の瞬時送金が完了しました！');
+            document.getElementById('paymailT
