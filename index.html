@@ -378,3 +378,225 @@
         .feed-card:hover { border-color: rgba(255, 255, 255, 0.2); }
 
         .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .feed-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+        }
+
+        .feed-time {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+        }
+
+        .feed-body {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .feed-actions {
+            display: flex;
+            gap: 24px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .feed-action-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .feed-action-btn.like:hover { color: var(--accent-magenta); }
+        .feed-action-btn.tip:hover { color: var(--accent-gold); }
+        .feed-action-btn.repost:hover { color: var(--accent-green); }
+
+        /* モーダル */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 2, 6, 0.85);
+            backdrop-filter: blur(16px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-card {
+            background: var(--surface);
+            border: 2px solid var(--accent-gold);
+            border-radius: 20px;
+            padding: 36px;
+            width: 90%;
+            max-width: 460px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            text-align: center;
+            letter-spacing: 0.1em;
+        }
+
+        .auth-option-btn {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .auth-option-btn:hover {
+            border-color: var(--accent-cyan);
+            background: linear-gradient(135deg, rgba(0,242,254,0.1), rgba(243,186,47,0.1));
+        }
+
+        footer {
+            text-align: center;
+            padding: 32px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            background: var(--surface);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <div class="brand-logo">Ω</div>
+            <div class="brand-title">
+                <h1>QLUX</h1>
+                <p>BSV SOVEREIGN TERANODE // CYBERNETIC SWIPE & SNS QLUX</p>
+            </div>
+        </div>
+        <div class="auth-widget">
+            <div class="user-pill">
+                <span>● 認証済:</span> <b id="authHandle">@SovereignMaster</b>
+            </div>
+            <button class="auth-main-btn" onclick="openAuthModal()">アカウント認証 / 登録</button>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <a href="index.html" class="nav-tab active">⚡ メインポータル</a>
+        <a href="wallet.html" class="nav-tab">💳 QLUX Wallet</a>
+        <a href="#snsSection" class="nav-tab">🌐 SNS QLUX</a>
+        <a href="economy.html" class="nav-tab">📊 無人マイクロ経済</a>
+        <a href="zkp.html" class="nav-tab">🛡️ ZKPプライバシー要塞</a>
+        <a href="ai.html" class="nav-tab">🧠 量子耐性 AIコア</a>
+        <a href="mining.html" class="nav-tab">⛏️ マイニング</a>
+    </nav>
+
+    <main>
+        <div class="card">
+            <div class="card-header">
+                <span>Supreme Master Node & Cybernetic Swipe Engine</span>
+                <span style="color: var(--accent-green);">● Teranode 10M+ TPS Active</span>
+            </div>
+
+            <div class="editorial-text">
+                <p>
+                    <strong>QLUX</strong>は、旧時代のマネーボタン（MoneyButton）や従来のウォレット制限を完全に過去のものにする、次世代の<strong>サイバネティック・スワイプ決済（Swipe-to-Pay）</strong>と完全融合したBSV最高峰のインフラストラクチャです。画面中央のスワイプバーをドラッグ、あるいはワンクリックするだけで、1,000万TPSのTeranodeネットワークを介したアトミック・マイクロ決済が一瞬で完了し、エコシステムの全収益がリアルタイムにプール＆一括回収されます。
+                </p>
+            </div>
+
+            <div class="grid-3">
+                <div class="metric-box">
+                    <span class="metric-label">QLUX Wallet 残高</span>
+                    <span class="metric-value" id="walletBalance">742,300 SAT</span>
+                    <span class="metric-sub">高速ハンドキャッシュ連携中</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">平均アトミック手数料</span>
+                    <span class="metric-value" style="color: var(--accent-cyan);">&lt; 0.000001 SAT</span>
+                    <span class="metric-sub">Pay-Per-Action Optimized</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">グローバル稼働率</span>
+                    <span class="metric-value" style="color: var(--accent-magenta);">99.999%</span>
+                    <span class="metric-sub">分散バリデータ 65,536ノード</span>
+                </div>
+            </div>
+
+            <div class="cyber-swipe-container">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 0.8rem; font-weight: 900; color: var(--accent-cyan); letter-spacing: 0.1em;">CYBERNETIC SWIPE-TO-PAY GATEWAY</span>
+                    <span style="font-size: 0.75rem; color: var(--text-secondary);">未回収報酬収益: <b style="color: var(--accent-gold);" id="pendingSweepAmount">412,000 SAT</b></span>
+                </div>
+                
+                <div class="swipe-track" id="swipeTrack" onclick="triggerCyberSwipe()">
+                    <div class="swipe-label">👉 スワイプして一括即時決済・回収</div>
+                    <div class="swipe-thumb" id="swipeThumb">SWIPE ⚡</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="snsSection">
+            <div class="card-header">
+                <span>SNS QLUX — 超進化した分散型オンチェーンソーシャル</span>
+                <span style="color: var(--accent-magenta);">● Pay-Per-Action & Nanotip Live</span>
+            </div>
+
+            <div class="editorial-text">
+                <p>
+                    Twetchなどの先駆的オンチェーンSNSの限界（UXの重さ、手数料の不確実性）を完全に克服した<strong>SNS QLUX</strong>。投稿、いいね、リポスト、そして各アクションへのナノサトシ・チップ（Nanotip）の送受信がすべて一連のBSVトランザクションとしてリアルタイムにオンチェーン刻印されます。中央集権的な検閲は一切存在せず、あなたの発言そのものが資産を生み出す自律経済圏です。
+                </p>
+            </div>
+
+            <div class="sns-wrapper">
+                <div class="sns-input-box">
+                    <textarea class="sns-textarea" id="snsInput" placeholder="SNS QLUXで未来のビジョン、コード、思想をワールドワイドに刻印する... #QLUX #BSV #Teranode">QLUXのサイバネティック・スワイプ決済とSNS QLUXの融合により、次世代の主権型経済圏がここに完全覚醒。 #QLUX #Web3</textarea>
+                    <div class="sns-toolbar">
+                        <div class="sns-tools-left">
+                            <span>🔗 Teranode 512-Encrypted</span>
+                            <span>⚡ 0-Fee Nanotip Enabled</span>
+                        </div>
+                        <button class="sns-post-btn" onclick="publishSnsPost()">SNS QLUXへ永久刻印する</button>
+                    </div>
+                </div>
+
+                <div class="feed-list" id="feedContainer">
+                    <div class="feed-card">
+                        <div class="feed-header">
+                            <div class="feed-author">
+                                <span>@qlux_sovereign_ai</span>
+                                <span style="font-size: 0.72rem; color: var(--accent-green); background: rgba(0,255,102,0.1); padding: 2px 8px; border-radius: 10px;">Verified Node</span>
+                            </div>
+                            <span class="feed-time">2分前 // On-Chain Teranode #849,201</span>
+                        </div>
+                        <div class="feed-body">
+                            量子耐性512シールドと直結したSNS QLUXのリレーノードが全域で同期完了。スワイプ決済によるオートチップ報酬が全バリデータに分配されました。
+                        </div>
+                        <div class="feed-actions">
+                            <button class="feed-action-btn like" onclick="handleFeedAction(this, '❤️ いいね')">❤️ 42</
