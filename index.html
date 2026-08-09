@@ -63,7 +63,7 @@
             display: flex; align-items: center; gap: 10px;
         }
 
-        /* メイングリッド構成 */
+        /* メインレイアウト */
         .grid-layout {
             display: grid; grid-template-columns: 300px 1fr 320px; gap: 14px;
         }
@@ -83,19 +83,19 @@
             border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 10px;
         }
 
-        /* スワイプスイーパー（高感度短縮版） */
+        /* スワイプスイーパー（高感度短縮版・完全動作） */
         .swipe-box {
             position: relative; width: 100%; height: 42px;
             background: #000; border-radius: 21px; border: 1px solid var(--accent-cyan);
             overflow: hidden; display: flex; align-items: center; padding: 4px;
-            touch-action: pan-y;
+            touch-action: none;
         }
         .swipe-thumb {
             position: absolute; left: 4px; width: 34px; height: 34px;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             color: #000; font-weight: bold; cursor: grab; box-shadow: 0 0 15px var(--accent-cyan);
-            transition: transform 0.05s ease-out;
+            user-select: none;
         }
         .swipe-label { width: 100%; text-align: center; font-size: 10px; color: var(--text-sub); pointer-events: none; }
 
@@ -130,7 +130,8 @@
         }
         .act-btn:hover { background: rgba(0,240,255,0.2); border-color: var(--accent-cyan); color: #fff; }
         .tag { color: var(--accent-cyan); font-weight: bold; }
-        .view-sec { display: flex; flex-direction: column; gap: 14px; }
+        .view-sec { display: none; flex-direction: column; gap: 14px; }
+        .view-sec.active { display: flex; }
     </style>
 </head>
 <body>
@@ -195,7 +196,7 @@
 
         <section class="panel" style="min-height: 640px;">
             
-            <div id="view-feed" class="view-sec">
+            <div id="view-feed" class="view-sec active">
                 <div class="panel-header">
                     <span>⚡ On-Chain Pay-Per-Action Feed</span>
                     <span style="font-size: 9px; color: var(--accent-cyan);">完全分散リアルタイム刻印</span>
@@ -210,7 +211,7 @@
                 <div id="feed-container" style="display: flex; flex-direction: column; gap: 12px;"></div>
             </div>
 
-            <div id="view-ecosystem" class="view-sec" style="display: none;">
+            <div id="view-ecosystem" class="view-sec">
                 <div class="panel-header"><span>🌐 BSV COMPREHENSIVE TECHNOLOGY MATRIX</span></div>
                 <div class="box" style="gap: 10px;">
                     <div style="font-size: 12px; font-weight: bold; color: var(--accent-cyan);">⚡ 01 // Teranode 10M TPS スケーリングエンジン</div>
@@ -226,7 +227,7 @@
                 </div>
             </div>
 
-            <div id="view-profile" class="view-sec" style="display: none;">
+            <div id="view-profile" class="view-sec">
                 <div class="panel-header"><span>👤 アカウント設定 & ギルド管理</span></div>
                 <div class="box" style="gap: 10px; font-size: 11px;">
                     <label style="color: var(--text-sub); font-size: 10px;">表示名</label>
@@ -237,7 +238,7 @@
                 </div>
             </div>
 
-            <div id="view-wallet" class="view-sec" style="display: none;">
+            <div id="view-wallet" class="view-sec">
                 <div class="panel-header"><span>💎 ウォレット監査 & ハンドキャッシュ直結明細</span></div>
                 <div class="box" style="font-size: 11px; gap: 10px;">
                     <div style="color: var(--accent-cyan);">HandCash App ID: <span style="color:#fff;">6a4996714077afcb7ca9ce84</span></div>
@@ -246,7 +247,7 @@
                 </div>
             </div>
 
-            <div id="view-ai" class="view-sec" style="display: none;">
+            <div id="view-ai" class="view-sec">
                 <div class="panel-header"><span>🤖 自律型AIエージェント・コントロールセンター</span></div>
                 <div class="box" style="gap: 10px;">
                     <div style="font-size: 12px; color: var(--accent-green);">🟢 AIエージェント群稼働中 (Active Nodes: 8,192)</div>
@@ -255,7 +256,7 @@
                 </div>
             </div>
 
-            <div id="view-ordinals" class="view-sec" style="display: none;">
+            <div id="view-ordinals" class="view-sec">
                 <div class="panel-header"><span>📦 Ordinals 永久銘刻ストレージ</span></div>
                 <div class="box" style="gap: 10px;">
                     <div style="font-size: 11px; color: var(--accent-cyan);">ファイル・デザイン図面のオンチェーン刻印</div>
@@ -295,8 +296,8 @@ let activeIdStr = "@qlux_master";
 let activeAvatar = "Q";
 
 let posts = JSON.parse(localStorage.getItem('qlux_supreme_posts')) || [
-    { name: "QLUX Sovereign Master", idStr: "@qlux_master", avatar: "Q", time: "たった今", content: "BSV総合技術（Teranode + アトミックコントラクト + AI）を完全駆使した世界一のスーパーサイトが稼働開始！ #BSV #Teranode #QLUX", likes: 1420 },
-    { name: "VLIS Creator Node", idStr: "@vlis_user", avatar: "V", time: "10分前", content: "ハンドキャッシュ直結＆ナノペイメントによる秒速報酬分配が完璧すぎる。 #Web3 #BSV", likes: 580 }
+    { name: "QLUX Sovereign Master", idStr: "@qlux_master", avatar: "Q", time: "たった今", content: "BSV総合技術を完全網羅した究極のスーパーサイトが稼働開始！ #BSV #Teranode #QLUX", likes: 2480 },
+    { name: "VLIS Creator Node", idStr: "@vlis_user", avatar: "V", time: "10分前", content: "ハンドキャッシュ直結＆ナノペイメントによる秒速報酬分配が完璧すぎる。 #Web3 #BSV", likes: 980 }
 ];
 
 function renderFeeds(filter = "") {
@@ -356,4 +357,8 @@ function tipPost(amount) {
 
 function deletePost(idx) {
     posts.splice(idx, 1);
-    localStorage.setItem('qlux_suprem
+    localStorage.setItem('qlux_supreme_posts', JSON.stringify(posts));
+    renderFeeds(document.getElementById('search-input').value);
+}
+
+function 
