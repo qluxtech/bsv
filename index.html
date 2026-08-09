@@ -306,7 +306,7 @@
             padding: 40px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 28px;
             position: relative;
             overflow: hidden;
         }
@@ -338,13 +338,12 @@
         }
 
         .editorial-lead {
-            font-size: 1.12rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-primary);
             line-height: 1.9;
             border-left: 3px solid var(--cyan-primary);
             padding-left: 20px;
-            margin: 10px 0;
             background: var(--cyan-dim);
             padding-top: 14px;
             padding-bottom: 14px;
@@ -363,40 +362,87 @@
             color: var(--text-primary);
         }
 
-        .pillar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 16px;
+        /* ⚡ 3大キラー機能 完全解説グリッド */
+        .killer-features-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             margin-top: 10px;
         }
 
-        .pillar-box {
+        .killer-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 14px;
+            padding: 26px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 12px;
+            position: relative;
         }
 
-        .pillar-number {
+        .killer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .killer-num {
             font-size: 0.68rem;
             font-weight: 900;
             color: var(--cyan-primary);
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
         }
 
-        .pillar-title {
-            font-size: 0.95rem;
+        .killer-badge {
+            font-size: 0.65rem;
+            padding: 3px 10px;
+            border-radius: 6px;
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-cyan);
+            color: var(--cyan-primary);
+            font-weight: 700;
+        }
+
+        .killer-title {
+            font-size: 1.2rem;
             font-weight: 900;
             color: #fff;
         }
 
-        .pillar-desc {
-            font-size: 0.82rem;
+        .killer-target-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 6px;
+        }
+
+        .target-card {
+            background: var(--surface);
+            border: 1px solid var(--border-cyan);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .target-role {
+            font-size: 0.75rem;
+            font-weight: 900;
+            color: var(--cyan-primary);
+        }
+
+        .target-desc {
+            font-size: 0.84rem;
             color: var(--text-secondary);
             line-height: 1.7;
+        }
+
+        .target-desc strong {
+            color: #fff;
         }
 
         /* Footer */
@@ -455,21 +501,4 @@
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">27. App Store</span><span class="matrix-mini-badge">Open API</span></div><div class="matrix-mini-value">ミニアプリストア</div></div>
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">28. Ordinals Pulse</span><span class="matrix-mini-badge">Dynamic</span></div><div class="matrix-mini-value">変動オンチェーンNFT</div></div>
         <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">29. Syndicate</span><span class="matrix-mini-badge">Daily DAO</span></div><div class="matrix-mini-value">日次自動配当組織</div></div>
-        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">30. Cyber-Sweep</span><span class="matrix-mini-badge" style="color:#00ff66;">Unified</span></div><div class="matrix-mini-value">一括アトミック回収</div></div>
-    </div>
-
-    <main>
-        <section class="wallet-matrix-section">
-            <div class="wallet-top-flex">
-                <div class="wallet-balance-box">
-                    <span style="font-size: 0.72rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.15em;">GLOBAL SETTLEMENT & PROOF ENGINE // 30-CORE SOVEREIGN</span>
-                    <div class="wallet-amount-display" id="mainWalletBalance">7,450,000 SAT</div>
-                    <span style="font-size: 0.78rem; color: var(--text-secondary);">世界中の企業・個人間取引の未清算アトミック報酬プール同期中</span>
-                </div>
-                <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">グローバル一括アトミック清算を実行</button>
-            </div>
-
-            <div class="cyber-swipe-box">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                    <span style="font-size: 0.78rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.08em;">SWIPE-TO-SETTLE // ミリ秒グローバル一括テレポート</span>
-       
+        <div class="matrix-mini-card"><div class="matrix-mini-header"><span class="matrix-mini-title">30. Cyber-Sweep</span><span class="matrix-mini-badge"
