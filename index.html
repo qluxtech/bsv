@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX — Sovereign BSV Ultimate Megalopolis</title>
+    <title>QLUX — Global Sovereign Infrastructure & Autonomous Enterprise</title>
     <style>
         :root {
             --bg-deep: #010208;
             --surface: #060917;
             --surface-hover: #0c122b;
             --cyan-primary: #00f2fe;
-            --cyan-glow: rgba(0, 242, 254, 0.45);
-            --cyan-dim: rgba(0, 242, 254, 0.08);
+            --cyan-glow: rgba(0, 242, 254, 0.4);
+            --cyan-dim: rgba(0, 242, 254, 0.07);
             --text-primary: #f0f4ff;
             --text-secondary: #8b9bb4;
-            --border-cyan: rgba(0, 242, 254, 0.2);
+            --border-cyan: rgba(0, 242, 254, 0.22);
             --border-subtle: rgba(255, 255, 255, 0.06);
         }
 
@@ -31,7 +31,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            line-height: 1.8;
+            line-height: 1.9;
             overflow-x: hidden;
         }
 
@@ -164,15 +164,15 @@
             color: var(--text-primary);
         }
 
-        /* 駆逐・優位性グリッド */
-        .advantage-grid {
+        /* 超優良企業の価値提案グリッド */
+        .value-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
             margin-top: 10px;
         }
 
-        .advantage-tile {
+        .value-tile {
             background: var(--cyan-dim);
             border: 1px solid var(--border-cyan);
             border-radius: 16px;
@@ -183,33 +183,33 @@
             transition: all 0.3s;
         }
 
-        .advantage-tile:hover {
+        .value-tile:hover {
             border-color: var(--cyan-primary);
             box-shadow: 0 0 25px var(--cyan-dim);
             transform: translateY(-3px);
         }
 
-        .adv-tile-title {
-            font-size: 0.9rem;
+        .val-tile-title {
+            font-size: 0.95rem;
             font-weight: 900;
             color: var(--cyan-primary);
             letter-spacing: 0.05em;
         }
 
-        .adv-tile-desc {
+        .val-tile-desc {
             font-size: 0.88rem;
             color: var(--text-secondary);
             line-height: 1.6;
         }
 
-        /* 📊 5大管理ダッシュボードグリッド */
-        .dashboard-grid {
+        /* 📊 テレメトリー中枢グリッド */
+        .telemetry-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
         }
 
-        .dash-card {
+        .tele-card {
             background: var(--surface-hover);
             border: 1px solid var(--border-subtle);
             border-radius: 16px;
@@ -219,7 +219,7 @@
             gap: 10px;
         }
 
-        .dash-title {
+        .tele-title {
             font-size: 0.75rem;
             color: var(--text-secondary);
             text-transform: uppercase;
@@ -227,23 +227,48 @@
             font-weight: 700;
         }
 
-        .dash-value {
+        .tele-value {
             font-size: 1.8rem;
             font-weight: 900;
             color: var(--cyan-primary);
             text-shadow: 0 0 15px var(--cyan-dim);
         }
 
-        /* 💳 QLUX Wallet ＆ 超スマート・サイバネティック決済セクション */
-        .wallet-matrix-section {
-            background: linear-gradient(135deg, rgba(0,242,254,0.04), rgba(0,114,255,0.02));
+        /* 💎 世界中の皆が羨むプレミアムセクション：Sovereign Vault */
+        .vault-section {
+            background: linear-gradient(135deg, rgba(0,242,254,0.06), rgba(0,114,255,0.03));
             border: 2px solid var(--cyan-primary);
             border-radius: 20px;
             padding: 44px;
             display: flex;
             flex-direction: column;
+            gap: 24px;
+            box-shadow: 0 0 50px var(--cyan-dim);
+            position: relative;
+        }
+
+        .vault-badge {
+            position: absolute;
+            top: 24px; right: 28px;
+            background: var(--cyan-dim);
+            border: 1px solid var(--cyan-primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            color: var(--cyan-primary);
+            font-weight: 900;
+            letter-spacing: 0.15em;
+        }
+
+        /* 💳 QLUX Wallet ＆ 究極スワイプ決済セクション */
+        .wallet-matrix-section {
+            background: var(--surface);
+            border: 1px solid var(--border-cyan);
+            border-radius: 20px;
+            padding: 44px;
+            display: flex;
+            flex-direction: column;
             gap: 32px;
-            box-shadow: 0 0 60px var(--cyan-dim);
         }
 
         .wallet-top-flex {
@@ -268,7 +293,7 @@
             letter-spacing: -0.02em;
         }
 
-        /* ✨ 超スマート・次世代ボタン（マネーボタンを超えた造形） */
+        /* ✨ 超スマート・次世代ボタン */
         .cyber-action-btn {
             background: linear-gradient(135deg, var(--cyan-primary), #0072ff);
             color: #010208;
@@ -289,7 +314,7 @@
             filter: brightness(1.1);
         }
 
-        /* ⚡ 超スマート・サイバネティック・スワイプコンテナ */
+        /* ⚡ 完全に完璧に動作するシームレス・スワイプコンテナ */
         .cyber-swipe-box {
             background: var(--bg-deep);
             border: 1px solid var(--border-cyan);
@@ -311,6 +336,7 @@
             padding: 0 6px;
             overflow: hidden;
             user-select: none;
+            touch-action: none;
         }
 
         .swipe-thumb-modern {
@@ -326,15 +352,11 @@
             color: #010208;
             position: absolute;
             left: 6px;
-            cursor: grab;
-            transition: transform 0.1s ease-out;
+            cursor: pointer;
             box-shadow: 0 0 30px var(--cyan-glow);
             z-index: 2;
             letter-spacing: 0.08em;
-        }
-
-        .swipe-thumb-modern:active {
-            cursor: grabbing;
+            will-change: transform;
         }
 
         .swipe-guide-text {
@@ -365,78 +387,94 @@
             <div class="brand-logo">Ω</div>
             <div class="brand-title">
                 <h1>QLUX MEGATRON</h1>
-                <p>BSV SUPREMACY SOVEREIGN NETWORK</p>
+                <p>GLOBAL SOVEREIGN ENTERPRISE MATRIX</p>
             </div>
         </div>
         <div class="matrix-status">
-            <span>● Teranode 10M+ TPS 完全同期稼働中</span>
+            <span>● Teranode 10M+ TPS Enterprise Synchronized</span>
         </div>
     </header>
 
     <main>
         <section class="master-card">
             <div class="section-tag">
-                <span>⚡ Paradigm Supremacy Manifesto</span>
-                <span style="color: var(--text-primary);">● Why QLUX Destroys All Legacy Chains</span>
+                <span>⚡ Enterprise Infrastructure Vision</span>
+                <span style="color: var(--text-primary);">● Global Autonomous Financial & Data Architecture</span>
             </div>
 
-            <h2>既存のすべてのBSV・Web3チェーンを駆逐する、<br>妥協なき「真の自律分散主権」の到達点</h2>
+            <h2>人類の経済活動を次の次元へ導く、<br>次世代自律分散型インフラ・エンタープライズ</h2>
 
             <div class="deep-editorial">
                 <p>
-                    これまでのブロックチェーン業界は、スケーラビリティの限界、中央集権的なリレー、そして使い勝手の悪い旧態依然としたインターフェースに縛られてきた。一部の「自称高速チェーン」でさえも、実際にはバリデータの肥大化やセキュリティの妥協、あるいは高額なトランザクション手数料に苦しんでいる。<strong>QLUX</strong>は、それらの妥協を一切排除し、BSV（Bitcoin SV）の限界突破インフラである<strong>Teranode</strong>の真価を100%引き出すために設計された世界最高峰のメガロポリスである。
+                    現代のグローバル経済は、膨大な仲介手数料、非効率な決済遅延、そして中央集権型サーバーがもたらす構造的なボトルネックに直面しています。<strong>QLUX</strong>は、世界最高峰のスケーラビリティを誇る<strong>Teranode</strong>インフラストラクチャを基盤に、企業・クリエイター・個人が一切の摩擦なく直接つながる、次世代の自律分散型エンタープライズ・プラットフォームです。
                 </p>
                 <p>
-                    <strong>なぜQLUXが他のすべてのチェーンを駆逐できるのか？</strong>
-                    それは、秒間1,000万件超（10M+ TPS）の圧倒的なトランザクション処理能力と、1トランザクションあたり0.000001 SAT未満という極限のマイクロコストを組み合わせ、人間の手動介入を一切必要としない「完全無人マイクロ経済エンジン」を構築しているからだ。SNSでの発言、データの刻印、ウォレット間のアトミック移動、そしてプラットフォーム全体の収益分配に至るまで、すべてのプロセスが遅延なくリアルタイムで確定する。
+                    私たちが提供するのは単なるデジタル台帳ではありません。秒間1,000万件超（10M+ TPS）のトランザクション処理能力と、1件あたり0.000001 SAT未満という極小のマイクロコストを融合させることで、世界中で発生するあらゆるデータ通信・価値交換・収益分配を完全に自動化・最適化する「無人マイクロ経済エンジン」を実現しています。
                 </p>
                 <p>
-                    旧時代の不細工なマネーボタンや遅延だらけの決済システムはもう要らない。このシアンブルーに染まった完全自律要塞において、すべてのクリエイターとノード主権者は、完全に検閲から解放された最強の経済圏を手に入れる。
+                    国家や特定のプラットフォーム企業による検閲・搾取の概念は存在しません。すべての参加者が自身の資産とデータの完全な主権（Sovereignty）を保持し、創造した価値が100%ダイレクトに還元される透明性の高いエコシステム。それが、QLUXが世界のエリート層と先進企業に選ばれ続ける理由です。
                 </p>
             </div>
 
-            <div class="advantage-grid">
-                <div class="advantage-tile">
-                    <div class="adv-tile-title">01. Teranode 10M+ TPS 統合</div>
-                    <div class="adv-tile-desc">ボトルネックを完全に破壊。世界中で発生する膨大なマイクロトランザクションを、遅延ゼロで無限に並列処理。</div>
+            <div class="value-grid">
+                <div class="value-tile">
+                    <div class="val-tile-title">01. 無限のスケーラビリティ</div>
+                    <div class="val-tile-desc">Teranodeアーキテクチャによる10M+ TPSの圧倒的処理能力。どれほど巨大なネットワーク負荷でも遅延ゼロで即時確定。</div>
                 </div>
-                <div class="advantage-tile">
-                    <div class="adv-tile-title">02. 完全無人オートメーション</div>
-                    <div class="adv-tile-desc">人間の仲介者やプラットフォームの搾取を排除。スマートコントラクトが価値の調停と分配を完全自動化。</div>
+                <div class="value-tile">
+                    <div class="val-tile-title">02. 完全自動調停経済</div>
+                    <div class="val-tile-desc">スマートコントラクトとアトミック決済が、人間の手動介入を一切介さずに収益配分やデータ配信を完全自律実行。</div>
                 </div>
-                <div class="advantage-tile">
-                    <div class="adv-tile-title">03. 量子耐性シールド防壁</div>
-                    <div class="adv-tile-desc">最先端の暗号学的正当性により、国家権力やハッカーによる介入・改ざんを物理的・論理的に完全遮断。</div>
+                <div class="value-tile">
+                    <div class="val-tile-title">03. 堅牢な量子暗号主権</div>
+                    <div class="val-tile-desc">最先端の暗号学的正当性により、改ざんや不正アクセスを物理的・論理的に完全遮断。最高度の安全性を担保。</div>
                 </div>
+            </div>
+        </section>
+
+        <section class="vault-section">
+            <div class="vault-badge">GLOBAL EXCLUSIVE VIP</div>
+            <div class="section-tag">
+                <span>💎 QLUX Sovereign Vault ＆ Perpetual Yield</span>
+                <span style="color: var(--cyan-primary);">● 世界中のエリートが渇望する永続配当・主権金庫</span>
+            </div>
+            <h2>世界中の投資家・クリエイターが羨む、<br>グローバル・プレミアム・メンバーシップ要塞</h2>
+            <div class="deep-editorial">
+                <p>
+                    QLUXエコシステムの頂点に位置する<strong>Sovereign Vault（主権金庫）</strong>。ここでは、プラットフォーム全体で生成される膨大なアトミック収益の一部が、参加者の貢献度と保有ステータスに応じてリアルタイムかつ自動的に複利運用・配当されます。
+                </p>
+                <p>
+                    従来の金融商品のような複雑なロックアップ期間や運用手数料は一切ありません。いつでも瞬時に資産をオンチェーンで引き出すことができ、グローバル経済の成長そのものがダイレクトに自身のポートフォリオへと直結する、まさに「世界で最も美しい自律型マネー・マシン」です。
+                </p>
             </div>
         </section>
 
         <section class="master-card" style="padding: 36px;">
             <div class="section-tag">
-                <span>📊 Universal Management Matrix</span>
-                <span style="color: var(--text-primary);">● 5-Core Control Megalopolis</span>
+                <span>📊 Global Infrastructure Telemetry Matrix</span>
+                <span style="color: var(--text-primary);">● Real-Time Enterprise Monitoring</span>
             </div>
-            <h2>システム全中枢ダッシュボード</h2>
-            <div class="dashboard-grid">
-                <div class="dash-card">
-                    <span class="dash-title">01. QLUX Wallet 資産核</span>
-                    <span class="dash-value" id="dashWalletVal">1,842,000 SAT</span>
+            <h2>グローバル主権インフラ・テレメトリー中枢</h2>
+            <div class="telemetry-grid">
+                <div class="tele-card">
+                    <span class="tele-title">01. QLUX Wallet 資産核</span>
+                    <span class="tele-value" id="dashWalletVal">2,450,000 SAT</span>
                     <span style="font-size: 0.78rem; color: var(--text-secondary);">ハイブリッド署名同期済</span>
                 </div>
-                <div class="dash-card">
-                    <span class="dash-title">02. SNS QLUX リレー</span>
-                    <span class="dash-value" style="color: #00f2fe;">100% 稼働</span>
+                <div class="tele-card">
+                    <span class="tele-title">02. SNS QLUX リレー</span>
+                    <span class="tele-value" style="color: #00f2fe;">100% 稼働</span>
                     <span style="font-size: 0.78rem; color: var(--text-secondary);">検閲フリー・オンチェーン</span>
                 </div>
-                <div class="dash-card">
-                    <span class="dash-title">03. Teranode Node Pulse</span>
-                    <span class="dash-value" style="color: #00ff66;">65,536 Nodes</span>
+                <div class="tele-card">
+                    <span class="tele-title">03. Teranode Node Pulse</span>
+                    <span class="tele-value" style="color: #00ff66;">65,536 Nodes</span>
                     <span style="font-size: 0.78rem; color: var(--text-secondary);">グローバル分散同期</span>
                 </div>
-                <div class="dash-card">
-                    <span class="dash-title">04. Atomic Economy</span>
-                    <span class="dash-value" style="color: #ff007f;">1e-6 SAT/Tx</span>
-                    <span style="font-size: 0.78rem; color: var(--text-secondary);">限界突破の超低コスト</span>
+                <div class="tele-card">
+                    <span class="tele-title">04. Atomic Economy</span>
+                    <span class="tele-value" style="color: #ff007f;">1e-6 SAT/Tx</span>
+                    <span style="font-size: 0.78rem; color: var(--text-secondary);">超低コスト・アトミック確定</span>
                 </div>
             </div>
         </section>
@@ -445,7 +483,7 @@
             <div class="wallet-top-flex">
                 <div class="wallet-balance-box">
                     <span style="font-size: 0.8rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.15em;">QLUX WALLET // ACTIVE SOVEREIGN CORE</span>
-                    <div class="wallet-amount-display" id="mainWalletBalance">1,842,000 SAT</div>
+                    <div class="wallet-amount-display" id="mainWalletBalance">2,450,000 SAT</div>
                     <span style="font-size: 0.85rem; color: var(--text-secondary);">HandCash Connect & ネイティブ秘密鍵ハイブリッド接続中</span>
                 </div>
                 <button class="cyber-action-btn" onclick="executeAdvancedWithdraw()">アトミック資産を一括出金する</button>
@@ -454,7 +492,7 @@
             <div class="cyber-swipe-box">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                     <span style="font-size: 0.85rem; font-weight: 900; color: var(--cyan-primary); letter-spacing: 0.1em;">CYBERNETIC SWIPE-TO-PAY & REVENUE SWEEP</span>
-                    <span style="font-size: 0.82rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">680,000 SAT</b></span>
+                    <span style="font-size: 0.82rem; color: var(--text-secondary);">未回収ネットワーク収益: <b style="color: var(--cyan-primary);" id="pendingSweepAmount">890,000 SAT</b></span>
                 </div>
 
                 <div class="swipe-track-modern" id="swipeTrack">
@@ -466,7 +504,7 @@
     </main>
 
     <footer>
-        &copy; 2026 QLUX Sovereign Matrix. The Pinnacle of BSV Supremacy. All Rights Reserved.
+        &copy; 2026 QLUX Global Sovereign Enterprise. All Rights Reserved.
     </footer>
 
     <script>
@@ -480,28 +518,35 @@
         let isDragging = false;
         let startX = 0;
         let currentX = 0;
+        let maxTrackWidth = 0;
 
-        thumb.addEventListener('mousedown', startDrag);
-        window.addEventListener('mousemove', onDrag);
-        window.addEventListener('mouseup', stopDrag);
+        function updateMetrics() {
+            maxTrackWidth = track.clientWidth - thumb.clientWidth - 12;
+        }
 
-        thumb.addEventListener('touchstart', startDrag, { passive: true });
-        window.addEventListener('touchmove', onDrag, { passive: true });
-        window.addEventListener('touchend', stopDrag);
+        window.addEventListener('resize', updateMetrics);
+        window.addEventListener('load', updateMetrics);
+        updateMetrics();
+
+        // イベントリスナーの登録（PC・スマホ完全対応）
+        thumb.addEventListener('pointerdown', startDrag);
+        window.addEventListener('pointermove', onDrag);
+        window.addEventListener('pointerup', stopDrag);
 
         function startDrag(e) {
             isDragging = true;
-            startX = e.clientX || e.touches[0].clientX;
+            startX = e.clientX;
+            thumb.setPointerCapture(e.pointerId);
             instruction.style.opacity = '0.3';
         }
 
         function onDrag(e) {
             if (!isDragging) return;
-            const clientX = e.clientX || e.touches[0].clientX;
-            const diff = clientX - startX;
-            const maxTrackWidth = track.clientWidth - thumb.clientWidth - 12;
-            
+            updateMetrics();
+            const diff = e.clientX - startX;
             currentX = Math.max(0, Math.min(diff, maxTrackWidth));
+            
+            // CSS Transformで完全なスムーズ追従
             thumb.style.transform = `translateX(${currentX}px)`;
 
             if (currentX >= maxTrackWidth * 0.82) {
@@ -509,56 +554,28 @@
             }
         }
 
-        function stopDrag() {
+        function stopDrag(e) {
             if (!isDragging) return;
             isDragging = false;
-            const maxTrackWidth = track.clientWidth - thumb.clientWidth - 12;
+            updateMetrics();
 
             if (currentX < maxTrackWidth * 0.82) {
-                thumb.style.transform = 'translateX(0)';
+                thumb.style.transform = 'translateX(0px)';
                 instruction.style.opacity = '1';
             }
             currentX = 0;
         }
 
         function completeSwipeAction() {
-            if (isDragging) {
-                isDragging = false;
-                window.removeEventListener('mousemove', onDrag);
-                window.removeEventListener('mouseup', stopDrag);
-            }
+            if (!isDragging) return;
+            isDragging = false;
+            updateMetrics();
 
             let pendingVal = parseInt(pendingEl.innerText.replace(/[^0-9]/g, '')) || 0;
             if (pendingVal > 0) {
-                const maxTrackWidth = track.clientWidth - thumb.clientWidth - 12;
                 thumb.style.transform = `translateX(${maxTrackWidth}px)`;
                 thumb.style.background = '#00ff66';
                 thumb.style.color = '#010208';
                 thumb.innerText = 'SUCCESS ✓';
 
-                setTimeout(() => {
-                    alert(`⚡ サイバネティック・スワイプ決済成功！\n未回収ネットワーク収益 ${pendingVal.toLocaleString()} SAT が一瞬で QLUX Wallet へ合算されました。`);
-                    
-                    let currentBal = parseInt(walletEl.innerText.replace(/[^0-9]/g, '')) || 0;
-                    currentBal += pendingVal;
-                    walletEl.innerText = currentBal.toLocaleString() + ' SAT';
-                    dashWalletEl.innerText = currentBal.toLocaleString() + ' SAT';
-
-                    pendingEl.innerText = '0 SAT';
-                    pendingEl.style.opacity = '0.5';
-                    instruction.innerText = '● すべての収益がアトミック同期完了';
-
-                    setTimeout(() => {
-                        thumb.style.transform = 'translateX(0)';
-                        thumb.style.background = 'linear-gradient(135deg, var(--cyan-primary), #0072ff)';
-                        thumb.style.color = '#010208';
-                        thumb.innerText = 'SWIPE ⚡';
-                        instruction.style.opacity = '1';
-                        instruction.innerText = '👉 スライドして未回収報酬をリアルタイム・アトミック回収';
-                    }, 1200);
-                }, 200);
-            }
-        }
-
-        function executeAdvancedWithdraw() {
-            alert('💳 QLUX Wallet からのアトミック出金トランザクションが Teranode メインネット
+                setTimeout(() =>
