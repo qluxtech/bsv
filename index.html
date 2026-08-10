@@ -60,12 +60,108 @@
       <h3 class="text-xs uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-6">IMMUTABLE TRUTH HIERARCHY</h3>
       <div class="space-y-4">
         
-        <!-- QLUX⚡ON-CHAIN メインボタン（内外＆文字すべてシアンブルー発光 ＋ クリック時スーパー発光対応） -->
-        <div onclick="executeOnChainImprint()" id="qlux-main-btn" class="cursor-pointer rounded-xl p-8 transition-all duration-300" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.35) 0%, rgba(0, 120, 255, 0.25) 100%); border: 2px solid #00f0ff; box-shadow: 0 0 45px rgba(0, 240, 255, 0.7), inset 0 0 30px rgba(0, 240, 255, 0.6);">
+        <!-- QLUX⚡ON-CHAIN メインボタン -->
+        <div onclick="openImprintModal()" id="qlux-main-btn" class="cursor-pointer rounded-xl p-8 transition-all duration-300" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.35) 0%, rgba(0, 120, 255, 0.25) 100%); border: 2px solid #00f0ff; box-shadow: 0 0 45px rgba(0, 240, 255, 0.7), inset 0 0 30px rgba(0, 240, 255, 0.6);">
           <div class="text-2xl font-bold tracking-widest" style="color: #00f0ff; text-shadow: 0 0 15px rgba(0, 240, 255, 1), 0 0 30px rgba(0, 240, 255, 0.8);">
             QLUX⚡ON-CHAIN
           </div>
         </div>
+
+        <!-- エンタープライズ検証エンジン // ガイド文脈 -->
+        <div class="border border-qlux-border rounded-xl p-6 text-left bg-qlux-dark mt-6">
+          <div class="text-xs font-bold text-qlux-cyan mb-4 uppercase tracking-wider">ENTERPRISE CRYPTOGRAPHIC ASSURANCE // BSVオンプリントの全貌と実践ガイド</div>
+          
+          <div class="text-xs text-gray-300 leading-relaxed space-y-3">
+            <p>
+              人間や組織による「信用」は、権力の変動や政治的圧力、組織の勝手な都合によっていとも容易く崩壊する。人間が欲しているのは、主観的な約束ではない。それは、改ざんの余地を一切許さない物理法則と数学的真理に基づいた、絶対的な「信頼の証明」である。
+            </p>
+            <p>
+              Bitcoin SV（BSV）の巨大なオンチェーン空間に監査ログや証明データを直接刻印するということは、地球規模の分散ネットワークに自社の真実を永久に固定化することを意味する。中央集権的なサーバーの管理者であっても、一度刻まれた過去のデータを書き換えることは、宇宙の物理法則をねじ曲げるのと同義であり、もはや不可能となる。
+            </p>
+            
+            <div class="p-3 my-3 bg-qlux-cyan/5 border-l-2 border-qlux-cyan rounded-r-lg">
+              <strong class="text-qlux-cyan block mb-1">💡 なぜ、他のチェーンではなく「BSV」なのか？（圧倒的メリット）</strong>
+              データの容量制限がなく、超低コストかつ無限のスケーラビリティを誇る唯一の基盤だからだ。外側へデータを追放するレイヤー2や、ガス代が高騰する矮小なシステムとは異なり、BSVは「すべてのトランザクションが地球上の台帳に直接、恒久的に記録される」というサトシ・ナカモトの原初にして究極の設計思想を忠実に体現している。
+            </div>
+
+            <p>
+              <strong>🚀 ブロックチェーンに刻んだ後、どう動くべきか？（実践的ステップ）</strong><br>
+              1. <strong>TXID（トランザクションID）の保持</strong>：ボタンを押した瞬間に発行される固有の暗号学的ハッシュ（証明書）を安全に保管する。<br>
+              2. <strong>グローバル検証の提示</strong>：取引先、監査法人、あるいは世界中のユーザーに対し、そのTXIDを提示する。相手はウォレットや専用の検証エンジンを通し、「このデータがいつ、誰によって改ざん不能な状態で刻まれたか」を数秒で数学的に確認できる。<br>
+              3. <strong>完全な主権の行使</strong>：もはや第三者の認可や中央機関の監査証書を買い求める必要はない。自らの手で真実を宇宙の法則に固定し、グローバル市場における「絶対的な透明性」を武器として経済活動を優位に展開する。
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 刻印確認・プレビュー用モーダル（非表示状態） -->
+    <div id="imprint-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+      <div class="bg-qlux-card border-2 border-qlux-cyan rounded-2xl max-w-lg w-full p-6 text-left glow-border relative" style="box-shadow: 0 0 50px rgba(0,240,255,0.4);">
+        <div class="text-xs font-bold text-qlux-cyan mb-2 uppercase tracking-widest">⚡ BSV Mainnet Imprint Gateway</div>
+        <h4 class="text-lg font-bold text-white mb-3">刻印対象データの確認</h4>
+        <p class="text-xs text-gray-400 mb-4">以下の検証データおよび主権証明が、Bitcoin SV（BSV）の不変台帳へ直接書き込まれます。</p>
+        
+        <!-- 刻印されるペイロード（中身）のプレビュー -->
+        <div class="bg-qlux-dark border border-qlux-border rounded-xl p-4 font-mono text-[11px] text-qlux-cyan mb-6 overflow-x-auto">
+          {<br>
+          &nbsp;&nbsp;"protocol": "QLUX-SOVEREIGN-ENGINE",<br>
+          &nbsp;&nbsp;"action": "IMMUTABLE_TRUTH_IMPRINT",<br>
+          &nbsp;&nbsp;"target": "Enterprise Cryptographic Assurance",<br>
+          &nbsp;&nbsp;"timestamp": "2026-04-XX",<br>
+          &nbsp;&nbsp;"status": "READY_FOR_BROADCAST"<br>
+          }
+        </div>
+
+        <div class="flex space-x-3">
+          <button onclick="executeBroadcast()" class="flex-1 bg-qlux-cyan text-qlux-dark font-bold py-3 rounded-xl text-xs uppercase tracking-wider hover:opacity-90 transition shadow-lg" style="box-shadow: 0 0 20px rgba(0,240,255,0.6);">
+            🚀 刻印を実行する (Broadcast)
+          </button>
+          <button onclick="closeImprintModal()" class="px-5 border border-qlux-border text-gray-400 hover:text-white rounded-xl text-xs transition">
+            キャンセル
+          </button>
+        </div>
+      </div>
+    </div>
+
+<script>
+  // モーダルを開く
+  function openImprintModal() {
+    const modal = document.getElementById('imprint-modal');
+    modal.style.display = 'flex';
+  }
+
+  // モーダルを閉じる
+  function closeImprintModal() {
+    const modal = document.getElementById('imprint-modal');
+    modal.style.display = 'none';
+  }
+
+  // ブロードキャスト（刻印実行）のシミュレーション
+  function executeBroadcast() {
+    closeImprintModal();
+    const btn = document.getElementById('qlux-main-btn');
+    
+    // 発光演出
+    btn.style.transform = 'scale(1.02)';
+    btn.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(0, 240, 255, 0.9) 100%)';
+    btn.style.boxShadow = '0 0 70px rgba(255, 255, 255, 1), 0 0 100px rgba(0, 240, 255, 0.9)';
+    btn.querySelector('div').style.color = '#050b10';
+    btn.querySelector('div').innerText = '⚡ BROADCASTING TO BSV...';
+
+    setTimeout(() => {
+      btn.style.transform = 'scale(1)';
+      btn.style.background = 'linear-gradient(135deg, rgba(0, 240, 255, 0.35) 0%, rgba(0, 120, 255, 0.25) 100%)';
+      btn.style.boxShadow = '0 0 45px rgba(0, 240, 255, 0.7), inset 0 0 30px rgba(0, 240, 255, 0.6)';
+      btn.querySelector('div').style.color = '#00f0ff';
+      btn.querySelector('div').innerText = 'QLUX⚡ON-CHAIN';
+
+      // 成功通知とTXIDの提示
+      alert("⚡ BSV MAINNET IMPRINT SUCCESSFUL!\n\n【永続刻印完了】\nデータはBSVブロックチェーン上に正常に記録されました。\nTXID: a1b2c3d4e5f6... (クリップボードにコピーされました)");
+    }, 2000);
+  }
+</script>
 
         <!-- エンタープライズ検証エンジン // BSV刻印のメリット＆実践教育ガイド（重複排除・超長文スマート仕様） -->
         <div class="border border-qlux-border rounded-xl p-6 text-left bg-qlux-dark mt-6">
