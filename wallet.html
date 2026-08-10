@@ -121,7 +121,8 @@
             text-shadow: 0 0 10px var(--neon-cyan-glow);
         }
         .btn-primary:active {
-            transform: scale(0.98);
+            transform: scale(0.96);
+            box-shadow: 0 0 35px var(--neon-cyan);
         }
         .btn-cyan {
             background: rgba(0, 15, 25, 0.9);
@@ -138,6 +139,10 @@
             width: 100%;
             margin-top: 8px;
             text-shadow: 0 0 8px var(--neon-cyan-glow);
+        }
+        .btn-cyan:active {
+            transform: scale(0.96);
+            box-shadow: 0 0 30px var(--neon-cyan);
         }
         .dashboard-content {
             display: none;
@@ -277,7 +282,7 @@
         <header>
             <div class="logo-area">
                 <h1>QLUX WALLET</h1>
-                <p>Metanet Edition v01</p>
+                <p>Metanet Edition v01 (Omni-Core)</p>
             </div>
             <div class="badge" id="mode-badge">GENESIS</div>
         </header>
@@ -287,7 +292,7 @@
             <div class="key-icon">🌐⚡💠</div>
             <div class="auth-title">Metanet Mainnet Gateway</div>
             <div class="auth-desc">
-                SPVフル検証、STAS/1Sat Ordinals、Metanetツリー、AIナノペイメントを完全統合した発光サイバー空間へ接続。
+                SPVフル検証、STAS/1Sat Ordinals、Metanetツリー、AIナノペイメント、分散ストレージ、シェア機能を完全統合。
             </div>
             <div class="form-group" style="text-align:left;">
                 <label>WIF Private Key / Metanet Seed (Leave blank to generate)</label>
@@ -296,7 +301,7 @@
             <button class="btn-primary" id="connectBtn" style="margin-top:8px;">🚀 BOOT CYBER MATRIX</button>
         </div>
 
-        <!-- 発光シアン＆白文字ダッシュボード -->
+        <!-- 発光シアン＆白文字ダッシュボード（全盛り） -->
         <div class="card dashboard-content" id="dashboardSection">
             
             <!-- ティッカー & SPV検証 -->
@@ -308,11 +313,11 @@
             <!-- 残高 -->
             <div class="balance-box">
                 <div class="balance-title">METANET OMNI-ASSET RESERVES</div>
-                <div class="balance-amount" id="userBalance">15.42000000 BSV ($928.90)</div>
+                <div class="balance-amount" id="userBalance">17.15000000 BSV ($1,032.78)</div>
             </div>
             <div style="font-size: 0.7rem; display: flex; justify-content: space-between;">
-                <span>Address: <strong style="color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow);" id="userAddress">1QLux...</strong></span>
-                <span>Tier: <strong style="color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow);">GENESIS</strong></span>
+                <span>Address: <strong style="color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow);" id="userAddress">1QLux...v01</strong></span>
+                <span>Tier: <strong style="color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow);">GENESIS PRIME</strong></span>
             </div>
 
             <!-- STAS & 1Sat Ordinals + Metanet ツリー・グリッド -->
@@ -334,7 +339,7 @@
                     </div>
                     <div class="radar-card">
                         <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold; text-shadow: 0 0 6px var(--neon-cyan-glow);">Metanet Tree</div>
-                        <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Depth: Level 1</div>
+                        <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Depth: Level 8</div>
                         <div style="font-size: 0.65rem; color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow); margin-top: 2px;">SYNCED</div>
                     </div>
                 </div>
@@ -350,6 +355,18 @@
                     AIエージェントがミリ秒単位の双方向チャネルでAPI利用料を自動決済・収穫します。
                 </div>
                 <button class="btn-cyan" id="harvestBtn">⚡ HARVEST AI NANO-STREAM</button>
+            </div>
+
+            <!-- 【追加機能】インフルエンサー・シェア ＆ 分散ストレージポート -->
+            <div class="sub-module">
+                <div class="section-header">
+                    <span>🌐 Matrix Share & Storage Port</span>
+                    <span style="font-size: 0.6rem; color: var(--neon-cyan);">READY</span>
+                </div>
+                <div style="display: flex; gap: 6px;">
+                    <button class="btn-cyan" id="shareBtn" style="margin-top:0;">🔗 SHARE STATE</button>
+                    <button class="btn-cyan" id="storageBtn" style="margin-top:0;">💾 SYNC STORAGE</button>
+                </div>
             </div>
 
             <!-- メインネット高速送金 & Metanetデータ刻印 -->
@@ -370,10 +387,10 @@
             <div style="border-top: 1px solid rgba(0, 243, 255, 0.3); padding-top: 6px;">
                 <div class="logs-header">
                     <span>CYBER MATRIX CONSOLE</span>
-                    <span>SECURE SPV</span>
+                    <span>OMNI-CORE ACTIVE</span>
                 </div>
                 <div class="logs-container" id="logConsole">
-                    [System] Metanet Edition v01 loaded.<br>
+                    [System] Metanet Edition v01 (Omni-Core) loaded.<br>
                 </div>
             </div>
         </div>
@@ -388,14 +405,14 @@
         }
 
         document.getElementById('connectBtn').addEventListener('click', () => {
-            addLog("Booting Metanet v01 SPV verification and cipher protocols...");
-            addLog("Synchronizing STAS, 1Sat Ordinals, and AI channels...");
+            addLog("Booting Omni-Core SPV verification and cipher protocols...");
+            addLog("Synchronizing STAS, 1Sat Ordinals, AI channels, and storage...");
 
             setTimeout(() => {
                 document.getElementById('authSection').style.display = 'none';
                 document.getElementById('dashboardSection').style.display = 'flex';
-                addLog("[Success] Cyber Matrix online. Address: 1QLux...v01");
-                alert("💠 【Metanet v01 起動完了】\nジェネシスブロック接続および発光シアン領域の構築が完了しました！");
+                addLog("[Success] Cyber Matrix Omni-Core online. Address: 1QLux...v01");
+                alert("💠 【Omni-Core 起動完了】\nすべての未来技術モジュールと発光シアン空間の同期が完了しました！");
             }, 800);
         });
 
@@ -404,8 +421,23 @@
             setTimeout(() => {
                 addLog("[Success] AI micro-payments verified via SPV tree.");
                 alert("🤖 【AIナノストリーム収穫完了】\nミリ秒単位の自動決済報酬がウォレットの残高に直結しました！");
-                document.getElementById('userBalance').innerText = "17.15000000 BSV ($1,032.78)";
             }, 800);
+        });
+
+        document.getElementById('shareBtn').addEventListener('click', () => {
+            addLog("Generating cyber matrix state export for community share...");
+            setTimeout(() => {
+                addLog("[Success] Wallet state copied to clipboard & broadcasted.");
+                alert("🔗 【ステータス共有完了】\n現在のQLUXウォレットの最強状態がクリップボードにコピーされました！");
+            }, 500);
+        });
+
+        document.getElementById('storageBtn').addEventListener('click', () => {
+            addLog("Syncing decentralized Merkle tree storage nodes...");
+            setTimeout(() => {
+                addLog("[Success] Storage sync verified on BSV network.");
+                alert("💾 【分散ストレージ同期完了】\nMetanetツリーと分散ストレージの整合性が完全に証明されました！");
+            }, 600);
         });
 
         document.getElementById('sendBtn').addEventListener('click', () => {
@@ -417,13 +449,13 @@
                 return;
             }
 
-            addLog(`Constructing Metanet v01 transaction to ${recipient}...`);
+            addLog(`Constructing Omni-Core transaction to ${recipient}...`);
             document.getElementById('sendBtn').innerText = "Broadcasting to Matrix...";
 
             setTimeout(() => {
-                const txid = 'metanet_v01_' + Math.random().toString(36).substring(2, 10);
-                addLog(`[Success] Metanet v01 TX Broadcasted! TXID: ${txid}`);
-                alert(`Metanet v01ネットワークへの送信が完了しました！\nTXID: ${txid}`);
+                const txid = 'omni_tx_' + Math.random().toString(36).substring(2, 10);
+                addLog(`[Success] Omni-Core TX Broadcasted! TXID: ${txid}`);
+                alert(`マトリックスネットワークへの送信が完了しました！\nTXID: ${txid}`);
                 document.getElementById('recipientInput').value = "";
                 document.getElementById('amountInput').value = "";
                 document.getElementById('sendBtn').innerText = "🚀 BROADCAST METANET TX";
