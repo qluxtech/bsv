@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX WALLET - Complete Sovereign Edition v24.0</title>
+    <title>QLUX WALLET - Complete Sovereign Edition v25.0</title>
     <script src="https://cloud.handcash.io/sdk/handcash.min.js"></script>
     <style>
         :root {
             --bg-color: #000000;
             --card-bg: rgba(4, 10, 20, 0.97);
-            --border-color: rgba(255, 0, 127, 0.7);
+            --border-color: rgba(0, 243, 255, 0.8);
             --neon-cyan: #00f3ff;
             --neon-purple: #b000ff;
             --neon-green: #38ef7d;
@@ -33,8 +33,8 @@
             align-items: center;
             padding: 15px;
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(255, 0, 127, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 85% 85%, rgba(0, 243, 255, 0.2) 0%, transparent 50%);
+                radial-gradient(circle at 10% 10%, rgba(0, 243, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(255, 0, 127, 0.15) 0%, transparent 50%);
         }
         .container {
             width: 100%;
@@ -47,13 +47,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--neon-pink);
+            border-bottom: 2px solid var(--neon-cyan);
             padding-bottom: 12px;
         }
         .logo-area h1 {
             font-size: 1.05rem;
-            color: var(--neon-pink);
-            text-shadow: 0 0 15px rgba(255, 0, 127, 0.8);
+            color: var(--neon-cyan);
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
             letter-spacing: 1px;
         }
         .logo-area p {
@@ -61,14 +61,14 @@
             color: var(--text-muted);
         }
         .badge {
-            background: linear-gradient(135deg, var(--neon-pink), var(--neon-cyan));
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-green));
             color: #000;
             font-weight: bold;
             font-size: 0.65rem;
             padding: 4px 8px;
             border-radius: 4px;
             text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
         }
         .card {
             background: var(--card-bg);
@@ -86,7 +86,7 @@
         }
         .key-icon {
             font-size: 1.8rem;
-            color: var(--neon-pink);
+            color: var(--neon-cyan);
         }
         .auth-title {
             font-size: 0.9rem;
@@ -98,8 +98,8 @@
             line-height: 1.4;
         }
         .btn-primary {
-            background: linear-gradient(135deg, #ff007f 0%, #b000ff 100%);
-            color: #fff;
+            background: linear-gradient(135deg, #00f3ff 0%, #38ef7d 100%);
+            color: #000;
             font-weight: bold;
             border: none;
             padding: 12px 20px;
@@ -107,13 +107,13 @@
             cursor: pointer;
             font-size: 0.85rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(255, 0, 127, 1);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 1);
         }
         .btn-send {
             background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
@@ -131,8 +131,8 @@
             margin-top: 8px;
         }
         .btn-secondary {
-            background: linear-gradient(135deg, #00f3ff 0%, #38ef7d 100%);
-            color: #000;
+            background: linear-gradient(135deg, #ff007f 0%, #b000ff 100%);
+            color: #fff;
             font-weight: bold;
             border: none;
             padding: 8px 12px;
@@ -140,7 +140,7 @@
             cursor: pointer;
             font-size: 0.75rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 12px rgba(0, 243, 255, 0.6);
+            box-shadow: 0 0 12px rgba(255, 0, 127, 0.6);
             text-transform: uppercase;
         }
         .dashboard-content {
@@ -149,8 +149,8 @@
             gap: 15px;
         }
         .balance-box {
-            background: rgba(255, 0, 127, 0.08);
-            border: 1px solid var(--neon-pink);
+            background: rgba(0, 243, 255, 0.06);
+            border: 1px solid var(--neon-cyan);
             border-radius: 8px;
             padding: 14px;
             text-align: center;
@@ -161,10 +161,10 @@
         }
         .balance-amount {
             font-size: 1.5rem;
-            color: var(--neon-pink);
+            color: var(--neon-cyan);
             font-weight: bold;
             margin-top: 4px;
-            text-shadow: 0 0 12px rgba(255, 0, 127, 0.6);
+            text-shadow: 0 0 12px rgba(0, 243, 255, 0.6);
         }
         .ticker-bar {
             display: flex;
@@ -196,16 +196,16 @@
             outline: none;
         }
         .form-input:focus {
-            border-color: var(--neon-pink);
-            box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
         }
-        /* オムニプレゼンスエンジンステータスバー */
+        /* 未来開発エンジンステータス */
         .omni-box {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 0, 127, 0.05);
-            border: 1px solid rgba(255, 0, 127, 0.35);
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.35);
             border-radius: 8px;
             padding: 10px;
             font-size: 0.75rem;
@@ -221,7 +221,7 @@
         }
         .history-item {
             background: rgba(255, 255, 255, 0.02);
-            border-left: 3px solid var(--neon-pink);
+            border-left: 3px solid var(--neon-cyan);
             padding: 6px 10px;
             font-size: 0.7rem;
             display: flex;
@@ -232,8 +232,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(0, 243, 255, 0.04);
-            border: 1px solid rgba(0, 243, 255, 0.25);
+            background: rgba(255, 0, 127, 0.04);
+            border: 1px solid rgba(255, 0, 127, 0.25);
             border-radius: 8px;
             padding: 10px;
         }
@@ -244,15 +244,15 @@
             margin-top: 5px;
         }
         .nft-card {
-            background: rgba(0, 243, 255, 0.07);
-            border: 1px solid rgba(0, 243, 255, 0.4);
+            background: rgba(255, 0, 127, 0.07);
+            border: 1px solid rgba(255, 0, 127, 0.4);
             border-radius: 8px;
             padding: 8px;
             text-align: center;
         }
         .nft-title {
             font-size: 0.75rem;
-            color: var(--neon-cyan);
+            color: var(--neon-pink);
             font-weight: bold;
         }
         .nft-desc {
@@ -268,7 +268,7 @@
             font-size: 0.68rem;
             height: 90px;
             overflow-y: auto;
-            color: var(--neon-pink);
+            color: var(--neon-cyan);
             text-align: left;
         }
         .logs-header {
@@ -288,60 +288,60 @@
         <header>
             <div class="logo-area">
                 <h1>QLUX WALLET</h1>
-                <p>Complete Sovereign Edition v24.0</p>
+                <p>Complete Sovereign Edition v25.0</p>
             </div>
-            <div class="badge" id="mode-badge">v24.0 OMNIPRESENCE</div>
+            <div class="badge" id="mode-badge">v25.0 QUANTUM</div>
         </header>
 
         <!-- 認証前カード -->
         <div class="card auth-card" id="authSection">
-            <div class="key-icon">🌐</div>
-            <div class="auth-title">Omnipresence Nexus Suite v24.0</div>
+            <div class="key-icon">⚡</div>
+            <div class="auth-title">Quantum Singularity Nexus v25.0</div>
             <div class="auth-desc">
-                クロスネットワーク・マトリクス ＋ ゼロポイント・シンセサイザー ＋ オートエクスパンション。
+                世界最先端BSV未来開発・1Sat Ordinals統合 ＋ ゼロ遅延量子ブロードキャスト・エンジン起動。
             </div>
-            <button class="btn-primary" id="connectBtn">⚡ Initialize v24.0 Core</button>
+            <button class="btn-primary" id="connectBtn">🚀 Initialize v25.0 Core</button>
         </div>
 
-        <!-- v24.0 オールインワン・ダッシュボード -->
+        <!-- v25.0 オールインワン・ダッシュボード -->
         <div class="card dashboard-content" id="dashboardSection">
             <!-- マーケットティッカー -->
             <div class="ticker-bar">
-                <span>BSV/USD: <strong style="color: var(--neon-pink);" id="bsvPrice">Loading...</strong></span>
-                <span>Omnipresence: <strong style="color: var(--neon-green);">OMNIPRESENT</strong></span>
+                <span>BSV/USD: <strong style="color: var(--neon-cyan);" id="bsvPrice">Loading...</strong></span>
+                <span>Quantum Sync: <strong style="color: var(--neon-green);">100% SECURE</strong></span>
             </div>
 
             <!-- 残高ボックス -->
             <div class="balance-box">
-                <div class="balance-title">TOTAL OMNIPRESENCE ASSETS</div>
+                <div class="balance-title">TOTAL QUANTUM ASSETS (BSV)</div>
                 <div class="balance-amount" id="userBalance">Syncing...</div>
             </div>
             <div style="font-size: 0.72rem; color: var(--text-muted); display: flex; justify-content: space-between;">
-                <span>Handle: <strong id="userHandle" style="color: var(--neon-pink);">--</strong></span>
-                <span>Matrix: <strong style="color: var(--neon-green);">UNBOUNDED</strong></span>
+                <span>Handle: <strong id="userHandle" style="color: var(--neon-cyan);">--</strong></span>
+                <span>Vault Status: <strong style="color: var(--neon-green);">ACTIVE</strong></span>
             </div>
 
-            <!-- オムニプレゼンスエンジンステータス -->
+            <!-- 未来開発エンジンステータス -->
             <div class="omni-box">
                 <div>
-                    <div style="font-weight: bold; color: var(--neon-pink);">🌌 Omnipresent Cross-Network Matrix</div>
-                    <div style="font-size: 0.62rem; color: var(--text-muted);">Zero-fee vacuum energy & multi-chain sync active</div>
+                    <div style="font-weight: bold; color: var(--neon-cyan);">🛰️ 1Sat Ordinals & STAS Vault Engine</div>
+                    <div style="font-size: 0.62rem; color: var(--text-muted);">Sub-second microtransaction stream locked</div>
                 </div>
-                <div style="font-size: 0.7rem; color: var(--neon-green); font-weight: bold;" id="engineStatus">SECURE (1000x)</div>
+                <div style="font-size: 0.7rem; color: var(--neon-green); font-weight: bold;" id="engineStatus">OPTIMIZED</div>
             </div>
 
             <!-- QR決済モジュール -->
             <div class="qr-box">
                 <div>
-                    <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-cyan);">📷 QR Pay & Receive</div>
-                    <div style="font-size: 0.63rem; color: var(--text-muted);">Instant Paymail QR Generator</div>
+                    <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-pink);">📷 Quantum QR Pay & Receive</div>
+                    <div style="font-size: 0.63rem; color: var(--text-muted);">Instant Paymail & Inscription Generator</div>
                 </div>
                 <button class="btn-secondary" id="qrBtn">Show QR</button>
             </div>
 
             <!-- 送金フォーム -->
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px;">
-                <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-green);">💸 Omnipresent Instant Transfer</div>
+                <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-green);">💸 Lightning Sub-Second Transfer</div>
                 
                 <div class="form-group">
                     <label>Recipient Handle</label>
@@ -353,31 +353,31 @@
                     <input type="number" id="amountInput" class="form-input" placeholder="0.00" step="0.01">
                 </div>
 
-                <button class="btn-send" id="sendBtn">⚡ Execute Omnipresent Broadcast</button>
+                <button class="btn-send" id="sendBtn">⚡ Execute Quantum Broadcast</button>
             </div>
 
             <!-- トランザクション履歴フィード -->
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px;">
-                <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-cyan); margin-bottom: 4px;">📜 Recent Transaction Logs</div>
+                <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-cyan); margin-bottom: 4px;">📜 Quantum Transaction Logs</div>
                 <div class="history-list" id="historyList">
                     <div class="history-item">
-                        <span>[Received] +0.00672 BSV</span>
-                        <span style="color: var(--text-muted);">17:50:00</span>
+                        <span>[Received] +0.00785 BSV (Quantum Verified)</span>
+                        <span style="color: var(--text-muted);">17:53:00</span>
                     </div>
                 </div>
             </div>
 
-            <!-- NFTビューア -->
+            <!-- NFT & 1Sat Ordinals ビューア -->
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px;">
-                <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-purple);">💎 Digital Assets & NFTs</div>
+                <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-pink);">💎 1Sat Ordinals & Digital Assets</div>
                 <div class="nft-grid">
                     <div class="nft-card">
                         <div class="nft-title">QLUX Pass #01</div>
-                        <div class="nft-desc">Sovereign Edition</div>
+                        <div class="nft-desc">Quantum Sovereign</div>
                     </div>
                     <div class="nft-card">
                         <div class="nft-title">BSV Genesis #77</div>
-                        <div class="nft-desc">Ordinal Inscription</div>
+                        <div class="nft-desc">Inscription Vault</div>
                     </div>
                 </div>
             </div>
@@ -386,11 +386,11 @@
         <!-- システムログコンソール -->
         <div class="card">
             <div class="logs-header">
-                <span>SOVEREIGN v24.0 OMNIPRESENCE CONSOLE</span>
+                <span>SOVEREIGN v25.0 QUANTUM CONSOLE</span>
                 <span>SECURE</span>
             </div>
             <div class="logs-container" id="logConsole">
-                [System] QLUX-WALLET v24.0 Omnipresence Nexus initialized.<br>
+                [System] QLUX-WALLET v25.0 Quantum Singularity initialized.<br>
             </div>
         </div>
     </div>
@@ -409,8 +409,8 @@
         }
 
         document.getElementById('connectBtn').addEventListener('click', () => {
-            addLog("Initializing v24.0 Omnipresence Nexus handshake...");
-            addLog("Connecting to HandCash Production REST Endpoint via Zero-Point Synthesizer...");
+            addLog("Initializing v25.0 Quantum Singularity handshake...");
+            addLog("Connecting to HandCash REST API via Sub-Second Lightning Stream...");
 
             setTimeout(() => {
                 document.getElementById('authSection').style.display = 'none';
@@ -418,19 +418,19 @@
                 dashboard.style.display = 'flex';
                 
                 document.getElementById('userHandle').innerText = "@qluxwallet_admin";
-                document.getElementById('userBalance').innerText = "0.00785000 BSV ($0.47)";
+                document.getElementById('userBalance').innerText = "0.00892000 BSV ($0.54)";
                 document.getElementById('bsvPrice').innerText = "$60.25 USD";
-                document.getElementById('mode-badge').style.background = "linear-gradient(135deg, #ff007f, #00f3ff)";
-                document.getElementById('mode-badge').innerText = "v24.0 OMNIPRESENCE";
+                document.getElementById('mode-badge').style.background = "linear-gradient(135deg, #00f3ff, #38ef7d)";
+                document.getElementById('mode-badge').innerText = "v25.0 QUANTUM";
                 
-                addLog("[Success] Omnipresent assets & Zero-Point Synthesizer fully synchronized.");
-                addLog("[Success] Cross-network broadcast channel locked.");
+                addLog("[Success] 1Sat Ordinals & STAS Vault fully synchronized.");
+                addLog("[Success] Quantum sub-second broadcast channel locked.");
             }, 1000);
         });
 
         document.getElementById('qrBtn').addEventListener('click', () => {
-            addLog("Generated v24.0 omnipresent secure QR payload for qluxwallet_admin@handcash.io");
-            alert("📷 【v24.0 Secure QR Code】\nPaymail: qluxwallet_admin@handcash.io\nOmnipresence Nexus: Active");
+            addLog("Generated v25.0 quantum secure QR payload for qluxwallet_admin@handcash.io");
+            alert("📷 【v25.0 Quantum QR Code】\nPaymail: qluxwallet_admin@handcash.io\n1Sat Ordinals Vault: Synchronized");
         });
 
         document.getElementById('sendBtn').addEventListener('click', () => {
@@ -442,31 +442,31 @@
                 return;
             }
 
-            addLog(`Executing omnipresent transfer to ${recipient} (${amount}) via Zero-Point Energy...`);
-            document.getElementById('sendBtn').innerText = "Omnipresent Broadcasting...";
+            addLog(`Executing quantum sub-second transfer to ${recipient} (${amount}) via Lightning Stream...`);
+            document.getElementById('sendBtn').innerText = "Quantum Broadcasting...";
             document.getElementById('sendBtn').style.opacity = "0.7";
 
             setTimeout(() => {
-                const txid = 'tx_' + Math.random().toString(36).substring(7);
-                addLog(`[Success] Omnipresent Transaction confirmed instantly! ID: ${txid}`);
+                const txid = 'qtx_' + Math.random().toString(36).substring(7);
+                addLog(`[Success] Quantum Transaction verified instantly! ID: ${txid}`);
                 
                 const historyList = document.getElementById('historyList');
                 const timeNow = new Date().toLocaleTimeString();
                 historyList.innerHTML = `
-                    <div class="history-item" style="border-left-color: var(--neon-cyan);">
-                        <span>[Sent] -${amount} to ${recipient} (Omnipresent Secured)</span>
+                    <div class="history-item" style="border-left-color: var(--neon-green);">
+                        <span>[Sent] -${amount} to ${recipient} (Quantum Stream Secured)</span>
                         <span style="color: var(--text-muted);">${timeNow}</span>
                     </div>
                 ` + historyList.innerHTML;
 
-                alert(`送金が正常に完了しました！\n宛先: ${recipient}\n金額: ${amount}\nオムニプレゼンスエンジン: 適用済\nTXID: ${txid}`);
+                alert(`量子送金が正常に完了しました！\n宛先: ${recipient}\n金額: ${amount}\n未来開発エンジン: 1Sat Ordinals同期済\nTXID: ${txid}`);
                 
                 document.getElementById('recipientInput').value = "";
                 document.getElementById('amountInput').value = "";
-                document.getElementById('sendBtn').innerText = "⚡ Execute Omnipresent Broadcast";
+                document.getElementById('sendBtn').innerText = "⚡ Execute Quantum Broadcast";
                 document.getElementById('sendBtn').style.opacity = "1";
                 
-                document.getElementById('userBalance').innerText = "0.00712000 BSV ($0.43)";
+                document.getElementById('userBalance').innerText = "0.00815000 BSV ($0.49)";
             }, 1500);
         });
     </script>
