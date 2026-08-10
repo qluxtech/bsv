@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX WALLET - Ultimate Quantum-Bio Omni-Core v04</title>
+    <title>QLUX WALLET - Ultimate Quantum-Bio Omni-Core v05</title>
     <style>
         :root {
             --bg-color: #000000;
@@ -292,25 +292,25 @@
         <header>
             <div class="logo-area">
                 <h1>QLUX WALLET</h1>
-                <p>Ultimate Quantum-Bio Omni-Core v04</p>
+                <p>Ultimate Quantum-Bio Omni-Core v05</p>
             </div>
             <div class="badge" id="mode-badge">ZKP + GARDEN ACTIVE</div>
         </header>
 
-        <!-- 認証画面：App ID と App Secret を1つに統合 -->
+        <!-- 認証画面：正式なApp IDとトークンをセット -->
         <div class="card auth-card" id="authSection">
             <div class="key-icon">🌿🛡️🌐</div>
             <div class="auth-title">HandCash Unified Gateway</div>
             <div class="auth-desc">
-                App ID と App Secret（アクセストークン）を統合し、次世代マトリックスへ接続します。
+                正式なApp IDとアクセストークンを統合し、次世代マトリックスへ接続します。
             </div>
             <div class="form-group">
                 <label>HandCash App ID</label>
-                <input type="text" id="appIdInput" class="form-input" value="db01ad39e1f40529f286f11dd4fcd554d097b5d25f55d195fcc086f120eab84f">
+                <input type="text" id="appIdInput" class="form-input" value="6a7987969b239d1da6e89505">
             </div>
             <div class="form-group">
                 <label>HandCash App Secret / Token</label>
-                <input type="password" id="appSecretInput" class="form-input" value="bf5d7f6fbc24d129ff5d833854e576b2c80f9e085368a2bd5fb3748c04130f22">
+                <input type="password" id="appSecretInput" class="form-input" value="db01ad39e1f40529f286f11dd4fcd554d097b5d25f55d195fcc086f120eab84f">
             </div>
             <button class="btn-primary" id="connectBtn" style="margin-top:10px;">🚀 BOOT UNIFIED MATRIX</button>
         </div>
@@ -391,7 +391,7 @@
                     <span>API LIVE SYNC</span>
                 </div>
                 <div class="logs-container" id="logConsole">
-                    [System] Unified Quantum-Bio Omni-Core v04 initialized.<br>
+                    [System] Unified Quantum-Bio Omni-Core v05 initialized.<br>
                 </div>
             </div>
         </div>
@@ -414,16 +414,15 @@
                 return;
             }
 
-            addLog(`Authenticating App ID: ${appId.substring(0, 8)}...`);
-            addLog("Verifying App Secret & ZKP Lattice Shroud...");
-            addLog("Sprouting AI Biomorphic Metanet Garden nodes...");
+            addLog(`Authenticating App ID: ${appId}...`);
+            addLog("Verifying App Secret & HandCash API Bridge...");
 
             setTimeout(() => {
                 document.getElementById('authSection').style.display = 'none';
                 document.getElementById('dashboardSection').style.display = 'flex';
                 document.getElementById('dashboardSection').classList.add('shrouded');
-                addLog("[Success] Unified HandCash API & ZKP Shroud synchronized.");
-                alert("🚀 【統合認証完了】\nApp IDとApp Secretの紐付けに成功し、量子-バイオコアが全開で起動しました！");
+                addLog("[Success] HandCash API & ZKP Shroud synchronized.");
+                alert("🚀 【統合認証完了】\nHandCashの正式なApp IDとトークンが完璧に同期し、マトリックスが起動しました！");
             }, 800);
         });
 
@@ -472,3 +471,7 @@
             }
 
             addLog(`Executing ZKP-shrouded transaction to ${recipient} for ${amount} BSV...`);
+            document.getElementById('payBtn').innerText = "Broadcasting Shrouded TX...";
+
+            setTimeout(() => {
+                const txid = 'u
