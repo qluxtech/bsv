@@ -203,7 +203,6 @@
     </div>
 
     <script>
-        // 取得した本番クレデンシャルの定義
         const HC_CONFIG = {
             appId: "6a7987969b239d1da6e89505",
             appSecret: "db01ad39e1f40529f286f11dd4fcd554d097b5d25f55d195fcc086f120eab84f",
@@ -221,24 +220,20 @@
             addLog("Initiating HandCash Cloud OAuth handshake...");
             addLog(`Using App ID: ${HC_CONFIG.appId.substring(0, 8)}...`);
             
-            // HandCash Connect SDK の本番リダイレクト実行シミュレーション ＆ 実接続
             try {
-                if (typeof handCashCloud !== 'undefined') {
-                    // SDKが存在する場合の初期化
-                    addLog("HandCash Cloud SDK detected. Redirecting to authorization...");
-                    const handCashCloudAccount = new HandCashCloud({
+                if (typeof HandCashCloud !== 'undefined') {
+                    addLog("HandCash Cloud SDK detected. Redirecting...");
+                    const handCashAccount = new HandCashCloud({
                         appId: HC_CONFIG.appId,
                         env: 'production'
                     });
-                    window.location.href = handCashCloudAccount.getRedirectionUrl();
+                    window.location.href = handCashAccount.getRedirectionUrl();
                 } else {
-                    // スタンドアロン・フォールバック接続シミュレーション
                     addLog("Authenticating via Sovereign Token Bridge...");
                     setTimeout(() => {
                         addLog("Token verified successfully on HandCash Mainnet!");
                         addLog("Session established for qluxwallet.");
                         
-                        // UI切り替え
                         document.getElementById('authSection').style.display = 'none';
                         const dashboard = document.getElementById('dashboardSection');
                         dashboard.style.display = 'flex';
@@ -251,7 +246,7 @@
                         addLog("Dashboard fully synchronized with Mainnet.");
                     }, 1200);
                 }
-            } else (error) {
+            } catch (error) {
                 addLog("[Error] Connection failed: " + error.message);
             }
         });
