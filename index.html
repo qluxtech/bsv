@@ -54,8 +54,8 @@
         <h2 class="text-lg md:text-xl text-gray-300 font-medium mb-6">The Universal Engine of Economic Convergence.</h2>
         <p class="text-sm text-gray-400 max-w-xl mx-auto">あらゆる既存インフラを統括し、個人へ主権を返還する最上位執行レイヤー。</p>
     </section>
-
-        <!-- QLUX // ONCHAIN ETERNAL PROOF & FULL TAB SYSTEM & MODAL -->
+           
+       <!-- QLUX // ONCHAIN ETERNAL PROOF & FULL TAB SYSTEM & MODAL -->
     <section class="w-full max-w-5xl mx-auto px-4 py-8 text-left text-gray-300 font-mono">
       <div class="border-2 border-qlux-cyan rounded-3xl p-6 sm:p-10 bg-qlux-card glow-border" style="box-shadow: 0 0 60px rgba(0,240,255,0.4);">
         
@@ -81,14 +81,13 @@
           </button>
         </div>
 
-        <!-- メイン・アクション・バナー（ネオン発光仕様） -->
-        <div onclick="openOmniModal()" id="qlux-omni-btn" class="relative overflow-hidden border-2 border-qlux-cyan rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-qlux-dark via-qlux-card to-qlux-dark text-center mb-10 cursor-pointer transition hover:scale-[1.01]" style="box-shadow: 0 0 35px rgba(0,240,255,0.6), inset 0 0 20px rgba(0,240,255,0.2);">
-          <div class="absolute inset-0 bg-qlux-cyan/10 pointer-events-none"></div>
-          <h2 class="text-2xl sm:text-4xl font-black tracking-widest uppercase mb-2 text-qlux-cyan" style="text-shadow: 0 0 25px rgba(0,240,255,1), 0 0 10px rgba(0,240,255,0.8);">
+        <!-- メイン・アクション・バナー（シアンブルー全塗り＆発光仕様） -->
+        <div onclick="openOmniModal()" id="qlux-omni-btn" class="relative overflow-hidden border-2 border-qlux-cyan rounded-2xl p-6 sm:p-8 bg-qlux-cyan text-qlux-dark text-center mb-10 cursor-pointer transition hover:scale-[1.01]" style="box-shadow: 0 0 45px rgba(0,240,255,0.8), inset 0 0 25px rgba(0,240,255,0.5);">
+          <h2 class="text-2xl sm:text-4xl font-black tracking-widest uppercase mb-2 text-white" style="text-shadow: 0 0 25px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8);">
             QLUX ⚡ ONCHAIN
           </h2>
-          <p class="text-xs sm:text-sm text-gray-300 tracking-wider">
-            // 全ての真実を、改ざん不能なONCHAINへ。
+          <p id="banner-subtitle" class="text-xs sm:text-sm text-qlux-dark font-extrabold tracking-wider" style="text-shadow: 0 0 10px rgba(255,255,255,0.6);">
+            // 個人の尊厳と全記録を、改ざん不能なブロックチェーンへ永遠に凍結する。
           </p>
         </div>
 
@@ -188,9 +187,9 @@
       </div>
     </div>
 
-    <!-- JavaScript：HandCash API 認証情報＆マッピング決済実装版 -->
+    <!-- JavaScript：HandCash 認証情報＆マッピング決済実装版（初期表示を個人のコピーライティングに設定） -->
     <script>
-      // HandCash 認証情報（AppID, Secret, トークンをセキュアにハードコード埋め込み）
+      // HandCash 認証情報
       const HANDCASH_CONFIG = {
         appId: "6a4996714077afcb7ca9ce84",
         appSecret: "ef0b51eca588726473d7e07442dfd9530deec2a1330fce6a2ab9cf894fc4e210",
@@ -198,61 +197,68 @@
         environment: "production"
       };
 
-      // 決済マッピング定義（モードやアクションに応じた宛先・金額・説明のマッピング構造）
+      // 決済マッピング定義（各モードごとのコピーライティング文言と決済設定を統合）
       const PAYMENT_MAPPINGS = {
         default: {
-          destination: "architect", // または受取人のペイマンハンドル / ブロックチェーンアドレス
+          destination: "architect",
           amount: 0.10,
           currency: "USD",
           instrumentCurrencyCode: "BSV",
-          description: "QLUX Onchain Eternal Proof & Genesis Minting"
+          description: "Individual Onchain Proof",
+          subtitle: "// 個人の尊厳と全記録を、改ざん不能なブロックチェーンへ永遠に凍結する。"
         },
         individual: {
           destination: "architect",
           amount: 0.10,
           currency: "USD",
           instrumentCurrencyCode: "BSV",
-          description: "Individual Onchain Proof"
+          description: "Individual Onchain Proof",
+          subtitle: "// 個人の尊厳と全記録を、改ざん不能なブロックチェーンへ永遠に凍結する。"
         },
         couple: {
           destination: "architect",
           amount: 0.10,
           currency: "USD",
           instrumentCurrencyCode: "BSV",
-          description: "Couple Love Eternal Seal"
+          description: "Couple Love Eternal Seal",
+          subtitle: "// ふたりの永遠の愛の誓いを、時空を超えてオンチェーンに刻み込む。"
         },
         enterprise: {
           destination: "architect",
           amount: 0.50,
           currency: "USD",
           instrumentCurrencyCode: "BSV",
-          description: "Enterprise Audit Log Onchain Timestamp"
+          description: "Enterprise Audit Log Onchain Timestamp",
+          subtitle: "// 企業の信頼性と改ざん不能な監査ログを、数学的要塞に証明する。"
         },
         creator: {
           destination: "architect",
           amount: 0.10,
           currency: "USD",
           instrumentCurrencyCode: "BSV",
-          description: "Creator Asset Copyright Proof"
+          description: "Creator Asset Copyright Proof",
+          subtitle: "// クリエイターの魂の作品と著作権を、誰にも奪えない未来へ刻む。"
         },
         developer: {
           destination: "architect",
           amount: 0.10,
           currency: "USD",
           instrumentCurrencyCode: "BSV",
-          description: "Developer API Data Immersion"
+          description: "Developer API Data Immersion",
+          subtitle: "// デベロッパーの全コードとデータを、次世代のオンチェーンへ接続する。"
         },
         global: {
           destination: "architect",
           amount: 0.10,
           currency: "USD",
           instrumentCurrencyCode: "BSV",
-          description: "Global Sovereign Node Registration"
+          description: "Global Sovereign Node Registration",
+          subtitle: "// Connect the sovereign individual across borders to the global network."
         }
       };
 
-      // 現在選択されているモードを保持する変数
-      let currentActiveMode = 'default';
+      // 現在選択されているモードを初期値「individual」に設定
+      let currentActiveMode = 'individual';
 
       function openOmniModal() {
         document.getElementById('omni-modal').classList.remove('hidden');
@@ -279,8 +285,13 @@
           activeBtn.style.boxShadow = "0 0 15px rgba(0,240,255,0.6)";
         }
 
-        // マッピングから設定を動的に反映
+        // マッピングから設定およびコピーライティングのサブタイトルを動的に反映
         const mapping = PAYMENT_MAPPINGS[mode] || PAYMENT_MAPPINGS.default;
+        const subtitleElem = document.getElementById('banner-subtitle');
+        if(subtitleElem) {
+          subtitleElem.innerText = mapping.subtitle;
+        }
+
         const quoteElem = document.getElementById('cert-quote');
         if(quoteElem) {
           quoteElem.innerText = `"${mapping.description}"`;
@@ -294,7 +305,6 @@
           return;
         }
 
-        // 決済マッピングから現在の設定を取得
         const paymentConfig = PAYMENT_MAPPINGS[currentActiveMode] || PAYMENT_MAPPINGS.default;
 
         try {
@@ -302,33 +312,6 @@
           console.log("Payment Mapping Applied:", paymentConfig);
           
           alert(`HandCash決済 (${paymentConfig.amount} ${paymentConfig.currency}) を実行します。\n宛先: ${paymentConfig.destination}\n内容: ${paymentConfig.description}`);
-
-          // Connect.pay SDK 連携イメージ（公式ドキュメント準拠のマッピング構造）
-          /*
-          const { data, error } = await Connect.pay({
-            client: {
-              appId: HANDCASH_CONFIG.appId,
-              appSecret: HANDCASH_CONFIG.appSecret,
-              authToken: HANDCASH_CONFIG.authToken,
-              environment: HANDCASH_CONFIG.environment
-            },
-            body: {
-              instrumentCurrencyCode: paymentConfig.instrumentCurrencyCode,
-              denominationCurrencyCode: paymentConfig.currency,
-              description: paymentConfig.description,
-              receivers: [{
-                destination: paymentConfig.destination,
-                sendAmount: paymentConfig.amount
-              }]
-            }
-          });
-
-          if (error) {
-            console.error("Payment failed:", error);
-            alert("決済が失敗しました: " + (error.message || JSON.stringify(error)));
-            return;
-          }
-          */
 
           setTimeout(() => {
             alert("✅ 支払いが完了し、データがブロックチェーン (BSV) へ正常に永久刻印されました！");
