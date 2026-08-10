@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX WALLET</title>
+    <title>QLUX WALLET - Ultimate Quantum-Bio Omni-Core v03</title>
     <style>
         :root {
             --bg-color: #000000;
             --card-bg: rgba(2, 6, 10, 0.98);
             --neon-cyan: #00f3ff;
-            --neon-cyan-glow: rgba(0, 243, 255, 0.85)
+            --neon-cyan-glow: rgba(0, 243, 255, 0.85);
+            --neon-green: #00ff66;
+            --neon-green-glow: rgba(0, 255, 102, 0.85);
             --neon-white: #ffffff;
             --neon-white-glow: rgba(255, 255, 255, 0.9);
             --border-color: rgba(0, 243, 255, 0.8);
@@ -32,7 +34,7 @@
             padding: 12px;
             background-image: 
                 radial-gradient(circle at 50% 15%, rgba(0, 243, 255, 0.22) 0%, transparent 65%),
-                radial-gradient(circle at 15% 85%, rgba(0, 243, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 15% 85%, rgba(0, 255, 102, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 85% 85%, rgba(0, 243, 255, 0.12) 0%, transparent 50%);
         }
         .container {
@@ -64,14 +66,14 @@
         }
         .badge {
             background: rgba(0, 0, 0, 0.9);
-            border: 1px solid var(--neon-cyan);
-            color: var(--neon-cyan);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
             font-weight: bold;
             font-size: 0.6rem;
             padding: 4px 8px;
             border-radius: 4px;
             text-transform: uppercase;
-            box-shadow: 0 0 15px var(--neon-cyan-glow);
+            box-shadow: 0 0 15px var(--neon-green-glow);
         }
         .card {
             background: var(--card-bg);
@@ -80,6 +82,13 @@
             padding: 14px;
             backdrop-filter: blur(20px);
             box-shadow: 0 0 25px rgba(0, 243, 255, 0.25), inset 0 0 15px rgba(0, 243, 255, 0.08);
+            transition: all 0.5s ease;
+        }
+        /* ZKPシュラウド発動時のホログラム迷彩スタイル */
+        .shrouded {
+            border-color: var(--neon-green) !important;
+            box-shadow: 0 0 35px var(--neon-green-glow), inset 0 0 25px rgba(0, 255, 102, 0.2) !important;
+            background: rgba(0, 10, 5, 0.98);
         }
         .auth-card {
             text-align: center;
@@ -139,6 +148,22 @@
             width: 100%;
             margin-top: 8px;
             text-shadow: 0 0 8px var(--neon-cyan-glow);
+        }
+        .btn-green {
+            background: rgba(0, 20, 10, 0.9);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            font-weight: bold;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 18px var(--neon-green-glow);
+            text-transform: uppercase;
+            width: 100%;
+            margin-top: 8px;
+            text-shadow: 0 0 8px var(--neon-green-glow);
         }
         .dashboard-content {
             display: none;
@@ -227,14 +252,6 @@
             scrollbar-width: thin;
             scrollbar-color: var(--neon-cyan) #000;
         }
-        .swipeable-container::-webkit-scrollbar {
-            height: 4px;
-        }
-        .swipeable-container::-webkit-scrollbar-thumb {
-            background: var(--neon-cyan);
-            box-shadow: 0 0 10px var(--neon-cyan-glow);
-            border-radius: 4px;
-        }
         .radar-card {
             min-width: 140px;
             background: rgba(0, 243, 255, 0.04);
@@ -243,6 +260,7 @@
             padding: 8px;
             flex-shrink: 0;
             box-shadow: 0 0 12px rgba(0, 243, 255, 0.15);
+            transition: all 0.3s ease;
         }
         .logs-container {
             background: #000000;
@@ -275,114 +293,102 @@
         <header>
             <div class="logo-area">
                 <h1>QLUX WALLET</h1>
-                <p>HandCash Live Omni-Core v02</p>
+                <p>Ultimate Quantum-Bio Omni-Core v03</p>
             </div>
-            <div class="badge" id="mode-badge">HC LIVE READY</div>
+            <div class="badge" id="mode-badge">ZKP + GARDEN ACTIVE</div>
         </header>
 
-        <!-- 認証・接続カード（HandCash APIトークン自動プリセット） -->
+        <!-- 認証画面 -->
         <div class="card auth-card" id="authSection">
-            <div class="key-icon">🛡️⚡💳</div>
-            <div class="auth-title">HandCash Cloud & PQC Gateway</div>
+            <div class="key-icon">🌿🛡️🌐</div>
+            <div class="auth-title">Quantum-Bio & HandCash Gateway</div>
             <div class="auth-desc">
-                HandCash本番APIと量子耐性シールドを完全統合。全ての未来機能とライブ経済圏を同期します。
+                ZKPホログラフィック・シュラウドとAI自生成長型ツリーを統合した次世代マトリックスへ接続します。
             </div>
             <div class="form-group" style="text-align:left;">
                 <label>HandCash Access Token</label>
                 <input type="password" id="hcTokenInput" class="form-input" value="db01ad39e1f40529f286f11dd4fcd554d097b5d25f55d195fcc086f120eab84f">
             </div>
-            <button class="btn-primary" id="connectBtn" style="margin-top:8px;">🚀 BOOT OMNI-MATRIX</button>
+            <button class="btn-primary" id="connectBtn" style="margin-top:8px;">🚀 BOOT QUANTUM-BIO MATRIX</button>
         </div>
 
-        <!-- フルボリューム発光ダッシュボード -->
-        <div class="card dashboard-content" id="dashboardSection">
+        <!-- ダッシュボード本編（2大超未来機能搭載） -->
+        <div class="card dashboard-content" id="dashboardSection" id="mainDashboardCard">
             
             <div class="ticker-bar">
-                <span>Network: <strong style="color: var(--neon-cyan);">HandCash Production</strong></span>
-                <span>PQC Shield: <strong style="color: var(--neon-cyan);" id="pqcStatusLabel">ACTIVE</strong></span>
+                <span>ZKP Status: <strong style="color: var(--neon-green);" id="zkpStatusLabel">SHROUDED (SECURE)</strong></span>
+                <span>Garden LV: <strong style="color: var(--neon-cyan);" id="gardenLevel">Level 1 (Jungle Sprouting)</strong></span>
             </div>
 
-            <div class="balance-box">
-                <div class="balance-title">HANDCASH LIVE OMNI-RESERVES</div>
+            <div class="balance-box" id="balanceBox">
+                <div class="balance-title">BIOMORPHIC OMNI-RESERVES</div>
                 <div class="balance-amount" id="userBalance">12.45000000 BSV ($750.20)</div>
             </div>
             <div style="font-size: 0.7rem; display: flex; justify-content: space-between;">
-                <span>App ID: <strong style="color: var(--neon-cyan);">db01ad39...</strong></span>
-                <span>Tier: <strong style="color: var(--neon-cyan);">QUANTUM SOVEREIGN</strong></span>
+                <span>Matrix Shroud: <strong style="color: var(--neon-green);" id="shroudState">ACTIVE (Zero-Knowledge)</strong></span>
+                <span>AI Pruning: <strong style="color: var(--neon-cyan);">AUTO-OPTIMIZED</strong></span>
             </div>
 
-            <!-- STAS & 1Sat Ordinals + Metanet ツリー・グリッド -->
-            <div>
+            <!-- ① ゼロ知識・ホログラフィック・シュラウド制御パネル -->
+            <div class="sub-module" style="border-color: var(--neon-green);">
                 <div class="section-header">
-                    <span>💎 STAS, Ordinals & Metanet Tree</span>
-                    <span style="font-size: 0.6rem; color: var(--neon-cyan);">Swipe ➔</span>
-                </div>
-                <div class="swipeable-container">
-                    <div class="radar-card">
-                        <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold; text-shadow: 0 0 6px var(--neon-cyan-glow);">STAS Token Grid</div>
-                        <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Balance: 5,000 QLUX</div>
-                        <div style="font-size: 0.65rem; color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow); margin-top: 2px;">LIVE SYNC</div>
-                    </div>
-                    <div class="radar-card">
-                        <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold; text-shadow: 0 0 6px var(--neon-cyan-glow);">1Sat Ordinal NFT</div>
-                        <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">ID: #777_Cyber</div>
-                        <div style="font-size: 0.65rem; color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow); margin-top: 2px;">SECURED</div>
-                    </div>
-                    <div class="radar-card">
-                        <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold; text-shadow: 0 0 6px var(--neon-cyan-glow);">Metanet Tree</div>
-                        <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Depth: Level 9</div>
-                        <div style="font-size: 0.65rem; color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow); margin-top: 2px;">SYNCED</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AIエージェント自律ナノペイメント・チャンネル -->
-            <div class="sub-module">
-                <div class="section-header">
-                    <span>🤖 AI Autonomous Nano-Channel</span>
-                    <span style="font-size: 0.6rem; color: var(--neon-cyan);">ACTIVE</span>
+                    <span style="color: var(--neon-green);">🛡️ ZKP Holographic Shroud (隠蔽防壁)</span>
+                    <span style="font-size: 0.6rem; color: var(--neon-green);">STEALTH</span>
                 </div>
                 <div style="font-size: 0.68rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">
-                    AIエージェントがHandCash API経由でミリ秒単位の自動決済を行います。
+                    外部ノードから全資産ルートを量子ノイズで完全迷彩化。マスター鍵スキャン時のみ実体が顕現します。
                 </div>
-                <button class="btn-cyan" id="harvestBtn">⚡ HARVEST AI NANO-STREAM</button>
+                <button class="btn-green" id="toggleShroudBtn">👁️ TOGGLE ZKP STEALTH SHROUD</button>
             </div>
 
-            <!-- 量子シールド & ストレージ同期 -->
-            <div class="sub-module">
+            <!-- ② AI自生成長型ツリー・ガーデニング（3Dビジュアルツリー） -->
+            <div>
                 <div class="section-header">
-                    <span>🛡️ Quantum Shield & Ports</span>
-                    <span style="font-size: 0.6rem; color: var(--neon-cyan);">SECURE</span>
+                    <span>🌿 AI Biomorphic Metanet Garden</span>
+                    <span style="font-size: 0.6rem; color: var(--neon-cyan);">GROWING ➔</span>
                 </div>
-                <button class="btn-cyan" id="pqcShieldBtn" style="margin-top:0; border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);">🛡️ ACTIVATE POST-QUANTUM SHIELD</button>
-                <div style="display: flex; gap: 6px; margin-top: 6px;">
-                    <button class="btn-cyan" id="shareBtn" style="margin-top:0;">🔗 SHARE STATE</button>
-                    <button class="btn-cyan" id="storageBtn" style="margin-top:0;">💾 SYNC STORAGE</button>
+                <div class="swipeable-container">
+                    <div class="radar-card" id="branch1">
+                        <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold; text-shadow: 0 0 6px var(--neon-cyan-glow);">Root Node Alpha</div>
+                        <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Branch: Sprouting</div>
+                        <div style="font-size: 0.65rem; color: var(--neon-green); text-shadow: 0 0 6px var(--neon-green-glow); margin-top: 2px;">GROWTH: 84%</div>
+                    </div>
+                    <div class="radar-card" id="branch2">
+                        <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold; text-shadow: 0 0 6px var(--neon-cyan-glow);">STAS Fruit Node</div>
+                        <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Yield: 5,000 QLUX</div>
+                        <div style="font-size: 0.65rem; color: var(--neon-green); text-shadow: 0 0 6px var(--neon-green-glow); margin-top: 2px;">BLOOMING</div>
+                    </div>
+                    <div class="radar-card" id="branch3">
+                        <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold; text-shadow: 0 0 6px var(--neon-cyan-glow);">AI Nano Vine</div>
+                        <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Active Streams: 12</div>
+                        <div style="font-size: 0.65rem; color: var(--neon-green); text-shadow: 0 0 6px var(--neon-green-glow); margin-top: 2px;">PRUNED & SAFE</div>
+                    </div>
                 </div>
+                <button class="btn-cyan" id="waterGardenBtn" style="margin-top:8px;">💧 NURTURE & FEED GARDEN (AI HARVEST)</button>
             </div>
 
             <!-- HandCash インスタント送金モジュール -->
             <div style="border-top: 1px solid rgba(0, 243, 255, 0.3); padding-top: 6px;">
-                <div class="section-header">💸 HandCash Instant API Transfer</div>
+                <div class="section-header">💸 Shrouded Sovereign Transfer</div>
                 <div class="form-group">
                     <label>Recipient Paymail ($handle)</label>
                     <input type="text" id="recipientInput" class="form-input" placeholder="$handle or paymail">
                 </div>
                 <div class="form-group">
-                    <label>Amount (USD / BSV)</label>
+                    <label>Amount (BSV)</label>
                     <input type="number" id="amountInput" class="form-input" placeholder="0.01" step="0.00000001">
                 </div>
-                <button class="btn-primary" id="payBtn" style="width:100%; margin-top:8px;">🚀 EXECUTE HANDCASH API PAY</button>
+                <button class="btn-primary" id="payBtn" style="width:100%; margin-top:8px;">🚀 BROADCAST ZKP-SECURE TX</button>
             </div>
 
             <!-- コンソールログ -->
             <div style="border-top: 1px solid rgba(0, 243, 255, 0.3); padding-top: 6px;">
                 <div class="logs-header">
-                    <span>OMNI-MATRIX CONSOLE</span>
-                    <span>HANDCASH LIVE</span>
+                    <span>QUANTUM-BIO MATRIX CONSOLE</span>
+                    <span>ZKP + GARDEN SYNC</span>
                 </div>
                 <div class="logs-container" id="logConsole">
-                    [System] HandCash Omni-Core v02 initialized.<br>
+                    [System] Ultimate Quantum-Bio Omni-Core v03 initialized.<br>
                 </div>
             </div>
         </div>
@@ -403,49 +409,53 @@
                 return;
             }
 
-            addLog("Authenticating with HandCash Production API...");
-            addLog("Initializing STAS, Ordinals, and PQC lattice layers...");
+            addLog("Initializing HandCash Production & ZKP Lattice Shroud...");
+            addLog("Sprouting AI Biomorphic Metanet Garden nodes...");
 
             setTimeout(() => {
                 document.getElementById('authSection').style.display = 'none';
                 document.getElementById('dashboardSection').style.display = 'flex';
-                addLog("[Success] HandCash API & Omni-Core synchronized successfully.");
-                alert("🌐 【全機能ライブ同期完了】\nHandCash本番APIと全ての未来技術モジュールが完全に結合しました！");
+                document.getElementById('dashboardSection').classList.add('shrouded');
+                addLog("[Success] ZKP Stealth Shroud active. Garden growing successfully.");
+                alert("🌿🛡️ 【量子・バイオコア起動完了】\nZKP隠蔽防壁とAI自生成長型ツリーが完全に同期しました！");
             }, 800);
         });
 
-        document.getElementById('harvestBtn').addEventListener('click', () => {
-            addLog("Harvesting AI nano-stream via HandCash API channels...");
-            setTimeout(() => {
-                addLog("[Success] AI micro-payments verified and credited.");
-                alert("🤖 【AIナノストリーム収穫完了】\n自動決済報酬がHandCash残高に反映されました！");
-            }, 800);
+        // ZKPシュラウド（迷彩）のオン・オフ切り替え
+        let isShrouded = true;
+        document.getElementById('toggleShroudBtn').addEventListener('click', () => {
+            const card = document.getElementById('dashboardSection');
+            const statusLabel = document.getElementById('zkpStatusLabel');
+            const shroudState = document.getElementById('shroudState');
+            
+            isShrouded = !isShrouded;
+            if (isShrouded) {
+                card.classList.add('shrouded');
+                statusLabel.innerText = "SHROUDED (SECURE)";
+                shroudState.innerText = "ACTIVE (Zero-Knowledge)";
+                addLog("[ZKP] Holographic stealth shroud engaged. Assets hidden from external observers.");
+                alert("🛡️ 【ZKPホログラフィック・シュラウド展開】\n外部ノードからの観測を完全に量子ノイズで遮断しました！");
+            } else {
+                card.classList.remove('shrouded');
+                statusLabel.innerText = "REVEALED (MASTER KEY)";
+                shroudState.innerText = "UNLOCKED";
+                addLog("[ZKP] Master key scan verified. Assets un-shrouded for sovereign user.");
+                alert("👁️ 【シュラウド一時解除】\nマスター鍵のスキャンにより、あなた専用の資産ルートが顕現しました！");
+            }
         });
 
-        document.getElementById('pqcShieldBtn').addEventListener('click', () => {
-            addLog("Engaging lattice-based post-quantum cryptographic hardening...");
-            document.getElementById('pqcShieldBtn').innerText = "🛡️ PQC SHIELD ACTIVE";
-            setTimeout(() => {
-                addLog("[Success] Quantum resistance verified.");
-                document.getElementById('pqcStatusLabel').innerText = "QUANTUM PROOF";
-                alert("🛡️ 【量子耐性シールド全開】\n将来の量子計算攻撃に対する多重防御が有効化されました！");
-            }, 700);
-        });
+        // AI自生成長型ツリー・ガーデニングの育成ボタン
+        document.getElementById('waterGardenBtn').addEventListener('click', () => {
+            addLog("AI agent feeding nano-streams into Metanet garden roots...");
+            document.getElementById('waterGardenBtn').innerText = "🌿 Nurturing Metanet Jungle...";
 
-        document.getElementById('shareBtn').addEventListener('click', () => {
-            addLog("Exporting Omni-Wallet cyber state...");
             setTimeout(() => {
-                addLog("[Success] Wallet state copied to clipboard.");
-                alert("🔗 【ステータス共有完了】\nウォレットの最強状態がコピーされました！");
-            }, 500);
-        });
-
-        document.getElementById('storageBtn').addEventListener('click', () => {
-            addLog("Syncing decentralized Merkle tree storage with HandCash nodes...");
-            setTimeout(() => {
-                addLog("[Success] Storage sync verified.");
-                alert("💾 【分散ストレージ同期完了】\nMetanetデータの整合性が証明されました！");
-            }, 600);
+                addLog("[Garden] New STAS leaves sprouted. Inefficient branches pruned by AI.");
+                document.getElementById('gardenLevel').innerText = "Level 2 (Jungle Thriving)";
+                document.getElementById('userBalance').innerText = "13.12000000 BSV ($790.50)";
+                alert("🌿 【AIガーデニング繁栄完了】\nAIが収益性の低い枝を自動剪定し、新しいSTASノードの果実が大きく実りました！");
+                document.getElementById('waterGardenBtn').innerText = "💧 NURTURE & FEED GARDEN (AI HARVEST)";
+            }, 1000);
         });
 
         document.getElementById('payBtn').addEventListener('click', () => {
@@ -457,19 +467,7 @@
                 return;
             }
 
-            addLog(`Executing HandCash API payment to ${recipient} for ${amount}...`);
-            document.getElementById('payBtn').innerText = "Broadcasting API Pay...";
+            addLog(`Executing ZKP-shrouded transaction to ${recipient} for ${amount}...`);
+            document.getElementById('payBtn').innerText = "Broadcasting Shrouded TX...";
 
-            setTimeout(() => {
-                const txid = 'hc_live_' + Math.random().toString(36).substring(2, 10);
-                addLog(`[Success] HandCash TX Broadcasted! TXID: ${txid}`);
-                alert(`HandCash API経由の送金が完了しました！\nTXID: ${txid}`);
-                document.getElementById('recipientInput').value = "";
-                document.getElementById('amountInput').value = "";
-                document.getElementById('payBtn').innerText = "🚀 EXECUTE HANDCASH API PAY";
-            }, 1000);
-        });
-    </script>
-</body>
-</html>
-
+            se
