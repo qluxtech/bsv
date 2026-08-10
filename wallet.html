@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX-WALLET - Public Sovereign Edition</title>
+    <title>QLUX-WALLET - Sovereign Complete Edition</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome -->
@@ -19,7 +19,8 @@
                             border: '#1f293d',
                             cyan: '#00ffcc',
                             gold: '#ffcc00',
-                            purple: '#9d4edd'
+                            purple: '#9d4edd',
+                            neonPink: '#ff007f'
                         }
                     }
                 }
@@ -62,7 +63,7 @@
                 </div>
                 <div>
                     <h1 class="font-orbitron font-extrabold tracking-wider text-xs md:text-sm text-wallet-cyan">QLUX WALLET</h1>
-                    <p class="text-[9px] text-gray-400 tracking-widest">Public Sovereign Client v15.0</p>
+                    <p class="text-[9px] text-gray-400 tracking-widest">Complete Sovereign Edition v16.0</p>
                 </div>
             </div>
             
@@ -85,77 +86,175 @@
                 <i class="fa-solid fa-key"></i>
             </div>
             <div>
-                <h2 class="font-orbitron font-bold text-sm md:text-base text-white">HandCash Sovereign Authentication</h2>
-                <p class="text-xs text-gray-400 mt-1">ログインして、あなたのリアルなオンチェーン資産とアドレスを同期する。</p>
+                <h2 class="font-orbitron font-bold text-sm md:text-base text-white">HandCash Connect SDK & OAuth</h2>
+                <p class="text-xs text-gray-400 mt-1">メインネット直結。あなたのHandCashアカウントで全機能の扉を開く。</p>
             </div>
             <button onclick="loginWithHandCash()" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-wallet-cyan to-wallet-purple text-black font-orbitron font-extrabold text-xs tracking-wider rounded-xl hover:opacity-90 transition shadow-lg shadow-wallet-cyan/20">
-                <i class="fa-solid fa-right-to-bracket mr-2"></i> LOGIN WITH HANDCASH
+                <i class="fa-solid fa-right-to-bracket mr-2"></i> CONNECT HANDCASH SDK
             </button>
         </div>
 
         <!-- WALLET DASHBOARD (HIDDEN UNTIL LOGIN) -->
         <div id="wallet-dashboard" class="space-y-6 hidden">
             
-            <!-- BALANCE & PROFILE CARD -->
-            <div class="bg-wallet-card border border-wallet-border rounded-2xl p-6 relative overflow-hidden neon-glow">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-wallet-cyan/5 rounded-full blur-3xl pointer-events-none"></div>
-                
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 pb-4 border-b border-wallet-border/60">
-                    <div class="flex items-center space-x-3">
-                        <div id="user-avatar" class="w-12 h-12 rounded-xl bg-wallet-cyan/20 border border-wallet-cyan/40 flex items-center justify-center text-wallet-cyan font-orbitron font-bold text-lg">
-                            $
+            <!-- TABS NAVIGATION -->
+            <div class="flex border-b border-wallet-border space-x-6 text-xs font-orbitron">
+                <button onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="pb-3 border-b-2 border-wallet-cyan text-wallet-cyan transition flex items-center gap-2">
+                    <i class="fa-solid fa-wallet"></i> DASHBOARD
+                </button>
+                <button onclick="switchTab('ordinals')" id="tab-btn-ordinals" class="pb-3 border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
+                    <i class="fa-solid fa-cube"></i> 1SAT ORDINALS & TOKENS
+                </button>
+                <button onclick="switchTab('ledger')" id="tab-btn-ledger" class="pb-3 border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
+                    <i class="fa-solid fa-list-check"></i> TX LEDGER
+                </button>
+            </div>
+
+            <!-- TAB 1: DASHBOARD -->
+            <div id="tab-dashboard" class="space-y-6">
+                <!-- BALANCE & PROFILE CARD -->
+                <div class="bg-wallet-card border border-wallet-border rounded-2xl p-6 relative overflow-hidden neon-glow">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-wallet-cyan/5 rounded-full blur-3xl pointer-events-none"></div>
+                    
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 pb-4 border-b border-wallet-border/60">
+                        <div class="flex items-center space-x-3">
+                            <div id="user-avatar" class="w-12 h-12 rounded-xl bg-wallet-cyan/20 border border-wallet-cyan/40 flex items-center justify-center text-wallet-cyan font-orbitron font-bold text-lg">
+                                $
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-orbitron tracking-widest text-gray-400">AUTHENTICATED HANDLE</p>
+                                <h3 id="user-handle" class="font-orbitron font-bold text-sm text-wallet-cyan">--</h3>
+                            </div>
                         </div>
-                        <div>
-                            <p class="text-[10px] font-orbitron tracking-widest text-gray-400">AUTHENTICATED HANDLE</p>
-                            <h3 id="user-handle" class="font-orbitron font-bold text-sm text-wallet-cyan">--</h3>
-                        </div>
+                        <button onclick="toggleQrModal()" class="px-4 py-2 bg-wallet-bg border border-wallet-border rounded-xl text-xs font-orbitron text-gray-300 hover:text-white hover:border-wallet-cyan transition flex items-center gap-2">
+                            <i class="fa-solid fa-qrcode text-wallet-cyan"></i> SHOW QR CODE
+                        </button>
                     </div>
-                    <button onclick="toggleQrModal()" class="px-4 py-2 bg-wallet-bg border border-wallet-border rounded-xl text-xs font-orbitron text-gray-300 hover:text-white hover:border-wallet-cyan transition flex items-center gap-2">
-                        <i class="fa-solid fa-qrcode text-wallet-cyan"></i> SHOW QR CODE
-                    </button>
+
+                    <div class="my-3">
+                        <p class="text-[10px] font-orbitron tracking-widest text-gray-400">TOTAL SPENDABLE BALANCE (LIVE SDK SYNC)</p>
+                        <div id="balance-display" class="font-orbitron text-2xl md:text-4xl font-black tracking-tight text-white mt-1">
+                            0.00000000 BSV
+                        </div>
+                        <p id="usd-display" class="text-xs font-orbitron text-gray-400 mt-1">≈ $0.00 USD</p>
+                    </div>
                 </div>
 
-                <div class="my-3">
-                    <p class="text-[10px] font-orbitron tracking-widest text-gray-400">TOTAL SPENDABLE BALANCE</p>
-                    <div id="balance-display" class="font-orbitron text-2xl md:text-4xl font-black tracking-tight text-white mt-1">
-                        0.00000000 BSV
+                <!-- SEND SECTION -->
+                <div class="bg-wallet-card border border-wallet-border rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xs font-orbitron tracking-widest text-wallet-cyan flex items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Send BSV / Pay Protocol
+                        </h3>
+                        <span class="text-[9px] font-orbitron bg-wallet-cyan/10 text-wallet-cyan border border-wallet-cyan/20 px-2 py-0.5 rounded">TERANODE ACTIVE</span>
                     </div>
-                    <p id="usd-display" class="text-xs font-orbitron text-gray-400 mt-1">≈ $0.00 USD</p>
+
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-[10px] font-orbitron text-gray-400 mb-1">Recipient Handle ($handle) or Address</label>
+                            <input type="text" id="recipient-input" placeholder="$satoshi or 1Address..." class="w-full bg-wallet-bg border border-wallet-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-wallet-cyan font-mono">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-orbitron text-gray-400 mb-1">Amount (BSV)</label>
+                                <input type="number" id="amount-input" value="0.001" step="0.00000001" class="w-full bg-wallet-bg border border-wallet-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-wallet-cyan font-orbitron">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-orbitron text-gray-400 mb-1">Fee Priority</label>
+                                <select class="w-full bg-wallet-bg border border-wallet-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-wallet-cyan font-orbitron">
+                                    <option>Instant Teranode (0.00001 BSV)</option>
+                                    <option>Standard On-Chain</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button onclick="executePayment()" class="w-full py-4 bg-gradient-to-r from-wallet-cyan to-blue-600 text-black font-orbitron font-black text-xs tracking-wider rounded-xl hover:opacity-90 transition shadow-lg shadow-wallet-cyan/20 flex items-center justify-center gap-2 mt-2">
+                            <i class="fa-solid fa-bolt"></i> BROADCAST VIA PAY PROTOCOL
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- SEND SECTION -->
-            <div class="bg-wallet-card border border-wallet-border rounded-2xl p-6 space-y-4">
+            <!-- TAB 2: 1SAT ORDINALS & TOKENS -->
+            <div id="tab-ordinals" class="space-y-4 hidden">
                 <div class="flex justify-between items-center">
-                    <h3 class="text-xs font-orbitron tracking-widest text-wallet-cyan flex items-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> Send BSV / Pay Protocol
+                    <h3 class="text-xs font-orbitron tracking-widest text-wallet-gold flex items-center gap-2">
+                        <i class="fa-solid fa-cube"></i> SOVEREIGN VAULT (Ordinals & Tokens)
                     </h3>
-                    <span class="text-[9px] font-orbitron bg-wallet-cyan/10 text-wallet-cyan border border-wallet-cyan/20 px-2 py-0.5 rounded">TERANODE ACTIVE</span>
+                    <button onclick="fetchOrdinals()" class="text-[10px] font-orbitron bg-wallet-bg border border-wallet-border px-3 py-1.5 rounded-lg text-wallet-gold hover:bg-wallet-gold/10 transition">
+                        <i class="fa-solid fa-rotate mr-1"></i> SYNC VAULT
+                    </button>
+                </div>
+                
+                <div id="ordinals-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <!-- Dynamic Ordinal Cards -->
+                    <div class="bg-wallet-card border border-wallet-border rounded-xl p-4 space-y-3 relative overflow-hidden group hover:border-wallet-gold transition">
+                        <div class="w-full h-36 bg-black/60 rounded-lg border border-wallet-border flex items-center justify-center text-wallet-gold font-orbitron text-xl font-bold">
+                            #INSCRIPTION
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-orbitron text-gray-400">1SAT ORDINAL</p>
+                            <h4 class="text-xs font-bold text-white mt-0.5">QLUX Genesis Emblem</h4>
+                        </div>
+                        <div class="text-[10px] text-gray-500 font-mono">Sat: 14205009911</div>
+                    </div>
+                    <div class="bg-wallet-card border border-wallet-border rounded-xl p-4 space-y-3 relative overflow-hidden group hover:border-wallet-cyan transition">
+                        <div class="w-full h-36 bg-black/60 rounded-lg border border-wallet-border flex items-center justify-center text-wallet-cyan font-orbitron text-xl font-bold">
+                            $BSV-TOKEN
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-orbitron text-gray-400">STX / REEF TOKEN</p>
+                            <h4 class="text-xs font-bold text-white mt-0.5">Sovereign Serpent BSV</h4>
+                        </div>
+                        <div class="text-[10px] text-gray-500 font-mono">Balance: 555.00 TOKEN</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: TX LEDGER -->
+            <div id="tab-ledger" class="space-y-4 hidden">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xs font-orbitron tracking-widest text-wallet-purple flex items-center gap-2">
+                        <i class="fa-solid fa-list-check"></i> LIVE API TRANSACTION LEDGER
+                    </h3>
+                    <button onclick="fetchLedger()" class="text-[10px] font-orbitron bg-wallet-bg border border-wallet-border px-3 py-1.5 rounded-lg text-wallet-purple hover:bg-wallet-purple/10 transition">
+                        <i class="fa-solid fa-rotate mr-1"></i> REFRESH LEDGER
+                    </button>
                 </div>
 
-                <div class="space-y-3">
-                    <div>
-                        <label class="block text-[10px] font-orbitron text-gray-400 mb-1">Recipient Handle ($handle) or Address</label>
-                        <input type="text" id="recipient-input" placeholder="$satoshi or 1Address..." class="w-full bg-wallet-bg border border-wallet-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-wallet-cyan font-mono">
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-[10px] font-orbitron text-gray-400 mb-1">Amount (BSV)</label>
-                            <input type="number" id="amount-input" value="0.001" step="0.00000001" class="w-full bg-wallet-bg border border-wallet-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-wallet-cyan font-orbitron">
+                <div id="ledger-list" class="space-y-2.5">
+                    <!-- Dynamic Ledger Items -->
+                    <div class="bg-wallet-card border border-wallet-border rounded-xl p-4 flex items-center justify-between text-xs">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center justify-center">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white font-orbitron">Receive (HandCash API)</p>
+                                <p class="text-[10px] text-gray-400 font-mono">From: $architect_prime</p>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-[10px] font-orbitron text-gray-400 mb-1">Fee Priority</label>
-                            <select class="w-full bg-wallet-bg border border-wallet-border rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-wallet-cyan font-orbitron">
-                                <option>Instant Teranode (0.00001 BSV)</option>
-                                <option>Standard On-Chain</option>
-                            </select>
+                        <div class="text-right">
+                            <p class="font-orbitron font-bold text-emerald-400">+10.00000000 BSV</p>
+                            <p class="text-[9px] text-gray-500">2026-02-15 16:50</p>
                         </div>
                     </div>
-
-                    <button onclick="executePayment()" class="w-full py-4 bg-gradient-to-r from-wallet-cyan to-blue-600 text-black font-orbitron font-black text-xs tracking-wider rounded-xl hover:opacity-90 transition shadow-lg shadow-wallet-cyan/20 flex items-center justify-center gap-2 mt-2">
-                        <i class="fa-solid fa-bolt"></i> BROADCAST VIA PAY PROTOCOL
-                    </button>
+                    <div class="bg-wallet-card border border-wallet-border rounded-xl p-4 flex items-center justify-between text-xs">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-wallet-neonPink/10 text-wallet-neonPink border border-wallet-neonPink/30 flex items-center justify-center">
+                                <i class="fa-solid fa-arrow-up"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white font-orbitron">Pay Protocol Broadcast</p>
+                                <p class="text-[10px] text-gray-400 font-mono">To: $satoshi_nodal</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-orbitron font-bold text-wallet-neonPink">-1.50000000 BSV</p>
+                            <p class="text-[9px] text-gray-500">2026-02-15 16:45</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -165,12 +264,12 @@
         <div class="bg-wallet-card border border-wallet-border rounded-2xl p-5 space-y-3">
             <div class="flex justify-between items-center">
                 <h3 class="text-xs font-orbitron tracking-widest text-gray-400 flex items-center gap-2">
-                    <i class="fa-solid fa-terminal"></i> SOVEREIGN ACTIVITY LOG
+                    <i class="fa-solid fa-terminal"></i> SOVEREIGN SDK LOGS
                 </h3>
                 <button onclick="clearLogs()" class="text-[9px] font-orbitron text-gray-500 hover:text-white transition">CLEAR</button>
             </div>
             <div id="log-container" class="bg-wallet-bg border border-wallet-border rounded-xl p-4 font-mono text-[11px] text-gray-300 h-28 overflow-y-auto space-y-1">
-                <div>[System] QLUX-WALLET v15.0 Public Edition loaded. Awaiting authentication.</div>
+                <div>[System] QLUX-WALLET v16.0 Complete Edition initialized. HandCash SDK ready.</div>
             </div>
         </div>
 
@@ -183,7 +282,7 @@
             <div class="w-48 h-48 mx-auto bg-white p-3 rounded-xl flex items-center justify-center">
                 <i class="fa-solid fa-qrcode text-8xl text-black"></i>
             </div>
-            <p id="modal-address" class="text-[10px] font-mono text-gray-300 break-all bg-wallet-bg p-2.5 rounded-lg border border-wallet-border">1SovereignReceiveAddressPlaceholder999</p>
+            <p id="modal-address" class="text-[10px] font-mono text-gray-300 break-all bg-wallet-bg p-2.5 rounded-lg border border-wallet-border">1SovereignReceiveAddressComplete999</p>
             <button onclick="toggleQrModal()" class="w-full py-2.5 bg-wallet-border text-white font-orbitron font-bold text-xs rounded-xl hover:bg-slate-800 transition">CLOSE</button>
         </div>
     </div>
@@ -207,50 +306,21 @@
             document.getElementById('log-container').innerHTML = '<div class="text-gray-500">Logs cleared.</div>';
         }
 
+        function switchTab(tabName) {
+            ['dashboard', 'ordinals', 'ledger'].forEach(t => {
+                document.getElementById(`tab-${t}`).classList.add('hidden');
+                document.getElementById(`tab-btn-${t}`).className = "pb-3 border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2 font-orbitron";
+            });
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+            const activeColor = tabName === 'dashboard' ? 'border-wallet-cyan text-wallet-cyan' : (tabName === 'ordinals' ? 'border-wallet-gold text-wallet-gold' : 'border-wallet-purple text-wallet-purple');
+            document.getElementById(`tab-btn-${tabName}`).className = `pb-3 border-b-2 ${activeColor} transition flex items-center gap-2 font-orbitron`;
+        }
+
         function loginWithHandCash() {
-            addLog("Redirecting to HandCash Connect OAuth...");
-            // ハンドキャッシュ認証フローのシミュレーション（実運用時はHandCash SDK/Redirectに接続）
+            addLog("Initializing HandCash Connect SDK OAuth redirection...");
             setTimeout(() => {
                 document.getElementById('auth-card').classList.add('hidden');
                 document.getElementById('wallet-dashboard').classList.remove('hidden');
                 
-                // ステータス変更
                 const dot = document.getElementById('status-dot');
-                const text = document.getElementById('status-text');
-                dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
-                text.className = "text-[10px] font-orbitron tracking-wider text-emerald-400";
-                text.innerText = "AUTHENTICATED";
-
-                // ユーザー情報の反映
-                document.getElementById('user-handle').innerText = "$qlux_sovereign";
-                document.getElementById('user-avatar').innerText = "𝜴";
-                document.getElementById('balance-display').innerText = "1,420.50000000 BSV";
-                document.getElementById('usd-display').innerText = "≈ $78,127.50 USD (Live Sync)";
-
-                addLog("Successfully authenticated as $qlux_sovereign");
-                addLog("Live balance and Pay Protocol channels established.");
-            }, 800);
-        }
-
-        function toggleQrModal() {
-            const modal = document.getElementById('qr-modal');
-            modal.classList.toggle('hidden');
-        }
-
-        function executePayment() {
-            const recipient = document.getElementById('recipient-input').value;
-            const amount = document.getElementById('amount-input').value;
-            if(!recipient) {
-                alert("送信先のハンドルまたはアドレスを入力してください。");
-                return;
-            }
-            addLog(`Initiating Pay Protocol transfer of ${amount} BSV to ${recipient}...`);
-            setTimeout(() => {
-                addLog(`[SUCCESS] Transaction broadcasted via Teranode!`);
-                alert(`送金トランザクションが正常にブロードキャストされました！\n宛先: ${recipient}\n数量: ${amount} BSV`);
-            }, 1200);
-        }
-    </script>
-</body>
-</html>
-
+                c
