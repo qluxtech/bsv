@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX WALLET - Ultimate Sovereign Metanet Edition v10003.0</title>
+    <title>QLUX WALLET - Metanet Edition v01</title>
     <style>
         :root {
             --bg-color: #000000;
@@ -12,8 +12,6 @@
             --neon-cyan-glow: rgba(0, 243, 255, 0.85);
             --neon-white: #ffffff;
             --neon-white-glow: rgba(255, 255, 255, 0.9);
-            --neon-green: #38ef7d;
-            --neon-red: #ff0055;
             --border-color: rgba(0, 243, 255, 0.8);
         }
         * {
@@ -279,9 +277,9 @@
         <header>
             <div class="logo-area">
                 <h1>QLUX WALLET</h1>
-                <p>Metanet Sovereign Edition v10003.0</p>
+                <p>Metanet Edition v01</p>
             </div>
-            <div class="badge" id="mode-badge">CYBER PRIME</div>
+            <div class="badge" id="mode-badge">GENESIS</div>
         </header>
 
         <!-- 認証前：メインネット直結キーインポート -->
@@ -314,10 +312,10 @@
             </div>
             <div style="font-size: 0.7rem; display: flex; justify-content: space-between;">
                 <span>Address: <strong style="color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow);" id="userAddress">1QLux...</strong></span>
-                <span>Tier: <strong style="color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow);">SOVEREIGN</strong></span>
+                <span>Tier: <strong style="color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow);">GENESIS</strong></span>
             </div>
 
-            <!-- 【機能1】STAS & 1Sat Ordinals + Metanet ツリー・グリッド -->
+            <!-- STAS & 1Sat Ordinals + Metanet ツリー・グリッド -->
             <div>
                 <div class="section-header">
                     <span>💎 STAS, Ordinals & Metanet Tree</span>
@@ -336,13 +334,13 @@
                     </div>
                     <div class="radar-card">
                         <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold; text-shadow: 0 0 6px var(--neon-cyan-glow);">Metanet Tree</div>
-                        <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Depth: Level 8</div>
+                        <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Depth: Level 1</div>
                         <div style="font-size: 0.65rem; color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow); margin-top: 2px;">SYNCED</div>
                     </div>
                 </div>
             </div>
 
-            <!-- 【機能2】AIエージェント自律ナノペイメント・チャンネル -->
+            <!-- AIエージェント自律ナノペイメント・チャンネル -->
             <div class="sub-module">
                 <div class="section-header">
                     <span>🤖 AI Autonomous Nano-Channel</span>
@@ -354,7 +352,7 @@
                 <button class="btn-cyan" id="harvestBtn">⚡ HARVEST AI NANO-STREAM</button>
             </div>
 
-            <!-- 【機能3】メインネット高速送金 & Metanetデータ刻印 -->
+            <!-- メインネット高速送金 & Metanetデータ刻印 -->
             <div style="border-top: 1px solid rgba(0, 243, 255, 0.3); padding-top: 6px;">
                 <div class="section-header">💸 Metanet Sovereign Transfer</div>
                 <div class="form-group">
@@ -375,7 +373,7 @@
                     <span>SECURE SPV</span>
                 </div>
                 <div class="logs-container" id="logConsole">
-                    [System] QLUX Metanet Edition v10003.0 loaded.<br>
+                    [System] Metanet Edition v01 loaded.<br>
                 </div>
             </div>
         </div>
@@ -390,14 +388,14 @@
         }
 
         document.getElementById('connectBtn').addEventListener('click', () => {
-            addLog("Booting Metanet SPV verification and cipher protocols...");
+            addLog("Booting Metanet v01 SPV verification and cipher protocols...");
             addLog("Synchronizing STAS, 1Sat Ordinals, and AI channels...");
 
             setTimeout(() => {
                 document.getElementById('authSection').style.display = 'none';
                 document.getElementById('dashboardSection').style.display = 'flex';
-                addLog("[Success] Cyber Matrix online. Address: 1QLux...99XZ");
-                alert("💠 【サイバーマトリックス起動完了】\nMetanetメインネット接続および発光シアン領域の構築が完了しました！");
+                addLog("[Success] Cyber Matrix online. Address: 1QLux...v01");
+                alert("💠 【Metanet v01 起動完了】\nジェネシスブロック接続および発光シアン領域の構築が完了しました！");
             }, 800);
         });
 
@@ -419,13 +417,13 @@
                 return;
             }
 
-            addLog(`Constructing Metanet transaction to ${recipient}...`);
+            addLog(`Constructing Metanet v01 transaction to ${recipient}...`);
             document.getElementById('sendBtn').innerText = "Broadcasting to Matrix...";
 
             setTimeout(() => {
-                const txid = 'metanet_tx_' + Math.random().toString(36).substring(2, 10);
-                addLog(`[Success] Metanet TX Broadcasted! TXID: ${txid}`);
-                alert(`Metanetネットワークへの送信が完了しました！\nTXID: ${txid}`);
+                const txid = 'metanet_v01_' + Math.random().toString(36).substring(2, 10);
+                addLog(`[Success] Metanet v01 TX Broadcasted! TXID: ${txid}`);
+                alert(`Metanet v01ネットワークへの送信が完了しました！\nTXID: ${txid}`);
                 document.getElementById('recipientInput').value = "";
                 document.getElementById('amountInput').value = "";
                 document.getElementById('sendBtn').innerText = "🚀 BROADCAST METANET TX";
