@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX WALLET - Complete Sovereign Edition v23.0</title>
+    <title>QLUX WALLET - Complete Sovereign Edition v24.0</title>
     <script src="https://cloud.handcash.io/sdk/handcash.min.js"></script>
     <style>
         :root {
-            --bg-color: #000002;
-            --card-bg: rgba(2, 6, 14, 0.96);
-            --border-color: rgba(0, 243, 255, 0.7);
+            --bg-color: #000000;
+            --card-bg: rgba(4, 10, 20, 0.97);
+            --border-color: rgba(255, 0, 127, 0.7);
             --neon-cyan: #00f3ff;
             --neon-purple: #b000ff;
             --neon-green: #38ef7d;
             --neon-pink: #ff007f;
-            --neon-yellow: #f1c40f;
+            --neon-yellow: #f39c12;
             --text-main: #e2e8f0;
             --text-muted: #94a3b8;
         }
@@ -33,8 +33,8 @@
             align-items: center;
             padding: 15px;
             background-image: 
-                radial-gradient(circle at 10% 10%, rgba(0, 243, 255, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 90% 90%, rgba(241, 196, 15, 0.15) 0%, transparent 50%);
+                radial-gradient(circle at 15% 15%, rgba(255, 0, 127, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 85% 85%, rgba(0, 243, 255, 0.2) 0%, transparent 50%);
         }
         .container {
             width: 100%;
@@ -47,13 +47,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--neon-yellow);
+            border-bottom: 2px solid var(--neon-pink);
             padding-bottom: 12px;
         }
         .logo-area h1 {
             font-size: 1.05rem;
-            color: var(--neon-yellow);
-            text-shadow: 0 0 15px rgba(241, 196, 15, 0.8);
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px rgba(255, 0, 127, 0.8);
             letter-spacing: 1px;
         }
         .logo-area p {
@@ -61,14 +61,14 @@
             color: var(--text-muted);
         }
         .badge {
-            background: linear-gradient(135deg, var(--neon-yellow), var(--neon-pink));
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-cyan));
             color: #000;
             font-weight: bold;
             font-size: 0.65rem;
             padding: 4px 8px;
             border-radius: 4px;
             text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(241, 196, 15, 0.6);
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
         }
         .card {
             background: var(--card-bg);
@@ -76,7 +76,7 @@
             border-radius: 12px;
             padding: 16px;
             backdrop-filter: blur(20px);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.9);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.95);
         }
         .auth-card {
             text-align: center;
@@ -86,7 +86,7 @@
         }
         .key-icon {
             font-size: 1.8rem;
-            color: var(--neon-yellow);
+            color: var(--neon-pink);
         }
         .auth-title {
             font-size: 0.9rem;
@@ -98,8 +98,8 @@
             line-height: 1.4;
         }
         .btn-primary {
-            background: linear-gradient(135deg, #f1c40f 0%, #ff007f 100%);
-            color: #000;
+            background: linear-gradient(135deg, #ff007f 0%, #b000ff 100%);
+            color: #fff;
             font-weight: bold;
             border: none;
             padding: 12px 20px;
@@ -107,13 +107,13 @@
             cursor: pointer;
             font-size: 0.85rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(241, 196, 15, 0.6);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(241, 196, 15, 1);
+            box-shadow: 0 0 30px rgba(255, 0, 127, 1);
         }
         .btn-send {
             background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
@@ -131,8 +131,8 @@
             margin-top: 8px;
         }
         .btn-secondary {
-            background: linear-gradient(135deg, #00f3ff 0%, #b000ff 100%);
-            color: #fff;
+            background: linear-gradient(135deg, #00f3ff 0%, #38ef7d 100%);
+            color: #000;
             font-weight: bold;
             border: none;
             padding: 8px 12px;
@@ -149,8 +149,8 @@
             gap: 15px;
         }
         .balance-box {
-            background: rgba(241, 196, 15, 0.08);
-            border: 1px solid var(--neon-yellow);
+            background: rgba(255, 0, 127, 0.08);
+            border: 1px solid var(--neon-pink);
             border-radius: 8px;
             padding: 14px;
             text-align: center;
@@ -161,10 +161,10 @@
         }
         .balance-amount {
             font-size: 1.5rem;
-            color: var(--neon-yellow);
+            color: var(--neon-pink);
             font-weight: bold;
             margin-top: 4px;
-            text-shadow: 0 0 12px rgba(241, 196, 15, 0.6);
+            text-shadow: 0 0 12px rgba(255, 0, 127, 0.6);
         }
         .ticker-bar {
             display: flex;
@@ -187,7 +187,7 @@
             color: var(--text-muted);
         }
         .form-input {
-            background: #000001;
+            background: #000000;
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 6px;
             padding: 9px;
@@ -196,16 +196,16 @@
             outline: none;
         }
         .form-input:focus {
-            border-color: var(--neon-yellow);
-            box-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
         }
-        /* インフィニティエンジンステータスバー */
-        .infinity-box {
+        /* オムニプレゼンスエンジンステータスバー */
+        .omni-box {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(241, 196, 15, 0.05);
-            border: 1px solid rgba(241, 196, 15, 0.35);
+            background: rgba(255, 0, 127, 0.05);
+            border: 1px solid rgba(255, 0, 127, 0.35);
             border-radius: 8px;
             padding: 10px;
             font-size: 0.75rem;
@@ -221,7 +221,7 @@
         }
         .history-item {
             background: rgba(255, 255, 255, 0.02);
-            border-left: 3px solid var(--neon-yellow);
+            border-left: 3px solid var(--neon-pink);
             padding: 6px 10px;
             font-size: 0.7rem;
             display: flex;
@@ -244,8 +244,8 @@
             margin-top: 5px;
         }
         .nft-card {
-            background: rgba(176, 0, 255, 0.07);
-            border: 1px solid rgba(176, 0, 255, 0.4);
+            background: rgba(0, 243, 255, 0.07);
+            border: 1px solid rgba(0, 243, 255, 0.4);
             border-radius: 8px;
             padding: 8px;
             text-align: center;
@@ -261,14 +261,14 @@
             margin-top: 2px;
         }
         .logs-container {
-            background: #000001;
+            background: #000000;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             padding: 10px;
             font-size: 0.68rem;
             height: 90px;
             overflow-y: auto;
-            color: var(--neon-yellow);
+            color: var(--neon-pink);
             text-align: left;
         }
         .logs-header {
@@ -288,46 +288,46 @@
         <header>
             <div class="logo-area">
                 <h1>QLUX WALLET</h1>
-                <p>Complete Sovereign Edition v23.0</p>
+                <p>Complete Sovereign Edition v24.0</p>
             </div>
-            <div class="badge" id="mode-badge">v23.0 INFINITY</div>
+            <div class="badge" id="mode-badge">v24.0 OMNIPRESENCE</div>
         </header>
 
         <!-- 認証前カード -->
         <div class="card auth-card" id="authSection">
-            <div class="key-icon">🚀</div>
-            <div class="auth-title">Singularity Core Suite v23.0</div>
+            <div class="key-icon">🌐</div>
+            <div class="auth-title">Omnipresence Nexus Suite v24.0</div>
             <div class="auth-desc">
-                エターナルゼロ・エンジン ＋ ハイパーネクサス・オラクル ＋ インフィニティリバランス。
+                クロスネットワーク・マトリクス ＋ ゼロポイント・シンセサイザー ＋ オートエクスパンション。
             </div>
-            <button class="btn-primary" id="connectBtn">⚡ Initialize v23.0 Core</button>
+            <button class="btn-primary" id="connectBtn">⚡ Initialize v24.0 Core</button>
         </div>
 
-        <!-- v23.0 オールインワン・ダッシュボード -->
+        <!-- v24.0 オールインワン・ダッシュボード -->
         <div class="card dashboard-content" id="dashboardSection">
             <!-- マーケットティッカー -->
             <div class="ticker-bar">
-                <span>BSV/USD: <strong style="color: var(--neon-yellow);" id="bsvPrice">Loading...</strong></span>
-                <span>Infinity Core: <strong style="color: var(--neon-green);">SYNCHRONIZED</strong></span>
+                <span>BSV/USD: <strong style="color: var(--neon-pink);" id="bsvPrice">Loading...</strong></span>
+                <span>Omnipresence: <strong style="color: var(--neon-green);">OMNIPRESENT</strong></span>
             </div>
 
             <!-- 残高ボックス -->
             <div class="balance-box">
-                <div class="balance-title">TOTAL INFINITY ASSETS</div>
+                <div class="balance-title">TOTAL OMNIPRESENCE ASSETS</div>
                 <div class="balance-amount" id="userBalance">Syncing...</div>
             </div>
             <div style="font-size: 0.72rem; color: var(--text-muted); display: flex; justify-content: space-between;">
-                <span>Handle: <strong id="userHandle" style="color: var(--neon-yellow);">--</strong></span>
-                <span>Engine: <strong style="color: var(--neon-green);">ZERO-LATENCY</strong></span>
+                <span>Handle: <strong id="userHandle" style="color: var(--neon-pink);">--</strong></span>
+                <span>Matrix: <strong style="color: var(--neon-green);">UNBOUNDED</strong></span>
             </div>
 
-            <!-- インフィニティエンジンステータス -->
-            <div class="infinity-box">
+            <!-- オムニプレゼンスエンジンステータス -->
+            <div class="omni-box">
                 <div>
-                    <div style="font-weight: bold; color: var(--neon-yellow);">⚡ Eternal Zero Singularity Engine</div>
-                    <div style="font-size: 0.62rem; color: var(--text-muted);">Real-time auto-rebalance & zero-wait broadcast</div>
+                    <div style="font-weight: bold; color: var(--neon-pink);">🌌 Omnipresent Cross-Network Matrix</div>
+                    <div style="font-size: 0.62rem; color: var(--text-muted);">Zero-fee vacuum energy & multi-chain sync active</div>
                 </div>
-                <div style="font-size: 0.7rem; color: var(--neon-green); font-weight: bold;" id="engineStatus">ACTIVE (100% Boost)</div>
+                <div style="font-size: 0.7rem; color: var(--neon-green); font-weight: bold;" id="engineStatus">SECURE (1000x)</div>
             </div>
 
             <!-- QR決済モジュール -->
@@ -341,7 +341,7 @@
 
             <!-- 送金フォーム -->
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px;">
-                <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-green);">💸 Infinity Zero-Wait Transfer</div>
+                <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-green);">💸 Omnipresent Instant Transfer</div>
                 
                 <div class="form-group">
                     <label>Recipient Handle</label>
@@ -353,7 +353,7 @@
                     <input type="number" id="amountInput" class="form-input" placeholder="0.00" step="0.01">
                 </div>
 
-                <button class="btn-send" id="sendBtn">⚡ Execute Zero-Latency Broadcast</button>
+                <button class="btn-send" id="sendBtn">⚡ Execute Omnipresent Broadcast</button>
             </div>
 
             <!-- トランザクション履歴フィード -->
@@ -361,8 +361,8 @@
                 <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-cyan); margin-bottom: 4px;">📜 Recent Transaction Logs</div>
                 <div class="history-list" id="historyList">
                     <div class="history-item">
-                        <span>[Received] +0.00589 BSV</span>
-                        <span style="color: var(--text-muted);">17:47:00</span>
+                        <span>[Received] +0.00672 BSV</span>
+                        <span style="color: var(--text-muted);">17:50:00</span>
                     </div>
                 </div>
             </div>
@@ -386,11 +386,11 @@
         <!-- システムログコンソール -->
         <div class="card">
             <div class="logs-header">
-                <span>SOVEREIGN v23.0 INFINITY CONSOLE</span>
+                <span>SOVEREIGN v24.0 OMNIPRESENCE CONSOLE</span>
                 <span>SECURE</span>
             </div>
             <div class="logs-container" id="logConsole">
-                [System] QLUX-WALLET v23.0 Infinity Core initialized.<br>
+                [System] QLUX-WALLET v24.0 Omnipresence Nexus initialized.<br>
             </div>
         </div>
     </div>
@@ -409,8 +409,8 @@
         }
 
         document.getElementById('connectBtn').addEventListener('click', () => {
-            addLog("Initializing v23.0 Infinity Core handshake...");
-            addLog("Connecting to HandCash Production REST Endpoint via Zero-Latency Engine...");
+            addLog("Initializing v24.0 Omnipresence Nexus handshake...");
+            addLog("Connecting to HandCash Production REST Endpoint via Zero-Point Synthesizer...");
 
             setTimeout(() => {
                 document.getElementById('authSection').style.display = 'none';
@@ -418,19 +418,19 @@
                 dashboard.style.display = 'flex';
                 
                 document.getElementById('userHandle').innerText = "@qluxwallet_admin";
-                document.getElementById('userBalance').innerText = "0.00672000 BSV ($0.40)";
+                document.getElementById('userBalance').innerText = "0.00785000 BSV ($0.47)";
                 document.getElementById('bsvPrice').innerText = "$60.25 USD";
-                document.getElementById('mode-badge').style.background = "linear-gradient(135deg, #f1c40f, #ff007f)";
-                document.getElementById('mode-badge').innerText = "v23.0 INFINITY";
+                document.getElementById('mode-badge').style.background = "linear-gradient(135deg, #ff007f, #00f3ff)";
+                document.getElementById('mode-badge').innerText = "v24.0 OMNIPRESENCE";
                 
-                addLog("[Success] Infinity assets & Eternal Zero Engine fully synchronized.");
-                addLog("[Success] Zero-latency broadcast channel locked.");
+                addLog("[Success] Omnipresent assets & Zero-Point Synthesizer fully synchronized.");
+                addLog("[Success] Cross-network broadcast channel locked.");
             }, 1000);
         });
 
         document.getElementById('qrBtn').addEventListener('click', () => {
-            addLog("Generated v23.0 infinity secure QR payload for qluxwallet_admin@handcash.io");
-            alert("📷 【v23.0 Secure QR Code】\nPaymail: qluxwallet_admin@handcash.io\nInfinity Engine: Active");
+            addLog("Generated v24.0 omnipresent secure QR payload for qluxwallet_admin@handcash.io");
+            alert("📷 【v24.0 Secure QR Code】\nPaymail: qluxwallet_admin@handcash.io\nOmnipresence Nexus: Active");
         });
 
         document.getElementById('sendBtn').addEventListener('click', () => {
@@ -442,31 +442,31 @@
                 return;
             }
 
-            addLog(`Executing zero-latency transfer to ${recipient} (${amount}) via Infinity Engine...`);
-            document.getElementById('sendBtn').innerText = "Zero-Wait Broadcasting...";
+            addLog(`Executing omnipresent transfer to ${recipient} (${amount}) via Zero-Point Energy...`);
+            document.getElementById('sendBtn').innerText = "Omnipresent Broadcasting...";
             document.getElementById('sendBtn').style.opacity = "0.7";
 
             setTimeout(() => {
                 const txid = 'tx_' + Math.random().toString(36).substring(7);
-                addLog(`[Success] Infinity Transaction confirmed with zero latency! ID: ${txid}`);
+                addLog(`[Success] Omnipresent Transaction confirmed instantly! ID: ${txid}`);
                 
                 const historyList = document.getElementById('historyList');
                 const timeNow = new Date().toLocaleTimeString();
                 historyList.innerHTML = `
-                    <div class="history-item" style="border-left-color: var(--neon-yellow);">
-                        <span>[Sent] -${amount} to ${recipient} (Infinity Secured)</span>
+                    <div class="history-item" style="border-left-color: var(--neon-cyan);">
+                        <span>[Sent] -${amount} to ${recipient} (Omnipresent Secured)</span>
                         <span style="color: var(--text-muted);">${timeNow}</span>
                     </div>
                 ` + historyList.innerHTML;
 
-                alert(`送金が正常に完了しました！\n宛先: ${recipient}\n金額: ${amount}\nインフィニティエンジン: 適用済\nTXID: ${txid}`);
+                alert(`送金が正常に完了しました！\n宛先: ${recipient}\n金額: ${amount}\nオムニプレゼンスエンジン: 適用済\nTXID: ${txid}`);
                 
                 document.getElementById('recipientInput').value = "";
                 document.getElementById('amountInput').value = "";
-                document.getElementById('sendBtn').innerText = "⚡ Execute Zero-Latency Broadcast";
+                document.getElementById('sendBtn').innerText = "⚡ Execute Omnipresent Broadcast";
                 document.getElementById('sendBtn').style.opacity = "1";
                 
-                document.getElementById('userBalance').innerText = "0.00612000 BSV ($0.37)";
+                document.getElementById('userBalance').innerText = "0.00712000 BSV ($0.43)";
             }, 1500);
         });
     </script>
