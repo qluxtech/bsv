@@ -183,62 +183,7 @@
     }, 2500);
   }
 </script>
-    
-  // モーダルを開く
-  function openImprintModal() {
-    const modal = document.getElementById('imprint-modal');
-    modal.style.display = 'flex';
-    
-    // 入力欄にデフォルト値をセットし、強制的にフォーカス可能にする
-    const inputArea = document.getElementById('imprint-user-input');
-    if (!inputArea.value) {
-      inputArea.value = 'QLUX SOVEREIGN ENGINE // Enterprise Cryptographic Assurance: 改ざん不能な数学的信頼の刻印。';
-    }
-    setTimeout(() => {
-      inputArea.focus();
-    }, 100);
-  }
-
-  // モーダルを閉じる
-  function closeImprintModal() {
-    const modal = document.getElementById('imprint-modal');
-    modal.style.display = 'none';
-  }
-
-  // HandCash API を用いた実際の刻印処理フロー
-  function executeHandCashAPIImprint() {
-    const userInput = document.getElementById('imprint-user-input').value;
-    if (!userInput.trim()) {
-      alert("刻印するデータを入力してください。");
-      return;
-    }
-
-    closeImprintModal();
-    const btn = document.getElementById('qlux-main-btn');
-    
-    // 巨大ボタンの爆発発光演出
-    btn.style.transform = 'scale(1.03)';
-    btn.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(0, 240, 255, 0.95) 100%)';
-    btn.style.boxShadow = '0 0 90px rgba(255, 255, 255, 1), 0 0 140px rgba(0, 240, 255, 0.9)';
-    btn.querySelector('.text-3xl').style.color = '#050b10';
-    btn.querySelector('.text-3xl').innerText = '⚡ HANDCASH API AUTH...';
-
-    setTimeout(() => {
-      btn.querySelector('.text-3xl').innerText = '⚡ BROADCASTING TO BSV...';
-    }, 1200);
-
-    setTimeout(() => {
-      // 状態を元に戻す
-      btn.style.transform = 'scale(1)';
-      btn.style.background = 'linear-gradient(135deg, rgba(0, 240, 255, 0.4) 0%, rgba(0, 100, 255, 0.3) 100%)';
-      btn.style.boxShadow = '0 0 60px rgba(0, 240, 255, 0.8), inset 0 0 35px rgba(0, 240, 255, 0.7)';
-      btn.querySelector('.text-3xl').style.color = '#00f0ff';
-      btn.querySelector('.text-3xl').innerText = 'QLUX⚡ON-CHAIN';
-
-      // 成功通知とTXIDの生成完了
-      alert("⚡ HANDCASH API IMPRINT SUCCESSFUL!\n\n【BSVメインネット永続刻印完了】\nApp ID: 6a4996...c9e84 を使用してデータがオンチェーンに書き込まれました。\n\nTXID: 9f82c4...e31b (クリップボードにコピーされました)");
-    }, 2500);
-  }
+ 
 </script>
 
         <!-- エンタープライズ検証エンジン // ガイド文脈 -->
