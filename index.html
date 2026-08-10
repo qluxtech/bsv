@@ -55,41 +55,99 @@
         <p class="text-sm text-gray-400 max-w-xl mx-auto">あらゆる既存インフラを統括し、個人へ主権を返還する最上位執行レイヤー。</p>
     </section>
 
-        <!-- QLUX ONCHAIN // 究極のメガバズ・コア -->
-    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-3xl p-6 sm:p-10 text-center glow-border">
-      <h3 class="text-xs uppercase tracking-[0.25em] text-qlux-cyan font-bold mb-8">QLUX // ONCHAIN ETERNAL PROOF</h3>
-      
-      <!-- ターゲット切り替えタブ -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-8 bg-qlux-dark p-1.5 rounded-2xl border border-qlux-border">
-        <button onclick="switchMode('individual')" id="tab-individual" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-qlux-cyan bg-qlux-cyan/10 border border-qlux-cyan/40">👤 個人・独身</button>
-        <button onclick="switchMode('couple')" id="tab-couple" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">💍 カップル・愛</button>
-        <button onclick="switchMode('enterprise')" id="tab-enterprise" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">🏢 企業・信用</button>
-        <button onclick="switchMode('global')" id="tab-global" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">🌐 GLOBAL(EN)</button>
-      </div>
+    <!-- QLUX // ONCHAIN ETERNAL PROOF & FULL TAB SYSTEM -->
+    <section class="w-full max-w-5xl mx-auto px-4 py-8 text-left text-gray-300 font-mono">
+      <div class="border-2 border-qlux-cyan rounded-3xl p-6 sm:p-10 bg-qlux-card glow-border" style="box-shadow: 0 0 60px rgba(0,240,255,0.4);">
+        
+        <!-- タブナビゲーション（全項目） -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-8 text-xs font-bold text-center">
+          <button class="py-3 px-2 rounded-xl bg-qlux-cyan text-qlux-dark uppercase tracking-wider transition shadow-lg" style="box-shadow: 0 0 15px rgba(0,240,255,0.6);">
+            👤 個人・独身
+          </button>
+          <button class="py-3 px-2 rounded-xl bg-qlux-dark border border-qlux-border text-gray-300 hover:border-qlux-cyan uppercase tracking-wider transition">
+            💍 カップル・愛
+          </button>
+          <button class="py-3 px-2 rounded-xl bg-qlux-dark border border-qlux-border text-gray-300 hover:border-qlux-cyan uppercase tracking-wider transition">
+            🏛️ 企業・監査
+          </button>
+          <button class="py-3 px-2 rounded-xl bg-qlux-dark border border-qlux-border text-gray-300 hover:border-qlux-cyan uppercase tracking-wider transition">
+            🎨 クリエイター
+          </button>
+          <button class="py-3 px-2 rounded-xl bg-qlux-dark border border-qlux-border text-gray-300 hover:border-qlux-cyan uppercase tracking-wider transition">
+            💻 デベロッパー
+          </button>
+          <button class="py-3 px-2 rounded-xl bg-qlux-dark border border-qlux-border text-gray-300 hover:border-qlux-cyan uppercase tracking-wider transition">
+            🌐 GLOBAL(EN)
+          </button>
+        </div>
 
-      <div class="space-y-6">
-        <!-- メイン・ONCHAINバズボタン -->
-        <div onclick="openOmniModal()" id="qlux-omni-btn" class="cursor-pointer rounded-2xl p-8 sm:p-10 transition-all duration-300 transform hover:scale-[1.01]" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.4) 0%, rgba(120, 0, 255, 0.3) 100%); border: 3px solid #00f0ff; box-shadow: 0 0 60px rgba(0, 240, 255, 0.8), inset 0 0 35px rgba(0, 240, 255, 0.7);">
-          <div id="main-btn-title" class="text-3xl sm:text-5xl font-extrabold tracking-widest text-qlux-cyan" style="text-shadow: 0 0 25px rgba(0, 240, 255, 1);">
-            QLUX⚡️ONCHAIN
-          </div>
-          <div id="main-btn-sub" class="text-xs text-qlux-cyan/80 mt-3 tracking-widest uppercase font-mono">
+        <!-- メイン・アクション・バナー -->
+        <div class="relative overflow-hidden border border-qlux-cyan/60 rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-qlux-dark via-qlux-card to-qlux-dark text-center mb-10">
+          <div class="absolute inset-0 bg-qlux-cyan/5 pointer-events-none"></div>
+          <h2 class="text-xl sm:text-3xl font-extrabold text-qlux-cyan tracking-widest uppercase mb-2" style="text-shadow: 0 0 20px rgba(0,240,255,0.8);">
+            QLUX ⚡ ONCHAIN
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-300 tracking-wider">
             // 全ての真実を、改ざん不能なONCHAINへ。
-          </div>
+          </p>
         </div>
 
-        <!-- ライブ・ティッカー -->
-        <div class="border border-qlux-border rounded-2xl p-4 bg-qlux-dark flex items-center justify-between text-xs font-mono text-gray-400 overflow-hidden shadow-inner">
-          <div class="flex items-center space-x-2 flex-shrink-0">
-            <span class="w-2.5 h-2.5 rounded-full bg-qlux-cyan animate-ping"></span>
-            <span class="text-qlux-cyan font-bold uppercase tracking-wider">ONCHAIN FEED:</span>
-          </div>
-          <div id="omni-ticker-text" class="truncate ml-4 text-gray-300">
-            [#000184 - ARCHITECT] "We leave our truth ONCHAIN..." — BSV Mainnet
-          </div>
+        <!-- ONCHAIN FEED ライブログ -->
+        <div class="text-xs text-qlux-cyan/80 bg-qlux-dark/80 border border-qlux-border rounded-xl p-3 mb-10 flex items-center justify-between overflow-x-auto whitespace-nowrap">
+          <span class="font-bold flex items-center mr-4"><span class="w-2 h-2 rounded-full bg-qlux-cyan animate-pulse mr-2"></span>ONCHAIN FEED:</span>
+          <span class="text-gray-400">[#000184 - ARCHITECT] "We leave our truth ONCHAIN..." - BSV Mainnet</span>
         </div>
+
+        <!-- マニフェスト本文（ONCHAIN TRUTH REVOLUTION） -->
+        <div class="space-y-6 text-sm sm:text-base leading-relaxed text-gray-100">
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white uppercase tracking-widest mb-6" style="text-shadow: 0 0 20px rgba(255,255,255,0.8);">
+            ONCHAIN TRUTH REVOLUTION
+          </h3>
+
+          <p class="font-bold text-qlux-cyan text-base sm:text-lg" style="text-shadow: 0 0 10px rgba(0,240,255,0.8);">
+            いい加減、目を覚ませ。お前が残した「言葉」は、明日もそこに存在すると、本気で思っているのか？
+          </p>
+
+          <p>
+            笑わせるな。お前の愛の誓いも、企業の誇る監査ログも、汗水流して取得した特許も、魂を削ったアートも――すべては他人の管理するサーバーの「Deleteキー」一つで、明日には跡形もなく消え去るか、都合よく書き換えられる砂上の楼閣にすぎない。中央集権の管理者が微笑み、都合の悪い真実を闇に葬るとき、お前の生きた証は一瞬で「エラーコード」という名のゴミ屑へと成り下がる。
+          </p>
+
+          <p class="border-l-4 border-qlux-cyan pl-4 italic text-gray-300">
+            いつまで他人の土俵で、検閲官の顔色を伺いながら犬のリードに繋がれて生きるつもりだ？
+          </p>
+
+          <p class="font-bold text-center text-qlux-cyan text-lg sm:text-xl my-8 py-4 border-y border-qlux-border tracking-widest" style="text-shadow: 0 0 15px rgba(0,240,255,1);">
+            許可はいらない。承認も通さない。
+          </p>
+
+          <p>
+            お前を支配するすべての鎖を断ち切り、中央集権の首を物理的にへし折れ。
+          </p>
+
+          <div class="text-center font-extrabold text-white text-xl sm:text-2xl my-10 p-6 bg-qlux-dark rounded-xl border border-qlux-cyan shadow-lg" style="box-shadow: 0 0 30px rgba(0,240,255,0.3);">
+            この腐敗した世界に残された、唯一にして絶対の聖域――<br><strong class="text-qlux-cyan">【ONCHAIN】</strong>へ、お前の全存在を叩き込め。
+          </div>
+
+          <p class="text-center font-mono text-qlux-cyan tracking-widest my-6">
+            改ざんの余地を宇宙の物理法則レベルで完全にシャットアウトした、地球規模の数学的要塞。<br>
+            それがONCHAINだ。
+          </p>
+
+          <div class="text-center space-y-2 font-extrabold text-lg sm:text-xl uppercase tracking-wider text-white py-4" style="text-shadow: 0 0 15px rgba(255,255,255,0.7);">
+            <p>消せない。</p>
+            <p>曲げられない。</p>
+            <p>裏切らない。</p>
+          </div>
+
+          <p class="text-center font-extrabold text-red-500 text-base sm:text-lg mt-10 pt-6 border-t border-qlux-border" style="text-shadow: 0 0 10px rgba(239,68,68,0.8);">
+            権力者のペンをへし折り、データベースの電源を引き抜け。<br>
+            お前の全人生を、今すぐONCHAINへ永久凍結しろ。
+          </p>
+        </div>
+
       </div>
     </section>
+
 
     <!-- 【ONCHAIN】証明書発行モーダル -->
     <div id="omni-modal" class="fixed inset-0 bg-black/95 backdrop-blur-lg hidden items-center justify-center z-50 p-3 sm:p-4">
