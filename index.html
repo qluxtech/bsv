@@ -55,51 +55,51 @@
         <p class="text-sm text-gray-400 max-w-xl mx-auto">あらゆる既存インフラを統括し、個人へ主権を返還する最上位執行レイヤー。</p>
     </section>
 
-        <!-- 4-in-1 Universal Mega-Viral Core -->
+        <!-- QLUX ONCHAIN // 究極のメガバズ・コア -->
     <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-3xl p-6 sm:p-10 text-center glow-border">
-      <h3 class="text-xs uppercase tracking-[0.25em] text-qlux-cyan font-bold mb-8">GLOBAL OMNI-NEXUS // 全人類・全存在の不変証明エンジン</h3>
+      <h3 class="text-xs uppercase tracking-[0.25em] text-qlux-cyan font-bold mb-8">QLUX // ONCHAIN ETERNAL PROOF</h3>
       
       <!-- ターゲット切り替えタブ -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-8 bg-qlux-dark p-1.5 rounded-2xl border border-qlux-border">
         <button onclick="switchMode('individual')" id="tab-individual" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-qlux-cyan bg-qlux-cyan/10 border border-qlux-cyan/40">👤 個人・独身</button>
         <button onclick="switchMode('couple')" id="tab-couple" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">💍 カップル・愛</button>
         <button onclick="switchMode('enterprise')" id="tab-enterprise" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">🏢 企業・信用</button>
-        <button onclick="switchMode('global')" id="tab-global" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">🌐 グローバル(EN)</button>
+        <button onclick="switchMode('global')" id="tab-global" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">🌐 GLOBAL(EN)</button>
       </div>
 
       <div class="space-y-6">
-        <!-- メイン・ウルトラバズボタン -->
+        <!-- メイン・ONCHAINバズボタン -->
         <div onclick="openOmniModal()" id="qlux-omni-btn" class="cursor-pointer rounded-2xl p-8 sm:p-10 transition-all duration-300 transform hover:scale-[1.01]" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.4) 0%, rgba(120, 0, 255, 0.3) 100%); border: 3px solid #00f0ff; box-shadow: 0 0 60px rgba(0, 240, 255, 0.8), inset 0 0 35px rgba(0, 240, 255, 0.7);">
-          <div id="main-btn-title" class="text-2xl sm:text-4xl font-extrabold tracking-widest text-qlux-cyan" style="text-shadow: 0 0 20px rgba(0, 240, 255, 1);">
-            QLUX⚡ETERNAL PROOF
+          <div id="main-btn-title" class="text-3xl sm:text-5xl font-extrabold tracking-widest text-qlux-cyan" style="text-shadow: 0 0 25px rgba(0, 240, 255, 1);">
+            QLUX⚡️ONCHAIN
           </div>
-          <div id="main-btn-sub" class="text-xs text-qlux-cyan/80 mt-2 tracking-widest uppercase font-mono">
-            // Claim Your Sovereign Status in the Immutable Universe
+          <div id="main-btn-sub" class="text-xs text-qlux-cyan/80 mt-3 tracking-widest uppercase font-mono">
+            // 全ての真実を、改ざん不能なONCHAINへ。
           </div>
         </div>
 
-        <!-- ライブ・オムニティッカー -->
+        <!-- ライブ・ティッカー -->
         <div class="border border-qlux-border rounded-2xl p-4 bg-qlux-dark flex items-center justify-between text-xs font-mono text-gray-400 overflow-hidden shadow-inner">
           <div class="flex items-center space-x-2 flex-shrink-0">
             <span class="w-2.5 h-2.5 rounded-full bg-qlux-cyan animate-ping"></span>
-            <span class="text-qlux-cyan font-bold uppercase tracking-wider">OMNI FEED:</span>
+            <span class="text-qlux-cyan font-bold uppercase tracking-wider">ONCHAIN FEED:</span>
           </div>
           <div id="omni-ticker-text" class="truncate ml-4 text-gray-300">
-            [#000184 - SOVEREIGN] "We leave our truth in the immutable universe..." — BSV Mainnet
+            [#000184 - ARCHITECT] "We leave our truth ONCHAIN..." — BSV Mainnet
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 【全方位対応】証明書発行モーダル -->
-    <div id="omni-modal" class="fixed inset-0 bg-black/95 backdrop-blur-lg hidden items-center justify-center z-50 p-2 sm:p-4">
-      <div id="modal-container-border" class="bg-qlux-card border-2 border-qlux-cyan rounded-3xl w-full max-w-full sm:max-w-3xl h-[92vh] sm:h-auto flex flex-col p-5 sm:p-8 text-left glow-border relative shadow-2xl overflow-y-auto" style="box-shadow: 0 0 90px rgba(0,240,255,0.7);">
+    <!-- 【ONCHAIN】証明書発行モーダル -->
+    <div id="omni-modal" class="fixed inset-0 bg-black/95 backdrop-blur-lg hidden items-center justify-center z-50 p-3 sm:p-4">
+      <div class="bg-qlux-card border-2 border-qlux-cyan rounded-3xl w-full max-w-full sm:max-w-3xl max-h-[90vh] flex flex-col p-5 sm:p-8 text-left glow-border relative shadow-2xl overflow-y-auto" style="box-shadow: 0 0 90px rgba(0,240,255,0.7);">
         
         <!-- ヘッダー -->
         <div class="flex justify-between items-center mb-5 border-b border-qlux-border pb-4">
           <div>
-            <div id="modal-tag" class="text-xs font-bold text-qlux-cyan uppercase tracking-widest mb-1">⚡ Universal Genesis Gateway</div>
-            <h4 id="modal-heading" class="text-lg sm:text-xl font-bold text-white">宇宙への永続刻印 ＆ 証明書発行</h4>
+            <div id="modal-tag" class="text-xs font-bold text-qlux-cyan uppercase tracking-widest mb-1">⚡ QLUX⚡️ONCHAIN GATEWAY</div>
+            <h4 id="modal-heading" class="text-lg sm:text-xl font-bold text-white">ONCHAIN 永久刻印 ＆ 証明書発行</h4>
           </div>
           <button onclick="closeOmniModal()" class="text-gray-400 hover:text-white text-2xl font-bold px-3 py-1 rounded-xl border border-qlux-border">×</button>
         </div>
@@ -112,18 +112,18 @@
           </div>
 
           <div>
-            <label id="input-label-text" class="block text-xs font-bold text-qlux-cyan mb-2 uppercase tracking-wider">📝 宇宙に刻むあなたのメッセージ・歴史</label>
+            <label id="input-label-text" class="block text-xs font-bold text-qlux-cyan mb-2 uppercase tracking-wider">📝 永遠に消えないあなたの真実をここに</label>
             <textarea id="omni-user-input" rows="4" class="w-full bg-qlux-dark border-2 border-qlux-cyan/60 rounded-2xl p-4 text-sm text-white font-mono focus:outline-none focus:border-qlux-cyan focus:ring-2 focus:ring-qlux-cyan transition relative z-10" style="pointer-events: auto !important;" placeholder="ここに永遠に残したい言葉を入力してください..."></textarea>
           </div>
 
           <!-- プレビューボックス -->
           <div class="bg-qlux-dark border border-qlux-cyan/40 rounded-2xl p-4 text-xs font-mono space-y-2 relative overflow-hidden" style="background: linear-gradient(135deg, #050b10 0%, #0a192f 100%);">
-            <div class="absolute -right-4 -bottom-4 text-qlux-cyan/10 text-7xl font-extrabold pointer-events-none">PROOF</div>
+            <div class="absolute -right-4 -bottom-4 text-qlux-cyan/10 text-7xl font-extrabold pointer-events-none">ONCHAIN</div>
             <div class="text-qlux-cyan font-bold flex justify-between items-center">
-              <span id="preview-title">📜 ETERNAL SOVEREIGN CERTIFICATE</span>
+              <span id="preview-title">📜 QLUX ONCHAIN CERTIFICATE</span>
               <span id="preview-badge" class="px-2.5 py-0.5 rounded-full bg-qlux-cyan/20 border border-qlux-cyan text-[10px] text-qlux-cyan font-bold">TIER: ARCHITECT</span>
             </div>
-            <div id="preview-msg-box" class="text-gray-300 italic truncate">"Your permanent footprint on Bitcoin SV Mainnet."</div>
+            <div id="preview-msg-box" class="text-gray-300 italic truncate">"Your permanent footprint ONCHAIN."</div>
             <div class="text-[10px] text-gray-400 flex justify-between pt-1 border-t border-qlux-border/50">
               <span id="preview-id">Genesis ID: #000184</span>
               <span class="text-qlux-cyan">Fee: $0.10 USD (HandCash Instant)</span>
@@ -134,7 +134,7 @@
         <!-- アクションボタン群 -->
         <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-2 border-t border-qlux-border">
           <button id="action-submit-btn" onclick="executeOmniImprint()" class="flex-1 bg-gradient-to-r from-qlux-cyan to-blue-500 text-qlux-dark font-extrabold py-4 rounded-2xl text-sm uppercase tracking-wider hover:opacity-90 transition shadow-lg flex items-center justify-center space-x-2" style="box-shadow: 0 0 30px rgba(0,240,255,0.8);">
-            <span>⚡ 永久証明書を発行する ($0.10)</span>
+            <span>⚡ ONCHAINで永遠を刻む ($0.10)</span>
           </button>
           <button onclick="closeOmniModal()" class="px-6 py-4 border border-qlux-border text-gray-400 hover:text-white rounded-2xl text-sm transition text-center">
             キャンセル
@@ -151,6 +151,90 @@
     currentMode = mode;
     ['individual', 'couple', 'enterprise', 'global'].forEach(m => {
       const btn = document.getElementById(`tab-${m}`);
+      if(m === mode) {
+        btn.className = "py-2.5 px-3 rounded-xl text-xs font-bold transition text-qlux-cyan bg-qlux-cyan/10 border border-qlux-cyan/40";
+      } else {
+        btn.className = "py-2.5 px-3 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white";
+      }
+    });
+
+    const mainBtnTitle = document.getElementById('main-btn-title');
+    const mainBtnSub = document.getElementById('main-btn-sub');
+    const extraField = document.getElementById('extra-input-field');
+    const inputArea = document.getElementById('omni-user-input');
+
+    if(mode === 'individual') {
+      mainBtnTitle.innerText = "QLUX⚡️ONCHAIN";
+      mainBtnSub.innerText = "// 全ての真実を、改ざん不能なONCHAINへ。";
+      extraField.classList.add('hidden');
+      inputArea.value = 'QLUX ONCHAIN // "We leave our truth ONCHAIN." #QLUX #OnChain';
+    } else if(mode === 'couple') {
+      mainBtnTitle.innerText = "QLUX⚡️ONCHAIN";
+      mainBtnSub.innerText = "// 二人の永遠の愛を、ONCHAINへ永久刻印。";
+      extraField.classList.remove('hidden');
+      document.getElementById('extra-label').innerText = "👤 パートナー B の名前";
+      inputArea.value = 'Our love and bond are permanently anchored ONCHAIN. #QLUX #EternalLove #OnChain';
+    } else if(mode === 'enterprise') {
+      mainBtnTitle.innerText = "QLUX⚡️ONCHAIN";
+      mainBtnSub.innerText = "// 企業の信用と監査ログを、数学的証明としてONCHAINに。";
+      extraField.classList.remove('hidden');
+      document.getElementById('extra-label').innerText = "🏢 企業・組織名";
+      inputArea.value = 'Enterprise Audited & Anchored ONCHAIN via Bitcoin SV. #QLUX #Trust';
+    } else if(mode === 'global') {
+      mainBtnTitle.innerText = "QLUX⚡️ONCHAIN";
+      mainBtnSub.innerText = "// Write Your Legacy ONCHAIN. Absolute Truth.";
+      extraField.classList.add('hidden');
+      inputArea.value = 'We leave our absolute truth ONCHAIN. #QLUX #OnChain #BSV';
+    }
+  }
+
+  function openOmniModal() {
+    document.getElementById('omni-modal').style.display = 'flex';
+    setTimeout(() => { document.getElementById('omni-user-input').focus(); }, 100);
+  }
+
+  function closeOmniModal() {
+    document.getElementById('omni-modal').style.display = 'none';
+  }
+
+  function executeOmniImprint() {
+    const userInput = document.getElementById('omni-user-input').value;
+    if (!userInput.trim()) {
+      alert("メッセージを入力してください。");
+      return;
+    }
+
+    closeOmniModal();
+    const btn = document.getElementById('qlux-omni-btn');
+    btn.style.transform = 'scale(1.03)';
+    
+    setTimeout(() => {
+      btn.style.transform = 'scale(1)';
+      
+      let shareMsg = `人類で #000184 番目の真実を QLUX⚡️ONCHAIN に永久刻印しました！\n\n"${userInput.slice(0, 50)}..."\n\n#QLUX #OnChain #BSV`;
+      if(currentMode === 'couple') {
+        shareMsg = `私達の永遠の愛と絆を QLUX⚡️ONCHAIN へ永久に刻み込みました！\n\n"${userInput.slice(0, 50)}..."\n\n#QLUX #EternalLove #OnChain`;
+      } else if(currentMode === 'enterprise') {
+        shareMsg = `企業の信頼と監査ログを QLUX⚡️ONCHAIN へ永久アンカーしました。\n\n"${userInput.slice(0, 50)}..."\n\n#QLUX #EnterpriseTrust`;
+      } else if(currentMode === 'global') {
+        shareMsg = `My absolute truth is permanently anchored ONCHAIN via QLUX & BSV!\n\n"${userInput.slice(0, 50)}..."\n\n#QLUX #OnChain #BSV`;
+      }
+
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMsg)}`;
+      if (confirm("🔥 ONCHAINへの永久刻印および決済($0.10)が完了しました！\n\n🚀 この証明をX(Twitter)で世界に向けてシェアしますか？")) {
+        window.open(twitterUrl, '_blank');
+      }
+    }, 2000);
+  }
+</script>
+
+<script>
+  let currentMode = 'individual';
+
+  function switchMode(mode) {
+    currentMode = mode;
+    ['individual', 'couple', 'enterprise', 'global'].forEach(m => {
+      const btn = document.getElementById(`tab-${m}`)
       if(m === mode) {
         btn.className = "py-2.5 px-3 rounded-xl text-xs font-bold transition text-qlux-cyan bg-qlux-cyan/10 border border-qlux-cyan/40";
       } else {
