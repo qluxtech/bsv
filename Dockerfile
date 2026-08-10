@@ -6,4 +6,4 @@ COPY . /app
 
 RUN pip install --no-cache-dir requests
 
-CMD ["python", "qluxprime.html"]
+CMD ["python", "server.py"]
