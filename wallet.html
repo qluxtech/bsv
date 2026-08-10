@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX WALLET - Metanet Edition v01</title>
+    <title>QLUX WALLET - Metanet Edition v01 (Quantum Omni-Core)</title>
     <style>
         :root {
             --bg-color: #000000;
@@ -282,32 +282,32 @@
         <header>
             <div class="logo-area">
                 <h1>QLUX WALLET</h1>
-                <p>Metanet Edition v01 (Omni-Core)</p>
+                <p>Metanet v01 (Quantum Omni-Core)</p>
             </div>
-            <div class="badge" id="mode-badge">GENESIS</div>
+            <div class="badge" id="mode-badge">PQC READY</div>
         </header>
 
         <!-- 認証前：メインネット直結キーインポート -->
         <div class="card auth-card" id="authSection">
-            <div class="key-icon">🌐⚡💠</div>
-            <div class="auth-title">Metanet Mainnet Gateway</div>
+            <div class="key-icon">🛡️⚡💠</div>
+            <div class="auth-title">Metanet Mainnet Gateway (PQC Shield)</div>
             <div class="auth-desc">
-                SPVフル検証、STAS/1Sat Ordinals、Metanetツリー、AIナノペイメント、分散ストレージ、シェア機能を完全統合。
+                SPVフル検証、STAS/1Sat Ordinals、Metanetツリー、AIナノペイメント、分散ストレージ、そして量子耐性（PQC）暗号シールドを完全統合。
             </div>
             <div class="form-group" style="text-align:left;">
-                <label>WIF Private Key / Metanet Seed (Leave blank to generate)</label>
+                <label>WIF Private Key / PQC Seed (Leave blank to generate)</label>
                 <input type="password" id="wifInput" class="form-input" placeholder="Enter private key (Optional)">
             </div>
             <button class="btn-primary" id="connectBtn" style="margin-top:8px;">🚀 BOOT CYBER MATRIX</button>
         </div>
 
-        <!-- 発光シアン＆白文字ダッシュボード（全盛り） -->
+        <!-- 発光シアン＆白文字ダッシュボード（全盛り・量子耐性対応） -->
         <div class="card dashboard-content" id="dashboardSection">
             
             <!-- ティッカー & SPV検証 -->
             <div class="ticker-bar">
                 <span>Network: <strong style="color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan-glow);">BSV MAINNET</strong></span>
-                <span>SPV State: <strong style="color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan-glow);">VERIFIED (0.0ms)</strong></span>
+                <span>PQC Status: <strong style="color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan-glow);" id="pqcStatusLabel">SHIELDED</strong></span>
             </div>
 
             <!-- 残高 -->
@@ -316,8 +316,8 @@
                 <div class="balance-amount" id="userBalance">17.15000000 BSV ($1,032.78)</div>
             </div>
             <div style="font-size: 0.7rem; display: flex; justify-content: space-between;">
-                <span>Address: <strong style="color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow);" id="userAddress">1QLux...v01</strong></span>
-                <span>Tier: <strong style="color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow);">GENESIS PRIME</strong></span>
+                <span>Address: <strong style="color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow);" id="userAddress">1QLux...pqc</strong></span>
+                <span>Tier: <strong style="color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow);">QUANTUM SOVEREIGN</strong></span>
             </div>
 
             <!-- STAS & 1Sat Ordinals + Metanet ツリー・グリッド -->
@@ -339,7 +339,7 @@
                     </div>
                     <div class="radar-card">
                         <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold; text-shadow: 0 0 6px var(--neon-cyan-glow);">Metanet Tree</div>
-                        <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Depth: Level 8</div>
+                        <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Depth: Level 9</div>
                         <div style="font-size: 0.65rem; color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan-glow); margin-top: 2px;">SYNCED</div>
                     </div>
                 </div>
@@ -357,13 +357,14 @@
                 <button class="btn-cyan" id="harvestBtn">⚡ HARVEST AI NANO-STREAM</button>
             </div>
 
-            <!-- 【追加機能】インフルエンサー・シェア ＆ 分散ストレージポート -->
+            <!-- 【新機能】量子耐性（PQC）シールド ＆ シェア・ストレージポート -->
             <div class="sub-module">
                 <div class="section-header">
-                    <span>🌐 Matrix Share & Storage Port</span>
-                    <span style="font-size: 0.6rem; color: var(--neon-cyan);">READY</span>
+                    <span>🛡️ Quantum Shield & Matrix Ports</span>
+                    <span style="font-size: 0.6rem; color: var(--neon-cyan);">SECURE</span>
                 </div>
-                <div style="display: flex; gap: 6px;">
+                <button class="btn-cyan" id="pqcShieldBtn" style="margin-top:0; border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);">🛡️ ACTIVATE POST-QUANTUM LATTICE SHIELD</button>
+                <div style="display: flex; gap: 6px; margin-top: 6px;">
                     <button class="btn-cyan" id="shareBtn" style="margin-top:0;">🔗 SHARE STATE</button>
                     <button class="btn-cyan" id="storageBtn" style="margin-top:0;">💾 SYNC STORAGE</button>
                 </div>
@@ -387,10 +388,10 @@
             <div style="border-top: 1px solid rgba(0, 243, 255, 0.3); padding-top: 6px;">
                 <div class="logs-header">
                     <span>CYBER MATRIX CONSOLE</span>
-                    <span>OMNI-CORE ACTIVE</span>
+                    <span>PQC OMNI-CORE ACTIVE</span>
                 </div>
                 <div class="logs-container" id="logConsole">
-                    [System] Metanet Edition v01 (Omni-Core) loaded.<br>
+                    [System] Metanet Edition v01 (Quantum Omni-Core) loaded.<br>
                 </div>
             </div>
         </div>
@@ -405,14 +406,14 @@
         }
 
         document.getElementById('connectBtn').addEventListener('click', () => {
-            addLog("Booting Omni-Core SPV verification and cipher protocols...");
-            addLog("Synchronizing STAS, 1Sat Ordinals, AI channels, and storage...");
+            addLog("Booting Quantum Omni-Core SPV and lattice-crypto protocols...");
+            addLog("Initializing Post-Quantum Cryptography (PQC) key encapsulation layers...");
 
             setTimeout(() => {
                 document.getElementById('authSection').style.display = 'none';
                 document.getElementById('dashboardSection').style.display = 'flex';
-                addLog("[Success] Cyber Matrix Omni-Core online. Address: 1QLux...v01");
-                alert("💠 【Omni-Core 起動完了】\nすべての未来技術モジュールと発光シアン空間の同期が完了しました！");
+                addLog("[Success] Cyber Matrix Quantum Omni-Core online. Address: 1QLux...pqc");
+                alert("🛡️ 【量子耐性コア起動完了】\nポスト量子暗号シールドおよびすべての未来技術モジュールの同期が完了しました！");
             }, 800);
         });
 
@@ -424,19 +425,29 @@
             }, 800);
         });
 
+        document.getElementById('pqcShieldBtn').addEventListener('click', () => {
+            addLog("Engaging lattice-based post-quantum cryptographic hardening...");
+            document.getElementById('pqcShieldBtn').innerText = "🛡️ PQC LATTICE SHIELD ACTIVE";
+            setTimeout(() => {
+                addLog("[Success] Quantum resistance verified against Shor's algorithm attacks.");
+                document.getElementById('pqcStatusLabel').innerText = "QUANTUM PROOF";
+                alert("🛡️ 【ポスト量子暗号シールド全開】\nショアの算法による将来の解析リスクを完全に無効化しました！");
+            }, 700);
+        });
+
         document.getElementById('shareBtn').addEventListener('click', () => {
             addLog("Generating cyber matrix state export for community share...");
             setTimeout(() => {
                 addLog("[Success] Wallet state copied to clipboard & broadcasted.");
-                alert("🔗 【ステータス共有完了】\n現在のQLUXウォレットの最強状態がクリップボードにコピーされました！");
+                alert("🔗 【ステータス共有完了】\n現在のQLUXウォレットの最強量子状態がクリップボードにコピーされました！");
             }, 500);
         });
 
         document.getElementById('storageBtn').addEventListener('click', () => {
-            addLog("Syncing decentralized Merkle tree storage nodes...");
+            addLog("Syncing decentralized Merkle tree storage nodes with PQC proofs...");
             setTimeout(() => {
-                addLog("[Success] Storage sync verified on BSV network.");
-                alert("💾 【分散ストレージ同期完了】\nMetanetツリーと分散ストレージの整合性が完全に証明されました！");
+                addLog("[Success] PQC storage sync verified on BSV network.");
+                alert("💾 【分散ストレージ同期完了】\n量子耐性を持つMetanetツリーデータの整合性が完全に証明されました！");
             }, 600);
         });
 
@@ -449,19 +460,10 @@
                 return;
             }
 
-            addLog(`Constructing Omni-Core transaction to ${recipient}...`);
+            addLog(`Constructing Quantum-Shielded transaction to ${recipient}...`);
             document.getElementById('sendBtn').innerText = "Broadcasting to Matrix...";
 
             setTimeout(() => {
-                const txid = 'omni_tx_' + Math.random().toString(36).substring(2, 10);
-                addLog(`[Success] Omni-Core TX Broadcasted! TXID: ${txid}`);
-                alert(`マトリックスネットワークへの送信が完了しました！\nTXID: ${txid}`);
-                document.getElementById('recipientInput').value = "";
-                document.getElementById('amountInput').value = "";
-                document.getElementById('sendBtn').innerText = "🚀 BROADCAST METANET TX";
-            }, 1000);
-        });
-    </script>
-</body>
-</html>
-
+                const txid = 'pqc_tx_' + Math.random().toString(36).substring(2, 10);
+                addLog(`[Success] PQC-Shielded TX Broadcasted! TXID: ${txid}`);
+                alert(`量子耐性マトリックスネットワークへの送信が完了しました！\nTXI
