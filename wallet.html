@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX WALLET - Omniversal Supreme Omniverse Edition v10000.0</title>
+    <title>QLUX WALLET - Supreme Absolute Ultimate Edition v10000.0</title>
     <style>
         :root {
             --bg-color: #000000;
-            --card-bg: rgba(10, 2, 5, 0.98);
+            --card-bg: rgba(8, 2, 4, 0.98);
             --border-color: rgba(255, 0, 85, 0.95);
             --neon-red: #ff0055;
             --neon-gold: #ffd700;
@@ -32,9 +32,9 @@
             align-items: center;
             padding: 12px;
             background-image: 
-                radial-gradient(circle at 50% 10%, rgba(255, 0, 85, 0.35) 0%, transparent 60%),
-                radial-gradient(circle at 10% 90%, rgba(255, 215, 0, 0.25) 0%, transparent 50%),
-                radial-gradient(circle at 90% 90%, rgba(0, 243, 255, 0.25) 0%, transparent 50%);
+                radial-gradient(circle at 50% 10%, rgba(255, 0, 85, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 10% 90%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(0, 243, 255, 0.3) 0%, transparent 50%);
         }
         .container {
             width: 100%;
@@ -53,7 +53,7 @@
         .logo-area h1 {
             font-size: 1.05rem;
             color: var(--neon-red);
-            text-shadow: 0 0 15px rgba(255, 0, 85, 0.9);
+            text-shadow: 0 0 20px rgba(255, 0, 85, 1);
             letter-spacing: 1px;
         }
         .logo-area p {
@@ -77,6 +77,11 @@
             padding: 14px;
             backdrop-filter: blur(20px);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.95);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.25);
         }
         .auth-card {
             text-align: center;
@@ -85,9 +90,9 @@
             gap: 12px;
         }
         .key-icon {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--neon-red);
-            text-shadow: 0 0 20px rgba(255,0,85,0.8);
+            text-shadow: 0 0 25px rgba(255,0,85,0.9);
         }
         .auth-title {
             font-size: 0.9rem;
@@ -109,7 +114,7 @@
             cursor: pointer;
             font-size: 0.85rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(255, 0, 85, 0.7);
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.8);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -126,7 +131,7 @@
             cursor: pointer;
             font-size: 0.8rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.7);
             text-transform: uppercase;
             width: 100%;
             margin-top: 8px;
@@ -140,7 +145,7 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 0.7rem;
-            box-shadow: 0 0 10px rgba(255, 0, 85, 0.6);
+            box-shadow: 0 0 10px rgba(255, 0, 85, 0.7);
             text-transform: uppercase;
             width: 100%;
         }
@@ -155,6 +160,20 @@
             border-radius: 8px;
             padding: 12px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .balance-box::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: rotate(45deg);
+            animation: shine 4s infinite linear;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
         }
         .balance-title {
             font-size: 0.68rem;
@@ -165,7 +184,7 @@
             color: var(--neon-red);
             font-weight: bold;
             margin-top: 3px;
-            text-shadow: 0 0 12px rgba(255, 0, 85, 0.8);
+            text-shadow: 0 0 15px rgba(255, 0, 85, 0.9);
         }
         .ticker-bar {
             display: flex;
@@ -184,11 +203,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .module-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 8px;
         }
         .sub-module {
             background: rgba(255, 255, 255, 0.02);
@@ -219,10 +233,11 @@
             font-size: 0.78rem;
             outline: none;
             width: 100%;
+            transition: all 0.3s ease;
         }
         .form-input:focus {
-            border-color: var(--neon-red);
-            box-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.6);
         }
         .swipeable-container {
             width: 100%;
@@ -247,6 +262,11 @@
             border-radius: 8px;
             padding: 8px;
             flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+        .radar-card:hover {
+            background: rgba(0, 243, 255, 0.1);
+            border-color: var(--neon-cyan);
         }
         .history-list {
             display: flex;
@@ -292,19 +312,19 @@
         <header>
             <div class="logo-area">
                 <h1>QLUX WALLET</h1>
-                <p>Supreme Omniversal Edition v10000.0</p>
+                <p>Supreme Absolute Ultimate Edition v10000.0</p>
             </div>
             <div class="badge" id="mode-badge">OMNI-GOD</div>
         </header>
 
         <!-- 認証前カード -->
         <div class="card auth-card" id="authSection">
-            <div class="key-icon">🌐⚡</div>
-            <div class="auth-title">Global Omniversal Gateway</div>
+            <div class="key-icon">🌐💎⚡</div>
+            <div class="auth-title">Supreme Omniversal Gateway</div>
             <div class="auth-desc">
-                説明不要。世界人口のすべてが納得する神域のUX。全マルチバースの境界線を破壊し、完全な経済圏を今すぐ同期せよ。
+                Handcashの超直感UX、Centbeeのクロス流動性、Twetchの全アクション価値連動――そのすべてを融合した神域の要塞へようこそ。
             </div>
-            <button class="btn-primary" id="connectBtn">🚀 INITIALIZE SUPREME OMNI</button>
+            <button class="btn-primary" id="connectBtn">🚀 LAUNCH ULTIMATE OMNIVERSE</button>
         </div>
 
         <!-- オールインワン・ダッシュボード -->
@@ -313,38 +333,38 @@
             <!-- ティッカー -->
             <div class="ticker-bar">
                 <span>BSV/USD: <strong style="color: var(--neon-red);" id="bsvPrice">$60.25</strong></span>
-                <span>Omni-Sync: <strong style="color: var(--neon-green);">100% SUPREME</strong></span>
+                <span>Omni-Sync: <strong style="color: var(--neon-green);">100% ULTIMATE</strong></span>
             </div>
 
             <!-- 残高 -->
             <div class="balance-box">
-                <div class="balance-title">TOTAL SUPREME ASSETS (BSV)</div>
-                <div class="balance-amount" id="userBalance">2.45800000 BSV ($148.09)</div>
+                <div class="balance-title">TOTAL SUPREME OMNI ASSETS (BSV)</div>
+                <div class="balance-amount" id="userBalance">3.89200000 BSV ($234.49)</div>
             </div>
             <div style="font-size: 0.7rem; color: var(--text-muted); display: flex; justify-content: space-between;">
                 <span>Handle: <strong id="userHandle" style="color: var(--neon-red);">@qluxwallet_admin</strong></span>
-                <span>Status: <strong style="color: var(--neon-gold);">OMNI-ABSOLUTE</strong></span>
+                <span>Status: <strong style="color: var(--neon-gold);">ULTIMATE HAWK</strong></span>
             </div>
 
-            <!-- セクション1: アービトラージ＆流動性レーダー -->
+            <!-- セクション1: マルチバース・アービトラージ＆流動性レーダー -->
             <div>
                 <div class="section-header">
-                    <span>📡 Multi-Versal Arbitrage Radar</span>
+                    <span>📡 Multi-Versal Arbitrage & Flow Radar</span>
                     <span style="font-size: 0.6rem; color: var(--text-muted);">Swipe ➔</span>
                 </div>
                 <div class="swipeable-container">
                     <div class="radar-card">
-                        <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold;">Quantum Node X</div>
-                        <div style="font-size: 0.62rem; color: var(--text-muted);">Spread: +8.4%</div>
-                        <div style="font-size: 0.65rem; color: var(--neon-green); margin-top: 2px;">MAX HARVEST</div>
+                        <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold;">Quantum Node Alpha</div>
+                        <div style="font-size: 0.62rem; color: var(--text-muted);">Spread: +12.5%</div>
+                        <div style="font-size: 0.65rem; color: var(--neon-green); margin-top: 2px;">HARVESTED</div>
                     </div>
                     <div class="radar-card">
-                        <div style="font-size: 0.7rem; color: var(--neon-gold); font-weight: bold;">Neural Matrix 7</div>
-                        <div style="font-size: 0.62rem; color: var(--text-muted);">Yield: 24.2% APY</div>
+                        <div style="font-size: 0.7rem; color: var(--neon-gold); font-weight: bold;">Neural Yield Matrix</div>
+                        <div style="font-size: 0.62rem; color: var(--text-muted);">Yield: 32.8% APY</div>
                         <div style="font-size: 0.65rem; color: var(--neon-green); margin-top: 2px;">AUTONOMOUS</div>
                     </div>
                     <div class="radar-card">
-                        <div style="font-size: 0.7rem; color: var(--neon-red); font-weight: bold;">STAS Singularity</div>
+                        <div style="font-size: 0.7rem; color: var(--neon-red); font-weight: bold;">STAS Singularity Core</div>
                         <div style="font-size: 0.62rem; color: var(--text-muted);">Latency: 0.00ms</div>
                         <div style="font-size: 0.65rem; color: var(--neon-green); margin-top: 2px;">SECURED</div>
                     </div>
@@ -354,16 +374,16 @@
             <!-- セクション2: AIオート・トレード＆コンシェルジュ -->
             <div class="sub-module">
                 <div class="section-header" style="margin-bottom: 2px;">
-                    <span>🤖 AI Supreme Yield Concierge</span>
+                    <span>🤖 AI Ultimate Yield Concierge</span>
                     <span style="font-size: 0.6rem; color: var(--neon-green);">ACTIVE</span>
                 </div>
-                <div style="font-size: 0.68rem; color: var(--text-muted);">全ネットワークの富を自律収集し、残高を最大効率で増幅させます。</div>
-                <button class="btn-secondary" id="aiBoostBtn" style="margin-top: 4px;">⚡ EXECUTE OMNI YIELD BOOST</button>
+                <div style="font-size: 0.68rem; color: var(--text-muted);">全ネットワークの富と流動性を自律回収し、自動で資産を増幅させます。</div>
+                <button class="btn-secondary" id="aiBoostBtn" style="margin-top: 4px;">⚡ EXECUTE ULTIMATE YIELD BOOST</button>
             </div>
 
-            <!-- セクション3: 高速ハイパー送金パネル -->
+            <!-- セクション3: 高速ハイパー送金パネル（Handcash超え直感仕様） -->
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 6px;">
-                <div class="section-header">💸 Absolute Hyper Transfer</div>
+                <div class="section-header">💸 Absolute Hyper Transfer ($handle)</div>
                 <div class="form-group">
                     <label>Recipient Handle / Paymail</label>
                     <input type="text" id="recipientInput" class="form-input" placeholder="$handle or address">
@@ -372,19 +392,19 @@
                     <label>Amount (USD / BSV)</label>
                     <input type="number" id="amountInput" class="form-input" placeholder="0.00" step="0.01">
                 </div>
-                <button class="btn-send" id="sendBtn">⚡ EXECUTE OMNI BROADCAST</button>
+                <button class="btn-send" id="sendBtn">⚡ EXECUTE ULTIMATE BROADCAST</button>
             </div>
 
-            <!-- セクション4: VIPメンバーシップ ＆ 履歴 -->
+            <!-- セクション4: VIPメンバーシップ ＆ すべての行動が価値を生むログ -->
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 6px;">
                 <div class="section-header">
-                    <span>👑 Global Success VIP Gate</span>
+                    <span>👑 Ultimate Success VIP Gate</span>
                     <span style="font-size: 0.6rem; color: var(--neon-gold);">PASSPORT #01</span>
                 </div>
                 <div class="history-list" id="historyList">
                     <div class="history-item">
-                        <span>[Verified] Omniversal Pass #01 (Zero Fee)</span>
-                        <span style="color: var(--text-muted);">18:35:00</span>
+                        <span>[Verified] Ultimate Pass #01 (Zero Fee & Auto-Reward)</span>
+                        <span style="color: var(--text-muted);">18:44:00</span>
                     </div>
                 </div>
             </div>
@@ -393,11 +413,11 @@
         <!-- システムログコンソール -->
         <div class="card">
             <div class="logs-header">
-                <span>SUPREME OMNIVERSE CONSOLE</span>
+                <span>ULTIMATE OMNIVERSE CONSOLE</span>
                 <span>SECURE</span>
             </div>
             <div class="logs-container" id="logConsole">
-                [System] QLUX-WALLET v10000.0 Supreme initialized.<br>
+                [System] QLUX-WALLET v10000.0 Ultimate initialized.<br>
             </div>
         </div>
     </div>
@@ -411,22 +431,31 @@
         }
 
         document.getElementById('connectBtn').addEventListener('click', () => {
-            addLog("Initiating Supreme Omniversal core handshake...");
-            addLog("Locking all cross-dimensional protocols and grids...");
+            addLog("Initiating Ultimate Omniversal core handshake...");
+            addLog("Merging Handcash UX, Centbee flows, and Twetch action-value grids...");
 
             setTimeout(() => {
                 document.getElementById('authSection').style.display = 'none';
                 document.getElementById('dashboardSection').style.display = 'flex';
-                addLog("[Success] Global Omniverse fully synchronized at absolute maximum.");
+                addLog("[Success] Ultimate Omniverse fully synchronized at absolute maximum.");
             }, 600);
         });
 
         document.getElementById('aiBoostBtn').addEventListener('click', () => {
-            addLog("AI Supreme Concierge harvesting global liquidity streams...");
+            addLog("AI Ultimate Concierge harvesting global liquidity streams...");
             setTimeout(() => {
-                addLog("[Success] Yield Boost executed. Assets amplified.");
-                alert("🤖 【オムニバスAIブースト完了】\n全マルチバースの流動性が同期され、資産効率が最高峰に達しました！");
-                document.getElementById('userBalance').innerText = "3.12000000 BSV ($188.01)";
+                addLog("[Success] Ultimate Yield Boost executed. Assets amplified.");
+                alert("🤖 【アルティメットAIブースト完了】\n全マルチバースの流動性が完全統合され、資産効率が神域に達しました！");
+                document.getElementById('userBalance').innerText = "4.92500000 BSV ($296.73)";
+                
+                const historyList = document.getElementById('historyList');
+                const timeNow = new Date().toLocaleTimeString();
+                historyList.innerHTML = `
+                    <div class="history-item">
+                        <span>[Reward] +1.035 BSV from Autonomous AI Yield Harvest</span>
+                        <span style="color: var(--text-muted);">${timeNow}</span>
+                    </div>
+                ` + historyList.innerHTML;
             }, 800);
         });
 
@@ -439,26 +468,26 @@
                 return;
             }
 
-            addLog(`Broadcasting supreme transfer of ${amount} to ${recipient}...`);
-            document.getElementById('sendBtn').innerText = "Broadcasting Supreme...";
+            addLog(`Broadcasting ultimate transfer of ${amount} to ${recipient}...`);
+            document.getElementById('sendBtn').innerText = "Broadcasting Ultimate...";
 
             setTimeout(() => {
-                const txid = 'supremes_omni_' + Math.random().toString(36).substring(7);
-                addLog(`[Success] Supreme Transaction Verified! ID: ${txid}`);
+                const txid = 'ultimate_omni_' + Math.random().toString(36).substring(7);
+                addLog(`[Success] Ultimate Transaction Verified! ID: ${txid}`);
                 
                 const historyList = document.getElementById('historyList');
                 const timeNow = new Date().toLocaleTimeString();
                 historyList.innerHTML = `
                     <div class="history-item">
-                        <span>[Sent] -${amount} to ${recipient} (Omni-Secured)</span>
+                        <span>[Sent] -${amount} to ${recipient} (Action-Value Secured)</span>
                         <span style="color: var(--text-muted);">${timeNow}</span>
                     </div>
                 ` + historyList.innerHTML;
 
-                alert(`オムニバス超高速送金が正常に完了しました！\nTXID: ${txid}`);
+                alert(`アルティメット超高速送金が正常に完了しました！\nTXID: ${txid}`);
                 document.getElementById('recipientInput').value = "";
                 document.getElementById('amountInput').value = "";
-                document.getElementById('sendBtn').innerText = "⚡ EXECUTE OMNI BROADCAST";
+                document.getElementById('sendBtn').innerText = "⚡ EXECUTE ULTIMATE BROADCAST";
             }, 1000);
         });
     </script>
