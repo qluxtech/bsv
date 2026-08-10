@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX WALLET - Ultimate Quantum-Bio Omni-Core v03</title>
+    <title>QLUX WALLET - Ultimate Quantum-Bio Omni-Core v04</title>
     <style>
         :root {
             --bg-color: #000000;
@@ -84,7 +84,6 @@
             box-shadow: 0 0 25px rgba(0, 243, 255, 0.25), inset 0 0 15px rgba(0, 243, 255, 0.08);
             transition: all 0.5s ease;
         }
-        /* ZKPシュラウド発動時のホログラム迷彩スタイル */
         .shrouded {
             border-color: var(--neon-green) !important;
             box-shadow: 0 0 35px var(--neon-green-glow), inset 0 0 25px rgba(0, 255, 102, 0.2) !important;
@@ -94,10 +93,10 @@
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
         .key-icon {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--neon-cyan);
             text-shadow: 0 0 25px var(--neon-cyan-glow);
         }
@@ -108,10 +107,10 @@
             text-shadow: 0 0 12px var(--neon-cyan-glow);
         }
         .auth-desc {
-            font-size: 0.73rem;
+            font-size: 0.7rem;
             color: var(--neon-white);
             text-shadow: 0 0 6px var(--neon-white-glow);
-            line-height: 1.4;
+            line-height: 1.3;
             opacity: 0.9;
         }
         .btn-primary {
@@ -227,7 +226,7 @@
             text-align: left;
         }
         .form-group label {
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             color: var(--neon-cyan);
             text-shadow: 0 0 6px var(--neon-cyan-glow);
         }
@@ -238,7 +237,7 @@
             padding: 8px;
             color: var(--neon-white);
             text-shadow: 0 0 8px var(--neon-white-glow);
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             outline: none;
             width: 100%;
             box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.2);
@@ -293,34 +292,38 @@
         <header>
             <div class="logo-area">
                 <h1>QLUX WALLET</h1>
-                <p>Ultimate Quantum-Bio Omni-Core v03</p>
+                <p>Ultimate Quantum-Bio Omni-Core v04</p>
             </div>
             <div class="badge" id="mode-badge">ZKP + GARDEN ACTIVE</div>
         </header>
 
-        <!-- 認証画面 -->
+        <!-- 認証画面：App ID と App Secret を1つに統合 -->
         <div class="card auth-card" id="authSection">
             <div class="key-icon">🌿🛡️🌐</div>
-            <div class="auth-title">Quantum-Bio & HandCash Gateway</div>
+            <div class="auth-title">HandCash Unified Gateway</div>
             <div class="auth-desc">
-                ZKPホログラフィック・シュラウドとAI自生成長型ツリーを統合した次世代マトリックスへ接続します。
+                App ID と App Secret（アクセストークン）を統合し、次世代マトリックスへ接続します。
             </div>
-            <div class="form-group" style="text-align:left;">
-                <label>HandCash Access Token</label>
-                <input type="password" id="hcTokenInput" class="form-input" value="db01ad39e1f40529f286f11dd4fcd554d097b5d25f55d195fcc086f120eab84f">
+            <div class="form-group">
+                <label>HandCash App ID</label>
+                <input type="text" id="appIdInput" class="form-input" value="db01ad39e1f40529f286f11dd4fcd554d097b5d25f55d195fcc086f120eab84f">
             </div>
-            <button class="btn-primary" id="connectBtn" style="margin-top:8px;">🚀 BOOT QUANTUM-BIO MATRIX</button>
+            <div class="form-group">
+                <label>HandCash App Secret / Token</label>
+                <input type="password" id="appSecretInput" class="form-input" value="bf5d7f6fbc24d129ff5d833854e576b2c80f9e085368a2bd5fb3748c04130f22">
+            </div>
+            <button class="btn-primary" id="connectBtn" style="margin-top:10px;">🚀 BOOT UNIFIED MATRIX</button>
         </div>
 
-        <!-- ダッシュボード本編（2大超未来機能搭載） -->
-        <div class="card dashboard-content" id="dashboardSection" id="mainDashboardCard">
+        <!-- ダッシュボード本編 -->
+        <div class="card dashboard-content" id="dashboardSection">
             
             <div class="ticker-bar">
                 <span>ZKP Status: <strong style="color: var(--neon-green);" id="zkpStatusLabel">SHROUDED (SECURE)</strong></span>
                 <span>Garden LV: <strong style="color: var(--neon-cyan);" id="gardenLevel">Level 1 (Jungle Sprouting)</strong></span>
             </div>
 
-            <div class="balance-box" id="balanceBox">
+            <div class="balance-box">
                 <div class="balance-title">BIOMORPHIC OMNI-RESERVES</div>
                 <div class="balance-amount" id="userBalance">12.45000000 BSV ($750.20)</div>
             </div>
@@ -329,7 +332,7 @@
                 <span>AI Pruning: <strong style="color: var(--neon-cyan);">AUTO-OPTIMIZED</strong></span>
             </div>
 
-            <!-- ① ゼロ知識・ホログラフィック・シュラウド制御パネル -->
+            <!-- ① ZKPシュラウド制御パネル -->
             <div class="sub-module" style="border-color: var(--neon-green);">
                 <div class="section-header">
                     <span style="color: var(--neon-green);">🛡️ ZKP Holographic Shroud (隠蔽防壁)</span>
@@ -341,24 +344,24 @@
                 <button class="btn-green" id="toggleShroudBtn">👁️ TOGGLE ZKP STEALTH SHROUD</button>
             </div>
 
-            <!-- ② AI自生成長型ツリー・ガーデニング（3Dビジュアルツリー） -->
+            <!-- ② AI自生成長型ツリー・ガーデニング -->
             <div>
                 <div class="section-header">
                     <span>🌿 AI Biomorphic Metanet Garden</span>
                     <span style="font-size: 0.6rem; color: var(--neon-cyan);">GROWING ➔</span>
                 </div>
                 <div class="swipeable-container">
-                    <div class="radar-card" id="branch1">
+                    <div class="radar-card">
                         <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold; text-shadow: 0 0 6px var(--neon-cyan-glow);">Root Node Alpha</div>
                         <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Branch: Sprouting</div>
                         <div style="font-size: 0.65rem; color: var(--neon-green); text-shadow: 0 0 6px var(--neon-green-glow); margin-top: 2px;">GROWTH: 84%</div>
                     </div>
-                    <div class="radar-card" id="branch2">
+                    <div class="radar-card">
                         <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold; text-shadow: 0 0 6px var(--neon-cyan-glow);">STAS Fruit Node</div>
                         <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Yield: 5,000 QLUX</div>
                         <div style="font-size: 0.65rem; color: var(--neon-green); text-shadow: 0 0 6px var(--neon-green-glow); margin-top: 2px;">BLOOMING</div>
                     </div>
-                    <div class="radar-card" id="branch3">
+                    <div class="radar-card">
                         <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold; text-shadow: 0 0 6px var(--neon-cyan-glow);">AI Nano Vine</div>
                         <div style="font-size: 0.62rem; color: var(--neon-white); text-shadow: 0 0 4px var(--neon-white-glow);">Active Streams: 12</div>
                         <div style="font-size: 0.65rem; color: var(--neon-green); text-shadow: 0 0 6px var(--neon-green-glow); margin-top: 2px;">PRUNED & SAFE</div>
@@ -384,11 +387,11 @@
             <!-- コンソールログ -->
             <div style="border-top: 1px solid rgba(0, 243, 255, 0.3); padding-top: 6px;">
                 <div class="logs-header">
-                    <span>QUANTUM-BIO MATRIX CONSOLE</span>
-                    <span>ZKP + GARDEN SYNC</span>
+                    <span>UNIFIED MATRIX CONSOLE</span>
+                    <span>API LIVE SYNC</span>
                 </div>
                 <div class="logs-container" id="logConsole">
-                    [System] Ultimate Quantum-Bio Omni-Core v03 initialized.<br>
+                    [System] Unified Quantum-Bio Omni-Core v04 initialized.<br>
                 </div>
             </div>
         </div>
@@ -403,25 +406,27 @@
         }
 
         document.getElementById('connectBtn').addEventListener('click', () => {
-            const token = document.getElementById('hcTokenInput').value.trim();
-            if (!token) {
-                alert("アクセストークンを入力してください！");
+            const appId = document.getElementById('appIdInput').value.trim();
+            const appSecret = document.getElementById('appSecretInput').value.trim();
+
+            if (!appId || !appSecret) {
+                alert("App ID と App Secret の両方を入力してください！");
                 return;
             }
 
-            addLog("Initializing HandCash Production & ZKP Lattice Shroud...");
+            addLog(`Authenticating App ID: ${appId.substring(0, 8)}...`);
+            addLog("Verifying App Secret & ZKP Lattice Shroud...");
             addLog("Sprouting AI Biomorphic Metanet Garden nodes...");
 
             setTimeout(() => {
                 document.getElementById('authSection').style.display = 'none';
                 document.getElementById('dashboardSection').style.display = 'flex';
                 document.getElementById('dashboardSection').classList.add('shrouded');
-                addLog("[Success] ZKP Stealth Shroud active. Garden growing successfully.");
-                alert("🌿🛡️ 【量子・バイオコア起動完了】\nZKP隠蔽防壁とAI自生成長型ツリーが完全に同期しました！");
+                addLog("[Success] Unified HandCash API & ZKP Shroud synchronized.");
+                alert("🚀 【統合認証完了】\nApp IDとApp Secretの紐付けに成功し、量子-バイオコアが全開で起動しました！");
             }, 800);
         });
 
-        // ZKPシュラウド（迷彩）のオン・オフ切り替え
         let isShrouded = true;
         document.getElementById('toggleShroudBtn').addEventListener('click', () => {
             const card = document.getElementById('dashboardSection');
@@ -433,27 +438,26 @@
                 card.classList.add('shrouded');
                 statusLabel.innerText = "SHROUDED (SECURE)";
                 shroudState.innerText = "ACTIVE (Zero-Knowledge)";
-                addLog("[ZKP] Holographic stealth shroud engaged. Assets hidden from external observers.");
-                alert("🛡️ 【ZKPホログラフィック・シュラウド展開】\n外部ノードからの観測を完全に量子ノイズで遮断しました！");
+                addLog("[ZKP] Holographic stealth shroud engaged.");
+                alert("🛡️ 【ZKPホログラフィック・シュラウド展開】\n外部ノードからの観測を完全遮断しました！");
             } else {
                 card.classList.remove('shrouded');
                 statusLabel.innerText = "REVEALED (MASTER KEY)";
                 shroudState.innerText = "UNLOCKED";
-                addLog("[ZKP] Master key scan verified. Assets un-shrouded for sovereign user.");
-                alert("👁️ 【シュラウド一時解除】\nマスター鍵のスキャンにより、あなた専用の資産ルートが顕現しました！");
+                addLog("[ZKP] Master key scan verified. Assets un-shrouded.");
+                alert("👁️ 【シュラウド一時解除】\n資産ルートが顕現しました！");
             }
         });
 
-        // AI自生成長型ツリー・ガーデニングの育成ボタン
         document.getElementById('waterGardenBtn').addEventListener('click', () => {
             addLog("AI agent feeding nano-streams into Metanet garden roots...");
             document.getElementById('waterGardenBtn').innerText = "🌿 Nurturing Metanet Jungle...";
 
             setTimeout(() => {
-                addLog("[Garden] New STAS leaves sprouted. Inefficient branches pruned by AI.");
+                addLog("[Garden] New STAS leaves sprouted. Inefficient branches pruned.");
                 document.getElementById('gardenLevel').innerText = "Level 2 (Jungle Thriving)";
                 document.getElementById('userBalance').innerText = "13.12000000 BSV ($790.50)";
-                alert("🌿 【AIガーデニング繁栄完了】\nAIが収益性の低い枝を自動剪定し、新しいSTASノードの果実が大きく実りました！");
+                alert("🌿 【AIガーデニング繁栄完了】\nAIが収益性の低い枝を剪定し、STASノードの果実が大きく実りました！");
                 document.getElementById('waterGardenBtn').innerText = "💧 NURTURE & FEED GARDEN (AI HARVEST)";
             }, 1000);
         });
@@ -467,7 +471,4 @@
                 return;
             }
 
-            addLog(`Executing ZKP-shrouded transaction to ${recipient} for ${amount}...`);
-            document.getElementById('payBtn').innerText = "Broadcasting Shrouded TX...";
-
-            se
+            addLog(`Executing ZKP-shrouded transaction to ${recipient} for ${amount} BSV...`);
