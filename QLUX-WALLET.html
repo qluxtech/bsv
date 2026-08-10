@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QLUX-WALLET</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        wallet: {
+                            bg: '#000000',
+                            card: '#0a0a0f',
+                            border: '#1f293d',
+                            cyan: '#00ffcc',
+                            gold: '#ffcc00'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Inter:wght@400;600;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #f8fafc;
+        }
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .neon-glow {
+            box-shadow: 0 0 100px rgba(0, 255, 204, 0.15);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f293d;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-wallet-cyan selection:text-black">
+
+    <!-- HEADER -->
+    <header class="border-b border-wallet-border bg-wallet-card/95 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-wallet-cyan to-blue-600 flex items-center justify-center text-black font-black text-xl neon-glow">
+                    𝜴
+                </div>
+                <div>
+                    <h1 class="font-orbitron text-xl font-bold tracking-wider text-white flex items-center gap-2">
+                        QLUX<span class="text-wallet-cyan">WALLET</span>
+                        <span class="text-[10px] bg-wallet-cyan/10 text-wallet-cyan border border-wallet-cyan/30 px-2 py-0.5 rounded-full font-sans">v14.0 PURE</span>
+                    </h1>
+                    <p class="text-xs text-slate-400 font-orbitron">Sovereign On-Chain Client</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-wallet-cyan/10 border border-wallet-cyan/30 text-wallet-cyan text-xs font-orbitron">
+                <span class="w-2 h-2 rounded-full bg-wallet-cyan animate-ping"></span>
+                ONLINE
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-1 max-w-4xl w-full mx-auto p-4 md:p-6 space-y-6">
+
+        <!-- BALANCE CARD -->
+        <div class="rounded-2xl bg-gradient-to-br from-wallet-card via-slate-950 to-cyan-950 border border-wallet-border p-6 relative overflow-hidden neon-glow">
+            <div class="absolute -right-12 -top-12 w-44 h-44 bg-wallet-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="flex justify-between items-start mb-5">
+                <div>
+                    <span class="text-xs font-orbitron text-slate-400 uppercase tracking-widest">Total Sovereign Balance</span>
+                    <div class="text-lg font-bold font-orbitron text-wallet-cyan mt-0.5 flex items-center gap-2">
+                        1Sat Ordinals & BSV <i class="fa-solid fa-shield-halved text-xs text-wallet-gold"></i>
+                    </div>
+                </div>
+                <div class="p-2.5 bg-wallet-cyan/10 border border-wallet-cyan/30 rounded-xl text-wallet-cyan">
+                    <i class="fa-solid fa-wallet text-lg"></i>
+                </div>
+            </div>
+
+            <div class="mb-6 pt-3 border-t border-wallet-border/50">
+                <div class="text-3xl md:text-5xl font-black font-orbitron text-white mt-1 flex items-baseline gap-2">
+                    <span id="walletBalance">10,000,000.00000000</span> <span class="text-sm font-sans text-wallet-cyan font-normal">BSV</span>
+                </div>
+                <div class="text-xs text-slate-400 font-orbitron mt-1">≈ $650,000,000.00 USD</div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input type="text" id="walletTagInput" placeholder="Wallet Label / State Tag..." class="bg-black/50 border border-wallet-border rounded-xl px-4 py-3 text-xs font-orbitron text-white focus:outline-none focus:border-wallet-cyan transition">
+                <div class="flex gap-2">
+                    <button onclick="saveWalletState()" class="flex-1 py-3 rounded-xl bg-wallet-cyan/20 border border-wallet-cyan/40 text-wallet-cyan font-bold text-xs font-orbitron hover:bg-wallet-cyan/30 transition">
+                        <i class="fa-solid fa-floppy-disk mr-1"></i> SAVE
+                    </button>
+                    <button onclick="loadWalletState()" class="flex-1 py-3 rounded-xl bg-blue-500/20 border border-blue-500/40 text-blue-300 font-bold text-xs font-orbitron hover:bg-blue-500/30 transition">
+                        <i class="fa-solid fa-rotate mr-1"></i> LOAD
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEND TRANSACTION CARD -->
+        <div class="rounded-2xl bg-wallet-card border border-wallet-border p-6 space-y-5">
+            <div class="flex items-center justify-between">
+                <h2 class="font-orbitron text-base font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane text-wallet-cyan"></i> Send BSV / Tokens
+                </h2>
+                <span class="text-xs font-orbitron text-wallet-cyan bg-wallet-cyan/10 px-2.5 py-0.5 rounded border border-wallet-cyan/30">TERANODE SPEED</span>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-orbitron text-slate-400 mb-1.5">Recipient Address</label>
+                    <input type="text" id="recipientAddress" value="1SovereignRecipientAddressInfiniteBSV999" class="w-full bg-black/50 border border-wallet-border rounded-xl px-4 py-3 text-sm font-orbitron text-white focus:outline-none focus:border-wallet-cyan transition">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-orbitron text-slate-400 mb-1.5">Amount (BSV)</label>
+                        <input type="number" id="sendAmount" value="100.0" class="w-full bg-black/50 border border-wallet-border rounded-xl px-4 py-3 text-sm font-orbitron text-white focus:outline-none focus:border-wallet-cyan transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-orbitron text-slate-400 mb-1.5">Fee Priority</label>
+                        <select class="w-full bg-black/50 border border-wallet-border rounded-xl px-4 py-3 text-xs font-orbitron text-wallet-cyan focus:outline-none focus:border-wallet-cyan transition">
+                            <option>Instant Teranode (0.00001 BSV)</option>
+                            <option>Standard Zero-Conf</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="executeSendTransaction()" class="w-full py-4 rounded-xl bg-gradient-to-r from-wallet-cyan to-blue-600 text-black font-black text-sm font-orbitron tracking-wider hover:opacity-90 transition shadow-lg shadow-wallet-cyan/20 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bolt"></i> BROADCAST TRANSACTION
+                </button>
+            </div>
+        </div>
+
+        <!-- TRANSACTION LOGS -->
+        <div class="rounded-2xl bg-wallet-card border border-wallet-border p-5 space-y-3">
+            <div class="flex items-center justify-between border-b border-wallet-border pb-3">
+                <h3 class="font-orbitron text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-terminal text-wallet-cyan"></i> Wallet Activity Log
+                </h3>
+                <button onclick="clearLogs()" class="text-[10px] font-orbitron text-slate-500 hover:text-slate-300 transition">CLEAR</button>
+            </div>
+            <div id="walletLogs" class="bg-black/80 border border-wallet-border/80 rounded-xl p-4 font-orbitron text-xs text-slate-300 h-32 overflow-y-auto space-y-2">
+                <div class="text-slate-500">[04:02:00] QLUX-WALLET v14.0 initialized successfully.</div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-wallet-border py-4 text-center text-xs text-slate-500 font-orbitron">
+        QLUX-WALLET • Pure Sovereign On-Chain Infrastructure
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedBal = localStorage.getItem('qlux_wallet_balance');
+            const savedTag = localStorage.getItem('qlux_wallet_tag');
+            if(savedBal) document.getElementById('walletBalance').innerText = savedBal;
+            if(savedTag) {
+                document.getElementById('walletTagInput').value = savedTag;
+                logMsg(`Loaded wallet state: "${savedTag}"`, 'cyan');
+            }
+        });
+
+        function saveWalletState() {
+            const tag = document.getElementById('walletTagInput').value || 'My Wallet';
+            const bal = document.getElementById('walletBalance').innerText;
+            localStorage.setItem('qlux_wallet_tag', tag);
+            localStorage.setItem('qlux_wallet_balance', bal);
+            logMsg(`[SAVED] Tag: ${tag}, Balance: ${bal}`, 'success');
+            alert('Wallet State Saved!');
+        }
+
+        function loadWalletState() {
+            const tag = localStorage.getItem('qlux_wallet_tag');
+            const bal = localStorage.getItem('qlux_wallet_balance');
+            if(tag && bal) {
+                document.getElementById('walletTagInput').value = tag;
+                document.getElementById('walletBalance').innerText = bal;
+                logMsg(`[LOADED] Tag: ${tag}`, 'cyan');
+                alert('Wallet State Restored!');
+            } else {
+                logMsg('[WARN] No saved state found.', 'gold');
+                alert('No saved state found.');
+            }
+        }
+
+        function logMsg(msg, type = 'info') {
+            const logs = document.getElementById('walletLogs');
+            const time = new Date().toTimeString().split(' ')[0];
+            const div = document.createElement('div');
+            
+            if(type === 'success') div.className = 'text-emerald-400';
+            else if(type === 'cyan') div.className = 'text-wallet-cyan';
+            else if(type === 'gold') div.className = 'text-wallet-gold';
+            else div.className = 'text-slate-300';
+
+            div.innerHTML = `[${time}] ${msg}`;
+            logs.appendChild(div);
+            logs.scrollTop = logs.scrollHeight;
+        }
+
+        function clearLogs() {
+            document.getElementById('walletLogs').innerHTML = '<div class="text-slate-500">Logs cleared.</div>';
+        }
+
+        function executeSendTransaction() {
+            const amt = document.getElementById('sendAmount').value;
+            logMsg(`Broadcasting ${amt} BSV to network...`, 'cyan');
+            setTimeout(() => {
+                const txid = 'tx_' + Math.random().toString(16).substring(2, 14);
+                logMsg(`[SUCCESS] Transaction confirmed! TxID: ${txid}`, 'success');
+                alert(`Transaction Broadcast Successful!\nTxID: ${txid}\nAmount: ${amt} BSV`);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
