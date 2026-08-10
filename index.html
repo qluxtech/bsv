@@ -55,65 +55,77 @@
         <p class="text-sm text-gray-400 max-w-xl mx-auto">あらゆる既存インフラを統括し、個人へ主権を返還する最上位執行レイヤー。</p>
     </section>
 
-    <!-- 3. The Ultimate Mega-Viral Sovereign Core -->
+        <!-- 4-in-1 Universal Mega-Viral Core -->
     <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-3xl p-6 sm:p-10 text-center glow-border">
-      <h3 class="text-xs uppercase tracking-[0.25em] text-qlux-cyan font-bold mb-8">GLOBAL SOVEREIGN NEXUS // 永遠の証明エンジン</h3>
+      <h3 class="text-xs uppercase tracking-[0.25em] text-qlux-cyan font-bold mb-8">GLOBAL OMNI-NEXUS // 全人類・全存在の不変証明エンジン</h3>
+      
+      <!-- ターゲット切り替えタブ -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-8 bg-qlux-dark p-1.5 rounded-2xl border border-qlux-border">
+        <button onclick="switchMode('individual')" id="tab-individual" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-qlux-cyan bg-qlux-cyan/10 border border-qlux-cyan/40">👤 個人・独身</button>
+        <button onclick="switchMode('couple')" id="tab-couple" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">💍 カップル・愛</button>
+        <button onclick="switchMode('enterprise')" id="tab-enterprise" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">🏢 企業・信用</button>
+        <button onclick="switchMode('global')" id="tab-global" class="py-2.5 px-3 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">🌐 グローバル(EN)</button>
+      </div>
+
       <div class="space-y-6">
-        
-        <!-- メイン・メガバズボタン -->
-        <div onclick="openImprintModal()" id="qlux-main-btn" class="cursor-pointer rounded-2xl p-8 sm:p-10 transition-all duration-300 transform hover:scale-[1.01]" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.4) 0%, rgba(0, 100, 255, 0.3) 100%); border: 3px solid #00f0ff; box-shadow: 0 0 60px rgba(0, 240, 255, 0.8), inset 0 0 35px rgba(0, 240, 255, 0.7);">
-          <div class="text-3xl sm:text-4xl font-extrabold tracking-widest" style="color: #00f0ff; text-shadow: 0 0 20px rgba(0, 240, 255, 1), 0 0 40px rgba(0, 240, 255, 0.8);">
+        <!-- メイン・ウルトラバズボタン -->
+        <div onclick="openOmniModal()" id="qlux-omni-btn" class="cursor-pointer rounded-2xl p-8 sm:p-10 transition-all duration-300 transform hover:scale-[1.01]" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.4) 0%, rgba(120, 0, 255, 0.3) 100%); border: 3px solid #00f0ff; box-shadow: 0 0 60px rgba(0, 240, 255, 0.8), inset 0 0 35px rgba(0, 240, 255, 0.7);">
+          <div id="main-btn-title" class="text-2xl sm:text-4xl font-extrabold tracking-widest text-qlux-cyan" style="text-shadow: 0 0 20px rgba(0, 240, 255, 1);">
             QLUX⚡ETERNAL PROOF
           </div>
-          <div class="text-xs text-qlux-cyan/80 mt-2 tracking-widest uppercase font-mono">
-            // Claim Your Sovereign Tier & Lock Truth in the Universe
+          <div id="main-btn-sub" class="text-xs text-qlux-cyan/80 mt-2 tracking-widest uppercase font-mono">
+            // Claim Your Sovereign Status in the Immutable Universe
           </div>
         </div>
 
-        <!-- ライブ・グローバルシンクロニシティ・ティッカー -->
+        <!-- ライブ・オムニティッカー -->
         <div class="border border-qlux-border rounded-2xl p-4 bg-qlux-dark flex items-center justify-between text-xs font-mono text-gray-400 overflow-hidden shadow-inner">
           <div class="flex items-center space-x-2 flex-shrink-0">
             <span class="w-2.5 h-2.5 rounded-full bg-qlux-cyan animate-ping"></span>
-            <span class="text-qlux-cyan font-bold uppercase tracking-wider">GLOBAL FEED:</span>
+            <span class="text-qlux-cyan font-bold uppercase tracking-wider">OMNI FEED:</span>
           </div>
-          <div id="live-ticker-text" class="truncate ml-4 text-gray-300">
-            [#000142 - ARCHITECT] "We leave our truth in the immutable universe..." — BSV Mainnet
+          <div id="omni-ticker-text" class="truncate ml-4 text-gray-300">
+            [#000184 - SOVEREIGN] "We leave our truth in the immutable universe..." — BSV Mainnet
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- 【最高峰バイラル証明書発行】モーダル -->
-    <div id="imprint-modal" class="fixed inset-0 bg-black/95 backdrop-blur-lg hidden items-center justify-center z-50 p-2 sm:p-4">
-      <div class="bg-qlux-card border-2 border-qlux-cyan rounded-3xl w-full max-w-full sm:max-w-3xl h-[92vh] sm:h-auto flex flex-col p-5 sm:p-8 text-left glow-border relative shadow-2xl overflow-y-auto" style="box-shadow: 0 0 90px rgba(0,240,255,0.7);">
+    <!-- 【全方位対応】証明書発行モーダル -->
+    <div id="omni-modal" class="fixed inset-0 bg-black/95 backdrop-blur-lg hidden items-center justify-center z-50 p-2 sm:p-4">
+      <div id="modal-container-border" class="bg-qlux-card border-2 border-qlux-cyan rounded-3xl w-full max-w-full sm:max-w-3xl h-[92vh] sm:h-auto flex flex-col p-5 sm:p-8 text-left glow-border relative shadow-2xl overflow-y-auto" style="box-shadow: 0 0 90px rgba(0,240,255,0.7);">
         
         <!-- ヘッダー -->
         <div class="flex justify-between items-center mb-5 border-b border-qlux-border pb-4">
           <div>
-            <div class="text-xs font-bold text-qlux-cyan uppercase tracking-widest mb-1">⚡ Sovereign Genesis Gateway</div>
-            <h4 class="text-lg sm:text-xl font-bold text-white">永続刻印 ＆ ソブリン階級の発行</h4>
+            <div id="modal-tag" class="text-xs font-bold text-qlux-cyan uppercase tracking-widest mb-1">⚡ Universal Genesis Gateway</div>
+            <h4 id="modal-heading" class="text-lg sm:text-xl font-bold text-white">宇宙への永続刻印 ＆ 証明書発行</h4>
           </div>
-          <button onclick="closeImprintModal()" class="text-gray-400 hover:text-white text-2xl font-bold px-3 py-1 rounded-xl border border-qlux-border">×</button>
+          <button onclick="closeOmniModal()" class="text-gray-400 hover:text-white text-2xl font-bold px-3 py-1 rounded-xl border border-qlux-border">×</button>
         </div>
 
         <!-- 入力フォームセクション -->
         <div class="space-y-4 mb-6 flex-1">
-          <div>
-            <label class="block text-xs font-bold text-qlux-cyan mb-2 uppercase tracking-wider">📝 宇宙に刻むあなたのメッセージ・歴史</label>
-            <textarea id="imprint-user-input" rows="4" class="w-full bg-qlux-dark border-2 border-qlux-cyan/60 rounded-2xl p-4 text-sm text-white font-mono focus:outline-none focus:border-qlux-cyan focus:ring-2 focus:ring-qlux-cyan transition relative z-10" style="pointer-events: auto !important;" placeholder="ここに永遠に残したい言葉を入力してください..."></textarea>
+          <div id="extra-input-field" class="hidden">
+            <label id="extra-label" class="block text-xs font-bold text-qlux-cyan mb-1 uppercase tracking-wider">👤 パートナー B / 企業名</label>
+            <input type="text" id="omni-sub-input" class="w-full bg-qlux-dark border border-qlux-cyan/60 rounded-xl p-3 text-xs text-white font-mono" placeholder="Secondary Name / Entity">
           </div>
 
-          <!-- ダイナミック証明書プレビュー -->
+          <div>
+            <label id="input-label-text" class="block text-xs font-bold text-qlux-cyan mb-2 uppercase tracking-wider">📝 宇宙に刻むあなたのメッセージ・歴史</label>
+            <textarea id="omni-user-input" rows="4" class="w-full bg-qlux-dark border-2 border-qlux-cyan/60 rounded-2xl p-4 text-sm text-white font-mono focus:outline-none focus:border-qlux-cyan focus:ring-2 focus:ring-qlux-cyan transition relative z-10" style="pointer-events: auto !important;" placeholder="ここに永遠に残したい言葉を入力してください..."></textarea>
+          </div>
+
+          <!-- プレビューボックス -->
           <div class="bg-qlux-dark border border-qlux-cyan/40 rounded-2xl p-4 text-xs font-mono space-y-2 relative overflow-hidden" style="background: linear-gradient(135deg, #050b10 0%, #0a192f 100%);">
-            <div class="absolute -right-4 -bottom-4 text-qlux-cyan/10 text-7xl font-extrabold pointer-events-none">SOVEREIGN</div>
+            <div class="absolute -right-4 -bottom-4 text-qlux-cyan/10 text-7xl font-extrabold pointer-events-none">PROOF</div>
             <div class="text-qlux-cyan font-bold flex justify-between items-center">
-              <span>📜 ETERNAL SOVEREIGN CERTIFICATE</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-qlux-cyan/20 border border-qlux-cyan text-[10px] text-qlux-cyan font-bold">TIER: PIONEER</span>
+              <span id="preview-title">📜 ETERNAL SOVEREIGN CERTIFICATE</span>
+              <span id="preview-badge" class="px-2.5 py-0.5 rounded-full bg-qlux-cyan/20 border border-qlux-cyan text-[10px] text-qlux-cyan font-bold">TIER: ARCHITECT</span>
             </div>
             <div id="preview-msg-box" class="text-gray-300 italic truncate">"Your permanent footprint on Bitcoin SV Mainnet."</div>
             <div class="text-[10px] text-gray-400 flex justify-between pt-1 border-t border-qlux-border/50">
-              <span>Genesis ID: #000184</span>
+              <span id="preview-id">Genesis ID: #000184</span>
               <span class="text-qlux-cyan">Fee: $0.10 USD (HandCash Instant)</span>
             </div>
           </div>
@@ -121,10 +133,10 @@
 
         <!-- アクションボタン群 -->
         <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-2 border-t border-qlux-border">
-          <button onclick="executeMegaViralImprint()" class="flex-1 bg-gradient-to-r from-qlux-cyan to-blue-500 text-qlux-dark font-extrabold py-4 rounded-2xl text-sm uppercase tracking-wider hover:opacity-90 transition shadow-lg flex items-center justify-center space-x-2" style="box-shadow: 0 0 30px rgba(0,240,255,0.8);">
-            <span>⚡ ソブリン証明書を発行する ($0.10)</span>
+          <button id="action-submit-btn" onclick="executeOmniImprint()" class="flex-1 bg-gradient-to-r from-qlux-cyan to-blue-500 text-qlux-dark font-extrabold py-4 rounded-2xl text-sm uppercase tracking-wider hover:opacity-90 transition shadow-lg flex items-center justify-center space-x-2" style="box-shadow: 0 0 30px rgba(0,240,255,0.8);">
+            <span>⚡ 永久証明書を発行する ($0.10)</span>
           </button>
-          <button onclick="closeImprintModal()" class="px-6 py-4 border border-qlux-border text-gray-400 hover:text-white rounded-2xl text-sm transition text-center">
+          <button onclick="closeOmniModal()" class="px-6 py-4 border border-qlux-border text-gray-400 hover:text-white rounded-2xl text-sm transition text-center">
             キャンセル
           </button>
         </div>
@@ -133,131 +145,86 @@
     </div>
 
 <script>
-  // ライブティッカーの動的切り替え演出
-  const sampleFeeds = [
-    '[#000181 - ARCHITECT] "To the immutable future of humanity..." — BSV Mainnet',
-    '[#000182 - PIONEER] "Building sovereign systems beyond control." — BSV Mainnet',
-    '[#000183 - PIONEER] "Truth cannot be rewritten." — BSV Mainnet'
-  ];
-  let feedIndex = 0;
-  setInterval(() => {
-    feedIndex = (feedIndex + 1) % sampleFeeds.length;
-    const tickerEl = document.getElementById('live-ticker-text');
-    if (tickerEl) {
-      tickerEl.innerText = sampleFeeds[feedIndex];
-    }
-  }, 4000);
+  let currentMode = 'individual';
 
-  function openImprintModal() {
-    const modal = document.getElementById('imprint-modal');
-    modal.style.display = 'flex';
-    
-    const inputArea = document.getElementById('imprint-user-input');
-    if (!inputArea.value) {
+  function switchMode(mode) {
+    currentMode = mode;
+    ['individual', 'couple', 'enterprise', 'global'].forEach(m => {
+      const btn = document.getElementById(`tab-${m}`);
+      if(m === mode) {
+        btn.className = "py-2.5 px-3 rounded-xl text-xs font-bold transition text-qlux-cyan bg-qlux-cyan/10 border border-qlux-cyan/40";
+      } else {
+        btn.className = "py-2.5 px-3 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white";
+      }
+    });
+
+    const mainBtnTitle = document.getElementById('main-btn-title');
+    const mainBtnSub = document.getElementById('main-btn-sub');
+    const extraField = document.getElementById('extra-input-field');
+    const inputArea = document.getElementById('omni-user-input');
+
+    if(mode === 'individual') {
+      mainBtnTitle.innerText = "QLUX⚡ETERNAL PROOF";
+      mainBtnSub.innerText = "// Claim Your Sovereign Status in the Universe";
+      extraField.classList.add('hidden');
       inputArea.value = 'QLUX ETERNAL PROOF // "We leave our truth in the immutable universe." #QLUX #Sovereign';
+    } else if(mode === 'couple') {
+      mainBtnTitle.innerText = "⚡ ETERNAL LOVE PROOF";
+      mainBtnSub.innerText = "// Lock Your Eternal Bond in the Universe";
+      extraField.classList.remove('hidden');
+      document.getElementById('extra-label').innerText = "👤 パートナー B の名前";
+      inputArea.value = 'Our love and bond are permanently anchored to the immutable universe. #QLUX #EternalLove #BSV';
+    } else if(mode === 'enterprise') {
+      mainBtnTitle.innerText = "🏢 ENTERPRISE ASSURANCE";
+      mainBtnSub.innerText = "// Absolute Cryptographic Trust & Audit Log";
+      extraField.classList.remove('hidden');
+      document.getElementById('extra-label').innerText = "🏢 企業・組織名";
+      inputArea.value = 'Enterprise Audited & Anchored to Bitcoin SV Mainnet. #QLUX #EnterpriseTrust';
+    } else if(mode === 'global') {
+      mainBtnTitle.innerText = "🌐 GLOBAL SOVEREIGN NEXUS";
+      mainBtnSub.innerText = "// Write Your Legacy into the Immutable Universe";
+      extraField.classList.add('hidden');
+      inputArea.value = 'We leave our absolute truth in the immutable universe. #QLUX #GlobalProof #BSV';
     }
-    setTimeout(() => {
-      inputArea.focus();
-    }, 100);
   }
 
-  function closeImprintModal() {
-    const modal = document.getElementById('imprint-modal');
-    modal.style.display = 'none';
+  function openOmniModal() {
+    document.getElementById('omni-modal').style.display = 'flex';
+    setTimeout(() => { document.getElementById('omni-user-input').focus(); }, 100);
   }
 
-  function executeMegaViralImprint() {
-    const userInput = document.getElementById('imprint-user-input').value;
+  function closeOmniModal() {
+    document.getElementById('omni-modal').style.display = 'none';
+  }
+
+  function executeOmniImprint() {
+    const userInput = document.getElementById('omni-user-input').value;
     if (!userInput.trim()) {
       alert("メッセージを入力してください。");
       return;
     }
 
-    closeImprintModal();
-    const btn = document.getElementById('qlux-main-btn');
-    
+    closeOmniModal();
+    const btn = document.getElementById('qlux-omni-btn');
     btn.style.transform = 'scale(1.03)';
-    btn.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(0, 240, 255, 0.95) 100%)';
-    btn.style.boxShadow = '0 0 90px rgba(255, 255, 255, 1), 0 0 140px rgba(0, 240, 255, 0.9)';
-    btn.querySelector('.text-3xl').style.color = '#050b10';
-    btn.querySelector('.text-3xl').innerText = '⚡ MINTING SOVEREIGN TIER...';
-
-    setTimeout(() => {
-      btn.querySelector('.text-3xl').innerText = '⚡ ANCHORING TO BSV CHAIN...';
-    }, 1200);
-
+    
     setTimeout(() => {
       btn.style.transform = 'scale(1)';
-      btn.style.background = 'linear-gradient(135deg, rgba(0, 240, 255, 0.4) 0%, rgba(0, 100, 255, 0.3) 100%)';
-      btn.style.boxShadow = '0 0 60px rgba(0, 240, 255, 0.8), inset 0 0 35px rgba(0, 240, 255, 0.7)';
-      btn.querySelector('.text-3xl').style.color = '#00f0ff';
-      btn.querySelector('.text-3xl').innerText = 'QLUX⚡ETERNAL PROOF';
-
-      // 超メガバズ用のXシェア文言
-      const shareText = encodeURIComponent(`私は人類で #000184 番目（PIONEER TIER）の真実をブロックチェーンに永久刻印しました！\n\n"${userInput.slice(0, 50)}..."\n\nTXID: 9f82c4...e31b\n#QLUX #EternalProof #BSV #Sovereign`);
-      const twitterUrl = `https://twitter.com/intent/tweet?text=${shareText}`;
       
-      if (confirm("🔥 SOVEREIGN TIER ISSUED SUCCESSFULLY!\n\n【ソブリン階級・永続刻印の完了】\nブロックチェーンへの書き込みとウォレット決済($0.10)が正常に完了しました。\n\n🚀 あなたの称号（ID: #000184 PIONEER）をX(Twitter)で世界に向けてブロードキャストしますか？")) {
+      let shareMsg = `人類で #000184 番目の真実をブロックチェーンに永久刻印しました！\n\n"${userInput.slice(0, 50)}..."\n\n#QLUX #EternalProof #BSV`;
+      if(currentMode === 'couple') {
+        shareMsg = `私達の永遠の愛と絆を、ブロックチェーンへ永久に刻み込みました！\n\n"${userInput.slice(0, 50)}..."\n\n#QLUX #EternalLove #BSV`;
+      } else if(currentMode === 'enterprise') {
+        shareMsg = `企業の信用と監査ログをブロックチェーン（BSV）へ永久アンカーしました。\n\n"${userInput.slice(0, 50)}..."\n\n#QLUX #EnterpriseTrust`;
+      } else if(currentMode === 'global') {
+        shareMsg = `My absolute truth is permanently anchored to the immutable universe via QLUX & BSV!\n\n"${userInput.slice(0, 50)}..."\n\n#QLUX #GlobalProof #BSV`;
+      }
+
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMsg)}`;
+      if (confirm("🔥 永続刻印およびウォレット決済($0.10)が完了しました！\n\n🚀 この証明をX(Twitter)で世界に向けてシェアしますか？")) {
         window.open(twitterUrl, '_blank');
       }
-    }, 2500);
-  }
-</script>
-
-<script>
-  function openImprintModal() {
-    const modal = document.getElementById('imprint-modal');
-    modal.style.display = 'flex';
-    
-    const inputArea = document.getElementById('imprint-user-input');
-    if (!inputArea.value) {
-      inputArea.value = 'QLUX ETERNAL PROOF // "We leave our truth in the immutable universe." #QLUX';
-    }
-    setTimeout(() => {
-      inputArea.focus();
-    }, 100);
-  }
-
-  function closeImprintModal() {
-    const modal = document.getElementById('imprint-modal');
-    modal.style.display = 'none';
-  }
-
-  function executePaidImprint() {
-    const userInput = document.getElementById('imprint-user-input').value;
-    if (!userInput.trim()) {
-      alert("刻印するメッセージを入力してください。");
-      return;
-    }
-
-    closeImprintModal();
-    const btn = document.getElementById('qlux-main-btn');
-    
-    btn.style.transform = 'scale(1.03)';
-    btn.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(0, 240, 255, 0.95) 100%)';
-    btn.style.boxShadow = '0 0 90px rgba(255, 255, 255, 1), 0 0 140px rgba(0, 240, 255, 0.9)';
-    btn.querySelector('.text-3xl').style.color = '#050b10';
-    btn.querySelector('.text-3xl').innerText = '⚡ CONNECTING WALLET...';
-
-    setTimeout(() => {
-      btn.querySelector('.text-3xl').innerText = '⚡ WRITING TO ETERNAL CHAIN...';
-    }, 1200);
-
-    setTimeout(() => {
-      btn.style.transform = 'scale(1)';
-      btn.style.background = 'linear-gradient(135deg, rgba(0, 240, 255, 0.4) 0%, rgba(0, 100, 255, 0.3) 100%)';
-      btn.style.boxShadow = '0 0 60px rgba(0, 240, 255, 0.8), inset 0 0 35px rgba(0, 240, 255, 0.7)';
-      btn.querySelector('.text-3xl').style.color = '#00f0ff';
-      btn.querySelector('.text-3xl').innerText = 'QLUX⚡ETERNAL PROOF';
-
-      // バズ用のSNSシェア促しポップアップ
-      const shareText = encodeURIComponent(`私のメッセージがブロックチェーンに永遠に刻まれました！\n\n"${userInput.slice(0, 50)}..."\n\nTXID: 9f82c4...e31b\n#QLUX #EternalProof #BSV`);
-      const twitterUrl = `https://twitter.com/intent/tweet?text=${shareText}`;
-      
-      if (confirm("⚡ ETERNAL PROOF CREATED!\n\n【永遠の刻印が完了しました】\nブロックチェーンへの永続保存と決済($0.10)が完了しました。\n\n🎉 この感動をX(Twitter)でシェアして世界中に広げますか？")) {
-        window.open(twitterUrl, '_blank');
-      }
-    }, 2500);
+    }, 2000);
   }
 </script>
  
