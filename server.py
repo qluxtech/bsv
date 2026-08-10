@@ -3,16 +3,33 @@ import time
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import threading
 
-# Renderのヘルスチェック（ポート応答）を通すための簡易HTTPサーバー
-class HealthCheckHandler(BaseHTTPRequestHandler):
+# HTMLファイルを返すようにしたHTTPサーバー
+class HTMLServerHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"OMEGA-SINGULARITY SOLVER PIPELINE: RUNNING & SECURED")
+        try:
+            # ルート (/) にアクセスされたら index.html を表示
+            file_path = "index.html" if self.path == "/" else self.path.lstrip("/")
+            
+            if os.path.exists(file_path) and os.path.isfile(file_path):
+                with open(file_path, "rb") as f:
+                    content = f.read()
+                self.send_response(200)
+                if file_path.endswith(".html"):
+                    self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.end_headers()
+                self.wfile.write(content)
+            else:
+                self.send_response(404)
+                self.end_headers()
+                self.wfile.write(b"404 Not Found")
+        except Exception as e:
+            self.send_response(500)
+            self.end_headers()
+            self.wfile.write(f"Internal Server Error: {e}".encode())
 
 def run_http_server():
     port = int(os.environ.get("PORT", 10000))
-    server = HTTPServer(("0.0.0.0", port), HealthCheckHandler)
+    server = HTTPServer(("0.0.0.0", port), HTMLServerHandler)
     server.serve_forever()
 
 # バックグラウンドでの自動処理ループ
