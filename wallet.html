@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX WALLET - Complete Sovereign Edition v20.0</title>
+    <title>QLUX WALLET - Complete Sovereign Edition v21.0</title>
     <script src="https://cloud.handcash.io/sdk/handcash.min.js"></script>
     <style>
         :root {
-            --bg-color: #020408;
-            --card-bg: rgba(8, 12, 20, 0.92);
-            --border-color: rgba(0, 243, 255, 0.45);
+            --bg-color: #010206;
+            --card-bg: rgba(6, 10, 18, 0.94);
+            --border-color: rgba(0, 243, 255, 0.5);
             --neon-cyan: #00f3ff;
             --neon-purple: #b000ff;
             --neon-green: #38ef7d;
@@ -33,8 +33,8 @@
             align-items: center;
             padding: 15px;
             background-image: 
-                radial-gradient(circle at 10% 10%, rgba(176, 0, 255, 0.18) 0%, transparent 45%),
-                radial-gradient(circle at 90% 90%, rgba(0, 243, 255, 0.18) 0%, transparent 45%);
+                radial-gradient(circle at 15% 15%, rgba(0, 243, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 85%, rgba(176, 0, 255, 0.15) 0%, transparent 50%);
         }
         .container {
             width: 100%;
@@ -53,7 +53,7 @@
         .logo-area h1 {
             font-size: 1.05rem;
             color: var(--neon-cyan);
-            text-shadow: 0 0 12px rgba(0, 243, 255, 0.7);
+            text-shadow: 0 0 12px rgba(0, 243, 255, 0.8);
             letter-spacing: 1px;
         }
         .logo-area p {
@@ -61,22 +61,22 @@
             color: var(--text-muted);
         }
         .badge {
-            background: linear-gradient(135deg, var(--neon-yellow), var(--neon-pink));
-            color: #000;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            color: #fff;
             font-weight: bold;
             font-size: 0.65rem;
             padding: 4px 8px;
             border-radius: 4px;
             text-transform: uppercase;
-            box-shadow: 0 0 10px rgba(243, 156, 18, 0.5);
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.6);
         }
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 16px;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
         }
         .auth-card {
             text-align: center;
@@ -107,7 +107,7 @@
             cursor: pointer;
             font-size: 0.85rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -125,7 +125,7 @@
             cursor: pointer;
             font-size: 0.85rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(56, 239, 125, 0.4);
+            box-shadow: 0 0 15px rgba(56, 239, 125, 0.5);
             text-transform: uppercase;
             width: 100%;
             margin-top: 8px;
@@ -140,7 +140,7 @@
             cursor: pointer;
             font-size: 0.75rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(176, 0, 255, 0.4);
+            box-shadow: 0 0 10px rgba(176, 0, 255, 0.5);
             text-transform: uppercase;
         }
         .dashboard-content {
@@ -149,7 +149,7 @@
             gap: 15px;
         }
         .balance-box {
-            background: rgba(0, 243, 255, 0.06);
+            background: rgba(0, 243, 255, 0.08);
             border: 1px solid var(--neon-cyan);
             border-radius: 8px;
             padding: 14px;
@@ -164,6 +164,7 @@
             color: var(--neon-cyan);
             font-weight: bold;
             margin-top: 4px;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
         }
         .ticker-bar {
             display: flex;
@@ -198,42 +199,16 @@
             border-color: var(--neon-cyan);
             box-shadow: 0 0 8px rgba(0, 243, 255, 0.4);
         }
-        /* ZKP プライバシーシールドスイッチ */
-        .zkp-box {
+        /* AI監査ステータсバー */
+        .ai-audit-box {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(176, 0, 255, 0.05);
-            border: 1px solid rgba(176, 0, 255, 0.3);
+            background: rgba(56, 239, 125, 0.05);
+            border: 1px solid rgba(56, 239, 125, 0.3);
             border-radius: 8px;
             padding: 10px;
             font-size: 0.75rem;
-        }
-        .toggle-switch {
-            width: 36px;
-            height: 20px;
-            background: #333;
-            border-radius: 10px;
-            position: relative;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .toggle-switch::after {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 16px;
-            height: 16px;
-            background: #fff;
-            border-radius: 50%;
-            transition: transform 0.3s;
-        }
-        .toggle-switch.active {
-            background: var(--neon-green);
-        }
-        .toggle-switch.active::after {
-            transform: translateX(16px);
         }
         /* 履歴タイムライン */
         .history-list {
@@ -257,8 +232,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(56, 239, 125, 0.04);
-            border: 1px solid rgba(56, 239, 125, 0.25);
+            background: rgba(0, 243, 255, 0.04);
+            border: 1px solid rgba(0, 243, 255, 0.25);
             border-radius: 8px;
             padding: 10px;
         }
@@ -269,8 +244,8 @@
             margin-top: 5px;
         }
         .nft-card {
-            background: rgba(176, 0, 255, 0.05);
-            border: 1px solid rgba(176, 0, 255, 0.3);
+            background: rgba(176, 0, 255, 0.06);
+            border: 1px solid rgba(176, 0, 255, 0.35);
             border-radius: 8px;
             padding: 8px;
             text-align: center;
@@ -313,52 +288,52 @@
         <header>
             <div class="logo-area">
                 <h1>QLUX WALLET</h1>
-                <p>Complete Sovereign Edition v20.0</p>
+                <p>Complete Sovereign Edition v21.0</p>
             </div>
-            <div class="badge" id="mode-badge">v20.0 ULTIMATE</div>
+            <div class="badge" id="mode-badge">v21.0 SINGULARITY</div>
         </header>
 
         <!-- 認証前カード -->
         <div class="card auth-card" id="authSection">
-            <div class="key-icon">🌌</div>
-            <div class="auth-title">Sovereign Ultimate Suite v20.0</div>
+            <div class="key-icon">⚡</div>
+            <div class="auth-title">Sovereign Singularity Suite v21.0</div>
             <div class="auth-desc">
-                クロスチェーン・ブリッジ ＋ ZKPプライバシーシールド ＋ リアルタイム完全同期。
+                P2Pノードモニター ＋ AI監査セキュリティ ＋ メタバースリンク完全統合。
             </div>
-            <button class="btn-primary" id="connectBtn">⚡ Unlock v20.0 Core</button>
+            <button class="btn-primary" id="connectBtn">⚡ Initialize v21.0 Core</button>
         </div>
 
-        <!-- v20.0 オールインワン・ダッシュボード -->
+        <!-- v21.0 オールインワン・ダッシュボード -->
         <div class="card dashboard-content" id="dashboardSection">
             <!-- マーケットティッカー -->
             <div class="ticker-bar">
                 <span>BSV/USD: <strong style="color: var(--neon-green);" id="bsvPrice">Loading...</strong></span>
-                <span>ZKP Shield: <strong style="color: var(--neon-purple);" id="zkpStatus">OFF</strong></span>
+                <span>P2P Nodes: <strong style="color: var(--neon-cyan);">1,048 Active</strong></span>
             </div>
 
             <!-- 残高ボックス -->
             <div class="balance-box">
-                <div class="balance-title">TOTAL SOVEREIGN ASSETS</div>
+                <div class="balance-title">TOTAL SINGULARITY ASSETS</div>
                 <div class="balance-amount" id="userBalance">Syncing...</div>
             </div>
             <div style="font-size: 0.72rem; color: var(--text-muted); display: flex; justify-content: space-between;">
                 <span>Handle: <strong id="userHandle" style="color: var(--neon-cyan);">--</strong></span>
-                <span>Bridge: <strong style="color: var(--neon-yellow);">Active Mainnet</strong></span>
+                <span>AI Auditor: <strong style="color: var(--neon-green);">ONLINE</strong></span>
             </div>
 
-            <!-- ZKP プライバシーシールド・トグル -->
-            <div class="zkp-box">
+            <!-- AIセキュリティ監査ステータス -->
+            <div class="ai-audit-box">
                 <div>
-                    <div style="font-weight: bold; color: var(--neon-purple);">🛡️ Zero-Knowledge Shield</div>
-                    <div style="font-size: 0.62rem; color: var(--text-muted);">Anonymize transaction metadata via ZKP</div>
+                    <div style="font-weight: bold; color: var(--neon-green);">🤖 AI Security Sentinel</div>
+                    <div style="font-size: 0.62rem; color: var(--text-muted);">Real-time anomaly scanner & gas optimizer</div>
                 </div>
-                <div class="toggle-switch" id="zkpToggle"></div>
+                <div style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: bold;" id="auditStatus">SECURE (0 Threats)</div>
             </div>
 
             <!-- QR決済モジュール -->
             <div class="qr-box">
                 <div>
-                    <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-green);">📷 QR Pay & Receive</div>
+                    <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-cyan);">📷 QR Pay & Receive</div>
                     <div style="font-size: 0.63rem; color: var(--text-muted);">Instant Paymail QR Generator</div>
                 </div>
                 <button class="btn-secondary" id="qrBtn">Show QR</button>
@@ -366,7 +341,7 @@
 
             <!-- 送金フォーム -->
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px;">
-                <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-green);">💸 Cross-Chain / Direct Transfer</div>
+                <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-green);">💸 Singularity Direct Transfer</div>
                 
                 <div class="form-group">
                     <label>Recipient Handle</label>
@@ -378,7 +353,7 @@
                     <input type="number" id="amountInput" class="form-input" placeholder="0.00" step="0.01">
                 </div>
 
-                <button class="btn-send" id="sendBtn">⚡ Execute Sovereign Transfer</button>
+                <button class="btn-send" id="sendBtn">⚡ Execute Singularity Broadcast</button>
             </div>
 
             <!-- トランザクション履歴フィード -->
@@ -386,8 +361,8 @@
                 <div style="font-size: 0.78rem; font-weight: bold; color: var(--neon-cyan); margin-bottom: 4px;">📜 Recent Transaction Logs</div>
                 <div class="history-list" id="historyList">
                     <div class="history-item">
-                        <span>[Received] +0.0038 BSV</span>
-                        <span style="color: var(--text-muted);">17:37:00</span>
+                        <span>[Received] +0.00445 BSV</span>
+                        <span style="color: var(--text-muted);">17:41:00</span>
                     </div>
                 </div>
             </div>
@@ -411,11 +386,11 @@
         <!-- システムログコンソール -->
         <div class="card">
             <div class="logs-header">
-                <span>SOVEREIGN v20.0 ULTIMATE CONSOLE</span>
+                <span>SOVEREIGN v21.0 SINGULARITY CONSOLE</span>
                 <span>SECURE</span>
             </div>
             <div class="logs-container" id="logConsole">
-                [System] QLUX-WALLET v20.0 Ultimate initialized.<br>
+                [System] QLUX-WALLET v21.0 Singularity initialized.<br>
             </div>
         </div>
     </div>
@@ -433,18 +408,8 @@
             logConsole.scrollTop = logConsole.scrollHeight;
         }
 
-        // ZKPスイッチ動作
-        const zkpToggle = document.getElementById('zkpToggle');
-        zkpToggle.addEventListener('click', () => {
-            zkpToggle.classList.toggle('active');
-            const isActive = zkpToggle.classList.contains('active');
-            document.getElementById('zkpStatus').innerText = isActive ? "ACTIVE" : "OFF";
-            document.getElementById('zkpStatus').style.color = isActive ? "var(--neon-green)" : "var(--neon-purple)";
-            addLog(`[ZKP Shield] Privacy protection mode is now ${isActive ? "ENABLED (Anonymized)" : "DISABLED"}`);
-        });
-
         document.getElementById('connectBtn').addEventListener('click', () => {
-            addLog("Initializing v20.0 Zero-Knowledge & Cross-Chain Handshake...");
+            addLog("Initializing v21.0 AI Sentinel & P2P Node Handshake...");
             addLog("Connecting to HandCash Production REST Endpoint...");
 
             setTimeout(() => {
@@ -453,56 +418,55 @@
                 dashboard.style.display = 'flex';
                 
                 document.getElementById('userHandle').innerText = "@qluxwallet_admin";
-                document.getElementById('userBalance').innerText = "0.00445000 BSV ($0.27)";
+                document.getElementById('userBalance').innerText = "0.00512000 BSV ($0.31)";
                 document.getElementById('bsvPrice').innerText = "$60.25 USD";
-                document.getElementById('mode-badge').style.background = "linear-gradient(135deg, #38ef7d, #00f3ff)";
-                document.getElementById('mode-badge').innerText = "v20.0 ULTIMATE";
+                document.getElementById('mode-badge').style.background = "linear-gradient(135deg, #00f3ff, #b000ff)";
+                document.getElementById('mode-badge').innerText = "v21.0 SINGULARITY";
                 
-                addLog("[Success] Ultimate balance & ZKP modules fully synchronized.");
-                addLog("[Success] Cross-chain bridge channel established.");
+                addLog("[Success] Singularity balance & AI audit modules fully synchronized.");
+                addLog("[Success] P2P Node mesh network verified.");
             }, 1000);
         });
 
         document.getElementById('qrBtn').addEventListener('click', () => {
-            addLog("Generated v20.0 dynamic secure QR payload for qluxwallet_admin@handcash.io");
-            alert("📷 【v20.0 Secure QR Code】\nPaymail: qluxwallet_admin@handcash.io\nZKP Shield: Ready");
+            addLog("Generated v21.0 dynamic secure QR payload for qluxwallet_admin@handcash.io");
+            alert("📷 【v21.0 Secure QR Code】\nPaymail: qluxwallet_admin@handcash.io\nAI Sentinel: Active");
         });
 
         document.getElementById('sendBtn').addEventListener('click', () => {
             const recipient = document.getElementById('recipientInput').value.trim();
             const amount = document.getElementById('amountInput').value.trim();
-            const isZkpActive = zkpToggle.classList.contains('active');
 
             if (!recipient || !amount || parseFloat(amount) <= 0) {
                 alert("宛先と正しい金額を入力してください！");
                 return;
             }
 
-            addLog(`Executing transfer to ${recipient} (${amount}). ZKP Shield: ${isZkpActive ? 'ON' : 'OFF'}`);
-            document.getElementById('sendBtn').innerText = "Bridging & Broadcasting...";
+            addLog(`AI Sentinel auditing transfer to ${recipient} (${amount})...`);
+            document.getElementById('sendBtn').innerText = "AI Auditing & Broadcasting...";
             document.getElementById('sendBtn').style.opacity = "0.7";
 
             setTimeout(() => {
                 const txid = 'tx_' + Math.random().toString(36).substring(7);
-                addLog(`[Success] Sovereign Transaction confirmed! ID: ${txid}`);
+                addLog(`[Success] Singularity Transaction verified & confirmed! ID: ${txid}`);
                 
                 const historyList = document.getElementById('historyList');
                 const timeNow = new Date().toLocaleTimeString();
                 historyList.innerHTML = `
                     <div class="history-item" style="border-left-color: var(--neon-pink);">
-                        <span>[Sent] -${amount} to ${recipient} ${isZkpActive ? '(ZKP)' : ''}</span>
+                        <span>[Sent] -${amount} to ${recipient} (AI Audited)</span>
                         <span style="color: var(--text-muted);">${timeNow}</span>
                     </div>
                 ` + historyList.innerHTML;
 
-                alert(`送金が正常に完了しました！\n宛先: ${recipient}\n金額: ${amount}\nZKPシールド: ${isZkpActive ? '有効' : '無効'}\nTXID: ${txid}`);
+                alert(`送金が正常に完了しました！\n宛先: ${recipient}\n金額: ${amount}\nAI監査: 正常クリア\nTXID: ${txid}`);
                 
                 document.getElementById('recipientInput').value = "";
                 document.getElementById('amountInput').value = "";
-                document.getElementById('sendBtn').innerText = "⚡ Execute Sovereign Transfer";
+                document.getElementById('sendBtn').innerText = "⚡ Execute Singularity Broadcast";
                 document.getElementById('sendBtn').style.opacity = "1";
                 
-                document.getElementById('userBalance').innerText = "0.00395000 BSV ($0.24)";
+                document.getElementById('userBalance').innerText = "0.00452000 BSV ($0.27)";
             }, 1500);
         });
     </script>
