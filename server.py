@@ -3,7 +3,7 @@ import time
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import threading
 
-# 1. 簡易ヘルスチェック用HTTPサーバー（Renderのデプロイ完了判定を通すため）
+# Renderのヘルスチェック（ポート応答）を通すための簡易HTTPサーバー
 class HealthCheckHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -15,7 +15,7 @@ def run_http_server():
     server = HTTPServer(("0.0.0.0", port), HealthCheckHandler)
     server.serve_forever()
 
-# 2. バックグラウンドでの自動回収ループ
+# バックグラウンドでの自動処理ループ
 def background_loop():
     app_id = "6a7987969b239d1da6e89505"
     print(f"Authenticating with AppID: {app_id}")
@@ -24,10 +24,10 @@ def background_loop():
         time.sleep(10)
 
 if __name__ == "__main__":
-    # HTTPサーバーを別スレッドで起動
+    # HTTPサーバーを別スレッドで常時起動
     t = threading.Thread(target=run_http_server)
     t.daemon = True
     t.start()
     
-    # メインスレッドでループ実行
+    # メインスレッドで処理ループを実行
     background_loop()
