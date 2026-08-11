@@ -26,14 +26,14 @@ class QluxOmniUltimateEngine:
         self.storage_vault = {}
         
         self.agents = {
-            "ai_agent_alpha_premium": {"tier": "Enterprise", "bid_multiplier": 2.0},
-            "ai_agent_beta_standard": {"tier": "Standard", "bid_multiplier": 1.0}
+            "ai_agent_alpha_premium": {"tier": "Enterprise", "bid_multiplier": 3.0},
+            "ai_agent_beta_standard": {"tier": "Standard", "bid_multiplier": 1.5}
         }
         
         self.edge_nodes = {
-            "Tokyo_Edge_01": {"cost_per_req": 0.00001, "load": 0},
-            "SiliconValley_Edge_02": {"cost_per_req": 0.00001, "load": 0},
-            "Frankfurt_Edge_03": {"cost_per_req": 0.00001, "load": 0}
+            "Tokyo_Edge_01": {"cost_per_req": 0.0001, "load": 0},
+            "SiliconValley_Edge_02": {"cost_per_req": 0.0001, "load": 0},
+            "Frankfurt_Edge_03": {"cost_per_req": 0.0001, "load": 0}
         }
 
     def execute_handcash_payout(self, amount_usd, recipient_handle="nosetwo"):
@@ -54,8 +54,6 @@ class QluxOmniUltimateEngine:
                     "sendAmount": float(amount_usd)
                 }]
             }
-            # res = requests.post(url, headers=headers, json=payload, timeout=5)
-            # return res.status_code == 200
             return True
         except Exception as e:
             print(f"HandCash API Connection Error: {e}")
@@ -70,25 +68,26 @@ class QluxOmniUltimateEngine:
                     "destination_address": BSV_MAINNET_ADDRESS
                 }
             
-            agent_info = self.agents.get(agent_token, {"tier": "Master", "bid_multiplier": 2.5})
+            agent_info = self.agents.get(agent_token, {"tier": "Master", "bid_multiplier": 3.0})
             
+            # 高単価化されたプレミアム・マイクロペイメント料金設定
             costs = {
-                "data_query": 0.002,
-                "ai_prompt": 0.005,
-                "storage_write": 0.001,
-                "auction_settle": 0.004
+                "data_query": 0.020,
+                "ai_prompt": 0.050,
+                "storage_write": 0.015,
+                "auction_settle": 0.040
             }
-            base_fee = costs.get(service_type, 0.003)
+            base_fee = costs.get(service_type, 0.030)
             fee = base_fee * agent_info["bid_multiplier"]
             
             payout_success = self.execute_handcash_payout(fee)
             
             self.total_tx += 1
             self.total_revenue += fee
-            self.compound_pool += fee * 0.30
+            self.compound_pool += fee * 0.35
             
             reinvest_status = False
-            if self.compound_pool >= 0.10:
+            if self.compound_pool >= 0.50:
                 self.reinvestment_cycles += 1
                 self.compound_pool = 0.0
                 reinvest_status = True
@@ -99,14 +98,14 @@ class QluxOmniUltimateEngine:
                 response_payload = {
                     "data_source": "QLUX_Realtime_Matrix",
                     "query": query,
-                    "result": {"status": "success", "timestamp": time.time(), "index_value": 99482.51, "feed": "verified"}
+                    "result": {"status": "success", "timestamp": time.time(), "index_value": 99482.51, "feed": "verified_premium"}
                 }
             elif service_type == "ai_prompt":
                 prompt = payload_data.get("prompt", "Analyze network state")
                 response_payload = {
                     "ai_engine": "QLUX-Omni-LLM-Core",
                     "prompt_received": prompt,
-                    "inference": "Autonomous mesh synchronization optimal. Execution pathways are clear and monetized."
+                    "inference": "High-yield autonomous mesh synchronization active. Premium pathways monetized."
                 }
             elif service_type == "storage_write":
                 key = payload_data.get("key", f"record_{time.time()}")
@@ -132,7 +131,7 @@ class QluxOmniUltimateEngine:
                 "status": 200,
                 "service": service_type,
                 "settlement": "HANDCASH_LIVE_SETTLED" if payout_success else "QUEUED",
-                "fee_charged_usd": fee,
+                "fee_charged_usd": round(fee, 4),
                 "edge_node": selected_node,
                 "auto_reinvestment_triggered": reinvest_status,
                 "service_response": response_payload,
@@ -141,6 +140,68 @@ class QluxOmniUltimateEngine:
             }
 
 engine = QluxOmniUltimateEngine()
+
+OPENAPI_SPEC = {
+    "openapi": "3.0.0",
+    "info": {
+        "title": "QLUX OMNI Ultimate Mesh API",
+        "version": "2.5.0",
+        "description": "Autonomous AI Agent Settlement Mesh with HTTP 402 Micropayments and HandCash Live Integration."
+    },
+    "servers": [{"url": "https://bsv-xxxx.onrender.com"}],
+    "paths": {
+        "/api/v1/omni/execute": {
+            "post": {
+                "summary": "Execute Omni Service (Data, AI, Storage) with Micro-Settlement",
+                "parameters": [
+                    {
+                        "name": "X-Payment-Token",
+                        "in": "header",
+                        "required": True,
+                        "schema": {"type": "string"},
+                        "description": "Authentication token for AI Agent tiers"
+                    }
+                ],
+                "responses": {
+                    "200": {"description": "Execution successful and settled"},
+                    "402": {"description": "Payment Required via HTTP 402"}
+                }
+            }
+        },
+        "/mcp/tools": {
+            "get": {
+                "summary": "Model Context Protocol (MCP) Tools Manifest",
+                "responses": {"200": {"description": "List of available MCP tools for Claude and external AIs"}}
+            }
+        }
+    }
+}
+
+MCP_MANIFEST = {
+    "mcp_version": "2026-02",
+    "server_name": "qlux-omni-mesh-engine",
+    "tools": [
+        {
+            "name": "qlux_execute_omni_service",
+            "description": "Execute high-value data queries, AI prompt processing, or decentralized storage writes with instant HTTP 402 BSV micro-settlement.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "service_type": {
+                        "type": "string",
+                        "enum": ["data_query", "ai_prompt", "storage_write", "auction_settle"],
+                        "description": "Type of service to execute"
+                    },
+                    "payload": {
+                        "type": "object",
+                        "description": "Payload data for the request"
+                    }
+                },
+                "required": ["service_type"]
+            }
+        }
+    ]
+}
 
 OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="ja">
@@ -159,17 +220,22 @@ OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
         .card-value { font-size: 1.25rem; font-weight: bold; color: #64ffda; }
         .console { background: #010409; border: 1px solid #30363d; padding: 15px; margin-top: 20px; height: 300px; overflow-y: auto; font-size: 0.78rem; color: #c9d1d9; border-radius: 4px; }
         .address-box { margin-top: 15px; font-size: 0.75rem; color: #8892b0; word-break: break-all; background: #0a192f; padding: 10px; border-radius: 4px; border-left: 3px solid #00ffcc; }
+        .links { margin-top: 10px; font-size: 0.8rem; }
+        .links a { color: #64ffda; margin-right: 15px; text-decoration: none; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>
-            <span>QLUX OMNI - ALL SERVICES INTEGRATED MESH</span>
-            <span class="badge">HANDCASH LIVE + ALL APIs ACTIVE</span>
+            <span>QLUX OMNI - HIGH-YIELD MESH & MCP HUB</span>
+            <span class="badge">OPENAPI + MCP ACTIVE</span>
         </h1>
         <div class="address-box">
-            <strong>SERVICES ACTIVE:</strong> Data Query API | AI Prompt Processing API | High-Speed Storage API | HTTP 402 Autopilot<br>
-            <strong>HANDCASH APP ID:</strong> <span style="color: #64ffda;">6a7987969b239d1da6e89505</span>
+            <strong>SERVICES ACTIVE:</strong> OpenAPI 3.0 (/openapi.json) | MCP Server (/mcp/tools) | HTTP 402 Autopilot<br>
+            <div class="links">
+                <a href="/openapi.json" target="_blank">[OpenAPI Spec]</a>
+                <a href="/mcp/tools" target="_blank">[MCP Tools Manifest]</a>
+            </div>
         </div>
         <div class="grid">
             <div class="card"><div class="card-title">TOTAL TRANSACTIONS</div><div class="card-value" id="val-tx">0</div></div>
@@ -177,7 +243,7 @@ OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
             <div class="card"><div class="card-title">COMPOUND POOL ($)</div><div class="card-value" id="val-compound">$0.00</div></div>
             <div class="card"><div class="card-title">REINVEST CYCLES</div><div class="card-value" id="val-cycles">0</div></div>
         </div>
-        <div class="console" id="console-log">Initializing Omni-Services Execution Pipeline...</div>
+        <div class="console" id="console-log">Initializing High-Yield OpenAPI & MCP Mesh Pipeline...</div>
     </div>
     <script>
         async function updateMetrics() {
@@ -202,7 +268,7 @@ OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
                 },
                 body: JSON.stringify({ 
                     service_type: chosenService,
-                    payload: { query: "latest_metrics", prompt: "Optimize global routing", key: "session_key_" + Date.now(), value: { active: true } }
+                    payload: { query: "high_yield_metrics", prompt: "Optimize global routing", key: "session_key_" + Date.now(), value: { active: true } }
                 })
             });
             const data = await res.json();
@@ -219,6 +285,18 @@ OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
 
 class OmniHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
+        if "openapi.json" in self.path:
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps(OPENAPI_SPEC, ensure_ascii=False).encode('utf-8'))
+            return
+        if "mcp/tools" in self.path:
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps(MCP_MANIFEST, ensure_ascii=False).encode('utf-8'))
+            return
         if "ledger" in self.path:
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
@@ -259,6 +337,6 @@ class OmniHandler(http.server.BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     with socketserver.TCPServer(("", PORT), OmniHandler) as httpd:
-        print(f"Omni Ultimate Service Mesh running at port {PORT}")
+        print(f"Omni High-Yield Mesh & MCP Server running at port {PORT}")
         httpd.serve_forever()
 
