@@ -469,6 +469,24 @@
                 document.getElementById('payBtn').innerText = "🚀 EXECUTE HANDCASH API PAY";
             }, 1000);
         });
+        async function triggerMicroStream() {
+    const authToken = localStorage.getItem('handcash_auth_token');
+
+    const response = await fetch('https://bsv-01.onrender.com/api/micro_stream', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            authToken: authToken,
+            action: "micro_stream",
+            amount: 0.01
+        })
+    });
+
+    const result = await response.json();
+    console.log("Stream result:", result);
+    alert("マイクロストリーム送信完了: " + result.status);
+}
+
     </script>
 </body>
 </html>
