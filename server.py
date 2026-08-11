@@ -171,11 +171,18 @@ class HTMLServerHandler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(stats, ensure_ascii=False).encode('utf-8'))
             return
 
-        # ルートアクセスの場合は静的ファイルやステータスを返すかリダイレクト
+                # ルートアクセス時は qluxprime.html を読み込んで返す
         self.send_response(200)
-        self.send_header('Content-Type', 'application/json; charset=UTF-8')
+        self.send_header('Content-Type', 'text/html; charset=UTF-8')
         self.end_headers()
-        self.wfile.write(json.dumps({"status": "QLUX PRIME Backend Active", "threads": 4}, ensure_ascii=False).encode('utf-8'))
+        
+        try:
+            with open("qluxprime.html", "r", encoding="utf-8") as f:
+                html_content = f.read()
+        except Exception:
+            html_content = "<h1>QLUX PRIME UI not found</h1>"
+            
+        self.wfile.write(html_content.encode('utf-8'))
 
     def do_POST(self):
         if self.path == "/api/v1/pipeline":
