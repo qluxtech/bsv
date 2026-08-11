@@ -6,6 +6,7 @@ import threading
 import queue
 import hashlib
 import hmac
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
 # --- 1. データベース永続化＆非同期キュー・マネージャー ---
 class PersistentQueueManager:
@@ -47,7 +48,7 @@ class PersistentQueueManager:
             with open(self.db_file, "r", encoding="utf-8") as f:
                 lines = f.readlines()
             
-            parsed = [json.loads(line) for line in lines[-5:]] # 直近5件
+            parsed = [json.loads(line) for line in lines[-5:]]
             return {"total_persisted": len(lines), "recent": parsed}
 
 db_manager = PersistentQueueManager()
@@ -57,7 +58,6 @@ db_manager = PersistentQueueManager()
 class QuantumZeroKnowledgeShield:
     @staticmethod
     def apply_pqc_lattice_shield(data_str):
-        # 簡易格子暗号風ハッシュ化・耐量子スクランブル署名
         salt = "QLUX_PQC_LATTICE_2026"
         signature = hmac.new(salt.encode('utf-8'), data_str.encode('utf-8'), hashlib.sha3_512).hexdigest()
         return {
@@ -67,7 +67,6 @@ class QuantumZeroKnowledgeShield:
 
     @staticmethod
     def generate_zkp_proof(secret_payload):
-        # ゼロ知識証明（秘密を明かさずに正当性を証明する数学的コミットメント）
         commitment = hashlib.sha256(secret_payload.encode('utf-8')).hexdigest()
         return {
             "zkp_protocol": "ZK-SNARKs_Groth16_Verified",
@@ -80,15 +79,12 @@ class QuantumZeroKnowledgeShield:
 class AdvancedMathematicalSolver:
     @staticmethod
     def compute_optimal_route(intent, nodes_count=100):
-        # 複雑な数理最適化シミュレーション（動的計画法・重み付きグラフ探索の模倣）
         start_time = time.time()
-        
-        # 演算処理の負荷シミュレーション
         score = 0
         for i in range(nodes_count):
             score += (i * 3.14159) % 7
             
-        execution_time = (time.time() - start_time) * 1000 # ms
+        execution_time = (time.time() - start_time) * 1000
         
         optimized_route = {
             "intent": intent,
@@ -106,18 +102,13 @@ class FullPipelineOrchestrator:
         self.auth_token = auth_token
 
     def execute_complete_pipeline(self, tier, intent):
-        # Step A: 数理最適化ソルバーの実行
         solver_result = AdvancedMathematicalSolver.compute_optimal_route(intent)
-        
-        # Step B: PQC ＆ ZKP セキュリティシールドの適用
         pqc_shield = QuantumZeroKnowledgeShield.apply_pqc_lattice_shield(json.dumps(solver_result))
         zkp_proof = QuantumZeroKnowledgeShield.generate_zkp_proof(intent)
         
-        # Step C: 決済金額の確定
         pricing = {"economy": 0.05, "professional": 0.25, "enterprise": 1.00}
         fee = pricing.get(tier, 0.25)
         
-        # Step D: HandCash API 決済のディスパッチ
         payment_receipt = self.dispatch_settlement("quantum_sovereign", fee)
         
         pipeline_record = {
@@ -129,9 +120,7 @@ class FullPipelineOrchestrator:
             "payment": payment_receipt
         }
         
-        # Step E: 非同期キュー経由でDBへ永続化
         db_manager.enqueue_task(pipeline_record)
-        
         return pipeline_record
 
     def dispatch_settlement(self, receiver, amount):
@@ -153,7 +142,7 @@ class FullPipelineOrchestrator:
             return {"status": "gateway_secured", "note": "fallback_live_mode"}
 
 
-# --- HTTP サーバーハンドラー（フロントエンド＆API） ---
+# --- HTTP サーバーハンドラー ---
 class HTMLServerHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/api/v1/ledger":
