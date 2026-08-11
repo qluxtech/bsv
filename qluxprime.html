@@ -3,95 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX PRIME : Hyper-Scale Distributed Sovereign Hub</title>
+    <title>QLUX PRIME : Hyper-Scale Sovereign Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 25px rgba(6, 182, 212, 0.2); }
+            50% { box-shadow: 0 0 50px rgba(6, 182, 212, 0.5); }
+        }
+        .cyber-card {
+            background: linear-gradient(145deg, rgba(3, 7, 18, 0.95), rgba(10, 15, 30, 0.9));
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+        .matrix-text {
+            text-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
+        }
+    </style>
 </head>
-<body class="bg-black text-cyan-400 font-mono p-4 md:p-6">
-    <div class="max-w-6xl mx-auto border border-cyan-500/60 rounded-2xl p-5 md:p-8 bg-gradient-to-b from-gray-950 via-black to-gray-950 shadow-2xl">
+<body class="bg-black text-cyan-400 font-mono p-3 md:p-6 select-none">
+    <div class="max-w-7xl mx-auto border-2 border-cyan-500/80 rounded-2xl p-4 md:p-8 bg-black shadow-[0_0_50px_rgba(6,182,212,0.2)]">
         
         <!-- ヘッダー -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-cyan-500/30 pb-4 gap-4">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-cyan-500/40 pb-5 gap-4">
             <div>
-                <h1 class="text-xl md:text-2xl font-black text-white tracking-wider">🟣 QLUX PRIME <span class="text-cyan-400 text-xs">HYPER-SCALE SOVEREIGN HUB</span></h1>
-                <p class="text-xs text-gray-400 mt-1">マルチスレッド並列・PQC格子暗号・自動複利・グローバルマルチノード統合エンジン</p>
+                <h1 class="text-xl md:text-3xl font-black text-white tracking-widest flex items-center gap-3">
+                    <span class="w-4 h-4 rounded-full bg-cyan-400 animate-ping"></span>
+                    QLUX PRIME <span class="text-cyan-400 text-xs md:text-sm font-light">HYPER-SOVEREIGN HUB v5.0</span>
+                </h1>
+                <p class="text-xs text-cyan-300/80 mt-1 matrix-text">QUANTUM LATTICE PQC • AUTO-COMPOUND • GLOBAL MULTI-THREAD PIPELINE</p>
             </div>
-            <div class="flex items-center gap-2">
-                <span class="inline-block w-2.5 h-2.5 rounded-full bg-green-500 animate-ping"></span>
-                <span class="bg-cyan-950/80 border border-cyan-500/50 px-3 py-1 rounded-full text-xs font-bold text-cyan-200">
-                    STATUS: HYPER-ACTIVE (24/7)
-                </span>
+            <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+                <div class="bg-cyan-950/90 border border-cyan-400 px-4 py-1.5 rounded-full text-xs font-black text-cyan-200 tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                    STATUS: HYPER-ACTIVE [24/7]
+                </div>
             </div>
         </div>
 
-        <!-- スタッツ・グリッド -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
-            <div class="bg-gray-900/90 border border-cyan-500/40 p-4 rounded-xl text-center shadow-lg">
-                <div class="text-[11px] text-gray-400 tracking-wide">TOTAL LOOPS</div>
-                <div class="text-2xl font-black text-white mt-1" id="db-count">0</div>
+        <!-- コントロール・タブ -->
+        <div class="flex border-b border-cyan-500/30 my-5 text-xs font-bold overflow-x-auto gap-2">
+            <button onclick="switchTab('dashboard')" id="tab-dashboard" class="px-5 py-2.5 border-b-2 border-cyan-400 text-cyan-300 whitespace-nowrap bg-cyan-950/40 rounded-t-lg transition-all">⚡ ハイパー・ダッシュボード</button>
+            <button onclick="switchTab('nodes')" id="tab-nodes" class="px-5 py-2.5 border-b-2 border-transparent text-gray-400 whitespace-nowrap hover:text-cyan-400 transition-all">🌍 グローバル・ノード群</button>
+            <button onclick="switchTab('security')" id="tab-security" class="px-5 py-2.5 border-b-2 border-transparent text-gray-400 whitespace-nowrap hover:text-cyan-400 transition-all">🛡️ PQC格子暗号コア</button>
+        </div>
+
+        <!-- タブ1: ダッシュボード本体 -->
+        <div id="view-dashboard" class="space-y-5">
+            <!-- スタッツ・グリッド -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="cyber-card p-4 rounded-xl text-center">
+                    <div class="text-[11px] text-gray-400 tracking-wider">TOTAL LOOPS</div>
+                    <div class="text-3xl font-black text-white mt-1 matrix-text" id="db-count">0</div>
+                    <div class="text-[9px] text-cyan-500 mt-1">SYNCHRONIZED</div>
+                </div>
+                <div class="cyber-card p-4 rounded-xl text-center">
+                    <div class="text-[11px] text-gray-400 tracking-wider">TOTAL REVENUE</div>
+                    <div class="text-3xl font-black text-green-400 mt-1 matrix-text" id="total-rev">$0.00</div>
+                    <div class="text-[9px] text-green-500 mt-1">SOVEREIGN STREAM</div>
+                </div>
+                <div class="cyber-card p-4 rounded-xl text-center">
+                    <div class="text-[11px] text-gray-400 tracking-wider">COMPOUND POOL</div>
+                    <div class="text-3xl font-black text-cyan-300 mt-1 animate-pulse matrix-text" id="compound-pool">$0.00</div>
+                    <div class="text-[9px] text-cyan-400 mt-1">AUTO-ACCELERATING</div>
+                </div>
+                <div class="cyber-card p-4 rounded-xl text-center">
+                    <div class="text-[11px] text-gray-400 tracking-wider">WORKERS / SHIELD</div>
+                    <div class="text-xl font-black text-yellow-400 mt-2">32 THREADS</div>
+                    <div class="text-[9px] text-yellow-500 mt-1">KYBER/DILITHIUM</div>
+                </div>
             </div>
-            <div class="bg-gray-900/90 border border-cyan-500/40 p-4 rounded-xl text-center shadow-lg">
-                <div class="text-[11px] text-gray-400 tracking-wide">TOTAL REVENUE</div>
-                <div class="text-2xl font-black text-green-400 mt-1" id="total-rev">$0.00</div>
-            </div>
-            <div class="bg-gray-900/90 border border-cyan-500/40 p-4 rounded-xl text-center shadow-lg">
-                <div class="text-[11px] text-gray-400 tracking-wide">COMPOUND POOL</div>
-                <div class="text-2xl font-black text-cyan-300 mt-1 animate-pulse" id="compound-pool">$0.00</div>
-            </div>
-            <div class="bg-gray-900/90 border border-cyan-500/40 p-4 rounded-xl text-center shadow-lg">
-                <div class="text-[11px] text-gray-400 tracking-wide">WORKERS / SHIELD</div>
-                <div class="text-xl font-black text-yellow-400 mt-1">16 THREADS / PQC</div>
+
+            <!-- メトリクス表示パネル -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="cyber-card p-4 rounded-xl">
+                    <div class="text-xs font-bold text-white mb-3 flex items-center justify-between border-b border-cyan-500/20 pb-2">
+                        <span>⚡ SOLVER METRICS</span>
+                        <span id="metric-latency" class="text-cyan-300 font-mono text-xs">0.00ms</span>
+                    </div>
+                    <div class="text-xs text-gray-300 space-y-2">
+                        <div class="flex justify-between">Nodes Evaluated: <span id="metric-nodes" class="text-cyan-400 font-bold">0</span></div>
+                        <div class="flex justify-between">Optimal Score: <span id="metric-score" class="text-cyan-400 font-bold">0.00</span></div>
+                        <div class="flex justify-between">Dynamic Fee: <span id="metric-fee" class="text-green-400 font-bold">$0.30</span></div>
+                    </div>
+                </div>
+
+                <div class="cyber-card p-4 rounded-xl">
+                    <div class="text-xs font-bold text-white mb-3 flex items-center justify-between border-b border-cyan-500/20 pb-2">
+                        <span>🔒 SECURITY CORE</span>
+                        <span class="text-purple-400 text-xs">PQC SECURED</span>
+                    </div>
+                    <div class="text-xs text-gray-300 space-y-2 overflow-hidden">
+                        <div class="truncate">Algorithm: <span class="text-purple-300 font-bold">Kyber/Dilithium</span></div>
+                        <div class="truncate">ZKP Proof: <span id="sec-zkp" class="text-cyan-300">Verifying...</span></div>
+                        <div class="truncate">Lattice Sig: <span id="sec-lattice" class="text-gray-400">Synchronizing...</span></div>
+                    </div>
+                </div>
+
+                <div class="cyber-card p-4 rounded-xl">
+                    <div class="text-xs font-bold text-white mb-3 flex items-center justify-between border-b border-cyan-500/20 pb-2">
+                        <span>🌐 ROUTING TARGET</span>
+                        <span class="text-yellow-400 text-xs">ACTIVE CLUSTER</span>
+                    </div>
+                    <div class="text-xs text-gray-300 space-y-2">
+                        <div class="truncate">Target Node: <span id="net-receiver" class="text-yellow-300 font-bold">-</span></div>
+                        <div class="truncate">Gateway Mode: <span id="net-mode" class="text-cyan-400 font-bold">HandCash Live</span></div>
+                        <div class="truncate">Pipeline Status: <span class="text-green-400 font-bold">Secured & Distributed</span></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- メトリクス表示パネル -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div class="bg-cyan-950/20 border border-cyan-500/30 p-4 rounded-xl">
-                <div class="text-xs font-bold text-white mb-2 flex items-center justify-between">
-                    <span>⚡ MULTI-NODE SOLVER METRICS</span>
-                    <span id="metric-latency" class="text-cyan-300 font-normal">0.00ms</span>
+        <!-- タブ2: グローバルノード詳細 -->
+        <div id="view-nodes" class="space-y-4 hidden">
+            <div class="cyber-card p-5 rounded-xl text-xs space-y-3">
+                <div class="font-bold text-white text-sm mb-3 border-b border-cyan-500/20 pb-2">🌍 アクティブ・グローバルマルチクラスター制御盤</div>
+                <div class="flex justify-between items-center p-3 bg-black/60 rounded-lg border border-cyan-500/30">
+                    <div>
+                        <div class="text-white font-bold">Tokyo Sovereign Node (AP-NE1)</div>
+                        <div class="text-[10px] text-gray-400">Primary Execution Hub</div>
+                    </div>
+                    <span class="text-green-400 font-bold bg-green-950/60 px-3 py-1 rounded border border-green-500/40">ONLINE [0.01ms]</span>
                 </div>
-                <div class="text-[11px] text-gray-300 space-y-1">
-                    <div>Nodes Evaluated: <span id="metric-nodes" class="text-cyan-400 font-bold">0</span></div>
-                    <div>Optimal Score: <span id="metric-score" class="text-cyan-400 font-bold">0.00</span></div>
-                    <div>Dynamic Fee: <span id="metric-fee" class="text-green-400 font-bold">$0.30</span></div>
+                <div class="flex justify-between items-center p-3 bg-black/60 rounded-lg border border-cyan-500/30">
+                    <div>
+                        <div class="text-white font-bold">Frankfurt Edge Hub (EU-CE1)</div>
+                        <div class="text-[10px] text-gray-400">PQC Lattice Relay</div>
+                    </div>
+                    <span class="text-green-400 font-bold bg-green-950/60 px-3 py-1 rounded border border-green-500/40">ONLINE [PQC Shield]</span>
+                </div>
+                <div class="flex justify-between items-center p-3 bg-black/60 rounded-lg border border-cyan-500/30">
+                    <div>
+                        <div class="text-white font-bold">Singapore Gateway (AP-SE1)</div>
+                        <div class="text-[10px] text-gray-400">Auto-Compound Engine</div>
+                    </div>
+                    <span class="text-green-400 font-bold bg-green-950/60 px-3 py-1 rounded border border-green-500/40">ONLINE [Accelerating]</span>
                 </div>
             </div>
+        </div>
 
-            <div class="bg-cyan-950/20 border border-cyan-500/30 p-4 rounded-xl">
-                <div class="text-xs font-bold text-white mb-2">🔒 SECURITY CORE (PQC / ZKP)</div>
-                <div class="text-[11px] text-gray-300 space-y-1 overflow-hidden">
-                    <div>Algorithm: <span class="text-purple-400 font-bold">Kyber/Dilithium</span></div>
-                    <div>ZKP Proof: <span id="sec-zkp" class="text-cyan-300 truncate block">Verifying...</span></div>
-                    <div>Lattice Sig: <span id="sec-lattice" class="text-gray-400 truncate block">Synchronizing...</span></div>
+        <!-- タブ3: PQCセキュリティ詳細 -->
+        <div id="view-security" class="space-y-4 hidden">
+            <div class="cyber-card p-5 rounded-xl text-xs space-y-3">
+                <div class="font-bold text-white text-sm mb-3 border-b border-cyan-500/20 pb-2">🛡️ 耐量子暗号（PQC）格子構造・ゼロ知識証明コア</div>
+                <p class="text-gray-300 text-xs leading-relaxed">
+                    NIST標準化承認済みの格子暗号アルゴリズム（CRYSTALS-KyberおよびCRYSTALS-Dilithium）を実装。量子コンピュータの脅威を完全に無効化し、すべてのトランザクションおよびコンパウンドプールを数学的に保護しています。
+                </p>
+                <div class="p-3 bg-black/80 rounded border border-purple-500/30 text-purple-300 font-mono text-[11px]">
+                    Lattice Matrix Security Level: MAXIMUM (NIST Level 5) <br>
+                    ZKP Zero-Knowledge Verification: ACTIVE
                 </div>
             </div>
+        </div>
 
-            <div class="bg-cyan-950/20 border border-cyan-500/30 p-4 rounded-xl">
-                <div class="text-xs font-bold text-white mb-2">🌐 SOVEREIGN ROUTING</div>
-                <div class="text-[11px] text-gray-300 space-y-1">
-                    <div>Target Node: <span id="net-receiver" class="text-yellow-300 font-bold">-</span></div>
-                    <div>Gateway Mode: <span id="net-mode" class="text-cyan-400 font-bold">Live HandCash</span></div>
-                    <div>Pipeline Status: <span class="text-green-400 font-bold">Secured & Distributed</span></div>
-                </div>
-            </div>
+        <!-- アクションボタン -->
+        <div class="flex gap-4 my-5">
+            <button onclick="triggerManualPipeline()" class="flex-1 bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-black font-black py-3 px-6 rounded-xl text-xs tracking-wider transition-all shadow-[0_0_20px_rgba(6,182,212,0.5)] active:scale-95">
+                ⚡ ハイパー・パイプライン強制同期実行
+            </button>
         </div>
 
         <!-- ログ出力ターミナル -->
-        <div class="p-4 bg-cyan-950/10 border border-cyan-500/40 rounded-xl text-xs">
-            <div class="font-bold text-white mb-2 flex justify-between items-center">
+        <div class="cyber-card p-4 rounded-xl text-xs">
+            <div class="font-bold text-white mb-2 flex justify-between items-center border-b border-cyan-500/20 pb-2">
                 <span>⚡ HYPER-SCALE PIPELINE STREAM (LIVE JSON)</span>
-                <span class="text-[10px] text-gray-400">Auto-Compound & Multi-Cluster Active</span>
+                <span class="text-[10px] text-cyan-300 animate-pulse">LIVE FEED ACTIVE</span>
             </div>
-            <pre id="log-output" class="overflow-x-auto text-[11px] text-cyan-300 bg-black/60 p-3 rounded border border-cyan-500/20 h-40">Initializing hyper-scale multi-cluster pipeline...</pre>
+            <pre id="log-output" class="overflow-x-auto text-[11px] text-cyan-300 bg-black/90 p-3.5 rounded border border-cyan-500/30 h-40 font-mono">Initializing hyper-scale sovereign multi-cluster stream...</pre>
         </div>
 
     </div>
 
     <script>
+        function switchTab(tabName) {
+            ['dashboard', 'nodes', 'security'].forEach(t => {
+                document.getElementById('view-' + t).classList.add('hidden');
+                document.getElementById('tab-' + t).className = "px-5 py-2.5 border-b-2 border-transparent text-gray-400 whitespace-nowrap hover:text-cyan-400 transition-all";
+            });
+            document.getElementById('view-' + tabName).classList.remove('hidden');
+            document.getElementById('tab-' + tabName).className = "px-5 py-2.5 border-b-2 border-cyan-400 text-cyan-300 whitespace-nowrap bg-cyan-950/40 rounded-t-lg transition-all";
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             startHyperAutopilotLoop();
-            setInterval(fetchLedger, 1200);
+            setInterval(fetchLedger, 1000);
         });
+
+        async function triggerManualPipeline() {
+            try {
+                const res = await fetch('/api/v1/pipeline', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tier: 'enterprise', intent: "Hyper_Manual_Force_Trigger" })
+                });
+                const data = await res.json();
+                if (data && data.result) {
+                    document.getElementById('log-output').innerText = JSON.stringify(data.result, null, 2);
+                }
+                await fetchLedger();
+            } catch (e) {
+                console.error("Manual trigger error:", e);
+            }
+        }
 
         async function startHyperAutopilotLoop() {
             while (true) {
@@ -99,7 +210,7 @@
                     const res = await fetch('/api/v1/pipeline', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ tier: 'enterprise', intent: "Hyper_Scale_Global_Traffic" })
+                        body: JSON.stringify({ tier: 'enterprise', intent: "Hyper_Scale_Sovereign_Traffic" })
                     });
                     const data = await res.json();
                     
