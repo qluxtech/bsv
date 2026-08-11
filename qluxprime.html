@@ -7,14 +7,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-cyan-400 font-mono p-4 md:p-8">
-    <div class="max-w-5xl mx-auto border border-cyan-500/60 rounded-2xl p-6 bg-gradient-to-b from-gray-950 to-black shadow-2xl shadow-cyan-500/30">
+    <div class="max-w-5xl mx-auto border border-cyan-500/60 rounded-2xl p-6 bg-gradient-to-b from-gray-950 to-black shadow-2xl">
         
         <div class="flex justify-between items-center border-b border-cyan-500/30 pb-4">
             <div>
-                <h1 class="text-xl md:text-2xl font-black text-white">🟣 QLUX PRIME <span class="text-cyan-400 text-xs font-normal">HYPER-SCALE DISTRIBUTED HUB</span></h1>
-                <p class="text-xs text-gray-400 mt-1">マルチスレッド並列・ダイナミックプライシング・オートコンパウンド複利エンジン稼働中</p>
+                <h1 class="text-xl md:text-2xl font-black text-white">🟣 QLUX PRIME <span class="text-cyan-400 text-xs">HYPER-SCALE DISTRIBUTED HUB</span></h1>
+                <p class="text-xs text-gray-400 mt-1">マルチスレッド並列・ダイナミックプライシング・オートコンパウンド増殖エンジン稼働中</p>
             </div>
-            <div class="bg-cyan-950/60 border border-cyan-500/50 px-3 py-1 rounded-full text-xs font-bold text-cyan-200 animate-pulse">
+            <div class="bg-cyan-950/60 border border-cyan-500/50 px-3 py-1 rounded-full text-xs font-bold text-cyan-200">
                 STATUS: HYPER-ACTIVE (24/7)
             </div>
         </div>
@@ -45,45 +45,44 @@
 
     </div>
 
-<script>
-    let selectedTier = 'enterprise';
+    <script>
+        let selectedTier = 'enterprise';
 
-    window.addEventListener('DOMContentLoaded', () => {
-        startHyperAutopilotLoop();
-        setInterval(fetchLedger, 2000);
-    });
+        window.addEventListener('DOMContentLoaded', () => {
+            startHyperAutopilotLoop();
+            setInterval(fetchLedger, 2000);
+        });
 
-    async function startHyperAutopilotLoop() {
-        while (true) {
-            try {
-                const res = await fetch('/api/v1/pipeline', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ tier: selectedTier, intent: "Hyper_Scale_Global_Traffic" })
-                });
-                const data = await res.json();
-                
-                const logElem = document.getElementById('log-output');
-                if(logElem) {
-                    logElem.innerText = JSON.stringify(data.result, null, 2);
+        async function startHyperAutopilotLoop() {
+            while (true) {
+                try {
+                    const res = await fetch('/api/v1/pipeline', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ tier: selectedTier, intent: "Hyper_Scale_Global_Traffic" })
+                    });
+                    const data = await res.json();
+                    const logElem = document.getElementById('log-output');
+                    if (logElem && data && data.result) {
+                        logElem.innerText = JSON.stringify(data.result, null, 2);
+                    }
+                    fetchLedger();
+                } catch (e) {
+                    console.error("Hyper loop error:", e);
                 }
-                fetchLedger();
-            } catch(e) {
-                console.error("Hyper loop error:", e);
+                await new Promise(resolve => setTimeout(resolve, 0));
             }
-            await new Promise(resolve => setTimeout(resolve, 0));
         }
-    }
 
-    async function fetchLedger() {
-        try {
-            const res = await fetch('/api/v1/ledger');
-            const data = await res.json();
-            document.getElementById('db-count').innerText = data.total_persisted;
-            document.getElementById('total-rev').innerText = '$' + data.total_revenue.toFixed(2);
-            document.getElementById('compound-pool').innerText = '$' + data.compound_pool.toFixed(2);
-        } catch(e) {}
-    }
-</script>
+        async function fetchLedger() {
+            try {
+                const res = await fetch('/api/v1/ledger');
+                const data = await res.json();
+                document.getElementById('db-count').innerText = data.total_persisted;
+                document.getElementById('total-rev').innerText = '$' + data.total_revenue.toFixed(2);
+                document.getElementById('compound-pool').innerText = '$' + data.compound_pool.toFixed(2);
+            } catch (e) {}
+        }
+    </script>
 </body>
 </html>
