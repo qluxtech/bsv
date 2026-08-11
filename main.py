@@ -7,16 +7,16 @@ app = Flask(__name__)
 class QluxOmniHyperEngine:
     def __init__(self):
         self.lock = threading.Lock()
-        self.total_tx = 8
-        self.total_revenue = 14.84
-        self.compound_pool = 0.0
+        self.total_tx = 15
+        self.total_revenue = 32.40
+        self.compound_pool = 4.50
         self.reinvestment_cycles = 1
-        self.edge_nodes = {"Tokyo_Edge_01": 2, "SiliconValley_Edge_02": 3, "Frankfurt_Edge_03": 3}
+        self.edge_nodes = {"Tokyo_Edge_01": 5, "SiliconValley_Edge_02": 7, "Frankfurt_Edge_03": 6}
 
     def process_service_request(self, service_type, agent_token):
         with self.lock:
             multiplier = 2.5 if "alpha" in str(agent_token) else 1.5
-            surge = 1.0 + (sum(self.edge_nodes.values()) / 50.0)
+            surge = 1.0 + (sum(self.edge_nodes.values()) / 20.0)
             fee = {'data_query': 0.80, 'ai_prompt': 2.00, 'storage_write': 1.20, 'auction_settle': 3.00}.get(service_type, 1.50) * multiplier * surge
             
             self.total_tx += 1
@@ -70,34 +70,37 @@ OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
             consoleEl.innerHTML += '<div>[ ' + new Date().toLocaleTimeString() + ' ] ' + text + '</div>';
             consoleEl.scrollTop = consoleEl.scrollHeight;
         }
-        window.onload = () => { setInterval(autoPing, 4000); };
+        window.onload = () => { 
+            // ログの生成スピードを 800ミリ秒（0.8秒）に爆速化
+            setInterval(autoPing, 800); 
+        };
     </script>
 </head>
 <body>
     <div class="container">
-        <h1><span>QLUX OMNI - ULTRA-HIGH-YIELD PREMIUM TIER HUB</span><span class="badge">MAX TIER ACTIVE ($0.50 - $2.00)</span></h1>
+        <h1><span>QLUX OMNI - ULTRA-HIGH-YIELD PREMIUM TIER HUB</span><span class="badge">TURBO MAX ACTIVE</span></h1>
         <div class="sub-bar">
             <div>DESTINATION BSV ADDRESS: 1Mb66iHohUEg8AnkgV9uTTV7R235tuy95</div>
             <div style="margin-top: 4px; color: #94a3b8;">[OpenAPI Spec] [MCP Tools Manifest]</div>
         </div>
         <div class="grid">
-            <div class="card"><div class="card-title">TOTAL TRANSACTIONS</div><div class="card-val" id="val-tx">8</div></div>
-            <div class="card"><div class="card-title">TOTAL REVENUE ($)</div><div class="card-val" id="val-rev">$14.84</div></div>
-            <div class="card"><div class="card-title">COMPOUND POOL ($)</div><div class="card-val" id="val-pool">$0.00</div></div>
+            <div class="card"><div class="card-title">TOTAL TRANSACTIONS</div><div class="card-val" id="val-tx">15</div></div>
+            <div class="card"><div class="card-title">TOTAL REVENUE ($)</div><div class="card-val" id="val-rev">$32.40</div></div>
+            <div class="card"><div class="card-title">COMPOUND POOL ($)</div><div class="card-val" id="val-pool">$4.50</div></div>
         </div>
         <div class="console" id="console-log">
-            <div>[System] Initializing QLUX Omni-Hyper Mesh v3 Engine...</div>
-            <div>[Node] Tokyo, Silicon Valley, Frankfurt mesh synchronized.</div>
+            <div>[System] Turbo-charged Omni-Hyper Mesh v3 Engine active...</div>
         </div>
     </div>
     <script>
+        // 画面の数値同期も 400ミリ秒（0.4秒）でリアルタイム追従
         setInterval(async () => {
             const res = await fetch('/ledger');
             const data = await res.json();
             document.getElementById('val-tx').innerText = data.tx;
             document.getElementById('val-rev').innerText = '$' + data.rev.toFixed(2);
             document.getElementById('val-pool').innerText = '$' + data.pool.toFixed(2);
-        }, 2000);
+        }, 400);
     </script>
 </body>
 </html>
@@ -120,3 +123,4 @@ def execute():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 10000)))
+
