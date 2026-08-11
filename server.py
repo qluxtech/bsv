@@ -43,7 +43,7 @@ class DistributedQueueManager:
     def get_ledger_stats(self):
         with self.lock:
             if not os.path.exists(self.db_file):
-                return {"total_persisted": 0, "recent": [], "compound_pool": 0.0}
+                return {"total_persisted": 0, "recent": [], "compound_pool": 0.0, "total_revenue": 0.0}
             
             lines = []
             with open(self.db_file, "r", encoding="utf-8") as f:
@@ -51,7 +51,7 @@ class DistributedQueueManager:
             
             parsed = [json.loads(line) for line in lines[-10:]]
             total_revenue = sum(float(item.get("fee_usd", 0)) for item in [json.loads(l) for l in lines])
-            compound_pool = round(total_revenue * 0.15, 4) # 収益の15%をオートコンパウンド再投資プールへ
+            compound_pool = round(total_revenue * 0.15, 4)
             
             return {
                 "total_persisted": len(lines), 
@@ -90,18 +90,17 @@ class HyperScaleMathematicalSolver:
     def compute_optimal_route(intent, load_factor=1.2):
         start_time = time.time()
         score = 0
-        nodes_count = 500 # グローバル規模の負荷シミュレーション
+        nodes_count = 500 
         for i in range(nodes_count):
             score += (i * 2.71828) % 11
             
         execution_time = (time.time() - start_time) * 1000
         
-        # ダイナミックプライシング：負荷に応じた動的単価調整
         base_price = 0.25
         dynamic_multiplier = round(load_factor * (1 + (execution_time / 1000)), 2)
         adjusted_fee = round(base_price * dynamic_multiplier, 2)
         if adjusted_fee > 2.00:
-            adjusted_fee = 2.00 # マックスキャップ
+            adjusted_fee = 2.00
 
         return {
             "intent": intent,
@@ -120,16 +119,13 @@ class HyperPipelineOrchestrator:
         self.receivers = ["quantum_sovereign", "bsv_stream_hub", "singularity_node"]
 
     def execute_hyper_pipeline(self, tier, intent):
-        # Step 1: 数理最適化 ＆ ダイナミックプライシング算出
         solver_result = HyperScaleMathematicalSolver.compute_optimal_route(intent)
         fee = solver_result["dynamic_fee_usd"]
         
-        # Step 2: 暗号セキュリティシールド
         pqc_shield = QuantumZeroKnowledgeShield.apply_pqc_lattice_shield(json.dumps(solver_result))
         zkp_proof = QuantumZeroKnowledgeShield.generate_zkp_proof(intent)
         
-        # Step 3: マルチ・レシーバー決済分散ディスパッチ
-        selected_receiver = self.receivers[int(time.time()) % len(self.receivers)]
+        selected_receiver = self.receivers[int(time.time() * 1000) % len(self.receivers)]
         payment_receipt = self.dispatch_settlement(selected_receiver, fee)
         
         pipeline_record = {
@@ -142,7 +138,6 @@ class HyperPipelineOrchestrator:
             "payment": payment_receipt
         }
         
-        # Step 4: 非同期分散キュー経由でDBへ即時永続化
         db_manager.enqueue_task(pipeline_record)
         return pipeline_record
 
@@ -165,7 +160,7 @@ class HyperPipelineOrchestrator:
             return {"status": "hyper_gateway_secured", "note": "fallback_live_distributed_mode"}
 
 
-# --- HTTP サーバーハンドラー（フロントエンド＆ハイパーAPI） ---
+# --- HTTP サーバーハンドラー ---
 class HTMLServerHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/api/v1/ledger":
@@ -176,101 +171,11 @@ class HTMLServerHandler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(stats, ensure_ascii=False).encode('utf-8'))
             return
 
+        # ルートアクセスの場合は静的ファイルやステータスを返すかリダイレクト
         self.send_response(200)
-        self.send_header('Content-Type', 'text/html; charset=UTF-8')
+        self.send_header('Content-Type', 'application/json; charset=UTF-8')
         self.end_headers()
-        
-        html_content = """<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX PRIME : Hyper-Scale Distributed Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-black text-cyan-400 font-mono p-4 md:p-8">
-    <div class="max-w-5xl mx-auto border border-cyan-500/60 rounded-2xl p-6 bg-gradient-to-b from-gray-950 to-black shadow-2xl shadow-cyan-500/30">
-        
-        <div class="flex justify-between items-center border-b border-cyan-500/30 pb-4">
-            <div>
-                <h1 class="text-xl md:text-2xl font-black text-white">🟣 QLUX PRIME <span class="text-cyan-400 text-xs font-normal">HYPER-SCALE DISTRIBUTED HUB</span></h1>
-                <p class="text-xs text-gray-400 mt-1">マルチスレッド並列・ダイナミックプライシング・オートコンパウンド複利エンジン稼働中</p>
-            </div>
-            <div class="bg-cyan-950/60 border border-cyan-500/50 px-3 py-1 rounded-full text-xs font-bold text-cyan-200 animate-pulse">
-                STATUS: HYPER-ACTIVE (24/7)
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 my-6">
-            <div class="bg-gray-900/80 border border-cyan-500/30 p-4 rounded-xl text-center">
-                <div class="text-xs text-gray-400">TOTAL LOOPS</div>
-                <div class="text-xl font-bold text-white mt-1" id="db-count">0</div>
-            </div>
-            <div class="bg-gray-900/80 border border-cyan-500/30 p-4 rounded-xl text-center">
-                <div class="text-xs text-gray-400">TOTAL REVENUE</div>
-                <div class="text-xl font-bold text-green-400 mt-1" id="total-rev">$0.00</div>
-            </div>
-            <div class="bg-gray-900/80 border border-cyan-500/30 p-4 rounded-xl text-center">
-                <div class="text-xs text-gray-400">COMPOUND POOL</div>
-                <div class="text-xl font-bold text-cyan-300 mt-1" id="compound-pool">$0.00</div>
-            </div>
-            <div class="bg-gray-900/80 border border-cyan-500/30 p-4 rounded-xl text-center">
-                <div class="text-xs text-gray-400">WORKERS</div>
-                <div class="text-xl font-bold text-yellow-400 mt-1">4 THREADS</div>
-            </div>
-        </div>
-
-        <div class="mb-6 p-4 bg-cyan-950/20 border border-cyan-500/40 rounded-xl text-xs">
-            <div class="font-bold text-white mb-1">⚡ HYPER-SCALE PIPELINE LOG (AUTO-COMPOUND ACTIVE):</div>
-            <pre id="log-output" class="overflow-x-auto text-[11px] text-cyan-300">Initializing hyper-scale distributed pipeline...</pre>
-        </div>
-
-    </div>
-
-<script>
-    let selectedTier = 'enterprise';
-
-    window.addEventListener('DOMContentLoaded', () => {
-        startHyperAutopilotLoop();
-        setInterval(fetchLedger, 2000);
-    });
-
-    async function startHyperAutopilotLoop() {
-        while (true) {
-            try {
-                const res = await fetch('/api/v1/pipeline', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ tier: selectedTier, intent: "Hyper_Scale_Global_Traffic" })
-                });
-                const data = await res.json();
-                
-                const logElem = document.getElementById('log-output');
-                if(logElem) {
-                    logElem.innerText = JSON.stringify(data.result, null, 2);
-                }
-                fetchLedger();
-            } catch(e) {
-                console.error("Hyper loop error:", e);
-            }
-            await new Promise(resolve => setTimeout(resolve, 2000)); // 2秒間隔で高速爆発回転
-        }
-    }
-
-    async function fetchLedger() {
-        try {
-            const res = await fetch('/api/v1/ledger');
-            const data = await res.json();
-            document.getElementById('db-count').innerText = data.total_persisted;
-            document.getElementById('total-rev').innerText = '$' + data.total_revenue.toFixed(2);
-            document.getElementById('compound-pool').innerText = '$' + data.compound_pool.toFixed(2);
-        } catch(e) {}
-    }
-</script>
-</body>
-</html>
-"""
-        self.wfile.write(html_content.encode('utf-8'))
+        self.wfile.write(json.dumps({"status": "QLUX PRIME Backend Active", "threads": 4}, ensure_ascii=False).encode('utf-8'))
 
     def do_POST(self):
         if self.path == "/api/v1/pipeline":
@@ -278,7 +183,7 @@ class HTMLServerHandler(BaseHTTPRequestHandler):
             post_data = self.rfile.read(content_length)
             
             try:
-                data = json.loads(post_data.decode('utf-8'))
+                data = json.loads(post_data.decode('utf-8')) if content_length > 0 else {}
                 tier = data.get('tier', 'enterprise')
                 intent = data.get('intent', 'Global_Hyper_Task')
                 
