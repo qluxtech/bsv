@@ -50,7 +50,7 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             startHyperAutopilotLoop();
-            setInterval(fetchLedger, 2000);
+            setInterval(fetchLedger, 1000);
         });
 
         async function startHyperAutopilotLoop() {
@@ -66,11 +66,11 @@
                     if (logElem && data && data.result) {
                         logElem.innerText = JSON.stringify(data.result, null, 2);
                     }
-                    fetchLedger();
+                    await fetchLedger();
                 } catch (e) {
                     console.error("Hyper loop error:", e);
                 }
-                await new Promise(resolve => setTimeout(resolve, 0));
+                await new Promise(resolve => setTimeout(resolve, 1000));
             }
         }
 
@@ -78,10 +78,14 @@
             try {
                 const res = await fetch('/api/v1/ledger');
                 const data = await res.json();
-                document.getElementById('db-count').innerText = data.total_persisted;
-                document.getElementById('total-rev').innerText = '$' + data.total_revenue.toFixed(2);
-                document.getElementById('compound-pool').innerText = '$' + data.compound_pool.toFixed(2);
-            } catch (e) {}
+                if (data) {
+                    document.getElementById('db-count').innerText = data.total_persisted || 0;
+                    document.getElementById('total-rev').innerText = '$' + (data.total_revenue || 0).toFixed(2);
+                    document.getElementById('compound-pool').innerText = '$' + (data.compound_pool || 0).toFixed(2);
+                }
+            } catch (e) {
+                console.error("Ledger fetch error:", e);
+            }
         }
     </script>
 </body>
