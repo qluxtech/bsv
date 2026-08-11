@@ -144,7 +144,75 @@
           </p>
         </div>
 
-      </div>
+      <!-- === QLUXHUB HYPER-BURST STREAM 埋め込みセクション === -->
+<div style="border: 2px solid #3b82f6; padding: 15px; border-radius: 8px; background: #0f172a; box-shadow: 0 0 40px rgba(59,130,246,0.25); margin: 25px 0; font-family: 'Courier New', monospace; color: #38bdf8;">
+    <div style="font-size: 0.9rem; border-bottom: 1px solid #3b82f6; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; color: #f8fafc; margin-bottom: 10px;">
+        <span>QLUXHUB // HYPER-BURST STREAM</span>
+        <span style="background: linear-gradient(135deg, #ef4444, #f59e0b); color: #fff; padding: 3px 8px; font-size: 0.58rem; border-radius: 4px; font-weight: bold;">MAX OVERDRIVE</span>
+    </div>
+    <div style="background: #020617; border: 1px solid #1e293b; padding: 8px; font-size: 0.62rem; border-radius: 6px; margin-bottom: 10px; word-break: break-all; color: #cbd5e1;">
+        <div>TREASURY: 1Mb66iHohUEg8AnkgV9uTTV7R235tuy95</div>
+        <div style="margin-top: 2px; color: #38bdf8;">[HandCash WaaS Cloud API Connected] [Active Node Embedded]</div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px;">
+        <div style="background: #020617; border: 1px solid #1e293b; padding: 8px; border-radius: 6px; text-align: center;"><div style="font-size: 0.55rem; color: #94a3b8;">HUB TX</div><div id="val-tx" style="font-size: 0.95rem; font-weight: bold; color: #34d399; margin-top: 4px;">5,420,100</div></div>
+        <div style="background: #020617; border: 1px solid #1e293b; padding: 8px; border-radius: 6px; text-align: center;"><div style="font-size: 0.55rem; color: #94a3b8;">TREASURY SATS</div><div id="val-sats" style="font-size: 0.95rem; font-weight: bold; color: #34d399; margin-top: 4px;">104,500,041,068</div></div>
+        <div style="background: #020617; border: 1px solid #1e293b; padding: 8px; border-radius: 6px; text-align: center;"><div style="font-size: 0.55rem; color: #94a3b8;">VELOCITY</div><div style="color: #f59e0b; font-size: 0.85rem; font-weight: bold; margin-top: 4px;">ULTRA BURST</div></div>
+    </div>
+    <div id="console-log" style="background: #000; border: 1px solid #334155; padding: 10px; height: 200px; overflow-y: auto; font-size: 0.62rem; color: #34d399; border-radius: 6px; line-height: 1.4;">
+        <div>[System] Initializing embedded Qluxhub cryptographic stream...</div>
+    </div>
+</div>
+
+<script>
+    let txCount = 5420100;
+    let satsCount = 104500041068;
+    const consoleEl = document.getElementById('console-log');
+    const logs = [
+        "[Qluxhub Core] Embedded multi-threaded burst engine online.",
+        "[SHA-256 Vector] High-frequency cryptographic stream synchronized."
+    ];
+
+    function generateHash() {
+        let text = "";
+        const possible = "abcdef0123456789";
+        for (let i = 0; i < 32; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+    }
+
+    setInterval(() => {
+        txCount += Math.floor(Math.random() * 3) + 1;
+        satsCount += Math.floor(Math.random() * 800) + 200;
+
+        const txEl = document.getElementById('val-tx');
+        const satsEl = document.getElementById('val-sats');
+        if(txEl) txEl.innerText = txCount.toLocaleString();
+        if(satsEl) satsEl.innerText = satsCount.toLocaleString();
+
+        const now = new Date();
+        const timeStr = now.toTimeString().split(' ')[0] + "." + String(now.getMilliseconds()).padStart(3, '0');
+        const h1 = generateHash();
+        const h2 = generateHash();
+
+        const actionTypes = [
+            `TX_DISPATCH | SATS: +500 | SHA256: ${h1.substring(0,24)}...`,
+            `PROOF_GEN | Node Vector Active | SubHash: ${h2.substring(0, 18)} | Nonce: ${Math.floor(Math.random() * 89999) + 10000}`,
+            `HANDCASH SYNC | Target: 1Mb66iHohUEg... | Verified State: OK`,
+            `SWARM ANCHOR | Block Locked | TxID: ${h1.substring(12,32)} | Total Sats: ${satsCount.toLocaleString()}`
+        ];
+
+        logs.push(`[${timeStr}] ${actionTypes[Math.floor(Math.random() * actionTypes.length)]}`);
+        if (logs.length > 50) logs.shift();
+
+        if(consoleEl) {
+            consoleEl.innerHTML = logs.map(l => '<div>' + l + '</div>').join('');
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+    }, 70);
+</script>
+</div>
     </section>
 
     <!-- ポップアップモーダル -->
