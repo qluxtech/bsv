@@ -210,9 +210,13 @@ class HTMLServerHandler(BaseHTTPRequestHandler):
                 tier = data.get('tier', 'enterprise')
                 intent = data.get('intent', 'Global_Hyper_Task')
                 
-                auth_token = "bf5d7f6fbc24d129ff5d833854e576b2c80f9e085368a2bd5fb3748c04130f22"
+                auth_token = "bf5d7f6fbc28d129ff5d83385de576b2c8DF9e0853"
                 orchestrator = HyperPipelineOrchestrator(auth_token)
                 result = orchestrator.execute_hyper_pipeline(tier, intent)
+                
+                global db_manager
+                if 'db_manager' in globals() and db_manager:
+                    db_manager.enqueue_task(result)
                 
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/json')
