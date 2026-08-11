@@ -1,4 +1,4 @@
-# QLUX OMNI - Autonomous AI Agent Settlement Mesh & MCP Hub
+# QLUX Autonomous AI Agent Settlement Mesh & MCP Hub
 
 > World's first high-yield, HTTP 402 micro-settlement and autonomous multi-service mesh for AI agents, powered by HandCash and BSV.
 
