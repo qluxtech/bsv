@@ -15,8 +15,8 @@ class DistributedQueueManager:
         self.task_queue = queue.Queue()
         self.lock = threading.Lock()
         self.active = True
-        
-        self.workers = [threading.Thread(target=self._process_queue, daemon=True) for _ in range(4)]
+
+        self.workers = [threading.Thread(target=self._process_queue, daemon=True) for _ in range(2)]
         for w in self.workers:
             w.start()
 
@@ -42,7 +42,7 @@ class DistributedQueueManager:
     def get_ledger_stats(self):
         with self.lock:
             if not os.path.exists(self.db_file):
-                return {"total_persisted": 0, "recent": [], "compound_pool": 0.0, "total_revenue": 0.0}
+                return {"total_persisted": 0, "recent": [], "compound_pool": 0, "total_revenue": 0}
             
             lines = []
             with open(self.db_file, "r", encoding="utf-8") as f:
@@ -54,7 +54,6 @@ class DistributedQueueManager:
                 try:
                     item = json.loads(line)
                     parsed.append(item)
-                    # どの階層に料金データがあっても確実に拾い上げて合算する
                     fee = float(item.get("fee_usd", 0))
                     if fee == 0 and "payment" in item:
                         fee = float(item["payment"].get("amount_usd", 0))
@@ -73,6 +72,9 @@ class DistributedQueueManager:
                 "compound_pool": compound_pool,
                 "recent": recent_parsed
             }
+
+# ▼【ここを追加】マネージャーの実体を生成する
+db_manager = DistributedQueueManager()
 
 # --- 2. PQC ＆ ZKP 次世代暗号セキュリティ・コア ---
 class QuantumZeroKnowledgeShield:
