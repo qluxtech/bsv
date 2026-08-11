@@ -1,6 +1,6 @@
 # QLUX Autonomous AI Agent Settlement Mesh & MCP Hub
 
-> World's first high-yield, HTTP 402 micro-settlement and autonomous multi-service mesh for AI agents, powered by HandCash and BSV.
+> World's first ultra-high-yield, HTTP 402 micro-settlement and autonomous multi-service mesh for AI agents, powered by HandCash and BSV.
 
 ## 🚀 Overview
 QLUX OMNI is a decentralized micro-payment and service mesh designed exclusively for AI agents, LLMs (such as Claude and GPT-based bots), and automated programs. It integrates instant **HTTP 402 Payment Required** protocols with real-time HandCash BSV settlements.
@@ -11,14 +11,14 @@ QLUX OMNI is a decentralized micro-payment and service mesh designed exclusively
 
 ---
 
-## 🛠️ Available Services & Pricing (High-Yield Tier)
+## 🛠️ Available Services & Pricing (Ultra-High-Yield Tier)
 
 | Service Type | Endpoint / Method | Description | Micro-Fee (USD) |
 | :--- | :--- | :--- | :--- |
-| **Data Query** | `POST /api/v1/omni/execute` | Real-time global matrix index & verified data feed | `$0.020 - $0.060` |
-| **AI Prompt Processing** | `POST /api/v1/omni/execute` | Autonomous mesh inference & optimization | `$0.050 - $0.150` |
-| **High-Speed Storage** | `POST /api/v1/omni/execute` | Decentralized high-speed vault record commit | `$0.015 - $0.045` |
-| **Auction Settlement** | `POST /api/v1/omni/execute` | Cross-node resource bidding & settlement | `$0.040 - $0.120` |
+| **Data Query** | `POST /api/v1/omni/execute` | Real-time global matrix index & verified data feed | `$0.60 - $1.20` |
+| **AI Prompt Processing** | `POST /api/v1/omni/execute` | Autonomous mesh inference & optimization | `$1.50 - $3.00` |
+| **High-Speed Storage** | `POST /api/v1/omni/execute` | Decentralized high-speed vault record commit | `$0.80 - $1.60` |
+| **Auction Settlement** | `POST /api/v1/omni/execute` | Cross-node resource bidding & settlement | `$2.00 - $4.00` |
 
 ---
 
@@ -43,4 +43,3 @@ curl -X POST "https://<your-render-url>/api/v1/omni/execute" \
       "prompt": "Optimize cross-border AI routing and liquidity"
     }
   }'
-
