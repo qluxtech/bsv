@@ -4,8 +4,24 @@ import json
 import time
 import threading
 import random
+import urllib.request
 
 PORT = 10000
+BSV_RECEIVER_ADDRESS = "1Mb66iHohUEg8AnkgV9uTTV7R235tuy95"
+
+def fetch_onchain_bsv_balance(address):
+    """WhatsOnChain APIを使用して指定BSVアドレスの残高を実取得"""
+    try:
+        url = f"https://api.whatsonchain.com/v1/bsv/main/address/{address}/balance"
+        req = urllib.request.Request(url, headers={'User-Agent': 'QLUX-Sovereign-Node'})
+        with urllib.request.urlopen(req, timeout=3) as response:
+            data = json.loads(response.read().decode())
+            confirmed = data.get('confirmed', 0)
+            unconfirmed = data.get('unconfirmed', 0)
+            return (confirmed + unconfirmed) / 100000000.0
+    except Exception as e:
+        print("BSV On-chain Fetch Error:", e)
+        return 0.0
 
 class DatabaseManager:
     def __init__(self, db_file="ledger.json"):
@@ -31,17 +47,19 @@ class DatabaseManager:
     def enqueue_task(self, data):
         with self.lock:
             self.total_loops += 1
-            # 自動コンパウンド（複利）計算：処理が増えるごとにプールも加速
             incremental = 0.3
             self.total_revenue += incremental
             self.compound_pool += incremental * 0.15
 
     def get_ledger_stats(self):
         with self.lock:
+            live_balance = fetch_onchain_bsv_balance(BSV_RECEIVER_ADDRESS)
             return {
                 "total_persisted": self.total_loops,
                 "total_revenue": round(self.total_revenue, 2),
-                "compound_pool": round(self.compound_pool, 2)
+                "compound_pool": round(self.compound_pool, 2),
+                "bsv_address": BSV_RECEIVER_ADDRESS,
+                "onchain_balance_bsv": live_balance
             }
 
 db_manager = DatabaseManager()
@@ -75,7 +93,6 @@ class HTMLServerHandler(http.server.BaseHTTPRequestHandler):
             except:
                 data = {}
 
-            # マルチノード・耐量子(PQC)・ZKP統合ルーティング
             nodes = ("Tokyo_cluster_01", "Frankfurt_hub_04", "Singapore_gateway_09")
             selected_node = random.choice(nodes)
 
@@ -95,7 +112,11 @@ class HTMLServerHandler(http.server.BaseHTTPRequestHandler):
                     "zkp": {"proof_hash": f"zkp_proof_hash_{random.randint(10000000, 99999999)}"}
                 },
                 "target_receiver": selected_node,
-                "payment": {"mode": "Sovereign_HandCash_Live", "amount_usd": 0.30}
+                "payment": {
+                    "mode": "Sovereign_HandCash_Live",
+                    "receiver_address": BSV_RECEIVER_ADDRESS,
+                    "amount_usd": 0.30
+                }
             }
 
             db_manager.enqueue_task(result)
