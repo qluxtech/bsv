@@ -7,8 +7,8 @@ from flask import Flask, jsonify, render_template_string, request
 
 app = Flask(__name__)
 
-# --- Qluxhub & HandCash 設定 ---
-Q_HUB_NAME = "Qluxhub"
+# --- Qluxhub Configuration ---
+HUB_NAME = "Qluxhub"
 HANDCASH_APP_ID = "db01ad39e1f40529f286f11dd4fcd554d097b5d25f55d195fcc086f120eab84f"
 HANDCASH_APP_SECRET = "bf5d7f6fbc24d129ff5d833854e576b2c80f9e085368a2bd5fb3748c04130f22"
 TARGET_ADDRESS = "1Mb66iHohUEg8AnkgV9uTTV7R235tuy95"
@@ -31,25 +31,9 @@ class QluxhubEngine:
         if len(self.recent_logs) > 30:
             self.recent_logs.pop(0)
 
-    def fetch_handcash_status(self):
-        try:
-            url = "https://cloud.handcash.io/v1/waas/wallet/balances"
-            headers = {
-                "Content-Type": "application/json",
-                "app-id": HANDCASH_APP_ID,
-                "app-secret": HANDCASH_APP_SECRET
-            }
-            res = requests.get(url, headers=headers, timeout=4)
-            if res.status_code == 200:
-                return res.json()
-        except Exception:
-            pass
-        return None
-
     def _hub_loop(self):
         while self.running:
             time.sleep(10.0)
-            hc_data = self.fetch_handcash_status()
             with self.lock:
                 self.total_tx += 1
                 sats_delta = 1500
@@ -60,7 +44,7 @@ class QluxhubEngine:
     def get_status(self):
         with self.lock:
             return {
-                "hub_name": Q_HUB_NAME,
+                "hub_name": HUB_NAME,
                 "tx": self.total_tx,
                 "sats": self.treasury_sats,
                 "logs": list(self.recent_logs)
@@ -89,10 +73,10 @@ QLUX_HTML_TEMPLATE = """<!DOCTYPE html>
 </head>
 <body>
     <div class="container">
-        <h1><span>Qluxhub // BSV SOVEREIGN UTILITY HUB</span><span class="badge">ACTIVE MAINNET NODE</span></h1>
+        <h1><span>QLUXHUB // BSV SOVEREIGN UTILITY HUB</span><span class="badge">ACTIVE MAINNET NODE</span></h1>
         <div class="sub-bar">
             <div>TREASURY DESTINATION: 1Mb66iHohUEg8AnkgV9uTTV7R235tuy95</div>
-            <div style="margin-top: 4px; color: #38bdf8;">[HandCash Cloud API Connected] [Autonomous Micro-Gateway Active]</div>
+            <div style="margin-top: 4px; color: #38bdf8;">[HandCash Cloud API Connected] [Qluxhub Sovereign Gateway Active]</div>
         </div>
         <div class="grid">
             <div class="card"><div class="card-title">HUB TRANSACTIONS</div><div class="card-val" id="val-tx">0</div></div>
@@ -138,7 +122,7 @@ def webhook():
             qlux_engine.treasury_sats += data.get('sats', 1000)
             qlux_engine.log_action("[WEBHOOK] Inbound payment routed to Qluxhub treasury.")
         return jsonify({"status": "ok"}), 200
-    return jsonify({"status": "ignored"}}, 400
+    return jsonify({"status": "ignored"}), 400
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 10000)))
