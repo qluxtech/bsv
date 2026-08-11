@@ -15,7 +15,7 @@ from flask import Flask, jsonify, render_template_string, request
 app = Flask(__name__)
 
 class AbsoluteNodeEngine:
-    """QLUX ABSOLUTE NODE: テラノードと因果律を統合する中枢演算エンジン"""
+    """QLUX ABSOLUTE NODE:"""
     def __init__(self):
         self.node_status = "ABSOLUTE_SYNCHRONIZED"
         self.cumulative_wealth_accumulator = 999999999999
@@ -74,7 +74,7 @@ NODE_TEMPLATE = """<!DOCTYPE html>
     <div class="wrapper">
         <div class="header">
             <div class="title">QLUX ABSOLUTE NODE</div>
-            <div class="subtitle">// 次世代分散合意中枢 ＆ リアルタイム因果律制御ネットワーク</div>
+            <div class="subtitle">// 純粋な価値の流通だけを残し、美しく調和する次世代ノード</div>
             <div class="feed-bar">✨ NODE STATUS: ABSOLUTE SYNC ACTIVE [100% OPERATIONAL]</div>
         </div>
         <div class="grid">
