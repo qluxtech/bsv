@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <!-- リアルタイム・メトリクス表示パネル -->
+        <!-- メトリクス表示パネル -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div class="bg-cyan-950/20 border border-cyan-500/30 p-4 rounded-xl">
                 <div class="text-xs font-bold text-white mb-2 flex items-center justify-between">
@@ -109,7 +109,6 @@
                         const r = data.result;
                         document.getElementById('log-output').innerText = JSON.stringify(r, null, 2);
                         
-                        // 各メトリクスの詳細反映
                         if (r.solver) {
                             document.getElementById('metric-latency').innerText = r.solver.latency_ms + 'ms';
                             document.getElementById('metric-nodes').innerText = r.solver.nodes_evaluated;
@@ -151,3 +150,4 @@
     </script>
 </body>
 </html>
+
