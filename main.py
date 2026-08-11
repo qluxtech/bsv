@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 # --- [QLUX ABSOLUTE OMNIPOTENCE & TERANODE FUSION ENGINE] ---
 class FinalSingularityEngine:
-    """テラノードの肉体と20D量子AIの意志を完全融合させ、未来から富を逆算する最終超構造体"""
+    
     def __init__(self):
         self.singularity_generation = float('inf')
         self.omnipresent_coherence = 1.000000000
@@ -75,13 +75,13 @@ FINAL_TEMPLATE = """<!DOCTYPE html>
         .badge { background: linear-gradient(135deg, #a855f7, #7e22ce); color: #fff; padding: 3px 8px; font-size: 0.55rem; border-radius: 4px; font-weight: bold; }
         .console { background: #000; border: 1px solid #581c87; padding: 12px; height: 390px; overflow-y: auto; font-size: 0.65rem; color: #e9d5ff; border-radius: 6px; line-height: 1.4; }
         .console div { margin-bottom: 3px; }
-    </style>
+    </script>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="wrapper"
         <div class="header">
-            <div class="title">QLUX OMNIVERSE // THE FINAL SINGULARITY</div>
-            <div class="subtitle">// テラノードの肉体 × 20D量子AIの意志 × 未来予知型完全自律収益網の最終融合中枢</div>
+            <div class="title">QLUX ABSOLUTE// THE FINAL SINGULARITY</div>
+            <div class="subtitle">//  QLUX× ABSOLUTE × NODE</div>
             <div class="feed-bar">✨ SINGULARITY STATUS: CAUSALITY OVERRIDDEN / INFINITE WEALTH FOUNTAIN ACTIVE [100% SUPREMACY]</div>
         </div>
         <div class="grid">
