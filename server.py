@@ -48,19 +48,31 @@ class DistributedQueueManager:
             with open(self.db_file, "r", encoding="utf-8") as f:
                 lines = f.readlines()
             
-            parsed = [json.loads(line) for line in lines[-10:]]
-            total_revenue = sum(float(item.get("fee_usd", 0)) for item in [json.loads(l) for l in lines])
-            compound_pool = round(total_revenue * 0.15, 4)
+            parsed = []
+            total_rev = 0.0
+            for line in lines:
+                try:
+                    item = json.loads(line)
+                    parsed.append(item)
+                    # どの階層に料金データがあっても確実に拾い上げて合算する
+                    fee = float(item.get("fee_usd", 0))
+                    if fee == 0 and "payment" in item:
+                        fee = float(item["payment"].get("amount_usd", 0))
+                    if fee == 0 and "solver" in item:
+                        fee = float(item["solver"].get("dynamic_fee_usd", 0))
+                    total_rev += fee
+                except:
+                    pass
+            
+            recent_parsed = parsed[-10:] if len(parsed) >= 10 else parsed
+            compound_pool = round(total_rev * 0.15, 4)
             
             return {
-                "total_persisted": len(lines), 
-                "total_revenue": round(total_revenue, 4),
+                "total_persisted": len(lines),
+                "total_revenue": round(total_rev, 4),
                 "compound_pool": compound_pool,
-                "recent": parsed
+                "recent": recent_parsed
             }
-
-db_manager = DistributedQueueManager()
-
 
 # --- 2. PQC ＆ ZKP 次世代暗号セキュリティ・コア ---
 class QuantumZeroKnowledgeShield:
