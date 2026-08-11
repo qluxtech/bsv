@@ -226,12 +226,18 @@ class HTMLServerHandler(BaseHTTPRequestHandler):
                     "target_receiver": "bsv_stream_hub",
                     "payment": {"mode": "live_distributed_stable", "amount_usd": 0.3}
                 }
-                
-                # データベースキューへ強制保存
+                                # データベースキューへ保存 ＆ 即時ファイル書き込みで確実にカウントさせる
                 global db_manager
                 if 'db_manager' in globals() and db_manager:
                     db_manager.enqueue_task(result)
-                
+                    # 即時書き込みを強制実行
+                    try:
+                        with db_manager.lock:
+                            with open(db_manager.db_file, "a", encoding="utf-8") as f:
+                                f.write(json.dumps(result, ensure_ascii=False) + "\n")
+                    except Exception as ex:
+                        print("Direct write error:", ex)
+
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/json')
                 self.end_headers()
