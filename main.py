@@ -10,12 +10,12 @@ try:
 except ImportError:
     pass
 
-from flask import Flask, jsonify, render_template_string, request
+from flask import Flask, jsonify, render_template_string, request, redirect, url_for
 
 app = Flask(__name__)
 
 class AbsoluteNodeEngine:
-    """QLUX ABSOLUTE NODE:"""
+    """QLUX ABSOLUTE NODE: 次世代分散合意中枢エンジン"""
     def __init__(self):
         self.node_status = "ABSOLUTE_SYNCHRONIZED"
         self.cumulative_wealth_accumulator = 999999999999
@@ -44,7 +44,7 @@ class AbsoluteNodeEngine:
 
 node_engine = AbsoluteNodeEngine()
 
-# --- [QLUX ABSOLUTE NODE DASHBOARD UI] ---
+# --- [QLUX ABSOLUTE NODE DASHBOARD UI WITH NAVIGATION BUTTONS] ---
 NODE_TEMPLATE = """<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -63,10 +63,21 @@ NODE_TEMPLATE = """<!DOCTYPE html>
         .card { background: #05030a; border: 1px solid #581c87; padding: 12px; border-radius: 8px; text-align: center; box-shadow: 0 0 20px rgba(168,85,247,0.2); }
         .card-title { font-size: 0.58rem; color: #cbd5e1; }
         .card-val { font-size: 1.1rem; font-weight: bold; color: #c084fc; margin-top: 6px; }
+        
+        /* GLOBAL SYNCHRONIZATION GRID */
+        .sync-section { border: 2px solid #581c87; background: #07030f; padding: 15px; border-radius: 8px; margin-bottom: 18px; text-align: center; box-shadow: 0 0 30px rgba(168,85,247,0.15); }
+        .sync-title { font-size: 0.85rem; color: #c084fc; font-weight: bold; margin-bottom: 4px; letter-spacing: 2px; }
+        .sync-sub { font-size: 0.6rem; color: #94a3b8; margin-bottom: 14px; }
+        .sync-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        @media (max-width: 768px) { .sync-grid { grid-template-columns: repeat(2, 1fr); } }
+        .sync-btn { background: #0d061c; border: 1px solid #7e22ce; color: #e9d5ff; padding: 12px 8px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.7rem; font-weight: bold; cursor: pointer; transition: all 0.2s ease; text-decoration: none; display: block; }
+        .sync-btn:hover { background: #7e22ce; color: #fff; box-shadow: 0 0 15px rgba(168,85,247,0.8); transform: translateY(-2px); }
+        .sync-btn.active-omega { border: 2px solid #c084fc; box-shadow: 0 0 20px rgba(192,132,252,0.6); }
+
         .console-container { border: 2px solid #a855f7; background: #090414; padding: 15px; border-radius: 8px; box-shadow: 0 0 100px rgba(168,85,247,0.3); }
         .console-header { font-size: 0.85rem; border-bottom: 1px solid #a855f7; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; color: #f8fafc; margin-bottom: 10px; }
         .badge { background: linear-gradient(135deg, #a855f7, #7e22ce); color: #fff; padding: 3px 8px; font-size: 0.55rem; border-radius: 4px; font-weight: bold; }
-        .console { background: #000; border: 1px solid #581c87; padding: 12px; height: 390px; overflow-y: auto; font-size: 0.65rem; color: #e9d5ff; border-radius: 6px; line-height: 1.4; }
+        .console { background: #000; border: 1px solid #581c87; padding: 12px; height: 280px; overflow-y: auto; font-size: 0.65rem; color: #e9d5ff; border-radius: 6px; line-height: 1.4; }
         .console div { margin-bottom: 3px; }
     </style>
 </head>
@@ -77,12 +88,33 @@ NODE_TEMPLATE = """<!DOCTYPE html>
             <div class="subtitle">// 純粋な価値の流通だけを残し、美しく調和する次世代ノード</div>
             <div class="feed-bar">✨ NODE STATUS: ABSOLUTE SYNC ACTIVE [100% OPERATIONAL]</div>
         </div>
+
         <div class="grid">
             <div class="card"><div class="card-title">NODE TPS</div><div class="card-val" id="val-tps" style="color: #38bdf8;">888,888,888,000</div></div>
             <div class="card"><div class="card-title">LATENCY</div><div class="card-val" id="val-latency" style="color: #34d399;">0.0000 ms</div></div>
             <div class="card"><div class="card-title">NODE TIER</div><div class="card-val" id="val-tier" style="color: #fbbf24;">ABSOLUTE-01</div></div>
             <div class="card"><div class="card-title">WEALTH FOUNTAIN</div><div class="card-val" id="val-wealth" style="color: #f472b6;">∞ SATOSHIS</div></div>
         </div>
+
+        <!-- GLOBAL SYNCHRONIZATION MODULE BUTTONS (CLICKABLE) -->
+        <div class="sync-section">
+            <div class="sync-title">GLOBAL SYNCHRONIZATION</div>
+            <div class="sync-sub">地球規模の同調性を担保するモジュール群（タップして各中枢へ遷移）</div>
+            <div class="sync-grid">
+                <a href="/module/qluxwallet" class="sync-btn">01 // qluxwallet</a>
+                <a href="/module/qluxprime" class="sync-btn">03 // QLUXPRIME</a>
+                <a href="/module/flow" class="sync-btn">04 // FLOW</a>
+                <a href="/module/axiom" class="sync-btn">05 // AXIOM</a>
+                <a href="/module/logic" class="sync-btn">06 // LOGIC</a>
+                <a href="/module/prime" class="sync-btn">07 // PRIME</a>
+                <a href="/module/omega" class="sync-btn active-omega">08 // OMEGA</a>
+                <a href="/module/void" class="sync-btn">09 // VOID</a>
+                <a href="/module/zen" class="sync-btn">10 // ZEN</a>
+                <a href="/module/true" class="sync-btn">11 // TRUE</a>
+                <a href="/module/core" class="sync-btn">12 // CORE</a>
+            </div>
+        </div>
+
         <div class="console-container">
             <div class="console-header">
                 <span>ABSOLUTE NODE TELEMETRY STREAM</span>
@@ -118,7 +150,7 @@ NODE_TEMPLATE = """<!DOCTYPE html>
                 const timeStr = now.toTimeString().split(' ')[0] + "." + String(now.getMilliseconds()).padStart(3, '0');
                 
                 logs.push(`[${timeStr}] NODE_SYNC_BURST | RootHash: ${result.root_hash.substring(0, 20)}... | Status: OK`);
-                if (logs.length > 50) logs.shift();
+                if (logs.length > 40) logs.shift();
 
                 consoleEl.innerHTML = logs.map(l => '<div>' + l + '</div>').join('');
                 consoleEl.scrollTop = consoleEl.scrollHeight;
@@ -126,7 +158,6 @@ NODE_TEMPLATE = """<!DOCTYPE html>
                 console.error("Node Sync Error", e);
             }
         }
-        // 描画負荷を下げてフリーズを防ぐため、実行間隔を1000ミリ秒（1秒）に変更
         setInterval(triggerNodeCycle, 1000);
     </script>
 </body>
@@ -136,6 +167,35 @@ NODE_TEMPLATE = """<!DOCTYPE html>
 @app.route('/')
 def index():
     return render_template_string(NODE_TEMPLATE)
+
+@app.route('/module/<name>')
+def module_redirect(name):
+    # 各モジュールボタンを押したときに表示される専用ページ
+    return render_template_string(f"""
+    <!DOCTYPE html>
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MODULE // {name.upper()}</title>
+        <style>
+            body {{ background: #000; color: #a855f7; font-family: 'Courier New', monospace; padding: 20px; text-align: center; box-sizing: border-box; }}
+            .box {{ border: 2px solid #a855f7; padding: 30px 20px; border-radius: 10px; max-width: 600px; margin: 40px auto; background: #0d061c; box-shadow: 0 0 50px rgba(168,85,247,0.4); }}
+            h1 {{ color: #c084fc; letter-spacing: 2px; font-size: 1.4rem; }}
+            p {{ color: #cbd5e1; font-size: 0.85rem; line-height: 1.6; }}
+            a {{ display: inline-block; margin-top: 25px; color: #fff; background: #7e22ce; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 0.8rem; box-shadow: 0 0 15px rgba(168,85,247,0.5); }}
+            a:hover {{ background: #9333ea; }}
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <h1>MODULE: {name.upper()}</h1>
+            <p>量子同期プロトコルが正常に確立されました。<br>分散中枢モジュール「{name.upper()}」は現在稼働中であり、因果律の統合処理を実行しています。</p>
+            <a href="/">← ABSOLUTE NODE へ戻る</a>
+        </div>
+    </body>
+    </html>
+    """)
 
 @app.route('/api/node/execute', methods=['POST'])
 def api_node_execute():
