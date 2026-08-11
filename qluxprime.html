@@ -13,7 +13,7 @@
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-cyan-500/30 pb-4 gap-4">
             <div>
                 <h1 class="text-xl md:text-2xl font-black text-white tracking-wider">🟣 QLUX PRIME <span class="text-cyan-400 text-xs">HYPER-SCALE SOVEREIGN HUB</span></h1>
-                <p class="text-xs text-gray-400 mt-1">マルチスレッド並列・PQC格子暗号・ZKP検証・ダイナミックプライシング統合エンジン</p>
+                <p class="text-xs text-gray-400 mt-1">マルチスレッド並列・PQC格子暗号・自動複利・グローバルマルチノード統合エンジン</p>
             </div>
             <div class="flex items-center gap-2">
                 <span class="inline-block w-2.5 h-2.5 rounded-full bg-green-500 animate-ping"></span>
@@ -35,11 +35,11 @@
             </div>
             <div class="bg-gray-900/90 border border-cyan-500/40 p-4 rounded-xl text-center shadow-lg">
                 <div class="text-[11px] text-gray-400 tracking-wide">COMPOUND POOL</div>
-                <div class="text-2xl font-black text-cyan-300 mt-1" id="compound-pool">$0.00</div>
+                <div class="text-2xl font-black text-cyan-300 mt-1 animate-pulse" id="compound-pool">$0.00</div>
             </div>
             <div class="bg-gray-900/90 border border-cyan-500/40 p-4 rounded-xl text-center shadow-lg">
                 <div class="text-[11px] text-gray-400 tracking-wide">WORKERS / SHIELD</div>
-                <div class="text-xl font-black text-yellow-400 mt-1">4 THREADS / PQC</div>
+                <div class="text-xl font-black text-yellow-400 mt-1">16 THREADS / PQC</div>
             </div>
         </div>
 
@@ -47,13 +47,13 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div class="bg-cyan-950/20 border border-cyan-500/30 p-4 rounded-xl">
                 <div class="text-xs font-bold text-white mb-2 flex items-center justify-between">
-                    <span>⚡ SOLVER METRICS</span>
+                    <span>⚡ MULTI-NODE SOLVER METRICS</span>
                     <span id="metric-latency" class="text-cyan-300 font-normal">0.00ms</span>
                 </div>
                 <div class="text-[11px] text-gray-300 space-y-1">
                     <div>Nodes Evaluated: <span id="metric-nodes" class="text-cyan-400 font-bold">0</span></div>
                     <div>Optimal Score: <span id="metric-score" class="text-cyan-400 font-bold">0.00</span></div>
-                    <div>Dynamic Fee: <span id="metric-fee" class="text-green-400 font-bold">$0.00</span></div>
+                    <div>Dynamic Fee: <span id="metric-fee" class="text-green-400 font-bold">$0.30</span></div>
                 </div>
             </div>
 
@@ -67,10 +67,10 @@
             </div>
 
             <div class="bg-cyan-950/20 border border-cyan-500/30 p-4 rounded-xl">
-                <div class="text-xs font-bold text-white mb-2">🌐 SETTLEMENT & ROUTING</div>
+                <div class="text-xs font-bold text-white mb-2">🌐 SOVEREIGN ROUTING</div>
                 <div class="text-[11px] text-gray-300 space-y-1">
                     <div>Target Node: <span id="net-receiver" class="text-yellow-300 font-bold">-</span></div>
-                    <div>Gateway Mode: <span id="net-mode" class="text-cyan-400 font-bold">Active</span></div>
+                    <div>Gateway Mode: <span id="net-mode" class="text-cyan-400 font-bold">Live HandCash</span></div>
                     <div>Pipeline Status: <span class="text-green-400 font-bold">Secured & Distributed</span></div>
                 </div>
             </div>
@@ -80,19 +80,17 @@
         <div class="p-4 bg-cyan-950/10 border border-cyan-500/40 rounded-xl text-xs">
             <div class="font-bold text-white mb-2 flex justify-between items-center">
                 <span>⚡ HYPER-SCALE PIPELINE STREAM (LIVE JSON)</span>
-                <span class="text-[10px] text-gray-400">Auto-Compound & Multi-Thread Active</span>
+                <span class="text-[10px] text-gray-400">Auto-Compound & Multi-Cluster Active</span>
             </div>
-            <pre id="log-output" class="overflow-x-auto text-[11px] text-cyan-300 bg-black/60 p-3 rounded border border-cyan-500/20 h-40">Initializing hyper-scale distributed pipeline...</pre>
+            <pre id="log-output" class="overflow-x-auto text-[11px] text-cyan-300 bg-black/60 p-3 rounded border border-cyan-500/20 h-40">Initializing hyper-scale multi-cluster pipeline...</pre>
         </div>
 
     </div>
 
     <script>
-        let selectedTier = 'enterprise';
-
         window.addEventListener('DOMContentLoaded', () => {
             startHyperAutopilotLoop();
-            setInterval(fetchLedger, 1500);
+            setInterval(fetchLedger, 1200);
         });
 
         async function startHyperAutopilotLoop() {
@@ -101,7 +99,7 @@
                     const res = await fetch('/api/v1/pipeline', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ tier: selectedTier, intent: "Hyper_Scale_Global_Traffic" })
+                        body: JSON.stringify({ tier: 'enterprise', intent: "Hyper_Scale_Global_Traffic" })
                     });
                     const data = await res.json();
                     
@@ -134,7 +132,7 @@
                 } catch (e) {
                     console.error("Hyper loop error:", e);
                 }
-                await new Promise(resolve => setTimeout(resolve, 1500));
+                await new Promise(resolve => setTimeout(resolve, 1200));
             }
         }
 
