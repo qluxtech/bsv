@@ -3,44 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX PRIME : Hyper-Scale Distributed Hub</title>
+    <title>QLUX PRIME : Hyper-Scale Distributed Sovereign Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black text-cyan-400 font-mono p-4 md:p-8">
-    <div class="max-w-5xl mx-auto border border-cyan-500/60 rounded-2xl p-6 bg-gradient-to-b from-gray-950 to-black shadow-2xl">
+<body class="bg-black text-cyan-400 font-mono p-4 md:p-6">
+    <div class="max-w-6xl mx-auto border border-cyan-500/60 rounded-2xl p-5 md:p-8 bg-gradient-to-b from-gray-950 via-black to-gray-950 shadow-2xl">
         
-        <div class="flex justify-between items-center border-b border-cyan-500/30 pb-4">
+        <!-- ヘッダー -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-cyan-500/30 pb-4 gap-4">
             <div>
-                <h1 class="text-xl md:text-2xl font-black text-white">🟣 QLUX PRIME <span class="text-cyan-400 text-xs">HYPER-SCALE DISTRIBUTED HUB</span></h1>
-                <p class="text-xs text-gray-400 mt-1">マルチスレッド並列・ダイナミックプライシング・オートコンパウンド増殖エンジン稼働中</p>
+                <h1 class="text-xl md:text-2xl font-black text-white tracking-wider">🟣 QLUX PRIME <span class="text-cyan-400 text-xs">HYPER-SCALE SOVEREIGN HUB</span></h1>
+                <p class="text-xs text-gray-400 mt-1">マルチスレッド並列・PQC格子暗号・ZKP検証・ダイナミックプライシング統合エンジン</p>
             </div>
-            <div class="bg-cyan-950/60 border border-cyan-500/50 px-3 py-1 rounded-full text-xs font-bold text-cyan-200">
-                STATUS: HYPER-ACTIVE (24/7)
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 my-6">
-            <div class="bg-gray-900/80 border border-cyan-500/30 p-4 rounded-xl text-center">
-                <div class="text-xs text-gray-400">TOTAL LOOPS</div>
-                <div class="text-xl font-bold text-white mt-1" id="db-count">0</div>
-            </div>
-            <div class="bg-gray-900/80 border border-cyan-500/30 p-4 rounded-xl text-center">
-                <div class="text-xs text-gray-400">TOTAL REVENUE</div>
-                <div class="text-xl font-bold text-green-400 mt-1" id="total-rev">$0.00</div>
-            </div>
-            <div class="bg-gray-900/80 border border-cyan-500/30 p-4 rounded-xl text-center">
-                <div class="text-xs text-gray-400">COMPOUND POOL</div>
-                <div class="text-xl font-bold text-cyan-300 mt-1" id="compound-pool">$0.00</div>
-            </div>
-            <div class="bg-gray-900/80 border border-cyan-500/30 p-4 rounded-xl text-center">
-                <div class="text-xs text-gray-400">WORKERS</div>
-                <div class="text-xl font-bold text-yellow-400 mt-1">4 THREADS</div>
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-green-500 animate-ping"></span>
+                <span class="bg-cyan-950/80 border border-cyan-500/50 px-3 py-1 rounded-full text-xs font-bold text-cyan-200">
+                    STATUS: HYPER-ACTIVE (24/7)
+                </span>
             </div>
         </div>
 
-        <div class="mb-6 p-4 bg-cyan-950/20 border border-cyan-500/40 rounded-xl text-xs">
-            <div class="font-bold text-white mb-1">⚡ HYPER-SCALE PIPELINE LOG (AUTO-COMPOUND ACTIVE):</div>
-            <pre id="log-output" class="overflow-x-auto text-[11px] text-cyan-300">Initializing hyper-scale distributed pipeline...</pre>
+        <!-- スタッツ・グリッド -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
+            <div class="bg-gray-900/90 border border-cyan-500/40 p-4 rounded-xl text-center shadow-lg">
+                <div class="text-[11px] text-gray-400 tracking-wide">TOTAL LOOPS</div>
+                <div class="text-2xl font-black text-white mt-1" id="db-count">0</div>
+            </div>
+            <div class="bg-gray-900/90 border border-cyan-500/40 p-4 rounded-xl text-center shadow-lg">
+                <div class="text-[11px] text-gray-400 tracking-wide">TOTAL REVENUE</div>
+                <div class="text-2xl font-black text-green-400 mt-1" id="total-rev">$0.00</div>
+            </div>
+            <div class="bg-gray-900/90 border border-cyan-500/40 p-4 rounded-xl text-center shadow-lg">
+                <div class="text-[11px] text-gray-400 tracking-wide">COMPOUND POOL</div>
+                <div class="text-2xl font-black text-cyan-300 mt-1" id="compound-pool">$0.00</div>
+            </div>
+            <div class="bg-gray-900/90 border border-cyan-500/40 p-4 rounded-xl text-center shadow-lg">
+                <div class="text-[11px] text-gray-400 tracking-wide">WORKERS / SHIELD</div>
+                <div class="text-xl font-black text-yellow-400 mt-1">4 THREADS / PQC</div>
+            </div>
+        </div>
+
+        <!-- リアルタイム・メトリクス表示パネル -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-cyan-950/20 border border-cyan-500/30 p-4 rounded-xl">
+                <div class="text-xs font-bold text-white mb-2 flex items-center justify-between">
+                    <span>⚡ SOLVER METRICS</span>
+                    <span id="metric-latency" class="text-cyan-300 font-normal">0.00ms</span>
+                </div>
+                <div class="text-[11px] text-gray-300 space-y-1">
+                    <div>Nodes Evaluated: <span id="metric-nodes" class="text-cyan-400 font-bold">0</span></div>
+                    <div>Optimal Score: <span id="metric-score" class="text-cyan-400 font-bold">0.00</span></div>
+                    <div>Dynamic Fee: <span id="metric-fee" class="text-green-400 font-bold">$0.00</span></div>
+                </div>
+            </div>
+
+            <div class="bg-cyan-950/20 border border-cyan-500/30 p-4 rounded-xl">
+                <div class="text-xs font-bold text-white mb-2">🔒 SECURITY CORE (PQC / ZKP)</div>
+                <div class="text-[11px] text-gray-300 space-y-1 overflow-hidden">
+                    <div>Algorithm: <span class="text-purple-400 font-bold">Kyber/Dilithium</span></div>
+                    <div>ZKP Proof: <span id="sec-zkp" class="text-cyan-300 truncate block">Verifying...</span></div>
+                    <div>Lattice Sig: <span id="sec-lattice" class="text-gray-400 truncate block">Synchronizing...</span></div>
+                </div>
+            </div>
+
+            <div class="bg-cyan-950/20 border border-cyan-500/30 p-4 rounded-xl">
+                <div class="text-xs font-bold text-white mb-2">🌐 SETTLEMENT & ROUTING</div>
+                <div class="text-[11px] text-gray-300 space-y-1">
+                    <div>Target Node: <span id="net-receiver" class="text-yellow-300 font-bold">-</span></div>
+                    <div>Gateway Mode: <span id="net-mode" class="text-cyan-400 font-bold">Active</span></div>
+                    <div>Pipeline Status: <span class="text-green-400 font-bold">Secured & Distributed</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ログ出力ターミナル -->
+        <div class="p-4 bg-cyan-950/10 border border-cyan-500/40 rounded-xl text-xs">
+            <div class="font-bold text-white mb-2 flex justify-between items-center">
+                <span>⚡ HYPER-SCALE PIPELINE STREAM (LIVE JSON)</span>
+                <span class="text-[10px] text-gray-400">Auto-Compound & Multi-Thread Active</span>
+            </div>
+            <pre id="log-output" class="overflow-x-auto text-[11px] text-cyan-300 bg-black/60 p-3 rounded border border-cyan-500/20 h-40">Initializing hyper-scale distributed pipeline...</pre>
         </div>
 
     </div>
@@ -50,7 +92,7 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             startHyperAutopilotLoop();
-            setInterval(fetchLedger, 1000);
+            setInterval(fetchLedger, 1500);
         });
 
         async function startHyperAutopilotLoop() {
@@ -62,15 +104,34 @@
                         body: JSON.stringify({ tier: selectedTier, intent: "Hyper_Scale_Global_Traffic" })
                     });
                     const data = await res.json();
-                    const logElem = document.getElementById('log-output');
-                    if (logElem && data && data.result) {
-                        logElem.innerText = JSON.stringify(data.result, null, 2);
+                    
+                    if (data && data.result) {
+                        const r = data.result;
+                        document.getElementById('log-output').innerText = JSON.stringify(r, null, 2);
+                        
+                        // 各メトリクスの詳細反映
+                        if (r.solver) {
+                            document.getElementById('metric-latency').innerText = r.solver.latency_ms + 'ms';
+                            document.getElementById('metric-nodes').innerText = r.solver.nodes_evaluated;
+                            document.getElementById('metric-score').innerText = r.solver.optimal_score;
+                            document.getElementById('metric-fee').innerText = '$' + r.solver.dynamic_fee_usd.toFixed(2);
+                        }
+                        if (r.security) {
+                            if (r.security.zkp) document.getElementById('sec-zkp').innerText = r.security.zkp.proof_hash;
+                            if (r.security.pqc) document.getElementById('sec-lattice').innerText = r.security.pqc.lattice_signature;
+                        }
+                        if (r.target_receiver) {
+                            document.getElementById('net-receiver').innerText = r.target_receiver;
+                        }
+                        if (r.payment && r.payment.mode) {
+                            document.getElementById('net-mode').innerText = r.payment.mode;
+                        }
                     }
                     await fetchLedger();
                 } catch (e) {
                     console.error("Hyper loop error:", e);
                 }
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise(resolve => setTimeout(resolve, 1500));
             }
         }
 
