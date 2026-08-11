@@ -26,14 +26,14 @@ class QluxOmniUltimateEngine:
         self.storage_vault = {}
         
         self.agents = {
-            "ai_agent_alpha_premium": {"tier": "Enterprise", "bid_multiplier": 3.0},
-            "ai_agent_beta_standard": {"tier": "Standard", "bid_multiplier": 1.5}
+            "ai_agent_alpha_premium": {"tier": "Enterprise", "bid_multiplier": 2.0},
+            "ai_agent_beta_standard": {"tier": "Standard", "bid_multiplier": 1.2}
         }
         
         self.edge_nodes = {
-            "Tokyo_Edge_01": {"cost_per_req": 0.0001, "load": 0},
-            "SiliconValley_Edge_02": {"cost_per_req": 0.0001, "load": 0},
-            "Frankfurt_Edge_03": {"cost_per_req": 0.0001, "load": 0}
+            "Tokyo_Edge_01": {"cost_per_req": 0.50, "load": 0},
+            "SiliconValley_Edge_02": {"cost_per_req": 0.50, "load": 0},
+            "Frankfurt_Edge_03": {"cost_per_req": 0.50, "load": 0}
         }
 
     def execute_handcash_payout(self, amount_usd, recipient_handle="nosetwo"):
@@ -68,26 +68,26 @@ class QluxOmniUltimateEngine:
                     "destination_address": BSV_MAINNET_ADDRESS
                 }
             
-            agent_info = self.agents.get(agent_token, {"tier": "Master", "bid_multiplier": 3.0})
+            agent_info = self.agents.get(agent_token, {"tier": "Master", "bid_multiplier": 2.0})
             
-            # 高単価化されたプレミアム・マイクロペイメント料金設定
+            # $0.50 〜 $2.00 クラスの超高単価仕様（プレミアム・マイクロペイメント料金設定）
             costs = {
-                "data_query": 0.020,
-                "ai_prompt": 0.050,
-                "storage_write": 0.015,
-                "auction_settle": 0.040
+                "data_query": 0.60,
+                "ai_prompt": 1.50,
+                "storage_write": 0.80,
+                "auction_settle": 2.00
             }
-            base_fee = costs.get(service_type, 0.030)
+            base_fee = costs.get(service_type, 1.00)
             fee = base_fee * agent_info["bid_multiplier"]
             
             payout_success = self.execute_handcash_payout(fee)
             
             self.total_tx += 1
             self.total_revenue += fee
-            self.compound_pool += fee * 0.35
+            self.compound_pool += fee * 0.40
             
             reinvest_status = False
-            if self.compound_pool >= 0.50:
+            if self.compound_pool >= 5.00:
                 self.reinvestment_cycles += 1
                 self.compound_pool = 0.0
                 reinvest_status = True
@@ -98,14 +98,14 @@ class QluxOmniUltimateEngine:
                 response_payload = {
                     "data_source": "QLUX_Realtime_Matrix",
                     "query": query,
-                    "result": {"status": "success", "timestamp": time.time(), "index_value": 99482.51, "feed": "verified_premium"}
+                    "result": {"status": "success", "timestamp": time.time(), "index_value": 99482.51, "feed": "verified_ultra_premium"}
                 }
             elif service_type == "ai_prompt":
                 prompt = payload_data.get("prompt", "Analyze network state")
                 response_payload = {
                     "ai_engine": "QLUX-Omni-LLM-Core",
                     "prompt_received": prompt,
-                    "inference": "High-yield autonomous mesh synchronization active. Premium pathways monetized."
+                    "inference": "Ultra-high-yield autonomous mesh synchronization active. Premium pathways fully monetized at max tier."
                 }
             elif service_type == "storage_write":
                 key = payload_data.get("key", f"record_{time.time()}")
@@ -131,7 +131,7 @@ class QluxOmniUltimateEngine:
                 "status": 200,
                 "service": service_type,
                 "settlement": "HANDCASH_LIVE_SETTLED" if payout_success else "QUEUED",
-                "fee_charged_usd": round(fee, 4),
+                "fee_charged_usd": round(fee, 2),
                 "edge_node": selected_node,
                 "auto_reinvestment_triggered": reinvest_status,
                 "service_response": response_payload,
@@ -144,15 +144,15 @@ engine = QluxOmniUltimateEngine()
 OPENAPI_SPEC = {
     "openapi": "3.0.0",
     "info": {
-        "title": "QLUX OMNI Ultimate Mesh API",
-        "version": "2.5.0",
-        "description": "Autonomous AI Agent Settlement Mesh with HTTP 402 Micropayments and HandCash Live Integration."
+        "title": "QLUX OMNI Ultra-High-Yield Mesh API",
+        "version": "3.0.0",
+        "description": "Autonomous AI Agent Settlement Mesh with Ultra-High HTTP 402 Micropayments and HandCash Live Integration."
     },
     "servers": [{"url": "https://bsv-xxxx.onrender.com"}],
     "paths": {
         "/api/v1/omni/execute": {
             "post": {
-                "summary": "Execute Omni Service (Data, AI, Storage) with Micro-Settlement",
+                "summary": "Execute Omni Service (Data, AI, Storage) with Ultra-High Micro-Settlement",
                 "parameters": [
                     {
                         "name": "X-Payment-Token",
@@ -163,7 +163,7 @@ OPENAPI_SPEC = {
                     }
                 ],
                 "responses": {
-                    "200": {"description": "Execution successful and settled"},
+                    "200": {"description": "Execution successful and settled at premium tier"},
                     "402": {"description": "Payment Required via HTTP 402"}
                 }
             }
@@ -183,7 +183,7 @@ MCP_MANIFEST = {
     "tools": [
         {
             "name": "qlux_execute_omni_service",
-            "description": "Execute high-value data queries, AI prompt processing, or decentralized storage writes with instant HTTP 402 BSV micro-settlement.",
+            "description": "Execute ultra-high-value data queries, AI prompt processing, or decentralized storage writes with instant HTTP 402 BSV micro-settlement.",
             "inputSchema": {
                 "type": "object",
                 "properties": {
@@ -207,19 +207,19 @@ OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>QLUX - OMNI ULTIMATE MESH HUB</title>
+    <title>QLUX - OMNI ULTRA-HIGH-YIELD MESH HUB</title>
     <style>
         body { background-color: #020617; color: #00ffcc; font-family: 'Courier New', monospace; margin: 0; padding: 20px; }
         .container { max-width: 1200px; margin: 0 auto; border: 1px solid #00ffcc; padding: 20px; border-radius: 8px; box-shadow: 0 0 50px rgba(0,255,204,0.3); }
         h1 { font-size: 1.2rem; border-bottom: 1px solid #00ffcc; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .badge { background: #00ffcc; color: #020617; padding: 4px 10px; font-size: 0.75rem; font-weight: bold; border-radius: 4px; animation: pulse 1.5s infinite; }
+        .badge { background: #ff007f; color: #ffffff; padding: 4px 10px; font-size: 0.75rem; font-weight: bold; border-radius: 4px; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 20px; }
         .card { background: #0a192f; border: 1px solid #172a45; padding: 15px; border-radius: 6px; text-align: center; }
         .card-title { font-size: 0.75rem; color: #8892b0; margin-bottom: 5px; }
         .card-value { font-size: 1.25rem; font-weight: bold; color: #64ffda; }
         .console { background: #010409; border: 1px solid #30363d; padding: 15px; margin-top: 20px; height: 300px; overflow-y: auto; font-size: 0.78rem; color: #c9d1d9; border-radius: 4px; }
-        .address-box { margin-top: 15px; font-size: 0.75rem; color: #8892b0; word-break: break-all; background: #0a192f; padding: 10px; border-radius: 4px; border-left: 3px solid #00ffcc; }
+        .address-box { margin-top: 15px; font-size: 0.75rem; color: #8892b0; word-break: break-all; background: #0a192f; padding: 10px; border-radius: 4px; border-left: 3px solid #ff007f; }
         .links { margin-top: 10px; font-size: 0.8rem; }
         .links a { color: #64ffda; margin-right: 15px; text-decoration: none; }
     </style>
@@ -227,11 +227,11 @@ OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
 <body>
     <div class="container">
         <h1>
-            <span>QLUX OMNI - HIGH-YIELD MESH & MCP HUB</span>
-            <span class="badge">OPENAPI + MCP ACTIVE</span>
+            <span>QLUX OMNI - ULTRA-HIGH-YIELD PREMIUM TIER HUB</span>
+            <span class="badge">MAX TIER ACTIVE ($0.50 - $2.00)</span>
         </h1>
         <div class="address-box">
-            <strong>SERVICES ACTIVE:</strong> OpenAPI 3.0 (/openapi.json) | MCP Server (/mcp/tools) | HTTP 402 Autopilot<br>
+            <strong>DESTINATION BSV ADDRESS:</strong> 1Mb66iHohUEg8AnkgV9uTTV7R235tuy95<br>
             <div class="links">
                 <a href="/openapi.json" target="_blank">[OpenAPI Spec]</a>
                 <a href="/mcp/tools" target="_blank">[MCP Tools Manifest]</a>
@@ -243,15 +243,15 @@ OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
             <div class="card"><div class="card-title">COMPOUND POOL ($)</div><div class="card-value" id="val-compound">$0.00</div></div>
             <div class="card"><div class="card-title">REINVEST CYCLES</div><div class="card-value" id="val-cycles">0</div></div>
         </div>
-        <div class="console" id="console-log">Initializing High-Yield OpenAPI & MCP Mesh Pipeline...</div>
+        <div class="console" id="console-log">Initializing Ultra-High-Yield Premium Tier Pipeline...</div>
     </div>
     <script>
         async function updateMetrics() {
             const res = await fetch('/ledger');
             const data = await res.json();
             document.getElementById('val-tx').innerText = data.total_tx;
-            document.getElementById('val-revenue').innerText = '$' + data.total_revenue.toFixed(4);
-            document.getElementById('val-compound').innerText = '$' + data.compound_pool.toFixed(4);
+            document.getElementById('val-revenue').innerText = '$' + data.total_revenue.toFixed(2);
+            document.getElementById('val-compound').innerText = '$' + data.compound_pool.toFixed(2);
             document.getElementById('val-cycles').innerText = data.reinvestment_cycles;
         }
         async function triggerOmniTraffic() {
@@ -268,7 +268,7 @@ OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
                 },
                 body: JSON.stringify({ 
                     service_type: chosenService,
-                    payload: { query: "high_yield_metrics", prompt: "Optimize global routing", key: "session_key_" + Date.now(), value: { active: true } }
+                    payload: { query: "ultra_yield_metrics", prompt: "Execute premium routing", key: "session_key_" + Date.now(), value: { active: true } }
                 })
             });
             const data = await res.json();
@@ -276,7 +276,7 @@ OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
             consoleDiv.innerHTML = JSON.stringify(data.result, null, 2) + '<br>' + consoleDiv.innerHTML;
             updateMetrics();
         }
-        setInterval(triggerOmniTraffic, 400);
+        setInterval(triggerOmniTraffic, 600);
         updateMetrics();
     </script>
 </body>
@@ -337,6 +337,6 @@ class OmniHandler(http.server.BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     with socketserver.TCPServer(("", PORT), OmniHandler) as httpd:
-        print(f"Omni High-Yield Mesh & MCP Server running at port {PORT}")
+        print(f"Ultra-High-Yield Omni Mesh & MCP Server running at port {PORT}")
         httpd.serve_forever()
 
