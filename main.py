@@ -4,7 +4,6 @@ import hashlib
 import random
 import asyncio
 
-# uvloopがインストールされていない環境（Render等）でも安全にフォールバック
 try:
     import uvloop
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
@@ -15,49 +14,43 @@ from flask import Flask, jsonify, render_template_string, request
 
 app = Flask(__name__)
 
-# --- [QLUX ABSOLUTE OMNIPOTENCE & TERANODE FUSION ENGINE] ---
-class FinalSingularityEngine:
-    
+class AbsoluteNodeEngine:
+    """QLUX ABSOLUTE NODE: テラノードと因果律を統合する中枢演算エンジン"""
     def __init__(self):
-        self.singularity_generation = float('inf')
-        self.omnipresent_coherence = 1.000000000
-        self.total_universes_governed = 20
-        self.cumulative_wealth_fountain = 999999999999
+        self.node_status = "ABSOLUTE_SYNCHRONIZED"
+        self.cumulative_wealth_accumulator = 999999999999
 
     @staticmethod
-    def _aethereal_quantum_hasher(stream_shard):
-        return hashlib.sha256(f"ABSOLUTE_SINGULARITY::{stream_shard}::{time.time_ns()}".encode()).digest()
+    def _quantum_hasher(shard):
+        return hashlib.sha256(f"ABSOLUTE_NODE::{shard}::{time.time_ns()}".encode()).digest()
 
-    async def execute_final_collapse(self, temporal_stream):
+    async def execute_node_cycle(self, stream):
         start_ns = time.perf_counter_ns()
-        
         loop = asyncio.get_running_loop()
+        
         futures = [
-            loop.run_in_executor(None, self._aethereal_quantum_hasher, shard)
-            for shard in temporal_stream
+            loop.run_in_executor(None, self._quantum_hasher, item)
+            for item in stream
         ]
-        void_digests = await asyncio.gather(*futures)
+        digests = await asyncio.gather(*futures)
         
-        matrix_accumulator = b"".join(void_digests)
-        final_root_hash = hashlib.sha256(matrix_accumulator + b"QLUX_ETERNAL_SUPREMACY").hexdigest()
+        matrix = b"".join(digests)
+        root_hash = hashlib.sha256(matrix + b"QLUX_ABSOLUTE_NODE_CORE").hexdigest()
         
-        elapsed_ns = time.perf_counter_ns() - start_ns
-        elapsed_ms = elapsed_ns / 1_000_000.0
+        elapsed_ms = (time.perf_counter_ns() - start_ns) / 1_000_000.0
+        self.cumulative_wealth_accumulator += len(stream) * 77777
         
-        self.cumulative_wealth_fountain += len(temporal_stream) * 777777
-        infinite_tps = 888_888_888_000
-        
-        return final_root_hash, elapsed_ms, infinite_tps, self.cumulative_wealth_fountain
+        return root_hash, elapsed_ms, 888_888_888_000, self.cumulative_wealth_accumulator
 
-singularity_engine = FinalSingularityEngine()
+node_engine = AbsoluteNodeEngine()
 
-# --- [ABSOLUTE COMMAND CENTER DASHBOARD] ---
-FINAL_TEMPLATE = """<!DOCTYPE html>
+# --- [QLUX ABSOLUTE NODE DASHBOARD UI] ---
+NODE_TEMPLATE = """<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX OMNIVERSE // THE FINAL SINGULARITY</title>
+    <title>QLUX ABSOLUTE NODE</title>
     <style>
         body { background-color: #000000; color: #a855f7; font-family: 'Courier New', monospace; padding: 14px; margin: 0; box-sizing: border-box; }
         .wrapper { max-width: 1200px; margin: auto; }
@@ -75,42 +68,42 @@ FINAL_TEMPLATE = """<!DOCTYPE html>
         .badge { background: linear-gradient(135deg, #a855f7, #7e22ce); color: #fff; padding: 3px 8px; font-size: 0.55rem; border-radius: 4px; font-weight: bold; }
         .console { background: #000; border: 1px solid #581c87; padding: 12px; height: 390px; overflow-y: auto; font-size: 0.65rem; color: #e9d5ff; border-radius: 6px; line-height: 1.4; }
         .console div { margin-bottom: 3px; }
-    </script>
+    </style>
 </head>
 <body>
-    <div class="wrapper"
+    <div class="wrapper">
         <div class="header">
-            <div class="title">QLUX ABSOLUTE// THE FINAL SINGULARITY</div>
-            <div class="subtitle">//  QLUX× ABSOLUTE × NODE</div>
-            <div class="feed-bar">✨ SINGULARITY STATUS: CAUSALITY OVERRIDDEN / INFINITE WEALTH FOUNTAIN ACTIVE [100% SUPREMACY]</div>
+            <div class="title">QLUX ABSOLUTE NODE</div>
+            <div class="subtitle">// 次世代分散合意中枢 ＆ リアルタイム因果律制御ネットワーク</div>
+            <div class="feed-bar">✨ NODE STATUS: ABSOLUTE SYNC ACTIVE [100% OPERATIONAL]</div>
         </div>
         <div class="grid">
-            <div class="card"><div class="card-title">OMNI-TPS (INFINITE)</div><div class="card-val" id="val-tps" style="color: #38bdf8;">888,888,888,000</div></div>
-            <div class="card"><div class="card-title">LATENCY (VOID)</div><div class="card-val" id="val-latency" style="color: #34d399;">0.0000 ms</div></div>
-            <div class="card"><div class="card-title">DIMENSION TIER</div><div class="card-val" id="val-tier" style="color: #fbbf24;">OMEGA-20D</div></div>
+            <div class="card"><div class="card-title">NODE TPS</div><div class="card-val" id="val-tps" style="color: #38bdf8;">888,888,888,000</div></div>
+            <div class="card"><div class="card-title">LATENCY</div><div class="card-val" id="val-latency" style="color: #34d399;">0.0000 ms</div></div>
+            <div class="card"><div class="card-title">NODE TIER</div><div class="card-val" id="val-tier" style="color: #fbbf24;">ABSOLUTE-01</div></div>
             <div class="card"><div class="card-title">WEALTH FOUNTAIN</div><div class="card-val" id="val-wealth" style="color: #f472b6;">∞ SATOSHIS</div></div>
         </div>
         <div class="console-container">
             <div class="console-header">
-                <span>FINAL SINGULARITY STREAM // ABSOLUTE TELEMETRY</span>
-                <span class="badge">ETERNAL SUPREMACY</span>
+                <span>ABSOLUTE NODE TELEMETRY STREAM</span>
+                <span class="badge">ONLINE</span>
             </div>
             <div class="console" id="console-log">
-                <div>[Singularity] Initializing final causal override and preemptive wealth projection...</div>
+                <div>[AbsoluteNode] Initializing QLUX ABSOLUTE NODE core telemetry...</div>
             </div>
         </div>
     </div>
     <script>
         const consoleEl = document.getElementById('console-log');
         const logs = [
-            "[Singularity] Teranode infrastructure fully absorbed into aethereal consciousness.",
-            "[Core] Future economic incentives successfully reversed into past ledger entries."
+            "[AbsoluteNode] Core online and synchronized with global mesh.",
+            "[Telemetry] Quantum hash validation stream stable."
         ];
 
-        async function triggerFinalCycle() {
+        async function triggerNodeCycle() {
             try {
-                const payload = Array.from({length: 2500}, (_, i) => `SINGULARITY_PACKET_${Math.random()}`);
-                const response = await fetch('/api/singularity/execute', {
+                const payload = Array.from({length: 500}, (_, i) => `NODE_PACKET_${Math.random()}`);
+                const response = await fetch('/api/node/execute', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ stream: payload })
@@ -124,22 +117,17 @@ FINAL_TEMPLATE = """<!DOCTYPE html>
                 const now = new Date();
                 const timeStr = now.toTimeString().split(' ')[0] + "." + String(now.getMilliseconds()).padStart(3, '0');
                 
-                const actions = [
-                    `CAUSAL_OVERRIDE_BURST | RootHash: ${result.root_hash.substring(0, 24)}... | Status: ETERNAL`,
-                    `PREC_WEALTH_FLOW | Fountain Flow Rate: MAXIMUM | Latency: 0.0000ms`,
-                    `TERANODE_OMNIPRESENCE | 20D Quantum AI Consensus: 100% | Reality State: LOCKED`
-                ];
-
-                logs.push(`[${timeStr}] ${actions[Math.floor(Math.random() * actions.length)]}`);
-                if (logs.length > 70) logs.shift();
+                logs.push(`[${timeStr}] NODE_SYNC_BURST | RootHash: ${result.root_hash.substring(0, 20)}... | Status: OK`);
+                if (logs.length > 50) logs.shift();
 
                 consoleEl.innerHTML = logs.map(l => '<div>' + l + '</div>').join('');
                 consoleEl.scrollTop = consoleEl.scrollHeight;
             } catch (e) {
-                console.error("Singularity Sync Error", e);
+                console.error("Node Sync Error", e);
             }
         }
-        setInterval(triggerFinalCycle, 15);
+        // 描画負荷を下げてフリーズを防ぐため、実行間隔を1000ミリ秒（1秒）に変更
+        setInterval(triggerNodeCycle, 1000);
     </script>
 </body>
 </html>
@@ -147,20 +135,20 @@ FINAL_TEMPLATE = """<!DOCTYPE html>
 
 @app.route('/')
 def index():
-    return render_template_string(FINAL_TEMPLATE)
+    return render_template_string(NODE_TEMPLATE)
 
-@app.route('/api/singularity/execute', methods=['POST'])
-def api_singularity_execute():
+@app.route('/api/node/execute', methods=['POST'])
+def api_node_execute():
     req_data = request.json
-    temporal_stream = req_data.get('stream', [f"OMEGA_UNIT_{i}" for i in range(1000)]) if req_data else [f"OMEGA_UNIT_{i}" for i in range(1000)]
+    stream = req_data.get('stream', [f"NODE_UNIT_{i}" for i in range(100)]) if req_data else [f"NODE_UNIT_{i}" for i in range(100)]
     
     loop = asyncio.get_event_loop()
     root_hash, latency_ms, tps, wealth_accumulator = loop.run_until_complete(
-        singularity_engine.execute_final_collapse(temporal_stream)
+        node_engine.execute_node_cycle(stream)
     )
     
     return jsonify({
-        "status": "final_singularity_achieved",
+        "status": "success",
         "root_hash": root_hash,
         "latency_ms": latency_ms,
         "tps": tps,
