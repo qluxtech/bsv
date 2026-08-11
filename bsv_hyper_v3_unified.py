@@ -5,9 +5,11 @@ import time
 import threading
 import hashlib
 import hmac
+import os
 import requests
 
-PORT = 10000
+# Renderから渡される動的ポートを自動取得（ローカルなら10000）
+PORT = int(os.environ.get("PORT", 10000))
 BSV_MAINNET_ADDRESS = "1Mb66iHohUEg8AnkgV9uTTV7R235tuy95"
 
 # HandCash API設定
@@ -43,7 +45,6 @@ class QluxOmniHyperEngine:
                 self.reinvestment_cycles += 1
                 self.compound_pool = 0.0
 
-            # 応答構築
             node_keys = list(self.edge_nodes.keys())
             selected_node = node_keys[(self.total_tx - 1) % len(node_keys)]
             self.edge_nodes[selected_node]["load"] += 1
@@ -56,7 +57,6 @@ class QluxOmniHyperEngine:
 
 engine = QluxOmniHyperEngine()
 
-# 統合されたHTMLテンプレート（自動Pingフック搭載）
 OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -80,7 +80,7 @@ OMNI_HTML_TEMPLATE = """<!DOCTYPE html>
             } catch(e) {}
         }
         window.onload = autoPing;
-        setInterval(autoPing, 5000); // 5秒毎に自動Ping
+        setInterval(autoPing, 5000);
     </script>
 </head>
 <body>
@@ -111,11 +111,13 @@ class OmniHandler(http.server.BaseHTTPRequestHandler):
 
     def do_POST(self):
         length = int(self.headers.get('Content-Length', 0))
-        data = json.loads(self.rfile.read(length).decode('utf-8'))
+        data = json.loads(self.rfile.read(length).decode('utf-8')) if length > 0 else {}
         result = engine.process_service_request(data.get("service_type"), self.headers.get('X-Payment-Token'), data.get("payload"))
         self.send_response(200); self.send_header('Content-Type', 'application/json'); self.end_headers()
         self.wfile.write(json.dumps({"result": result}).encode('utf-8'))
 
 if __name__ == "__main__":
     with socketserver.TCPServer(("", PORT), OmniHandler) as httpd:
+        print(f"Hyper-Yield Surge Omni Mesh running at port {PORT}")
         httpd.serve_forever()
+
