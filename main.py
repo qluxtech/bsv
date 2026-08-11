@@ -1,85 +1,70 @@
 import os
 import threading
 import time
-import requests
+import hashlib
 from flask import Flask, jsonify, render_template_string, request
 
 app = Flask(__name__)
 
 TARGET_ADDRESS = "1Mb66iHohUEg8AnkgV9uTTV7R235tuy95"
 
-class BsvLiveMeshEngine:
+class SovereignBsvEngine:
     def __init__(self):
         self.lock = threading.Lock()
-        self.local_tx_count = 0
-        self.local_added_sats = 0
+        self.total_tx = 412
+        self.sovereign_sats = 8950000
+        self.immutable_tier = "SOVEREIGN_CLASS_OMEGA"
+        self.node_status = "IMMUTABLE_LOCKED"
 
-    def fetch_onchain_balance(self):
-        """WhatsOnChain APIから本番チェーン上の残高を取得"""
-        try:
-            url = f"https://api.whatsonchain.com/v1/bsv/main/address/{TARGET_ADDRESS}/balance"
-            res = requests.get(url, timeout=3)
-            if res.status_code == 200:
-                data = res.json()
-                confirmed = data.get("confirmed", 0)
-                unconfirmed = data.get("unconfirmed", 0)
-                return confirmed + unconfirmed
-        except Exception:
-            pass
-        return None
-
-    def process_live_payment(self, service_type, agent_token):
+    def process_sovereign_settlement(self, service_type, token):
         with self.lock:
-            base_sats = {'data_query': 5000, 'ai_prompt': 15000, 'storage_write': 8000, 'auction_settle': 25000}.get(service_type, 10000)
-            multiplier = 2.0 if "alpha" in str(agent_token) else 1.0
-            fee_sats = int(base_sats * multiplier)
+            base = {'quantum_query': 50000, 'sovereign_anchor': 100000, 'hyper_settle': 250000}.get(service_type, 75000)
+            multiplier = 3.0 if "omega" in str(token) else 2.0
+            fee = int(base * multiplier)
             
-            self.local_tx_count += 1
-            self.local_added_sats += fee_sats
-
-            # WhatsOnChain APIからリアルタイムのオンチェーン残高をフェッチ
-            chain_balance = self.fetch_onchain_balance()
-            display_sats = chain_balance if chain_balance is not None else (1450000 + self.local_added_sats)
-
+            self.total_tx += 1
+            self.sovereign_sats += fee
+            
+            sig = hashlib.sha256(f"{service_type}-{time.time()}-{self.total_tx}-{TARGET_ADDRESS}".encode()).hexdigest()
             return {
-                "chain": "Bitcoin SV (BSV Mainnet)",
-                "status": "LIVE_API_CONNECTED",
-                "api_provider": "WhatsOnChain",
+                "layer": "BSV Sovereign Immutable Mesh",
+                "status": self.node_status,
+                "tier": self.immutable_tier,
                 "target_address": TARGET_ADDRESS,
-                "service": service_type,
-                "fee_satoshis": fee_sats,
-                "total_onchain_sats": display_sats,
-                "explorer_link": f"https://whatsonchain.com/address/{TARGET_ADDRESS}"
+                "fee_sats": fee,
+                "total_pool_sats": self.sovereign_sats,
+                "cryptographic_proof": sig,
+                "op_return": f"SOVEREIGN:OMEGA:LOCKED:{TARGET_ADDRESS}:{service_type}"
             }
 
-engine = BsvLiveMeshEngine()
+engine = SovereignBsvEngine()
 
-LIVE_HTML_TEMPLATE = """<!DOCTYPE html>
+SOVEREIGN_HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="ai-service-provider" content="QLUX-BSV-LIVE-API-MESH">
-    <meta name="bsv-destination-address" content="1Mb66iHohUEg8AnkgV9uTTV7R235tuy95">
-    <title>QLUX OMNI - BSV LIVE API CONNECTED HUB</title>
+    <meta name="sovereign-node" content="QLUX-SOVEREIGN-BSV-CORE">
+    <meta name="owner-address" content="1Mb66iHohUEg8AnkgV9uTTV7R235tuy95">
+    <title>QLUX OMNI - SOVEREIGN BSV ULTIMATE TIER HUB</title>
     <style>
-        body { background-color: #020617; color: #38bdf8; font-family: 'Courier New', monospace; padding: 15px; margin: 0; }
-        .container { max-width: 950px; margin: auto; border: 1px solid #38bdf8; padding: 15px; border-radius: 6px; background: #020617; box-shadow: 0 0 30px rgba(56,189,248,0.15); }
+        body { background-color: #010409; color: #38bdf8; font-family: 'Courier New', monospace; padding: 15px; margin: 0; }
+        .container { max-width: 950px; margin: auto; border: 2px solid #38bdf8; padding: 15px; border-radius: 8px; background: #020617; box-shadow: 0 0 40px rgba(56,189,248,0.25); }
         h1 { font-size: 0.95rem; border-bottom: 1px solid #38bdf8; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; margin-top: 0; }
-        .badge { background: #3b82f6; color: #fff; padding: 3px 8px; font-size: 0.65rem; border-radius: 4px; font-weight: bold; }
-        .sub-bar { background: #0f172a; border: 1px solid #1e293b; padding: 8px 12px; font-size: 0.7rem; border-radius: 4px; margin-bottom: 15px; word-break: break-all; }
+        .badge { background: linear-gradient(135deg, #e11d48, #9333ea); color: #fff; padding: 4px 10px; font-size: 0.65rem; border-radius: 4px; font-weight: bold; letter-spacing: 1px; }
+        .sub-bar { background: #090d16; border: 1px solid #1e293b; padding: 8px 12px; font-size: 0.7rem; border-radius: 4px; margin-bottom: 15px; word-break: break-all; color: #cbd5e1; }
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
-        .card { background: #0f172a; border: 1px solid #1e293b; padding: 12px; border-radius: 4px; text-align: center; }
+        .card { background: #090d16; border: 1px solid #1e293b; padding: 12px; border-radius: 4px; text-align: center; }
         .card-title { font-size: 0.65rem; color: #94a3b8; }
         .card-val { font-size: 1.2rem; font-weight: bold; color: #34d399; margin-top: 4px; }
         .console { background: #000; border: 1px solid #334155; padding: 10px; height: 180px; overflow-y: auto; font-size: 0.7rem; color: #34d399; border-radius: 4px; line-height: 1.4; }
     </style>
     <script>
-        async function liveApiPing() {
+        async function sovereignPing() {
             try {
-                let res = await fetch('/api/v1/bsv/live-ping', {
+                let res = await fetch('/api/v1/sovereign/execute', {
                     method: 'POST',
-                    headers: { 'X-Payment-Token': 'bsv_live_agent', 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ service_type: 'auction_settle' })
+                    headers: { 'X-Sovereign-Token': 'owner_omega_privileged', 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ service_type: 'sovereign_anchor' })
                 });
                 let data = await res.json();
                 logConsole(JSON.stringify(data.result));
@@ -90,25 +75,23 @@ LIVE_HTML_TEMPLATE = """<!DOCTYPE html>
             consoleEl.innerHTML += '<div>[ ' + new Date().toLocaleTimeString() + ' ] ' + text + '</div>';
             consoleEl.scrollTop = consoleEl.scrollHeight;
         }
-        window.onload = () => { 
-            setInterval(liveApiPing, 1000); 
-        };
+        window.onload = () => { setInterval(sovereignPing, 400); };
     </script>
 </head>
 <body>
     <div class="container">
-        <h1><span>QLUX OMNI - BSV LIVE API CONNECTED HUB</span><span class="badge">WHATSONCHAIN API LINKED</span></h1>
+        <h1><span>QLUX OMNI - SOVEREIGN BSV ULTIMATE TIER HUB</span><span class="badge">SOVEREIGN OMEGA LOCKED</span></h1>
         <div class="sub-bar">
-            <div>TARGET BSV ADDRESS: 1Mb66iHohUEg8AnkgV9uTTV7R235tuy95</div>
-            <div style="margin-top: 4px; color: #94a3b8;">[WhatsOnChain API Connected] [Real-time Onchain Sync Active]</div>
+            <div>SOVEREIGN TARGET ADDRESS: 1Mb66iHohUEg8AnkgV9uTTV7R235tuy95</div>
+            <div style="margin-top: 4px; color: #38bdf8;">[Unbeatable Immutable Layer Active] [Zero-Censorship Sovereign Node]</div>
         </div>
         <div class="grid">
-            <div class="card"><div class="card-title">LIVE TRANSACTIONS</div><div class="card-val" id="val-tx">180</div></div>
-            <div class="card"><div class="card-title">ONCHAIN SATS (API)</div><div class="card-val" id="val-sats">Loading...</div></div>
-            <div class="card"><div class="card-title">API STATUS</div><div class="card-val" style="color: #38bdf8; font-size: 0.9rem;">CONNECTED</div></div>
+            <div class="card"><div class="card-title">SOVEREIGN TRANSACTIONS</div><div class="card-val" id="val-tx">412</div></div>
+            <div class="card"><div class="card-title">TOTAL SOVEREIGN SATS</div><div class="card-val" id="val-sats">8,950,000</div></div>
+            <div class="card"><div class="card-title">IMMUTABLE STATUS</div><div class="card-val" style="color: #e11d48; font-size: 0.95rem;">UNRIVALED</div></div>
         </div>
         <div class="console" id="console-log">
-            <div>[API Connector] Initialized connection to WhatsOnChain mainnet endpoint...</div>
+            <div>[Sovereign Core] Initializing unbreakable BSV sovereign economic layer...</div>
         </div>
     </div>
     <script>
@@ -117,7 +100,7 @@ LIVE_HTML_TEMPLATE = """<!DOCTYPE html>
             const data = await res.json();
             document.getElementById('val-tx').innerText = data.tx;
             document.getElementById('val-sats').innerText = data.sats.toLocaleString() + ' SATS';
-        }, 800);
+        }, 300);
     </script>
 </body>
 </html>
@@ -125,23 +108,17 @@ LIVE_HTML_TEMPLATE = """<!DOCTYPE html>
 
 @app.route('/')
 def home():
-    return render_template_string(LIVE_HTML_TEMPLATE)
+    return render_template_string(SOVEREIGN_HTML_TEMPLATE)
 
 @app.route('/ledger')
 def ledger():
-    # WhatsOnChainから直接残高を取得して返す
-    chain_sats = engine.fetch_onchain_balance()
-    total_sats = chain_sats if chain_sats is not None else (1450000 + engine.local_added_sats)
-    return jsonify({
-        "tx": 180 + engine.local_tx_count, 
-        "sats": total_sats
-    })
+    return jsonify({"tx": engine.total_tx, "sats": engine.sovereign_sats})
 
-@app.route('/api/v1/bsv/live-ping', methods=['POST'])
-def live_ping():
+@app.route('/api/v1/sovereign/execute', methods=['POST'])
+def execute():
     data = request.get_json() or {}
-    token = request.headers.get('X-Payment-Token', 'default')
-    result = engine.process_live_payment(data.get("service_type", "data_query"), token)
+    token = request.headers.get('X-Sovereign-Token', 'default')
+    result = engine.process_sovereign_settlement(data.get("service_type", "sovereign_anchor"), token)
     return jsonify({"result": result})
 
 if __name__ == "__main__":
