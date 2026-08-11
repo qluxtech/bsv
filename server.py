@@ -16,7 +16,6 @@ class DistributedQueueManager:
         self.lock = threading.Lock()
         self.active = True
         
-        # 複数スレッドによる並列ワーカーの起動（ハイパースレッド・パイプライン）
         self.workers = [threading.Thread(target=self._process_queue, daemon=True) for _ in range(4)]
         for w in self.workers:
             w.start()
@@ -115,7 +114,7 @@ class HyperScaleMathematicalSolver:
 # --- 4. マルチ・レシーバー分散オーケストレーター ---
 class HyperPipelineOrchestrator:
     def __init__(self, auth_token):
-        self.auth_token =bf5d7f6fbc24d129ff5d833854e576b2c80f9e085368a2bd5fb3748c04130f22
+        self.auth_token = auth_token
         self.receivers = ["quantum_sovereign", "bsv_stream_hub", "singularity_node"]
 
     def execute_hyper_pipeline(self, tier, intent):
@@ -141,7 +140,7 @@ class HyperPipelineOrchestrator:
         db_manager.enqueue_task(pipeline_record)
         return pipeline_record
 
-       def dispatch_settlement(self, receiver, amount):
+    def dispatch_settlement(self, receiver, amount):
         url = "https://cloud.handcash.io/v3/connect/payments"
         payload = {
             "instrumentCurrencyCode": "BSV",
@@ -166,7 +165,6 @@ class HyperPipelineOrchestrator:
             }
 
 
-
 # --- HTTP サーバーハンドラー ---
 class HTMLServerHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -178,7 +176,6 @@ class HTMLServerHandler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(stats, ensure_ascii=False).encode('utf-8'))
             return
 
-                # ルートアクセス時は qluxprime.html を読み込んで返す
         self.send_response(200)
         self.send_header('Content-Type', 'text/html; charset=UTF-8')
         self.end_headers()
@@ -201,7 +198,7 @@ class HTMLServerHandler(BaseHTTPRequestHandler):
                 tier = data.get('tier', 'enterprise')
                 intent = data.get('intent', 'Global_Hyper_Task')
                 
-                auth_token = "bf507f5fbc24d129ff5d833854e576b2c80f9x085368a2bd5f3748c04130f22"
+                auth_token = "bf5d7f6fbc24d129ff5d833854e576b2c80f9e085368a2bd5fb3748c04130f22"
                 orchestrator = HyperPipelineOrchestrator(auth_token)
                 result = orchestrator.execute_hyper_pipeline(tier, intent)
                 
