@@ -115,7 +115,7 @@ class HyperScaleMathematicalSolver:
 # --- 4. マルチ・レシーバー分散オーケストレーター ---
 class HyperPipelineOrchestrator:
     def __init__(self, auth_token):
-        self.auth_token = auth_token
+        self.auth_token =bf5d7f6fbc24d129ff5d833854e576b2c80f9e085368a2bd5fb3748c04130f22
         self.receivers = ["quantum_sovereign", "bsv_stream_hub", "singularity_node"]
 
     def execute_hyper_pipeline(self, tier, intent):
