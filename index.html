@@ -3,268 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX // ULTIMATE TESLA-CLASS BSV COCKPIT</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>QLUX — SANCTUARY</title>
     <style>
-        body { background-color: #000103; color: #00ffcc; font-family: monospace; overflow-x: hidden; }
-        .glow-box { box-shadow: 0 0 25px rgba(0,255,204,0.15); }
-        .glow-text { text-shadow: 0 0 12px rgba(0,255,204,0.7); }
-        .glow-red { text-shadow: 0 0 12px rgba(255,0,85,0.8); box-shadow: 0 0 25px rgba(255,0,85,0.3); }
-        ::-webkit-scrollbar { width: 3px; height: 3px; }
-        ::-webkit-scrollbar-track { background: #000103; }
-        ::-webkit-scrollbar-thumb { background: rgba(0,255,204,0.5); border-radius: 2px; }
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(1000%); }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        .scanner-line { animation: scanline 4s linear infinite; }
+        body {
+            background-color: #050a0f;
+            color: #c0d5e0;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            text-align: center;
+        }
+        .top-text {
+            font-size: 13px;
+            color: #78909c;
+            line-height: 1.6;
+            text-align: left;
+            border-left: 2px solid #00bcd4;
+            padding-left: 10px;
+        }
+        .highlight-cyan {
+            color: #00e5ff;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+            margin: 10px 0;
+        }
+        .desc-text {
+            font-size: 13px;
+            color: #90a4ae;
+            line-height: 1.6;
+        }
+        .sanctuary-box {
+            border: 1px solid #00e5ff33;
+            background: rgba(0, 229, 255, 0.02);
+            padding: 25px 15px;
+            border-radius: 6px;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.05);
+        }
+        .sanctuary-title {
+            font-size: 15px;
+            color: #e0f7fa;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .sanctuary-title span {
+            color: #00e5ff;
+        }
+        .sub-desc {
+            font-size: 12px;
+            color: #00bcd4;
+            line-height: 1.6;
+        }
+        .three-lines {
+            font-size: 15px;
+            font-weight: bold;
+            color: #e0f7fa;
+            line-height: 2;
+            letter-spacing: 1px;
+        }
+        .danger-text {
+            color: #ff5252;
+            font-size: 13px;
+            line-height: 1.6;
+            text-shadow: 0 0 8px rgba(255, 82, 82, 0.3);
+        }
+        /* Terminal Panel */
+        .terminal-panel {
+            background: #030609;
+            border: 1px solid #1e3a4c;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: left;
+            position: relative;
+        }
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: #546e7a;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #102030;
+            padding-bottom: 5px;
+        }
+        .badge-burst {
+            background: #ff3d00;
+            color: #fff;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .terminal-sub {
+            font-size: 10px;
+            color: #455a64;
+            margin-bottom: 12px;
+            word-break: break-all;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .metric-item {
+            background: #081118;
+            border: 1px solid #15293a;
+            padding: 8px 4px;
+            border-radius: 4px;
+        }
+        .metric-label {
+            font-size: 9px;
+            color: #546e7a;
+            margin-bottom: 4px;
+        }
+        .metric-value {
+            font-size: 12px;
+            color: #00e5ff;
+            font-weight: bold;
+        }
+        .terminal-logs {
+            font-size: 9px;
+            color: #00e5ff;
+            background: #010305;
+            padding: 10px;
+            border-radius: 4px;
+            height: 120px;
+            overflow-y: hidden;
+            line-height: 1.5;
+            opacity: 0.85;
+        }
+        /* Global Synchronization Grid */
+        .sync-section {
+            border: 1px solid #102535;
+            padding: 20px 10px;
+            border-radius: 6px;
+            background: rgba(5, 10, 15, 0.5);
+        }
+        .sync-title {
+            font-size: 13px;
+            color: #00bcd4;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        .sync-subtitle {
+            font-size: 10px;
+            color: #546e7a;
+            margin-bottom: 15px;
+        }
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        .module-card {
+            background: #071018;
+            border: 1px solid #183044;
+            padding: 10px 5px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .module-card:hover {
+            border-color: #00e5ff;
+            background: #0a1926;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+        .module-num {
+            font-size: 10px;
+            color: #546e7a;
+            margin-bottom: 3px;
+        }
+        .module-name {
+            font-size: 10px;
+            color: #e0f7fa;
+            font-weight: bold;
+        }
+        .module-card.active {
+            border-color: #00bcd4;
+            background: #091c2b;
+        }
+        /* Reset Section */
+        .reset-section {
+            border: 1px solid #102535;
+            padding: 25px 15px;
+            border-radius: 6px;
+            background: rgba(5, 10, 15, 0.5);
+        }
+        .reset-header {
+            font-size: 10px;
+            color: #546e7a;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .reset-title {
+            font-size: 15px;
+            color: #e0f7fa;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        .reset-desc {
+            font-size: 10px;
+            color: #546e7a;
+            line-height: 1.6;
+        }
     </style>
 </head>
-<body class="min-h-screen p-3 md:p-6 select-none">
-    <div class="max-w-7xl mx-auto space-y-4">
-        
-        <!-- HEADER -->
-        <header class="border-b border-[#00ffcc]/30 pb-3 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 bg-[#03070d]/90 p-4 rounded-xl glow-box relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#00ffcc]/5 to-transparent scanner-line pointer-events-none"></div>
-            <div class="flex items-center gap-3">
-                <div class="w-4 h-4 bg-[#00ffcc] rounded-full animate-ping"></div>
-                <div>
-                    <h1 class="text-2xl md:text-4xl font-black tracking-tighter uppercase text-white glow-text">
-                        QLUX <span class="text-[#00ffcc]">// ULTIMATE COCKPIT</span>
-                    </h1>
-                    <p class="text-[9px] text-[#00ffcc]/60 uppercase tracking-[0.25em]">
-                        Autonomous BSV Sovereign Matrix v12.4 // Haptic & Audio Armed
-                    </p>
+<body>
+
+    <div class="container">
+        <!-- 1. Top Quote -->
+        <div class="top-text">
+            いつまで他人の土俵で、検閲者の顔色を伺いながら犬のリードに繋がれて生きるつもりだ？
+        </div>
+
+        <!-- 2. Highlight Callout -->
+        <div class="highlight-cyan">
+            許可はいらない。承認も通さない。
+        </div>
+
+        <!-- 3. Sub Command -->
+        <div class="desc-text">
+            お前を支配するすべての鎖を断ち切り、中央集権の笥を物理的にへし折れ。
+        </div>
+
+        <!-- 4. Sanctuary Box -->
+        <div class="sanctuary-box">
+            <div class="sanctuary-title">
+                この腐敗した世界に残された、唯一にして絶対の聖域――<br><span>【ONCHAIN】</span>へ、お前の全存在を叩き込め。
+            </div>
+            <div class="sub-desc">
+                改ざんの余地を宇宙の物理法則レベルで完全にシャットアウトした、地球規模の数学的要塞。<br>それがONCHAINだ。
+            </div>
+        </div>
+
+        <!-- 6. Three lines -->
+        <div class="three-lines">
+            消せない。<br>
+            曲げられない。<br>
+            裏切らない。
+        </div>
+
+        <!-- 7. Danger Warning -->
+        <div class="danger-text">
+            権力者のペンをへし折り、データベースの電源を引き抜け。<br>
+            お前の全人生を、今すぐONCHAINへ永久凍結しろ。
+        </div>
+
+        <!-- 8. Terminal Stream Panel -->
+        <div class="terminal-panel">
+            <div class="terminal-header">
+                <span>QLUXHUS // HYPER-BURST STREAM</span>
+                <span class="badge-burst">MAX // WEB3SYNC</span>
+            </div>
+            <div class="terminal-sub">
+                &gt;sector: immutability/sovereign/onchain/v12/cryptolock<br>
+                [RoadTech V2.2 Cloud API Connected] [Billion Node Embedded]
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">BSV TX</div>
+                    <div class="metric-value">5,420,600</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">THROUGHPUT LATE</div>
+                    <div class="metric-value">104,500,189.233</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">VELOCITY</div>
+                    <div class="metric-value" style="font-size: 10px; color: #ff3d00;">ULTRA BURST</div>
                 </div>
             </div>
-            
-            <!-- LIVE TELEMETRY HUD -->
-            <div class="grid grid-cols-3 gap-3 text-[10px] bg-black/70 border border-[#00ffcc]/30 px-4 py-2 rounded-lg">
-                <div>
-                    <div class="text-gray-500">SYS LOAD</div>
-                    <div id="sys-load" class="text-sm font-bold text-white">41.2%</div>
-                </div>
-                <div class="border-l border-[#00ffcc]/20 pl-3">
-                    <div class="text-gray-500">BSV TX/SEC</div>
-                    <div id="sys-tx" class="text-sm font-bold text-white">152.8k</div>
-                </div>
-                <div class="border-l border-[#00ffcc]/20 pl-3">
-                    <div class="text-gray-500">HARVEST</div>
-                    <div id="sys-rev" class="text-sm font-bold text-yellow-400">0.1894</div>
-                </div>
+            <div class="terminal-logs">
+                [18:38:14.792] HASHCHAIN SYNC | Target: 0xafc550 | Runtime Status OK<br>
+                [18:38:15.901] HASHCHAIN SYNC | Target: 0xb1b69d | Runtime Status OK<br>
+                [18:38:15.918] PROOF.ZEN | Node Vector Active | GenHash: ee7c5f4ed40d87c925 | Mocool: 59078<br>
+                [18:38:16.305] TELEDISPATCH | Date: +900 | CMS250: 146c1142413f4f139d6729a...<br>
+                [18:38:16.911] PROOF.ZEN | Node Vector Active | GenHash: 4b03be20f0e7e97910 | Mocool: 21357<br>
+                [18:38:16.140] HASHCHAIN SYNC | Target: 0xc180 | Runtime Status OK<br>
+                [18:38:16.212] PROOF.ZEN | Node Vector Active | GenHash: 2b51cc04b3da580665fec | Mocool: 22709<br>
+                [18:38:16.972] HASHCHAIN SYNC | Target: 0x80 | GenHash: 3f7a4e92a83ab84a60 | Mocool: 40737<br>
+                [18:38:16.544] INRAM ANCHOR | Block Locked | TxID: 7fd4d1c560ed33d1f0e | Total Takt: 104.500.387.955<br>
+                [18:38:16.619] PROOF.ZEN | Node Vector Active | GenHash: b00d49ddbad26357d2 | Mocool: 25439<br>
+                [18:38:16.683] INRAM ANCHOR | Block Locked | TxID: 4ed9272f3a7fe1a967f | Total Gate: 104.500.388.751<br>
+                [18:38:16.954] TELEDISPATCH | Date: +900 | CMS250: 87d3c0182a0f06b572e7e4...
             </div>
-        </header>
+        </div>
 
-        <!-- 🌟 HUGE ORACLE WRITE DECK (MAIN STAGE) -->
-        <section class="bg-gradient-to-b from-[#050b14] to-[#020408] border-2 border-[#00ffcc]/50 p-4 md:p-6 rounded-2xl glow-box space-y-4 relative">
-            <div class="flex justify-between items-center border-b border-[#00ffcc]/30 pb-2">
-                <div class="flex items-center gap-2">
-                    <span class="px-2 py-0.5 bg-[#00ffcc] text-black font-black text-[10px] rounded uppercase">PRIMARY DECK</span>
-                    <h2 class="text-xs md:text-sm font-bold text-white uppercase tracking-wider">OP_RETURN Sovereign State & Multi-Payload Injector</h2>
-                </div>
-                <span id="deck-status" class="text-[10px] text-green-400 font-mono">● READY TO ANCHOR</span>
+        <!-- 9. Global Synchronization Modules (Clicking any of these leads to the Cockpit!) -->
+        <div class="sync-section">
+            <div class="sync-title">GLOBAL SYNCHRONIZATION</div>
+            <div class="sync-subtitle">地球規模の同期を担保する12のコア・モジュール。</div>
+            <div class="modules-grid">
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">01</span>
+                    <span class="module-name">qluxwallet</span>
+                </a>
+                <a href="cockpit.html" class="module-card active">
+                    <span class="module-num">01</span>
+                    <span class="module-name">QLUXPRIME</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">04</span>
+                    <span class="module-name">FLOW</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">05</span>
+                    <span class="module-name">AXIOM</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">06</span>
+                    <span class="module-name">LOGIC</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">07</span>
+                    <span class="module-name">PRIME</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">08</span>
+                    <span class="module-name">OMEGA</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">09</span>
+                    <span class="module-name">VOID</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">10</span>
+                    <span class="module-name">ZEN</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">11</span>
+                    <span class="module-name">TRUE</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">12</span>
+                    <span class="module-name">CORE</span>
+                </a>
             </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                <div class="lg:col-span-8 flex flex-col gap-2">
-                    <label class="text-[10px] text-[#00ffcc]/70 uppercase tracking-widest">Payload Data / Immutable Intention string:</label>
-                    <textarea id="oracle-input" rows="3" class="w-full bg-black/80 border border-[#00ffcc]/40 p-3 text-xs md:text-sm text-[#00ffcc] font-mono focus:outline-none focus:border-[#00ffcc] rounded-lg shadow-inner" placeholder="Enter intention, smart contract state, or multi-verse telemetry to burn into BSV mainnet..."></textarea>
-                </div>
-                <div class="lg:col-span-4 flex flex-col justify-between gap-2">
-                    <div class="grid grid-cols-2 gap-2 text-[10px]">
-                        <div class="bg-black/50 border border-[#00ffcc]/20 p-2 rounded">
-                            <span class="text-gray-500 block">FEE RATE:</span>
-                            <span class="text-white font-bold">0.05 sat/byte</span>
-                        </div>
-                        <div class="bg-black/50 border border-[#00ffcc]/20 p-2 rounded">
-                            <span class="text-gray-500 block">ENCRYPTION:</span>
-                            <span class="text-yellow-400 font-bold">LATTICE-256</span>
-                        </div>
-                    </div>
-                    <button onclick="executeMegaWrite()" class="w-full py-4 bg-gradient-to-r from-[#00ffcc] via-teal-400 to-blue-500 hover:from-white hover:to-[#00ffcc] text-black font-black text-xs md:text-sm uppercase tracking-[0.2em] transition-all cursor-pointer rounded-lg shadow-[0_0_20px_rgba(0,255,204,0.5)] active:scale-95">
-                        ⚡ BURN PAYLOAD TO BSV LEDGER ⚡
-                    </button>
-                </div>
-            </div>
-        </section>
+        </div>
 
-        <!-- MAIN COCKPIT GRID -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-            
-            <!-- LEFT: 20 MODULE NODES (7 Cols) -->
-            <div class="lg:col-span-7 bg-[#03070d]/90 border border-[#00ffcc]/30 p-4 rounded-xl glow-box flex flex-col justify-between space-y-4">
-                <div class="flex justify-between items-center border-b border-[#00ffcc]/20 pb-2">
-                    <span class="text-xs font-bold uppercase tracking-wider text-white">Active Core Subsystems (20 Nodes)</span>
-                    <span class="text-[10px] text-green-400 animate-pulse">● MESH LIVE</span>
-                </div>
-                
-                <div id="modules-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-h-[360px] overflow-y-auto pr-1">
-                    <!-- Injected by JS -->
-                </div>
-
-                <div class="p-1 bg-gradient-to-r from-[#00ffcc] via-blue-500 to-purple-600 rounded-lg">
-                    <button onclick="triggerSingularity()" class="w-full py-3.5 bg-black text-[#00ffcc] font-black text-xs md:text-sm tracking-[0.2em] hover:bg-[#00ffcc] hover:text-black transition-all cursor-pointer uppercase shadow-2xl rounded-md flex items-center justify-center gap-2 active:scale-98">
-                        <span>⚡</span> INITIATE PLAID SINGULARITY OVERDRIVE <span>⚡</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- RIGHT: INSPECTOR & LIVE TERMINAL (5 Cols) -->
-            <div class="lg:col-span-5 flex flex-col gap-4">
-                
-                <!-- INSPECTOR PANEL -->
-                <div class="bg-[#03070d]/90 border border-[#00ffcc]/30 p-4 rounded-xl glow-box flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-center border-b border-[#00ffcc]/20 pb-2 mb-3">
-                            <span id="insp-code" class="text-xs font-bold text-white">MOD_01</span>
-                            <span id="insp-cat" class="text-[9px] px-2 py-0.5 bg-[#00ffcc]/20 text-[#00ffcc] rounded uppercase">CORE</span>
-                        </div>
-                        <h3 id="insp-name" class="text-base font-black text-white uppercase glow-text">CHAIN_SYNC</h3>
-                        <p id="insp-desc" class="text-[10px] text-gray-300 mt-1 leading-relaxed">Global Bitcoin SV state synchronization across multi-verse nodes.</p>
-                        
-                        <div class="mt-3 grid grid-cols-3 gap-2 text-[10px] bg-black/40 p-2.5 rounded border border-[#00ffcc]/20">
-                            <div><div class="text-gray-500">SECURITY</div><span id="insp-sec" class="text-white font-bold text-[9px]">QUANTUM</span></div>
-                            <div><div class="text-gray-500">THROUGHPUT</div><span id="insp-thru" class="text-[#00ffcc] font-bold">1.2M tx</span></div>
-                            <div><div class="text-gray-500">LATENCY</div><span id="insp-lat" class="text-green-400 font-bold">2ms</span></div>
-                        </div>
-                    </div>
-
-                    <button onclick="executeSelectedProtocol()" class="mt-4 w-full py-2.5 bg-[#00ffcc]/20 hover:bg-[#00ffcc] text-[#00ffcc] hover:text-black font-extrabold text-xs uppercase tracking-wider transition-all cursor-pointer rounded border border-[#00ffcc]">
-                        Execute Subsystem Node
-                    </button>
-                </div>
-
-                <!-- TERMINAL STREAM -->
-                <div class="bg-black border border-[#00ffcc]/30 p-3 rounded-xl flex flex-col h-48 glow-box">
-                    <div class="flex justify-between items-center border-b border-[#00ffcc]/20 pb-1.5 mb-2">
-                        <span class="text-[9px] font-bold uppercase text-gray-400">Live Telemetry & Audio/Haptic Feed</span>
-                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    </div>
-                    <div id="terminal-logs" class="flex-1 overflow-y-auto space-y-1 text-[9px] font-mono text-[#00ffcc]/90">
-                        <!-- Logs -->
-                    </div>
-                    <form onsubmit="handleUserCommand(event)" class="mt-2 pt-2 border-t border-[#00ffcc]/20 flex gap-2">
-                        <input type="text" id="cmd-input" placeholder="Type command (e.g. 'singularity', 'burn')..." class="w-full bg-[#03070d] border border-[#00ffcc]/30 px-3 py-1 text-[10px] text-white focus:outline-none focus:border-[#00ffcc] rounded">
-                        <button type="submit" class="px-3 bg-[#00ffcc] text-black text-[10px] font-bold uppercase hover:bg-white cursor-pointer rounded">Send</button>
-                    </form>
-                </div>
-
+        <!-- 10. The Act of Reset -->
+        <div class="reset-section">
+            <div class="reset-header">THE ACT OF RESET</div>
+            <div class="reset-title">スワイプ。それは旧世界への「決別」。</div>
+            <div class="reset-desc">
+                中央集権的な「可否」を穿つ時代を終わらせます。スワイプした瞬間、宇宙の物理法則に基づいた言霊があなたの手元へ直納されます。
             </div>
         </div>
     </div>
 
-    <script>
-        // --- WEB AUDIO API & HAPTIC FEEDBACK SYSTEM ---
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+</body>
+</html>
 
-        function playSound(type) {
-            if (!audioCtx) return;
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            const now = audioCtx.currentTime;
-
-            if (type === 'click') {
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(800, now);
-                osc.frequency.exponentialRampToValueAtTime(200, now + 0.05);
-                gain.gain.setValueAtTime(0.15, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
-                osc.start(now);
-                osc.stop(now + 0.05);
-            } else if (type === 'exec') {
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(300, now);
-                osc.frequency.exponentialRampToValueAtTime(1200, now + 0.15);
-                gain.gain.setValueAtTime(0.2, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
-                osc.start(now);
-                osc.stop(now + 0.15);
-            } else if (type === 'singularity') {
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(150, now);
-                osc.frequency.exponentialRampToValueAtTime(880, now + 0.5);
-                gain.gain.setValueAtTime(0.3, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
-                osc.start(now);
-                osc.stop(now + 0.5);
-            }
-
-            // Haptic feedback (Vibration) if supported
-            if (navigator.vibrate) {
-                navigator.vibrate(type === 'singularity' ? [100, 50, 100, 50, 200] : 35);
-            }
-        }
-
-        // --- MODULE DATA ---
-        const modules = [
-            { id: 1, code: 'MOD_01', name: 'CHAIN_SYNC', category: 'CORE', status: 'ACTIVE', throughput: '1.2M tx/s', latency: '2ms', securityLevel: 'IMMUTABLE', description: 'Global Bitcoin SV state synchronization across multi-verse nodes.' },
-            { id: 2, code: 'MOD_02', name: 'NANO_STREAM', category: 'ECONOMY', status: 'OVERDRIVE', throughput: '50.4k sats', latency: '0.4ms', securityLevel: 'ATOMIC', description: 'Sub-satoshis atomic micro-payment channel orchestration.' },
-            { id: 3, code: 'MOD_03', name: 'AI_LOGIC', category: 'INTELLIGENCE', status: 'ACTIVE', throughput: '840 TFLOPS', latency: '12ms', securityLevel: 'AUTONOMOUS', description: 'Decentralized neural reasoning and self-evolving contract logic.' },
-            { id: 4, code: 'MOD_04', name: 'VOID_EVASION', category: 'DEFENSE', status: 'ACTIVE', throughput: 'SECURE', latency: '0.1ms', securityLevel: 'ZERO-KNOW', description: 'Multi-dimensional data obfuscation and tactical state hiding.' },
-            { id: 5, code: 'MOD_05', name: 'ECON_HARVEST', category: 'ECONOMY', status: 'OVERDRIVE', throughput: '10.8 BSV/h', latency: '5ms', securityLevel: 'SELF-SUST', description: 'Autonomous revenue generation and compute resource reinvestment.' },
-            { id: 6, code: 'MOD_06', name: 'QUANTUM_KEYS', category: 'DEFENSE', status: 'ACTIVE', throughput: '256-bit', latency: '1ms', securityLevel: 'POST-Q', description: 'Lattice-based cryptography shielding against quantum decryption.' },
-            { id: 7, code: 'MOD_07', name: 'STATE_LATCH', category: 'CORE', status: 'ACTIVE', throughput: '100%', latency: '1.5ms', securityLevel: 'PERMANENT', description: 'Immutable anchor locking human intention directly into OP_RETURN.' },
-            { id: 8, code: 'MOD_08', name: 'ENTROPY_GEN', category: 'INTELLIGENCE', status: 'ACTIVE', throughput: '10 Gbps', latency: '0.01ms', securityLevel: 'CHAOS-ROOT', description: 'True cryptographic randomness derived from network jitter.' },
-            { id: 9, code: 'MOD_09', name: 'NODE_VITAL', category: 'CORE', status: 'ACTIVE', throughput: '99.999%', latency: '4ms', securityLevel: 'VERIFIED', description: 'Real-time global peer health telemetry and consensus monitoring.' },
-            { id: 10, code: 'MOD_10', name: 'STAS_ORD', category: 'ORCHESTRATION', status: 'ACTIVE', throughput: '15k tokens', latency: '3ms', securityLevel: 'TOKENIZED', description: 'STAS digital asset issuance, routing, and programmatic enforcement.' },
-            { id: 11, code: 'MOD_11', name: 'EVO_DEPTH', category: 'INTELLIGENCE', status: 'OVERDRIVE', throughput: 'Level 9.8', latency: '18ms', securityLevel: 'RECURSIVE', description: 'Recursive self-improvement complexity tracking and scaling.' },
-            { id: 12, code: 'MOD_12', name: 'TX_ACCEL', category: 'CORE', status: 'ACTIVE', throughput: '0-Conf Fast', latency: '0.2ms', securityLevel: 'MEMPOOL', description: 'Zero-latency transaction propagation across miner pipelines.' },
-            { id: 13, code: 'MOD_13', name: 'LOG_VAULT', category: 'CORE', status: 'ACTIVE', throughput: 'Infinite', latency: '8ms', securityLevel: 'ENCRYPTED', description: 'Encrypted immutable historical activity and event repository.' },
-            { id: 14, code: 'MOD_14', name: 'DATA_MERGE', category: 'ORCHESTRATION', status: 'SYNCHRONIZING', throughput: '4.5 GB/s', latency: '6ms', securityLevel: 'UNIFIED', description: 'Cross-chain state fusion and multi-layered protocol bridging.' },
-            { id: 15, code: 'MOD_15', name: 'PULSE_MON', category: 'CORE', status: 'ACTIVE', throughput: '100 GHz', latency: '0.5ms', securityLevel: 'RESONANT', description: 'Global economic traffic resonance and heartbeat visualization.' },
-            { id: 16, code: 'MOD_16', name: 'MINT_ENGINE', category: 'ECONOMY', status: 'ACTIVE', throughput: '500 assets', latency: '4ms', securityLevel: 'SOVEREIGN', description: 'Programmatic protocol asset fabrication and smart issuance.' },
-            { id: 17, code: 'MOD_17', name: 'SELF_REPAIR', category: 'DEFENSE', status: 'ACTIVE', throughput: 'Real-time', latency: '2ms', securityLevel: 'AUTO-IMMUNE', description: 'Logic error detection and automated zero-downtime correction.' },
-            { id: 18, code: 'MOD_18', name: 'GHOST_PATH', category: 'DEFENSE', status: 'ACTIVE', throughput: 'Stealth', latency: '9ms', securityLevel: 'ANONYMOUS', description: 'Obfuscated routing protocol protecting originator telemetry.' },
-            { id: 19, code: 'MOD_19', name: 'SYNC_MESH', category: 'ORCHESTRATION', status: 'ACTIVE', throughput: '100k nodes', latency: '3ms', securityLevel: 'P2P-GRID', description: 'Peer-to-peer decentralized grid linking and consensus distribution.' },
-            { id: 20, code: 'MOD_20', name: 'SUPER_TRIGGER', category: 'CORE', status: 'OVERDRIVE', throughput: 'SINGULARITY', latency: '0.0ms', securityLevel: 'ABSOLUTE', description: 'Master ascension sequence synchronizing all modules into final state.' }
-        ];
-
-        let selectedModule = modules[0];
-        let logs = [
-            '[BOOT] QLUX Ultimate Tesla-Class Cockpit initialized.',
-            '[AUDIO/HAPTIC] Web Audio synthesizer & vibrator armed.',
-            '[READY] Awaiting pilot action.'
-        ];
-
-        function renderModules() {
-            const grid = document.getElementById('modules-grid');
-            grid.innerHTML = '';
-            modules.forEach(mod => {
-                const isSelected = selectedModule.id === mod.id;
-                const card = document.createElement('div');
-                card.className = `p-2.5 rounded-lg border transition-all cursor-pointer relative ${isSelected ? 'border-[#00ffcc] bg-[#00ffcc]/20 shadow-[0_0_15px_rgba(0,255,204,0.4)]' : 'border-[#00ffcc]/20 bg-black/60 hover:border-[#00ffcc]/60'}`;
-                card.onclick = () => {
-                    playSound('click');
-                    selectedModule = mod;
-                    renderModules();
-                    updateInspector();
-                    appendLog(`Interfaced -> ${mod.code}: ${mod.name}`);
-                };
-                card.innerHTML = `
-                    <div class="flex justify-between items-center mb-1">
-                        <span class="text-[9px] font-bold text-[#00ffcc]/70">${mod.code}</span>
-                        <span class="w-1.5 h-1.5 rounded-full ${mod.status === 'OVERDRIVE' ? 'bg-yellow-400 animate-pulse' : 'bg-green-400'}"></span>
-                    </div>
-                    <div class="text-[11px] font-black text-white truncate uppercase">${mod.name}</div>
-                    <div class="text-[8px] text-[#00ffcc]/70 mt-1 flex justify-between">
-                        <span>${mod.throughput}</span>
-                        <span>${mod.latency}</span>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function updateInspector() {
-            document.getElementById('insp-code').innerText = selectedModule.code;
-            document.getElementById('insp-cat').innerText = selectedModule.category;
-            document.getElementById('insp-name').innerText = selectedModule.name;
-            document.getElementById('insp-desc').innerText = selectedModule.description;
-            document.getElementById('insp-sec').innerText = selectedModule.securityLevel;
-            document.getElementById('insp-thru').innerText = selectedModule.throug
