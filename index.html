@@ -567,7 +567,38 @@
         </div>
     </div>
 
-    <script>
+    // QLUX Onchain Dispatch Script
+document.addEventListener('DOMContentLoaded', () => {
+    // メインバナーをクリックしたときにAPIを叩く設定
+    const banner = document.querySelector('.main-banner');
+    if (!banner) return;
+
+    banner.addEventListener('click', async () => {
+        const payload = prompt("ブロックチェーンに書き込むデータを入力してください:", "QLUX_FORTRESS_SYNC");
+        if (!payload) return;
+
+        console.log('[SYSTEM] HandCash API マイクロペイメント処理中...');
+
+        try {
+            const res = await fetch('/api/dispatch', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: payload })
+            });
+            const result = await res.json();
+            
+            if(result.success) {
+                alert('永久凍結成功！\nTX: ' + result.txId);
+                console.log('[SUCCESS] TX: ' + result.txId);
+            } else {
+                alert('エラー: ' + result.error);
+            }
+        } catch(e) 
+            alert('通信エラーが発生しました');
+            console.error(e);
+        }
+    });
+});
         // 爆速ログ自動生成スクリプト
         const logsContainer = document.getElementById('terminalLogs');
         const hexChars = '0123456789abcdef';
