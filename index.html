@@ -27,7 +27,7 @@
             max-width: 620px;
             border: 1px solid rgba(0, 229, 255, 0.4);
             border-radius: 12px;
-            padding: 20px 15px;
+            padding: 24px 18px;
             background: #050a0f;
             box-shadow: 0 0 25px rgba(0, 229, 255, 0.15), inset 0 0 15px rgba(0, 229, 255, 0.05);
             display: flex;
@@ -36,67 +36,183 @@
             text-align: center;
             position: relative;
         }
+
+        /* Top Brand Header (from 11539.jpg style) */
+        .brand-header {
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            background: rgba(3, 8, 13, 0.8);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 2px;
+            box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.03);
+        }
+        .brand-sub {
+            font-size: 10px;
+            color: #00bcd4;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .brand-title {
+            font-size: 26px;
+            color: #00e5ff;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 6px;
+            text-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+        }
+        .brand-desc {
+            font-size: 11.5px;
+            color: #90a4ae;
+            line-height: 1.5;
+        }
+
+        /* Mode Selector Tabs */
+        .mode-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+        .tab-btn {
+            background: #071018;
+            border: 1px solid #183044;
+            color: #78909c;
+            padding: 10px 6px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #00bcd4, #00e5ff);
+            color: #03080d;
+            border-color: #00e5ff;
+            font-weight: bold;
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+        }
+
+        /* Main Banner Box */
+        .main-banner {
+            background: linear-gradient(135deg, #00e5ff, #00bcd4);
+            color: #03080d;
+            padding: 18px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+        }
+        .main-banner-title {
+            font-size: 18px;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .main-banner-sub {
+            font-size: 11px;
+            opacity: 0.85;
+            font-weight: normal;
+        }
+
+        /* Feed Ticker */
+        .feed-ticker {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #030609;
+            border: 1px solid #15293a;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 10px;
+            color: #546e7a;
+        }
+        .feed-left {
+            color: #00e5ff;
+        }
+
+        /* Section Title: Truth Revolution */
+        .section-header-title {
+            font-size: 16px;
+            color: #e0f7fa;
+            letter-spacing: 1px;
+            font-weight: bold;
+            text-align: left;
+            margin-top: 5px;
+        }
+        .section-header-desc {
+            font-size: 12.5px;
+            color: #00e5ff;
+            line-height: 1.6;
+            text-align: left;
+            margin-top: 6px;
+        }
+        .section-body-text {
+            font-size: 11.5px;
+            color: #90a4ae;
+            line-height: 1.7;
+            text-align: left;
+        }
+
         .top-text {
-            font-size: 12px;
+            font-size: 13px;
             color: #78909c;
             line-height: 1.6;
             text-align: left;
             border-left: 2px solid #00bcd4;
-            padding-left: 10px;
+            padding-left: 12px;
         }
         .highlight-cyan {
             color: #00e5ff;
-            font-size: 17px;
+            font-size: 18px;
             font-weight: bold;
             text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
             margin: 5px 0;
         }
         .desc-text {
-            font-size: 12px;
+            font-size: 12.5px;
             color: #90a4ae;
             line-height: 1.6;
         }
         .sanctuary-box {
-            border: 1px solid rgba(0, 229, 255, 0.2);
+            border: 1px solid rgba(0, 229, 255, 0.25);
             background: rgba(0, 229, 255, 0.02);
-            padding: 20px 15px;
-            border-radius: 6px;
+            padding: 22px 16px;
+            border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 229, 255, 0.05);
         }
         .sanctuary-title {
-            font-size: 14px;
+            font-size: 15px;
             color: #e0f7fa;
             font-weight: bold;
             margin-bottom: 12px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
         .sanctuary-title span {
             color: #00e5ff;
         }
         .sub-desc {
-            font-size: 11px;
+            font-size: 12px;
             color: #00bcd4;
             line-height: 1.6;
         }
         .three-lines {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: bold;
             color: #e0f7fa;
-            line-height: 2;
+            line-height: 2.2;
             letter-spacing: 1px;
         }
         .danger-text {
             color: #ff5252;
-            font-size: 12px;
+            font-size: 12.5px;
             line-height: 1.6;
             text-shadow: 0 0 8px rgba(255, 82, 82, 0.3);
         }
+
         /* Terminal Panel */
         .terminal-panel {
             background: #030609;
             border: 1px solid #1e3a4c;
-            border-radius: 6px;
-            padding: 12px;
+            border-radius: 8px;
+            padding: 14px;
             text-align: left;
             position: relative;
         }
@@ -104,88 +220,91 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 10px;
+            font-size: 11px;
             color: #546e7a;
             margin-bottom: 8px;
             border-bottom: 1px solid #102030;
-            padding-bottom: 5px;
+            padding-bottom: 6px;
         }
         .badge-burst {
             background: #ff3d00;
             color: #fff;
-            font-size: 8px;
-            padding: 2px 6px;
+            font-size: 9px;
+            padding: 2px 8px;
             border-radius: 3px;
             font-weight: bold;
         }
         .terminal-sub {
-            font-size: 9px;
+            font-size: 10px;
             color: #455a64;
             margin-bottom: 10px;
             word-break: break-all;
+            line-height: 1.4;
         }
         .metrics-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 6px;
-            margin-bottom: 10px;
+            gap: 8px;
+            margin-bottom: 12px;
             text-align: center;
         }
         .metric-item {
             background: #081118;
             border: 1px solid #15293a;
-            padding: 6px 4px;
-            border-radius: 4px;
+            padding: 8px 6px;
+            border-radius: 5px;
         }
         .metric-label {
-            font-size: 8px;
+            font-size: 9px;
             color: #546e7a;
             margin-bottom: 3px;
         }
         .metric-value {
-            font-size: 11px;
+            font-size: 12px;
             color: #00e5ff;
             font-weight: bold;
         }
         .terminal-logs {
-            font-size: 8.5px;
+            font-size: 9.5px;
             color: #00e5ff;
             background: #010305;
-            padding: 8px;
-            border-radius: 4px;
-            height: 110px;
+            padding: 10px;
+            border-radius: 5px;
+            height: 120px;
             overflow-y: hidden;
-            line-height: 1.5;
+            line-height: 1.6;
             opacity: 0.85;
         }
+
         /* Global Synchronization Grid */
         .sync-section {
             border: 1px solid #102535;
-            padding: 15px 10px;
-            border-radius: 6px;
+            padding: 18px 14px;
+            border-radius: 8px;
             background: rgba(5, 10, 15, 0.5);
         }
         .sync-title {
-            font-size: 12px;
+            font-size: 13px;
             color: #00bcd4;
             letter-spacing: 2px;
             margin-bottom: 4px;
+            font-weight: bold;
         }
         .sync-subtitle {
-            font-size: 9.5px;
+            font-size: 10.5px;
             color: #546e7a;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
         .modules-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
+            gap: 8px;
         }
         .module-card {
             background: #071018;
             border: 1px solid #183044;
-            padding: 8px 4px;
-            border-radius: 4px;
+            padding: 10px 6px;
+            border-radius: 6px;
             text-decoration: none;
             display: flex;
             flex-direction: column;
@@ -199,12 +318,12 @@
             box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
         }
         .module-num {
-            font-size: 9px;
+            font-size: 9.5px;
             color: #546e7a;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
         .module-name {
-            font-size: 9px;
+            font-size: 10px;
             color: #e0f7fa;
             font-weight: bold;
         }
@@ -212,30 +331,31 @@
             border-color: #00bcd4;
             background: #091c2b;
         }
+
         /* Reset Section */
         .reset-section {
             border: 1px solid #102535;
-            padding: 20px 12px;
-            border-radius: 6px;
+            padding: 20px 14px;
+            border-radius: 8px;
             background: rgba(5, 10, 15, 0.5);
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
         .reset-header {
-            font-size: 9.5px;
+            font-size: 10.5px;
             color: #546e7a;
             letter-spacing: 1px;
             text-align: left;
         }
         .reset-title {
-            font-size: 14px;
+            font-size: 15px;
             color: #e0f7fa;
             font-weight: bold;
             text-align: left;
         }
         .reset-desc {
-            font-size: 9.5px;
+            font-size: 10.5px;
             color: #546e7a;
             line-height: 1.6;
             text-align: left;
@@ -245,10 +365,10 @@
         .swipe-container {
             position: relative;
             width: 100%;
-            height: 50px;
+            height: 52px;
             background: #03080d;
             border: 1px solid rgba(0, 229, 255, 0.35);
-            border-radius: 25px;
+            border-radius: 26px;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -258,7 +378,7 @@
             position: absolute;
             width: 100%;
             text-align: center;
-            font-size: 10px;
+            font-size: 11px;
             color: rgba(0, 229, 255, 0.5);
             letter-spacing: 2px;
             pointer-events: none;
@@ -275,7 +395,7 @@
         }
         .swipe-handle {
             position: absolute;
-            left: 3px;
+            left: 4px;
             width: 44px;
             height: 44px;
             background: #00e5ff;
@@ -298,6 +418,44 @@
 <body>
 
     <div class="outer-frame">
+        <!-- Top Brand Header (from 11539.jpg layout) -->
+        <div class="brand-header">
+            <div class="brand-sub">ABSOLUTE SOVEREIGNTY</div>
+            <div class="brand-title">QLUX</div>
+            <div class="brand-desc">The Universal Engine of Economic Convergence.<br>あらゆる既存インフラを統括し、個人へ主権を返還する最上位執行レイヤー。</div>
+        </div>
+
+        <!-- Mode Selector Tabs -->
+        <div class="mode-tabs">
+            <button class="tab-btn active">👤 個人・独身</button>
+            <button class="tab-btn">👥 カップル・愛</button>
+            <button class="tab-btn">🏢 企業・監査</button>
+            <button class="tab-btn">🎨 クリエイター</button>
+            <button class="tab-btn">💻 デベロッパー</button>
+            <button class="tab-btn">🌐 GLOBAL(EN)</button>
+        </div>
+
+        <!-- Main Cyan Banner -->
+        <div class="main-banner">
+            <div class="main-banner-title">QLUX ⚡ ONCHAIN</div>
+            <div class="main-banner-sub">// 個人の尊厳と全記録を、改ざん不能なブロックチェーンへ永遠に凍結する。</div>
+        </div>
+
+        <!-- Feed Ticker -->
+        <div class="feed-ticker">
+            <span class="feed-left">● ONCHAIN FEED:</span>
+            <span>[#000184 - ARCHITECT] "We leave our truth ONCHAIN..." - BSV Mainnet</span>
+        </div>
+
+        <!-- Truth Revolution Header -->
+        <div style="text-align: left;">
+            <div class="section-header-title">ONCHAIN TRUTH REVOLUTION</div>
+            <div class="section-header-desc">いい加減、目を覚ませ。お前が残した「言葉」は、明日もそこに存在すると、本気で思っているのか？</div>
+            <div class="section-body-text" style="margin-top: 8px;">
+                笑わせるな。お前の愛の誓いも、企業の誇る監査ログも、汗水流して取得した特許も、羽を削ったアートも――すべては他人の管理するサーバーの「Deleteキー」一つで、明日には形もなく消え去るか、都合よく書き換えられる沙上の楼閣にすぎない。中央集権の管理者が微笑み、都合の悪い真実を闇に葬るとき、お前の生きた証は一瞬でエラーコードという名のゴミ屑へと成り下がる。
+            </div>
+        </div>
+
         <!-- 1. Top Quote -->
         <div class="top-text">
             いつまで他人の土俵で、検閲者の顔色を伺いながら犬のリードに繋がれて生きるつもりだ？
@@ -357,7 +515,7 @@
                 </div>
                 <div class="metric-item">
                     <div class="metric-label">VELOCITY</div>
-                    <div class="metric-value" style="font-size: 9.5px; color: #ff3d00;">ULTRA BURST</div>
+                    <div class="metric-value" style="font-size: 10px; color: #ff3d00;">ULTRA BURST</div>
                 </div>
             </div>
             <div class="terminal-logs">
@@ -381,7 +539,8 @@
             <div class="sync-title">GLOBAL SYNCHRONIZATION</div>
             <div class="sync-subtitle">地球規模の同期を担保する12のコア・モジュール。</div>
             <div class="modules-grid">
-                <a href="cockpit.html" class="module-card">
+                <!-- qluxwallet button links directly to QLUX WALLET screen (11813.jpg) -->
+                <a href="qluxwallet.html" class="module-card">
                     <span class="module-num">01</span>
                     <span class="module-name">qluxwallet</span>
                 </a>
@@ -436,83 +595,4 @@
                 中央集権的な「可否」を穿つ時代を終わらせます。スワイプした瞬間、宇宙の物理法則に基づいた言霊があなたの手元へ直納されます。
             </div>
 
-            <!-- Swipe Action Component -->
-            <div class="swipe-container" id="swipeContainer">
-                <div class="swipe-text">&gt;&gt;&gt; SWIPE TO ENTER COCKPIT &gt;&gt;&gt;</div>
-                <div class="swipe-track-fill" id="swipeFill"></div>
-                <div class="swipe-handle" id="swipeHandle"></div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const container = document.getElementById('swipeContainer');
-        const handle = document.getElementById('swipeHandle');
-        const fill = document.getElementById('swipeFill');
-
-        let isDragging = false;
-        let startX = 0;
-        let maxSwipeWidth = 0;
-
-        function initSwipe() {
-            maxSwipeWidth = container.clientWidth - handle.clientWidth - 6;
-        }
-
-        window.addEventListener('resize', initSwipe);
-        initSwipe();
-
-        function startDrag(e) {
-            isDragging = true;
-            startX = (e.touches ? e.touches[0].clientX : e.clientX) - handle.offsetLeft;
-            document.addEventListener('mousemove', onDrag);
-            document.addEventListener('mouseup', stopDrag);
-            document.addEventListener('touchmove', onDrag);
-            document.addEventListener('touchend', stopDrag);
-        }
-
-        function onDrag(e) {
-            if (!isDragging) return;
-            const currentX = (e.touches ? e.touches[0].clientX : e.clientX);
-            let moveX = currentX - startX;
-
-            if (moveX < 3) moveX = 3;
-            if (moveX > maxSwipeWidth) moveX = maxSwipeWidth;
-
-            handle.style.left = moveX + 'px';
-            const progress = (moveX / maxSwipeWidth) * 100;
-            fill.style.width = progress + '%';
-
-            if (moveX >= maxSwipeWidth - 5) {
-                isDragging = false;
-                handle.style.background = '#00ffcc';
-                document.body.style.opacity = '0.3';
-                setTimeout(() => {
-                    window.location.href = 'cockpit.html';
-                }, 300);
-            }
-        }
-
-        function stopDrag() {
-            if (!isDragging) return;
-            isDragging = false;
-            handle.style.transition = 'left 0.3s ease';
-            fill.style.transition = 'width 0.3s ease';
-            handle.style.left = '3px';
-            fill.style.width = '0%';
-            setTimeout(() => {
-                handle.style.transition = 'none';
-                fill.style.transition = 'none';
-            }, 300);
-
-            document.removeEventListener('mousemove', onDrag);
-            document.removeEventListener('mouseup', stopDrag);
-            document.removeEventListener('touchmove', onDrag);
-            document.removeEventListener('touchend', stopDrag);
-        }
-
-        handle.addEventListener('mousedown', startDrag);
-        handle.addEventListener('touchstart', startDrag);
-    </script>
-</body>
-</html>
-
+            <!-- Swi
