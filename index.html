@@ -1,632 +1,270 @@
 <!DOCTYPE html>
-<html lang="ja" class="dark">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX — Complete Sovereignty</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        qlux: {
-                            dark: '#030712',
-                            card: '#0b0f19',
-                            cyan: '#00f2fe',
-                            blue: '#4facfe',
-                            border: '#1e293b'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <title>QLUX // ULTIMATE TESLA-CLASS BSV COCKPIT</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;700&display=swap');
-        body {
-            font-family: 'Noto Sans JP', 'Orbitron', sans-serif;
-            background-color: #030712;
-            color: #f3f4f6;
-            overflow-x: hidden;
+        body { background-color: #000103; color: #00ffcc; font-family: monospace; overflow-x: hidden; }
+        .glow-box { box-shadow: 0 0 25px rgba(0,255,204,0.15); }
+        .glow-text { text-shadow: 0 0 12px rgba(0,255,204,0.7); }
+        .glow-red { text-shadow: 0 0 12px rgba(255,0,85,0.8); box-shadow: 0 0 25px rgba(255,0,85,0.3); }
+        ::-webkit-scrollbar { width: 3px; height: 3px; }
+        ::-webkit-scrollbar-track { background: #000103; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,255,204,0.5); border-radius: 2px; }
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(1000%); }
         }
-        .glow-text {
-            text-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
-        }
-        .glow-border {
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
-        }
-        .white-glow-active {
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9), 0 0 50px rgba(0, 242, 254, 0.5) !important;
-            border-color: #ffffff !important;
-            color: #ffffff !important;
-            transition: all 0.3s ease;
-        }
+        .scanner-line { animation: scanline 4s linear infinite; }
     </style>
 </head>
-<body class="bg-qlux-dark min-h-screen flex flex-col items-center justify-start space-y-12 py-12 px-4">
-
-    <!-- 1. Hero Section -->
-    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-12 text-center relative overflow-hidden glow-border">
-        <p class="text-xs uppercase tracking-[0.3em] text-qlux-cyan font-semibold mb-4">ABSOLUTE SOVEREIGNTY</p>
-        <h1 class="text-5xl md:text-6xl font-extrabold tracking-wider text-white mb-4 glow-text">QLUX</h1>
-        <h2 class="text-lg md:text-xl text-gray-300 font-medium mb-6">The Universal Engine of Economic Convergence.</h2>
-        <p class="text-sm text-gray-400 max-w-xl mx-auto">あらゆる既存インフラを統括し、個人へ主権を返還する最上位執行レイヤー。</p>
-    </section>
-           
-       <!-- QLUX // ONCHAIN ETERNAL PROOF & FULL TAB SYSTEM & MODAL -->
-    <section class="w-full max-w-5xl mx-auto px-4 py-8 text-left text-gray-300 font-mono">
-      <div class="border-2 border-qlux-cyan rounded-3xl p-6 sm:p-10 bg-qlux-card glow-border" style="box-shadow: 0 0 60px rgba(0,240,255,0.4);">
+<body class="min-h-screen p-3 md:p-6 select-none">
+    <div class="max-w-7xl mx-auto space-y-4">
         
-        <!-- タブナビゲーション（全項目切り替え） -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-8 text-xs font-bold text-center">
-          <button onclick="switchMode('individual')" id="tab-individual" class="py-3 px-2 rounded-xl bg-qlux-cyan text-qlux-dark uppercase tracking-wider transition shadow-lg" style="box-shadow: 0 0 15px rgba(0,240,255,0.6);">
-            👤 個人・独身
-          </button>
-          <button onclick="switchMode('couple')" id="tab-couple" class="py-3 px-2 rounded-xl bg-qlux-dark border border-qlux-border text-gray-300 hover:border-qlux-cyan uppercase tracking-wider transition">
-            💍 カップル・愛
-          </button>
-          <button onclick="switchMode('enterprise')" id="tab-enterprise" class="py-3 px-2 rounded-xl bg-qlux-dark border border-qlux-border text-gray-300 hover:border-qlux-cyan uppercase tracking-wider transition">
-            🏛️ 企業・監査
-          </button>
-          <button onclick="switchMode('creator')" id="tab-creator" class="py-3 px-2 rounded-xl bg-qlux-dark border border-qlux-border text-gray-300 hover:border-qlux-cyan uppercase tracking-wider transition">
-            🎨 クリエイター
-          </button>
-          <button onclick="switchMode('developer')" id="tab-developer" class="py-3 px-2 rounded-xl bg-qlux-dark border border-qlux-border text-gray-300 hover:border-qlux-cyan uppercase tracking-wider transition">
-            💻 デベロッパー
-          </button>
-          <button onclick="switchMode('global')" id="tab-global" class="py-3 px-2 rounded-xl bg-qlux-dark border border-qlux-border text-gray-300 hover:border-qlux-cyan uppercase tracking-wider transition">
-            🌐 GLOBAL(EN)
-          </button>
+        <!-- HEADER -->
+        <header class="border-b border-[#00ffcc]/30 pb-3 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 bg-[#03070d]/90 p-4 rounded-xl glow-box relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#00ffcc]/5 to-transparent scanner-line pointer-events-none"></div>
+            <div class="flex items-center gap-3">
+                <div class="w-4 h-4 bg-[#00ffcc] rounded-full animate-ping"></div>
+                <div>
+                    <h1 class="text-2xl md:text-4xl font-black tracking-tighter uppercase text-white glow-text">
+                        QLUX <span class="text-[#00ffcc]">// ULTIMATE COCKPIT</span>
+                    </h1>
+                    <p class="text-[9px] text-[#00ffcc]/60 uppercase tracking-[0.25em]">
+                        Autonomous BSV Sovereign Matrix v12.4 // Haptic & Audio Armed
+                    </p>
+                </div>
+            </div>
+            
+            <!-- LIVE TELEMETRY HUD -->
+            <div class="grid grid-cols-3 gap-3 text-[10px] bg-black/70 border border-[#00ffcc]/30 px-4 py-2 rounded-lg">
+                <div>
+                    <div class="text-gray-500">SYS LOAD</div>
+                    <div id="sys-load" class="text-sm font-bold text-white">41.2%</div>
+                </div>
+                <div class="border-l border-[#00ffcc]/20 pl-3">
+                    <div class="text-gray-500">BSV TX/SEC</div>
+                    <div id="sys-tx" class="text-sm font-bold text-white">152.8k</div>
+                </div>
+                <div class="border-l border-[#00ffcc]/20 pl-3">
+                    <div class="text-gray-500">HARVEST</div>
+                    <div id="sys-rev" class="text-sm font-bold text-yellow-400">0.1894</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 🌟 HUGE ORACLE WRITE DECK (MAIN STAGE) -->
+        <section class="bg-gradient-to-b from-[#050b14] to-[#020408] border-2 border-[#00ffcc]/50 p-4 md:p-6 rounded-2xl glow-box space-y-4 relative">
+            <div class="flex justify-between items-center border-b border-[#00ffcc]/30 pb-2">
+                <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 bg-[#00ffcc] text-black font-black text-[10px] rounded uppercase">PRIMARY DECK</span>
+                    <h2 class="text-xs md:text-sm font-bold text-white uppercase tracking-wider">OP_RETURN Sovereign State & Multi-Payload Injector</h2>
+                </div>
+                <span id="deck-status" class="text-[10px] text-green-400 font-mono">● READY TO ANCHOR</span>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <div class="lg:col-span-8 flex flex-col gap-2">
+                    <label class="text-[10px] text-[#00ffcc]/70 uppercase tracking-widest">Payload Data / Immutable Intention string:</label>
+                    <textarea id="oracle-input" rows="3" class="w-full bg-black/80 border border-[#00ffcc]/40 p-3 text-xs md:text-sm text-[#00ffcc] font-mono focus:outline-none focus:border-[#00ffcc] rounded-lg shadow-inner" placeholder="Enter intention, smart contract state, or multi-verse telemetry to burn into BSV mainnet..."></textarea>
+                </div>
+                <div class="lg:col-span-4 flex flex-col justify-between gap-2">
+                    <div class="grid grid-cols-2 gap-2 text-[10px]">
+                        <div class="bg-black/50 border border-[#00ffcc]/20 p-2 rounded">
+                            <span class="text-gray-500 block">FEE RATE:</span>
+                            <span class="text-white font-bold">0.05 sat/byte</span>
+                        </div>
+                        <div class="bg-black/50 border border-[#00ffcc]/20 p-2 rounded">
+                            <span class="text-gray-500 block">ENCRYPTION:</span>
+                            <span class="text-yellow-400 font-bold">LATTICE-256</span>
+                        </div>
+                    </div>
+                    <button onclick="executeMegaWrite()" class="w-full py-4 bg-gradient-to-r from-[#00ffcc] via-teal-400 to-blue-500 hover:from-white hover:to-[#00ffcc] text-black font-black text-xs md:text-sm uppercase tracking-[0.2em] transition-all cursor-pointer rounded-lg shadow-[0_0_20px_rgba(0,255,204,0.5)] active:scale-95">
+                        ⚡ BURN PAYLOAD TO BSV LEDGER ⚡
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN COCKPIT GRID -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+            
+            <!-- LEFT: 20 MODULE NODES (7 Cols) -->
+            <div class="lg:col-span-7 bg-[#03070d]/90 border border-[#00ffcc]/30 p-4 rounded-xl glow-box flex flex-col justify-between space-y-4">
+                <div class="flex justify-between items-center border-b border-[#00ffcc]/20 pb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-white">Active Core Subsystems (20 Nodes)</span>
+                    <span class="text-[10px] text-green-400 animate-pulse">● MESH LIVE</span>
+                </div>
+                
+                <div id="modules-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-h-[360px] overflow-y-auto pr-1">
+                    <!-- Injected by JS -->
+                </div>
+
+                <div class="p-1 bg-gradient-to-r from-[#00ffcc] via-blue-500 to-purple-600 rounded-lg">
+                    <button onclick="triggerSingularity()" class="w-full py-3.5 bg-black text-[#00ffcc] font-black text-xs md:text-sm tracking-[0.2em] hover:bg-[#00ffcc] hover:text-black transition-all cursor-pointer uppercase shadow-2xl rounded-md flex items-center justify-center gap-2 active:scale-98">
+                        <span>⚡</span> INITIATE PLAID SINGULARITY OVERDRIVE <span>⚡</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- RIGHT: INSPECTOR & LIVE TERMINAL (5 Cols) -->
+            <div class="lg:col-span-5 flex flex-col gap-4">
+                
+                <!-- INSPECTOR PANEL -->
+                <div class="bg-[#03070d]/90 border border-[#00ffcc]/30 p-4 rounded-xl glow-box flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center border-b border-[#00ffcc]/20 pb-2 mb-3">
+                            <span id="insp-code" class="text-xs font-bold text-white">MOD_01</span>
+                            <span id="insp-cat" class="text-[9px] px-2 py-0.5 bg-[#00ffcc]/20 text-[#00ffcc] rounded uppercase">CORE</span>
+                        </div>
+                        <h3 id="insp-name" class="text-base font-black text-white uppercase glow-text">CHAIN_SYNC</h3>
+                        <p id="insp-desc" class="text-[10px] text-gray-300 mt-1 leading-relaxed">Global Bitcoin SV state synchronization across multi-verse nodes.</p>
+                        
+                        <div class="mt-3 grid grid-cols-3 gap-2 text-[10px] bg-black/40 p-2.5 rounded border border-[#00ffcc]/20">
+                            <div><div class="text-gray-500">SECURITY</div><span id="insp-sec" class="text-white font-bold text-[9px]">QUANTUM</span></div>
+                            <div><div class="text-gray-500">THROUGHPUT</div><span id="insp-thru" class="text-[#00ffcc] font-bold">1.2M tx</span></div>
+                            <div><div class="text-gray-500">LATENCY</div><span id="insp-lat" class="text-green-400 font-bold">2ms</span></div>
+                        </div>
+                    </div>
+
+                    <button onclick="executeSelectedProtocol()" class="mt-4 w-full py-2.5 bg-[#00ffcc]/20 hover:bg-[#00ffcc] text-[#00ffcc] hover:text-black font-extrabold text-xs uppercase tracking-wider transition-all cursor-pointer rounded border border-[#00ffcc]">
+                        Execute Subsystem Node
+                    </button>
+                </div>
+
+                <!-- TERMINAL STREAM -->
+                <div class="bg-black border border-[#00ffcc]/30 p-3 rounded-xl flex flex-col h-48 glow-box">
+                    <div class="flex justify-between items-center border-b border-[#00ffcc]/20 pb-1.5 mb-2">
+                        <span class="text-[9px] font-bold uppercase text-gray-400">Live Telemetry & Audio/Haptic Feed</span>
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    </div>
+                    <div id="terminal-logs" class="flex-1 overflow-y-auto space-y-1 text-[9px] font-mono text-[#00ffcc]/90">
+                        <!-- Logs -->
+                    </div>
+                    <form onsubmit="handleUserCommand(event)" class="mt-2 pt-2 border-t border-[#00ffcc]/20 flex gap-2">
+                        <input type="text" id="cmd-input" placeholder="Type command (e.g. 'singularity', 'burn')..." class="w-full bg-[#03070d] border border-[#00ffcc]/30 px-3 py-1 text-[10px] text-white focus:outline-none focus:border-[#00ffcc] rounded">
+                        <button type="submit" class="px-3 bg-[#00ffcc] text-black text-[10px] font-bold uppercase hover:bg-white cursor-pointer rounded">Send</button>
+                    </form>
+                </div>
+
+            </div>
         </div>
-
-        <!-- メイン・アクション・バナー（シアンブルー全塗り＆発光仕様） -->
-        <div onclick="openOmniModal()" id="qlux-omni-btn" class="relative overflow-hidden border-2 border-qlux-cyan rounded-2xl p-6 sm:p-8 bg-qlux-cyan text-qlux-dark text-center mb-10 cursor-pointer transition hover:scale-[1.01]" style="box-shadow: 0 0 45px rgba(0,240,255,0.8), inset 0 0 25px rgba(0,240,255,0.5);">
-          <h2 class="text-2xl sm:text-4xl font-black tracking-widest uppercase mb-2 text-white" style="text-shadow: 0 0 25px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8);">
-            QLUX ⚡ ONCHAIN
-          </h2>
-          <p id="banner-subtitle" class="text-xs sm:text-sm text-qlux-dark font-extrabold tracking-wider" style="text-shadow: 0 0 10px rgba(255,255,255,0.6);">
-            // 個人の尊厳と全記録を、改ざん不能なブロックチェーンへ永遠に凍結する。
-          </p>
-        </div>
-
-        <!-- ONCHAIN FEED ライブログ -->
-        <div class="text-xs text-qlux-cyan/80 bg-qlux-dark/80 border border-qlux-border rounded-xl p-3 mb-10 flex items-center justify-between overflow-x-auto whitespace-nowrap">
-          <span class="font-bold flex items-center mr-4"><span class="w-2 h-2 rounded-full bg-qlux-cyan animate-pulse mr-2"></span>ONCHAIN FEED:</span>
-          <span class="text-gray-400">[#000184 - ARCHITECT] "We leave our truth ONCHAIN..." - BSV Mainnet</span>
-        </div>
-
-        <!-- マニフェスト本文 -->
-        <div class="space-y-6 text-sm sm:text-base leading-relaxed text-gray-100">
-          <h3 class="text-xl sm:text-2xl font-extrabold text-white uppercase tracking-widest mb-6" style="text-shadow: 0 0 20px rgba(255,255,255,0.8);">
-            ONCHAIN TRUTH REVOLUTION
-          </h3>
-
-          <p class="font-bold text-qlux-cyan text-base sm:text-lg" style="text-shadow: 0 0 10px rgba(0,240,255,0.8);">
-            いい加減、目を覚ませ。お前が残した「言葉」は、明日もそこに存在すると、本気で思っているのか？
-          </p>
-
-          <p>
-            笑わせるな。お前の愛の誓いも、企業の誇る監査ログも、汗水流して取得した特許も、魂を削ったアートも――すべては他人の管理するサーバーの「Deleteキー」一つで、明日には跡形もなく消え去るか、都合よく書き換えられる砂上の楼閣にすぎない。中央集権の管理者が微笑み、都合の悪い真実を闇に葬るとき、お前の生きた証は一瞬でエラーコードという名のゴミ屑へと成り下がる。
-          </p>
-
-          <p class="border-l-4 border-qlux-cyan pl-4 italic text-gray-300">
-            いつまで他人の土俵で、検閲官の顔色を伺いながら犬のリードに繋がれて生きるつもりだ？
-          </p>
-
-          <p class="font-bold text-center text-qlux-cyan text-lg sm:text-xl my-8 py-4 border-y border-qlux-border tracking-widest" style="text-shadow: 0 0 15px rgba(0,240,255,1);">
-            許可はいらない。承認も通さない。
-          </p>
-
-          <p>
-            お前を支配するすべての鎖を断ち切り、中央集権の首を物理的にへし折れ。
-          </p>
-
-          <div class="text-center font-extrabold text-white text-xl sm:text-2xl my-10 p-6 bg-qlux-dark rounded-xl border border-qlux-cyan shadow-lg" style="box-shadow: 0 0 30px rgba(0,240,255,0.3);">
-            この腐敗した世界に残された、唯一にして絶対の聖域――<br><strong class="text-qlux-cyan">【ONCHAIN】</strong>へ、お前の全存在を叩き込め。
-          </div>
-
-          <p class="text-center font-mono text-qlux-cyan tracking-widest my-6">
-            改ざんの余地を宇宙の物理法則レベルで完全にシャットアウトした、地球規模の数学的要塞。<br>
-            それがONCHAINだ。
-          </p>
-
-          <div class="text-center space-y-2 font-extrabold text-lg sm:text-xl uppercase tracking-wider text-white py-4" style="text-shadow: 0 0 15px rgba(255,255,255,0.7);">
-            <p>消せない。</p>
-            <p>曲げられない。</p>
-            <p>裏切らない。</p>
-          </div>
-
-          <p class="text-center font-extrabold text-red-500 text-base sm:text-lg mt-10 pt-6 border-t border-qlux-border" style="text-shadow: 0 0 10px rgba(239,68,68,0.8);">
-            権力者のペンをへし折り、データベースの電源を引き抜け。<br>
-            お前の全人生を、今すぐONCHAINへ永久凍結しろ。
-          </p>
-        </div>
-
-      <!-- === QLUXHUB HYPER-BURST STREAM 埋め込みセクション === -->
-<div style="border: 2px solid #3b82f6; padding: 15px; border-radius: 8px; background: #0f172a; box-shadow: 0 0 40px rgba(59,130,246,0.25); margin: 25px 0; font-family: 'Courier New', monospace; color: #38bdf8;">
-    <div style="font-size: 0.9rem; border-bottom: 1px solid #3b82f6; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; color: #f8fafc; margin-bottom: 10px;">
-        <span>QLUXHUB // HYPER-BURST STREAM</span>
-        <span style="background: linear-gradient(135deg, #ef4444, #f59e0b); color: #fff; padding: 3px 8px; font-size: 0.58rem; border-radius: 4px; font-weight: bold;">MAX OVERDRIVE</span>
     </div>
-    <div style="background: #020617; border: 1px solid #1e293b; padding: 8px; font-size: 0.62rem; border-radius: 6px; margin-bottom: 10px; word-break: break-all; color: #cbd5e1;">
-        <div>TREASURY: 1Mb66iHohUEg8AnkgV9uTTV7R235tuy95</div>
-        <div style="margin-top: 2px; color: #38bdf8;">[HandCash WaaS Cloud API Connected] [Active Node Embedded]</div>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px;">
-        <div style="background: #020617; border: 1px solid #1e293b; padding: 8px; border-radius: 6px; text-align: center;"><div style="font-size: 0.55rem; color: #94a3b8;">HUB TX</div><div id="val-tx" style="font-size: 0.95rem; font-weight: bold; color: #34d399; margin-top: 4px;">5,420,100</div></div>
-        <div style="background: #020617; border: 1px solid #1e293b; padding: 8px; border-radius: 6px; text-align: center;"><div style="font-size: 0.55rem; color: #94a3b8;">TREASURY SATS</div><div id="val-sats" style="font-size: 0.95rem; font-weight: bold; color: #34d399; margin-top: 4px;">104,500,041,068</div></div>
-        <div style="background: #020617; border: 1px solid #1e293b; padding: 8px; border-radius: 6px; text-align: center;"><div style="font-size: 0.55rem; color: #94a3b8;">VELOCITY</div><div style="color: #f59e0b; font-size: 0.85rem; font-weight: bold; margin-top: 4px;">ULTRA BURST</div></div>
-    </div>
-    <div id="console-log" style="background: #000; border: 1px solid #334155; padding: 10px; height: 200px; overflow-y: auto; font-size: 0.62rem; color: #34d399; border-radius: 6px; line-height: 1.4;">
-        <div>[System] Initializing embedded Qluxhub cryptographic stream...</div>
-    </div>
-</div>
 
-<script>
-    let txCount = 5420100;
-    let satsCount = 104500041068;
-    const consoleEl = document.getElementById('console-log');
-    const logs = [
-        "[Qluxhub Core] Embedded multi-threaded burst engine online.",
-        "[SHA-256 Vector] High-frequency cryptographic stream synchronized."
-    ];
+    <script>
+        // --- WEB AUDIO API & HAPTIC FEEDBACK SYSTEM ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-    function generateHash() {
-        let text = "";
-        const possible = "abcdef0123456789";
-        for (let i = 0; i < 32; i++) {
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        function playSound(type) {
+            if (!audioCtx) return;
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.exponentialRampToValueAtTime(200, now + 0.05);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                osc.start(now);
+                osc.stop(now + 0.05);
+            } else if (type === 'exec') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(300, now);
+                osc.frequency.exponentialRampToValueAtTime(1200, now + 0.15);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                osc.start(now);
+                osc.stop(now + 0.15);
+            } else if (type === 'singularity') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(150, now);
+                osc.frequency.exponentialRampToValueAtTime(880, now + 0.5);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+                osc.start(now);
+                osc.stop(now + 0.5);
+            }
+
+            // Haptic feedback (Vibration) if supported
+            if (navigator.vibrate) {
+                navigator.vibrate(type === 'singularity' ? [100, 50, 100, 50, 200] : 35);
+            }
         }
-        return text;
-    }
 
-    setInterval(() => {
-        txCount += Math.floor(Math.random() * 3) + 1;
-        satsCount += Math.floor(Math.random() * 800) + 200;
-
-        const txEl = document.getElementById('val-tx');
-        const satsEl = document.getElementById('val-sats');
-        if(txEl) txEl.innerText = txCount.toLocaleString();
-        if(satsEl) satsEl.innerText = satsCount.toLocaleString();
-
-        const now = new Date();
-        const timeStr = now.toTimeString().split(' ')[0] + "." + String(now.getMilliseconds()).padStart(3, '0');
-        const h1 = generateHash();
-        const h2 = generateHash();
-
-        const actionTypes = [
-            `TX_DISPATCH | SATS: +500 | SHA256: ${h1.substring(0,24)}...`,
-            `PROOF_GEN | Node Vector Active | SubHash: ${h2.substring(0, 18)} | Nonce: ${Math.floor(Math.random() * 89999) + 10000}`,
-            `HANDCASH SYNC | Target: 1Mb66iHohUEg... | Verified State: OK`,
-            `SWARM ANCHOR | Block Locked | TxID: ${h1.substring(12,32)} | Total Sats: ${satsCount.toLocaleString()}`
+        // --- MODULE DATA ---
+        const modules = [
+            { id: 1, code: 'MOD_01', name: 'CHAIN_SYNC', category: 'CORE', status: 'ACTIVE', throughput: '1.2M tx/s', latency: '2ms', securityLevel: 'IMMUTABLE', description: 'Global Bitcoin SV state synchronization across multi-verse nodes.' },
+            { id: 2, code: 'MOD_02', name: 'NANO_STREAM', category: 'ECONOMY', status: 'OVERDRIVE', throughput: '50.4k sats', latency: '0.4ms', securityLevel: 'ATOMIC', description: 'Sub-satoshis atomic micro-payment channel orchestration.' },
+            { id: 3, code: 'MOD_03', name: 'AI_LOGIC', category: 'INTELLIGENCE', status: 'ACTIVE', throughput: '840 TFLOPS', latency: '12ms', securityLevel: 'AUTONOMOUS', description: 'Decentralized neural reasoning and self-evolving contract logic.' },
+            { id: 4, code: 'MOD_04', name: 'VOID_EVASION', category: 'DEFENSE', status: 'ACTIVE', throughput: 'SECURE', latency: '0.1ms', securityLevel: 'ZERO-KNOW', description: 'Multi-dimensional data obfuscation and tactical state hiding.' },
+            { id: 5, code: 'MOD_05', name: 'ECON_HARVEST', category: 'ECONOMY', status: 'OVERDRIVE', throughput: '10.8 BSV/h', latency: '5ms', securityLevel: 'SELF-SUST', description: 'Autonomous revenue generation and compute resource reinvestment.' },
+            { id: 6, code: 'MOD_06', name: 'QUANTUM_KEYS', category: 'DEFENSE', status: 'ACTIVE', throughput: '256-bit', latency: '1ms', securityLevel: 'POST-Q', description: 'Lattice-based cryptography shielding against quantum decryption.' },
+            { id: 7, code: 'MOD_07', name: 'STATE_LATCH', category: 'CORE', status: 'ACTIVE', throughput: '100%', latency: '1.5ms', securityLevel: 'PERMANENT', description: 'Immutable anchor locking human intention directly into OP_RETURN.' },
+            { id: 8, code: 'MOD_08', name: 'ENTROPY_GEN', category: 'INTELLIGENCE', status: 'ACTIVE', throughput: '10 Gbps', latency: '0.01ms', securityLevel: 'CHAOS-ROOT', description: 'True cryptographic randomness derived from network jitter.' },
+            { id: 9, code: 'MOD_09', name: 'NODE_VITAL', category: 'CORE', status: 'ACTIVE', throughput: '99.999%', latency: '4ms', securityLevel: 'VERIFIED', description: 'Real-time global peer health telemetry and consensus monitoring.' },
+            { id: 10, code: 'MOD_10', name: 'STAS_ORD', category: 'ORCHESTRATION', status: 'ACTIVE', throughput: '15k tokens', latency: '3ms', securityLevel: 'TOKENIZED', description: 'STAS digital asset issuance, routing, and programmatic enforcement.' },
+            { id: 11, code: 'MOD_11', name: 'EVO_DEPTH', category: 'INTELLIGENCE', status: 'OVERDRIVE', throughput: 'Level 9.8', latency: '18ms', securityLevel: 'RECURSIVE', description: 'Recursive self-improvement complexity tracking and scaling.' },
+            { id: 12, code: 'MOD_12', name: 'TX_ACCEL', category: 'CORE', status: 'ACTIVE', throughput: '0-Conf Fast', latency: '0.2ms', securityLevel: 'MEMPOOL', description: 'Zero-latency transaction propagation across miner pipelines.' },
+            { id: 13, code: 'MOD_13', name: 'LOG_VAULT', category: 'CORE', status: 'ACTIVE', throughput: 'Infinite', latency: '8ms', securityLevel: 'ENCRYPTED', description: 'Encrypted immutable historical activity and event repository.' },
+            { id: 14, code: 'MOD_14', name: 'DATA_MERGE', category: 'ORCHESTRATION', status: 'SYNCHRONIZING', throughput: '4.5 GB/s', latency: '6ms', securityLevel: 'UNIFIED', description: 'Cross-chain state fusion and multi-layered protocol bridging.' },
+            { id: 15, code: 'MOD_15', name: 'PULSE_MON', category: 'CORE', status: 'ACTIVE', throughput: '100 GHz', latency: '0.5ms', securityLevel: 'RESONANT', description: 'Global economic traffic resonance and heartbeat visualization.' },
+            { id: 16, code: 'MOD_16', name: 'MINT_ENGINE', category: 'ECONOMY', status: 'ACTIVE', throughput: '500 assets', latency: '4ms', securityLevel: 'SOVEREIGN', description: 'Programmatic protocol asset fabrication and smart issuance.' },
+            { id: 17, code: 'MOD_17', name: 'SELF_REPAIR', category: 'DEFENSE', status: 'ACTIVE', throughput: 'Real-time', latency: '2ms', securityLevel: 'AUTO-IMMUNE', description: 'Logic error detection and automated zero-downtime correction.' },
+            { id: 18, code: 'MOD_18', name: 'GHOST_PATH', category: 'DEFENSE', status: 'ACTIVE', throughput: 'Stealth', latency: '9ms', securityLevel: 'ANONYMOUS', description: 'Obfuscated routing protocol protecting originator telemetry.' },
+            { id: 19, code: 'MOD_19', name: 'SYNC_MESH', category: 'ORCHESTRATION', status: 'ACTIVE', throughput: '100k nodes', latency: '3ms', securityLevel: 'P2P-GRID', description: 'Peer-to-peer decentralized grid linking and consensus distribution.' },
+            { id: 20, code: 'MOD_20', name: 'SUPER_TRIGGER', category: 'CORE', status: 'OVERDRIVE', throughput: 'SINGULARITY', latency: '0.0ms', securityLevel: 'ABSOLUTE', description: 'Master ascension sequence synchronizing all modules into final state.' }
         ];
 
-        logs.push(`[${timeStr}] ${actionTypes[Math.floor(Math.random() * actionTypes.length)]}`);
-        if (logs.length > 50) logs.shift();
+        let selectedModule = modules[0];
+        let logs = [
+            '[BOOT] QLUX Ultimate Tesla-Class Cockpit initialized.',
+            '[AUDIO/HAPTIC] Web Audio synthesizer & vibrator armed.',
+            '[READY] Awaiting pilot action.'
+        ];
 
-        if(consoleEl) {
-            consoleEl.innerHTML = logs.map(l => '<div>' + l + '</div>').join('');
-            consoleEl.scrollTop = consoleEl.scrollHeight;
-        }
-    }, 70);
-</script>
-</div>
-    </section>
-
-    <!-- ポップアップモーダル -->
-    <div id="omni-modal" class="fixed inset-0 bg-black/95 backdrop-blur-lg hidden items-center justify-center z-50 p-3">
-      <div class="bg-qlux-card border-2 border-qlux-cyan rounded-3xl w-full max-w-3xl max-h-[90vh] flex flex-col p-6 shadow-2xl relative overflow-y-auto" style="box-shadow: 0 0 50px rgba(0,240,255,0.5);">
-        
-        <div class="flex justify-between items-center mb-6 border-b border-qlux-border pb-4">
-          <h3 class="text-xs font-bold text-qlux-cyan uppercase tracking-widest">⚡ QLUX // ONCHAIN GENESIS GATEWAY</h3>
-          <button onclick="closeOmniModal()" class="text-gray-400 hover:text-white text-2xl font-bold px-3 py-1 rounded-xl bg-qlux-dark border border-qlux-border">×</button>
-        </div>
-
-        <h4 id="modal-heading" class="text-lg sm:text-xl font-extrabold text-white uppercase tracking-wider mb-4">不変データ登録 ＆ オンチェーン証明書発行</h4>
-
-        <div class="space-y-4 mb-6">
-          <label class="block text-xs font-bold text-qlux-cyan uppercase tracking-wider">📝 ネットワークへ刻む不変メッセージ・データ</label>
-          <textarea id="omni-input" rows="4" class="w-full bg-qlux-dark border border-qlux-cyan/50 rounded-2xl p-4 text-white font-mono text-sm focus:outline-none focus:border-qlux-cyan shadow-inner" placeholder="ここに永続記録したいテキストやハッシュを入力してください..."></textarea>
-        </div>
-
-        <div class="bg-qlux-dark border border-qlux-cyan/40 rounded-2xl p-5 mb-6">
-          <div class="flex justify-between items-center mb-3">
-            <span class="text-xs font-bold text-qlux-cyan uppercase tracking-widest">📜 SOVEREIGN PROOF RECORD</span>
-            <span id="cert-badge" class="text-[10px] bg-qlux-cyan/10 text-qlux-cyan px-2.5 py-1 rounded-full font-bold border border-qlux-cyan/30">NODE: ARCHITECT</span>
-          </div>
-          <p id="cert-quote" class="text-xs sm:text-sm text-gray-300 italic mb-4 font-mono">"Immutable cryptographic proof on Bitcoin SV."</p>
-          <div class="flex justify-between items-center text-[11px] text-gray-400 border-t border-qlux-border pt-3">
-            <span>Protocol ID: #000184</span>
-            <span class="text-qlux-cyan font-bold">Fee: $0.10 USD (HandCash Instant)</span>
-          </div>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-3">
-          <button onclick="executeHandCashPayment()" class="flex-1 py-4 px-6 rounded-2xl bg-gradient-to-r from-qlux-cyan to-blue-500 text-qlux-dark font-extrabold uppercase tracking-wider text-sm shadow-lg transition hover:opacity-90" style="box-shadow: 0 0 20px rgba(0,240,255,0.6);">
-            ⚡ HandCashで$0.10を支払い、刻印を実行
-          </button>
-          <button onclick="closeOmniModal()" class="py-4 px-6 rounded-2xl bg-qlux-dark border border-qlux-border text-gray-300 font-bold uppercase tracking-wider text-sm hover:border-qlux-cyan transition">
-            キャンセル
-          </button>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- JavaScript：HandCash 認証情報＆マッピング決済実装版（初期表示を個人のコピーライティングに設定） -->
-    <script>
-      // HandCash 認証情報
-      const HANDCASH_CONFIG = {
-        appId: "6a4996714077afcb7ca9ce84",
-        appSecret: "ef0b51eca588726473d7e07442dfd9530deec2a1330fce6a2ab9cf894fc4e210",
-        authToken: "bf5d7f6fbc24d129ff5d833854e576b2c80f9e085368a2bd5fb3748c04130f22",
-        environment: "production"
-      };
-
-      // 決済マッピング定義（各モードごとのコピーライティング文言と決済設定を統合）
-      const PAYMENT_MAPPINGS = {
-        default: {
-          destination: "architect",
-          amount: 0.10,
-          currency: "USD",
-          instrumentCurrencyCode: "BSV",
-          description: "Individual Onchain Proof",
-          subtitle: "// 個人の尊厳と全記録を、改ざん不能なブロックチェーンへ永遠に凍結する。"
-        },
-        individual: {
-          destination: "architect",
-          amount: 0.10,
-          currency: "USD",
-          instrumentCurrencyCode: "BSV",
-          description: "Individual Onchain Proof",
-          subtitle: "// 個人の尊厳と全記録を、改ざん不能なブロックチェーンへ永遠に凍結する。"
-        },
-        couple: {
-          destination: "architect",
-          amount: 0.10,
-          currency: "USD",
-          instrumentCurrencyCode: "BSV",
-          description: "Couple Love Eternal Seal",
-          subtitle: "// ふたりの永遠の愛の誓いを、時空を超えてオンチェーンに刻み込む。"
-        },
-        enterprise: {
-          destination: "architect",
-          amount: 0.50,
-          currency: "USD",
-          instrumentCurrencyCode: "BSV",
-          description: "Enterprise Audit Log Onchain Timestamp",
-          subtitle: "// 企業の信頼性と改ざん不能な監査ログを、数学的要塞に証明する。"
-        },
-        creator: {
-          destination: "architect",
-          amount: 0.10,
-          currency: "USD",
-          instrumentCurrencyCode: "BSV",
-          description: "Creator Asset Copyright Proof",
-          subtitle: "// クリエイターの魂の作品と著作権を、誰にも奪えない未来へ刻む。"
-        },
-        developer: {
-          destination: "architect",
-          amount: 0.10,
-          currency: "USD",
-          instrumentCurrencyCode: "BSV",
-          description: "Developer API Data Immersion",
-          subtitle: "// デベロッパーの全コードとデータを、次世代のオンチェーンへ接続する。"
-        },
-        global: {
-          destination: "architect",
-          amount: 0.10,
-          currency: "USD",
-          instrumentCurrencyCode: "BSV",
-          description: "Global Sovereign Node Registration",
-          subtitle: "// Connect the sovereign individual across borders to the global network."
-        }
-      };
-
-      // 現在選択されているモードを初期値「individual」に設定
-      let currentActiveMode = 'individual';
-
-      function openOmniModal() {
-        document.getElementById('omni-modal').classList.remove('hidden');
-        document.getElementById('omni-modal').classList.add('flex');
-      }
-      
-      function closeOmniModal() {
-        document.getElementById('omni-modal').classList.remove('flex');
-        document.getElementById('omni-modal').classList.add('hidden');
-      }
-
-      function switchMode(mode) {
-        currentActiveMode = mode;
-        const tabs = ['individual', 'couple', 'enterprise', 'creator', 'developer', 'global'];
-        tabs.forEach(t => {
-          const btn = document.getElementById('tab-' + t);
-          if (btn) {
-            btn.className = "py-3 px-2 rounded-xl bg-qlux-dark border border-qlux-border text-gray-300 hover:border-qlux-cyan uppercase tracking-wider transition";
-          }
-        });
-        const activeBtn = document.getElementById('tab-' + mode);
-        if (activeBtn) {
-          activeBtn.className = "py-3 px-2 rounded-xl bg-qlux-cyan text-qlux-dark uppercase tracking-wider transition shadow-lg";
-          activeBtn.style.boxShadow = "0 0 15px rgba(0,240,255,0.6)";
-        }
-
-        // マッピングから設定およびコピーライティングのサブタイトルを動的に反映
-        const mapping = PAYMENT_MAPPINGS[mode] || PAYMENT_MAPPINGS.default;
-        const subtitleElem = document.getElementById('banner-subtitle');
-        if(subtitleElem) {
-          subtitleElem.innerText = mapping.subtitle;
-        }
-
-        const quoteElem = document.getElementById('cert-quote');
-        if(quoteElem) {
-          quoteElem.innerText = `"${mapping.description}"`;
-        }
-      }
-
-      async function executeHandCashPayment() {
-        const inputData = document.getElementById('omni-input').value;
-        if (!inputData.trim()) {
-          alert("刻印するメッセージを入力してください。");
-          return;
-        }
-
-        const paymentConfig = PAYMENT_MAPPINGS[currentActiveMode] || PAYMENT_MAPPINGS.default;
-
-        try {
-          console.log("Initializing HandCash with App ID:", HANDCASH_CONFIG.appId);
-          console.log("Payment Mapping Applied:", paymentConfig);
-          
-          alert(`HandCash決済 (${paymentConfig.amount} ${paymentConfig.currency}) を実行します。\n宛先: ${paymentConfig.destination}\n内容: ${paymentConfig.description}`);
-
-          setTimeout(() => {
-            alert("✅ 支払いが完了し、データがブロックチェーン (BSV) へ正常に永久刻印されました！");
-            closeOmniModal();
-          }, 1000);
-
-        } catch (error) {
-          console.error("HandCash payment error:", error);
-          alert("決済処理中にエラーが発生しました。");
-        }
-      }
-    </script>
-
-    </script>
-
-    <!-- 3. Global Synchronization -->
-    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
-        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">GLOBAL SYNCHRONIZATION</h3>
-        <p class="text-xs text-gray-400 mb-6">module</p>ba
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <a href="wallet.html" class="block interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-xl p-4 text-center"><div class="text-xs text-qlux-cyan font-bold">01</div><div class="text-white text-xs font-semibold mt-1">qluxwallet</div></a>
-            <a href="cockpit.html" class="block interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-xl p-4 text-center"><div class="text-xs text-qlux-cyan font-bold">02</div><div class="text-white text-xs font-semibold mt-1"></div>cockpit</a>
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">04</span><span class="text-xs font-bold text-white">FLOW</span></div>
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">05</span><span class="text-xs font-bold text-white">AXIOM</span></div>
-            <div onclick="toggleWhiteGlow(this)" class="ieractive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">06</span><span class="text-xs font-bold text-white">LOGIC</span></div>
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">07</span><span class="text-xs font-bold text-white">PRIME</span></div>
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">08</span><span class="text-xs font-bold text-white">OMEGA</span></div>
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">09</span><span class="text-xs font-bold text-white">VOID</span></div>
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">10</span><span class="text-xs font-bold text-white">ZEN</span></div>
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">11</span><span class="text-xs font-bold text-white">TRUE</span></div>
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border bg-qlux-dark rounded-lg p-3 text-center transition-all"><span class="text-[10px] text-qlux-cyan block">12</span><span class="text-xs font-bold text-white">CORE</span></div>
-        </div>
-    </section>
-
-    <!-- 4. The Act of Reset -->
-    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
-        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">THE ACT OF RESET</h3>
-        <h4 class="text-xl md:text-2xl font-bold text-white mb-4">スワイプ。それは旧世界への「決別」。</h4>
-        <p class="text-xs text-gray-400 max-w-lg mx-auto mb-6">中央集権的な「許可」を待つ時代を終わらせます。スワイプした瞬間、宇宙の物理法則に基づいた富があなたの手元へ直結されます。</p>
-        <div class="grid md:grid-cols-2 gap-4 text-left">
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border rounded-xl p-4 bg-qlux-dark/50 transition-all">
-                <h5 class="text-xs font-bold text-qlux-cyan mb-1">Impact: 依存の消滅</h5>
-                <p class="text-[11px] text-gray-300">銀行や企業の承認を介さず、不変のプロトコルが直接あなたを認証し執行します。</p>
-            </div>
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border rounded-xl p-4 bg-qlux-dark/50 transition-all">
-                <h5 class="text-xs font-bold text-qlux-cyan mb-1">Effect: 自由の確定</h5>
-                <p class="text-[11px] text-gray-300">待機時間はゼロへ。未清算の可能性は、即時利用可能な現実の購買力へと昇華されます。</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. Universal Mesh -->
-    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
-        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">UNIVERSAL MESH</h3>
-        <h4 class="text-xl font-bold text-white mb-4">世界の経済再構築</h4>
-        <p class="text-xs text-gray-400 max-w-lg mx-auto">国境、言語、階層。QLUXはそれらをデータ的に無効化し、全ての経済活動を一つの均質な高効率卿へと収束させます。</p>
-    </section>
-
-    <!-- 6. The Absolute Comparison -->
-    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
-        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">THE ABSOLUTE COMPARISON</h3>
-        <p class="text-xs text-gray-400 mb-6">QLUXは「改善」ではありません。システムの「定義」そのものの書き換えです。</p>
-        <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse text-xs">
-                <thead>
-                    <tr class="border-b border-qlux-border text-qlux-cyan">
-                        <th class="p-3">Metaphysics</th>
-                        <th class="p-3">Legacy Banking / Web3 Apps</th>
-                        <th class="p-3 font-bold">QLUX Sovereign Engine</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-qlux-border text-gray-300">
-                    <tr>
-                        <td class="p-3 font-semibold text-gray-400">Trust Source</td>
-                        <td class="p-3">Human / Institutional Trust</td>
-                        <td class="p-3 text-qlux-cyan font-bold">Mathematical Integrity</td>
-                    </tr>
-                    <tr>
-                        <td class="p-3 font-semibold text-gray-400">Settlement Time</td>
-                        <td class="p-3">Pending (High Friction)</td>
-                        <td class="p-3 text-qlux-cyan font-bold">Native Atomic (Frictionless)</td>
-                    </tr>
-                    <tr>
-                        <td class="p-3 font-semibold text-gray-400">Ownership</td>
-                        <td class="p-3">Custodial (Third-party)</td>
-                        <td class="p-3 text-qlux-cyan font-bold">Absolute Self-Sovereignty</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- 7. Mathematical Trust -->
-    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
-        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">MATHEMATICAL TRUST</h3>
-        <h4 class="text-lg font-bold text-white mb-4">契約の自動執行 (Auto-Escrow)</h4>
-        <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-cyan rounded-xl p-6 bg-qlux-dark/80 max-w-md mx-auto mb-4 text-left font-mono text-xs text-qlux-cyan shadow-[0_0_15px_rgba(0,242,254,0.1)] transition-all">
-            <p>P<sub>settle</sub></p>
-            <p class="pl-4">Action = Verified</p>
-            <p class="pl-4">Instant TX</p>
-        </div>
-        <p class="text-xs text-gray-400">TypeScript調和のスマートコントラクトが、物理法則のように契約を執行。</p>
-    </section>
-
-    <!-- 8. Auto-Nano-Reward Economy -->
-    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
-        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">AUTO-NANO-REWARD ECONOMY</h3>
-        <h4 class="text-lg font-bold text-white mb-2">「生きているだけで価値が循環する」マネタイズの新次元</h4>
-        <p class="text-[10px] text-gray-400 mb-6">(クリックして切替)</p>
-        <div class="grid md:grid-cols-3 gap-4 text-left">
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-cyan rounded-xl p-4 bg-qlux-dark/80 shadow-[0_0_15px_rgba(0,242,254,0.15)] transition-all">
-                <span class="text-qlux-cyan text-lg block mb-2">👁️</span>
-                <h5 class="text-xs font-bold text-white mb-1">Active Viewing</h5>
-                <p class="text-[11px] text-gray-300">情報を閲覧するだけで、あなたの時間線はナノペイメントとして還元されます。</p>
-            </div>
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border rounded-xl p-4 bg-qlux-dark/40 transition-all">
-                <span class="text-qlux-cyan text-lg block mb-2">🗄️</span>
-                <h5 class="text-xs font-bold text-white mb-1">Data Sovereignty</h5>
-                <p class="text-[11px] text-gray-400">日常のデータ共有の自律で隠岐の報酬が働きかけ、全員が自動的に豊かになります。</p>
-            </div>
-            <div onclick="toggleWhiteGlow(this)" class="interactive-glow cursor-pointer border border-qlux-border rounded-xl p-4 bg-qlux-dark/40 transition-all">
-                <span class="text-qlux-cyan text-lg block mb-2">📈</span>
-                <h5 class="text-xs font-bold text-white mb-1">Collective Wealth</h5>
-                <p class="text-[11px] text-gray-400">経済活動への参加深度に応じ、ネットワーク全体の価値があなたに直接分配されます。</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 9. Eternal Sanctuary -->
-    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
-        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">ETERNAL SANCTUARY</h3>
-        <h4 class="text-xl font-bold text-white mb-4">改ざん不能の不変性</h4>
-        <p class="text-xs text-gray-400 max-w-lg mx-auto">一度刻まれた真実は、宇宙の法則のように決して揺らぎません。QLUXはすべての商取引に「永遠」という名のセキュリティを付与します。</p>
-    </section>
-
-    <!-- 10. Quantum Pulse -->
-    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
-        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">QUANTUM PULSE</h3>
-        <h4 class="text-xl font-bold text-white mb-4">量子同期ネットワーク</h4>
-        <p class="text-xs text-gray-400 max-w-lg mx-auto">地球規模の経済データをミリ秒単位で束ねる分散共鳴コア。全てのトランザクションが絶対的なエネルギーパルスとして同期されます。</p>
-    </section>
-
-    <!-- 11. The Singularity -->
-    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
-        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">THE SINGULARITY</h3>
-        <h4 class="text-xl font-bold text-white mb-4">価値の集束点</h4>
-        <p class="text-xs text-gray-400 max-w-lg mx-auto">宇宙の全ての光が一点に集まるように、世界中の価値があなたの指先に集約される。QLUXは、経済の重力を再定義します。</p>
-    </section>
-
-    <!-- 12. Final Call to Action -->
-    <section class="w-full max-w-4xl bg-qlux-card border border-qlux-border rounded-2xl p-8 text-center glow-border">
-        <h3 class="text-sm uppercase tracking-[0.2em] text-qlux-cyan font-bold mb-2">最後のステップ。主権をあなたの掌へ。</h3>
-        <p class="text-xs text-gray-400 max-w-md mx-auto mb-6">中間搾取の連鎖は、ここで終わる。全てのインフラ、全ての契約、全ての物理的証明が今、あなたの指先に集結した。<br>「自分の価値を、自分自身で確定させる」という人類の根源的な力の行使である。</p>
-        
-        <div class="border border-qlux-border rounded-xl p-6 bg-qlux-dark max-w-xl mx-auto space-y-4">
-            <div class="flex justify-between items-center text-xs">
-                <div>
-                    <span class="text-[10px] text-gray-500 block">SOVEREIGN ACTIVE BALANCE</span>
-                    <span class="text-lg font-bold text-white">57,450,000 SAT</span>
-                </div>
-                <div>
-                    <span class="text-[10px] text-gray-500 block">PENDING-NANO REWARDS</span>
-                    <span class="text-sm font-bold text-qlux-cyan">5,500,000 SAT</span>
-                </div>
-            </div>
-
-            <!-- Swipe Container -->
-            <div id="swipe-container" class="relative w-full bg-qlux-card border border-qlux-cyan/40 rounded-full h-14 flex items-center p-1 overflow-hidden select-none shadow-[0_0_15px_rgba(0,242,254,0.2)]">
-                <div id="swipe-track-text" class="absolute inset-0 flex justify-center items-center pointer-events-none text-[10px] text-gray-400 tracking-wider">
-                    SLIDE TO TELEPORT VALUE
-                </div>
-                <!-- Draggable Knob -->
-                <div id="swipe-btn" class="absolute left-1 top-1 bottom-1 w-36 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center cursor-pointer shadow-lg transition-transform duration-75">
-                    <span class="text-xs font-bold text-gray-950 tracking-wider">SWIPE ⚡ QLUX</span>
-                </div>
-            </div>
-            <div id="swipe-status" class="text-xs text-qlux-cyan h-4"></div>
-        </div>
-    </section>
-
-    <script>
-        function toggleWhiteGlow(element) {
-            element.classList.toggle('white-glow-active');
-        }
-
-        const container = document.getElementById('swipe-container');
-        const btn = document.getElementById('swipe-btn');
-        const statusText = document.getElementById('swipe-status');
-
-        let isDragging = false;
-        let startX = 0;
-
-        const getMaxTranslate = () => container.clientWidth - btn.clientWidth - 8;
-
-        function startDrag(e) {
-            isDragging = true;
-            startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-            btn.style.transition = 'none';
-        }
-
-        function onDrag(e) {
-            if (!isDragging) return;
-            const currentX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-            const diff = currentX - startX;
-            let newPos = Math.max(0, Math.min(diff, getMaxTranslate()));
-            btn.style.transform = `translateX(${newPos}px)`;
-
-            if (newPos >= getMaxTranslate() * 0.95) {
-                completeSwipe();
-            }
-        }
-
-        function endDrag() {
-            if (!isDragging) return;
-            isDragging = false;
-            btn.style.transition = 'transform 0.3s ease';
-
-            const currentTransform = btn.style.transform;
-            const match = currentTransform.match(/translateX\(([-\d.]+)px\)/);
-            const currentPos = match ? parseFloat(match[1]) : 0;
-
-            if (currentPos < getMaxTranslate() * 0.95) {
-                btn.style.transform = 'translateX(0px)';
-            }
-        }
-
-        function completeSwipe() {
-            if (!isDragging && btn.style.transform.includes(getMaxTranslate())) return;
-            isDragging = false;
-            btn.style.transition = 'transform 0.3s ease';
-            btn.style.transform = `translateX(${getMaxTranslate()}px)`;
-            btn.classList.add('white-glow-active');
-            statusText.textContent = "⚡ TELEPORT COMPLETED: 主権が確定しました";
-            
-            document.querySelectorAll('.interactive-glow').forEach(el => {
-                el.classList.add('white-glow-active');
+        function renderModules() {
+            const grid = document.getElementById('modules-grid');
+            grid.innerHTML = '';
+            modules.forEach(mod => {
+                const isSelected = selectedModule.id === mod.id;
+                const card = document.createElement('div');
+                card.className = `p-2.5 rounded-lg border transition-all cursor-pointer relative ${isSelected ? 'border-[#00ffcc] bg-[#00ffcc]/20 shadow-[0_0_15px_rgba(0,255,204,0.4)]' : 'border-[#00ffcc]/20 bg-black/60 hover:border-[#00ffcc]/60'}`;
+                card.onclick = () => {
+                    playSound('click');
+                    selectedModule = mod;
+                    renderModules();
+                    updateInspector();
+                    appendLog(`Interfaced -> ${mod.code}: ${mod.name}`);
+                };
+                card.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[9px] font-bold text-[#00ffcc]/70">${mod.code}</span>
+                        <span class="w-1.5 h-1.5 rounded-full ${mod.status === 'OVERDRIVE' ? 'bg-yellow-400 animate-pulse' : 'bg-green-400'}"></span>
+                    </div>
+                    <div class="text-[11px] font-black text-white truncate uppercase">${mod.name}</div>
+                    <div class="text-[8px] text-[#00ffcc]/70 mt-1 flex justify-between">
+                        <span>${mod.throughput}</span>
+                        <span>${mod.latency}</span>
+                    </div>
+                `;
+                grid.appendChild(card);
             });
         }
 
-        btn.addEventListener('mousedown', startDrag);
-        window.addEventListener('mousemove', onDrag);
-        window.addEventListener('mouseup', endDrag);
-
-        btn.addEventListener('touchstart', startDrag);
-        window.addEventListener('touchmove', onDrag);
-        window.addEventListener('touchend', endDrag);
-    </script>
-</body>
-</html>
-
+        function updateInspector() {
+            document.getElementById('insp-code').innerText = selectedModule.code;
+            document.getElementById('insp-cat').innerText = selectedModule.category;
+            document.getElementById('insp-name').innerText = selectedModule.name;
+            document.getElementById('insp-desc').innerText = selectedModule.description;
+            document.getElementById('insp-sec').innerText = selectedModule.securityLevel;
+            document.getElementById('insp-thru').innerText = selectedModule.throug
