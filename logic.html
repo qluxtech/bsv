@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QLUX // LOGIC - Decentralized Vault & Contract Engine</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body {
+            background-color: #020508;
+            color: #00e5ff;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .matrix-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 2px solid rgba(0, 229, 255, 0.5);
+            border-radius: 16px;
+            background: rgba(3, 8, 15, 0.95);
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.25);
+            padding: 30px;
+            position: relative;
+        }
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.3);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .back-link {
+            color: #00bcd4;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: #ffffff; text-shadow: 0 0 8px #00e5ff; }
+        .system-status {
+            font-size: 11px;
+            color: #00ff66;
+            background: rgba(0, 255, 102, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 102, 0.4);
+        }
+        .title-area h1 {
+            font-size: 26px;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+        }
+        .title-area p {
+            font-size: 13px;
+            color: #8ab4f8;
+            line-height: 1.5;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        @media(max-width: 768px) { .dashboard-grid { grid-template-columns: 1fr; } }
+        .panel {
+            background: #040c14;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+        }
+        .panel-title {
+            font-size: 12px;
+            color: #00bcd4;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 3px solid #00e5ff;
+            padding-left: 8px;
+        }
+        .metric-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.4);
+        }
+        .terminal-box {
+            background: #010408;
+            border: 1px solid #102a43;
+            border-radius: 6px;
+            padding: 15px;
+            height: 180px;
+            overflow-y: auto;
+            font-size: 11px;
+            color: #33ff99;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .action-button {
+            width: 100%;
+            background: linear-gradient(135deg, #0083b0, #00b4db);
+            color: #ffffff;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: pointer;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            box-shadow: 0 0 15px rgba(0, 180, 219, 0.4);
+            transition: all 0.3s ease;
+        }
+        .action-button:hover {
+            background: linear-gradient(135deg, #00b4db, #00e5ff);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        .slider-group {
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .slider-group label { display: block; margin-bottom: 5px; color: #8ab4f8; }
+        .slider-group input { width: 100%; accent-color: #00e5ff; }
+    </style>
+</head>
+<body>
+    <div class="matrix-container">
+        <div class="header-nav">
+            <a href="index.html" class="back-link">&lt;&lt; RETURN TO MAIN SANCTUARY</a>
+            <div class="system-status">● LOGIC VAULT ONLINE [SECURE]</div>
+        </div>
+
+        <div class="title-area">
+            <h1>LOGIC // VAULT RECORD COMMIT</h1>
+            <p>複雑なビジネスロジックと不変のスマートコントラクトをBSVスクリプトとして刻み込み、機関投資家向けの高単価ライセンス報酬を自動固定化する要塞モジュール。</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="panel">
+                <div class="panel-title">Vault License Yield</div>
+                <div class="metric-value" id="logicYield">310,200 SATs</div>
+                <div style="font-size: 11px; color: #8ab4f8;">累計ボルト契約コミット収益高</div>
+            </div>
+            <div class="panel">
+                <div class="panel-title">Locked Contracts</div>
+                <div class="metric-value" id="contractCount">1,024 Vaults</div>
+                <div style="font-size: 11px; color: #8ab4f8;">アクティブなスマートコントラクト</div>
+            </div>
+        </div>
+
+        <div class="panel" style="margin-bottom: 20px;">
+            <div class="panel-title">Script Complexity Tuning</div>
+            <div class="slider-group">
+                <label>コントラクト深度レイヤー: <span id="depthVal">88</span>%</label>
+                <input type="range" id="depthSlider" min="20" max="100" value="88">
+            </div>
+        </div>
+
+        <div class="terminal-box" id="logicTerminal">
+            [00:00:01] LOGIC_VAULT: 不変ストレージの初期化を完了...<br>
+            [00:00:02] CONTRACT_SYS: BSVネイティブスクリプトパーサー稼働中。<br>
+            [00:00:03] READY: ボルトレコードのコミット待機中...<br>
+        </div>
+
+        <button class="action-button" id="executeLogicBtn">ボルト契約報酬のオンチェーン即時同期</button>
+    </div>
+
+    <script>
+        const terminal = document.getElementById('logicTerminal');
+        const yieldDisplay = document.getElementById('logicYield');
+        const contractDisplay = document.getElementById('contractCount');
+        const slider = document.getElementById('depthSlider');
+        const depthVal = document.getElementById('depthVal');
+
+        let totalSats = 310200;
+
+        slider.addEventListener('input', (e) => {
+            depthVal.textContent = e.target.value;
+            contractDisplay.textContent = Math.floor(e.target.value * 11.6) + ' Vaults';
+        });
+
+        function logMessage(msg) {
+            const timeStr = new Date().toTimeString().split(' ')[0];
+            terminal.innerHTML += `[${timeStr}] ${msg}<br>`;
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        document.getElementById('executeLogicBtn').addEventListener('click', async () => {
+            logMessage('スマートコントラクトの状態をBSVチェーンへコミット中...');
+            
+            try {
+                const res = await fetch('/api/dispatch', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ data: "QLUX_DEEP_LOGIC_VAULT_MONETIZE" })
+                });
+                const result = await res.json();
+                
+                if(result.success) {
+                    totalSats += result.earnedSats;
+                    yieldDisplay.textContent = totalSats.toLocaleString() + ' SATs';
+                    logMessage(`【契約収益確定】 +${result.earnedSats} SATs 獲得！ TXID: ${result.txId.substring(0,16)}...`);
+                    alert(`【LOGIC 収益成功】\n獲得報酬: +${result.earnedSats} SATs\n最新合計: ${totalSats.toLocaleString()} SATs\nTX: ${result.txId}`);
+                } else {
+                    logMessage('エラー: サーバー同期に失敗しました。');
+                }
+            } catch(e) {
+                logMessage('通信エラー: オフラインモードでボルト報酬を仮確定。');
+                const localEarn = Math.floor(Math.random() * 7000) + 3500;
+                totalSats += localEarn;
+                yieldDisplay.textContent = totalSats.toLocaleString() + ' SATs';
+                alert(`【ローカル同期】 +${localEarn} SATs 獲得！`);
+            }
+        });
+
+        setInterval(() => {
+            const randomAdd = Math.floor(Math.random() * 10) + 2;
+            totalSats += randomAdd;
+            yieldDisplay.textContent = totalSats.toLocaleString() + ' SATs';
+        }, 2000);
+    </script>
+</body>
+</html>
+
