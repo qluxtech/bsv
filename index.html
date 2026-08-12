@@ -568,17 +568,16 @@
     </div>
 
     <script>
-    // QLUX Onchain Dispatch Script
+// QLUX Autonomous High-Yield Fortress Engine
 document.addEventListener('DOMContentLoaded', () => {
-    // メインバナーをクリックしたときにAPIを叩く設定
     const banner = document.querySelector('.main-banner');
     if (!banner) return;
 
     banner.addEventListener('click', async () => {
-        const payload = prompt("ブロックチェーンに書き込むデータを入力してください:", "QLUX_FORTRESS_SYNC");
+        const payload = prompt("全自動収益パイプラインに投入するシグナル/データを入力:", "QLUX_FORTRESS_MONETIZE_SYNC");
         if (!payload) return;
 
-        console.log('[SYSTEM] HandCash API マイクロペイメント処理中...');
+        console.log('[SYSTEM] HTTP 402 マイクロペイメント & 自動アセット収益化処理中...');
 
         try {
             const res = await fetch('/api/dispatch', {
@@ -589,12 +588,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await res.json();
             
             if(result.success) {
-                alert('永久凍結成功！\nTX: ' + result.txId);
+                alert(`【収益要塞 爆発的成功】\n+${result.earnedSats} SATs 獲得！\n総収益: ${result.newTotalRevenue} SATs\nTX: ${result.txId}`);
                 console.log('[SUCCESS] TX: ' + result.txId);
             } else {
-                alert('エラー: ' + result.error);
+                alert('エラー: 収益パイプラインの同期に失敗しました。');
             }
-        } catch(e) 
+        } catch(e) {
             alert('通信エラーが発生しました');
             console.error(e);
         }
