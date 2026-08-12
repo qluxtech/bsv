@@ -1,322 +1,250 @@
-import React, { useState, useEffect, useRef } from 'react';
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QLUX COCKPIT</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- React & Babel for in-browser JSX transformation -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body { background-color: #010103; color: #00ffcc; font-family: monospace; }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-6 select-none overflow-x-hidden">
+    <div id="root"></div>
 
-// ============================================================================
-// QLUX COCKPIT // ENTERPRISE ARCHITECTURE
-// ============================================================================
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
 
-export interface ModuleDefinition {
-  id: number;
-  code: string;
-  name: string;
-  category: 'CORE' | 'ECONOMY' | 'INTELLIGENCE' | 'DEFENSE' | 'ORCHESTRATION';
-  status: 'ACTIVE' | 'SYNCHRONIZING' | 'OVERDRIVE' | 'SEALED';
-  throughput: string;
-  latency: string;
-  securityLevel: string;
-  description: string;
-}
+        const MASTER_MODULES = [
+            { id: 1, code: 'MOD_01', name: 'CHAIN_SYNC', category: 'CORE', status: 'ACTIVE', throughput: '1.2M tx/s', latency: '2ms', securityLevel: 'QUANTUM-IMMUTABLE', description: 'Global Bitcoin SV state synchronization across multi-verse nodes.' },
+            { id: 2, code: 'MOD_02', name: 'NANO_STREAM', category: 'ECONOMY', status: 'OVERDRIVE', throughput: '50.4k sats/ms', latency: '0.4ms', securityLevel: 'ATOMIC', description: 'Sub-satoshis atomic micro-payment channel orchestration.' },
+            { id: 3, code: 'MOD_03', name: 'AI_LOGIC', category: 'INTELLIGENCE', status: 'ACTIVE', throughput: '840 TFLOPs', latency: '12ms', securityLevel: 'AUTONOMOUS', description: 'Decentralized neural reasoning and self-evolving contract logic.' },
+            { id: 4, code: 'MOD_04', name: 'VOID_EVASION', category: 'DEFENSE', status: 'ACTIVE', throughput: 'SECURE', latency: '0.1ms', securityLevel: 'ZERO-KNOWLEDGE', description: 'Multi-dimensional data obfuscation and tactical state hiding.' },
+            { id: 5, code: 'MOD_05', name: 'ECON_HARVEST', category: 'ECONOMY', status: 'OVERDRIVE', throughput: '10.8 BSV/h', latency: '5ms', securityLevel: 'SELF-SUSTAINING', description: 'Autonomous revenue generation and compute resource reinvestment.' },
+            { id: 6, code: 'MOD_06', name: 'QUANTUM_KEYS', category: 'DEFENSE', status: 'ACTIVE', throughput: '256-bit', latency: '1ms', securityLevel: 'POST-QUANTUM', description: 'Lattice-based cryptography shielding against quantum decryption.' },
+            { id: 7, code: 'MOD_07', name: 'STATE_LATCH', category: 'CORE', status: 'ACTIVE', throughput: '100%', latency: '1.5ms', securityLevel: 'PERMANENT', description: 'Immutable anchor locking human intention directly into OP_RETURN.' },
+            { id: 8, code: 'MOD_08', name: 'ENTROPY_GEN', category: 'INTELLIGENCE', status: 'ACTIVE', throughput: '10 Gbps', latency: '0.01ms', securityLevel: 'CHAOS-ROOTED', description: 'True cryptographic randomness derived from network jitter.' },
+            { id: 9, code: 'MOD_09', name: 'NODE_VITAL', category: 'CORE', status: 'ACTIVE', throughput: '99.999%', latency: '4ms', securityLevel: 'VERIFIED', description: 'Real-time global peer health telemetry and consensus monitoring.' },
+            { id: 10, code: 'MOD_10', name: 'STAS_ORD', category: 'ORCHESTRATION', status: 'ACTIVE', throughput: '15k tokens/s', latency: '3ms', securityLevel: 'TOKENIZED', description: 'STAS digital asset issuance, routing, and programmatic enforcement.' },
+            { id: 11, code: 'MOD_11', name: 'EVO_DEPTH', category: 'INTELLIGENCE', status: 'OVERDRIVE', throughput: 'Level 9.8', latency: '18ms', securityLevel: 'RECURSIVE', description: 'Recursive self-improvement complexity tracking and scaling.' },
+            { id: 12, code: 'MOD_12', name: 'TX_ACCEL', category: 'CORE', status: 'ACTIVE', throughput: '0-Conf Fast', latency: '0.2ms', securityLevel: 'MEMPOOL-LOCK', description: 'Zero-latency transaction propagation across miner pipelines.' },
+            { id: 13, code: 'MOD_13', name: 'LOG_VAULT', category: 'CORE', status: 'ACTIVE', throughput: 'Infinite', latency: '8ms', securityLevel: 'ENCRYPTED-ARCHIVE', description: 'Encrypted immutable historical activity and event repository.' },
+            { id: 14, code: 'MOD_14', name: 'DATA_MERGE', category: 'ORCHESTRATION', status: 'SYNCHRONIZING', throughput: '4.5 GB/s', latency: '6ms', securityLevel: 'UNIFIED', description: 'Cross-chain state fusion and multi-layered protocol bridging.' },
+            { id: 15, code: 'MOD_15', name: 'PULSE_MON', category: 'CORE', status: 'ACTIVE', throughput: '100 GHz', latency: '0.5ms', securityLevel: 'RESONANT', description: 'Global economic traffic resonance and heartbeat visualization.' },
+            { id: 16, code: 'MOD_16', name: 'MINT_ENGINE', category: 'ECONOMY', status: 'ACTIVE', throughput: '500 assets/s', latency: '4ms', securityLevel: 'SOVEREIGN', description: 'Programmatic protocol asset fabrication and smart issuance.' },
+            { id: 17, code: 'MOD_17', name: 'SELF_REPAIR', category: 'DEFENSE', status: 'ACTIVE', throughput: 'Real-time', latency: '2ms', securityLevel: 'AUTO-IMMUNE', description: 'Logic error detection and automated zero-downtime correction.' },
+            { id: 18, code: 'MOD_18', name: 'GHOST_PATH', category: 'DEFENSE', status: 'ACTIVE', throughput: 'Stealth', latency: '9ms', securityLevel: 'ANONYMIZED', description: 'Obfuscated routing protocol protecting originator telemetry.' },
+            { id: 19, code: 'MOD_19', name: 'SYNC_MESH', category: 'ORCHESTRATION', status: 'ACTIVE', throughput: '100k nodes', latency: '3ms', securityLevel: 'DECENTRALIZED', description: 'Peer-to-peer decentralized grid linking and consensus distribution.' },
+            { id: 20, code: 'MOD_20', name: 'SUPER_TRIGGER', category: 'CORE', status: 'OVERDRIVE', throughput: 'SINGULARITY', latency: '0.0ms', securityLevel: 'ABSOLUTE', description: 'Master ascension sequence synchronizing all modules into final state.' }
+        ];
 
-export const MASTER_MODULES: ModuleDefinition[] = [
-  { id: 1, code: 'MOD_01', name: 'CHAIN_SYNC', category: 'CORE', status: 'ACTIVE', throughput: '1.2M tx/s', latency: '2ms', securityLevel: 'QUANTUM-IMMUTABLE', description: 'Global Bitcoin SV state synchronization across multi-verse nodes.' },
-  { id: 2, code: 'MOD_02', name: 'NANO_STREAM', category: 'ECONOMY', status: 'OVERDRIVE', throughput: '50.4k sats/ms', latency: '0.4ms', securityLevel: 'ATOMIC', description: 'Sub-satoshis atomic micro-payment channel orchestration.' },
-  { id: 3, code: 'MOD_03', name: 'AI_LOGIC', category: 'INTELLIGENCE', status: 'ACTIVE', throughput: '840 TFLOPs', latency: '12ms', securityLevel: 'AUTONOMOUS', description: 'Decentralized neural reasoning and self-evolving contract logic.' },
-  { id: 4, code: 'MOD_04', name: 'VOID_EVASION', category: 'DEFENSE', status: 'ACTIVE', throughput: 'SECURE', latency: '0.1ms', securityLevel: 'ZERO-KNOWLEDGE', description: 'Multi-dimensional data obfuscation and tactical state hiding.' },
-  { id: 5, code: 'MOD_05', name: 'ECON_HARVEST', category: 'ECONOMY', status: 'OVERDRIVE', throughput: '10.8 BSV/h', latency: '5ms', securityLevel: 'SELF-SUSTAINING', description: 'Autonomous revenue generation and compute resource reinvestment.' },
-  { id: 6, code: 'MOD_06', name: 'QUANTUM_KEYS', category: 'DEFENSE', status: 'ACTIVE', throughput: '256-bit', latency: '1ms', securityLevel: 'POST-QUANTUM', description: 'Lattice-based cryptography shielding against quantum decryption.' },
-  { id: 7, code: 'MOD_07', name: 'STATE_LATCH', category: 'CORE', status: 'ACTIVE', throughput: '100%', latency: '1.5ms', securityLevel: 'PERMANENT', description: 'Immutable anchor locking human intention directly into OP_RETURN.' },
-  { id: 8, code: 'MOD_08', name: 'ENTROPY_GEN', category: 'INTELLIGENCE', status: 'ACTIVE', throughput: '10 Gbps', latency: '0.01ms', securityLevel: 'CHAOS-ROOTED', description: 'True cryptographic randomness derived from network jitter.' },
-  { id: 9, code: 'MOD_09', name: 'NODE_VITAL', category: 'CORE', status: 'ACTIVE', throughput: '99.999%', latency: '4ms', securityLevel: 'VERIFIED', description: 'Real-time global peer health telemetry and consensus monitoring.' },
-  { id: 10, code: 'MOD_10', name: 'STAS_ORD', category: 'ORCHESTRATION', status: 'ACTIVE', throughput: '15k tokens/s', latency: '3ms', securityLevel: 'TOKENIZED', description: 'STAS digital asset issuance, routing, and programmatic enforcement.' },
-  { id: 11, code: 'MOD_11', name: 'EVO_DEPTH', category: 'INTELLIGENCE', status: 'OVERDRIVE', throughput: 'Level 9.8', latency: '18ms', securityLevel: 'RECURSIVE', description: 'Recursive self-improvement complexity tracking and scaling.' },
-  { id: 12, code: 'MOD_12', name: 'TX_ACCEL', category: 'CORE', status: 'ACTIVE', throughput: '0-Conf Fast', latency: '0.2ms', securityLevel: 'MEMPOOL-LOCK', description: 'Zero-latency transaction propagation across miner pipelines.' },
-  { id: 13, code: 'MOD_13', name: 'LOG_VAULT', category: 'CORE', status: 'ACTIVE', throughput: 'Infinite', latency: '8ms', securityLevel: 'ENCRYPTED-ARCHIVE', description: 'Encrypted immutable historical activity and event repository.' },
-  { id: 14, code: 'MOD_14', name: 'DATA_MERGE', category: 'ORCHESTRATION', status: 'SYNCHRONIZING', throughput: '4.5 GB/s', latency: '6ms', securityLevel: 'UNIFIED', description: 'Cross-chain state fusion and multi-layered protocol bridging.' },
-  { id: 15, code: 'MOD_15', name: 'PULSE_MON', category: 'CORE', status: 'ACTIVE', throughput: '100 GHz', latency: '0.5ms', securityLevel: 'RESONANT', description: 'Global economic traffic resonance and heartbeat visualization.' },
-  { id: 16, code: 'MOD_16', name: 'MINT_ENGINE', category: 'ECONOMY', status: 'ACTIVE', throughput: '500 assets/s', latency: '4ms', securityLevel: 'SOVEREIGN', description: 'Programmatic protocol asset fabrication and smart issuance.' },
-  { id: 17, code: 'MOD_17', name: 'SELF_REPAIR', category: 'DEFENSE', status: 'ACTIVE', throughput: 'Real-time', latency: '2ms', securityLevel: 'AUTO-IMMUNE', description: 'Logic error detection and automated zero-downtime correction.' },
-  { id: 18, code: 'MOD_18', name: 'GHOST_PATH', category: 'DEFENSE', status: 'ACTIVE', throughput: 'Stealth', latency: '9ms', securityLevel: 'ANONYMIZED', description: 'Obfuscated routing protocol protecting originator telemetry.' },
-  { id: 19, code: 'MOD_19', name: 'SYNC_MESH', category: 'ORCHESTRATION', status: 'ACTIVE', throughput: '100k nodes', latency: '3ms', securityLevel: 'DECENTRALIZED', description: 'Peer-to-peer decentralized grid linking and consensus distribution.' },
-  { id: 20, code: 'MOD_20', name: 'SUPER_TRIGGER', category: 'CORE', status: 'OVERDRIVE', throughput: 'SINGULARITY', latency: '0.0ms', securityLevel: 'ABSOLUTE', description: 'Master ascension sequence synchronizing all modules into final state.' }
-];
+        function QluxCommandCockpit() {
+            const [activeTab, setActiveTab] = useState('GRID');
+            const [selectedModule, setSelectedModule] = useState(MASTER_MODULES[0]);
+            const [consoleLogs, setConsoleLogs] = useState([
+                '[SYSTEM_BOOT] Initializing QLUX Quantum-Sovereign BSV Cockpit...',
+                '[CORE_INIT] Loading 20 hyper-accelerated operational modules...',
+                '[CHAIN_CONNECT] Established secure zero-conf tunnel to BSV Mainnet nodes.',
+                '[READY] Command cockpit fully operational. Awaiting master execution.'
+            ]);
+            const [commandInput, setCommandInput] = useState('');
+            const [systemLoad, setSystemLoad] = useState(42.8);
+            const [activeTxs, setActiveTxs] = useState(142857);
+            const [revenueSats, setRevenueSats] = useState(9824500);
+            const terminalEndRef = useRef(null);
 
-export const QluxCommandCockpit: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'GRID' | 'TELEMETRY' | 'ECONOMY' | 'SECURITY'>('GRID');
-  const [selectedModule, setSelectedModule] = useState<ModuleDefinition>(MASTER_MODULES[0]);
-  const [consoleLogs, setConsoleLogs] = useState<string[]>([
-    '[SYSTEM_BOOT] Initializing QLUX Quantum-Sovereign BSV Cockpit...',
-    '[CORE_INIT] Loading 20 hyper-accelerated operational modules...',
-    '[CHAIN_CONNECT] Established secure zero-conf tunnel to BSV Mainnet nodes.',
-    '[READY] Command cockpit fully operational. Awaiting master execution.'
-  ]);
-  const [commandInput, setCommandInput] = useState<string>('');
-  const [systemLoad, setSystemLoad] = useState<number>(42.8);
-  const [activeTxs, setActiveTxs] = useState<number>(142857);
-  const [revenueSats, setRevenueSats] = useState<number>(9824500);
-  const terminalEndRef = useRef<HTMLDivElement>(null);
+            useEffect(() => {
+                const interval = setInterval(() => {
+                    setSystemLoad(prev => +(prev + (Math.random() * 2 - 1)).toFixed(2));
+                    setActiveTxs(prev => prev + Math.floor(Math.random() * 15));
+                    setRevenueSats(prev => prev + Math.floor(Math.random() * 100));
+                }, 1000);
+                return () => clearInterval(interval);
+            }, []);
 
-  // Live telemetry ticker simulation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSystemLoad(prev => +(prev + (Math.random() * 2 - 1)).toFixed(2));
-      setActiveTxs(prev => prev + Math.floor(Math.random() * 15));
-      setRevenueSats(prev => prev + Math.floor(Math.random() * 100));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+            useEffect(() => {
+                terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }, [consoleLogs]);
 
-  // Auto-scroll terminal
-  useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [consoleLogs]);
+            const appendLog = (msg) => {
+                const timestamp = new Date().toISOString().split('T')[1].slice(0, 12);
+                setConsoleLogs(prev => [...prev.slice(-100), `[${timestamp}] ${msg}`]);
+            };
 
-  const handleModuleClick = (mod: ModuleDefinition) => {
-    setSelectedModule(mod);
-    appendLog(`[MODULE_SELECT] Interfacing with ${mod.code} // ${mod.name} [${mod.securityLevel}]`);
-  };
+            const executeMasterProtocol = (targetId) => {
+                const target = targetId ? MASTER_MODULES.find(m => m.id === targetId) : selectedModule;
+                if (!target) return;
+                appendLog(`>>> EXECUTING MASTER PROTOCOL: ${target.code} (${target.name})`);
+                appendLog(`>>> DISPATCHING TRANSACTION PAYLOAD TO BSV OP_RETURN...`);
+                setTimeout(() => {
+                    const mockTxid = Array.from({length: 64}, () => Math.floor(Math.random()*16).toString(16)).join('');
+                    appendLog(`[SUCCESS] TXID BROADCASTED: ${mockTxid.slice(0, 16)}...${mockTxid.slice(-16)}`);
+                    appendLog(`[STATE_LATCH] Human intent permanently frozen into immutable blockchain ledger.`);
+                }, 400);
+            };
 
-  const appendLog = (msg: string) => {
-    const timestamp = new Date().toISOString().split('T')[1].slice(0, 12);
-    setConsoleLogs(prev => [...prev.slice(-100), `[${timestamp}] ${msg}`]);
-  };
+            const handleCommandSubmit = (e) => {
+                e.preventDefault();
+                if (!commandInput.trim()) return;
+                appendLog(`[USER_COMMAND] ${commandInput}`);
+                if (commandInput.toLowerCase() === 'singularity') {
+                    executeMasterProtocol(20);
+                } else {
+                    appendLog(`[EXEC] Command evaluated and committed to chain layer.`);
+                }
+                setCommandInput('');
+            };
 
-  const executeMasterProtocol = (targetId?: number) => {
-    const target = targetId ? MASTER_MODULES.find(m => m.id === targetId) : selectedModule;
-    if (!target) return;
+            return (
+                <div className="max-w-7xl mx-auto">
+                    <header className="border-b border-[#00ffcc]/30 pb-4 mb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                        <div>
+                            <div className="flex items-center gap-3">
+                                <span className="w-3 h-3 bg-[#00ffcc] rounded-full animate-ping" />
+                                <h1 className="text-3xl md:text-5xl font-black tracking-tighter uppercase text-white drop-shadow-[0_0_15px_rgba(0,255,204,0.5)]">
+                                    QLUX <span className="text-[#00ffcc]">// COCKPIT</span>
+                                </h1>
+                            </div>
+                            <p className="text-xs text-[#00ffcc]/60 mt-1 uppercase tracking-[0.3em]">
+                                Global Bitcoin SV Blockchain Command & Intelligence Unit v9.4
+                            </p>
+                        </div>
+                        <div className="flex gap-4 text-[10px] bg-[#05050a] border border-[#00ffcc]/30 p-3 rounded">
+                            <div>
+                                <div className="text-gray-500">SYSTEM LOAD</div>
+                                <div className="text-sm font-bold text-white">{systemLoad}%</div>
+                            </div>
+                            <div className="border-l border-[#00ffcc]/20 pl-4">
+                                <div className="text-gray-500">LIVE TX STREAM</div>
+                                <div className="text-sm font-bold text-white">{activeTxs.toLocaleString()} TX</div>
+                            </div>
+                            <div className="border-l border-[#00ffcc]/20 pl-4">
+                                <div className="text-gray-500">REVENUE HARVEST</div>
+                                <div className="text-sm font-bold text-yellow-400">{(revenueSats / 100000000).toFixed(4)} BSV</div>
+                            </div>
+                        </div>
+                    </header>
 
-    appendLog(`>>> EXECUTING MASTER PROTOCOL: ${target.code} (${target.name})`);
-    appendLog(`>>> DISPATCHING TRANSACTION PAYLOAD TO BSV OP_RETURN...`);
-    
-    setTimeout(() => {
-      const mockTxid = Array.from({length: 64}, () => Math.floor(Math.random()*16).toString(16)).join('');
-      appendLog(`[SUCCESS] TXID BROADCASTED: ${mockTxid.slice(0, 16)}...${mockTxid.slice(-16)}`);
-      appendLog(`[STATE_LATCH] Human intent permanently frozen into immutable blockchain ledger.`);
-    }, 400);
-  };
-
-  const handleCommandSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!commandInput.trim()) return;
-    appendLog(`[USER_COMMAND] ${commandInput}`);
-    if (commandInput.toLowerCase() === 'singularity') {
-      executeMasterProtocol(20);
-    } else {
-      appendLog(`[EXEC] Command evaluated and committed to chain layer.`);
-    }
-    setCommandInput('');
-  };
-
-  return (
-    <div className="min-h-screen bg-[#010103] text-[#00ffcc] font-mono p-4 md:p-6 select-none overflow-x-hidden">
-      
-      {/* HEADER SECTION */}
-      <header className="border-b border-[#00ffcc]/30 pb-4 mb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-        <div>
-          <div className="flex items-center gap-3">
-            <span className="w-3 h-3 bg-[#00ffcc] rounded-full animate-ping" />
-            <h1 className="text-3xl md:text-5xl font-black tracking-tighter uppercase text-white drop-shadow-[0_0_15px_rgba(0,255,204,0.5)]">
-              QLUX <span className="text-[#00ffcc]">// COCKPIT</span>
-            </h1>
-          </div>
-          <p className="text-xs text-[#00ffcc]/60 mt-1 uppercase tracking-[0.3em]">
-            Global Bitcoin SV Blockchain Command & Intelligence Unit v9.4
-          </p>
-        </div>
-
-        {/* METRICS BAR */}
-        <div className="flex gap-4 text-[10px] bg-[#05050a] border border-[#00ffcc]/30 p-3 rounded">
-          <div>
-            <div className="text-gray-500">SYSTEM LOAD</div>
-            <div className="text-sm font-bold text-white">{systemLoad}%</div>
-          </div>
-          <div className="border-l border-[#00ffcc]/20 pl-4">
-            <div className="text-gray-500">LIVE TX STREAM</div>
-            <div className="text-sm font-bold text-white">{activeTxs.toLocaleString()} TX</div>
-          </div>
-          <div className="border-l border-[#00ffcc]/20 pl-4">
-            <div className="text-gray-500">REVENUE HARVEST</div>
-            <div className="text-sm font-bold text-yellow-400">{(revenueSats / 100000000).toFixed(4)} BSV</div>
-          </div>
-        </div>
-      </header>
-
-      {/* NAVIGATION TABS */}
-      <div className="flex gap-2 mb-6 border-b border-[#00ffcc]/20 pb-2">
-        {(['GRID', 'TELEMETRY', 'ECONOMY', 'SECURITY'] as const).map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 text-xs font-bold uppercase transition-all tracking-wider ${
-              activeTab === tab
-                ? 'bg-[#00ffcc] text-black shadow-[0_0_15px_rgba(0,255,204,0.4)]'
-                : 'bg-black text-[#00ffcc]/70 border border-[#00ffcc]/30 hover:border-[#00ffcc]'
-            }`}
-          >
-            {tab} VIEW
-          </button>
-        ))}
-      </div>
-
-      {/* MAIN CONTENT AREA */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
-        {/* LEFT/CENTER: 20 MODULES GRID */}
-        <div className="lg:col-span-8 space-y-6">
-          {activeTab === 'GRID' && (
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {MASTER_MODULES.map((mod) => {
-                const isSelected = selectedModule.id === mod.id;
-                return (
-                  <div
-                    key={mod.id}
-                    onClick={() => handleModuleClick(mod)}
-                    className={`p-3 border transition-all cursor-pointer relative group ${
-                      isSelected
-                        ? 'border-[#00ffcc] bg-[#00ffcc]/10 shadow-[0_0_20px_rgba(0,255,204,0.2)]'
-                        : 'border-[#00ffcc]/20 bg-[#030308] hover:border-[#00ffcc]/60 hover:bg-[#00ffcc]/5'
-                    }`}
-                  >
-                    <div className="flex justify-between items-start mb-2">
-                      <span className="text-[10px] font-bold text-[#00ffcc]/60">{mod.code}</span>
-                      <span className={`w-2 h-2 rounded-full ${
-                        mod.status === 'OVERDRIVE' ? 'bg-yellow-400 animate-pulse' :
-                        mod.status === 'SYNCHRONIZING' ? 'bg-blue-400 animate-ping' : 'bg-green-400'
-                      }`} />
+                    <div className="flex gap-2 mb-6 border-b border-[#00ffcc]/20 pb-2">
+                        {['GRID', 'TELEMETRY', 'ECONOMY', 'SECURITY'].map((tab) => (
+                            <button
+                                key={tab}
+                                onClick={() => setActiveTab(tab)}
+                                className={`px-4 py-2 text-xs font-bold uppercase transition-all tracking-wider cursor-pointer ${
+                                    activeTab === tab
+                                        ? 'bg-[#00ffcc] text-black shadow-[0_0_15px_rgba(0,255,204,0.4)]'
+                                        : 'bg-black text-[#00ffcc]/70 border border-[#00ffcc]/30 hover:border-[#00ffcc]'
+                                }`}
+                            >
+                                {tab} VIEW
+                            </button>
+                        ))}
                     </div>
-                    <h3 className="text-xs font-black text-white uppercase tracking-wider">{mod.name}</h3>
-                    <p className="text-[8px] text-gray-400 mt-1 line-clamp-2">{mod.description}</p>
-                    <div className="mt-3 pt-2 border-t border-[#00ffcc]/10 flex justify-between text-[8px] text-[#00ffcc]/80">
-                      <span>{mod.throughput}</span>
-                      <span>{mod.latency}</span>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <div className="lg:col-span-8 space-y-6">
+                            {activeTab === 'GRID' && (
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                    {MASTER_MODULES.map((mod) => {
+                                        const isSelected = selectedModule.id === mod.id;
+                                        return (
+                                            <div
+                                                key={mod.id}
+                                                onClick={() => { setSelectedModule(mod); appendLog(`[MODULE_SELECT] ${mod.code} // ${mod.name}`); }}
+                                                className={`p-3 border transition-all cursor-pointer relative ${
+                                                    isSelected
+                                                        ? 'border-[#00ffcc] bg-[#00ffcc]/10 shadow-[0_0_20px_rgba(0,255,204,0.2)]'
+                                                        : 'border-[#00ffcc]/20 bg-[#030308] hover:border-[#00ffcc]/60'
+                                                }`}
+                                            >
+                                                <div className="flex justify-between items-start mb-2">
+                                                    <span className="text-[10px] font-bold text-[#00ffcc]/60">{mod.code}</span>
+                                                    <span className={`w-2 h-2 rounded-full ${mod.status === 'OVERDRIVE' ? 'bg-yellow-400 animate-pulse' : 'bg-green-400'}`} />
+                                                </div>
+                                                <h3 className="text-xs font-black text-white uppercase">{mod.name}</h3>
+                                                <p className="text-[8px] text-gray-400 mt-1 line-clamp-2">{mod.description}</p>
+                                                <div className="mt-3 pt-2 border-t border-[#00ffcc]/10 flex justify-between text-[8px] text-[#00ffcc]/80">
+                                                    <span>{mod.throughput}</span>
+                                                    <span>{mod.latency}</span>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
+
+                            {activeTab !== 'GRID' && (
+                                <div className="bg-[#030308] border border-[#00ffcc]/30 p-6 rounded space-y-4">
+                                    <h2 className="text-lg font-bold text-white uppercase">{activeTab} SUBSYSTEM ACTIVE</h2>
+                                    <p className="text-xs text-gray-400">Global Bitcoin SV decentralized matrix operational parameters locked.</p>
+                                </div>
+                            )}
+
+                            <div className="p-1 bg-gradient-to-r from-[#00ffcc] via-blue-500 to-purple-600 rounded">
+                                <button
+                                    onClick={() => executeMasterProtocol(20)}
+                                    className="w-full py-6 bg-black text-[#00ffcc] font-black text-xl md:text-2xl tracking-[0.2em] hover:bg-[#00ffcc] hover:text-black transition-all cursor-pointer uppercase shadow-2xl"
+                                >
+                                    [ INITIATE SINGULARITY ASCENSION ]
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="lg:col-span-4 flex flex-col gap-6">
+                            <div className="bg-[#030308] border border-[#00ffcc]/30 p-4 rounded flex flex-col justify-between">
+                                <div>
+                                    <div className="flex justify-between items-center border-b border-[#00ffcc]/20 pb-2 mb-3">
+                                        <span className="text-xs font-bold text-white">INSPECTOR: {selectedModule.code}</span>
+                                        <span className="text-[10px] px-2 py-0.5 bg-[#00ffcc]/20 text-[#00ffcc] rounded">{selectedModule.category}</span>
+                                    </div>
+                                    <h3 className="text-base font-black text-white uppercase">{selectedModule.name}</h3>
+                                    <p className="text-[10px] text-gray-400 mt-2">{selectedModule.description}</p>
+                                </div>
+                                <button
+                                    onClick={() => executeMasterProtocol()}
+                                    className="mt-6 w-full py-3 bg-[#00ffcc]/20 hover:bg-[#00ffcc] text-[#00ffcc] hover:text-black font-bold text-xs uppercase transition-all border border-[#00ffcc] cursor-pointer"
+                                >
+                                    Execute {selectedModule.name}
+                                </button>
+                            </div>
+
+                            <div className="bg-black border border-[#00ffcc]/30 p-4 rounded flex flex-col h-72">
+                                <div className="flex justify-between items-center border-b border-[#00ffcc]/20 pb-2 mb-2">
+                                    <span className="text-[10px] font-bold uppercase text-gray-400">Live Telemetry Stream</span>
+                                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                                </div>
+                                <div className="flex-1 overflow-y-auto space-y-1 text-[9px] font-mono text-[#00ffcc]/80">
+                                    {consoleLogs.map((log, index) => (
+                                        <div key={index} className="border-l border-[#00ffcc]/40 pl-2 py-0.5 break-all">{log}</div>
+                                    ))}
+                                    <div ref={terminalEndRef} />
+                                </div>
+                                <form onSubmit={handleCommandSubmit} className="mt-2 pt-2 border-t border-[#00ffcc]/20 flex gap-2">
+                                    <input
+                                        type="text"
+                                        value={commandInput}
+                                        onChange={(e) => setCommandInput(e.target.value)}
+                                        placeholder="Type command or 'singularity'..."
+                                        className="w-full bg-[#030308] border border-[#00ffcc]/30 px-3 py-1.5 text-[10px] text-white focus:outline-none focus:border-[#00ffcc]"
+                                    />
+                                    <button type="submit" className="px-3 bg-[#00ffcc] text-black text-[10px] font-bold uppercase hover:bg-white cursor-pointer">
+                                        Send
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+                </div>
+            );
+        }
 
-          {activeTab === 'TELEMETRY' && (
-            <div className="bg-[#030308] border border-[#00ffcc]/30 p-6 rounded space-y-4">
-              <h2 className="text-lg font-bold text-white uppercase tracking-wider">Advanced Telemetry & Node Health</h2>
-              <p className="text-xs text-gray-400">Real-time verification of global BSV network consensus and micro-channel latency.</p>
-              <div className="grid grid-cols-2 gap-4 pt-4">
-                <div className="p-4 border border-[#00ffcc]/20 bg-black">
-                  <div className="text-[10px] text-gray-500">BLOCK HEIGHT</div>
-                  <div className="text-xl font-bold text-white mt-1">874,210</div>
-                </div>
-                <div className="p-4 border border-[#00ffcc]/20 bg-black">
-                  <div className="text-[10px] text-gray-500">PROPAGATION SPEED</div>
-                  <div className="text-xl font-bold text-green-400 mt-1">42 ms</div>
-                </div>
-                <div className="p-4 border border-[#00ffcc]/20 bg-black">
-                  <div className="text-[10px] text-gray-500">ACTIVE MEMPOOL SIZE</div>
-                  <div className="text-xl font-bold text-cyan-400 mt-1">18.4 MB</div>
-                </div>
-                <div className="p-4 border border-[#00ffcc]/20 bg-black">
-                  <div className="text-[10px] text-gray-500">ENCRYPTION INTEGRITY</div>
-                  <div className="text-xl font-bold text-yellow-400 mt-1">100.0%</div>
-                </div>
-              </div>
-            </div>
-          )}
+        ReactDOM.createRoot(document.getElementById('root')).render(<QluxCommandCockpit />);
+    </script>
+</body>
+</html>
 
-          {activeTab === 'ECONOMY' && (
-            <div className="bg-[#030308] border border-[#00ffcc]/30 p-6 rounded space-y-4">
-              <h2 className="text-lg font-bold text-white uppercase tracking-wider">Autonomous Economic Engine & STAS Grid</h2>
-              <p className="text-xs text-gray-400">Micro-payment streams and tokenized digital asset orchestration.</p>
-              <div className="space-y-3 pt-2">
-                <div className="flex justify-between items-center p-3 border border-[#00ffcc]/20 bg-black text-xs">
-                  <span>STAS Token Grid Balance</span>
-                  <span className="font-bold text-white">450,000 QLUX-STAS</span>
-                </div>
-                <div className="flex justify-between items-center p-3 border border-[#00ffcc]/20 bg-black text-xs">
-                  <span>Nano-Channel Active Stream</span>
-                  <span className="font-bold text-green-400">ACTIVE (0.00001 BSV/tick)</span>
-                </div>
-                <div className="flex justify-between items-center p-3 border border-[#00ffcc]/20 bg-black text-xs">
-                  <span>Self-Sustaining Treasury</span>
-                  <span className="font-bold text-yellow-400">124.50 BSV</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'SECURITY' && (
-            <div className="bg-[#030308] border border-[#00ffcc]/30 p-6 rounded space-y-4">
-              <h2 className="text-lg font-bold text-white uppercase tracking-wider">Post-Quantum & Void Defense Shield</h2>
-              <p className="text-xs text-gray-400">Lattice-based security parameters and multi-dimensional hiding protocols.</p>
-              <div className="space-y-3 pt-2 text-xs">
-                <div className="p-3 border border-red-500/40 bg-red-950/20 text-red-300">
-                  [STATUS] VOID SHIELD ENGAGED. Zero vulnerability detected across active data vectors.
-                </div>
-                <div className="p-3 border border-[#00ffcc]/20 bg-black">
-                  <span>Quantum Key Rotation: <strong className="text-white">Every 300 seconds</strong></span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* MASTER SINGULARITY EXECUTION BUTTON */}
-          <div className="p-1 bg-gradient-to-r from-[#00ffcc] via-blue-500 to-purple-600 rounded">
-            <button
-              onClick={() => executeMasterProtocol(20)}
-              className="w-full py-6 bg-black text-[#00ffcc] font-black text-2xl md:text-3xl tracking-[0.2em] hover:bg-[#00ffcc] hover:text-black transition-all duration-300 uppercase shadow-2xl"
-            >
-              [ INITIATE SINGULARITY ASCENSION ]
-            </button>
-          </div>
-        </div>
-
-        {/* RIGHT: CONTROL CONSOLE & LIVE TERMINAL */}
-        <div className="lg:col-span-4 flex flex-col gap-6">
-          
-          {/* SELECTED MODULE INSPECTOR */}
-          <div className="bg-[#030308] border border-[#00ffcc]/30 p-4 rounded flex flex-col justify-between">
-            <div>
-              <div className="flex justify-between items-center border-b border-[#00ffcc]/20 pb-2 mb-3">
-                <span className="text-xs font-bold text-white">INSPECTOR: {selectedModule.code}</span>
-                <span className="text-[10px] px-2 py-0.5 bg-[#00ffcc]/20 text-[#00ffcc] rounded">{selectedModule.category}</span>
-              </div>
-              <h3 className="text-base font-black text-white uppercase">{selectedModule.name}</h3>
-              <p className="text-[10px] text-gray-400 mt-2 leading-relaxed">{selectedModule.description}</p>
-              
-              <div className="mt-4 space-y-2 text-[10px]">
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Security:</span>
-                  <span className="text-white font-bold">{selectedModule.securityLevel}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Throughput:</span>
-                  <span className="text-[#00ffcc]">{selectedModule.throughput}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Latency:</span>
-                  <span className="text-green-400">{selectedModule.latency}</span>
-                </div>
-              </div>
-            </div>
-
-            <button
-              onClick={() => executeMasterProtocol()}
-              className="mt-6 w-full py-3 bg-[#00ffcc]/20 hover:bg-[#00ffcc] text-[#00ffcc] hover:text-black font-bold text-xs uppercase transition-all border border-[#00ffcc]"
-            >
-              Execute {selectedModule.name}
-            </button>
-          </div>
-
-          {/* REAL-TIME TERMINAL LOG */}
-          <div className="bg-black border border-[#00ffcc]/30 p-4 rounded flex flex-col h-72">
-            <div className="flex justify-between items-center border-b border-[#00ffcc]/20 pb-2 mb-2">
-              <span className="text-[10px] font-bold uppercase text-gray-400">Live Telemetry Stream</span>
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            </div>
-            
-            <div className="flex-1 overflow-y-auto space-y-1 text-[9px] font-mono text-[#00ffcc]/80 scrollbar-none">
-              {consoleLogs.map((log, index) => (
-                <div key={index} className="border-l border-[#00ffcc]/40 pl-2 py-0.5 break-all">
-                  {log}
-                </div>
-              ))}
-              <div ref={terminalEndRef} />
-            </div>
-
-            <form onSubmit={
