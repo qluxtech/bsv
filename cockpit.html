@@ -6,15 +6,16 @@
     <title>QLUX // ENTERPRISE BSV COMMAND COCKPIT</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- React & Babel for in-browser JSX transformation -->
+    <!-- React 18 Production -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel Standalone -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
         body { background-color: #010103; color: #00ffcc; font-family: monospace; }
         ::-webkit-scrollbar { width: 4px; height: 4px; }
         ::-webkit-scrollbar-track { background: #010103; }
-        ::-webkit-scrollbar-thumb { background: #00ffcc/40; border-radius: 2px; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,255,204,0.4); border-radius: 2px; }
     </style>
 </head>
 <body class="min-h-screen p-4 md:p-6 select-none overflow-x-hidden">
@@ -63,50 +64,50 @@
 
             useEffect(() => {
                 const interval = setInterval(() => {
-                    setSystemLoad(prev => +(prev + (Math.random() * 2 - 1)).toFixed(2));
-                    setActiveTxs(prev => prev + Math.floor(Math.random() * 15));
-                    setRevenueSats(prev => prev + Math.floor(Math.random() * 100));
+                    setSystemLoad(function(prev) { return +(prev + (Math.random() * 2 - 1)).toFixed(2); });
+                    setActiveTxs(function(prev) { return prev + Math.floor(Math.random() * 15); });
+                    setRevenueSats(function(prev) { return prev + Math.floor(Math.random() * 100); });
                 }, 1000);
-                return () => clearInterval(interval);
+                return function() { clearInterval(interval); };
             }, []);
 
             useEffect(() => {
-                terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+                if (terminalEndRef.current) {
+                    terminalEndRef.current.scrollIntoView({ behavior: 'smooth' });
+                }
             }, [consoleLogs]);
 
             const appendLog = (msg) => {
                 const timestamp = new Date().toISOString().split('T')[1].slice(0, 12);
-                setConsoleLogs(prev => [...prev.slice(-100), `[${timestamp}] ${msg}`]);
+                setConsoleLogs(prev => [...prev.slice(-100), '[' + timestamp + '] ' + msg]);
             };
 
             const executeMasterProtocol = (targetId) => {
                 const target = targetId ? MASTER_MODULES.find(m => m.id === targetId) : selectedModule;
                 if (!target) return;
-                appendLog(`>>> EXECUTING MASTER PROTOCOL: ${target.code} (${target.name})`);
-                appendLog(`>>> DISPATCHING TRANSACTION PAYLOAD TO BSV OP_RETURN...`);
+                appendLog('>>> EXECUTING MASTER PROTOCOL: ' + target.code + ' (' + target.name + ')');
+                appendLog('>>> DISPATCHING TRANSACTION PAYLOAD TO BSV OP_RETURN...');
                 setTimeout(() => {
                     const mockTxid = Array.from({length: 64}, () => Math.floor(Math.random()*16).toString(16)).join('');
-                    appendLog(`[SUCCESS] TXID BROADCASTED: ${mockTxid.slice(0, 16)}...${mockTxid.slice(-16)}`);
-                    appendLog(`[ENTERPRISE_LATCH] State permanently committed to Bitcoin SV ledger.`);
+                    appendLog('[SUCCESS] TXID BROADCASTED: ' + mockTxid.slice(0, 16) + '...' + mockTxid.slice(-16));
+                    appendLog('[ENTERPRISE_LATCH] State permanently committed to Bitcoin SV ledger.');
                 }, 400);
             };
 
             const handleCommandSubmit = (e) => {
                 e.preventDefault();
                 if (!commandInput.trim()) return;
-                appendLog(`[USER_COMMAND] ${commandInput}`);
+                appendLog('[USER_COMMAND] ' + commandInput);
                 if (commandInput.toLowerCase() === 'singularity') {
                     executeMasterProtocol(20);
                 } else {
-                    appendLog(`[EXEC] Instruction evaluated and locked to chain layer.`);
+                    appendLog('[EXEC] Instruction evaluated and locked to chain layer.');
                 }
                 setCommandInput('');
             };
 
             return (
                 <div className="max-w-7xl mx-auto space-y-6">
-                    
-                    {/* HEADER */}
                     <header className="border-b border-[#00ffcc]/30 pb-4 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                         <div>
                             <div className="flex items-center gap-3">
@@ -135,49 +136,31 @@
                         </div>
                     </header>
 
-                    {/* ENTERPRISE SPECIFICATION SHEET (BI-LINGUAL) / エンタープライズ仕様書（日英） */}
+                    {/* ENTERPRISE SPECIFICATION SHEET */}
                     <section className="bg-[#030308] border border-[#00ffcc]/40 p-4 md:p-6 rounded-lg shadow-[0_0_25px_rgba(0,255,204,0.1)] space-y-4">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#00ffcc]/20 pb-3 gap-2">
                             <div>
                                 <span className="text-[10px] bg-[#00ffcc]/20 text-[#00ffcc] px-2 py-0.5 rounded font-bold uppercase tracking-wider">ENTERPRISE SPEC // 機関投資家・開発者向け仕様書</span>
                                 <h2 className="text-sm md:text-base font-bold text-white uppercase mt-1">Autonomous BSV Settlement & Intelligence Mesh Architecture</h2>
                             </div>
-                            <div className="text-[10px] text-[#00ffcc]/60 font-mono">
-                                STATUS: PROTOCOL_LOCKED // 20 NODES ACTIVE
-                            </div>
+                            <div className="text-[10px] text-[#00ffcc]/60 font-mono">STATUS: PROTOCOL_LOCKED // 20 NODES ACTIVE</div>
                         </div>
-
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                            {/* JP SPEC */}
                             <div className="border border-[#00ffcc]/20 bg-black/40 p-3.5 rounded space-y-2">
                                 <div className="text-[#00ffcc] font-bold text-[11px] border-b border-[#00ffcc]/20 pb-1 flex justify-between">
-                                    <span>[日本] アーキテクチャ概要</span>
-                                    <span>最高機密・改ざん不能</span>
+                                    <span>[日本] アーキテクチャ概要</span><span>最高機密・改ざん不能</span>
                                 </div>
                                 <p className="text-gray-300 text-[11px] leading-relaxed">
                                     QLUXコックピットは、Bitcoin SV（BSV）ブロックチェーンを根幹とした世界最高速の自律型経済・知性統合プラットフォームです。中間機関や検閲を完全に排除し、ミリ秒単位のナノ決済と強固なOP_RETURNステート記録を実現します。
                                 </p>
-                                <ul className="text-[10px] text-gray-400 space-y-1 list-disc pl-4">
-                                    <li><strong>決済基盤:</strong> HandCash API & HTTP 402リアルタイムマイクロ決済</li>
-                                    <li><strong>暗号化:</strong> 耐量子ポスト・量子格子暗号による最高レベルのデータ保護</li>
-                                    <li><strong>統合知性:</strong> 20のコアモジュールが完全同期し、自律的に最適化を遂行</li>
-                                </ul>
                             </div>
-
-                            {/* EN SPEC */}
                             <div className="border border-[#00ffcc]/20 bg-black/40 p-3.5 rounded space-y-2">
                                 <div className="text-[#00ffcc] font-bold text-[11px] border-b border-[#00ffcc]/20 pb-1 flex justify-between">
-                                    <span>[EN] Architecture Specification</span>
-                                    <span>Zero-Trust / Quantum-Secure</span>
+                                    <span>[EN] Architecture Specification</span><span>Zero-Trust / Quantum-Secure</span>
                                 </div>
                                 <p className="text-gray-300 text-[11px] leading-relaxed">
                                     The Qlux Cockpit is an ultra-high-yield autonomous economic and intelligence mesh powered by the Bitcoin SV blockchain. It eliminates intermediaries, delivering sub-millisecond atomic micropayments and permanent OP_RETURN anchoring.
                                 </p>
-                                <ul className="text-[10px] text-gray-400 space-y-1 list-disc pl-4">
-                                    <li><strong>Settlement Mesh:</strong> HandCash API with instant HTTP 402 micro-fees.</li>
-                                    <li><strong>Security Shield:</strong> Lattice-based post-quantum cryptographic protection.</li>
-                                    <li><strong>Orchestration:</strong> 20 synchronized core modules executing autonomous state logic.</li>
-                                </ul>
                             </div>
                         </div>
                     </section>
@@ -188,11 +171,7 @@
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
-                                className={`px-4 py-2 text-xs font-bold uppercase transition-all tracking-wider cursor-pointer ${
-                                    activeTab === tab
-                                        ? 'bg-[#00ffcc] text-black shadow-[0_0_15px_rgba(0,255,204,0.4)]'
-                                        : 'bg-black text-[#00ffcc]/70 border border-[#00ffcc]/30 hover:border-[#00ffcc]'
-                                }`}
+                                className={'px-4 py-2 text-xs font-bold uppercase transition-all tracking-wider cursor-pointer ' + (activeTab === tab ? 'bg-[#00ffcc] text-black shadow-[0_0_15px_rgba(0,255,204,0.4)]' : 'bg-black text-[#00ffcc]/70 border border-[#00ffcc]/30 hover:border-[#00ffcc]')}
                             >
                                 {tab} VIEW
                             </button>
@@ -209,16 +188,12 @@
                                         return (
                                             <div
                                                 key={mod.id}
-                                                onClick={() => { setSelectedModule(mod); appendLog(`[MODULE_SELECT] Interfacing with ${mod.code} // ${mod.name}`); }}
-                                                className={`p-3 border transition-all cursor-pointer relative ${
-                                                    isSelected
-                                                        ? 'border-[#00ffcc] bg-[#00ffcc]/10 shadow-[0_0_20px_rgba(0,255,204,0.2)]'
-                                                        : 'border-[#00ffcc]/20 bg-[#030308] hover:border-[#00ffcc]/60'
-                                                }`}
+                                                onClick={() => { setSelectedModule(mod); appendLog('Interfacing with ' + mod.code + ' // ' + mod.name); }}
+                                                className={'p-3 border transition-all cursor-pointer relative ' + (isSelected ? 'border-[#00ffcc] bg-[#00ffcc]/10 shadow-[0_0_20px_rgba(0,255,204,0.2)]' : 'border-[#00ffcc]/20 bg-[#030308] hover:border-[#00ffcc]/60')}
                                             >
                                                 <div className="flex justify-between items-start mb-2">
                                                     <span className="text-[10px] font-bold text-[#00ffcc]/60">{mod.code}</span>
-                                                    <span className={`w-2 h-2 rounded-full ${mod.status === 'OVERDRIVE' ? 'bg-yellow-400 animate-pulse' : 'bg-green-400'}`} />
+                                                    <span className={'w-2 h-2 rounded-full ' + (mod.status === 'OVERDRIVE' ? 'bg-yellow-400 animate-pulse' : 'bg-green-400')} />
                                                 </div>
                                                 <h3 className="text-xs font-black text-white uppercase">{mod.name}</h3>
                                                 <p className="text-[8px] text-gray-400 mt-1 line-clamp-2">{mod.description}</p>
@@ -239,11 +214,26 @@
                                 </div>
                             )}
 
-                            {/* MASTER SINGULARITY BUTTON */}
                             <div className="p-1 bg-gradient-to-r from-[#00ffcc] via-blue-500 to-purple-600 rounded">
                                 <button
                                     onClick={() => executeMasterProtocol(20)}
                                     className="w-full py-6 bg-black text-[#00ffcc] font-black text-xl md:text-2xl tracking-[0.2em] hover:bg-[#00ffcc] hover:text-black transition-all cursor-pointer uppercase shadow-2xl"
                                 >
                                     [ INITIATE SINGULARITY ASCENSION ]
-           
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* INSPECTOR & TERMINAL */}
+                        <div className="lg:col-span-4 flex flex-col gap-6">
+                            <div className="bg-[#030308] border border-[#00ffcc]/30 p-4 rounded flex flex-col justify-between">
+                                <div>
+                                    <div className="flex justify-between items-center border-b border-[#00ffcc]/20 pb-2 mb-3">
+                                        <span className="text-xs font-bold text-white">INSPECTOR: {selectedModule.code}</span>
+                                        <span className="text-[10px] px-2 py-0.5 bg-[#00ffcc]/20 text-[#00ffcc] rounded">{selectedModule.category}</span>
+                                    </div>
+                                    <h3 className="text-base font-black text-white uppercase">{selectedModule.name}</h3>
+                                    <p className="text-[10px] text-gray-400 mt-2">{selectedModule.description}</p>
+                                    <div className="mt-4 space-y-1 text-[10px]">
+                                        <div className="flex justify-between"><span className="text-gray-500">Security:</span><span className="text-white">{selectedModule.securityLevel}</span></div>
+                                        <div className="flex justify-between"><span className="text-gray-500">Throughput:</span><span className="text-[#00ffcc]">{selectedModule.throughput}
