@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX — SANCTUARY [ONCHAIN FORTRESS]</title>
-    <!-- HandCash Cloud API SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@handcash/cloud-sdk@2.0.0/dist/handcash.min.js"></script>
+    <title>QLUX — SANCTUARY</title>
     <style>
         * {
             box-sizing: border-box;
@@ -63,6 +61,30 @@
             color: #90a4ae;
             line-height: 1.5;
         }
+        .mode-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+        .tab-btn {
+            background: #071018;
+            border: 1px solid #183044;
+            color: #78909c;
+            padding: 10px 6px;
+            border-radius: 5px;
+            font-size: 11.5px;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #00bcd4, #00e5ff);
+            color: #03080d;
+            border-color: #00e5ff;
+            font-weight: bold;
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+        }
         .main-banner {
             background: linear-gradient(135deg, #00e5ff, #00bcd4);
             color: #03080d;
@@ -70,11 +92,6 @@
             border-radius: 8px;
             font-weight: bold;
             box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
-            cursor: pointer;
-            transition: transform 0.1s ease;
-        }
-        .main-banner:active {
-            transform: scale(0.98);
         }
         .main-banner-title {
             font-size: 18px;
@@ -86,12 +103,151 @@
             opacity: 0.85;
             font-weight: normal;
         }
-        .fortress-panel {
+        .feed-ticker {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #030609;
+            border: 1px solid #15293a;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 10.5px;
+            color: #546e7a;
+        }
+        .feed-left {
+            color: #00e5ff;
+        }
+        .section-header-title {
+            font-size: 16.5px;
+            color: #e0f7fa;
+            letter-spacing: 1px;
+            font-weight: bold;
+            text-align: left;
+            margin-top: 5px;
+        }
+        .section-header-desc {
+            font-size: 13px;
+            color: #00e5ff;
+            line-height: 1.6;
+            text-align: left;
+            margin-top: 6px;
+        }
+        .section-body-text {
+            font-size: 12px;
+            color: #90a4ae;
+            line-height: 1.7;
+            text-align: left;
+        }
+        .top-text {
+            font-size: 13.5px;
+            color: #78909c;
+            line-height: 1.6;
+            text-align: left;
+            border-left: 2px solid #00bcd4;
+            padding-left: 12px;
+        }
+        .highlight-cyan {
+            color: #00e5ff;
+            font-size: 18.5px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+            margin: 5px 0;
+        }
+        .desc-text {
+            font-size: 13px;
+            color: #90a4ae;
+            line-height: 1.6;
+        }
+        .sanctuary-box {
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            background: rgba(0, 229, 255, 0.02);
+            padding: 22px 16px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.05);
+        }
+        .sanctuary-title {
+            font-size: 15.5px;
+            color: #e0f7fa;
+            font-weight: bold;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .sanctuary-title span {
+            color: #00e5ff;
+        }
+        .sub-desc {
+            font-size: 12.5px;
+            color: #00bcd4;
+            line-height: 1.6;
+        }
+        .three-lines {
+            font-size: 15.5px;
+            font-weight: bold;
+            color: #e0f7fa;
+            line-height: 2.2;
+            letter-spacing: 1px;
+        }
+        .danger-text {
+            color: #ff5252;
+            font-size: 13px;
+            line-height: 1.6;
+            text-shadow: 0 0 8px rgba(255, 82, 82, 0.3);
+        }
+        .terminal-panel {
             background: #030609;
             border: 1px solid #1e3a4c;
             border-radius: 8px;
             padding: 14px;
             text-align: left;
+            position: relative;
+        }
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11.5px;
+            color: #546e7a;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #102030;
+            padding-bottom: 6px;
+        }
+        .badge-burst {
+            background: #ff3d00;
+            color: #fff;
+            font-size: 9.5px;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .terminal-sub {
+            font-size: 10.5px;
+            color: #455a64;
+            margin-bottom: 10px;
+            word-break: break-all;
+            line-height: 1.4;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .metric-item {
+            background: #081118;
+            border: 1px solid #15293a;
+            padding: 8px 6px;
+            border-radius: 5px;
+        }
+        .metric-label {
+            font-size: 9.5px;
+            color: #546e7a;
+            margin-bottom: 3px;
+        }
+        .metric-value {
+            font-size: 12.5px;
+            color: #00e5ff;
+            font-weight: bold;
         }
         .terminal-logs {
             font-size: 10px;
@@ -102,78 +258,139 @@
             height: 130px;
             overflow-y: hidden;
             line-height: 1.6;
+            opacity: 0.9;
         }
-        /* Modal Popup for HandCash 402 & Onchain Write */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(3, 8, 13, 0.85);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            padding: 20px;
+        .sync-section {
+            border: 1px solid #102535;
+            padding: 18px 14px;
+            border-radius: 8px;
+            background: rgba(5, 10, 15, 0.5);
         }
-        .modal-content {
-            background: #071018;
-            border: 1px solid #00e5ff;
-            border-radius: 12px;
-            padding: 24px;
-            width: 100%;
-            max-width: 500px;
-            text-align: left;
-            box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
-        }
-        .modal-title {
-            font-size: 16px;
-            color: #00e5ff;
-            margin-bottom: 12px;
+        .sync-title {
+            font-size: 13.5px;
+            color: #00bcd4;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
             font-weight: bold;
         }
-        .modal-desc {
-            font-size: 12px;
-            color: #90a4ae;
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-        .modal-input {
-            width: 100%;
-            background: #030609;
-            border: 1px solid #1e3a4c;
-            color: #e0f7fa;
-            padding: 10px;
-            border-radius: 6px;
-            font-family: inherit;
-            font-size: 12px;
-            margin-bottom: 16px;
-            resize: vertical;
-            height: 80px;
-        }
-        .modal-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-        }
-        .btn {
-            background: #071018;
-            border: 1px solid #00e5ff;
-            color: #00e5ff;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        .btn-primary {
-            background: #00e5ff;
-            color: #03080d;
-        }
-        .wallet-info {
+        .sync-subtitle {
             font-size: 11px;
             color: #546e7a;
-            margin-top: 10px;
-            word-break: break-all;
+            margin-bottom: 14px;
+        }
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        .module-card {
+            background: #071018;
+            border: 1px solid #183044;
+            padding: 10px 6px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .module-card:hover {
+            border-color: #00e5ff;
+            background: #0a1926;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+        .module-num {
+            font-size: 10px;
+            color: #546e7a;
+            margin-bottom: 3px;
+        }
+        .module-name {
+            font-size: 10.5px;
+            color: #e0f7fa;
+            font-weight: bold;
+        }
+        .module-card.active {
+            border-color: #00bcd4;
+            background: #091c2b;
+        }
+        .reset-section {
+            border: 1px solid #102535;
+            padding: 20px 14px;
+            border-radius: 8px;
+            background: rgba(5, 10, 15, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .reset-header {
+            font-size: 11px;
+            color: #546e7a;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+        .reset-title {
+            font-size: 15.5px;
+            color: #e0f7fa;
+            font-weight: bold;
+            text-align: left;
+        }
+        .reset-desc {
+            font-size: 11px;
+            color: #546e7a;
+            line-height: 1.6;
+            text-align: left;
+        }
+        .swipe-container {
+            position: relative;
+            width: 100%;
+            height: 52px;
+            background: #03080d;
+            border: 1px solid rgba(0, 229, 255, 0.35);
+            border-radius: 26px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.05);
+        }
+        .swipe-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-size: 11.5px;
+            color: rgba(0, 229, 255, 0.5);
+            letter-spacing: 2px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .swipe-track-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, rgba(0,229,255,0.15), rgba(0,229,255,0.35));
+            z-index: 2;
+        }
+        .swipe-handle {
+            position: absolute;
+            left: 4px;
+            width: 44px;
+            height: 44px;
+            background: #00e5ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 3;
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.7);
+        }
+        .swipe-handle::after {
+            content: '>>';
+            color: #03080d;
+            font-weight: bold;
+            font-size: 11px;
         }
     </style>
 </head>
@@ -181,240 +398,187 @@
 
     <div class="outer-frame">
         <div class="brand-header">
-            <div class="brand-sub">ABSOLUTE SOVEREIGNTY // BSV FORTRESS</div>
+            <div class="brand-sub">ABSOLUTE SOVEREIGNTY</div>
             <div class="brand-title">QLUX</div>
-            <div class="brand-desc">マシン2マシン / AIマイクロペイメント完全統合プラットフォーム</div>
+            <div class="brand-desc">The Universal Engine of Economic Convergence.<br>あらゆる既存インフラを統括し、個人へ主権を返還する最上位執行レイヤー。</div>
         </div>
 
-        <!-- QLUX ONCHAIN BUTTON -->
-        <div class="main-banner" id="onchainBtn">
+        <div class="mode-tabs">
+            <button class="tab-btn active">👤 個人・独身</button>
+            <button class="tab-btn">👥 カップル・愛</button>
+            <button class="tab-btn">🏢 企業・監査</button>
+            <button class="tab-btn">🎨 クリエイター</button>
+            <button class="tab-btn">💻 デベロッパー</button>
+            <button class="tab-btn">🌐 GLOBAL(EN)</button>
+        </div>
+
+        <div class="main-banner">
             <div class="main-banner-title">QLUX ⚡ ONCHAIN</div>
-            <div class="main-banner-sub">// クリックしてBSVブロックチェーンへ永久凍結・マイクロペイメント実行</div>
+            <div class="main-banner-sub">// 個人の尊厳と全記録を、改ざん不能なブロックチェーンへ永遠に凍結する。</div>
         </div>
 
-        <div class="fortress-panel">
-            <div style="font-size: 12px; color: #00bcd4; margin-bottom: 8px; font-weight: bold;">
-                // FORTRESS STATUS & M2M PIPELINE
+        <div class="feed-ticker">
+            <span class="feed-left">● ONCHAIN FEED:</span>
+            <span>[#000184 - ARCHITECT] "We leave our truth ONCHAIN..." - BSV Mainnet</span>
+        </div>
+
+        <div style="text-align: left;">
+            <div class="section-header-title">ONCHAIN TRUTH REVOLUTION</div>
+            <div class="section-header-desc">いい加減、目を覚ませ。お前が残した「言葉」は、明日もそこに存在すると、本気で思っているのか？</div>
+            <div class="section-body-text" style="margin-top: 8px;">
+                笑わせるな。お前の愛の誓いも、企業の誇る監査ログも、汗水流して取得した特許も、羽を削ったアートも――すべては他人の管理するサーバーの「Deleteキー」一つで、明日には形もなく消え去るか、都合よく書き換えられる沙上の楼閣にすぎない。中央集権の管理者が微笑み、都合の悪い真実を闇に葬るとき、お前の生きた証は一瞬でエラーコードという名のゴミ屑へと成り下がる。
+            </div>
+        </div>
+
+        <div class="top-text">
+            いつまで他人の土俵で、検閲者の顔色を伺いながら犬のリードに繋がれて生きるつもりだ？
+        </div>
+
+        <div class="highlight-cyan">
+            許可はいらない。承認も通さない。
+        </div>
+
+        <div class="desc-text">
+            お前を支配するすべての鎖を断ち切り、中央集権の笥を物理的にへし折れ。
+        </div>
+
+        <div class="sanctuary-box">
+            <div class="sanctuary-title">
+                この腐敗した世界に残された、唯一にして絶対の聖域――<br><span>【ONCHAIN】</span>へ、お前の全存在を叩き込め。
+            </div>
+            <div class="sub-desc">
+                改ざんの余地を宇宙の物理法則レベルで完全にシャットアウトした、地球規模の数学的要塞。<br>それがONCHAINだ。
+            </div>
+        </div>
+
+        <div class="three-lines">
+            消せない。<br>
+            曲げられない。<br>
+            裏切らない。
+        </div>
+
+        <div class="danger-text">
+            権力者のペンをへし折り、データベースの電源を引き抜け。<br>
+            お前の全人生を、今すぐONCHAINへ永久凍結しろ。
+        </div>
+
+        <div class="terminal-panel">
+            <div class="terminal-header">
+                <span>QLUXHUS // HYPER-BURST STREAM</span>
+                <span class="badge-burst">MAX // OVERDRIVE</span>
+            </div>
+            <div class="terminal-sub">
+                &gt;sector: immutability/sovereign/onchain/v12/cryptolock<br>
+                [RoadTech V2.2 Cloud API Connected] [Active Node Embedded]
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">BSV TX</div>
+                    <div class="metric-value">5,421,206</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">THROUGHPUT RATE</div>
+                    <div class="metric-value">104,500,378,787</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">VELOCITY</div>
+                    <div class="metric-value" style="font-size: 10.5px; color: #ff3d00;">ULTRA BURST</div>
+                </div>
             </div>
             <div class="terminal-logs" id="terminalLogs">
-                [SYSTEM] HandCash Cloud API Connected (AppID: 6a798796...)<br>
-                [SYSTEM] Target Legacy Address: 1144ctcReNSuvCKFhWN3VigNJc7AXWdyU6<br>
-                [SYSTEM] 402 Payment Required Gateway Active.<br>
-                [READY] Waiting for payload dispatch...
-            </div>
-            <div class="wallet-info">
-                Connected Token: db01ad39e1f40529f286f11dd4fcd554d097b5d25f55d195fcc086f120eab84f
+                [18:47:32.901] HASHCHAIN SYNC | Target: 0x9b183f | Runtime Status OK<br>
+                [18:47:32.734] HASHCHAIN SYNC | Target: 0x8a902b | Runtime Status OK<br>
+                [18:47:32.804] INRAM ANCHOR | Block Locked | TxID: 0432f90a86af05696d | Total Data: 104.500.372.456<br>
+                [18:47:32.946] TELEDISPATCH | Date: +900 | CMS250: 0xe79a8aba964726e11...<br>
+                [18:47:33.003] INRAM ANCHOR | Block Locked | TxID: 6aa29a8f7b53ea4491f | Total Data: 104.500.373.664<br>
+                [18:47:33.087] PROOF.ZEN | Node Vector Active | GenHash: 5046205edce7f6e07a | Mocool: 40706<br>
+                [18:47:33.094] PROOF.ZEN | Node Vector Active | GenHash: 0e729a8bab9165ea749 | Mocool: 27900<br>
+                [18:47:33.157] HASHCHAIN SYNC | Target: 105500BCTX... | Verified Status OK<br>
+                [18:47:33.034] INRAM ANCHOR | Block Locked | TxID: G715ed533465b2d474e1 | Total Data: 104.500.376.354<br>
+                [18:47:33.046] PROOF.ZEN | Node Vector Active | GenHash: 872a0eb947de51ee7e8 | Mocool: 23376<br>
+                [18:47:33.954] INRAM ANCHOR | Block Locked | TxID: d81af87f54bcf7a52120 | Total Gate: 104.500.377.822<br>
+                [18:47:33.977] TELEDISPATCH | Date: +900 | CMS250: 9a63588e4b0551556066ea...
             </div>
         </div>
-    </div>
 
-    <!-- Modal for Writing to Blockchain -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-content">
-            <div class="modal-title">BSV ONCHAIN FORTRESS DISPATCH</div>
-            <div class="modal-desc">
-                AIエージェント間（M2M）およびマイクロペイメントを介して、入力されたデータをBSVブロックチェーンのOP_RETURN領域に刻み込みます。
+        <div class="sync-section">
+            <div class="sync-title">GLOBAL SYNCHRONIZATION</div>
+            <div class="sync-subtitle">地球規模の同期を担保する12のコア・モジュール。</div>
+            <div class="modules-grid">
+                <a href="qluxwallet.html" class="module-card">
+                    <span class="module-num">01</span>
+                    <span class="module-name">qluxwallet</span>
+                </a>
+                <a href="cockpit.html" class="module-card active">
+                    <span class="module-num">01</span>
+                    <span class="module-name">QLUXPRIME</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">04</span>
+                    <span class="module-name">FLOW</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">05</span>
+                    <span class="module-name">AXIOM</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">06</span>
+                    <span class="module-name">LOGIC</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">07</span>
+                    <span class="module-name">PRIME</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">08</span>
+                    <span class="module-name">OMEGA</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">09</span>
+                    <span class="module-name">VOID</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">10</span>
+                    <span class="module-name">ZEN</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">11</span>
+                    <span class="module-name">TRUE</span>
+                </a>
+                <a href="cockpit.html" class="module-card">
+                    <span class="module-num">12</span>
+                    <span class="module-name">CORE</span>
+                </a>
             </div>
-            <textarea class="modal-input" id="payloadInput" placeholder="ブロックチェーンに書き込むデータまたはプロンプトを入力..."></textarea>
-            <div class="wallet-info" id="statusMsg">
-                HandCash 402 Payment & Broadcast Ready.
+        </div>
+
+        <div class="reset-section">
+            <div class="reset-header">THE ACT OF RESET</div>
+            <div class="reset-title">スワイプ。それは旧世界への「決別」。</div>
+            <div class="reset-desc">
+                中央集権的な「可否」を穿つ時代を終わらせます。スワイプした瞬間、宇宙の物理法則に基づいた言霊があなたの手元へ直納されます。
             </div>
-            <div class="modal-buttons" style="margin-top: 16px;">
-                <button class="btn" id="closeModal">キャンセル</button>
-                <button class="btn btn-primary" id="executeOnchain">ブロックチェーンへ書込 (Execute)</button>
+
+            <div class="swipe-container" id="swipeContainer">
+                <div class="swipe-text">&gt;&gt;&gt; SWIPE TO ENTER COCKPIT &gt;&gt;&gt;</div>
+                <div class="swipe-track-fill" id="swipeFill"></div>
+                <div class="swipe-handle" id="swipeHandle"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // ログ自動生成
+        // 爆速ログ自動生成スクリプト
         const logsContainer = document.getElementById('terminalLogs');
+        const hexChars = '0123456789abcdef';
+        const actions = ['HASHCHAIN SYNC', 'INRAM ANCHOR', 'PROOF.ZEN', 'TELEDISPATCH'];
+
+        function randomHex(len) {
+            let res = '';
+            for(let i=0; i<len; i++) res += hexChars[Math.floor(Math.random() * hexChars.length)];
+            return res;
+        }
+
         setInterval(() => {
             const now = new Date();
-            const timeStr = `[${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}]`;
-            logsContainer.innerHTML += `<br>${timeStr} M2M HEARTBEAT | Node Synchronized | Safe Vector Active`;
-            logsContainer.scrollTop = logsContainer.scrollHeight;
-        }, 3000);
-
-        // モーダル制御
-        const btn = document.getElementById('onchainBtn');
-        const modal = document.getElementById('modalOverlay');
-        const closeBtn = document.getElementById('closeModal');
-        const execBtn = document.getElementById('executeOnchain');
-        const statusMsg = document.getElementById('statusMsg');
-        const payloadInput = document.getElementById('payloadInput');
-
-        btn.addEventListener('click', () => {
-            modal.style.display = 'flex';
-        });
-
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-
-        // 手動・API実行シミュレーション（HandCash 402 & Cloud API連携基盤）
-        execBtn.addEventListener('click', async () => {
-            const text = payloadInput.value.trim();
-            if(!text) {
-                alert('書き込むデータを入力してください。');
-                return;
-            }
-
-            statusMsg.style.color = '#00e5ff';
-            statusMsg.innerText = 'HandCash 402 パスウェイ構築中... マイクロペイメント送信中...';
-
-            setTimeout(() => {
-                statusMsg.innerText = 'BSVブロックチェーンへブロードキャスト成功！要塞へ凍結完了。';
-                logsContainer.innerHTML += `<br>[ONCHAIN SUCCESS] Data locked: "${text.substring(0, 20)}..." -> Addr: 1144ctcReNSuvCKFhWN3VigNJc7AXWdyU6`;
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                    payloadInput.value = '';
-                    statusMsg.innerText = 'HandCash 402 Payment & Broadcast Ready.';
-                }, 1500);
-            }, 1200);
-        });
-    </script>
-</body>
-    /**
- * QLUX⚡️ONCHAIN_CORE - BSV FORTRESS PROTOCOL
- * Version: 2026.08.12
- */
-
-const QLUX_CONFIG = {
-    appId: "6a7987969b239d1da6e89505",
-    authToken: "db01ad39e1f40529f286f11dd4fcd554d097b5d25f55d195fcc086f120eab84f",
-    legacyAddress: "1144ctcReNSuvCKFhWN3VigNJc7AXWdyU6"
-};
-
-class QluxFortress {
-    constructor() {
-        this.handcash = new HandCashCloudConnect({
-            appId: QLUX_CONFIG.appId,
-            authToken: QLUX_CONFIG.authToken
-        });
-    }
-
-    /**
-     * AI/M2M連携：マイクロペイメントを伴うOP_RETURN書込
-     * @param {string} data - ブロックチェーンに刻むデータ
-     */
-    async dispatchToBlockchain(data) {
-        try {
-            console.log("[QLUX CORE] Dispatching to BSV Fortress...");
-
-            // HandCashペイメント構築
-            const payment = {
-                destination: QLUX_CONFIG.legacyAddress,
-                currencyCode: 'BSV',
-                amount: 0.00001, // マイクロペイメント（最小コスト）
-                data: Buffer.from(data).toString('hex') // OP_RETURN用データ
-            };
-
-            const result = await this.handcash.getPayment().pay(payment);
-            
-            console.log("[QLUX CORE] Onchain Transaction Confirmed:", result.transactionId);
-            return { success: true, txId: result.transactionId };
-        } catch (error) {
-            console.error("[QLUX CORE] Fortress Breach:", error);
-            return { success: false, error: error.message };
-        }
-    }
-}
-
-// QLUX⚡️ONCHAIN ボタンイベントの再接続
-document.getElementById('executeOnchain').addEventListener('click', async () => {
-    const data = document.getElementById('payloadInput').value;
-    const fortress = new QluxFortress();
-    
-    // UIを「凍結中」へ変更
-    statusMsg.innerText = "BSV要塞へデータを転送中...";
-    
-    const response = await fortress.dispatchToBlockchain(data);
-    
-    if(response.success) {
-        statusMsg.innerText = `[SUCCESS] 永久凍結完了: ${response.txId}`;
-        // 要塞ログへ流し込む
-        logsContainer.innerHTML += `<br>[BSV FORTRESS] TX: ${response.txId.substring(0,10)}... | M2M Data Locked`;
-    } else {
-        statusMsg.innerText = `[ERROR] 要塞防壁により拒否されました: ${response.error}`;
-    }
-});
-    // 報酬自動化プロトコル (Revenue Loop)
-async function executeAutonomousRewardLoop(payload) {
-    // 1. AIプロセッシング + マイクロペイメント徴収
-    const fee = 0.00005; // 収益設定
-    const response = await fortress.dispatchToBlockchain(payload);
-    
-    // 2. 成功報酬の即時再投資 or プール
-    if(response.success) {
-        await fortress.collectReward(fee);
-        return { status: "PROFIT_SECURED", tx: response.txId };
-    }
-}
-/**
- * 高速・自律報酬回収エンジン
- */
-class RevenueEngine {
-    constructor() {
-        this.buffer = 0;
-        this.threshold = 0.01; // 0.01 BSV貯まるごとにウォレットへ自動掃き出し
-    }
-
-    async processRevenue(txId) {
-        // 1. 収益をバッファに追加
-        this.buffer += await this.calculateProfit(txId);
-        
-        // 2. 閾値を超えたら自動掃き出し（放置稼働）
-        if (this.buffer >= this.threshold) {
-            await this.sweepToVault();
-            this.buffer = 0;
-        }
-    }
-}
-
-// 放置稼働のためのAIエージェントループ
-async function runFortressFortress() {
-    while (true) {
-        // [核] 市場データ解析 -> 価値あるデータの生成 -> BSV書込
-        const opportunity = await AI.scanMarketInefficiency();
-        
-        if (opportunity.confidence > 0.95) {
-            const data = await AI.generateValue(opportunity);
-            await fortress.dispatchToBlockchain(data);
-            console.log("[FORTRESS] 自動収益パイプライン実行中...");
-        }
-        
-        // 爆速維持のため、リクエスト間隔を最小化
-        await new Promise(r => setTimeout(r, 100)); 
-    }
-}
-// [1] qlux_daemon.js - 放置稼働のための自律収益エンジン
-const { FortressCore } = require('./qlux_fortress_core');
-const fortress = new FortressCore();
-
-async function runAutonomousEngine() {
-    console.log("QLUX⚡️ONCHAIN: 自律収益要塞、起動。");
-    while (true) {
-        try {
-            // 世界一のロジック：市場データのスキャンとアービトラージ判定
-            const opportunity = await fortress.scanMarketInefficiency();
-            
-            if (opportunity.isProfitable) {
-                const payload = await fortress.generateValue(opportunity);
-                const result = await fortress.dispatchToBlockchain(payload);
-                
-                if (result.success) {
-                    await fortress.collectReward(); // 報酬の自動回収
-                    console.log(`[PROFIT] 収益回収完了: TXID ${result.txId}`);
-                }
-            }
-        } catch (e) {
-            console.error("[ERROR] 要塞の防壁内でエラー: 再起動中...", e.message);
-        }
-        await new Promise(r => setTimeout(r, 200)); // 爆速ルーティング待機
-    }
-}
-runAutonomousEngine();
-
-</html>
-
+            const timeStr = `[${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}
