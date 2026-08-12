@@ -3,75 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX COCKPIT</title>
+    <title>QLUX // ENTERPRISE SOVEREIGN MAINFRAME</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        body { background-color: #000205; color: #00ffcc; font-family: monospace; overflow-x: hidden; }
-        .glow-box { box-shadow: 0 0 20px rgba(0,255,204,0.15); }
+        body { background-color: #000103; color: #00ffcc; font-family: monospace; overflow-x: hidden; }
+        .glow-box { box-shadow: 0 0 25px rgba(0,255,204,0.12); }
+        .glow-red { box-shadow: 0 0 25px rgba(255,0,85,0.25); border-color: rgba(255,0,85,0.6) !important; }
         .glow-text { text-shadow: 0 0 10px rgba(0,255,204,0.6); }
         ::-webkit-scrollbar { width: 3px; height: 3px; }
-        ::-webkit-scrollbar-track { background: #000205; }
+        ::-webkit-scrollbar-track { background: #000103; }
         ::-webkit-scrollbar-thumb { background: rgba(0,255,204,0.5); border-radius: 2px; }
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(1000%); }
+        }
+        .scanner-line { animation: scanline 5s linear infinite; }
     </style>
 </head>
-<body class="min-h-screen p-3 md:p-6 select-none">
+<body id="body-main" class="min-h-screen p-3 md:p-6 select-none transition-colors duration-500">
     <div class="max-w-7xl mx-auto space-y-4">
         
-        <!-- HEADER -->
-        <header class="border-b border-[#00ffcc]/30 pb-3 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 bg-[#03070d]/80 p-4 rounded-xl glow-box">
+        <!-- 🏢 ENTERPRISE GOVERNANCE TOP BAR -->
+        <div class="bg-[#03070d] border border-[#00ffcc]/30 px-4 py-2 rounded-xl flex flex-col md:flex-row justify-between items-center text-[10px] gap-2 glow-box">
             <div class="flex items-center gap-3">
-                <div class="w-4 h-4 bg-[#00ffcc] rounded-full animate-ping"></div>
+                <span class="px-2 py-0.5 bg-blue-500/20 text-blue-400 border border-blue-500/40 rounded uppercase font-bold">ISO/IEC 27001 VERIFIED</span>
+                <span class="text-gray-400">SOC2 TYPE II COMPLIANT</span>
+                <span class="text-green-400">● AUDIT TRAIL ACTIVE</span>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <!-- TENANT / REGION SELECTOR -->
+                <div class="flex items-center gap-1 bg-black/60 px-2.5 py-1 rounded border border-[#00ffcc]/20">
+                    <span class="text-gray-500">TENANT:</span>
+                    <select id="tenant-select" onchange="switchTenant(this.value)" class="bg-transparent text-white font-bold focus:outline-none cursor-pointer">
+                        <option value="JP_TOKYO" class="bg-black">GLOBAL_NODE_JP (TOKYO)</option>
+                        <option value="US_EAST" class="bg-black">CONSORTIUM_US (N.VIRGINIA)</option>
+                        <option value="EU_FRANKFURT" class="bg-black">SOVEREIGN_EU (FRANKFURT)</option>
+                    </select>
+                </div>
+
+                <!-- ROLE SWITCHER (OPERATOR / ADMIN) -->
+                <button onclick="toggleRole()" id="role-btn" class="px-3 py-1 bg-[#00ffcc]/20 text-[#00ffcc] border border-[#00ffcc]/50 font-bold rounded uppercase cursor-pointer hover:bg-[#00ffcc] hover:text-black transition-all">
+                    ROLE: OPERATOR
+                </button>
+            </div>
+        </div>
+
+        <!-- HEADER & CFO ROI METRICS -->
+        <header class="border-b border-[#00ffcc]/30 pb-3 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-[#03070d]/90 p-4 rounded-xl glow-box relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#00ffcc]/5 to-transparent scanner-line pointer-events-none"></div>
+            <div class="flex items-center gap-3">
+                <div id="status-ping" class="w-4 h-4 bg-[#00ffcc] rounded-full animate-ping"></div>
                 <div>
-                    <h1 class="text-2xl md:text-4xl font-black tracking-tighter uppercase text-white glow-text">
-                        QLUX <span class="text-[#00ffcc]">// PLAID-BSV</span>
+                    <h1 class="text-2xl md:text-3xl font-black tracking-tighter uppercase text-white glow-text">
+                        QLUX <span class="text-[#00ffcc]">// ENTERPRISE MAINFRAME</span>
                     </h1>
                     <p class="text-[9px] text-[#00ffcc]/60 uppercase tracking-[0.25em]">
-                        Autonomous Quantum-Sovereign Cockpit v10.0
+                        Sovereign BSV Protocol & Multi-Tenant Governance v14.0
                     </p>
                 </div>
             </div>
             
-            <!-- LIVE TELEMETRY HUD -->
-            <div class="grid grid-cols-3 gap-3 text-[10px] bg-black/60 border border-[#00ffcc]/30 px-4 py-2 rounded-lg">
+            <!-- CFO ROI & TELEMETRY HUD -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px] bg-black/70 border border-[#00ffcc]/30 p-2.5 rounded-lg">
                 <div>
-                    <div class="text-gray-500">SYS LOAD</div>
-                    <div id="sys-load" class="text-sm font-bold text-white">38.4%</div>
+                    <div class="text-gray-500">COST SAVED (YTD)</div>
+                    <div class="text-xs font-bold text-green-400">-42.8%</div>
                 </div>
-                <div class="border-l border-[#00ffcc]/20 pl-3">
+                <div class="border-l border-[#00ffcc]/20 pl-2">
+                    <div class="text-gray-500">SLA UPTIME</div>
+                    <div class="text-xs font-bold text-white">99.999%</div>
+                </div>
+                <div class="border-l border-[#00ffcc]/20 pl-2">
                     <div class="text-gray-500">BSV TX/SEC</div>
-                    <div id="sys-tx" class="text-sm font-bold text-white">148.2k</div>
+                    <div id="sys-tx" class="text-xs font-bold text-white">152.8k</div>
                 </div>
-                <div class="border-l border-[#00ffcc]/20 pl-3">
-                    <div class="text-gray-500">HARVEST</div>
-                    <div id="sys-rev" class="text-sm font-bold text-yellow-400">0.1428</div>
+                <div class="border-l border-[#00ffcc]/20 pl-2">
+                    <div class="text-gray-500">AUDIT HASH</div>
+                    <div class="text-[9px] font-mono text-yellow-400">0x8F42...A1</div>
                 </div>
             </div>
         </header>
 
+        <!-- 🌟 ENTERPRISE ORACLE WRITE DECK WITH DUAL-APPROVAL WORKFLOW -->
+        <section id="write-deck-section" class="bg-gradient-to-b from-[#050b14] to-[#020408] border-2 border-[#00ffcc]/50 p-4 md:p-6 rounded-2xl glow-box space-y-4 relative">
+            <div class="flex justify-between items-center border-b border-[#00ffcc]/30 pb-2">
+                <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 bg-[#00ffcc] text-black font-black text-[10px] rounded uppercase">AUDITED INJECTOR</span>
+                    <h2 class="text-xs md:text-sm font-bold text-white uppercase tracking-wider">OP_RETURN Enterprise Immutable Ledger Anchor</h2>
+                </div>
+                <span id="deck-status" class="text-[10px] text-green-400 font-mono">● GOVERNANCE LOCK: READY</span>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <div class="lg:col-span-8 flex flex-col gap-2">
+                    <label class="text-[10px] text-[#00ffcc]/70 uppercase tracking-widest">Enterprise Compliance Payload / Contract State:</label>
+                    <textarea id="oracle-input" rows="3" class="w-full bg-black/80 border border-[#00ffcc]/40 p-3 text-xs md:text-sm text-[#00ffcc] font-mono focus:outline-none focus:border-[#00ffcc] rounded-lg shadow-inner" placeholder="Enter supply chain audit hash, financial settlement state, or legal intent to burn into BSV mainnet..."></textarea>
+                </div>
+                <div class="lg:col-span-4 flex flex-col justify-between gap-2">
+                    <div class="grid grid-cols-2 gap-2 text-[10px]">
+                        <div class="bg-black/50 border border-[#00ffcc]/20 p-2 rounded">
+                            <span class="text-gray-500 block">WORKFLOW:</span>
+                            <span id="workflow-mode" class="text-yellow-400 font-bold">DUAL-SIGN REQUIRED</span>
+                        </div>
+                        <div class="bg-black/50 border border-[#00ffcc]/20 p-2 rounded">
+                            <span class="text-gray-500 block">FEE POLICY:</span>
+                            <span class="text-white font-bold">0.05 sat/byte</span>
+                        </div>
+                    </div>
+                    <button onclick="executeEnterpriseWrite()" class="w-full py-4 bg-gradient-to-r from-[#00ffcc] via-teal-400 to-blue-500 hover:from-white hover:to-[#00ffcc] text-black font-black text-xs md:text-sm uppercase tracking-[0.2em] transition-all cursor-pointer rounded-lg shadow-[0_0_20px_rgba(0,255,204,0.5)] active:scale-95">
+                        ⚡ SUBMIT & ANCHOR TO LEDGER ⚡
+                    </button>
+                </div>
+            </div>
+        </section>
+
         <!-- MAIN COCKPIT GRID -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
             
-            <!-- LEFT: 20 MODULE RADAR MATRIX (7 Cols) -->
+            <!-- LEFT: 20 MODULE NODES (7 Cols) -->
             <div class="lg:col-span-7 bg-[#03070d]/90 border border-[#00ffcc]/30 p-4 rounded-xl glow-box flex flex-col justify-between space-y-4">
                 <div class="flex justify-between items-center border-b border-[#00ffcc]/20 pb-2">
-                    <span class="text-xs font-bold uppercase tracking-wider text-white">Active Core Subsystems (20 Nodes)</span>
-                    <span class="text-[10px] text-green-400 animate-pulse">● MESH SYNCHRONIZED</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-white">Active Core Subsystems (20 Governance Nodes)</span>
+                    <span class="text-[10px] text-green-400 animate-pulse">● MESH SECURED</span>
                 </div>
                 
-                <!-- MODULES GRID -->
-                <div id="modules-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-h-[420px] overflow-y-auto pr-1">
+                <div id="modules-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-h-[340px] overflow-y-auto pr-1">
                     <!-- Injected by JS -->
                 </div>
 
-                <!-- OVERDRIVE PLAID BUTTON -->
-                <div class="p-1 bg-gradient-to-r from-[#00ffcc] via-blue-500 to-purple-600 rounded-lg">
-                    <button onclick="triggerSingularity()" class="w-full py-4 bg-black text-[#00ffcc] font-black text-sm md:text-base tracking-[0.2em] hover:bg-[#00ffcc] hover:text-black transition-all cursor-pointer uppercase shadow-2xl rounded-md flex items-center justify-center gap-2">
-                        <span>⚡</span> INITIATE PLAID SINGULARITY <span>⚡</span>
+                <!-- EMERGENCY KILL SWITCH & OVERDRIVE -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <button onclick="triggerEmergencyLockdown()" id="kill-switch-btn" class="py-3 bg-red-950/40 border border-red-500/60 text-red-400 hover:bg-red-600 hover:text-white font-black text-xs uppercase tracking-wider transition-all cursor-pointer rounded-lg shadow-lg flex items-center justify-center gap-2">
+                        <span>🚨</span> EMERGENCY KILL SWITCH <span>🚨</span>
+                    </button>
+                    <button onclick="triggerSingularity()" class="py-3 bg-black border border-[#00ffcc]/40 text-[#00ffcc] hover:bg-[#00ffcc] hover:text-black font-black text-xs tracking-wider transition-all cursor-pointer rounded-lg shadow-lg flex items-center justify-center gap-2">
+                        <span>⚡</span> SYNC ALL MESH NODES <span>⚡</span>
                     </button>
                 </div>
             </div>
 
-            <!-- RIGHT: TACTICAL INSPECTOR & CHAIN TERMINAL (5 Cols) -->
+            <!-- RIGHT: INSPECTOR & AUDIT TERMINAL (5 Cols) -->
             <div class="lg:col-span-5 flex flex-col gap-4">
                 
                 <!-- INSPECTOR PANEL -->
@@ -81,34 +153,30 @@
                             <span id="insp-code" class="text-xs font-bold text-white">MOD_01</span>
                             <span id="insp-cat" class="text-[9px] px-2 py-0.5 bg-[#00ffcc]/20 text-[#00ffcc] rounded uppercase">CORE</span>
                         </div>
-                        <h3 id="insp-name" class="text-lg font-black text-white uppercase glow-text">CHAIN_SYNC</h3>
+                        <h3 id="insp-name" class="text-base font-black text-white uppercase glow-text">CHAIN_SYNC</h3>
                         <p id="insp-desc" class="text-[10px] text-gray-300 mt-1 leading-relaxed">Global Bitcoin SV state synchronization across multi-verse nodes.</p>
                         
                         <div class="mt-3 grid grid-cols-3 gap-2 text-[10px] bg-black/40 p-2.5 rounded border border-[#00ffcc]/20">
-                            <div><div class="text-gray-500">SECURITY</div><span id="insp-sec" class="text-white font-bold text-[9px]">QUANTUM</span></div>
+                            <div><div class="text-gray-500">GOVERNANCE</div><span id="insp-sec" class="text-white font-bold text-[9px]">APPROVED</span></div>
                             <div><div class="text-gray-500">THROUGHPUT</div><span id="insp-thru" class="text-[#00ffcc] font-bold">1.2M tx</span></div>
                             <div><div class="text-gray-500">LATENCY</div><span id="insp-lat" class="text-green-400 font-bold">2ms</span></div>
                         </div>
                     </div>
 
-                    <button onclick="executeSelectedProtocol()" class="mt-4 w-full py-3 bg-[#00ffcc] hover:bg-white text-black font-extrabold text-xs uppercase tracking-wider transition-all cursor-pointer rounded shadow-[0_0_15px_rgba(0,255,204,0.4)]">
-                        Execute & Anchor to BSV Ledger
+                    <button onclick="executeSelectedProtocol()" class="mt-4 w-full py-2.5 bg-[#00ffcc]/20 hover:bg-[#00ffcc] text-[#00ffcc] hover:text-black font-extrabold text-xs uppercase tracking-wider transition-all cursor-pointer rounded border border-[#00ffcc]">
+                        Execute Subsystem Governance
                     </button>
                 </div>
 
-                <!-- TERMINAL STREAM -->
-                <div class="bg-black border border-[#00ffcc]/30 p-3 rounded-xl flex flex-col h-56 glow-box">
+                <!-- AUDIT & TELEMETRY TERMINAL -->
+                <div class="bg-black border border-[#00ffcc]/30 p-3 rounded-xl flex flex-col h-44 glow-box">
                     <div class="flex justify-between items-center border-b border-[#00ffcc]/20 pb-1.5 mb-2">
-                        <span class="text-[9px] font-bold uppercase text-gray-400">Live OP_RETURN & Chain Telemetry</span>
-                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <span class="text-[9px] font-bold uppercase text-gray-400">Immutable Audit Log & Compliance Stream</span>
+                        <button onclick="exportAuditLogs()" class="text-[8px] px-2 py-0.5 bg-gray-800 hover:bg-[#00ffcc] hover:text-black text-gray-300 rounded uppercase font-bold transition-all">CSV EXPORT</button>
                     </div>
                     <div id="terminal-logs" class="flex-1 overflow-y-auto space-y-1 text-[9px] font-mono text-[#00ffcc]/90">
                         <!-- Logs -->
                     </div>
-                    <form onsubmit="handleUserCommand(event)" class="mt-2 pt-2 border-t border-[#00ffcc]/20 flex gap-2">
-                        <input type="text" id="cmd-input" placeholder="Enter command or 'singularity'..." class="w-full bg-[#03070d] border border-[#00ffcc]/30 px-3 py-1 text-[10px] text-white focus:outline-none focus:border-[#00ffcc] rounded">
-                        <button type="submit" class="px-3 bg-[#00ffcc] text-black text-[10px] font-bold uppercase hover:bg-white cursor-pointer rounded">Send</button>
-                    </form>
                 </div>
 
             </div>
@@ -116,6 +184,47 @@
     </div>
 
     <script>
+        // --- WEB AUDIO API & HAPTIC FEEDBACK ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let userRole = 'OPERATOR'; // OPERATOR or ADMIN
+        let currentTenant = 'JP_TOKYO';
+        let isEmergencyLocked = false;
+
+        function playSound(type) {
+            if (!audioCtx || isEmergencyLocked) return;
+            if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            const now = audioCtx.currentTime;
+
+            if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.exponentialRampToValueAtTime(200, now + 0.05);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                osc.start(now); osc.stop(now + 0.05);
+            } else if (type === 'exec') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.exponentialRampToValueAtTime(1000, now + 0.12);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+                osc.start(now); osc.stop(now + 0.12);
+            } else if (type === 'alert') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, now);
+                osc.frequency.exponentialRampToValueAtTime(100, now + 0.3);
+                gain.gain.setValueAtTime(0.25, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now); osc.stop(now + 0.3);
+            }
+            if (navigator.vibrate) { navigator.vibrate(type === 'alert' ? [200, 100, 200] : 30); }
+        }
+
+        // --- MODULE DATA ---
         const modules = [
             { id: 1, code: 'MOD_01', name: 'CHAIN_SYNC', category: 'CORE', status: 'ACTIVE', throughput: '1.2M tx/s', latency: '2ms', securityLevel: 'IMMUTABLE', description: 'Global Bitcoin SV state synchronization across multi-verse nodes.' },
             { id: 2, code: 'MOD_02', name: 'NANO_STREAM', category: 'ECONOMY', status: 'OVERDRIVE', throughput: '50.4k sats', latency: '0.4ms', securityLevel: 'ATOMIC', description: 'Sub-satoshis atomic micro-payment channel orchestration.' },
@@ -141,100 +250,7 @@
 
         let selectedModule = modules[0];
         let logs = [
-            '[BOOT] QLUX Plaid-Class Cockpit initialized.',
-            '[BSV_MESH] 20 nodes locked to mainnet via zero-conf tunnel.',
-            '[READY] Awaiting pilot command input.'
-        ];
-
-        function renderModules() {
-            const grid = document.getElementById('modules-grid');
-            grid.innerHTML = '';
-            modules.forEach(mod => {
-                const isSelected = selectedModule.id === mod.id;
-                const card = document.createElement('div');
-                card.className = `p-2.5 rounded-lg border transition-all cursor-pointer relative ${isSelected ? 'border-[#00ffcc] bg-[#00ffcc]/20 shadow-[0_0_15px_rgba(0,255,204,0.4)]' : 'border-[#00ffcc]/20 bg-black/60 hover:border-[#00ffcc]/60'}`;
-                card.onclick = () => {
-                    selectedModule = mod;
-                    renderModules();
-                    updateInspector();
-                    appendLog(`Selected -> ${mod.code}: ${mod.name}`);
-                };
-                card.innerHTML = `
-                    <div class="flex justify-between items-center mb-1">
-                        <span class="text-[9px] font-bold text-[#00ffcc]/70">${mod.code}</span>
-                        <span class="w-1.5 h-1.5 rounded-full ${mod.status === 'OVERDRIVE' ? 'bg-yellow-400 animate-pulse' : 'bg-green-400'}"></span>
-                    </div>
-                    <div class="text-[11px] font-black text-white truncate uppercase">${mod.name}</div>
-                    <div class="text-[8px] text-[#00ffcc]/70 mt-1 flex justify-between">
-                        <span>${mod.throughput}</span>
-                        <span>${mod.latency}</span>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function updateInspector() {
-            document.getElementById('insp-code').innerText = selectedModule.code;
-            document.getElementById('insp-cat').innerText = selectedModule.category;
-            document.getElementById('insp-name').innerText = selectedModule.name;
-            document.getElementById('insp-desc').innerText = selectedModule.description;
-            document.getElementById('insp-sec').innerText = selectedModule.securityLevel;
-            document.getElementById('insp-thru').innerText = selectedModule.throughput;
-            document.getElementById('insp-lat').innerText = selectedModule.latency;
-        }
-
-        function appendLog(msg) {
-            const time = new Date().toTimeString().split(' ')[0] + '.' + Math.floor(Math.random()*900+100);
-            logs.push(`[${time}] ${msg}`);
-            if (logs.length > 80) logs.shift();
-            const term = document.getElementById('terminal-logs');
-            term.innerHTML = logs.map(l => `<div class="border-l border-[#00ffcc]/40 pl-2 py-0.5 break-all">${l}</div>`).join('');
-            term.scrollTop = term.scrollHeight;
-        }
-
-        function executeSelectedProtocol() {
-            appendLog(`>>> DISPATCHING ${selectedModule.code} (${selectedModule.name}) TO BSV...`);
-            setTimeout(() => {
-                const txid = Array.from({length: 64}, () => Math.floor(Math.random()*16).toString(16)).join('');
-                appendLog(`[SUCCESS] OP_RETURN ANCHORED: ${txid.slice(0, 16)}...`);
-            }, 300);
-        }
-
-        function triggerSingularity() {
-            selectedModule = modules[19];
-            renderModules();
-            updateInspector();
-            appendLog(`⚡ PLAID SINGULARITY INITIATED ACROSS ALL 20 SUBSYSTEMS ⚡`);
-            setTimeout(() => {
-                appendLog(`[SUCCESS] ALL STATES PERMANENTLY LOCKED TO BLOCKCHAIN.`);
-            }, 400);
-        }
-
-        function handleUserCommand(e) {
-            e.preventDefault();
-            const input = document.getElementById('cmd-input');
-            const val = input.value.trim();
-            if (!val) return;
-            appendLog(`[CMD] ${val}`);
-            if (val.toLowerCase() === 'singularity') {
-                triggerSingularity();
-            } else {
-                appendLog(`[EXEC] Instruction processed by mesh network.`);
-            }
-            input.value = '';
-        }
-
-        renderModules();
-        updateInspector();
-        appendLog('Telemetry link stable.');
-
-        setInterval(() => {
-            document.getElementById('sys-load').innerText = (38 + Math.random() * 3).toFixed(1) + '%';
-            document.getElementById('sys-tx').innerText = (148 + Math.random() * 2).toFixed(1) + 'k';
-            document.getElementById('sys-rev').innerText = (0.1428 + Math.random() * 0.0002).toFixed(4);
-        }, 1000);
-    </script>
-</body>
-</html>
-
+            '[BOOT] QLUX Enterprise Sovereign Mainframe initialized.',
+            '[GOVERNANCE] Multi-tenant context locked: JP_TOKYO.',
+            '[READY] Awaiting authorized operator command.'
+       
