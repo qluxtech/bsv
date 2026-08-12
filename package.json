@@ -7,11 +7,10 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@handcash/cloud-sdk": "^2.0.0",
+    "axios": "^1.6.0",
     "express": "^4.19.2"
   },
   "engines": {
     "node": ">=18.0.0"
   }
 }
-
