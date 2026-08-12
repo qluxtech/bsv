@@ -9,6 +9,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            user-select: none;
         }
         body {
             background-color: #050a0f;
@@ -27,6 +28,7 @@
             flex-direction: column;
             gap: 25px;
             text-align: center;
+            padding-bottom: 40px;
         }
         .top-text {
             font-size: 13px;
@@ -209,23 +211,81 @@
             padding: 25px 15px;
             border-radius: 6px;
             background: rgba(5, 10, 15, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
         .reset-header {
             font-size: 10px;
             color: #546e7a;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            text-align: left;
         }
         .reset-title {
             font-size: 15px;
             color: #e0f7fa;
             font-weight: bold;
-            margin-bottom: 12px;
+            text-align: left;
         }
         .reset-desc {
             font-size: 10px;
             color: #546e7a;
             line-height: 1.6;
+            text-align: left;
+        }
+
+        /* Swipe Action Button */
+        .swipe-container {
+            position: relative;
+            width: 100%;
+            height: 54px;
+            background: #03080d;
+            border: 1px solid #00e5ff44;
+            border-radius: 27px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
+        }
+        .swipe-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-size: 11px;
+            color: #00e5ff88;
+            letter-spacing: 2px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .swipe-track-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, rgba(0,229,255,0.1), rgba(0,229,255,0.3));
+            z-index: 2;
+        }
+        .swipe-handle {
+            position: absolute;
+            left: 3px;
+            width: 48px;
+            height: 48px;
+            background: #00e5ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 3;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+            transition: background 0.2s;
+        }
+        .swipe-handle::after {
+            content: '>>';
+            color: #03080d;
+            font-weight: bold;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -310,7 +370,7 @@
             </div>
         </div>
 
-        <!-- 9. Global Synchronization Modules (Clicking any of these leads to the Cockpit!) -->
+        <!-- 9. Global Synchronization Modules -->
         <div class="sync-section">
             <div class="sync-title">GLOBAL SYNCHRONIZATION</div>
             <div class="sync-subtitle">地球規模の同期を担保する12のコア・モジュール。</div>
@@ -362,16 +422,91 @@
             </div>
         </div>
 
-        <!-- 10. The Act of Reset -->
+        <!-- 10. The Act of Reset & Swipe Button -->
         <div class="reset-section">
             <div class="reset-header">THE ACT OF RESET</div>
             <div class="reset-title">スワイプ。それは旧世界への「決別」。</div>
             <div class="reset-desc">
                 中央集権的な「可否」を穿つ時代を終わらせます。スワイプした瞬間、宇宙の物理法則に基づいた言霊があなたの手元へ直納されます。
             </div>
+
+            <!-- Swipe Action Component -->
+            <div class="swipe-container" id="swipeContainer">
+                <div class="swipe-text">&gt;&gt;&gt; SWIPE TO ENTER COCKPIT &gt;&gt;&gt;</div>
+                <div class="swipe-track-fill" id="swipeFill"></div>
+                <div class="swipe-handle" id="swipeHandle"></div>
+            </div>
         </div>
     </div>
 
+    <script>
+        const container = document.getElementById('swipeContainer');
+        const handle = document.getElementById('swipeHandle');
+        const fill = document.getElementById('swipeFill');
+
+        let isDragging = false;
+        let startX = 0;
+        let maxSwipeWidth = 0;
+
+        function initSwipe() {
+            maxSwipeWidth = container.clientWidth - handle.clientWidth - 6;
+        }
+
+        window.addEventListener('resize', initSwipe);
+        initSwipe();
+
+        function startDrag(e) {
+            isDragging = true;
+            startX = (e.touches ? e.touches[0].clientX : e.clientX) - handle.offsetLeft;
+            document.addEventListener('mousemove', onDrag);
+            document.addEventListener('mouseup', stopDrag);
+            document.addEventListener('touchmove', onDrag);
+            document.addEventListener('touchend', stopDrag);
+        }
+
+        function onDrag(e) {
+            if (!isDragging) return;
+            const currentX = (e.touches ? e.touches[0].clientX : e.clientX);
+            let moveX = currentX - startX;
+
+            if (moveX < 3) moveX = 3;
+            if (moveX > maxSwipeWidth) moveX = maxSwipeWidth;
+
+            handle.style.left = moveX + 'px';
+            const progress = (moveX / maxSwipeWidth) * 100;
+            fill.style.width = progress + '%';
+
+            if (moveX >= maxSwipeWidth - 5) {
+                isDragging = false;
+                handle.style.background = '#00ffcc';
+                document.body.style.opacity = '0.3';
+                setTimeout(() => {
+                    window.location.href = 'cockpit.html';
+                }, 300);
+            }
+        }
+
+        function stopDrag() {
+            if (!isDragging) return;
+            isDragging = false;
+            handle.style.transition = 'left 0.3s ease';
+            fill.style.transition = 'width 0.3s ease';
+            handle.style.left = '3px';
+            fill.style.width = '0%';
+            setTimeout(() => {
+                handle.style.transition = 'none';
+                fill.style.transition = 'none';
+            }, 300);
+
+            document.removeEventListener('mousemove', onDrag);
+            document.removeEventListener('mouseup', stopDrag);
+            document.removeEventListener('touchmove', onDrag);
+            document.removeEventListener('touchend', stopDrag);
+        }
+
+        handle.addEventListener('mousedown', startDrag);
+        handle.addEventListener('touchstart', startDrag);
+    </script>
 </body>
 </html>
 
