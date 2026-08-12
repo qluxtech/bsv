@@ -1,5 +1,5 @@
 const express = require('express');
-const { HandCashCloudConnect } = require('@handcash/cloud-sdk');
+const axios = require('axios');
 
 const app = express();
 app.use(express.json());
@@ -7,15 +7,11 @@ app.use(express.json());
 const QLUX_CONFIG = {
     appId: process.env.APP_ID,
     authToken: process.env.AUTH_TOKEN,
-    legacyAddress: process.env.VAULT_ADDRESS
+    legacyAddress: process.env.VAULT_ADDRESS,
+    apiBaseUrl: 'https://cloud.handcash.io/v2'
 };
 
-const handcash = new HandCashCloudConnect({
-    appId: QLUX_CONFIG.appId,
-    authToken: QLUX_CONFIG.authToken
-});
-
-// フロントエンド画面の配信
+// フロントエンド画面の配信（余計なバックエンドコードは一切含めない綺麗なHTML）
 app.get('/', (req, res) => {
     res.send(`<!DOCTYPE html>
 <html lang="ja">
@@ -50,7 +46,7 @@ app.get('/', (req, res) => {
         </div>
         <div style="background: #030609; border: 1px solid #1e3a4c; border-radius: 8px; padding: 14px; text-align: left;">
             <div class="terminal-logs" id="terminalLogs">
-                [SYSTEM] Web Service Online & HandCash 402 Gateway Active.<br>
+                [SYSTEM] Web Service Online & Direct REST Gateway Active.<br>
                 [READY] Waiting for payload dispatch...
             </div>
         </div>
@@ -82,7 +78,7 @@ app.get('/', (req, res) => {
             const data = payloadInput.value.trim();
             if(!data) { alert('データを入力してください'); return; }
             statusMsg.style.color = '#00e5ff';
-            statusMsg.innerText = 'HandCash 402 マイクロペイメント処理中...';
+            statusMsg.innerText = 'HandCash API マイクロペイメント処理中...';
 
             try {
                 const res = await fetch('/api/dispatch', {
@@ -93,7 +89,7 @@ app.get('/', (req, res) => {
                 const result = await res.json();
                 if(result.success) {
                     statusMsg.innerText = '永久凍結成功！';
-                    logsContainer.innerHTML += \`<br>[SUCCESS] TX: \${result.txId}\`;
+                    logsContainer.innerHTML += '<br>[SUCCESS] TX: ' + result.txId;
                     setTimeout(() => { modal.style.display = 'none'; payloadInput.value = ''; }, 1500);
                 } else {
                     statusMsg.style.color = '#ff5252';
@@ -109,21 +105,34 @@ app.get('/', (req, res) => {
 </html>`);
 });
 
-// オンチェーン書込APIエンドポイント
+// バックエンドAPIエンドポイント
 app.post('/api/dispatch', async (req, res) => {
     try {
         const { data } = req.body;
-        const paymentParameters = {
-            destination: QLUX_CONFIG.legacyAddress,
-            currencyCode: 'BSV',
-            amount: 0.00001,
-            data: Buffer.from(data).toString('hex')
-        };
+        
+        const response = await axios.post(
+            `${QLUX_CONFIG.apiBaseUrl}/wallet/payments`,
+            {
+                destination: QLUX_CONFIG.legacyAddress,
+                currencyCode: 'BSV',
+                amount: 0.00001,
+                data: Buffer.from(data).toString('hex')
+            },
+            {
+                headers: {
+                    'oauth-token': QLUX_CONFIG.authToken,
+                    'client-app-id': QLUX_CONFIG.appId,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
 
-        const result = await handcash.getPayment().pay(paymentParameters);
-        res.json({ success: true, txId: result.transactionId });
+        res.json({ success: true, txId: response.data.transactionId || response.data.txId });
     } catch (error) {
-        res.json({ success: false, error: error.message });
+        res.json({ 
+            success: false, 
+            error: error.response?.data?.message || error.message 
+        });
     }
 });
 
@@ -131,4 +140,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`QLUX⚡️ONCHAIN Web Service running on port ${PORT}`);
 });
-
