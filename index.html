@@ -15,23 +15,29 @@
             background-color: #050a0f;
             color: #c0d5e0;
             font-family: 'Courier New', Courier, monospace;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
         }
-        .container {
+        /* 全体を包み込むシアンブルーの外枠・ネオンフレーム */
+        .outer-frame {
             width: 100%;
-            max-width: 600px;
+            max-width: 620px;
+            border: 1px solid rgba(0, 229, 255, 0.4);
+            border-radius: 12px;
+            padding: 20px 15px;
+            background: #050a0f;
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.15), inset 0 0 15px rgba(0, 229, 255, 0.05);
             display: flex;
             flex-direction: column;
             gap: 25px;
             text-align: center;
-            padding-bottom: 40px;
+            position: relative;
         }
         .top-text {
-            font-size: 13px;
+            font-size: 12px;
             color: #78909c;
             line-height: 1.6;
             text-align: left;
@@ -40,39 +46,40 @@
         }
         .highlight-cyan {
             color: #00e5ff;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: bold;
             text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
-            margin: 10px 0;
+            margin: 5px 0;
         }
         .desc-text {
-            font-size: 13px;
+            font-size: 12px;
             color: #90a4ae;
             line-height: 1.6;
         }
         .sanctuary-box {
-            border: 1px solid #00e5ff33;
+            border: 1px solid rgba(0, 229, 255, 0.2);
             background: rgba(0, 229, 255, 0.02);
-            padding: 25px 15px;
+            padding: 20px 15px;
             border-radius: 6px;
-            box-shadow: 0 0 20px rgba(0, 229, 255, 0.05);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.05);
         }
         .sanctuary-title {
-            font-size: 15px;
+            font-size: 14px;
             color: #e0f7fa;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
         .sanctuary-title span {
             color: #00e5ff;
         }
         .sub-desc {
-            font-size: 12px;
+            font-size: 11px;
             color: #00bcd4;
             line-height: 1.6;
         }
         .three-lines {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
             color: #e0f7fa;
             line-height: 2;
@@ -80,7 +87,7 @@
         }
         .danger-text {
             color: #ff5252;
-            font-size: 13px;
+            font-size: 12px;
             line-height: 1.6;
             text-shadow: 0 0 8px rgba(255, 82, 82, 0.3);
         }
@@ -89,7 +96,7 @@
             background: #030609;
             border: 1px solid #1e3a4c;
             border-radius: 6px;
-            padding: 15px;
+            padding: 12px;
             text-align: left;
             position: relative;
         }
@@ -97,56 +104,56 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 11px;
+            font-size: 10px;
             color: #546e7a;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             border-bottom: 1px solid #102030;
             padding-bottom: 5px;
         }
         .badge-burst {
             background: #ff3d00;
             color: #fff;
-            font-size: 9px;
+            font-size: 8px;
             padding: 2px 6px;
             border-radius: 3px;
             font-weight: bold;
         }
         .terminal-sub {
-            font-size: 10px;
+            font-size: 9px;
             color: #455a64;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             word-break: break-all;
         }
         .metrics-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 12px;
+            gap: 6px;
+            margin-bottom: 10px;
             text-align: center;
         }
         .metric-item {
             background: #081118;
             border: 1px solid #15293a;
-            padding: 8px 4px;
+            padding: 6px 4px;
             border-radius: 4px;
         }
         .metric-label {
-            font-size: 9px;
+            font-size: 8px;
             color: #546e7a;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
         .metric-value {
-            font-size: 12px;
+            font-size: 11px;
             color: #00e5ff;
             font-weight: bold;
         }
         .terminal-logs {
-            font-size: 9px;
+            font-size: 8.5px;
             color: #00e5ff;
             background: #010305;
-            padding: 10px;
+            padding: 8px;
             border-radius: 4px;
-            height: 120px;
+            height: 110px;
             overflow-y: hidden;
             line-height: 1.5;
             opacity: 0.85;
@@ -154,30 +161,30 @@
         /* Global Synchronization Grid */
         .sync-section {
             border: 1px solid #102535;
-            padding: 20px 10px;
+            padding: 15px 10px;
             border-radius: 6px;
             background: rgba(5, 10, 15, 0.5);
         }
         .sync-title {
-            font-size: 13px;
+            font-size: 12px;
             color: #00bcd4;
             letter-spacing: 2px;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
         .sync-subtitle {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #546e7a;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         .modules-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            gap: 6px;
         }
         .module-card {
             background: #071018;
             border: 1px solid #183044;
-            padding: 10px 5px;
+            padding: 8px 4px;
             border-radius: 4px;
             text-decoration: none;
             display: flex;
@@ -192,12 +199,12 @@
             box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
         }
         .module-num {
-            font-size: 10px;
+            font-size: 9px;
             color: #546e7a;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
         .module-name {
-            font-size: 10px;
+            font-size: 9px;
             color: #e0f7fa;
             font-weight: bold;
         }
@@ -208,27 +215,27 @@
         /* Reset Section */
         .reset-section {
             border: 1px solid #102535;
-            padding: 25px 15px;
+            padding: 20px 12px;
             border-radius: 6px;
             background: rgba(5, 10, 15, 0.5);
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
         .reset-header {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #546e7a;
             letter-spacing: 1px;
             text-align: left;
         }
         .reset-title {
-            font-size: 15px;
+            font-size: 14px;
             color: #e0f7fa;
             font-weight: bold;
             text-align: left;
         }
         .reset-desc {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #546e7a;
             line-height: 1.6;
             text-align: left;
@@ -238,21 +245,21 @@
         .swipe-container {
             position: relative;
             width: 100%;
-            height: 54px;
+            height: 50px;
             background: #03080d;
-            border: 1px solid #00e5ff44;
-            border-radius: 27px;
+            border: 1px solid rgba(0, 229, 255, 0.35);
+            border-radius: 25px;
             overflow: hidden;
             display: flex;
             align-items: center;
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
+            box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.05);
         }
         .swipe-text {
             position: absolute;
             width: 100%;
             text-align: center;
-            font-size: 11px;
-            color: #00e5ff88;
+            font-size: 10px;
+            color: rgba(0, 229, 255, 0.5);
             letter-spacing: 2px;
             pointer-events: none;
             z-index: 1;
@@ -263,14 +270,14 @@
             top: 0;
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, rgba(0,229,255,0.1), rgba(0,229,255,0.3));
+            background: linear-gradient(90deg, rgba(0,229,255,0.15), rgba(0,229,255,0.35));
             z-index: 2;
         }
         .swipe-handle {
             position: absolute;
             left: 3px;
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             background: #00e5ff;
             border-radius: 50%;
             display: flex;
@@ -278,20 +285,19 @@
             justify-content: center;
             cursor: pointer;
             z-index: 3;
-            box-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
-            transition: background 0.2s;
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.7);
         }
         .swipe-handle::after {
             content: '>>';
             color: #03080d;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 11px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="outer-frame">
         <!-- 1. Top Quote -->
         <div class="top-text">
             いつまで他人の土俵で、検閲者の顔色を伺いながら犬のリードに繋がれて生きるつもりだ？
@@ -351,7 +357,7 @@
                 </div>
                 <div class="metric-item">
                     <div class="metric-label">VELOCITY</div>
-                    <div class="metric-value" style="font-size: 10px; color: #ff3d00;">ULTRA BURST</div>
+                    <div class="metric-value" style="font-size: 9.5px; color: #ff3d00;">ULTRA BURST</div>
                 </div>
             </div>
             <div class="terminal-logs">
