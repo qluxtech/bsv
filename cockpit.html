@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLUX COCKPIT</title>
+    <title>QLUX // ENTERPRISE BSV COMMAND COCKPIT</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- React & Babel for in-browser JSX transformation -->
@@ -12,6 +12,9 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
         body { background-color: #010103; color: #00ffcc; font-family: monospace; }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: #010103; }
+        ::-webkit-scrollbar-thumb { background: #00ffcc/40; border-radius: 2px; }
     </style>
 </head>
 <body class="min-h-screen p-4 md:p-6 select-none overflow-x-hidden">
@@ -48,14 +51,14 @@
             const [selectedModule, setSelectedModule] = useState(MASTER_MODULES[0]);
             const [consoleLogs, setConsoleLogs] = useState([
                 '[SYSTEM_BOOT] Initializing QLUX Quantum-Sovereign BSV Cockpit...',
-                '[CORE_INIT] Loading 20 hyper-accelerated operational modules...',
+                '[ENTERPRISE_SEC] Verifying lattice-based quantum keys & HTTP 402 micro-mesh...',
                 '[CHAIN_CONNECT] Established secure zero-conf tunnel to BSV Mainnet nodes.',
                 '[READY] Command cockpit fully operational. Awaiting master execution.'
             ]);
             const [commandInput, setCommandInput] = useState('');
             const [systemLoad, setSystemLoad] = useState(42.8);
-            const [activeTxs, setActiveTxs] = useState(142857);
-            const [revenueSats, setRevenueSats] = useState(9824500);
+            const [activeTxs, setActiveTxs] = useState(143254);
+            const [revenueSats, setRevenueSats] = useState(9830000);
             const terminalEndRef = useRef(null);
 
             useEffect(() => {
@@ -84,7 +87,7 @@
                 setTimeout(() => {
                     const mockTxid = Array.from({length: 64}, () => Math.floor(Math.random()*16).toString(16)).join('');
                     appendLog(`[SUCCESS] TXID BROADCASTED: ${mockTxid.slice(0, 16)}...${mockTxid.slice(-16)}`);
-                    appendLog(`[STATE_LATCH] Human intent permanently frozen into immutable blockchain ledger.`);
+                    appendLog(`[ENTERPRISE_LATCH] State permanently committed to Bitcoin SV ledger.`);
                 }, 400);
             };
 
@@ -95,14 +98,16 @@
                 if (commandInput.toLowerCase() === 'singularity') {
                     executeMasterProtocol(20);
                 } else {
-                    appendLog(`[EXEC] Command evaluated and committed to chain layer.`);
+                    appendLog(`[EXEC] Instruction evaluated and locked to chain layer.`);
                 }
                 setCommandInput('');
             };
 
             return (
-                <div className="max-w-7xl mx-auto">
-                    <header className="border-b border-[#00ffcc]/30 pb-4 mb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                <div className="max-w-7xl mx-auto space-y-6">
+                    
+                    {/* HEADER */}
+                    <header className="border-b border-[#00ffcc]/30 pb-4 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                         <div>
                             <div className="flex items-center gap-3">
                                 <span className="w-3 h-3 bg-[#00ffcc] rounded-full animate-ping" />
@@ -111,7 +116,7 @@
                                 </h1>
                             </div>
                             <p className="text-xs text-[#00ffcc]/60 mt-1 uppercase tracking-[0.3em]">
-                                Global Bitcoin SV Blockchain Command & Intelligence Unit v9.4
+                                Global Bitcoin SV Enterprise Command & Intelligence Unit v9.4
                             </p>
                         </div>
                         <div className="flex gap-4 text-[10px] bg-[#05050a] border border-[#00ffcc]/30 p-3 rounded">
@@ -130,7 +135,55 @@
                         </div>
                     </header>
 
-                    <div className="flex gap-2 mb-6 border-b border-[#00ffcc]/20 pb-2">
+                    {/* ENTERPRISE SPECIFICATION SHEET (BI-LINGUAL) / エンタープライズ仕様書（日英） */}
+                    <section className="bg-[#030308] border border-[#00ffcc]/40 p-4 md:p-6 rounded-lg shadow-[0_0_25px_rgba(0,255,204,0.1)] space-y-4">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#00ffcc]/20 pb-3 gap-2">
+                            <div>
+                                <span className="text-[10px] bg-[#00ffcc]/20 text-[#00ffcc] px-2 py-0.5 rounded font-bold uppercase tracking-wider">ENTERPRISE SPEC // 機関投資家・開発者向け仕様書</span>
+                                <h2 className="text-sm md:text-base font-bold text-white uppercase mt-1">Autonomous BSV Settlement & Intelligence Mesh Architecture</h2>
+                            </div>
+                            <div className="text-[10px] text-[#00ffcc]/60 font-mono">
+                                STATUS: PROTOCOL_LOCKED // 20 NODES ACTIVE
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            {/* JP SPEC */}
+                            <div className="border border-[#00ffcc]/20 bg-black/40 p-3.5 rounded space-y-2">
+                                <div className="text-[#00ffcc] font-bold text-[11px] border-b border-[#00ffcc]/20 pb-1 flex justify-between">
+                                    <span>[日本] アーキテクチャ概要</span>
+                                    <span>最高機密・改ざん不能</span>
+                                </div>
+                                <p className="text-gray-300 text-[11px] leading-relaxed">
+                                    QLUXコックピットは、Bitcoin SV（BSV）ブロックチェーンを根幹とした世界最高速の自律型経済・知性統合プラットフォームです。中間機関や検閲を完全に排除し、ミリ秒単位のナノ決済と強固なOP_RETURNステート記録を実現します。
+                                </p>
+                                <ul className="text-[10px] text-gray-400 space-y-1 list-disc pl-4">
+                                    <li><strong>決済基盤:</strong> HandCash API & HTTP 402リアルタイムマイクロ決済</li>
+                                    <li><strong>暗号化:</strong> 耐量子ポスト・量子格子暗号による最高レベルのデータ保護</li>
+                                    <li><strong>統合知性:</strong> 20のコアモジュールが完全同期し、自律的に最適化を遂行</li>
+                                </ul>
+                            </div>
+
+                            {/* EN SPEC */}
+                            <div className="border border-[#00ffcc]/20 bg-black/40 p-3.5 rounded space-y-2">
+                                <div className="text-[#00ffcc] font-bold text-[11px] border-b border-[#00ffcc]/20 pb-1 flex justify-between">
+                                    <span>[EN] Architecture Specification</span>
+                                    <span>Zero-Trust / Quantum-Secure</span>
+                                </div>
+                                <p className="text-gray-300 text-[11px] leading-relaxed">
+                                    The Qlux Cockpit is an ultra-high-yield autonomous economic and intelligence mesh powered by the Bitcoin SV blockchain. It eliminates intermediaries, delivering sub-millisecond atomic micropayments and permanent OP_RETURN anchoring.
+                                </p>
+                                <ul className="text-[10px] text-gray-400 space-y-1 list-disc pl-4">
+                                    <li><strong>Settlement Mesh:</strong> HandCash API with instant HTTP 402 micro-fees.</li>
+                                    <li><strong>Security Shield:</strong> Lattice-based post-quantum cryptographic protection.</li>
+                                    <li><strong>Orchestration:</strong> 20 synchronized core modules executing autonomous state logic.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* NAVIGATION TABS */}
+                    <div className="flex gap-2 border-b border-[#00ffcc]/20 pb-2">
                         {['GRID', 'TELEMETRY', 'ECONOMY', 'SECURITY'].map((tab) => (
                             <button
                                 key={tab}
@@ -146,6 +199,7 @@
                         ))}
                     </div>
 
+                    {/* MAIN CONTENT AREA */}
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                         <div className="lg:col-span-8 space-y-6">
                             {activeTab === 'GRID' && (
@@ -155,7 +209,7 @@
                                         return (
                                             <div
                                                 key={mod.id}
-                                                onClick={() => { setSelectedModule(mod); appendLog(`[MODULE_SELECT] ${mod.code} // ${mod.name}`); }}
+                                                onClick={() => { setSelectedModule(mod); appendLog(`[MODULE_SELECT] Interfacing with ${mod.code} // ${mod.name}`); }}
                                                 className={`p-3 border transition-all cursor-pointer relative ${
                                                     isSelected
                                                         ? 'border-[#00ffcc] bg-[#00ffcc]/10 shadow-[0_0_20px_rgba(0,255,204,0.2)]'
@@ -185,66 +239,11 @@
                                 </div>
                             )}
 
+                            {/* MASTER SINGULARITY BUTTON */}
                             <div className="p-1 bg-gradient-to-r from-[#00ffcc] via-blue-500 to-purple-600 rounded">
                                 <button
                                     onClick={() => executeMasterProtocol(20)}
                                     className="w-full py-6 bg-black text-[#00ffcc] font-black text-xl md:text-2xl tracking-[0.2em] hover:bg-[#00ffcc] hover:text-black transition-all cursor-pointer uppercase shadow-2xl"
                                 >
                                     [ INITIATE SINGULARITY ASCENSION ]
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="lg:col-span-4 flex flex-col gap-6">
-                            <div className="bg-[#030308] border border-[#00ffcc]/30 p-4 rounded flex flex-col justify-between">
-                                <div>
-                                    <div className="flex justify-between items-center border-b border-[#00ffcc]/20 pb-2 mb-3">
-                                        <span className="text-xs font-bold text-white">INSPECTOR: {selectedModule.code}</span>
-                                        <span className="text-[10px] px-2 py-0.5 bg-[#00ffcc]/20 text-[#00ffcc] rounded">{selectedModule.category}</span>
-                                    </div>
-                                    <h3 className="text-base font-black text-white uppercase">{selectedModule.name}</h3>
-                                    <p className="text-[10px] text-gray-400 mt-2">{selectedModule.description}</p>
-                                </div>
-                                <button
-                                    onClick={() => executeMasterProtocol()}
-                                    className="mt-6 w-full py-3 bg-[#00ffcc]/20 hover:bg-[#00ffcc] text-[#00ffcc] hover:text-black font-bold text-xs uppercase transition-all border border-[#00ffcc] cursor-pointer"
-                                >
-                                    Execute {selectedModule.name}
-                                </button>
-                            </div>
-
-                            <div className="bg-black border border-[#00ffcc]/30 p-4 rounded flex flex-col h-72">
-                                <div className="flex justify-between items-center border-b border-[#00ffcc]/20 pb-2 mb-2">
-                                    <span className="text-[10px] font-bold uppercase text-gray-400">Live Telemetry Stream</span>
-                                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                                </div>
-                                <div className="flex-1 overflow-y-auto space-y-1 text-[9px] font-mono text-[#00ffcc]/80">
-                                    {consoleLogs.map((log, index) => (
-                                        <div key={index} className="border-l border-[#00ffcc]/40 pl-2 py-0.5 break-all">{log}</div>
-                                    ))}
-                                    <div ref={terminalEndRef} />
-                                </div>
-                                <form onSubmit={handleCommandSubmit} className="mt-2 pt-2 border-t border-[#00ffcc]/20 flex gap-2">
-                                    <input
-                                        type="text"
-                                        value={commandInput}
-                                        onChange={(e) => setCommandInput(e.target.value)}
-                                        placeholder="Type command or 'singularity'..."
-                                        className="w-full bg-[#030308] border border-[#00ffcc]/30 px-3 py-1.5 text-[10px] text-white focus:outline-none focus:border-[#00ffcc]"
-                                    />
-                                    <button type="submit" className="px-3 bg-[#00ffcc] text-black text-[10px] font-bold uppercase hover:bg-white cursor-pointer">
-                                        Send
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
-
-        ReactDOM.createRoot(document.getElementById('root')).render(<QluxCommandCockpit />);
-    </script>
-</body>
-</html>
-
+           
